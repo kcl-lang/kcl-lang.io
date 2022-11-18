@@ -1,0 +1,30 @@
+name: build-and-deploy
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+    types:
+    - closed
+jobs:
+  deploy:
+    if: (github.event_name == 'push') || github.event.pull_request.merged == true
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Git checkout
+        uses: actions/checkout@v2
+
+      - run: npm install
+      - run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3.7.3
+        with:
+          personal_token: ${{ secrets.kcl-lang_BOT_TOKEN }}
+          external_repository: kcl-lang/kcl-lang.github.io
+          publish_dir: ./build
+          publish_branch: main
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'

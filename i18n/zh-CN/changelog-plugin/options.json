@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "KCL 更新日志",
+    "description": "The title for the blog used in SEO"
+  },
+  "description": {
+    "message": "Keep yourself up-to-date about new features in every release",
+    "description": "The description for the blog used in SEO"
+  },
+  "sidebar.title": {
+    "message": "更新日志",
+    "description": "The label for the left sidebar"
+  }
+}

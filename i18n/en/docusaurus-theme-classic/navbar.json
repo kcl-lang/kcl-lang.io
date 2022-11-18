@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "",
+    "description": "The title in the navbar"
+  },
+  "item.label.UserDoc": {
+    "message": "Get Started",
+    "description": "Navbar item with label UserDoc"
+  },
+  "item.label.Reference": {
+    "message": "Reference",
+    "description": "Navbar item with label Reference"
+  },
+  "item.label.DevDoc": {
+    "message": "Developing",
+    "description": "Navbar item with label DevDoc"
+  },
+  "item.label.Governance": {
+    "message": "Governance",
+    "description": "Navbar item with label Governance"
+  },
+  "item.label.Blog": {
+    "message": "Blog",
+    "description": "Navbar item with label Blog"
+  },
+  "item.label.Events": {
+    "message": "Events",
+    "description": "Navbar item with label Events"
+  }
+}
