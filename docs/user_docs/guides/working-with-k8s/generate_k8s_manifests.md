@@ -1,12 +1,12 @@
-# KCL - 让 Kubernetes 资源清单管理更简单
+# KCL - Make Kubernetes Resource Management Easier
 
-## 什么是 KCL
+## What is KCL
 
-[KCL (Kusion Configuration Language)](https://github.com/KusionStack/KCLVM) 是一个开源的基于约束的记录及函数语言，主要用于配置编写和策略校验场景。KCL 期望通过成熟的编程语言技术和实践来改进对大量繁杂配置的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
+[KCL (Kusion Configuration Language)](https://github.com/KusionStack/KCLVM) is an open source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality.
 
-所谓配置就是当我们部署软件系统时，我们并不认为它们是固定不变的。不断发展的业务需求、基础架构要求和其他因素意味着系统不断变化。当我们需要快速更改系统行为，并且更改过程需要昂贵、冗长的重建和重新部署过程时，业务代码更改往往是不够的。而配置可以为我们提供了一种低开销的方式来改变系统功能，比如我们会经常为系统编写一些如下所示的 JSON 或 YAML 文件作为我们系统的配置。
+When we deploy software systems, we do not think they are fixed. Evolving business requirements, infrastructure requirements, and other factors mean that systems are constantly changing. When we need to change the system behavior quickly, and the change process needs expensive and lengthy reconstruction and redeployment process, business code change is often not enough. Configuration can provide us with a low overhead way to change system functions. For example, we often write JSON or YAML files as shown below for our system configuration.
 
-+ JSON 配置
++ JSON configuration
 
 ```json
 {
@@ -25,7 +25,7 @@
 }
 ```
 
-+ YAML 配置
++ YAML configuration
 
 ```yaml
 server:
@@ -39,11 +39,11 @@ database:
   - 8002
 ```
 
-我们可以根据需要选择在 JSON 和 YAML 文件中存储静态配置。此外，配置还可以存储在允许更灵活配置的高级语言中，通过代码编写、渲染并得到静态配置。KCL 就是这样一种配置语言，我们可以编写 KCL 代码来生成 JSON/YAML 等配置。这篇文章我们重点讲述使用 KCL 生成并管理 Kubernetes 资源，并通过一些简单的例子给大家一个简单的快速开始，更多的内容我们会在后续文章展开。
+We can choose to store the static configuration in JSON and YAML files as needed. In addition, the configuration can also be stored in a high-level language that allows more flexible configuration, which can be coded, rendered, and statically configured. KCL is such a configuration language. We can write KCL code to generate JSON/YAML and other configurations. In this article, we focus on the use of KCL to generate and manage Kubernetes resources, and give you a simple and quick start through some simple examples. We will expand more in the following articles.
 
-## 为什么使用 KCL
+## Why use KCL
 
-当我们管理 Kubernetes 资源清单时，我们常常会手写维护，或者使用 Helm 和 Kustomize 等工具来维护我们 YAML 配置或者配置模版，然后通过 kubectl 和 helm 命令行等工具将资源下发到集群。但是作为一个 "YAML 工程师" 每天维护 YAML 配置无疑是琐碎且无聊的，并且容易出错。
+When we manage the Kubernetes resources, we often maintain it by hand, or use Helm and Kustomize tools to maintain our YAML configurations or configuration templates, and then apply the resources to the cluster through kubectl tools. However, as a "YAML engineer", maintaining YAML configuration every day is undoubtedly trivial and boring, and prone to errors. For example as follows:
 
 ```yaml
 apiVersion: apps/v1
@@ -81,23 +81,23 @@ spec:
                 - 'true'
 ```
 
-+ YAML 中的结构化数据是无类型的，缺乏验证方法，无法立即检查所有数据的有效性
-+ YAML 编程能力欠佳，容易写出不正确的缩进，也没有逻辑判断、等常见代码组织方式，容易写出大量重复配置，难以维护
-+ Kubernetes 设计是复杂的，用户很难理解所有细节，比如上面配置中的 `toleration` 和 `affinity` 字段，如果用户不理解调度逻辑，它可能被错误地省略掉或者多余的添加
++ The structured data in YAML is untyped and lacks validation methods, so the validity of all data cannot be checked immediately.
++ YAML has poor programming ability. It is easy to write incorrect indents and has no common code organization methods such as logical judgment. It is easy to write a large number of repeated configurations and difficult to maintain.
++ The design of Kubernetes is complex, and it is difficult for users to understand all the details, such as the `toleration` and `affinity` fields in the above configuration. If users do not understand the scheduling logic, it may be wrongly omitted or superfluous added.
 
-因此，KCL 期望在 Kubernetes YAML 资源管理解决如下问题：
+Therefore, KCL expects to solve the following problems in Kubernetes YAML resource management:
 
-+ 用**生产级高性能编程语言**以**编写代码**的方式提升配置的灵活度，比如条件语句、循环、函数、包管理等特性提升配置重用的能力
-+ 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
-+ 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
++ Use **production level high-performance programming language** to **write code** to improve the flexibility of configuration, such as conditional statements, loops, functions, package management and other features to improve the ability of configuration reuse.
++ Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
++ Provide **the ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
 
-## 如何使用 KCL 生成并管理 Kubernetes 资源
+## How to use KCL to generate and manage Kubernetes resources
 
-### 前提条件
+### Prerequisite
 
-首先可以在 [KCL 项目首页](https://github.com/KusionStack/KCLVM) 根据指导下载并安装 KCL，然后准备一个 [Kubernetes](https://kubernetes.io/) 环境
+First, you can visit the [KCL project home page](https://github.com/KusionStack/KCLVM) to download and install KCL according to the instructions, and then prepare a [Kubernetes](https://kubernetes.io/) environment.
 
-### 生成 Kubernetes 资源
+### Generate Kubernetes manifests
 
 我们可以编写如下 KCL 代码并命名为 main.k ，KCL 受 Python 启发，基础语法十分接近 Python, 比较容易学习和上手, 配置模式写法很简单，`k [: T] = v`, 其中 `k` 表示配置的属性名称; `v` 表示配置的属性值; `: T` 表示一个可选的类型注解。
 
@@ -122,15 +122,15 @@ spec = {
 }
 ```
 
-上述 KCL 代码中我们分别声明了一个 Kubernetes Deployment 资源的 `apiVersion`、`kind`、`metadata` 和 `spec` 等变量，并分别赋值了相应的内容，特别地，我们将 `metadata.labels` 字段分别重用在 `spec.selector.matchLabels` 和 `spec.template.metadata.labels` 字段。可以看出，相比于 YAML，KCL 定义的数据结构更加紧凑，而且可以通过定义局部变量实现配置重用。
+In the above KCL code, we declare the `apiVersion`, `kind`, `metadata`, `spec` and other variables of a Kubernetes `Deployment` resource, and assign the corresponding contents respectively. In particular, we will assign `metadata.labels` fields are reused in `spec.selector.matchLabels` and `spec.template.metadata.labels` field. It can be seen that, compared with YAML, the data structure defined by KCL is more compact, and configuration reuse can be realized by defining local variables.
 
-我们可以执行如下命令行得到一个 Kubernetes YAML 文件
+We can get a Kubernetes YAML file by executing the following command line
 
 ```cmd
 kcl main.k
 ```
 
-输出为:
+The output is
 
 ```yaml
 apiVersion: apps/v1
@@ -156,7 +156,7 @@ spec:
         - containerPort: 80
 ```
 
-当然我们可以将 KCL 工具与 kubectl 等工具结合使用，让我们执行如下命令并看看效果
+Of course, we can use KCL together with kubectl and other tools. Let's execute the following commands and see the result:
 
 ```cmd
 $ kcl main.k | kubectl apply -f -
@@ -164,9 +164,9 @@ $ kcl main.k | kubectl apply -f -
 deployment.apps/nginx-deployment configured
 ```
 
-可以从命令行的结果看出看出与我们使用直接使用 YAML 配置和 kubectl apply 的一个 Deployment 体验完全一致
+It can be seen from the command line that it is completely consistent with the deployment experience of using YAML configuration and kubectl application directly.
 
-通过 kubectl 检查部署状态
+Check the deployment status through kubectl
 
 ```cmd
 $ kubectl get deploy
@@ -175,9 +175,9 @@ NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           15s
 ```
 
-### 编写代码管理 Kubernetes 资源
+### Write code to manage Kubernetes resources
 
-对于 Kubernetes 资源发布时，我们常常会遇到配置参数需要动态指定的场景，比如不同的环境需要设置不同的 `image` 字段值生成不同环境的资源。对于这种场景，我们可以通过 KCL 的条件语句和 `option` 函数动态地接收外部参数。我们可以在上述例子的基础上根据不同的环境调整配置参数，比如对于如下代码，我们编写了一个条件语句并输入一个名为 `env` 的动态参数
+When publishing Kubernetes resources, we often encounter scenarios where configuration parameters need to be dynamically specified. For example, different environments need to set different `image` field values to generate resources in different environments. For this scenario, we can dynamically receive external parameters through KCL conditional statements and `option` functions. Based on the above example, we can adjust the configuration parameters according to different environments. For example, for the following code, we wrote a conditional statement and entered a dynamic parameter named `env`.
 
 ```python
 apiVersion = "apps/v1"
@@ -200,13 +200,13 @@ spec = {
 }
 ```
 
-使用 KCL 命令行 `-D` 标记接收一个外部设置的动态参数：
+Use the KCL command line `-D` flag to receive an external dynamic parameter:
 
 ```cmd
 kcl main.k -D env=prod
 ```
 
-输出为:
+The output is
 
 ```yaml
 apiVersion: apps/v1
@@ -234,7 +234,9 @@ spec:
 
 上述代码片段中的 `image = metadata.name + ":1.14.2" if option("env") == "prod" else  metadata.name + ":latest"` 意思为：当动态参数 `env` 的值被设置为 `prod` 时，image 字段值为 `nginx:1.14.2`, 否则为 `nginx:latest`，因此我们可以根据需要为 env 设置为不同的值获得不同内容的 Kubernetes 资源。
 
-并且 KCL 支持将 option 函数动态参数维护在配置文件中，比如编写下面展示的 `kcl.yaml` 文件
+The `image=metadata.name+": 1.14.2" if option ("env")=="prod" else metadata.name + ": latest"` in the above code snippet means that when the value of the dynamic parameter `env` is set to `prod`, the value of the image field is `nginx: 1.14.2`; otherwise, it is' nginx: latest'. Therefore, we can set env to different values as required to obtain Kubernetes resources with different contents.
+
+KCL also supports maintaining the dynamic parameters of the option function in the configuration file, such as writing the ` kcl.yaml ` file.
 
 ```yaml
 kcl_options:
@@ -242,13 +244,13 @@ kcl_options:
     value: prod
 ```
 
-使用如下命令行也可以得到同样的 YAML 输出，以简化 KCL 动态参数的输入过程
+The same YAML output can be obtained by using the following command line to simplify the input process of KCL dynamic parameters.
 
 ```cmd
 kcl main.k -Y kcl.yaml
 ```
 
-输出为:
+The output is:
 
 ```yaml
 apiVersion: apps/v1
@@ -274,18 +276,18 @@ spec:
         - containerPort: 80
 ```
 
-## 下一期
+## Next
 
-本期内容大概简单介绍了用 KCL 编写配置的快速入门和使用 KCL 定义并管理 Kubernetes 资源。
+This article briefly introduces the quick start of writing configurations with KCL and the use of KCL to define and manage Kubernetes resources.
 
-目前阶段 Kustomize 和 Helm 已经慢慢演进成在 Kubernetes 配置定义和管理领域的事实意义上的标准，熟悉 Kubernetes 的小伙伴可能更喜欢显式配置编写方式编写。那么相较于 Kustomize 和 Helm，用 KCL 来写配置文件渲染，又有什么异同呢？考虑到有很多小伙伴已经在使用 Helm，Kustomize 这样的工具，下一期我将介绍用 KCL 的方式来写对应的配置代码，敬请期待！！
+At this stage, Kustomize and Helm have gradually evolved into the de facto standard in the field of Kubernetes configuration definition and management. Small partners familiar with Kubernetes may prefer to write explicit configurations. What are the differences and similarities between Kustomize and Helm in using KCL to write and render configuration files? Considering that many partners are already using tools like Helm and Kustomize, I will introduce the KCL method to write the corresponding configuration code in the next article.
 
-如果您喜欢这篇文章，一定记得收藏 + 关注！！更多精彩内容请访问:
+For more highlights, please visit:
 
-+ KCL 仓库地址：https://github.com/KusionStack/KCLVM
-+ Kusion 仓库地址：https://github.com/KusionStack/kusion
-+ Konfig 仓库地址：https://github.com/KusionStack/Konfig
++ KCL: https://github.com/KusionStack/KCLVM
++ Kusion: https://github.com/KusionStack/kusion
++ Konfig: https://github.com/KusionStack/Konfig
 
-同时欢迎加入我们的社区进行交流:
+Welcome to join our community for communication:
 
-https://github.com/KusionStack/community
++ https://github.com/KusionStack/community
