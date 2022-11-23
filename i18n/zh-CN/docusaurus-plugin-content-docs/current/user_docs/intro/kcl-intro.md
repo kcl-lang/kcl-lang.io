@@ -115,6 +115,14 @@ The general language is usually overkill, that is, it goes far beyond the proble
 
 In addition, because of its various styles of the general language, which has the cost of unified maintenance, management and automation. The general language is usually used to write the client runtime, which is a continuation of the server runtime. It is not suitable for writing configurations that are independent of the runtime, and it is compiled into binary and started from the process finally. Besides, the stability and scalability are not easy to control. However, the configuration language often be used to write data, which is combined with simple logic, and it describes the expected final result, which is then consumed by the compiler or engine.
 
+### vs. OPA/Rego
+
+Although not designed as a data definition language, Rego, the language used for Open Policy Agent (OPA), also solves the issue of being able to add constraints from multiple sources.
+
+Rego has its roots in logic programming. It is based on Datalog, a restricted form of Prolog, whereas KCL is based on static type structure. Typed-feature structures were designed to deal with the shortcomings of Prolog for applications in encoding human languages. Using a Datalog variant for what is essentially a constraint validation task is somewhat curious. Datalog makes an excellent query language. But for constraint enforcement, it is a bit cumbersome as one effectively first needs to query values to which to apply the constraints.
+
+Besides, KCL’s approach is more amenable to finding normalized and simplified representations of constraints, which makes it more suitable for creating OpenAPI for generated from OpenAPI.
+
 ## Next step
 
 + [Install KCL](/docs/user_docs/getting-started/install)
