@@ -24,7 +24,7 @@ The existing KCL Models may not meet your specific business requirements, then y
 
 #### 3.2.1 Convert Kubernetes Deployment Into KCL Schema
 
-We already have a copy of [generated Kubernetes 1.22 models](https://github.com/kcl-lang/konfig/blob/main/base/pkg/kusion_kubernetes/api/apps/v1/deployment.k) under the `base/pkg/kusion_kubernetes` directory in the Konfig repository. You can skip this step and use the existing models, or you can generate other versions of that if needed.
+We already have a copy of [generated Kubernetes 1.22 models](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_kubernetes/api/apps/v1/deployment.k) under the `base/pkg/kusion_kubernetes` directory in the Konfig repository. You can skip this step and use the existing models, or you can generate other versions of that if needed.
 
 Now let's generate a v1.23 version of Kubernetes models. From [Kubernetes v1.23 OpenAPI Spec](https://github.com/kubernetes/kubernetes/blob/release-1.23/api/openapi-spec/swagger.json), we can find the definition of the `apps/v1.Deployment` model, and here is a partial excerpt:
 
@@ -78,7 +78,7 @@ You can save the above spec as `deployment.json` and run `kcl-openapi generate m
 
 #### 3.2.2 Design Custom Frontend Models
 
-Since the Kubernetes built-in models are atomistic and kind of complex to beginners, we recommend taking the native model of Kubernetes as the backend output model and designing a batch of frontend models which could become a more abstract, friendlier and simpler interface to the user. You can refer to the design pattern in the [`Server Schema in the Konfig repo`](https://github.com/kcl-lang/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k).
+Since the Kubernetes built-in models are atomistic and kind of complex to beginners, we recommend taking the native model of Kubernetes as the backend output model and designing a batch of frontend models which could become a more abstract, friendlier and simpler interface to the user. You can refer to the design pattern in the [`Server Schema in the Konfig repo`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k).
 
 #### 3.2.3 Migrate The Configuration Data
 

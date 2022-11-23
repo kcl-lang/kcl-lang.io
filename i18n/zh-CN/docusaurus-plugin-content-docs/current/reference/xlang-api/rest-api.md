@@ -111,7 +111,7 @@ $ curl -X POST \
 
 ## 4. 完整的 Protobuf 服务定义
 
-跨语言的 API 通过 Protobuf 定义([https://github.com/kcl-lang/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/kcl-lang/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto))：
+跨语言的 API 通过 Protobuf 定义([https://github.com/KusionStack/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/KusionStack/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto))：
 
 ```protobuf
 // Copyright 2021 The KCL Authors. All rights reserved.
@@ -137,7 +137,7 @@ syntax = "proto3";
 
 package gpyrpc;
 
-option go_package = "kcl-lang.io/kclvm-go/pkg/spec/gpyrpc;gpyrpc";
+option go_package = "kusionstack.io/kclvm-go/pkg/spec/gpyrpc;gpyrpc";
 
 import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";

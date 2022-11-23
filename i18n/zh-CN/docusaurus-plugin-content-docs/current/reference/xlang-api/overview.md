@@ -54,7 +54,7 @@ package main
 import (
 	"fmt"
 
-	"kcl-lang.io/kclvm-go/api/kcl"
+	"kusionstack.io/kclvm-go/api/kcl"
 )
 
 

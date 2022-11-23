@@ -7,6 +7,7 @@
 在提交一个 issue 之前，请先查阅已经关闭的 issue ，也许在关闭的 issue 中已经存在合适的解决方案。
 
 如果没有找到合适的方案，我们提供了4种模版在创建 issue 的时候使用。
+
 - Bug Report : 发现了一个 Bug，可以通过 Bug Report 模版创建 issue 与我们联系。
 - Enhancement : 开发者对工具进行了增强，可以通过 Enhancement 模版创建 issue 来介绍增加的内容。
 - Feature Request : 在使用的过程中想要为工具增加某些新的特性或者功能，可以通过 Feature Request 模版创建 issue 来描述新特性。
@@ -16,12 +17,13 @@
 
 ## 2. 关于 Git 分支
 
-要向 kcl-lang 贡献代码，您必须拥有一个 GitHub 帐户，以便您可以将代码推送到您自己的 kcl-lang 分支并创建拉取请求。我们推荐参考 [Angular 规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) 为您自己的分支命名。
+要向 KCL 贡献代码，您必须拥有一个 GitHub 帐户，以便您可以将代码推送到您自己的 kcl-lang 分支并创建拉取请求。我们推荐参考 [Angular 规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) 为您自己的分支命名。
 推荐的格式如下：
 
 ```
 {type}-{a_short_description}
 ```
+
 分支名称主要包括两个字段，并通过 “-” 分割。其中：
  - {type} : 当前分支内容的类型。
  - {a_short_description}: 一个简短的描述，介绍这个分支的主要内容。
@@ -29,6 +31,7 @@
 e.g. 张三首先 Fork 仓库到自己账户下，然后创建对应名称 `zhangsan:fix-output-fmt-bug` 的分支（冒号之前是张三的账号），用于修复输出格式化 bug。
 
 ## 3. 关于 Git Commit
+
 我们参考 [Commitizen](https://github.com/commitizen/cz-cli) 书写 Commit Message。
 ```
 注: 如果直接使用 Commitizen 生成 Commit Message，需要注意因为 Commitizen 
@@ -81,14 +84,16 @@ node_modules/*
 ## 4. 关于 pull request
 
 在提交一个 PR 之前，可能需要优先考虑以下几个问题:
+
 - 请先查阅已经关闭的 PR ，也许在已经关闭的 PR 中，可能存在已经完成的解决方案。
 - 我们建议在提交变更之前，提交一个对应的 issue 描述变更中将要解决的问题，并将变更对应的 PR 与 issue 关联。
 - 在向我们提交 PR 之后，请签署 [Contributor License Agreement (CLA)](#cla) ，如果拒绝签署，我们将无法接受 PR。
 - 请确保每次改动都创建了一个新的分支，并根据上文中提到的规范为分支命名。
 - 一次 PR 请不要超过两个 commit ，请将多余的 commit 通过 squash 压缩，并根据上文中提到的规范，编写 commit message 。
-- 我们提供了 [PR 模版](https://github.com/kcl-lang/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md)，只需要添加模版中要求的内容即可，如果在创建PR时发现没有模版或者模版内容为空，可以通过微信群，钉钉群或者邮件向我们反馈这个问题。
+- 我们提供了 [PR 模版](https://github.com/KusionStack/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md)，只需要添加模版中要求的内容即可，如果在创建PR时发现没有模版或者模版内容为空，可以通过微信群，钉钉群或者邮件向我们反馈这个问题。
 
 我们建议PR的标题与分支名、commit message 风格保持一致：
+
 ```
 {type} ( {component_name_or_file_name} ) :{a_short_description}
 ```
@@ -99,7 +104,9 @@ fix(kclvm-printer): fix an output format bug in kclvm-printer.
 ```
 
 ## 5. 目前 type 支持的类型
-参考[ Angular 规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)，type 支持类型的类型如下:
+
+参考[Angular 规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines)，type 支持类型的类型如下:
+
 ```
 - feat:     -- 添加了新的功能特性。
 - fix:      -- 进行了 Bug 的修复。

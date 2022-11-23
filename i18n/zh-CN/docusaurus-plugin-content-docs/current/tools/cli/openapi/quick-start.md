@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ```shell
 # 1. 下载二进制程序
-# https://github.com/kcl-lang/kcl-openapi/releases
+# https://github.com/KusionStack/kcl-openapi/releases
 
 # 2. 将命令添加至PATH
 export PATH="<Your directory to store KCL OpenAPI binary>:$PATH"

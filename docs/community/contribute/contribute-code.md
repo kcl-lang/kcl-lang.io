@@ -4,22 +4,16 @@ sidebar_position: 2
 
 # How to Contribute Code?
 
-欢迎参与 KCL 共建贡献完善代码、完善代码文档和测试，同时也欢迎通过 Issue 提供反馈。本文主要针对修改和完善已有的代码，如果是希望增加 KCL 语言特性请通过 KEP 流程提交。
+Welcome to participate in the KCL co construction to improve the code, documentation and testing, and also welcome to provide feedback through Issues. If you want to add KCL language features, please submit through the [KEP](https://github.com/KusionStack/KEP) process.
 
-## 1. 代码和注释中的错别字
+## 1. Misspellings in Code and Comments
 
-如果只是修改代码和注释中的错别字，不涉及代码逻辑的调整，那么可以直接在 Github 克隆仓库后直接修改并提交 PR。需要注意的是尽量保持代码风格一致。
+If you only need to modify the typos in the code and comments, you can directly modify and submit the PR to the repository. It is important to keep the code style as consistent as possible.
 
-## 2. 如何贡献 KCL 代码
+## 2. How to Contribute KCL
 
-- 先确保本地测试环境正常
-- 修改代码并补充测试
-- 本地测试通过后提交 PR
+See [KCL contribute guide](https://github.com/KusionStack/KCLVM/blob/main/docs/dev_guide/1.about_this_guide.md) for more information.
 
-## 3. 如何贡献 VS Code 插件代码
+## 3. How to Contribute VS Code KCL Plugin
 
-请参考 VS Code 插件仓库的相关文档
-
-## 4. 开发流程相关代码
-
-欢迎通过 Issue 和讨论组讨论。
+See [VS Code KCL plugin contribute guide](https://github.com/KusionStack/vscode-kcl/blob/main/docs/CONTRIBUTING.md) for more information.
