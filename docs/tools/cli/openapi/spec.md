@@ -415,7 +415,7 @@ schema Pet:
 |                  | string format password     | unsupported     | for swagger: A hint to UIs to obscure input.                                                         |
 |                  | datetime                    | datetime        |                                                                                                       |
 
-# Reference
+## Reference
 
 - openapi spec 2.0：[https://swagger.io/specification/v2/](https://swagger.io/specification/v2/)
 - openapi spec 3.0：[https://spec.openapis.org/oas/v3.1.0](https://spec.openapis.org/oas/v3.1.0)

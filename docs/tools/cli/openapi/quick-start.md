@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Quick Start
 
-## 1. 安装 KCLOpenAPI tool
+## 1. Install KCLOpenAPI tool
 
 ```shell
 # 1. 下载二进制程序
@@ -14,7 +14,7 @@ sidebar_position: 1
 export PATH="<Your directory to store KCL OpenAPI binary>:$PATH"
 ```
 
-- 验证安装结果，执行 `kcl-openapi -h`，看到如下信息说明安装成功：
+- Verify the installation results through execute `kcl-openapi - h`
 
 ```shell
 Usage:
@@ -37,7 +37,7 @@ Available commands:
   validate  validate the swagger document
 ```
 
-# 2. 生成 KCL 文件
+## 2. Generate KCL Files
 
 - [OpenAPI to KCL](../openapi/openapi-to-kcl.md)
 - [CRD to KCL](../openapi/crd-to-kcl.md)

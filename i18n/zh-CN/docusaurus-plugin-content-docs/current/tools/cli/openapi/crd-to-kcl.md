@@ -6,7 +6,7 @@
 kcl-openapi generate model --crd -f ${your_CRD.yaml} -t ${the_kcl_files_output_dir} --skip-validation
 ```
 
-# 示例
+## 示例
 
 - 输入文件：test_crontab_CRD.yaml:
 
@@ -61,7 +61,7 @@ spec:
 kcl-openapi generate model -f test_crontab_CRD.yaml -t ~/ --skip-validation --crd
 ```
 
-- 输出文件： ~/models/stable_example_com_v1_cron_tab.k
+- 输出文件：~/models/stable_example_com_v1_cron_tab.k
 
 ```python
 """
@@ -73,40 +73,49 @@ import kusion_kubernetes.apimachinery.apis
 
 schema CronTab:
     """stable example com v1 cron tab
+
+    Attributes
+    ----------
+    __settings__ : {str:str}, default is {"output_type": "STANDALONE"}, optional
+         existence of this attribute indicates that the model will be treated standalone by KCLVM.
+    apiVersion : str, default is "stable.example.com/v1", required
+         APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+    kind : str, default is "CronTab", required
+         Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+    metadata : apis.ObjectMeta, default is Undefined, optional
+        metadata
+    spec : StableExampleComV1CronTabSpec, default is Undefined, optional
+        spec
     """
+
 
     apiVersion: "stable.example.com/v1" = "stable.example.com/v1"
-    """ APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#resources
-    """
 
     kind: "CronTab" = "CronTab"
-    """ Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds
-    """
 
     metadata?: apis.ObjectMeta
-    """ Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata
-    """
 
     spec?: StableExampleComV1CronTabSpec
-    """spec
-    """
 
 
 schema StableExampleComV1CronTabSpec:
     """stable example com v1 cron tab spec
+
+    Attributes
+    ----------
+    cronSpec : str, default is Undefined, optional
+        cron spec
+    image : str, default is Undefined, optional
+        image
+    replicas : int, default is Undefined, optional
+        replicas
     """
 
 
     cronSpec?: str
-    """cron spec
-    """
 
     image?: str
-    """image
-    """
 
     replicas?: int
-    """replicas
-    """
 
 ```
