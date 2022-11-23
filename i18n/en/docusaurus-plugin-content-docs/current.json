@@ -11,10 +11,6 @@
     "message": "Command Line Tools",
     "description": "The label for category 命令行工具 in sidebar docs"
   },
-  "sidebar.docs.category.Kusion 工具": {
-    "message": "Kusion Tools",
-    "description": "The label for category Kusion 工具 in sidebar docs"
-  },
   "sidebar.docs.category.KCL 语言工具": {
     "message": "KCL Tools",
     "description": "The label for category KCL 语言工具 in sidebar docs"
@@ -22,10 +18,6 @@
   "sidebar.docs.category.OpenAPI 工具": {
     "message": "OpenAPI Tools",
     "description": "The label for category OpenAPI 工具 in sidebar docs"
-  },
-  "sidebar.docs.category.Kusion 模型库": {
-    "message": "Kusion Model",
-    "description": "The label for category Kusion 模型库 in sidebar docs"
   },
   "sidebar.docs.category.核心模型库": {
     "message": "Core Model",
@@ -163,10 +155,6 @@
     "message": "develop",
     "description": "The label for category develop in sidebar docs"
   },
-  "sidebar.docs.category.构建 Kusion": {
-    "message": "构建 Kusion",
-    "description": "The label for category 构建 Kusion in sidebar docs"
-  },
   "sidebar.docs.category.设计与实现": {
     "message": "设计与实现",
     "description": "The label for category 设计与实现 in sidebar docs"
@@ -211,10 +199,6 @@
     "message": "User Guide",
     "description": "The label for category 用户指南 in sidebar docs"
   },
-  "sidebar.docs.category.开始 Kusion": {
-    "message": "Begin Kusion",
-    "description": "The label for category 开始 Kusion in sidebar docs"
-  },
   "sidebar.docs.category.Kubernetes": {
     "message": "Kubernetes",
     "description": "The label for category Kubernetes in sidebar docs"
@@ -251,10 +235,6 @@
     "message": "User Guide",
     "description": "The label for category 用户指南 in sidebar user_docs"
   },
-  "sidebar.user_docs.category.开始 Kusion": {
-    "message": "Begin Kusion",
-    "description": "The label for category 开始 Kusion in sidebar user_docs"
-  },
   "sidebar.user_docs.category.Kubernetes": {
     "message": "Kubernetes",
     "description": "The label for category Kubernetes in sidebar user_docs"
@@ -275,10 +255,6 @@
     "message": "Command Line Tools",
     "description": "The label for category 命令行工具 in sidebar reference"
   },
-  "sidebar.reference.category.Kusion 工具": {
-    "message": "Kusion Tools",
-    "description": "The label for category Kusion 工具 in sidebar reference"
-  },
   "sidebar.reference.category.KCL 语言工具": {
     "message": "KCL Tools",
     "description": "The label for category KCL 语言工具 in sidebar reference"
@@ -286,10 +262,6 @@
   "sidebar.reference.category.OpenAPI 工具": {
     "message": "OpenAPI Tools",
     "description": "The label for category OpenAPI 工具 in sidebar reference"
-  },
-  "sidebar.reference.category.Kusion 模型库": {
-    "message": "Kusion Model",
-    "description": "The label for category Kusion 模型库 in sidebar reference"
   },
   "sidebar.reference.category.核心模型库": {
     "message": "Code Model",
@@ -423,10 +395,6 @@
     "message": "Konfig Lib",
     "description": "The label for category Konfig 配置大库 in sidebar reference"
   },
-  "sidebar.develop.category.构建 Kusion": {
-    "message": "Build Kusion",
-    "description": "The label for category 构建 Kusion in sidebar develop"
-  },
   "sidebar.develop.category.设计与实现": {
     "message": "Design and Implementation",
     "description": "The label for category 设计与实现 in sidebar develop"
@@ -535,10 +503,6 @@
     "message": "Command Line Tools",
     "description": "The label for category Command Line Tools in sidebar docs"
   },
-  "sidebar.docs.category.Kusion Tools": {
-    "message": "Kusion Tools",
-    "description": "The label for category Kusion Tools in sidebar docs"
-  },
   "sidebar.docs.category.KCL Tools": {
     "message": "KCL Tools",
     "description": "The label for category KCL Tools in sidebar docs"
@@ -551,21 +515,9 @@
     "message": "Use Case",
     "description": "The label for category Use Case in sidebar docs"
   },
-  "sidebar.docs.category.Kusion Model Library": {
-    "message": "Kusion Model Library",
-    "description": "The label for category Kusion Model Library in sidebar docs"
-  },
-  "sidebar.docs.category.Core Model Library": {
-    "message": "Core Model Library",
-    "description": "The label for category Core Model Library in sidebar docs"
-  },
   "sidebar.docs.category.Konfig": {
     "message": "Konfig",
     "description": "The label for category Konfig in sidebar docs"
-  },
-  "sidebar.docs.category.Build Kusion": {
-    "message": "Build Kusion",
-    "description": "The label for category Build Kusion in sidebar docs"
   },
   "sidebar.docs.category.Design and Implementation": {
     "message": "Design and Implementation",
@@ -651,10 +603,6 @@
     "message": "Command Line Tools",
     "description": "The label for category Command Line Tools in sidebar reference"
   },
-  "sidebar.reference.category.Kusion Tools": {
-    "message": "Kusion Tools",
-    "description": "The label for category Kusion Tools in sidebar reference"
-  },
   "sidebar.reference.category.KCL Tools": {
     "message": "KCL Tools",
     "description": "The label for category KCL Tools in sidebar reference"
@@ -667,10 +615,6 @@
     "message": "Use Case",
     "description": "The label for category Use Case in sidebar reference"
   },
-  "sidebar.reference.category.Kusion Model Library": {
-    "message": "Kusion Model Library",
-    "description": "The label for category Kusion Model Library in sidebar reference"
-  },
   "sidebar.reference.category.Core Model Library": {
     "message": "Core Model Library",
     "description": "The label for category Core Model Library in sidebar reference"
@@ -678,10 +622,6 @@
   "sidebar.reference.category.Konfig": {
     "message": "Konfig",
     "description": "The label for category Konfig in sidebar reference"
-  },
-  "sidebar.develop.category.Build Kusion": {
-    "message": "Build Kusion",
-    "description": "The label for category Build Kusion in sidebar develop"
   },
   "sidebar.develop.category.Design and Implementation": {
     "message": "Design and Implementation",

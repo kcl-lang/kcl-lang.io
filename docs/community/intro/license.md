@@ -3,7 +3,7 @@ sidebar_position: 99
 ---
 # License
 
-Kusion Use [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) License:
+KCL Use [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) License:
 
 ```
                                  Apache License
@@ -194,7 +194,7 @@ Kusion Use [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) Lic
       same "printed page" as the copyright notice for easier
       identification within third-party archives.
 
-   Copyright 2022 The Kusion Authors. All rights reserved.
+   Copyright 2022 The KCL Authors. All rights reserved.
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

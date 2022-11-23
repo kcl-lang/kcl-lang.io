@@ -21,7 +21,7 @@ The [VS Code Web IDE](https://vscode.dev) can be reached through the browser, an
 
 ![](/img/docs/user_docs/getting-started/install/ide-vscode.png)
 
-The KCL extension for the local VS Code IDE provides more rich language support for the KCL language such as highlighting, auto-completion, quick info hover and code navigation, etc. Although the extension is not a must-required part of Kusion, it is recommended to install it to improve coding efficiency.
+The KCL extension for the local VS Code IDE provides more rich language support for the KCL language such as highlighting, auto-completion, quick info hover and code navigation, etc. Although the extension is not a must-required part of KCL, it is recommended to install it to improve coding efficiency.
 
 ## Next step
 

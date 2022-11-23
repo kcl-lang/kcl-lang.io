@@ -6,9 +6,9 @@ sidebar_position: 1
 
 KCL has a developer and user community of many enthusiasts.
 
-On this page, we list the Kusion-related communities you can participate in; see other pages in this section for additional online and offline learning materials.
+On this page, we list the KCL-related communities you can participate in; see other pages in this section for additional online and offline learning materials.
 
-Before joining the Kusion community, please read the [Contributor Covenant](https://www.contributor-covenant.org/version/2/0/code_of_conduct/) , which is expected to be followed by all community members.
+Before joining the KCL community, please read the [Contributor Covenant](https://www.contributor-covenant.org/version/2/0/code_of_conduct/) , which is expected to be followed by all community members.
 
 ## Discussion
 
@@ -22,4 +22,4 @@ Please try to avoid submitting pull requests for new features, we may already ha
 
 ## Other
 
-Please follow Kusion related projects and blogs.
+Please follow KCL related projects and blogs.
