@@ -22,7 +22,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
-          personal_token: ${{ secrets.kcl-lang_BOT_TOKEN }}
+          personal_token: ${{ secrets.KUSIONSTACK_BOT_TOKEN }}
           external_repository: KusionStack/kcl-lang.github.io
           publish_dir: ./build
           publish_branch: main
