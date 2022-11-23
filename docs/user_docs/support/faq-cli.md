@@ -46,7 +46,7 @@ KCL supports multiple ways to input dynamic options
 - `-D`: Use the command line argument `-D` to input dynamic options. It supports basic data types str/int/float/bool and structured data types list/dict
 
 ```
-kcl main.k -D env-type=TEST -D deploy-topology='[{"cluster":"sigma-eu126-mybank-staging","idc":"cn-hangzhou-test-eu126","replicas":2,"workspace":"middlewarehzcloudsit","zone":"CellAEU126"}]'
+kcl main.k -D env-type=TEST -D deploy-topology='[{"cluster":"my-cluster","idc":"my-idc","replicas":2,"workspace":"my-idc","zone":"my-zone"}]'
 ```
 
 - `-Y`: Use the command line argument `-Y` to input dynamic options by configuration file:
@@ -57,11 +57,11 @@ kcl_options:
   value: TEST
 - key: deploy-topology
   value:
-  - cluster: sigma-eu126-mybank-staging
-    idc: cn-hangzhou-test-eu126
+  - cluster: my-cluster
+    idc: my-idc
     replicas: 2
-    workspace: middlewarehzcloudsit
-    zone: CellAEU126
+    workspace: my-workspace
+    zone: my-zone
 ```
 
 Use the built-in function `option()` to get it:
@@ -76,11 +76,11 @@ Output:
 ```yaml
 env: TEST
 deploy_topology:
-- cluster: sigma-eu126-mybank-staging
-  idc: cn-hangzhou-test-eu126
+- cluster: my-cluster
+  idc: my-idc
   replicas: 2
-  workspace: middlewarehzcloudsit
-  zone: CellAEU126
+  workspace: my-workspace
+  zone: my-zone
 ```
 
 ### 3. How to compile multiple files?

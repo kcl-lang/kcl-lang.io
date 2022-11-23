@@ -46,7 +46,7 @@ KCL 支持多种方式传入动态参数
 - `-D`: 使用 KCL 命令行的-D 参数可以直接传入动态参数，支持基本数据类型 str/int/float/bool, 以及结构数据类型 list/dict
 
 ```
-kcl main.k -D env-type=TEST -D deploy-topology='[{"cluster":"sigma-eu126-mybank-staging","idc":"cn-hangzhou-test-eu126","replicas":2,"workspace":"middlewarehzcloudsit","zone":"CellAEU126"}]'
+kcl main.k -D env-type=TEST -D deploy-topology='[{"cluster":"my-cluster","idc":"my-idc","replicas":2,"workspace":"my-idc","zone":"my-zone"}]'
 ```
 
 - `-Y`: 使用 KCL 命令行的-Y 参数可以间接通过配置文件传入动态参数:
@@ -57,11 +57,11 @@ kcl_options:
   value: TEST
 - key: deploy-topology
   value:
-  - cluster: sigma-eu126-mybank-staging
-    idc: cn-hangzhou-test-eu126
+  - cluster: my-cluster
+    idc: my-idc
     replicas: 2
-    workspace: middlewarehzcloudsit
-    zone: CellAEU126
+    workspace: my-workspace
+    zone: my-zone
 ```
 
 在代码中使用内置的 option 函数获取即可
@@ -76,11 +76,11 @@ deploy_topology = option("deploy-topology")
 ```yaml
 env: TEST
 deploy_topology:
-- cluster: sigma-eu126-mybank-staging
-  idc: cn-hangzhou-test-eu126
+- cluster: my-cluster
+  idc: my-idc
   replicas: 2
-  workspace: middlewarehzcloudsit
-  zone: CellAEU126
+  workspace: my-workspace
+  zone: my-zone
 ```
 
 ### 3. 如何使用 kcl 的多文件编译特性？
