@@ -90,7 +90,7 @@ node_modules/*
 
 - 请先查阅已经关闭的 PR ，也许在已经关闭的 PR 中，可能存在已经完成的解决方案。
 - 我们建议在提交变更之前，提交一个对应的 issue 描述变更中将要解决的问题，并将变更对应的 PR 与 issue 关联。
-- 在向我们提交 PR 之后，请签署 [Contributor License Agreement(CLA)](#cla) ，如果拒绝签署，我们将无法接受 PR。
+- 在向我们提交 PR 之后，请签署 [Contributor License Agreement (CLA)](#cla) ，如果拒绝签署，我们将无法接受 PR。
 - 请确保每次改动都创建了一个新的分支，并根据上文中提到的规范为分支命名。
 - 一次 PR 请不要超过两个 commit ，请将多余的 commit 通过 squash 压缩，并根据上文中提到的规范，编写 commit message 。
 - 我们提供了 [PR 模版](https://github.com/kcl-lang/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md)，只需要添加模版中要求的内容即可，如果在创建PR时发现没有模版或者模版内容为空，可以通过微信群，钉钉群或者邮件向我们反馈这个问题。
@@ -123,6 +123,6 @@ fix(kclvm-printer): fix an output format bug in kclvm-printer.
 - revert:   -- 对 commit 进行回滚。
 ```
 
-## <a name="cla"></a> 6. Contributor License Agreement(CLA)
+## <a name="cla"></a> 6. Contributor License Agreement (CLA)
 
 在第一次向我们提交 PR 之后，在 PR 中的 CLA 检查将会失败并提示签署 CLA。您可以通过自己的账户之间在 PR 回复 "I have read the CLA Document and I hereby sign the CLA" 表示同意签署 CLA，然后手动重启失败的 CLA 检查 Action 即可。当 PR 被成功合并之后将会被锁定不能再修改。

@@ -7,10 +7,10 @@ sidebar_position: 1
 ## 1. Install KCLOpenAPI tool
 
 ```shell
-# 1. 下载二进制程序
+# 1. Download binary
 # https://github.com/kcl-lang/kcl-openapi/releases
 
-# 2. 将命令添加至PATH
+# 2. Add PATH
 export PATH="<Your directory to store KCL OpenAPI binary>:$PATH"
 ```
 

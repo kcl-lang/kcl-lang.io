@@ -1,14 +1,14 @@
 # OpenAPI to KCL
 
-命令
+Command
 
 ```shell
 kcl-openapi generate model -f ${your_open_api_spec.yaml} -t ${the_kcl_files_output_dir}
 ```
 
-示例：
+Example
 
-- 输入文件：test_open_api_spec.yaml:
+- test_open_api_spec.yaml:
 
 ```yaml
 definitions:
@@ -32,13 +32,13 @@ info:
 paths: {}
 ```
 
-- 命令：
+- Command
 
 ```shell
 kcl-openapi generate model -f test_open_api_spec.yaml -t ~/
 ```
 
-- 输出：~/models/v1/test_int.k
+- Output ~/models/v1/test_int.k
 
 ```python
 """
