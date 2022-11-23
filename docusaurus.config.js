@@ -126,7 +126,7 @@ const config = {
 
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/kcl-lang/kcl-lang.io/blob/main',
+          editUrl: 'https://github.com/KusionStack/kcl-lang.io/blob/main',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
         },
@@ -134,7 +134,7 @@ const config = {
           postsPerPage: 2,
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/kcl-lang/kcl-lang.io/blob/main',
+          editUrl: 'https://github.com/KusionStack/kcl-lang.io/blob/main',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -216,7 +216,7 @@ const config = {
             position: 'right',
             dropdownItemsAfter: [
               {
-                href: 'https://github.com/kcl-lang/kcl-lang.io/issues/',
+                href: 'https://github.com/KusionStack/kcl-lang.io/issues/',
                 label: 'Help Us Translate',
               },
             ],

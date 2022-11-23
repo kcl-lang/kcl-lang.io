@@ -23,7 +23,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
           personal_token: ${{ secrets.kcl-lang_BOT_TOKEN }}
-          external_repository: kcl-lang/kcl-lang.github.io
+          external_repository: KusionStack/kcl-lang.github.io
           publish_dir: ./build
           publish_branch: main
           user_name: 'github-actions[bot]'
