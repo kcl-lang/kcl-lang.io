@@ -9,7 +9,7 @@ sidebar_position: 1
 It is recommended to install `kcl` through the `python3` (`python3` requires 3.7.3+).
 
 ```bash
-python3 -m pip install kclvm
+python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 ```
 
 ## 2. Install the KCL VS Code Extension

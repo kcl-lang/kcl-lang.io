@@ -9,7 +9,7 @@ sidebar_position: 1
 推荐通过 `Python3` 安装 `kcl` (Python3 要求 3.7.3+)
 
 ```bash
-python3 -m pip install kclvm
+python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 ```
 
 ## 2. 安装 VS Code 插件
