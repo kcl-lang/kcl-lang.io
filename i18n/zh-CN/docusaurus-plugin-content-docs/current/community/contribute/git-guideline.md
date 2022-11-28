@@ -17,7 +17,7 @@
 
 ## 2. 关于 Git 分支
 
-要向 kcl-lang 贡献代码，您必须拥有一个 GitHub 帐户，以便您可以将代码推送到您自己的 kcl-lang 分支并创建拉取请求。我们推荐参考 [Angular 规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) 为您自己的分支命名。
+要向 kcl-lang 贡献代码，您必须拥有一个 GitHub 帐户，以便您可以将代码推送到您自己的分支并创建拉取请求。我们推荐参考 [Angular 规范](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines) 为您自己的分支命名。
 推荐的格式如下：
 
 ```

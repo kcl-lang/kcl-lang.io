@@ -4,58 +4,49 @@ sidebar_position: 1
 
 # How to Contribute Document?
 
-本文主要针对已有的文档做局部修改。如果是投稿博客文章、添加新的文档或者调整文档目录结构请先联系团队成员。
+This document mainly makes partial modifications to existing documents. If you are submitting blog posts, adding new documents or adjusting the document directory structure, please contact team members first.
 
-KCL 文档分为用户指南、开发文档、内部文档、参考手册和博客文章等，他们的区别如下：
+KCL documents are divided into user guides, development documents, internal documents, reference manuals and blog articles. Their differences are as follows:
 
-- 用户指南：对应使用文档，是让用户以最小的代价快速使用 KCL 工具完整工作，不要涉及太多的内部原理和实现
-- 开发文档：内部是怎么实现的，主要针对希望了解 KCL 原理和参与贡献和开发的同学
-- 内部文档：针对企业用户的一些内部场景定制的文档
-- 参考手册：KCL 语言、工具和 IDE 等全部特性的文档，内容覆盖最广但比较琐碎
-- 博客文章：没有特别的限制，可以是针对某些具体的场景、某些技术点或者是整体发展展望等分享文章
+- User's Guide: The corresponding usage document allows users to quickly use the KCL tool to complete their work at the minimum cost, without involving too much internal principles and implementation
+- Reference: KCL language, tools, IDE and other documents with all features, covering the most extensive but trivial content
+- Blog: There are no special restrictions. They can be shared for specific scenarios, technical points or overall development prospects
 
-在贡献不同类型的文档时，最好能够结合上面的定位对不同的内容做一些适当的裁剪，给读者最佳体验。
+When contributing different types of documents, it is better to combine the above positioning to make some appropriate tailoring for different content to give readers the best experience.
 
-## 1. 基本规范
+## 1. Basic Specifications
 
-- 除标题外，内部小标题尽量带编号，便于阅读
-- 工具自动输出的文档需要由到源代码的链接，小标题可以不带编号
-- 尽量不要贴大段的代码（30行以内），代码最好给出文字解释和对应的参考链接
-- 有图有真相，但是不推荐过度复杂的架构图
-- 内部链接：采用 [`/docs/user_docs/intro/kcl-intro`](/docs/user_docs/intro/kcl-intro) 绝对路径形式
+- In addition to the title, the internal subtitles shall be numbered as much as possible for easy reading
+- The document automatically output by the tool needs a link to the source code, and the subtitle can be without number
+- Try not to paste large pieces of code (within 30 lines). It is better to provide text explanations and corresponding reference links for the code
+- There are diagrams and truths, but overly complex architecture diagrams are not recommended
+- Internal link: in the form of [`/docs/user_docs/intro/kcl-intro`](/docs/user_docs/intro/kcl-intro) absolute path
 
-**标点和空格**
+**Punctuation and space**
 
-- 在中文的文档中优先使用中文的标点
-- 中文和英文之间需要增加 1 个空格
-- 中文和数字之间需要增加 1 个空格
-- 中文使用全角标点，标点前后均不添加空格
-- 英文内容使用半角标点，标点后面加 1 个空格
-- 链接前后需要保留一个空格，但是段落开头和中文全角标点附近不用添加空格。
+- Chinese punctuation is preferred in Chinese documents
+- One space is required between Chinese and English
+- One space needs to be added between Chinese and numbers
+- Chinese uses full width punctuation without adding spaces before and after punctuation
+- English content uses half width punctuation, with a space after the punctuation
+- You need to leave a space before and after the link, but you do not need to add a space near the beginning of the paragraph and Chinese full width punctuation.
 
-**图片和资源文件名**
+**Picture and resource file names**
 
-- 文件名和目录名只能用数字、英文字母、下划线 `_` 和减号 `-` 组成
-- 当前文档的图片放在当前目录的 images 目录下
-- 矢量图片可以通过 [drawio 离线版](https://github.com/jgraph/drawio-desktop/releases) 绘制（并同时提交源文件），以 200% 分辨率导出 png 格式图片
+- The file name and directory name can only use numbers, English letters and underscores`_` And minus sign '-'
+- Pictures of the current document are placed in the images directory of the current directory
+- Vector pictures can be viewed through [drawio offline version](https://github.com/jgraph/drawio-desktop/releases) (and submit source files at the same time), and export png format pictures at 200% resolution
+  
+## 2. Basic mode of using document content
 
-## 2. 使用文档内容的基本模式
+Each usage document can be regarded as a relatively complete sharing or blog post (the reference manual is no longer such). Using documents to organize content follows the following pattern:
 
-每个使用文档可以看作是一个相对完整的分享或博客文章（参考手册不再此类）。使用文档遵循以下模式组织内容：
+1. Overview: What problems do you want to solve and what effects do you want to achieve in this article? You can put a screenshot of the final effect first
+2. Dependent environment: what tools need to be installed, and provide relevant links
+3. Introduce this article to build a relationship diagram or architecture diagram of resources
+4. Give the test method. Try to use community common methods (such as kube, curl command, or browser) to test
+5. Summary and Outlook. Briefly review the current operation process and some places that can be expanded (some links can be given)
 
-1. 概览：本文希望解决什么问题，达到什么效果，可以先放最终效果截图
-1. 依赖的环境：需要安装什么工具，并给出相关链接
-1. 引入本文构建资源的关系图或架构图
-   - 需要用到的 Konfig 模型，给出模型参考页面链接，以及对应的上游原始模型的文档链接
-1. 具体的操作步骤
-   - 尽量确保最小化代码，甚至可以刻意隐藏一些干扰代码，同时给出完整代码对应的链接
-   - 列出每个步骤命令的概要输出信息，并配以文字描述
-1. 给出测试方式
-   - 尽量采用社区通用的方式（比如kube、curl命令、或浏览器）测试
-   - 给出测试结果的截图（和开头呼应）
-1. 总结和展望
-   - 简单回顾当前操作的流程，以及一些可以展开的地方（可以给出一些链接）
+## 3. Test and submit PR
 
-## 3. 测试和提交 PR
-
-先克隆文档仓库，本地通过 `npm run start` 和 `npm run build` 命令测试查看效果，确保可以正常浏览后提交 PR 即可。
+First, clone the document warehouse, and then test the viewing effect locally with the 'npm run start' and 'npm run build' commands to ensure that you can browse normally and then submit PR.
