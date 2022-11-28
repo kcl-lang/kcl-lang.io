@@ -273,19 +273,3 @@ spec:
         ports:
         - containerPort: 80
 ```
-
-## 下一期
-
-本期内容大概简单介绍了用 KCL 编写配置的快速入门和使用 KCL 定义并管理 Kubernetes 资源。
-
-目前阶段 Kustomize 和 Helm 已经慢慢演进成在 Kubernetes 配置定义和管理领域的事实意义上的标准，熟悉 Kubernetes 的小伙伴可能更喜欢显式配置编写方式编写。那么相较于 Kustomize 和 Helm，用 KCL 来写配置文件渲染，又有什么异同呢？考虑到有很多小伙伴已经在使用 Helm，Kustomize 这样的工具，下一期我将介绍用 KCL 的方式来写对应的配置代码，敬请期待！！
-
-如果您喜欢这篇文章，一定记得收藏 + 关注！！更多精彩内容请访问:
-
-+ KCL 仓库地址：https://github.com/KusionStack/KCLVM
-+ Kusion 仓库地址：https://github.com/KusionStack/kusion
-+ Konfig 仓库地址：https://github.com/KusionStack/Konfig
-
-同时欢迎加入我们的社区进行交流:
-
-https://github.com/KusionStack/community

@@ -275,19 +275,3 @@ spec:
         ports:
         - containerPort: 80
 ```
-
-## Next
-
-This article briefly introduces the quick start of writing configurations with KCL and the use of KCL to define and manage Kubernetes resources.
-
-At this stage, Kustomize and Helm have gradually evolved into the de facto standard in the field of Kubernetes configuration definition and management. Small partners familiar with Kubernetes may prefer to write explicit configurations. What are the differences and similarities between Kustomize and Helm in using KCL to write and render configuration files? Considering that many partners are already using tools like Helm and Kustomize, I will introduce the KCL method to write the corresponding configuration code in the next article.
-
-For more highlights, please visit:
-
-+ KCL: https://github.com/KusionStack/KCLVM
-+ Kusion: https://github.com/KusionStack/kusion
-+ Konfig: https://github.com/KusionStack/Konfig
-
-Welcome to join our community for communication:
-
-+ https://github.com/KusionStack/community
