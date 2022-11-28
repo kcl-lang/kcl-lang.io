@@ -3188,7 +3188,7 @@ The use of **Variable Override** is similar to [**Variable Selector**](#variable
 kcl main.k -O override_spec
 ```
 
-- `override_spec`: 表示需要修改的配置模型字段和值的统一表示
+- `override_spec` represents a unified representation of the configuration model fields and values that need to be modified
 
 ```
 override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
