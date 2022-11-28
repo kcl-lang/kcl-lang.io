@@ -1,23 +1,23 @@
 # KCL Release Policy
 
-开发团队希望采用 [语义化版本](https://semver.org/lang/zh-CN/) 来简化管理。版本格式：主版本号.次版本号.修订号。版本号递增规则如下：主版本号对应不兼容的 API 修改，次版本号对应向下兼容的功能性新增，修订号对应向下兼容的问题修正。其中主版本号和次版本号均包含了不一样的特性统一称之为大版本，补丁修复称之为小版本。
+The KCL development team hopes to adopt [semantic version](https://semver.org) to simplify management. Version format: `{major}.{minor}.{revision}`. The rules for increasing version numbers are as follows: major version numbers correspond to incompatible API modifications, minor version numbers correspond to downward compatible functional additions, and revision numbers correspond to downward compatible problem corrections. The major version number and minor version number contain different features, which are called the large version and the patch repair is called the small version.
 
-总体目标是每个季度发布一个特性增强的大版本，并支持最近发布的两个大版本，根据需要不定期发布其他版本的修订。
+The overall goal is to release a large version with enhanced features every quarter, support the two recently released large versions, and release revisions of other versions from time to time as needed.
 
-## 1. 发布流程
+## 1. Release Process
 
-发布流程如下：
+The release process is as follows:
 
-- master 主干开发，每日产出一个 Nightly 版本，CI 系统进行测试
-- beta 测试分支，经过 6 周后从 Nightly 版本产出一个 Beta 版本
-- stable 稳定分支，经过 6 周后从 Beta 版本产出一个 Stable 版本
-- release-branch.kcl-x.y 发布分支，每个季度从 Stable 版本产出一个 rc 候选版本，并最终发布
-- release-branch.kcl-x.y 分支的 BUG 修复需要合并回 master，然后逐步同步到 beta、stable 分支
+- The main branch is developed, and a Nightly version is produced every day, and the CI system is tested
+- The beta test branch produces a beta version from Nightly after 6 weeks
+- Stable branch. After 6 weeks, a stable version will be produced from the beta version
+- release-branch.kcl-x. Y Release branch, produce a RC candidate version from the Stable version every quarter, and finally release it
+- release-branch.kcl-x. BUG fix of branch y needs to be merged back to the main branch, and then synchronized to the beta and stable branches step by step
 
-其中 stable、beta 只是延迟的 master 分支，release-branch.kcl-x.y 发布后将和 master 保存独立。
+Among them, stable and beta are only delayed the main branch, release branch.kcl-x after publishing, `y` will be saved independently from the master.
 
-如果本次发布失败，则顺延到下个发布周期。
+If this release fails, it will be postponed to the next release cycle.
 
-## 2. 发布维护
+## 2. Release Maintenance
 
-发布次要版本以解决一个或多个没有解决方法的关键问题（通常与稳定性或安全性有关）。版本中包含的唯一代码更改是针对特定关键问题的修复。重要的仅文档更改和安全测试更新也可能包括在内，但仅此而已。一旦 KCL 1.x+2 发布，解决 KCL 1.x 的非安全问题的次要版本就会停止更新。解决 KCL 1.x 安全问题的次要版本在 KCL 1.x+2 发布后停止。
+Release minor versions to solve one or more critical problems that have no solution (usually related to stability or security). The only code changes included in the release are fixes for specific critical issues. Important only document changes and security test updates may also be included, but that's all. Once `KCL 1.x+2` is released, minor versions that address the non security issues of `KCL 1.x` will stop updating. The minor version to solve `KCL 1.x` security problems will stop after `KCL 1.x+2` is released.

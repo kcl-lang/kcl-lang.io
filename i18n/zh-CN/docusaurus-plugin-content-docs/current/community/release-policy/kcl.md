@@ -8,13 +8,13 @@
 
 发布流程如下：
 
-- master 主干开发，每日产出一个 Nightly 版本，CI 系统进行测试
+- main 主干开发，每日产出一个 Nightly 版本，CI 系统进行测试
 - beta 测试分支，经过 6 周后从 Nightly 版本产出一个 Beta 版本
 - stable 稳定分支，经过 6 周后从 Beta 版本产出一个 Stable 版本
 - release-branch.kcl-x.y 发布分支，每个季度从 Stable 版本产出一个 rc 候选版本，并最终发布
-- release-branch.kcl-x.y 分支的 BUG 修复需要合并回 master，然后逐步同步到 beta、stable 分支
+- release-branch.kcl-x.y 分支的 BUG 修复需要合并回 main，然后逐步同步到 beta、stable 分支
 
-其中 stable、beta 只是延迟的 master 分支，release-branch.kcl-x.y 发布后将和 master 保存独立。
+其中 stable、beta 只是延迟的 main 分支，release-branch.kcl-x.y 发布后将和 main 保存独立。
 
 如果本次发布失败，则顺延到下个发布周期。
 
