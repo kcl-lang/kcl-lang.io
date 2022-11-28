@@ -99,7 +99,7 @@ First, you can visit the [KCL project home page](https://github.com/KusionStack/
 
 ### Generate Kubernetes manifests
 
-我们可以编写如下 KCL 代码并命名为 main.k ，KCL 受 Python 启发，基础语法十分接近 Python, 比较容易学习和上手, 配置模式写法很简单，`k [: T] = v`, 其中 `k` 表示配置的属性名称; `v` 表示配置的属性值; `: T` 表示一个可选的类型注解。
+We can write the following KCL code and name it `main k`. KCL is inspired by Python. Its basic syntax is very close to Python, which is easy to learn. The configuration mode is simple, `k [: T] = v`, where `k` denotes the configured attribute name, `v` denotes the configured attribute value and `: T` denotes an optional type annotation.
 
 ```python
 apiVersion = "apps/v1"
@@ -231,8 +231,6 @@ spec:
         ports:
         - containerPort: 80
 ```
-
-上述代码片段中的 `image = metadata.name + ":1.14.2" if option("env") == "prod" else  metadata.name + ":latest"` 意思为：当动态参数 `env` 的值被设置为 `prod` 时，image 字段值为 `nginx:1.14.2`, 否则为 `nginx:latest`，因此我们可以根据需要为 env 设置为不同的值获得不同内容的 Kubernetes 资源。
 
 The `image=metadata.name+": 1.14.2" if option ("env")=="prod" else metadata.name + ": latest"` in the above code snippet means that when the value of the dynamic parameter `env` is set to `prod`, the value of the image field is `nginx: 1.14.2`; otherwise, it is' nginx: latest'. Therefore, we can set env to different values as required to obtain Kubernetes resources with different contents.
 
