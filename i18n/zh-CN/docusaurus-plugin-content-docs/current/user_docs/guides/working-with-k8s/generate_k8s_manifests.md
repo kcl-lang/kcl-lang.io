@@ -95,7 +95,7 @@ spec:
 
 ### 前提条件
 
-首先可以在 [KCL 项目首页](https://github.com/KusionStack/KCLVM) 根据指导下载并安装 KCL，然后准备一个 [Kubernetes](https://kubernetes.io/) 环境
+首先可以在 [KCL 快速开始](/docs/user_docs/getting-started/kcl-quick-start) 根据指导下载并安装 KCL，然后准备一个 [Kubernetes](https://kubernetes.io/) 环境
 
 ### 生成 Kubernetes 资源
 

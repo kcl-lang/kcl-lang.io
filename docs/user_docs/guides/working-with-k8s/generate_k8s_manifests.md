@@ -95,7 +95,7 @@ Therefore, KCL expects to solve the following problems in Kubernetes YAML resour
 
 ### Prerequisite
 
-First, you can visit the [KCL project home page](https://github.com/KusionStack/KCLVM) to download and install KCL according to the instructions, and then prepare a [Kubernetes](https://kubernetes.io/) environment.
+First, you can visit the [KCL Quick Start](/docs/user_docs/getting-started/kcl-quick-start) to download and install KCL according to the instructions, and then prepare a [Kubernetes](https://kubernetes.io/) environment.
 
 ### Generate Kubernetes manifests
 
