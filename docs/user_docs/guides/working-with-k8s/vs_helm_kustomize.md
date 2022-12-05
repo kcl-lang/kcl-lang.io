@@ -1,9 +1,29 @@
 
 # KCL 与其他工具 Kubernetes 配置管理工具的异同
 
+在[上一节](/docs/user_docs/guides/working-with-k8s/generate_k8s_manifests.md)中，我们介绍了如何使用 KCL 编写并管理 Kubernetes 配置并将配置下发到集群，这一节我们通过与其他 Kubernetes 配置管理的对比介绍 KCL 在 Kubernetes 配置管理场景更丰富的介绍。
+
 ## KCL 和 Kustomize 的区别
 
-[Kustomize](https://kustomize.io/)：提供了一种无需模板和即可自定义 Kubernetes 资源基础配置和差异化配置的解决方案，通过文件级的 YAML 配置方式完成配置合并或覆盖，在 KCL 中可以通过代码编写的方式，在 Kustomize 中用户需要更详细地了解将要发生更改的内容和位置，对于复杂递归过深的基础 YAML 可能不太容器选择器来匹配 Kustomize 文件。而在 KCL 中，用户可以直接把对应代码需要修改的配置书写在对应的地方，免去了阅读基础 YAML 的成本，信息密度也更高
+[Kustomize](https://kustomize.io/) 提供了一种无需模板和即可自定义 Kubernetes 资源基础配置和差异化配置的解决方案，通过文件级的 YAML 配置方式完成配置合并或覆盖，在 KCL 中可以通过代码编写的方式，在 Kustomize 中用户需要更详细地了解将要发生更改的内容和位置，对于复杂递归过深的基础 YAML 可能不太容器选择器来匹配 Kustomize 文件。而在 KCL 中，用户可以直接把对应代码需要修改的配置书写在对应的地方，免去了阅读基础 YAML 的成本，信息密度也更高
+
++ Kustomize 工程结构
+
+```txt
+.
+├── base
+│   ├── configMap.yaml
+│   ├── deployment.yaml
+│   ├── kustomization.yaml
+│   └── service.yaml
+└── overlays
+    ├── production
+    │   ├── deployment.yaml
+    │   └── kustomization.yaml
+    └── staging
+        ├── kustomization.yaml
+        └── map.yaml
+```
 
 + Kustomize 基础配置 base.yaml
 
@@ -57,6 +77,12 @@ spec:
             pdName: ldap-persistent-storage
 ```
 
+我们可以通过 Kustomize 的如下命令行将配置下发到集群当中
+
+```
+kubectl apply -k ./base
+```
+
 + KCL
 
 ```python
@@ -73,7 +99,7 @@ spec = {
     template.metadata.labels = metadata.labels
     template.spec.containers = [
         {
-            name = _app
+            name = metadata.name
             image = "osixia/openldap:1.1.11"
             args = ["--copy-service"]
             volumeMounts = [{ name = "ldap-data", mountPath = "/var/lib/ldap" }]
@@ -92,9 +118,43 @@ spec = {
 }
 ```
 
+可以使用如下命令查看不同环境配置的 diff
+
+```cmd
+diff \
+  <(kcl main.k) \
+  <(kcl main.k -D env=prod) |\
+  more
+```
+
+The first part of the difference output should look something like
+第一部分的输出看起来像
+
+```diff
+8c8
+<   replicas: 1
+---
+>   replicas: 6
+30c30,32
+<         emptyDir: {}
+---
+>         emptyDir: null
+>         gcePersistentDisk:
+>           pdName: ldap-persistent-storage
+```
+
+或者我们可以使用 KCL 命令行工具的 -o 参数将编译产生的 YAML 输出到文件中，并利用 git 等版本管理工具查看 diff
+
+```cmd
+$ kcl main.k -o manifests.yaml
+$ kcl main.k -o manifests.yaml -D env=prod
+```
+
 ## KCL 和 Helm 的区别
 
 [Helm](https://helm.sh/) 是 Kubernetes 资源的包管理工具，通过配置模版管理 Kubernetes 资源配置，它可以在 `.tpl` 文件中定义可复用的模版，而在 KCL 中均为高级语言的编程方式，不需要额外的语法去指定模版，不需要过多的 `{{ * }}` 来标记代码块，信息密度更高，并且可以通过常规编程语言变量定义和条件语句的方式，比较自然。而 Helm 中有大量的 `{{- include }}` 和 `nindent` 等和实际逻辑无关的标记字符，需要在每一次引用的地方计算空格和缩进，语法噪音较高
+
++ Helm 工程结构
 
 + Helm
 
@@ -138,3 +198,7 @@ spec = {
     }
 }
 ```
+
+通过 kcl 和 kubectl 命令行可以将配置下发到集群
+
+接下来，会通过 KCL 结构定义以及包管理的方式为大家讲解如何一键生成所需的 K8s 资源
