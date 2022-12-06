@@ -114,7 +114,7 @@ export const ExampleScroller = () => {
       <h2
         style={{ color: "var(--ifm-color-primary)" }}
       >
-        Codify and Manage Your Modern Configuraion
+        Codify and Manage Your Modern Configuration and Policy
       </h2>
 
       <p
