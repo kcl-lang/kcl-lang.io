@@ -96,6 +96,8 @@ metadata:
   name: svc
 ```
 
+> 注：schema 的 `__settings__` 元属性设置 YAML 输出样式的特性仍然可以在 v0.4.4 版本中使用，大约后续两个小版本发布后在 KCL v0.4.6 版本中，我们会移除这个特性
+
 更多信息请参阅：[https://github.com/KusionStack/KCLVM/issues/94](https://github.com/KusionStack/KCLVM/issues/94)
 
 ### Python SDK

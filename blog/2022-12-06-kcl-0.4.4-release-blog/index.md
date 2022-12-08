@@ -96,6 +96,8 @@ metadata:
   name: svc
 ```
 
+> Note: The feature of schema `__settings__` meta attribute setting YAML output style can still be used in v0.4.4. We will remove this feature in KCL v0.4.6 after the next two minor versions are released.
+
 For more information, see [https://github.com/KusionStack/KCLVM/issues/94](https://github.com/KusionStack/KCLVM/issues/94).
 
 ### Python SDK
