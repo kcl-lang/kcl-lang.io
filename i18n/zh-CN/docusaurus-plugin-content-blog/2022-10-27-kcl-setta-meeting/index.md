@@ -1,5 +1,5 @@
 ---
-slug: 2022-declarative-config-overview
+slug: 2022-kcl-setta-meeting
 title: SETTA 2022 会议 KCL 介绍内容
 authors:
   name: 徐鹏飞

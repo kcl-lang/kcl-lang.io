@@ -1,5 +1,5 @@
 ---
-slug: 2022-declarative-config-overview
+slug: 2022-kcl-setta-meeting
 title: KCL Introduction on SETTA 2022 Meeting
 authors:
   name: Pengfei, Xu
