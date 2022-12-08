@@ -1,4 +1,9 @@
-# 配置
+---
+title: "Configuration"
+sidebar_position: 1
+---
+
+## Use KCL to Write Configurations
 
 The core features of KCL are its **modeling** and **constraint** capabilities, and the basic functions of KCL revolve around the two core features. In addition, KCL follows the user-centric configuration concept to design its basic functions, which can be understood from two aspects:
 
@@ -47,4 +52,3 @@ alice:
     first: Alice
     last: White
 ```
-

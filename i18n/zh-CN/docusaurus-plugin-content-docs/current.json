@@ -8,7 +8,7 @@
     "sidebar.user_docs.category.User Guide": {
         "message": "用户手册"
     },
-    "sidebar.user_docs.category.Automation": {
+    "sidebar.user_docs.guides.category.Automation": {
       "message": "自动化"
     },
     "sidebar.user_docs.category.Configuration": {

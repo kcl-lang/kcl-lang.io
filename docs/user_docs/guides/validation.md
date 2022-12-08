@@ -1,4 +1,9 @@
-# 校验
+---
+title: "Validation"
+sidebar_position: 2
+---
+
+## Use KCL to Validate Data
 
 In addition to using KCL code to generate configuration formats such as JSON/YAML, KCL also supports format validation of JSON/YAML data. As a configuration language, KCL covers almost all features of [OpenAPI](https://www.openapis.org/).
 
@@ -45,7 +50,55 @@ To sum up, the validation kinds supported in KCL schema are:
 | Optional/Required | Using optional/required attributes of schema                                                |
 | Condition         | Using the check if conditional expression                                                 |
 
-In addition, KCL provides a corresponding [validation tool](/docs/tools/cli/kcl/vet) to directly validate JSON/YAML data.
+## How to use
+
+There is a JSON format file `data.json`:
+
+```json
+{
+    "name": "Alice",
+    "age": "18",
+    "message": "This is Alice",
+    "data": {
+        "id": "1",
+        "value": "value1"
+    },
+    "labels": {
+        "key": "value"
+    },
+    "hc": [1, 2, 3]
+}
+```
+
+Build a validate KCL file `schema.k`:
+
+```py
+schema User:
+    name: str
+    age: int
+    message?: str
+    data: Data
+    labels: {str:}
+    hc: [int]
+        
+    check:
+        age > 10
+
+schema Data:
+    id: int
+    value: str
+```
+
+Execute the following command:
+
+```
+$ kcl-vet data.json schema.k
+Validate succuss!
+```
+
+Based on this, KCL provides the corresponding [Validation Tool](/docs/tools/cli/kcl/vet) to validate JSON/YAML data directly.In addition, based on this capability, we can build a K-V validation visualization product.
+
+![](/img/blog/2022-09-15-declarative-config-overview/08-kcl-validation-ui.png)
 
 ## Future Plan
 

@@ -1,4 +1,7 @@
-# Schema Definition
+---
+title: "Schema Definition"
+sidebar_position: 3
+---
 
 The core scenario of KCL is write configurations and constraints. and a core feature of KCL is **modeling**. The keyword `schema` in KCL can be used to define structures and constraints, such as attribute types, default values, range check, and various other constraints. In addition, structures defined with KCL schema can be used in turn to verify implementation, validate input (JSON, YAML and other structured data) or generate code (multilingual structures, OpenAPI, and so on).
 

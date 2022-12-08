@@ -1,4 +1,7 @@
-# Data Integration
+---
+title: "Data Integration"
+sidebar_position: 4
+---
 
 In KCL, we can not only compile and output the configuration code written by KCL into YAML format data, but also directly embed JSON/YAML and other data into the KCL language. For example, for the following KCL code (main.k):
 
