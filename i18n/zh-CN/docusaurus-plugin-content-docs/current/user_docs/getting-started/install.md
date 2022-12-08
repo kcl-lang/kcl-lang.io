@@ -6,10 +6,36 @@ sidebar_position: 2
 
 ## 1. 安装 KCL
 
-推荐通过 `Python3` 安装 `kcl` (Python3 要求 3.7.3+)
+### 二进制下载
 
-```bash
+Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/KusionStack/KCLVM/releases/) and add `{install-location}/kclvm/bin` to the environment PATH.
+
+KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/KusionStack/KCLVM/releases/) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
+
+```cmd
+export PATH=$PATH:{install-location}/kclvm/bin
+```
+
+### 使用 Python3 安装
+
+通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)
+
+```cmd
 python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
+```
+
+### 使用 Docker 镜像安装
+
++ 基本命令
+
+```cmd
+docker run --rm -p 8080:8080 -it kusionstack/kclvm
+```
+
++ 更新镜像
+
+```cmd
+docker pull kusionstack/kclvm
 ```
 
 ## 2. 安装 VS Code 插件

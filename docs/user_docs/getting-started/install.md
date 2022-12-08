@@ -6,10 +6,34 @@ sidebar_position: 2
 
 ## 1. Install KCL
 
-It is recommended to install `kcl` through the `python3` (`python3` requires 3.7.3+).
+### From the Binary Releases
 
-```bash
+Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/KusionStack/KCLVM/releases/) and add `{install-location}/kclvm/bin` to the environment PATH.
+
+```cmd
+export PATH=$PATH:{install-location}/kclvm/bin
+```
+
+### From Python3
+
+Install `kcl` through the `python3` and `pip` (`python3` requires 3.7.3+).
+
+```cmd
 python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
+```
+
+### From Docker
+
++ Command
+
+```cmd
+docker run --rm -p 8080:8080 -it kusionstack/kclvm
+```
+
++ Update image
+
+```cmd
+docker pull kusionstack/kclvm
 ```
 
 ## 2. Install the KCL VS Code Extension
