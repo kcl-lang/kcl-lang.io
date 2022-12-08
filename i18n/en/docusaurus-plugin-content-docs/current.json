@@ -147,17 +147,9 @@
     "message": "volume",
     "description": "The label for category volume in sidebar docs"
   },
-  "sidebar.docs.category.Konfig 配置大库": {
-    "message": "Konfig 配置大库",
-    "description": "The label for category Konfig 配置大库 in sidebar docs"
-  },
   "sidebar.docs.category.develop": {
     "message": "develop",
     "description": "The label for category develop in sidebar docs"
-  },
-  "sidebar.docs.category.设计与实现": {
-    "message": "设计与实现",
-    "description": "The label for category 设计与实现 in sidebar docs"
   },
   "sidebar.docs.category.governance": {
     "message": "governance",

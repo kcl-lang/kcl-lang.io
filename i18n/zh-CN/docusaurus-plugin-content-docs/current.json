@@ -8,19 +8,19 @@
     "sidebar.user_docs.category.User Guide": {
         "message": "用户手册"
     },
-    "sidebar.user_docs.guides.category.Automation": {
+    "sidebar.user_docs.category.Automation": {
       "message": "自动化"
     },
-    "sidebar.user_docs.guides.category.Configuration": {
+    "sidebar.user_docs.category.Configuration": {
       "message": "配置"
     },
-    "sidebar.user_docs.guides.category.Data Integration": {
+    "sidebar.user_docs.category.Data Integration": {
       "message": "数据集成"
     },
-    "sidebar.user_docs.guides.category.Schema Definition": {
+    "sidebar.user_docs.category.Schema Definition": {
       "message": "模型定义"
     },
-    "sidebar.user_docs.guides.category.Validation": {
+    "sidebar.user_docs.category.Validation": {
       "message": "验证"
     },
     "sidebar.user_docs.category.FAQ": {
