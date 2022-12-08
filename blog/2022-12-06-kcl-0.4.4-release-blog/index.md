@@ -7,11 +7,11 @@ authors:
 tags: [Release Blog, KCL, KusionStack, Kusion]
 ---
 
-The KCL team is pleased to announce that v0.4.4 is now available! This release mainly adds the ability to customize YAML manifests output for KCL. Users can customize the style of YAML output by writing code and calling system functions without understanding the complex schema settings semantics. In addition, this release provides the latest [KCL Python SDK](https://github.com/KusionStack/kclvm-py), which can be used for Python users to directly integrate KCL. At the same time, we have greatly reduced the size of the KCL installation package. The average installation package size has been reduced to one fifth of that of the previous version. It also includes a number of compiler error message optimization and bug fix. You can visit the [KCL release page](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.4-alpha.2) to get more detailed release information and KCL binary download link.
+The KCL team is pleased to announce that v0.4.4 is now available! This release mainly adds the ability to customize YAML manifests output for KCL. Users can customize the style of YAML output by writing code and calling system functions without understanding the complex schema settings semantics. In addition, this release provides the latest [KCL Python SDK](https://github.com/KusionStack/kclvm-py), which can be used for Python users to directly integrate KCL. At the same time, we have greatly reduced the size of the KCL installation package. The average installation package size has been reduced to one-fifth of that of the previous version. It also includes a number of compiler error message optimization and bug fix. You can visit the [KCL release page](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.4-alpha.2) to get more detailed release information and KCL binary download link.
 
 ## Background
 
-KCL is an open source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality.
+KCL is an open-source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality.
 
 This blog will introduce the recent developments of KCL community to readers.
 
@@ -19,7 +19,7 @@ This blog will introduce the recent developments of KCL community to readers.
 
 ### Customize YAML Manifest Output
 
-In previous KCL versions, the style of YAML output is hard coded in the KCL compiler, and users can set the `__settings__` meta attribute with different values to determine the YAML output style, which brings high complexity. Therefore, in version 0.4.4, we provide a system module function for developers to more easily customize the YAML output style. The signature of this function is as follows:
+In previous KCL versions, the style of YAML output is hard coded in the KCL compiler, and users can set the `__settings__` meta attribute with different values to determine the YAML output style, which brings high complexity. Therefore, in version 0.4.4, we provide a system module function for developers to easily customize the YAML output style. The signature of this function is as follows:
 
 ```python
 manifests.yaml_stream(values: [any], opts: {str:} = {
@@ -35,7 +35,7 @@ This function is used to serialize the KCL object list into YAML output with the
 + `values` - A list of KCL objects
 + `opts` - The YAML serialization options
   + `sort_keys`: Whether to sort the serialized results in the dictionary order of attribute names (the default is `False`).
-  + `ignore_private`: Whether to ignore the attribute output whose name starting with the character `_` (the default value is `True`).
+  + `ignore_private`: Whether to ignore the attribute output whose name starts with the character `_` (the default value is `True`).
   + `ignore_none`: Whether to ignore the attribute with the value of' None '(the default value is `False`).
   + `sep`: Set the separator between multiple YAML documents (the default value is `"---"`).
 
@@ -100,7 +100,7 @@ For more information, see [https://github.com/KusionStack/KCLVM/issues/94](https
 
 ### Python SDK
 
-In addition to the existing [KCL Go SDK](https://github.com/KusionStack/kclvm-go), this release also adds the KCL Python SDK. Using the Python SDK requires that you have a local Python version higher than 3.7.3 and a local pip package management tool. You can use the following command to install and obtain help information.
+In addition to the existing [KCL Go SDK](https://github.com/KusionStack/kclvm-go), this release also adds the KCL Python SDK. Using the Python SDK requires that you have a local Python version higher than 3.7.3 and a local pip package management tool. You can use the following command to install and obtain helpful information.
 
 ```cmd
 $ python3 -m pip install kclvm && python3 -m kclvm --help
@@ -234,7 +234,7 @@ It is estimated that by the end of January 2023, we will release KCL v0.4.5, and
 + More scenarios and ecology integration, such as Kubernetes and CI/CD Pipeline scenarios.
 + KCL Windows version support.
 + KCL package management tool `kpm` release.
-+ New version of KCL playground.
++ The new version of KCL playground.
 
 For more information, see [KCL v0.4.5 Milestone](https://github.com/KusionStack/KCLVM/milestone/3).
 
