@@ -634,5 +634,69 @@
   "sidebar.events.category.2022": {
     "message": "2022",
     "description": "The label for category 2022 in sidebar events"
+  },
+  "sidebar.docs.category.Events 2022": {
+    "message": "Events 2022",
+    "description": "The label for category Events 2022 in sidebar docs"
+  },
+  "sidebar.docs.category.Tools": {
+    "message": "Tools",
+    "description": "The label for category Tools in sidebar docs"
+  },
+  "sidebar.docs.category.IDE": {
+    "message": "IDE",
+    "description": "The label for category IDE in sidebar docs"
+  },
+  "sidebar.docs.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar docs"
+  },
+  "sidebar.docs.category.System Module": {
+    "message": "System Module",
+    "description": "The label for category System Module in sidebar docs"
+  },
+  "sidebar.docs.category.community": {
+    "message": "community",
+    "description": "The label for category community in sidebar docs"
+  },
+  "sidebar.reference.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar reference"
+  },
+  "sidebar.reference.category.System Module": {
+    "message": "System Module",
+    "description": "The label for category System Module in sidebar reference"
+  },
+  "sidebar.tools.category.Command Line Tools": {
+    "message": "Command Line Tools",
+    "description": "The label for category Command Line Tools in sidebar tools"
+  },
+  "sidebar.tools.category.KCL Tools": {
+    "message": "KCL Tools",
+    "description": "The label for category KCL Tools in sidebar tools"
+  },
+  "sidebar.tools.category.OpenAPI Tools": {
+    "message": "OpenAPI Tools",
+    "description": "The label for category OpenAPI Tools in sidebar tools"
+  },
+  "sidebar.tools.category.IDE": {
+    "message": "IDE",
+    "description": "The label for category IDE in sidebar tools"
+  },
+  "sidebar.community.category.Community": {
+    "message": "Community",
+    "description": "The label for category Community in sidebar community"
+  },
+  "sidebar.community.category.Release Policy": {
+    "message": "Release Policy",
+    "description": "The label for category Release Policy in sidebar community"
+  },
+  "sidebar.community.category.Contribution Guide": {
+    "message": "Contribution Guide",
+    "description": "The label for category Contribution Guide in sidebar community"
+  },
+  "sidebar.events.category.Events 2022": {
+    "message": "Events 2022",
+    "description": "The label for category Events 2022 in sidebar events"
   }
 }

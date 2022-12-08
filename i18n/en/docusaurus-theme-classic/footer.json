@@ -13,7 +13,7 @@
   },
   "link.item.label.Introduction": {
     "message": "Introduction",
-    "description": "The label of footer link with label=Introduction linking to /docs/user_docs/intro/kusion-intro"
+    "description": "The label of footer link with label=Introduction linking to /docs/user_docs/getting-started/intro"
   },
   "link.item.label.Blog": {
     "message": "Blog",
@@ -25,7 +25,7 @@
   },
   "link.item.label.Slack": {
     "message": "Slack",
-    "description": "The label of footer link with label=Slack linking to https://join.slack.com/t/kcl-lang/shared_invite/zt-19lqcc3a9-_kTNwagaT5qwBE~my5Lnxg"
+    "description": "The label of footer link with label=Slack linking to https://join.slack.com/t/KusionStack/shared_invite/zt-19lqcc3a9-_kTNwagaT5qwBE~my5Lnxg"
   },
   "link.item.label.FAQ": {
     "message": "FAQ",
