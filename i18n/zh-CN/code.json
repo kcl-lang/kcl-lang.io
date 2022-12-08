@@ -257,13 +257,6 @@
     "message": "Fetching new results...",
     "description": "The paragraph for fetching new search results"
   },
-  "theme.tags.tagsPageTitle": {
-    "message": "Tags",
-    "description": "The title of the tag list page"
-  },
-  "Quick Start - 15min ⏱️": {
-    "message": "快速开始 - 15分钟 ⏱️"
-  },
   "homepage.title": {
     "message": "KCL"
   },
