@@ -19,7 +19,3 @@ Before joining the KCL community, please read the [Contributor Covenant](https:/
 ## New Features
 
 Please try to avoid submitting pull requests for new features, we may already have someone working on them, or maybe this feature is already part of our future plans. In conclusion, please contact us before submitting new features!
-
-## Other
-
-Please follow KCL related projects and blogs.

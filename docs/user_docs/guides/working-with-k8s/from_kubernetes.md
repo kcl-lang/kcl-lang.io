@@ -1,4 +1,4 @@
-# From Kubernetes
+# From Kubernetes to KCL
 
 ## 1. Kubernetes OpenAPI Spec
 

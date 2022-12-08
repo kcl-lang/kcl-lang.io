@@ -1,6 +1,6 @@
 ---
 slug: 2022-kcl-0.4.4-release-blog
-title: KCL v0.4.4 Release Blog - 自定义 YAML Manifests 输出，Python SDK，更小的安装体积，更好的错误提示
+title: KCL v0.4.4 发布日志
 authors:
   name: KCL Team
   title: KCL Team

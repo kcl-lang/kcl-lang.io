@@ -1,4 +1,4 @@
-# Data Integration
+# 数据集成
 
 在 KCL 中，不仅可以将 KCL 编写的配置代码编译输出为 YAML 格式的数据，还可以将 JSON/YAML 等数据直接嵌入到 KCL 语言当中，比如对于如下的 KCL 代码 (main.k)：
 

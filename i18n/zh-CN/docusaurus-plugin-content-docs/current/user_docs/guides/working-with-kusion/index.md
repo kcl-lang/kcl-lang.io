@@ -1,3 +1,3 @@
 # KusionStack
 
-More documents and use cases at [https://kusionstack.io/](https://kusionstack.io/)
+更多文档请参考: [https://kusionstack.io/](https://kusionstack.io/)

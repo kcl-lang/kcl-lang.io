@@ -4,7 +4,7 @@ sidebar_position: 99
 
 # 许可
 
-KCL Use [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) License:
+KCL 使用 [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0):
 
 ```
                                  Apache License

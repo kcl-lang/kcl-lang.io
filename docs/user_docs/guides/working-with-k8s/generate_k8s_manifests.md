@@ -1,8 +1,4 @@
-# KCL - Make Kubernetes Resource Management Easier
-
-## What is KCL
-
-[KCL (Kusion Configuration Language)](https://github.com/KusionStack/KCLVM) is an open source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality.
+# Use KCL to Generate and Manage Kubernetes Resources
 
 When we deploy software systems, we do not think they are fixed. Evolving business requirements, infrastructure requirements, and other factors mean that systems are constantly changing. When we need to change the system behavior quickly, and the change process needs expensive and lengthy reconstruction and redeployment process, business code change is often not enough. Configuration can provide us with a low overhead way to change system functions. For example, we often write JSON or YAML files as shown below for our system configuration.
 
@@ -39,7 +35,7 @@ database:
   - 8002
 ```
 
-We can choose to store the static configuration in JSON and YAML files as needed. In addition, the configuration can also be stored in a high-level language that allows more flexible configuration, which can be coded, rendered, and statically configured. KCL is such a configuration language. We can write KCL code to generate JSON/YAML and other configurations. In this article, we focus on the use of KCL to generate and manage Kubernetes resources, and give you a simple and quick start through some simple examples. We will expand more in the following articles.
+We can choose to store the static configuration in JSON and YAML files as needed. In addition, the configuration can also be stored in a high-level language that allows more flexible configuration, which can be coded, rendered, and statically configured. KCL is such a configuration language. We can write KCL code to generate JSON/YAML and other configurations.
 
 ## Why use KCL
 

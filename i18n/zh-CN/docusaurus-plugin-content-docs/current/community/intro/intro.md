@@ -4,6 +4,6 @@ sidebar_position: 1
 
 # 社区
 
-Welcome to the KCL open source community, everyone's participation is the driving force for the healthy growth of all open source projects! There are many ways to participate in open source. Everyone can create Issues or fix bugs, improve documentation or modify code by submitting PR (Pull Request), or open new feature discussions by submitting KEP, or share stories about the process of evangelism and use of KCL with surrounding friends.
+欢迎来到 KCL 开源社区，每个人的参与都是所有开源项目健康成长的动力！有很多方法可以参与开源。每个人都可以通过提交PR（Pull Request）来创建问题或修复 bug、改进文档或修改代码，
 
-See the [community](https://github.com/KusionStack/community) for ways to join us.
+可以查看[社区](https://github.com/KusionStack/community) 并加入我们。

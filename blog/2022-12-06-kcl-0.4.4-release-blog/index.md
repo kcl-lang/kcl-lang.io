@@ -1,6 +1,6 @@
 ---
 slug: 2022-kcl-0.4.4-release-blog
-title: KCL v0.4.4 Release Blog - Customize manifest output, Python SDK, size and error optimization
+title: KCL v0.4.4 Release Blog
 authors:
   name: KCL Team
   title: KCL Team
