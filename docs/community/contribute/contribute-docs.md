@@ -20,7 +20,7 @@ When contributing different types of documents, it is better to combine the abov
 - The document automatically output by the tool needs a link to the source code, and the subtitle can be without number
 - Try not to paste large pieces of code (within 30 lines). It is better to provide text explanations and corresponding reference links for the code
 - There are diagrams and truths, but overly complex architecture diagrams are not recommended
-- Internal link: in the form of [`/docs/user_docs/intro/kcl-intro`](/docs/user_docs/intro/kcl-intro) absolute path
+- Internal link: in the form of [`/docs/user_docs/getting-started/intro`](/docs/user_docs/getting-started/intro) absolute path
 
 **Punctuation and space**
 

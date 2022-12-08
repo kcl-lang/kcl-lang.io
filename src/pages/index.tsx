@@ -35,7 +35,7 @@ function HomepageHeader() {
             "button button--primary button--lg",
             styles.heroButton
           )}
-          to="/docs/user_docs/intro/kcl-intro"
+          to="/docs/user_docs/getting-started/intro"
           style={{ marginRight: 10 }}
         >
           Learn More

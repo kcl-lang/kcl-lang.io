@@ -1,8 +1,12 @@
-# KCL
+---
+sidebar_position: 1
+---
 
-## What is KCL?
+# 简介
 
-[Kusion Configuration Language (KCL)](https://github.com/KusionStack/KCLVM) is an open source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality.
+## KCL 是什么?
+
+[Kusion 配置语言（KCL）](https://github.com/KusionStack/KCLVM)是一个开源的基于约束的记录及函数语言。KCL 通过成熟的编程语言技术和实践来改进对大量繁杂配置的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
 
 ## Why Develop KCL?
 

@@ -90,16 +90,6 @@ const config = {
           },
         ],
       },
-      demo: {
-        lines: [
-          "Don't take our word for it.",
-          "See what Clutch has to offer.",
-        ],
-        cta: {
-          text: "Workflows & Components",
-          link: "/docs/user_docs/intro/kcl-intro",
-        },
-      },
       consolidation: {
         snippets: [
           `
@@ -237,7 +227,7 @@ const config = {
             items: [
               {
                 label: 'Introduction',
-                to: '/docs/user_docs/intro/kcl-intro',
+                to: '/docs/user_docs/getting-started/intro',
               },
             ],
           },
