@@ -1,6 +1,6 @@
 # KCL papers were accepted by SETTA 2022
 
-Recently, the KCL paper written by the team members of kcl-lang was accepted by SETTA 2022 International Conference.
+Recently, the KCL paper written by the team members was accepted by SETTA 2022 International Conference.
 
 ![](/img/docs/events/2022/kcl_paper_setta.png)
 
