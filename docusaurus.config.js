@@ -25,6 +25,7 @@ const config = {
   scripts: [],
 
   customFields: {
+    playGroundUrl: 'http://kcl.zh-lang.cn/',
     tagDescription: 'KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.',
     hero: {
       description: "KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.",
@@ -175,10 +176,16 @@ const config = {
             label: 'Tools',
           },
           {
-            type: 'docSidebar',
+            href: 'http://kcl.zh-lang.cn/',
             position: 'left',
             sidebarId: 'playground',
             label: 'Playground',
+          },
+          {
+            href: 'https://github.com/KusionStack/examples',
+            position: 'left',
+            sidebarId: 'examples',
+            label: 'Examples',
           },
           {
             type: 'docSidebar',
