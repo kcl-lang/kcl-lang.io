@@ -2,7 +2,7 @@
 sidebar_position: 3
 ---
 
-# KCL Quick Start
+# Quick Start
 
 KCL (Kusion Configuration Language) is Kusion's built-in cloud-native domain configuration and policy language. At the beginning of its design, KCL was inspired by Python3, and at the same time absorbed the conceptual design of declarative and OOP programming paradigms. In this section we will quickly demonstrate the basic features of the KCL language.
 
