@@ -8,6 +8,45 @@ sidebar_position: 1
 
 [Kusion Configuration Language (KCL)](https://github.com/KusionStack/KCLVM) is an open source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality.
 
+## What is Configuration?
+
+When we deploy software systems, we do not think they are fixed. Evolving business requirements, infrastructure requirements, and other factors mean that systems are constantly changing. When we need to change the system behavior quickly, and the change process needs expensive and lengthy reconstruction and redeployment process, business code change is often not enough. Configuration can provide us with a low overhead way to change system functions. For example, we often write JSON or YAML files as shown below for our system configuration.
+
++ JSON configuration
+
+```json
+{
+    "server": {
+        "addr": "127.0.0.1",
+        "listen": 4545
+    },
+    "database": {
+        "enabled": true,
+        "ports": [
+            8000,
+            8001,
+            8002
+        ],
+    }
+}
+```
+
++ YAML configuration
+
+```yaml
+server:
+  addr: 127.0.0.1
+  listen: 4545
+database:
+  enabled: true
+  ports:
+  - 8000
+  - 8001
+  - 8002
+```
+
+We can choose to store the static configuration in JSON and YAML files as needed. In addition, the configuration can also be stored in a high-level language that allows more flexible configuration, which can be coded, rendered, and statically configured. KCL is such a configuration language. We can write KCL code to generate JSON/YAML and other configurations.
+
 ## Why Develop KCL?
 
 In addition to the general configuration, the features of the cloud-native configuration include a large quantity and wide coverage. For example, Kubernetes provides a declarative Application Programming Interface (API) mechanism and the openness allows users to make full use of its resource management capabilities; however, this also implies error-prone behaviors.
@@ -17,9 +56,9 @@ In addition to the general configuration, the features of the cloud-native confi
 
 The cloud-native communities have made considerable attempts to advance their configuration technologies, which can be divided into three categories:
 
-+ Low level data format based tools for templating, patching, and validation, which use external tools to enhance the reuse and validation.
++ Low-level data format based tools for templating, patching, and validation, which use external tools to enhance the reuse and validation.
 + Domain-Specific Languages (DSLs) and Configuration Languages (CLs) to enhance language abilities.
-+ General Purpose Language (GPL)-based solutions, using GPLs' Cloud-Development Kit (CDK) or framework to define configuration.
++ General Purpose Language (GPL)-based solutions, using GPLs' Cloud-Development Kit (CDK) or framework to define the configuration.
 
 Previous efforts do not meet all these needs. Some tools verify configuration based on the Kubernetes API. Although it supports checking missing attributes, the validation is generally weak and limited to Open Application Programming Interface (OpenAPI).
 Some tools support custom validation rules, but the rule descriptions are cumbersome. In terms of configuration languages, focus on reducing boilerplates, and only a few focus on type checking, data validation, testing, etc.
@@ -93,7 +132,7 @@ Jsonnet and GCL are great at reducing boilerplate. They can both uses code to ge
 
 ### vs. HCL
 
-A Go implementation structured configuration language. The native syntax of HCL is inspired by libucl and nginx configurations. It is used to create a structured configuration language that is friendly to humans and machines, mainly for devops tools, server configurations, and resource configurations as a [Terraform language](https://www.terraform.io/language).
+HCL is a Go implementation structured configuration language. The native syntax of HCL is inspired by libucl and nginx configurations. It is used to create a structured configuration language that is friendly to humans and machines, mainly for devops tools, server configurations, and resource configurations as a [Terraform language](https://www.terraform.io/language).
 
 HCL has some striking similarities with GCL. It does introduce a poor man’s version of inheritance: file overlays. Fields may be defined in multiple files that get overwritten in a certain order of the file names. Although not nearly as complex as GCL, it does have some of the same issues. The mode is fixed and the capability is limited.
 

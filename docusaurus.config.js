@@ -176,8 +176,8 @@ const config = {
             label: 'Tools',
           },
           {
-            // href: 'http://kcl.zh-lang.cn/',
-            type: 'docSidebar',
+            href: 'http://39.106.40.108/-/play/index.html',
+            // type: 'docSidebar',
             position: 'left',
             sidebarId: 'playground',
             label: 'Playground',
