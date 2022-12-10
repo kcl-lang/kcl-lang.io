@@ -23,7 +23,7 @@ const getTopByIndex = (m: number[], index: 1 | 2 | 3 | 4): number => {
 
 const configExample = `import base.pkg.kusion_models.kube.frontend
 
-appConfiguration: frontend.Server {
+server: frontend.Server {
     image = "nginx"
 }`
 
@@ -49,7 +49,7 @@ genLocalityLabels = lambda cluster: str, app: str -> {str:str} {
         "app.kubernetes.io/name" = app
     }
 }
-appConfiguration: frontend.Server {
+server: frontend.Server {
     labels: genLocalityLabels("my-cluster", "nginx")
 }
 `
