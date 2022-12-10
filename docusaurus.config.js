@@ -203,12 +203,11 @@ const config = {
             sidebarId: 'events',
             label: 'Events',
           },
-
-          //{
-          //  type: 'docsVersionDropdown',
-          //  position: 'right',
-          //  dropdownActiveClassDisabled: true
-          //},
+          {
+            type: 'docsVersionDropdown',
+            position: 'right',
+            dropdownActiveClassDisabled: true
+          },
           {
             type: 'localeDropdown',
             position: 'right',

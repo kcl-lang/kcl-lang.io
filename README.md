@@ -5,7 +5,7 @@
 
 # kcl-lang.io
 
-Source for kcl-lang.io site <https://kcl-lang.github.io>.
+Source for KCL site <https://kcl-lang.github.io>.
 
 Powered by [Docusaurus 2](https://docusaurus.io/).
 
