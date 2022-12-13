@@ -697,6 +697,46 @@ output "r10" {
 | --- | --- | --- | --- | --- |
 | OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 440 ms (kclvm_cli run test.k) | 6290 ms (cue export test.cue) | 1890 ms (jsonnet test.jsonnet) | 1774 ms (terraform plan -parallelism=1) |
 
+#### Another Complex Case
+
+Using KCL and CUE to write Kubernetes configuration.
+
+- CUE (test.cue)
+
+```cue
+package templates
+
+import (
+ apps "k8s.io/api/apps/v1"
+)
+
+deployment: apps.#Deployment
+
+deployment: {
+ apiVersion: "apps/v1"
+ kind:       "Deployment"
+ metadata: {
+  name:   "me"
+  labels: me: "me"
+ }
+}
+```
+
+- KCL (test.k)
+
+```python
+import kubernetes.api.apps.v1
+
+deployment = v1.Deployment {
+    metadata.name = "me"
+    metadata.labels.name = "me"
+}
+```
+
+| Environment | KCL v0.4.3 Running time (including compilation+runtime) | CUE v0.4.3 Running time (including compilation+runtime) |
+| --- | --- | --- |
+| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kclvm_cli run test.k) | 350 ms (cue export test.cue) |
+
 ## 4. KCL Core Implementation Principle
 
 ### 4.1 Technical Architecture
