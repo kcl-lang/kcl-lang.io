@@ -73,7 +73,7 @@ KCL文件的文档主要包含如下两个部分：
     --r, -R, --recursive  Search directory recursively
     --i18n-locale LOCALE  I18n locale, e.g.: zh, zh_cn, en, en_AS. Defaults to
                           en
-    --repo-url REPO_URL   The source code repository url. It will displayed in
+    --repo-url REPO_URL   The source code repository url. It will be displayed in
                           the generated doc to link to the source code.
   ```
 
