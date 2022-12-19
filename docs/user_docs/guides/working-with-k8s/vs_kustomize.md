@@ -1,8 +1,6 @@
-# Differences between KCL and Other Kubernetes Configuration Management Tools \- Kustomize
+# Differences between KCL and Kustomize
 
 In the [previous section](/docs/user_docs/guides/working-with-k8s/generate_k8s_manifests), we introduced how to use KCL to write and manage Kubernetes configurations and apply them to the cluster. In this section, we introduced KCL's Kubernetes configuration management scenarios more richly by comparing it with other Kubernetes configuration management tools, such as Kustomize.
-
-## Differences between KCL and Kustomize
 
 [Kustomize](https://kustomize.io/) provides a solution to customize the basic configuration and differential configuration of Kubernetes resources without templates. The configuration can be merged or overwritten through file-level YAML configuration with multiple strategies. In Kustomize, users need to know more about the content and location to be changed, For basic YAML with complex recursion too deep, it may not be easy to match Kustomize files through selectors.
 
@@ -10,7 +8,7 @@ In KCL, the user can directly write the configuration that needs to be modified 
 
 A classic example of Kustomize multi-environment configuration management is used to explain the differences between Kustomize and KCL in Kubernetes resource configuration management.
 
-### Kustomize
+## Kustomize
 
 Kustomize has the concepts of `base` and `overlay`. In general, base and overlay are general a directory including a `kustomization.yaml` file. One base directory can be used by multiple overlay directories.
 
@@ -150,7 +148,7 @@ $ kubectl apply -k ./prod
 deployment.apps/ldap created
 ```
 
-### KCL
+## KCL
 
 We can write the following KCL code and name it `main k`.
 
