@@ -9,7 +9,6 @@ KCL toolchain is a toolset of KCL language, which aims to improve the efficiency
 |                  | Name                     | Description                                                             |
 | ---------------- | ------------------------ | ----------------------------------------------------------------------- |
 |  Main Toolset    | **kcl**                  | Provide support for KCL in coding, compiling and testing                |
-|                  | kcl build                | Build KCL code(not yet)                                                 |
 |                  | kcl test                 | Provide unit test(not yet) and integration test                         |
 |                  | kcl fmt                  | Formoat KCL code                                                        |
 |                  | kcl list                 | Parse the KCL code and lists the option parameter/schema attributes information. （kcl list-options and kcl list-attributes)|
