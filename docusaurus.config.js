@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Abstraction  Validation  Production-Ready',
+  title: 'KCL programming language.',
   tagline: 'Abstraction  Validation  Production-Ready',
 
   url: 'https://kcl-lang.github.io',
@@ -16,7 +16,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/kcl.png',
+  favicon: 'img/kcl-logo.jpg',
 
   i18n: {
     defaultLocale: 'en',
