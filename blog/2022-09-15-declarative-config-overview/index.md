@@ -7,7 +7,7 @@ authors:
 tags: [KCL, Configuration]
 ---
 
-The blog is only used to clarify the landscape of declarative configuration, [KCL](https://github.com/KusionStack/KCLVM) core concept and features, as well as the comparison with other configuration languages. More concepts, background and design of [KCL](https://kcl-lang.github.io/), as well as the differences with other corresponding open-source technology, will not be discussed in this blog.
+The blog is only used to clarify the landscape of declarative configuration, [KCL](https://github.com/KusionStack/KCLVM) core concept and features, as well as the comparison with other configuration languages.
 
 ## 1. The Landscape of Declarative Configuration
 
@@ -159,7 +159,7 @@ Different from other languages of the same type in the community, KCL is a stati
 
 The core features of KCL are its **modeling** and **constraint** capabilities, and the basic functions of KCL revolve around the two core features. In addition, KCL follows the user-centric configuration concept to design its basic functions, which can be understood from two aspects:
 
-- **Domain model-centric configuration view**: With the rich features of KCL language and [KCL OpenAPI](https://kcl-lang.github.io/docs/tools/cli/openapi/quick-start) tools, we can directly integrate a wide range of well-designed models in the community into KCL (such as the K8s resource model). We can also design and implement our own KCL models or libraries according to different scenarios, forming a complete set of domain models for other configuration end users to use.
+- **Domain model-centric configuration view**: With the rich features of KCL language and [KCL OpenAPI](https://kcl-lang.io/docs/tools/cli/openapi/) tools, we can directly integrate a wide range of well-designed models in the community into KCL (such as the K8s resource model). We can also design and implement our own KCL models or libraries according to different scenarios, forming a complete set of domain models for other configuration end users to use.
 - **End user-centric configuration view**: With KCL's code encapsulation, abstraction and reuse capabilities, the model architecture can be further abstracted and simplified (for example, the K8s resource model is abstracted into an application-centered server model) to **minimize the** end user configuration input**, simplify the user's configuration interface, and facilitate manual or automatic API modification.
 
 No matter what configuration view is centered on, for configuration code, there are requirements for configuration data constraints, such as type constraints, required/optional constraints on configuration attributes, range constraints, and immutability constraints. This is also one of the core issues KCL is committed to solving. KCL mainly contains the core features shown in Fig. 5.
@@ -170,14 +170,14 @@ Fig. 5: KCL core features.
 
 - **Easy-to-use**: Originated from high-level languages ​​such as Python and Golang, incorporating functional language features with low side effects.
 - **Well-designed**: Independent Spec-driven syntax, semantics, runtime and system modules design.
-- **Quick modeling**: [Schema](https://kcl-lang.github.io/docs/reference/lang/lang/tour#schema)-centric configuration types and modular abstraction.
-- **Rich capabilities**: Configuration with type, logic and policy based on [Config](https://kcl-lang.github.io/docs/reference/lang/lang/codelab/simple), [Schema](https://kcl-lang.github.io/docs/reference/lang/lang/tour/#schema), [Lambda](https://kcl-lang.github.io/docs/reference/lang/lang/tour/#function), [Rule](https://kcl-lang.github.io/docs/reference/lang/lang/tour/#rule).
-- **Stability**: Configuration stability built on [static type system](https://kcl-lang.github.io/docs/reference/lang/lang/tour/#type-system), [constraints](https://kcl-lang.github.io/docs/reference/lang/lang/tour/#validation), and [rules](https://kcl-lang.github.io/docs/reference/lang/lang/tour#rule).
-- **Scalability**: High scalability through [automatic merge mechanism](https://kcl-lang.github.io/docs/reference/lang/lang/tour/#-operators-1) of isolated config blocks.
-- **Fast automation**: Gradient automation scheme of [CRUD APIs](https://kcl-lang.github.io/docs/reference/lang/lang/tour/#kcl-cli-variable-override), [multilingual SDKs](https://kcl-lang.github.io/docs/reference/lang/xlang-api/overview), [language plugin](https://github.com/KusionStack/kcl-plugin)
+- **Quick modeling**: [Schema](https://kcl-lang.io/docs/reference/lang/tour#schema)-centric configuration types and modular abstraction.
+- **Rich capabilities**: Configuration with type, logic and policy based on [Config](https://kcl-lang.io/docs/reference/lang/tour#config-operations), [Schema](https://kcl-lang.io/docs/reference/lang/tour#schema), [Lambda](https://kcl-lang.io/docs/reference/lang/tour#function), [Rule](https://kcl-lang.io/docs/reference/lang/tour#rule).
+- **Stability**: Configuration stability built on [static type system](https://kcl-lang.io/docs/reference/lang/tour/#type-system), [constraints](https://kcl-lang.io/docs/reference/lang/tour/#validation), and [rules](https://kcl-lang.io/docs/reference/lang/tour#rule).
+- **Scalability**: High scalability through [automatic merge mechanism](https://kcl-lang.io/docs/reference/lang/tour/#-operators-1) of isolated config blocks.
+- **Fast automation**: Gradient automation scheme of [CRUD APIs](https://kcl-lang.io/docs/reference/lang/tour/#kcl-cli-variable-override), [multilingual SDKs](https://kcl-lang.io/docs/reference/xlang-api/overview), [language plugin](https://github.com/KusionStack/kcl-plugin)
 - **High performance**: High compile time and runtime performance using Rust & C and [LLVM](https://llvm.org/), and support compilation to native code and [WASM](https://webassembly.org/).
 - **API affinity**: Native support API ecological specifications such as [OpenAPI](https://github.com/KusionStack/kcl-openapi), Kubernetes CRD, Kubernetes YAML spec.
-- **Development friendly**: Friendly development experiences with rich [language tools](https://kcl-lang.github.io/docs/reference/cli/kcl/) (Format, Lint, Test, Vet, Doc, etc.) and [IDE plugins](https://github.com/kcl-lang/vscode-kcl).
+- **Development friendly**: Friendly development experiences with rich [language tools](https://kcl-lang.io/docs/tools/cli/kcl/) (Format, Lint, Test, Vet, Doc, etc.) and [IDE plugins](https://github.com/KusionStack/vscode-kcl).
 - **Safety & maintainable**: Domain-oriented, no system-level functions such as native threads and IO, low noise and security risk, easy maintenance and governance.
 - **Production-ready**: Widely used in production practice of platform engineering and automation at Ant Group.
 
@@ -185,7 +185,7 @@ Fig. 5: KCL core features.
 
 Fig. 6: KCL core design.
 
-For more language design and capabilities, see [KCL Documents](https://kcl-lang.github.io/docs/reference/lang/lang/tour). Although KCL is not a general language, it has corresponding application scenarios. As shown in Fig. 6, developers can write **config**, **schema**, **function** and **rule** through KCL, where config is used to define data, schema is used to describe the model definition of data, rule is used to validate data, and schema and rule can also be combined to use models and constraints that fully describe data, In addition, we can also use the lambda pure function in KCL to organize data code, encapsulate common code, and call it directly when needed.
+For more language design and capabilities, see [KCL Documents](https://kcl-lang.io/docs/reference/lang/tour). Although KCL is not a general language, it has corresponding application scenarios. As shown in Fig. 6, developers can write **config**, **schema**, **function** and **rule** through KCL, where config is used to define data, schema is used to describe the model definition of data, rule is used to validate data, and schema and rule can also be combined to use models and constraints that fully describe data, In addition, we can also use the lambda pure function in KCL to organize data code, encapsulate common code, and call it directly when needed.
 
 For use cases, KCL can perform structured K-V data validation complex configuration model definition and abstraction, strong constraint verification to avoid configuration errors, automation integration and engineering expansion. These features and use cases are described below.
 
@@ -197,7 +197,7 @@ As shown in Fig 7, KCL supports format validation of JSON/YAML data. As a config
 
 Fig. 7: Validation of structured data in KCL.
 
-Based on this, KCL provides the corresponding [Validation Tool](https://kcl-lang.github.io/docs/reference/cli/kcl/vet) to validate JSON/YAML data directly.In addition, based on this capability, we can build a K-V validation visualization product as shown in Fig. 8.
+Based on this, KCL provides the corresponding [Validation Tool](https://kcl-lang.io/docs/tools/cli/kcl/vet) to validate JSON/YAML data directly.In addition, based on this capability, we can build a K-V validation visualization product as shown in Fig. 8.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/08-kcl-validation-ui.png)
 
@@ -205,13 +205,13 @@ Fig. 8: A K-V validation visualization product based on KCL.
 
 ### 2.2 Definition and Abstraction of Complex Configuration Model
 
-As shown in Fig 9, with the help of the [KCL OpenAPI](https://kcl-lang.github.io/docs/reference/cli/openapi/quick-start) tool, we can directly integrate a wide range of well-designed models.
+As shown in Fig 9, with the help of the [KCL OpenAPI](https://kcl-lang.io/docs/tools/cli/openapi/) tool, we can directly integrate a wide range of well-designed models.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/09-kcl-modeling.png)
 
 Fig. 9: General way of KCL complex configuration modeling.
 
-As shown in Figure 10, [Konfig](https://github.com/kcl-lang/konfig) is used to manage all KCL configuration codes, the business configuration code and basic configuration code are stored in a mono repo, which facilitates the version dependency management between codes, and the automatic system processing is relatively simple. It is sufficient to locate the directory and files of the unique code base. The codes are interconnected, managed uniformly, and easy to find, modify, and maintain. Besieds, the unified CI/CD process can be used for configuration management.
+As shown in Figure 10, [Konfig](https://github.com/KusionStack/konfig) is used to manage all KCL configuration codes, the business configuration code and basic configuration code are stored in a mono repo, which facilitates the version dependency management between codes, and the automatic system processing is relatively simple. It is sufficient to locate the directory and files of the unique code base. The codes are interconnected, managed uniformly, and easy to find, modify, and maintain. Besieds, the unified CI/CD process can be used for configuration management.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/10-kcl-konfig.png)
 
@@ -346,7 +346,7 @@ employee = Employee {
 
 **Terraform HCL Function vs. KCL Lambda + Plugin**
 
-- As shown in [https://www.terraform.io/language/functions](https://www.terraform.io/language/functions) and [https://github.com/hashicorp/terraform/issues/27696](https://github.com/hashicorp/terraform/issues/27696)，Terraform HCL provides rich built-in functions, but it does not support users to define functions in Terraform (or need to write complex Go providers to simulate a local user-defined functions); KCL not only supports users to use the lambda keyword to directly define functions in KCL code, but also supports the use of Python, Go and other languages to write [plugins](https://kcl-lang.github.io/docs/reference/plugin/overview).
+- As shown in [https://www.terraform.io/language/functions](https://www.terraform.io/language/functions) and [https://github.com/hashicorp/terraform/issues/27696](https://github.com/hashicorp/terraform/issues/27696)，Terraform HCL provides rich built-in functions, but it does not support users to define functions in Terraform (or need to write complex Go providers to simulate a local user-defined functions); KCL not only supports users to use the lambda keyword to directly define functions in KCL code, but also supports the use of Python, Go and other languages to write [plugins](https://kcl-lang.io/docs/reference/plugin/overview).
 
 - Defining functions and calling them in KCL
 
@@ -737,49 +737,13 @@ deployment = v1.Deployment {
 | --- | --- | --- |
 | OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kclvm_cli run test.k) | 350 ms (cue export test.cue) |
 
-## 4. KCL Core Implementation Principle
+## 4. Summary
 
-### 4.1 Technical Architecture
+The blog gives the landscape overview of declarative configuration technology, focusing on the KCL concept, core features, usage cases and comparison with other configuration languages, hoping to help you understand declarative configuration technology and KCL language. For more information about the concept, background and design of KCL, please visit the [KCL website](https://kcl-lang.io/)
 
-![](/img/blog/2022-09-15-declarative-config-overview/16-kcl-compiler-arch.png)
+## 5. Reference
 
-Fig. 16: KCL compiler architecture.
-
-The implementation of KCLVM compiler is driven by specifications (mainly including KCL language specification, KCL multilingual integration specification, and KCL OpenAPI specification). KCL is a compiled language, maintaining the same three-stage architecture as the general language compiler, and using LLVM-IR as the intermediate link between KCL and native/WASM code, KCL has the following three core stages:
-
-- Translation from KCL AST to LLVM-IR: By traversing the KCL AST, the corresponding LLVM-IR code is generated according to the KCL language specification.
-- KCL runtime libraries provide runtime KCL value calculation, memory, context management, built-in library and plug-in library support.
-- Assembling, linking and execution.
-
-In addition, KCL provides enhanced support for semantic checkers and plugins:
-
-- Resolver
-  - Static type inference and checking: type inference and checking can be performed at compile time to avoid the overhead of type check at runtime. It can be used as a good foundation for IDE and other semantic API support (such as schema model query, dependency analysis, etc.).
-  - Configuration graph unification: build and merge the configuration data during the compilation process, and the merged data can be obtained through only a few calculations at runtime.
-  - Schema-centric OOP: KCL language only retains the syntax of schema single inheritance. Besides, the schema can mix and reuse the same code fragments through mixin, protocol and other features.
-  - Semantic dependency graph: KCL can complete the dependency analysis when configuration code changes.
-- Plugin
-  - We can use Python/Go to write plugin libraries, which mainly include some domain capabilities, such as accessing networks or databases.
-
-### 4.2 KCL Configuration Graph Model
-
-![](/img/blog/2022-09-15-declarative-config-overview/17-kcl-graph-unification.png)
-
-Fig. 17: KCL configuration graph model.
-
-As shown in Fig. 17, the KCL code generates two graphs during the compilation process corresponding to the schema model definition and the declared configuration. The schema model definition includes references, inheritances, and composition relationships between models, and the configuration data declared on the user side are the model instantiation. The overall compilation process can be divided into three steps:
-
-1. Expand the model based on dependencies.
-2. Merge different configuration codes.
-3. Substitute the merged confguration into the platform model until all configuration attributes have certain values to obtain the final configuration.
-
-## 5. Summary
-
-The blog gives the landscape overview of declarative configuration technology, focusing on the KCL concept, core features, usage cases and comparison with other configuration languages, hoping to help you understand declarative configuration technology and KCL language. For more information about the concept, background and design of KCL, please visit https://kcl-lang.github.io/
-
-## 6. Reference
-
-- KusionStack Cloud Native Configuration Practice Blog: [https://KusionStack.io/blog/2021-kusion-intro](https://KusionStack.io/blog/2021-kusion-intro)
+- KusionStack Cloud Native Configuration Practice Blog: [https://kusionstack.io/blog/2021-kusion-intro](https://kusionstack.io/blog/2021-kusion-intro)
 - Terraform Language: [https://www.terraform.io/language](https://www.terraform.io/language)
 - Terraform Provider Kubernetes: [https://github.com/hashicorp/terraform-provider-kubernetes](https://github.com/hashicorp/terraform-provider-kubernetes)
 - Terraform Provider AWS: [https://github.com/hashicorp/terraform-provider-aws](https://github.com/hashicorp/terraform-provider-aws)
@@ -799,7 +763,7 @@ The blog gives the landscape overview of declarative configuration technology, f
 - Kustomize: [https://kustomize.io/](https://kustomize.io/)
 - Kube-linter: [https://github.com/stackrox/kube-linter](https://github.com/stackrox/kube-linter)
 - Checkov: [https://github.com/bridgecrewio/checkov](https://github.com/bridgecrewio/checkov)
-- KCL Documents: [https://kcl-lang.github.io/docs/reference/lang/lang/tour](https://kcl-lang.github.io/docs/reference/lang/lang/tour)
+- KCL Documents: [https://kcl-lang.io/docs/reference/lang/tour](https://kcl-lang.io/docs/reference/lang/tour)
 - How Terraform Works: A Visual Intro: [https://betterprogramming.pub/how-terraform-works-a-visual-intro-6328cddbe067](https://betterprogramming.pub/how-terraform-works-a-visual-intro-6328cddbe067) 
 - How Terraform Works: Modules Illustrated: [https://awstip.com/terraform-modules-illustrate-26cbc48be83a](https://awstip.com/terraform-modules-illustrate-26cbc48be83a)
 - Helm: [https://helm.sh/](https://helm.sh/)

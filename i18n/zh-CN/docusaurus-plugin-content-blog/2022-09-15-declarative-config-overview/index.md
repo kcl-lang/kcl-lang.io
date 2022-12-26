@@ -9,14 +9,14 @@ tags: [KCL, Configuration]
 
 ## 零、前言
 
-文本仅用于澄清声明式配置技术概述，[KCL](https://github.com/KusionStack/KCLVM) 概念以及核心设计，以及与其他配置语言的对比，更多 [KusionStack](https://kusionstack.io/) 的概念、背景与设计、以及与其他开源技术栈的区别将不会在本文中讨论。
+文本仅用于澄清声明式配置技术概述，[KCL](https://github.com/KusionStack/KCLVM) 概念以及核心设计，以及与其他配置语言的对比。
 
 ## 一、声明式配置概述
 
 ### 1.1 配置的重要性
 
 - 软件不是一成不变的，每天有成千上万的配置更新，并且配置本身也在逐渐演进，对规模化效率有较高的诉求
-  - **配置更新越来越频繁**：而配置提供了一种改变系统功能的低开销方式，不断发展的业务需求、基础设施要求和其他因素意味着系统需要不断变化。
+  - **配置更新越来越频繁**：配置提供了一种改变系统功能的低开销方式，不断发展的业务需求、基础设施要求和其他因素意味着系统需要不断变化。
   - **配置规模越来越大**：一份配置往往要分发到不同的云站点、不同的租户、不同的环境等。
   - **配置场景广泛**：应用配置、数据库配置、网络配置、监控配置等。
   - **配置格式繁多**：JSON, YAML, XML, TOML, 各种配置模版如 Java Velicity, Go Template 等。
@@ -161,7 +161,7 @@ Kusion 配置语言（KCL）是一个开源的基于约束的记录及函数语�
 
 KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本围绕 KCL 这个两个核心特性展开，此外 KCL 遵循以用户为中心的配置理念而设计其核心特性，可以从两个方面理解：
 
-- **以领域模型为中心的配置视图**：借助 KCL 语言丰富的特性及 [KCL OpenAPI](https://kusionstack.io/docs/reference/cli/openapi/quick-start) 等工具，可以将社区中广泛的、设计良好的模型直接集成到 KCL 中（比如 K8s 资源模型），用户也可以根据自己的业务场景设计、实现自己的 KCL 模型 (库) ，形成一整套领域模型架构交由其他配置终端用户使用。
+- **以领域模型为中心的配置视图**：借助 KCL 语言丰富的特性及 [KCL OpenAPI](https://kcl-lang.io/docs/tools/cli/openapi/) 等工具，可以将社区中广泛的、设计良好的模型直接集成到 KCL 中（比如 K8s 资源模型），用户也可以根据自己的业务场景设计、实现自己的 KCL 模型 (库) ，形成一整套领域模型架构交由其他配置终端用户使用。
 - **以终端用户为中心的配置视图**：借助 KCL 的代码封装、抽象和复用能力，可以对模型架构进行进一步抽象和简化（比如将 K8s 资源模型抽象为以应用为核心的 Server 模型），做到**最小化终端用户配置输入**，简化用户的配置界面，方便手动或者使用自动化 API 对其进行修改。
 
 不论是以何为中心的配置视图，对于代码而言（包括配置代码）都存在对配置数据约束的需求，比如类型约束、配置字段必选/可选约束、范围约束、不可变性约束等，这也是 KCL 致力于解决的核心问题之一。综上，KCL 是一个开源的基于约束和声明的函数式语言，KCL 主要包含如图 5 所示的核心特性：
@@ -170,50 +170,51 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 
 - **简单易用**：源于 Python、Golang 等高级语言，采纳函数式编程语言特性，低副作用
 - **设计良好**：独立的 Spec 驱动的语法、语义、运行时和系统库设计
-- **快速建模**：以 [Schema](https://kusionstack.io/docs/reference/lang/lang/tour#schema) 为中心的配置类型及模块化抽象
-- **功能完备**：基于 [Config](https://kusionstack.io/docs/reference/lang/lang/codelab/simple)、[Schema](https://kusionstack.io/docs/reference/lang/lang/tour/#schema)、[Lambda](https://kusionstack.io/docs/reference/lang/lang/tour/#function)、[Rule](https://kusionstack.io/docs/reference/lang/lang/tour/#rule) 的配置及其模型、逻辑和策略编写
-- **可靠稳定**：依赖[静态类型系统](https://kusionstack.io/docs/reference/lang/lang/tour/#type-system)、[约束](https://kusionstack.io/docs/reference/lang/lang/tour/#validation)和[自定义规则](https://kusionstack.io/docs/reference/lang/lang/tour#rule)的配置稳定性
-- **强可扩展**：通过独立配置块[自动合并机制](https://kusionstack.io/docs/reference/lang/lang/tour/#-operators-1)保证配置编写的高可扩展性
-- **易自动化**：[CRUD APIs](https://kusionstack.io/docs/reference/lang/lang/tour/#kcl-cli-variable-override)，[多语言 SDK](https://kusionstack.io/docs/reference/lang/xlang-api/overview)，[语言插件](https://github.com/KusionStack/kcl-plugin) 构成的梯度自动化方案
+- **快速建模**：以 [Schema](https://kcl-lang.io/docs/reference/lang/tour#schema) 为中心的配置类型及模块化抽象
+- **功能完备**：基于 [Config](https://kcl-lang.io/docs/reference/lang/tour#config-operations)、[Schema](https://kcl-lang.io/docs/reference/lang/tour#schema)、[Lambda](https://kcl-lang.io/docs/reference/lang/tour#function)、[Rule](https://kcl-lang.io/docs/reference/lang/tour#rule) 的配置及其模型、逻辑和策略编写
+- **可靠稳定**：依赖[静态类型系统](https://kcl-lang.io/docs/reference/lang/tour/#type-system)、[约束](https://kcl-lang.io/docs/reference/lang/tour/#validation)和[自定义规则](https://kcl-lang.io/docs/reference/lang/tour#rule)的配置稳定性
+- **强可扩展**：通过独立配置块[自动合并机制](https://kcl-lang.io/docs/reference/lang/tour/#-operators-1)保证配置编写的高可扩展性
+- **易自动化**：[CRUD APIs](https://kcl-lang.io/docs/reference/lang/tour/#kcl-cli-variable-override)，[多语言 SDK](https://kcl-lang.io/docs/reference/xlang-api/overview)，[语言插件](https://github.com/KusionStack/kcl-plugin) 构成的梯度自动化方案
 - **极致性能**：使用 Rust & C，[LLVM](https://llvm.org/) 实现，支持编译到本地代码和 [WASM](https://webassembly.org/) 的高性能编译时和运行时
 - **API 亲和**：原生支持 [OpenAPI](https://github.com/KusionStack/kcl-openapi)、 Kubernetes CRD， Kubernetes YAML 等 API 生态规范
-- **开发友好**：[语言工具](https://kusionstack.io/docs/reference/cli/kcl/) (Format，Lint，Test，Vet，Doc 等)、 [IDE 插件](https://github.com/KusionStack/vscode-kcl) 构建良好的研发体验
+- **开发友好**：[语言工具](https://kcl-lang.io/docs/tools/cli/kcl/) (Format，Lint，Test，Vet，Doc 等)、 [IDE 插件](https://github.com/KusionStack/vscode-kcl) 构建良好的研发体验
 - **安全可控**：面向领域，不原生提供线程、IO 等系统级功能，低噪音，低安全风险，易维护，易治理
 - **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
 ![](/img/blog/2022-09-15-declarative-config-overview/06-kcl-code-design.png)
 图 6 KCL 语言核心设计
 
-更多语言设计和能力详见 [KCL 文档](https://kusionstack.io/docs/reference/lang/lang/tour)，尽管 KCL 不是通用语言，但它有相应的应用场景，如图 6 所示，研发者可以通过 KCL 编写**配置(config)**、**模型(schema)**、**函数(lambda)**及**规则(rule)**，其中 Config 用于定义数据，Schema 用于对数据的模型定义进行描述，Rule 用于对数据进行校验，并且 Schema 和 Rule 还可以组合使用用于完整描述数据的模型及其约束，此外还可以使用 KCL 中的 lambda 纯函数进行数据代码组织，将常用代码封装起来,在需要使用时可以直接调用。
+更多语言设计和能力详见 [KCL 文档](https://kcl-lang.io/docs/reference/lang/tour)，尽管 KCL 不是通用语言，但它有相应的应用场景，如图 6 所示，研发者可以通过 KCL 编写**配置(config)**、**模型(schema)**、**函数(lambda)**及**规则(rule)**，其中 Config 用于定义数据，Schema 用于对数据的模型定义进行描述，Rule 用于对数据进行校验，并且 Schema 和 Rule 还可以组合使用用于完整描述数据的模型及其约束，此外还可以使用 KCL 中的 lambda 纯函数进行数据代码组织，将常用代码封装起来,在需要使用时可以直接调用。
 
 对于使用场景而言，KCL 的可以进行结构化 KV 数据验证、复杂配置模型定义与抽象、强约束校验避免配置错误、分块编写及配置合并能力、自动化集成和工程扩展等能力，下面针对这些功能和使用场景进行阐述。
 
 ### 2.1 结构化 KV 数据验证
 
 如图 7 所示，KCL 支持对 JSON/YAML 数据进行格式校验。作为一种配置语言，KCL 在验证方面几乎涵盖了 OpenAPI 校验的所有功能。在 KCL 中可以通过一个结构定义来约束配置数据，同时支持通过 check 块自定义约束规则，在 schema 中书写校验表达式对 schema 定义的属性进行校验和约束。通过 check 表达式可以非常清晰简单地校验输入的 JSON/YAML 是否满足相应的 schema 结构定义与 check 约束。
+
 ![](/img/blog/2022-09-15-declarative-config-overview/07-kcl-validation.png)
+
 图 7 KCL 中结构化 KV 校验方式
 
-基于此，KCL 提供了相应的[校验工具](https://kusionstack.io/docs/reference/cli/kcl/vet)直接对 JSON/YAML 数据进行校验。此外，通过 KCL schema 的 check 表达式可以非常清晰简单地校验输入的 JSON 是否满足相应的 schema 结构定义与 check 约束。此外，基于此能力可以构建如图 8 所示的 KV 校验可视化产品。
-![](/img/blog/2022-09-15-declarative-config-overview/08-kcl-validation-ui.png)
-图 8 基于 KCL 结构化 KV 校验能力构建的可视化产品界面
+基于此，KCL 提供了相应的[校验工具](https://kcl-lang.io/docs/tools/cli/kcl/vet)直接对 JSON/YAML 数据进行校验。此外，通过 KCL schema 的 check 表达式可以非常清晰简单地校验输入的 JSON 是否满足相应的 schema 结构定义与 check 约束。此外，基于此能力可以构建如图 8 所示的 KV 校验可视化产品。
 
-- 更多参考文档：KCL Vet 工具：[https://kusionstack.io/docs/reference/cli/kcl/vet](https://kusionstack.io/docs/reference/cli/kcl/vet)
+![](/img/blog/2022-09-15-declarative-config-overview/08-kcl-validation-ui.png)
+
+图 8 基于 KCL 结构化 KV 校验能力构建的可视化产品界面
 
 ### 2.2 复杂配置模型定义与抽象
 
-如图 9 所示，借助 KCL 语言丰富的特性及 [KCL OpenAPI](https://kusionstack.io/docs/reference/cli/openapi/quick-start) 等工具，可以将社区中广泛的、设计良好的模型直接集成到 KCL 中（比如 K8s 资源模型 CRD），用户也可以根据自己的业务场景设计、实现自己的 KCL 模型 (库) ，形成一整套领域模型架构交由其他配置终端用户使用。
+如图 9 所示，借助 KCL 语言丰富的特性及 [KCL OpenAPI](https://kcl-lang.io/docs/tools/cli/openapi/) 等工具，可以将社区中广泛的、设计良好的模型直接集成到 KCL 中（比如 K8s 资源模型 CRD），用户也可以根据自己的业务场景设计、实现自己的 KCL 模型 (库) ，形成一整套领域模型架构交由其他配置终端用户使用。
+
 ![](/img/blog/2022-09-15-declarative-config-overview/09-kcl-modeling.png)
+
 图 9 KCL 复杂配置建模的一般方式
 
 基于此，可以像图 10 示出的那样用一个大的 [Konfig 仓库](https://github.com/KusionStack/konfig) 管理全部的 KCL 配置代码，将业务配置代码 (应用代码)、基础配置代码 (核心模型+底层模型)在一个大库中，方便代码间的版本依赖管理，自动化系统处理也比较简单，定位唯一代码库的目录及文件即可，代码互通，统一管理，便于查找、修改、维护，可以使用统一的 CI/CD 流程进行配置管理（此外，大库模式也是 Google 等头部互联网公司内部实践的模式）。
-![](/img/blog/2022-09-15-declarative-config-overview/10-kcl-konfig.png)
-图 10 使用 KCL 的语言能力集成领域模型并抽象用户模型并使用
 
-- 更多参考文档
-  - KCL Schema：[https://kusionstack.io/docs/reference/lang/lang/tour#schema](https://kusionstack.io/docs/reference/lang/lang/tour#schema)
-  - KCL OpenAPI 规范：[https://kusionstack.io/docs/reference/cli/openapi/spec](https://kusionstack.io/docs/reference/cli/openapi/spec)
-  - KCL Konfig 配置大库概览：[https://kusionstack.io/docs/reference/konfig/overview](https://kusionstack.io/docs/reference/konfig/overview)
+![](/img/blog/2022-09-15-declarative-config-overview/10-kcl-konfig.png)
+
+图 10 使用 KCL 的语言能力集成领域模型并抽象用户模型并使用
 
 ### 2.3 强约束校验避免配置错误
 
@@ -339,7 +340,7 @@ employee = Employee {
 
 **Terraform HCL 函数 vs. KCL Lambda 函数编写 + Plugin 函数编写**
 
-- 正如 [https://www.terraform.io/language/functions](https://www.terraform.io/language/functions) 文档和 [https://github.com/hashicorp/terraform/issues/27696](https://github.com/hashicorp/terraform/issues/27696) 中展示的那样，Terraform HCL 提供了丰富的内置函数用于提供，但是并不支持用户在 Terraform 中使用 HCL 自定义函数 (或者需要编写复杂的 Go Provider 来模拟一个用户的本地自定义函数)；而 KCL 不仅支持用户使用 lambda 关键字直接在 KCL 代码中自定义函数，还支持使用 Python, Go 等语言为 KCL [编写插件函数](https://kusionstack.io/docs/reference/lang/plugin/overview)
+- 正如 [https://www.terraform.io/language/functions](https://www.terraform.io/language/functions) 文档和 [https://github.com/hashicorp/terraform/issues/27696](https://github.com/hashicorp/terraform/issues/27696) 中展示的那样，Terraform HCL 提供了丰富的内置函数用于提供，但是并不支持用户在 Terraform 中使用 HCL 自定义函数 (或者需要编写复杂的 Go Provider 来模拟一个用户的本地自定义函数)；而 KCL 不仅支持用户使用 lambda 关键字直接在 KCL 代码中自定义函数，还支持使用 Python, Go 等语言为 KCL [编写插件函数](https://kcl-lang.io/docs/reference/plugin/overview)
 
 - KCL 自定义定义函数并调用
 
@@ -732,46 +733,11 @@ deployment = v1.Deployment {
 | --- | --- | --- |
 | OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kclvm_cli run test.k) | 350 ms (cue export test.cue) |
 
-## 四、KCL 核心实现原理
+## 四、小结
 
-### 4.1 KCL 技术架构
+文本对声明式配置技术做了整体概述，其中重点阐述了 KCL 概念、核心设计、使用场景以及与其他配置语言的对比，期望帮助大家更好的理解声明式配置技术及 KCL 语言。更多 KusionStack 的概念、背景、设计与用户案例相关的内容，欢迎访问 [KCL 网站](https://kcl-lang.io/)
 
-![](/img/blog/2022-09-15-declarative-config-overview/16-kcl-compiler-arch.png)
-图 16 KCL 编译器架构
-
-如图 16 所示，KCL 编译器实现以 Spec 作为驱动（主要包含 KCL 语言规范，KCL 多语言集成规范、KCL OpenAPI 规范），KCL 是一个编译型的语言，整体保持与常规语言编译器相同的三段式架构，并在其中借助了 LLVM-IR 作为 KCL 连接 Native/WASM 代码的中间纽带，主要有以下 3 个核心工作：
-
-- KCL AST 到 LLVM-IR 的翻译：通过遍历 KCL AST，根据 KCL 语言规范生成相应的 LLVM-IR 代码，相当于用户态代码。
-- KCL Runtime Lib：运行时辅助函数库，提供运行时 KCL 的值/类型计算、内存、上下文管理、内置库和插件库支持，相当于系统态代码。
-- 用户态与系统态代码链接与执行：将用户态代码与系统态代码链接为一个动态链接库/WASM Module，最终通过统一的 Runner 模块执行编译后的 KCL 代码。
-
-此外 KCL 在语义检查器和和 Plugin 这块做了增强支持：
-
-- Resolver
-  - 静态类型推导与检查：可以在编译时进行类型推导和检查，避免运行时类型检查开销，可以作为 IDE 插件跳转、补全等功能支持和语义 API 构建(如 schema 模型查询、依赖分析等) 的良好基础
-  - 配置图合并：在编译过程对配置数据依赖图进行构建与合并，最终运行时仅进行少量计算即可得到最终的解
-  - 语义依赖图：通过内建语义依赖图，KCL 可以完成配置变更的依赖分析， 并且根据配置变更结果进行增量编译，对不变的配置进行缓存，可以提升端到端编译性能
-  - Schema 为中心的面向对象特性：KCL 语言只保留了单继承的语法。同时 schema 可以通过 mixin 和 protocol 等特性混入复用相同的代码片段，对于不同的能力配套，可以通过 mixin 机制编写，并通过 mixin 声明的方式“混入”到不同的结构体中
-- Plugin: 可以使用 Python/Go 编写扩展库，主要包含一些领域能力，如访问网络或数据库等。
-
-### 4.2 KCL 配置图模型
-
-![](/img/blog/2022-09-15-declarative-config-overview/17-kcl-graph-unification.png)
-图 17 KCL 配置图模型
-
-图 17 示出了 KCL 内部的配置图模型，首先 KCL 代码在编译过程中形成两张图（用户不同配置直接的引用和从属关系一般形式一张有向无环图），分别对应结构体内部声明代码及结构体使用声明代码。编译过程可以简单分为三步。
-
-- 首先定义平台侧的结构体并形成结构体内部声明代码图
-- 其次声明并合并不同用户侧配置代码图
-- 最后将用户侧配置代码图计算的结果代入平台侧结构体内部声明代码图求解，最终得到完整配置图定义
-
-通过这样简单的计算过程，可以在编译时完成大部分代换运算，最终运行时仅进行少量计算即可得到最终的解。同时在编译合并图过程中仍然能够执行类型检查和值的检查，区别是类型检查是做泛化、取偏序上确界（检查某个变量的值是否满足既定类型或者既定类型的子类型），值检查是做特化、取偏序下确界（比如将两个字典合并为一个字典）。
-
-## 五、小结
-
-文本对声明式配置技术做了整体概述，其中重点阐述了 KCL 概念、核心设计、使用场景以及与其他配置语言的对比，期望帮助大家更好的理解声明式配置技术及 KCL 语言。更多 KusionStack 的概念、背景、设计与用户案例相关的内容，欢迎访问 https://kusionstack.io/
-
-## 六、参考
+## 五、参考
 
 - KusionStack Cloud Native Configuration Practice Blog: [https://kusionstack.io/blog/2021-kusion-intro](https://kusionstack.io/blog/2021-kusion-intro)
 - Terraform Language: [https://www.terraform.io/language](https://www.terraform.io/language)
@@ -793,7 +759,7 @@ deployment = v1.Deployment {
 - Kustomize: [https://kustomize.io/](https://kustomize.io/)
 - Kube-linter: [https://github.com/stackrox/kube-linter](https://github.com/stackrox/kube-linter)
 - Checkov: [https://github.com/bridgecrewio/checkov](https://github.com/bridgecrewio/checkov)
-- KCL Documents: [https://kusionstack.io/docs/reference/lang/lang/tour](https://kusionstack.io/docs/reference/lang/lang/tour)
+- KCL Documents: [https://kcl-lang.io/docs/reference/lang/tour](https://kcl-lang.io/docs/reference/lang/tour)
 - How Terraform Works: A Visual Intro: [https://betterprogramming.pub/how-terraform-works-a-visual-intro-6328cddbe067](https://betterprogramming.pub/how-terraform-works-a-visual-intro-6328cddbe067) 
 - How Terraform Works: Modules Illustrated: [https://awstip.com/terraform-modules-illustrate-26cbc48be83a](https://awstip.com/terraform-modules-illustrate-26cbc48be83a)
 - Helm: [https://helm.sh/](https://helm.sh/)
