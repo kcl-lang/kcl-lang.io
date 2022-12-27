@@ -13,7 +13,7 @@ The blog is only used to clarify the landscape of declarative configuration, [KC
 
 ### 1.1 Importance of Configuration
 
-- There are thousands of configuration updates every day because the software development and the configuration itself is gradually evolving, which has a high demand for large-scale efficiency.
+- There are thousands of configuration updates every day because the software development and the configuration itself are gradually evolving, which has a high demand for large-scale efficiency.
   - **The configuration is updated more frequently**: The evolving business requirements, infrastructure requirements and other factors mean that the system needs to change constantly, and the configuration provides a low-cost way to change the system functions.
   - **The configuration scale is getting larger**: A configuration is often distributed to different cloud sites, different tenants, different environments, etc.
   - **Wide configuration scenarios**: Application, database, network, monitoring, etc.
@@ -37,7 +37,7 @@ Fig. 1: Classification of declarative configuration.
 
 #### 1.2.1 Structured K-V
 
-Structured K-V meets the minimum data declaration requirements (int, string, list, dict, etc.). Declarative API meets the development demands of X as Data with the rapid development and application of cloud native technology. Machine-readable and writable, human-readable.
+Structured K-V meets the minimum data declaration requirements (int, string, list, dict, etc.). Declarative API meets the development demands of X as Data with the rapid development and application of cloud-native technology. Machine-readable and writable, human-readable.
 
 - Pros.
   - Simple syntax, easy to write and read.
@@ -50,8 +50,8 @@ Structured K-V meets the minimum data declaration requirements (int, string, lis
 
 Representative technologies of structured KV include:
 
-- JSON/YAML: It is very convenient for reading and automation, and hasdifferent languages API support.
-- [Kustomize](https://kustomize.io/): It provides a solution to customizethe Kubernetes resource base configuration and differential configurationwithout **template** and **DSL**. It does not solve the constraint problemitself, but needs to cooperate with a large number of additional tools tocheck constraints, such as [Kube-linter](https://github.com/stackroxkube-linter)、[Checkov](https://github.com/bridgecrewio/checkov). Fig. 2shows the typical working mode of Kustomize.
+- JSON/YAML: It is very convenient for reading and automation, and has different languages API support.
+- [Kustomize](https://kustomize.io/): It provides a solution to customize the Kubernetes resource base configuration and differential configuration without **template** and **DSL**. It does not solve the constraint problem itself, but needs to cooperate with a large number of additional tools to check constraints, such as [Kube-linter](https://github.com/stackroxkube-linter)、[Checkov](https://github.com/bridgecrewio/checkov). Fig. 2shows the typical working mode of Kustomize.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/02-kustomize.png)
 
@@ -70,8 +70,8 @@ The Templated KV has the capability of static configuration data and dynamic par
 
 Representative technologies of templated KV include:
 
-- [Helm](https://helm.sh/): The package management tool of Kubernetesresources, which manages the configuration of Kubernetes resources throughthe configuration template. Fig. 3 shows a Helm Jekins Package ConfigMapconfiguration template. It can be seen that these templates are very shortwith simple logic. A series of resource configurations suitable forKubernetes basic components are installed through package management andadditional configuration parameters. Compared with the simply templatedK-V, Helm provides template storage, reference and semantic versionmanagement capabilities. Compared with Kustomize, Helm is more suitablefor managing external Charts but is not good at multi-environment andmulti-tenant configuration management.
-- Other configuration templates: Java Velocity, Go Template and other texttemplate engines are very suitable for HTML writing templates. However,when used in configuration scenarios, they are difficult for developersand tools to maintain and analyze.
+- [Helm](https://helm.sh/): The package management tool of Kubernetesresources, which manages the configuration of Kubernetes resources through the configuration template. Fig. 3 shows a Helm Jekins Package ConfigMap configuration template. It can be seen that these templates are very short with simple logic. A series of resource configurations suitable forKubernetes basic components are installed through package management and additional configuration parameters. Compared with the simply templatedK-V, Helm provides template storage, reference and semantic version management capabilities. Compared with Kustomize, Helm is more suitable for managing external Charts but is not good at multi-environment and multi-tenant configuration management.
+- Other configuration templates: Java Velocity, Go Template and other text template engines are very suitable for HTML writing templates. However,when used in configuration scenarios, they are difficult for developers and tools to maintain and analyze.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/03-helm.png)
 
@@ -100,9 +100,9 @@ Fig. 3: Helm Jekins Package ConfigMap configuration template.
 
 Representative technologies of programmable KV include:
 
-- [GCL](https://github.com/rix0rrr/gcl): A declarative configurationprogramming language implemented in Python provides the necessary languagecapabilities to support template abstraction. However, the compiler itselfis written in Python, and the language itself is interpreted and executed.For large template instances (such as kubernetes model), the performanceis poor.
-- [HCL](https://github.com/hashicorp/hcl): A Go implementation structuredconfiguration language. The native syntax of HCL is inspired by libucl andnginx configurations. It is used to create a structured configurationlanguage that is friendly to humans and machines, mainly for devops tools,server configurations, and resource configurations as a [Terraformlanguage](https://www.terraform.io/language).
-- [Jsonnet](https://github.com/google/jsonnet): A data template languageimplemented in C++, suitable for application and tool developers, cangenerate configuration data and organize, simplify and manage largeconfigurations without side effects.
+- [GCL](https://github.com/rix0rrr/gcl): A declarative configuration programming language implemented in Python provides the necessary language capabilities to support template abstraction. However, the compiler itself is written in Python, and the language itself is interpreted and executed. For large template instances (such as Kubernetes models), the performance is poor.
+- [HCL](https://github.com/hashicorp/hcl): A Go implementation structured configuration language. The native syntax of HCL is inspired by libucl and nginx configurations. It is used to create a structured configuration language that is friendly to humans and machines, mainly for DevOps tools, server configurations, and resource configurations as a [Terraform language](https://www.terraform.io/language).
+- [Jsonnet](https://github.com/google/jsonnet): A data template language implemented in C++, suitable for application and tool developers, can generate configuration data and organize, simplify and manage large configurations without side effects.
 
 #### 1.2.4 Typed K-V
 
@@ -121,7 +121,7 @@ Representative technologies of programmable KV include:
 
 Representative technologies of typed KV include:
 
-- [CUE](https://github.com/cue-lang/cue): The core problem CUE solves is"type checking", which is mainly used in configuration constraintverification scenarios and simple cloud native configuration scenarios.
+- [CUE](https://github.com/cue-lang/cue): The core problem CUE solves is "type checking", which is mainly used in configuration constraint verification scenarios and simple cloud native configuration scenarios.
 
 #### 1.2.5 Modeled K-V
 
@@ -138,7 +138,7 @@ Representative technologies of typed KV include:
 
 Representative technologies of modeled KV include:
 
-- [KCL](https://github.com/KusionStack/KCLVM): A declarative configurationand policy programming language implemented by Rust, which improves thewriting of a large number of complex configurations through matureprogramming language technology and practice, and is committed to buildingbetter modularity, scalability and stability around configuration, simplerlogic writing, fast automation and good ecological extensionally. Fig. 4shows a typical scenario of KCL writing application delivery configurationcode.
+- [KCL](https://github.com/KusionStack/KCLVM): A declarative configuration and policy programming language implemented by Rust, which improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionally. Fig. 4 shows a typical scenario of KCL writing application delivery configuration code.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/04-kcl-app-code.png)
 
@@ -205,7 +205,7 @@ As shown in Fig 7, KCL supports format validation of JSON/YAML data. As a config
 
 Fig. 7: Validation of structured data in KCL.
 
-Based on this, KCL provides the corresponding [Validation Tool](https://kcl-lang.io/docs/tools/cli/kcl/vet) to validate JSON/YAML data directly.In addition, based on this capability, we can build a K-V validation visualization product as shown in Fig. 8.
+Based on this, KCL provides the corresponding [Validation Tool](https://kcl-lang.io/docs/tools/cli/kcl/vet) to validate JSON/YAML data directly. In addition, based on this capability, we can build a K-V validation visualization product as shown in Fig. 8.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/08-kcl-validation-ui.png)
 
@@ -219,7 +219,7 @@ As shown in Fig 9, with the help of the [KCL OpenAPI](https://kcl-lang.io/docs/t
 
 Fig. 9: General way of KCL complex configuration modeling.
 
-As shown in Figure 10, [Konfig](https://github.com/KusionStack/konfig) is used to manage all KCL configuration codes, the business configuration code and basic configuration code are stored in a mono repo, which facilitates the version dependency management between codes, and the automatic system processing is relatively simple. It is sufficient to locate the directory and files of the unique code base. The codes are interconnected, managed uniformly, and easy to find, modify, and maintain. Besieds, the unified CI/CD process can be used for configuration management.
+As shown in Figure 10, [Konfig](https://github.com/KusionStack/konfig) is used to manage all KCL configuration codes, the business configuration code and basic configuration code are stored in a mono repo, which facilitates the version dependency management between codes, and the automatic system processing is relatively simple. It is sufficient to locate the directory and files of the unique code base. The codes are interconnected, managed uniformly, and easy to find, modify, and maintain. Besides, the unified CI/CD process can be used for configuration management.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/10-kcl-konfig.png)
 
@@ -227,7 +227,7 @@ Fig. 10: Using KCL's language capabilities to integrate domain models and user m
 
 ### 2.3 Strong Constraint to Avoid Errors
 
-As shown in Fig. 11, configuration errors can be avoided through strong constraint checking methods in KCL.
+As shown in Fig. 11, configuration errors can be avoided through strong constraint-checking methods in KCL.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/11-kcl-constraint.png)
 
@@ -247,17 +247,17 @@ KCL provides the ability to write isolated configuration blocks and automaticall
 
 ![](/img/blog/2022-09-15-declarative-config-overview/13-kcl-isolated-config.png)
 
-Fig. 13: Multi environment scenario configuration block writing.
+Fig. 13: Multi-environment scenario configuration block writing.
 
 ### 2.5 Automation
 
-KCL provides many automation related capabilities, mainly including tools and multilingual APIs. Via `package_identifier : key_identifier` mode, KCL supports the indexing of any configured key value, thus completing the addition, deletion, modification and query of any key value. For example, Fig 14. shows that we can directly execute the following command to modify the image. The code diff before and after modification is also shown in Fig. 14.
+KCL provides many automation-related capabilities, mainly including tools and multilingual APIs. Via `package_identifier : key_identifier` mode, KCL supports the indexing of any configured key value, thus completing the addition, deletion, modification and query of any key value. For example, Fig 14. shows that we can directly execute the following command to modify the image. The code diff before and after modification is also shown in Fig. 14.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/14-kcl-image-update.png)
 
 Fig. 14: Automatic modification of application configuration image via KCL CLI/API.
 
-In addition, the automation capability of KCL can be realized as shown in Fig. 15 and integrated into CI/CD.
+In addition, the automation capability of KCL can be realized and integrated into CI/CD as shown in Fig. 15.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/15-kcl-automation.png)
 
@@ -273,7 +273,7 @@ The advantages of using KCL for configuration are: for static data, the advantag
 
 ### 3.2 vs. Kustomize
 
-The core capability of Kustomize is its file level overlay capability. However, there is a problem of multiple overlay chains, because finding the statement of a specific attribute value does not guarantee that it is the final value, because another specific value that appears elsewhere can override it. For complex scenarios, retrieval of the inheritance chain of Kustomize files is often not as convenient as retrieval of the inheritance chain of KCL code, The specified configuration file overwrite order needs to be carefully considered. In addition, Kustomize cannot solve the problems of YAML configuration writing, constraint verification, model abstraction and development, and is more suitable for simple configuration scenarios.
+The core capability of Kustomize is its file-level overlay capability. However, there is a problem with multiple overlay chains, because finding the statement of a specific attribute value does not guarantee that it is the final value, because another specific value that appears elsewhere can override it. For complex scenarios, retrieval of the inheritance chain of Kustomize files is often not as convenient as retrieval of the inheritance chain of KCL code, The specified configuration file overwrite order needs to be carefully considered. In addition, Kustomize cannot solve the problems of YAML configuration writing, constraint verification, model abstraction and development, and is more suitable for simple configuration scenarios.
 
 In KCL, the configuration merge operation can be fine-grained to each configuration attribute in the code, and the merge strategy can be flexibly set, not limited to the overall resource, and the dependency between configurations can be statically analyzed through the import statement of KCL.
 
@@ -335,7 +335,7 @@ subnet_delegations: [SubnetDelegation] = option("subnet_delegations")
 
 **Terraform HCL Function vs. KCL Lambda**
 
-- As shown in [https://www.terraform.io/language/functions](https://www.terraform.io/language/functions) and [https://github.com/hashicorp/terraform/issues/27696](https://github.com/hashicorp/terraform/issues/27696)，Terraform HCL provides rich built-in functions, but it does not support users to define functions in Terraform (or need to write complex Go providers to simulate a local user-defined functions); KCL not only supports users to use the lambda keyword to directly define functions in KCL code, but also supports the use of Python, Go and other languages to write [plugins](https://kcl-lang.io/docs/reference/plugin/overview).
+- As shown in [https://www.terraform.io/language/functions](https://www.terraform.io/language/functions) and [https://github.com/hashicorp/terraform/issues/27696](https://github.com/hashicorp/terraform/issues/27696)，Terraform HCL provides rich built-in functions, but it does not support users to define functions in Terraform (or need to write complex Go providers to simulate local user-defined functions); KCL not only supports users to use the lambda keyword to directly define functions in KCL code, but also supports the use of Python, Go and other languages to write [plugins](https://kcl-lang.io/docs/reference/plugin/overview).
 
 - Defining functions and calling them in KCL
 
@@ -583,7 +583,7 @@ app: App {
 }
 ```
 
-In addition, due to the idempotent merge feature of CUE, it is not easy to use an overlay configuration similar to Kustomize to override the addition capability in scenarios, such as the above CUE code will report an conflict error.
+In addition, due to the idempotent merge feature of CUE, it is not easy to use an overlay configuration similar to Kustomize to override the additional capability in scenarios, such as the above CUE code will report a conflict error.
 
 ### 3.5 Performance
 
@@ -702,7 +702,7 @@ deployment = v1.Deployment {
 
 ## 4. Summary
 
-The blog gives the landscape overview of declarative configuration technology, focusing on the KCL concept, core features, usage cases and comparison with other configuration languages, hoping to help you understand declarative configuration technology and KCL language. For more information about the concept, background and design of KCL, please visit the [KCL website](https://kcl-lang.io/)
+The blog gives a landscape overview of declarative configuration technology, focusing on the KCL concept, core features, usage cases and comparison with other configuration languages, hoping to help you understand declarative configuration technology and KCL language. For more information about the concept, background and design of KCL, please visit the [KCL website](https://kcl-lang.io/)
 
 ## 5. Reference
 
