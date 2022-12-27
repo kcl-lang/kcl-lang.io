@@ -1,6 +1,6 @@
 ---
 slug: 2022-declarative-config-overview
-title: The Landscape of Declarative Configuration
+title: 声明式配置技术概述
 authors:
   name: 徐鹏飞
   title: KCL 团队成员
