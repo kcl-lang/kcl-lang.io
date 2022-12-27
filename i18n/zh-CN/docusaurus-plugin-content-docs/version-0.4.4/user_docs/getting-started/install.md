@@ -22,6 +22,14 @@ export PATH=$PATH:{install-location}/kclvm/bin
 python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 ```
 
+### 使用 Go 安装
+
+通过 `Go` 命令安装
+
+```cmd
+go install kusionstack.io/kclvm-go/cmds/kcl-go@main && alias kcl='kcl-go kcl'
+```
+
 ### 使用 Docker 镜像安装
 
 + 基本命令

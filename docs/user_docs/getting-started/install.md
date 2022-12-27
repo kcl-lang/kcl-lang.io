@@ -22,6 +22,14 @@ Install `kcl` through the `python3` and `pip` (`python3` requires 3.7.3+).
 python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 ```
 
+### From Go
+
+Install `kcl` through the `Go` command.
+
+```cmd
+go install kusionstack.io/kclvm-go/cmds/kcl-go@main && alias kcl='kcl-go kcl'
+```
+
 ### From Docker
 
 + Command
