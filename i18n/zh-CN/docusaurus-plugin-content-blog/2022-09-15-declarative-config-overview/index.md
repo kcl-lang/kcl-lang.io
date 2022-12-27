@@ -19,7 +19,7 @@ tags: [KCL, Configuration]
   - **配置更新越来越频繁**：配置提供了一种改变系统功能的低开销方式，不断发展的业务需求、基础设施要求和其他因素意味着系统需要不断变化。
   - **配置规模越来越大**：一份配置往往要分发到不同的云站点、不同的租户、不同的环境等。
   - **配置场景广泛**：应用配置、数据库配置、网络配置、监控配置等。
-  - **配置格式繁多**：JSON, YAML, XML, TOML, 各种配置模版如 Java Velicity, Go Template 等。
+  - **配置格式繁多**：JSON, YAML, XML, TOML, 各种配置模版如 Java Velocity, Go Template 等。
 - 配置的稳定性至关重要，系统宕机或出错的一个最主要原因是有大量工程师进行频繁的实时配置更新，表 1 示出了几个由于配置导致的系统出错事件。
 
 | 时间 | 事件 |
@@ -37,10 +37,8 @@ tags: [KCL, Configuration]
 
 #### 1.2.1 结构化 (Structured) 的 KV
 
-- 能力
-  - 结构化 kv 满足最小数据化声明需求（int, string, list, dict 等）
-  - 随着云原生技术快速发展应用，声明式 API 满足 X as Data 发展诉求
-  - 面向机器可读可写，面向人类可读
+结构化的 KV 可以满足最小化数据声明需求，比如数字、字符串、列表和字典等数据类型，并且随着云原生技术快速发展应用，声明式 API 可以满足 X as Data 发展的诉求，并且面向机器可读可写，面向人类可读。其优劣如下:
+
 - 优势
   - 语法简单，易于编写和阅读
   - 多语言 API 丰富
@@ -53,59 +51,59 @@ tags: [KCL, Configuration]
     - 测试、调试能力
     - 不易抽象和复用
     - Kustomize 的 Patch 比较定制，基本是通过固定几种 Patch Merge 策略
-- 代表技术
-  - JSON/YAML：非常方便阅读，以及自动化处理，不同的语言均具有丰富的 API 支持。
-  - [Kustomize](https://kustomize.io/)：提供了一种无需**模板**和 **DSL** 即可自定义 Kubernetes 资源基础配置和差异化配置的解决方案，本身不解决约束的问题，需要配合大量的额外工具进行约束检查如 [Kube-linter](https://github.com/stackrox/kube-linter)、[Checkov](https://github.com/bridgecrewio/checkov) 等检查工具，图 2 示出了 Kustomize 的典型工作方式。
+
+结构化 KV 的代表技术有
+
+- JSON/YAML：非常方便阅读，以及自动化处理，不同的语言均具有丰富的 API 支持。
+- [Kustomize](https://kustomize.io/)：提供了一种无需**模板**和 **DSL** 即可自定义 Kubernetes 资源基础配置和差异化配置的解决方案，本身不解决约束的问题，需要配合大量的额外工具进行约束检查如 [Kube-linter](https://github.com/stackrox/kube-linter)、[Checkov](https://github.com/bridgecrewio/checkov) 等检查工具，图 2 示出了 Kustomize 的典型工作方式。
 
 ![](/img/blog/2022-09-15-declarative-config-overview/02-kustomize.png)
 图 2 Kustomize 典型工作方式
 
 #### 1.2.3 模版化 (Templated) 的 KV
 
-- 能力
-  - 赋予静态配置数据动态参数的能力，一份模版+动态参数输出不同的静态配置数据
+模版化 (Templated) 的 KV 赋予静态配置数据动态参数的能力，可以做到一份模版+动态参数输出不同的静态配置数据。其优劣如下:
+
 - 优势
   - 简单的配置逻辑，循环支持
   - 支持外部动态参数输入模版
 - 痛点
   - 容易落入所有配置参数都是模版参数的陷阱
   - 当配置规模变大时，开发者和工具都难以维护和分析它们
-- 代表技术
-  - [Helm](https://helm.sh/)：Kubernetes 资源的包管理工具，通过配置模版管理 Kubernetes 资源配置。图 3 示出了一个 Helm Jekins Package ConfigMap 配置模版，可以看出这些模版本身都十分短小，可以书写简单的逻辑，适合 Kubernetes 基础组件固定的一系列资源配置通过包管理+额外的配置参数进行安装。相比于单纯的模版化的 KV，Helm 一定程度上提供了模版存储/引用和语义化版本管理的能力相比于 Kustomize 更适合管理外部 Charts, 但是在多环境、多租户的配置管理上不太擅长。
+
+模版化代表技术有:
+
+- [Helm](https://helm.sh/)：Kubernetes 资源的包管理工具，通过配置模版管理 Kubernetes 资源配置。图 3 示出了一个 Helm Jekins Package ConfigMap 配置模版，可以看出这些模版本身都十分短小，可以书写简单的逻辑，适合 Kubernetes 基础组件固定的一系列资源配置通过包管理+额外的配置参数进行安装。相比于单纯的模版化的 KV，Helm 一定程度上提供了模版存储/引用和语义化版本管理的能力相比于 Kustomize 更适合管理外部 Charts, 但是在多环境、多租户的配置管理上不太擅长。
 
 ![](/img/blog/2022-09-15-declarative-config-overview/03-helm.png)
+
 图 3 Helm Jekins Package ConfigMap 配置模版
 
 - 其他各种配置模版：Java Velocity, Go Template 等文本模板引擎非常适合 HTML 编写模板。但是在配置场景中使用时，存在所有配置字段即模版参数的风险，开发者和工具都难以维护和分析它们。
 
 #### 1.2.3 代码化 (Programmable) 的 KV
 
-- 概念
-  - Configuration as Code (CaC), 使用代码产生配置，就像工程师们只需要写高级 GPL 代码，而不是手工编写容易出错而且难以理解的服务器二进制代码一样。
-  - 配置变更同代码变更同样严肃地对待，同样可以执行单元测试、集成测试等
-  - 代码模块化和重用是维护配置代码比手动编辑 JSON/YAML 等配置文件更容易的一个关键原因
-- 能力
-  - 必要的编程语言元素（变量定义、逻辑判断、循环、断言等）
-  - 必要的模板化能力（支持定义数据模版，并用模版得到新的配置数据）
-  - 代码模块化能力：结构 + 包管理
-  - 面向人类可读可写，面向机器部分可读可写
+Configuration as Code (CaC), 使用代码产生配置，就像工程师们只需要写高级 GPL 代码，而不是手工编写容易出错而且难以理解的服务器二进制代码一样。配置变更同代码变更同样严肃地对待，同样可以执行单元测试、集成测试等。代码模块化和重用是维护配置代码比手动编辑 JSON/YAML 等配置文件更容易的一个关键原因。其优劣如下:
+
 - 优势
-  - 必要的编程能力
-  - 代码模块化与抽象
+  - 必要的编程能力（变量定义、逻辑判断、循环、断言等）
+  - 代码模块化与抽象（支持定义数据模版，并用模版得到新的配置数据）
   - 可以抽象配置模版+并使用配置覆盖
 - 痛点
   - 类型检查不足
   - 运行时错误
   - 约束能力不足
-- 代表技术：
-  - [GCL](https://github.com/rix0rrr/gcl)：一种 Python 实现的声明式配置编程语言，提供了必要的语言能力支持模版抽象，但编译器本身是 Python 编写，且语言本身是解释执行，对于大的模版实例 (比如 K8s 模型) 性能较差。
-  - [HCL](https://github.com/hashicorp/hcl)：一种 Go 实现结构化配置语言，原生语法受到 libucl、nginx 配置等的启发，用于创建对人类和机器都友好的结构化配置语言，主要针对 devops 工具、服务器配置以及 Terraform 中定义资源配置等。
-  - [Jsonnet](https://github.com/google/jsonnet)：一种 C++ 实现的数据模板语言，适用于应用程序和工具开发人员，可以生成配置数据并且无副作用组织、简化、统一管理庞大的配置。
+
+代码化 KV 的代表技术有:
+
+- [GCL](https://github.com/rix0rrr/gcl)：一种 Python 实现的声明式配置编程语言，提供了必要的言能力支持模版抽象，但编译器本身是 Python 编写，且语言本身是解释执行，对于大的模版实例 (比如 K8s 型) 性能较差。
+- [HCL](https://github.com/hashicorp/hcl)：一种 Go 实现结构化配置语言，原生语法受到 libuclnginx 配置等的启发，用于创建对人类和机器都友好的结构化配置语言，主要针对 devops 工具、服务器配置及 Terraform 中定义资源配置等。
+- [Jsonnet](https://github.com/google/jsonnet)：一种 C++ 实现的数据模板语言，适用于应用程序工具开发人员，可以生成配置数据并且无副作用组织、简化、统一管理庞大的配置。
 
 #### 1.2.4 类型化 (Typed) 的 KV
 
-- 能力
-  - 基于代码化 KV，类型化 KV 多了类型检查和约束的能力
+类型化的 KV，基于代码化 KV，多了类型检查和约束的能力，其优劣如下:
+
 - 优势
   - 配置合并完全幂等，天然防止配置冲突
   - 丰富的配置约束语法用于编写约束
@@ -116,25 +114,29 @@ tags: [KCL, Configuration]
   - 类型和值混合定义提高抽象程度的同时提升了用户的理解成本，并且所有约束在运行时进行检查，大规模配置代码下有性能瓶颈
   - 对于想要配置覆盖、修改的多租户、多环境场景难以实现
   - 对于带条件的约束场景，定义和校验混合定义编写用户界面不友好
-- 代表技术：
-  - [CUE](https://github.com/cue-lang/cue)：CUE 解决的核心问题是“类型检查”，主要应用于配置约束校验场景及简单的云原生配置场景
+
+类型化 KV 的代表技术有:
+
+- [CUE](https://github.com/cue-lang/cue)：CUE 解决的核心问题是“类型检查”，主要应用于配置约束校验场景及简单的云原生配置场景
 
 #### 1.2.5 模型化 (Structural) 的 KV
 
+模型化的 KV 在代码化和类型化 KV 的基础上以高级语言建模能力为核心描述，期望做到模型的快速编写与分发，其优劣如下:
+
 - 优势
-  - 以高级语言建模能力为核心描述
-    - 模型复用
-    - 不可变性
-    - 约束校验
   - 引入可分块、可扩展的 KV 配置块编写方式
   - 类高级编程语言的编写、测试方式
   - 语言内置的强校验、强约束支持
   - 面向人类可读可写，面向机器部分可读可写
 - 不足
-  - 扩展新模型及生态构建需要一定的研发成本
-- 代表技术：[KCL](https://github.com/KusionStack/KCLVM)：一种 Rust 实现的声明式配置策略编程语言，把运维类研发统一为一种声明式的代码编写，可以针对差异化应用交付场景抽象出用户模型并添加相应的约束能力，期望借助可编程 devops 解决规模化运维场景中的配置策略编写的效率和可扩展性等问题。图 4 示出了一个 KCL 编写应用交付配置代码的典型场景
+  - 扩展新模型及生态构建需要一定的研发成本，或者使用工具对社区中已有的 JsonSchema 和 OpenAPI 模型进行模型转换、迁移和集成。
+
+模型化 KV 的代表技术有:
+
+- [KCL](https://github.com/KusionStack/KCLVM)：一种 Rust 实现的声明式配置策略编程语言，把运维类研发统一为一种声明式的代码编写，可以针对差异化应用交付场景抽象出用户模型并添加相应的约束能力，期望借助可编程 DevOps 理念解决规模化运维场景中的配置策略编写的效率和可扩展性等问题。图 4 示出了一个 KCL 编写应用交付配置代码的典型场景
 
 ![](/img/blog/2022-09-15-declarative-config-overview/04-kcl-app-code.png)
+
 图 4 使用 KCL 编写应用交付配置代码
 
 ### 1.3 不同声明式配置方式的选择标准与最佳实践
@@ -165,7 +167,9 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 - **以终端用户为中心的配置视图**：借助 KCL 的代码封装、抽象和复用能力，可以对模型架构进行进一步抽象和简化（比如将 K8s 资源模型抽象为以应用为核心的 Server 模型），做到**最小化终端用户配置输入**，简化用户的配置界面，方便手动或者使用自动化 API 对其进行修改。
 
 不论是以何为中心的配置视图，对于代码而言（包括配置代码）都存在对配置数据约束的需求，比如类型约束、配置字段必选/可选约束、范围约束、不可变性约束等，这也是 KCL 致力于解决的核心问题之一。综上，KCL 是一个开源的基于约束和声明的函数式语言，KCL 主要包含如图 5 所示的核心特性：
+
 ![](/img/blog/2022-09-15-declarative-config-overview/05-kcl-core-feature.png)
+
 图 5 KCL 核心特性
 
 - **简单易用**：源于 Python、Golang 等高级语言，采纳函数式编程语言特性，低副作用
@@ -182,11 +186,12 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 - **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
 ![](/img/blog/2022-09-15-declarative-config-overview/06-kcl-code-design.png)
+
 图 6 KCL 语言核心设计
 
 更多语言设计和能力详见 [KCL 文档](https://kcl-lang.io/docs/reference/lang/tour)，尽管 KCL 不是通用语言，但它有相应的应用场景，如图 6 所示，研发者可以通过 KCL 编写**配置(config)**、**模型(schema)**、**函数(lambda)**及**规则(rule)**，其中 Config 用于定义数据，Schema 用于对数据的模型定义进行描述，Rule 用于对数据进行校验，并且 Schema 和 Rule 还可以组合使用用于完整描述数据的模型及其约束，此外还可以使用 KCL 中的 lambda 纯函数进行数据代码组织，将常用代码封装起来,在需要使用时可以直接调用。
 
-对于使用场景而言，KCL 的可以进行结构化 KV 数据验证、复杂配置模型定义与抽象、强约束校验避免配置错误、分块编写及配置合并能力、自动化集成和工程扩展等能力，下面针对这些功能和使用场景进行阐述。
+对于使用场景而言，KCL 可以进行结构化 KV 数据验证、复杂配置模型定义与抽象、强约束校验避免配置错误、分块编写及配置合并能力、自动化集成和工程扩展等能力，下面针对这些功能和使用场景进行阐述。
 
 ### 2.1 结构化 KV 数据验证
 
@@ -219,7 +224,9 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 ### 2.3 强约束校验避免配置错误
 
 如图 11 所示，在 KCL 中可以通过丰富的强约束校验手段避免配置错误：
+
 ![](/img/blog/2022-09-15-declarative-config-overview/11-kcl-constraint.png)
+
 图 11 KCL 强约束校验手段
 
 - KCL 语言的类型系统被设计为静态的，类型和值定义分离，支持编译时类型推导和类型检查，静态类型不仅仅可以提前在编译时分析大部分的类型错误，还可以降低后端运行时的动态类型检查的性能损耗。此外，KCL Schema 结构的属性强制为非空，可以有效避免配置遗漏。
@@ -227,6 +234,7 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 - KCL 支持通过结构体内置的校验规则进一步保障稳定性。比如对于如图 12 所示的 KCL 代码，，在 `App` 中定义对 `containerPort`、`services`、`volumes` 的校验规则，目前校验规则在运行时执行判断，后续 KCL 会尝试通过编译时的静态分析对规则进行判断从而发现问题。
 
 ![](/img/blog/2022-09-15-declarative-config-overview/12-kcl-app-schema.png)
+
 图 12 带规则约束的 KCL 代码校验
 
 ### 2.4 分块编写及配置合并
@@ -234,7 +242,9 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 KCL 提供了配置分块编写及自动合并配置的能力，并且支持幂等合并、补丁合并和唯一配置合并等策略。幂等合并中的多份配置需要满足交换律，并且需要开发人员手动处理基础配置和不同环境配置冲突。 补丁合并作为一个覆盖功能，包括覆盖、删除和添加。唯一的配置要求配置块是全局唯一的并且未修改或以任何形式重新定义。 KCL 通过多种合并策略简化了用户侧的协同开发，减少了配置之间的耦合。
 
 如图 13 所示，对于存在基线配置、多环境和多租户的应用配置场景，有一个基本配置 base.k。 开发和 SRE 分别维护生产和开发环境的配置 base.k 和 prod.k，他们的配置互不影响，由 KCL 编译器合并成一个 prod 环境的等效配置代码。
+
 ![](/img/blog/2022-09-15-declarative-config-overview/13-kcl-isolated-config.png)
+
 图 13 多环境场景配置分块编写实例
 
 ### 2.5 自动化集成
@@ -242,10 +252,13 @@ KCL 提供了配置分块编写及自动合并配置的能力，并且支持幂�
 在 KCL 中提供了很多自动化相关的能力，主要包括工具和多语言 API。 通过 `package_identifier : key_identifier`的模式支持对任意配置键值的索引，从而完成对任意键值的增删改查。比如图 14 所示修改某个应用配置的镜像内容，可以直接执行如下指令修改镜像，修改前后的 diff 如下图所示。
 
 ![](/img/blog/2022-09-15-declarative-config-overview/14-kcl-image-update.png)
+
 图 14 使用 KCL CLI/API 自动修改应用配置镜像
 
 此外，可以基于 KCL 的自动化能力实现如图 15 所示的一镜交付及自动化运维能力并集成到 CI/CD 当中。
+
 ![](/img/blog/2022-09-15-declarative-config-overview/15-kcl-automation.png)
+
 图 15 典型 KCL 自动化集成链路
 
 ## 三、KCL 与其他声明式配置的对比
@@ -321,24 +334,7 @@ subnet_delegations: [SubnetDelegation] = option("subnet_delegations")
 
 此外，KCL 还可以像高级语言一样写类型，写继承，写内置的约束，这些功能是 HCL 所不具备的
 
-- KCL 定义复杂的类型继承和约束
-
-```python
-schema Person:
-    firstName: str
-    lastName: str
-
-schema Employee(Person):
-    jobTitle: str
-
-employee = Employee {
-    firstName = "Alice"
-    lastName = "White"
-    jobTitle = "engineer"
-}
-```
-
-**Terraform HCL 函数 vs. KCL Lambda 函数编写 + Plugin 函数编写**
+**Terraform HCL 函数 vs. KCL Lambda 函数编写**
 
 - 正如 [https://www.terraform.io/language/functions](https://www.terraform.io/language/functions) 文档和 [https://github.com/hashicorp/terraform/issues/27696](https://github.com/hashicorp/terraform/issues/27696) 中展示的那样，Terraform HCL 提供了丰富的内置函数用于提供，但是并不支持用户在 Terraform 中使用 HCL 自定义函数 (或者需要编写复杂的 Go Provider 来模拟一个用户的本地自定义函数)；而 KCL 不仅支持用户使用 lambda 关键字直接在 KCL 代码中自定义函数，还支持使用 Python, Go 等语言为 KCL [编写插件函数](https://kcl-lang.io/docs/reference/plugin/overview)
 
@@ -349,32 +345,6 @@ add_func = lambda x: int, y: int -> int {
     x + y
 }
 two = add_func(1, 1)  # 2
-```
-
-- KCL 使用 Python 编写的插件函数
- - Python 代码 (hello/plugin.py)
-
-```python
-# Copyright 2020 The KCL Authors. All rights reserved.
-
-INFO = {
-    'name': 'hello',
-    'describe': 'hello doc',
-    'long_describe': 'long describe',
-    'version': '0.0.1',
-}
-
-def add(a: int, b: int) -> int:
-    """add two numbers, and return result"""
-    return a + b
-```
-
-  - KCL 调用插件代码
-
-```python
-import kcl_plugin.hello
-
-two = hello.add(1, 1)
 ```
 
 **HCL 删除 null 值与 KCL 使用 -n 编译参数删除 null 值**
@@ -614,7 +584,7 @@ app: App {
 }
 ```
 
-此外由于 CUE 的幂等合并特性，在场景上并无法使用类似 kustomize 的 overlay 配置覆盖添加能力，比如上述的 base.cue 和 prod.cue 一起编译会报错。
+此外由于 CUE 的幂等合并特性，在场景上并无法使用类似 kustomize 的 overlay 配置覆盖和 patch 等能力，比如上述的 base.cue 和 prod.cue 一起编译会报错。
 
 ### 3.5 Performance
 
@@ -735,7 +705,7 @@ deployment = v1.Deployment {
 
 ## 四、小结
 
-文本对声明式配置技术做了整体概述，其中重点阐述了 KCL 概念、核心设计、使用场景以及与其他配置语言的对比，期望帮助大家更好的理解声明式配置技术及 KCL 语言。更多 KusionStack 的概念、背景、设计与用户案例相关的内容，欢迎访问 [KCL 网站](https://kcl-lang.io/)
+文本对声明式配置技术做了整体概述，其中重点阐述了 KCL 概念、核心设计、使用场景以及与其他配置语言的对比，期望帮助大家更好的理解声明式配置技术及 KCL 语言。更多 KCL 的概念、背景、设计与用户案例等相关内容，欢迎访问 [KCL 网站](https://kcl-lang.io/)
 
 ## 五、参考
 
