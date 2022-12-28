@@ -144,6 +144,10 @@ CUE can be used as modeling through struct, no inheritance and other features, c
 
 For KCL, modeling is conducted through KCL schema, and high model abstraction can be achieved through language level engineering and some object-oriented features (such as single inheritance). KCL is a statically compiled language with low overhead for large-scale modeling scenarios. KCL provides a richer check declarative constraint syntax, which makes it easier to write. For some configuration field combination constraints, it is simpler to write (compared with CUE, KCL provides more if guard combination constraints, all/any/map/filter and other collection constraint writing methods, which makes it easier to write).
 
+### vs. Dhall
+
+Dhall is a programmable configuration language, it combines JSON, functions, types and imports. Its style is functional. If you have learned Haskell and other languages, you may be familiar with it. Compared with Dhall, KCL also provides a combination of similar functions, providing users with the ability to configure programmability and abstraction. However, KCL has made more improvements in modeling, constraint checking, automation, etc., and can share models through package management. In addition, the syntax and semantics of KCL are closer to the object-oriented language, and to some extent, it is more acceptable than the pure functional style.
+
 ### vs. Kustomize
 
 The core capability of Kustomize is its file level overlay capability. However, there is a problem of multiple overlay chains, because finding the statement of a specific attribute value does not guarantee that it is the final value, because another specific value that appears elsewhere can override it. For complex scenarios, retrieval of the inheritance chain of Kustomize files is often not as convenient as retrieval of the inheritance chain of KCL code, The specified configuration file overwrite order needs to be carefully considered. In addition, Kustomize cannot solve the problems of YAML configuration writing, constraint verification, model abstraction and development, and is more suitable for simple configuration scenarios.
