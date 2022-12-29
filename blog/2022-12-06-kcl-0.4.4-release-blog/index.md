@@ -104,7 +104,7 @@ For more information, see [https://github.com/KusionStack/KCLVM/issues/94](https
 
 In addition to the existing [KCL Go SDK](https://github.com/KusionStack/kclvm-go), this release also adds the KCL Python SDK. Using the Python SDK requires that you have a local Python version higher than 3.7.3 and a local pip package management tool. You can use the following command to install and obtain helpful information.
 
-```cmd
+```bash
 $ python3 -m pip install kclvm && python3 -m kclvm --help
 ```
 
@@ -128,7 +128,7 @@ x1 = Person {
 
 Execute the following command and get the output:
 
-```cmd
+```bash
 $ python3 -m kclvm hello.k
 name: kcl
 age: 1
@@ -155,7 +155,7 @@ print(planner.plan(kclvm_exec.Run(["hello.k"]).filter_by_path_selector()))
 
 Execute the following command and get the output:
 
-```cmd
+```bash
 $ python3 main.py
 name: kcl
 age: 1

@@ -20,7 +20,7 @@ ports:
 
 在上述代码中，我们通过 KCL 内置的 `yaml` 模块以及其中的 `yaml.decode` 直接完成 YAML 数据的集成，并且使用 `Server` schema 对集成的 YAML 数据直接进行校验，我们通过如下命令可以获得配置输出:
 
-```cmd
+```bash
 $ kcl main.k
 server:
   ports:
@@ -40,7 +40,7 @@ server = yaml.encode({
 
 执行命令输出为:
 
-```cmd
+```bash
 $ kcl main.k
 server: |
   ports:
@@ -61,7 +61,7 @@ server_json_decode = json.decode('{"ports": [80, 8080]}')
 
 执行命令输出为:
 
-```cmd
+```bash
 $ kcl main.k
 server_json_encode: '{"ports": [80, 8080]}'
 server_json_decode:

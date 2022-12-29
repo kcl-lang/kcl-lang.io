@@ -104,7 +104,7 @@ metadata:
 
 除了已有的 [KCL Go SDK](https://github.com/KusionStack/kclvm-go), 本次发布还新增了 KCL Python SDK，使用 Python SDK 要求您本地具备高于 3.7.3 的 Python 版本和 pip 包管理工具，可以通过如下命令进行安装并获得帮助信息
 
-```cmd
+```bash
 $ python3 -m pip install kclvm && python3 -m kclvm --help
 ```
 
@@ -128,7 +128,7 @@ x1 = Person {
 
 执行如下命令并获得输出:
 
-```cmd
+```bash
 $ python3 -m kclvm hello.k
 name: kcl
 age: 1
@@ -155,7 +155,7 @@ print(planner.plan(kclvm_exec.Run(["hello.k"]).filter_by_path_selector()))
 
 执行如下命令并获得输出:
 
-```cmd
+```bash
 $ python3 main.py
 name: kcl
 age: 1

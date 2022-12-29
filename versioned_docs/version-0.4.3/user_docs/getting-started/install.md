@@ -10,7 +10,7 @@ sidebar_position: 2
 
 Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/KusionStack/KCLVM/releases/) and add `{install-location}/kclvm/bin` to the environment PATH.
 
-```cmd
+```bash
 export PATH=$PATH:{install-location}/kclvm/bin
 ```
 
@@ -18,7 +18,7 @@ export PATH=$PATH:{install-location}/kclvm/bin
 
 Install `kcl` through the `python3` and `pip` (`python3` requires 3.7.3+).
 
-```cmd
+```bash
 python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 ```
 
@@ -26,13 +26,13 @@ python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 
 + Command
 
-```cmd
+```bash
 docker run --rm -p 8080:8080 -it kusionstack/kclvm
 ```
 
 + Update image
 
-```cmd
+```bash
 docker pull kusionstack/kclvm
 ```
 

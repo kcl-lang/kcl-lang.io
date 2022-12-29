@@ -57,7 +57,7 @@ app: App {
 
 We can get the YAML output of the `app` instance by using the following command line
 
-```cmd
+```bash
 $ kcl main.k
 app:
   domainType: Standard
@@ -129,7 +129,7 @@ app: app_module.App {
 
 We can still get the YAML output of the `app` instance by using the following command line
 
-```cmd
+```bash
 $ kcl main.k
 app:
   domainType: Standard

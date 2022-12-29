@@ -10,15 +10,41 @@ sidebar_position: 2
 
 KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/KusionStack/KCLVM/releases/) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
 
-```cmd
+```bash
 export PATH=$PATH:{install-location}/kclvm/bin
+```
+
+### 使用脚本安装最新版本
+
+#### MacOS
+
+将 KCL darwin 最新版本安装到 /usr/local/bin
+
+```bash
+curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
+```
+
+#### Linux
+
+将 KCL linux 最新版本安装到 /usr/local/bin
+
+```bash
+wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
+```
+
+#### Windows
+
+将 KCL windows 最新版本安装到 $Env:SystemDrive\KCL，并将该目录添加到用户 PATH 环境变量中。
+
+```bash
+powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 ```
 
 ### 使用 Python3 安装
 
 通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)
 
-```cmd
+```bash
 python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 ```
 
@@ -26,7 +52,7 @@ python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 
 通过 `Go` 命令安装
 
-```cmd
+```bash
 go install kusionstack.io/kclvm-go/cmds/kcl-go@main && alias kcl='kcl-go kcl'
 ```
 
@@ -34,13 +60,13 @@ go install kusionstack.io/kclvm-go/cmds/kcl-go@main && alias kcl='kcl-go kcl'
 
 + 基本命令
 
-```cmd
+```bash
 docker run --rm -p 8080:8080 -it kusionstack/kclvm
 ```
 
 + 更新镜像
 
-```cmd
+```bash
 docker pull kusionstack/kclvm
 ```
 

@@ -10,7 +10,7 @@ sidebar_position: 2
 
 KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/KusionStack/KCLVM/releases/) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
 
-```cmd
+```bash
 export PATH=$PATH:{install-location}/kclvm/bin
 ```
 
@@ -18,7 +18,7 @@ export PATH=$PATH:{install-location}/kclvm/bin
 
 通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)
 
-```cmd
+```bash
 python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 ```
 
@@ -26,13 +26,13 @@ python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 
 + 基本命令
 
-```cmd
+```bash
 docker run --rm -p 8080:8080 -it kusionstack/kclvm
 ```
 
 + 更新镜像
 
-```cmd
+```bash
 docker pull kusionstack/kclvm
 ```
 

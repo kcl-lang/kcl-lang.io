@@ -122,7 +122,7 @@ In the above KCL code, we declare the `apiVersion`, `kind`, `metadata`, `spec` a
 
 We can get a Kubernetes YAML file by executing the following command line
 
-```cmd
+```bash
 kcl main.k
 ```
 
@@ -154,7 +154,7 @@ spec:
 
 Of course, we can use KCL together with kubectl and other tools. Let's execute the following commands and see the result:
 
-```cmd
+```bash
 $ kcl main.k | kubectl apply -f -
 
 deployment.apps/nginx-deployment configured
@@ -164,7 +164,7 @@ It can be seen from the command line that it is completely consistent with the d
 
 Check the deployment status through kubectl
 
-```cmd
+```bash
 $ kubectl get deploy
 
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
@@ -198,7 +198,7 @@ spec = {
 
 Use the KCL command line `-D` flag to receive an external dynamic parameter:
 
-```cmd
+```bash
 kcl main.k -D env=prod
 ```
 
@@ -240,7 +240,7 @@ kcl_options:
 
 The same YAML output can be obtained by using the following command line to simplify the input process of KCL dynamic parameters.
 
-```cmd
+```bash
 kcl main.k -Y kcl.yaml
 ```
 

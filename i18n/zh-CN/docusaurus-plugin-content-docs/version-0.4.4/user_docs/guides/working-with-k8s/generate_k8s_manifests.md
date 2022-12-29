@@ -122,7 +122,7 @@ spec = {
 
 我们可以执行如下命令行得到一个 Kubernetes YAML 文件
 
-```cmd
+```bash
 kcl main.k
 ```
 
@@ -154,7 +154,7 @@ spec:
 
 当然我们可以将 KCL 工具与 kubectl 等工具结合使用，让我们执行如下命令并看看效果
 
-```cmd
+```bash
 $ kcl main.k | kubectl apply -f -
 
 deployment.apps/nginx-deployment configured
@@ -164,7 +164,7 @@ deployment.apps/nginx-deployment configured
 
 通过 kubectl 检查部署状态
 
-```cmd
+```bash
 $ kubectl get deploy
 
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
@@ -198,7 +198,7 @@ spec = {
 
 使用 KCL 命令行 `-D` 标记接收一个外部设置的动态参数：
 
-```cmd
+```bash
 kcl main.k -D env=prod
 ```
 
@@ -240,7 +240,7 @@ kcl_options:
 
 使用如下命令行也可以得到同样的 YAML 输出，以简化 KCL 动态参数的输入过程
 
-```cmd
+```bash
 kcl main.k -Y kcl.yaml
 ```
 
