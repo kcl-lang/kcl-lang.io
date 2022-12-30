@@ -54,6 +54,12 @@ In addition to the general configuration, the features of the cloud-native confi
 + Kubernetes configuration lacks user-side validation methods and cannot check the validity of the data.
 + Kubernetes exposes more than 500 models, more than 2,000 fields, and allows users to customize the model without considering the configuration reuse of multiple sites, multiple environments, and multiple deployment topologies. Fragmentation configuration brings many difficulties to the collaborative writing and automatic management of large-scale configuration.
 
+KCL expects to solve the following problems in Kubernetes YAML resource management:
+
++ Use **production level high-performance programming language** to **write code** to improve the flexibility of configuration, such as conditional statements, loops, functions, package management and other features to improve the ability of configuration reuse.
++ Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
++ Provide the **ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
+
 The cloud-native communities have made considerable attempts to advance their configuration technologies, which can be divided into three categories:
 
 + Low-level data format based tools for templating, patching, and validation, which use external tools to enhance the reuse and validation.
