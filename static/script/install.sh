@@ -31,7 +31,7 @@ GITHUB_REPO=KCLVM
 # KCL filename
 KCL_CLI_FILENAME=kcl
 
-KCL_CLI_FILE="${KCL_INSTALL_DIR}/${KCL_CLI_FILENAME}"
+KCL_CLI_FILE="${KCL_INSTALL_DIR}/bin/${KCL_CLI_FILENAME}"
 
 getSystemInfo() {
     ARCH=$(uname -m)
@@ -156,7 +156,7 @@ isReleaseAvailable() {
 
 installFile() {
     tar xf "$ARTIFACT_TMP_FILE" -C "$KCL_TMP_ROOT"
-    local tmp_root_kcl="$KCL_TMP_ROOT/$KCL_CLI_FILENAME"
+    local tmp_root_kcl="$KCL_TMP_ROOT/bin/$KCL_CLI_FILENAME"
 
     if [ ! -f "$tmp_root_kcl" ]; then
         echo "Failed to unpack KCL executable."
