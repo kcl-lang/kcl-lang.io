@@ -16,7 +16,7 @@
 # ------------------------------------------------------------
 
 # KCL location
-: ${KCL_INSTALL_DIR:="/usr/local/bin"}
+: ${KCL_INSTALL_DIR:="/usr/local/"}
 
 # sudo is required to copy binary to KCL_INSTALL_DIR for linux
 : ${USE_SUDO:="false"}
@@ -31,7 +31,7 @@ GITHUB_REPO=KCLVM
 # KCL filename
 KCL_CLI_FILENAME=kcl
 
-KCL_CLI_FILE="${KCL_INSTALL_DIR}/bin/${KCL_CLI_FILENAME}"
+KCL_CLI_FILE="${KCL_INSTALL_DIR}/kclvm/bin/${KCL_CLI_FILENAME}"
 
 getSystemInfo() {
     ARCH=$(uname -m)
@@ -43,8 +43,8 @@ getSystemInfo() {
 
     OS=$(echo `uname`|tr '[:upper:]' '[:lower:]')
 
-    # Most linux distro needs root permission to copy the file to /usr/local/bin
-    if [[ "$OS" == "linux" || "$OS" == "darwin" ]] && [ "$KCL_INSTALL_DIR" == "/usr/local/bin" ]; then
+    # Most linux distro needs root permission to copy the file to /usr/local/
+    if [[ "$OS" == "linux" || "$OS" == "darwin" ]] && [ "$KCL_INSTALL_DIR" == "/usr/local/" ]; then
         USE_SUDO="true"
     fi
 }
@@ -87,6 +87,7 @@ checkHttpRequestCLI() {
 
 checkExistingKCL() {
     if [ -f "$KCL_CLI_FILE" ]; then
+        # Check the KCL CLI version
         echo -e "\nKCL is detected:"
         $KCL_CLI_FILE -V
         echo -e "Reinstalling KCL - ${KCL_CLI_FILE}...\n"
@@ -156,7 +157,7 @@ isReleaseAvailable() {
 
 installFile() {
     tar xf "$ARTIFACT_TMP_FILE" -C "$KCL_TMP_ROOT"
-    local tmp_root_kcl="$KCL_TMP_ROOT/bin/$KCL_CLI_FILENAME"
+    local tmp_root_kcl="$KCL_TMP_ROOT/kclvm/"
 
     if [ ! -f "$tmp_root_kcl" ]; then
         echo "Failed to unpack KCL executable."
@@ -170,9 +171,9 @@ installFile() {
     runAsRoot cp "$tmp_root_kcl" "$KCL_INSTALL_DIR"
 
     if [ -f "$KCL_CLI_FILE" ]; then
-        echo "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR successfully."
-
-        $KCL_CLI_FILE --version
+        echo "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/kclvm/bin successfully."
+        # Check the KCL CLI version
+        $KCL_CLI_FILE -V
     else 
         echo "Failed to install $KCL_CLI_FILENAME"
         exit 1
@@ -196,6 +197,7 @@ cleanup() {
 }
 
 installCompleted() {
+    echo -e "\nPlease add ${KCL_INSTALL_DIR}/kclvm/bin into your PATH"
     echo -e "\nTo get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
 }
 
