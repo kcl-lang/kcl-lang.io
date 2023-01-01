@@ -16,7 +16,7 @@
 # ------------------------------------------------------------
 
 # KCL location
-: ${KCL_INSTALL_DIR:="/usr/local/"}
+: ${KCL_INSTALL_DIR:="/usr/local"}
 
 # sudo is required to copy binary to KCL_INSTALL_DIR for linux
 : ${USE_SUDO:="false"}
@@ -30,8 +30,8 @@ GITHUB_REPO=KCLVM
 
 # KCL filename
 KCL_CLI_FILENAME=kcl
-
-KCL_CLI_FILE="${KCL_INSTALL_DIR}/kclvm/bin/${KCL_CLI_FILENAME}"
+# KCL file path
+KCL_CLI_FILE=${KCL_INSTALL_DIR}/kclvm/bin/${KCL_CLI_FILENAME}
 
 getSystemInfo() {
     ARCH=$(uname -m)
@@ -44,7 +44,7 @@ getSystemInfo() {
     OS=$(echo `uname`|tr '[:upper:]' '[:lower:]')
 
     # Most linux distro needs root permission to copy the file to /usr/local/
-    if [[ "$OS" == "linux" || "$OS" == "darwin" ]] && [ "$KCL_INSTALL_DIR" == "/usr/local/" ]; then
+    if [[ "$OS" == "linux" || "$OS" == "darwin" ]] && [ "$KCL_INSTALL_DIR" == "/usr/local" ]; then
         USE_SUDO="true"
     fi
 }
@@ -72,6 +72,7 @@ runAsRoot() {
         CMD="sudo $CMD"
     fi
 
+    $CMD
 }
 
 checkHttpRequestCLI() {
@@ -90,9 +91,7 @@ checkExistingKCL() {
         # Check the KCL CLI version
         echo -e "\nKCL is detected:"
         $KCL_CLI_FILE -V
-        echo -e "Reinstalling KCL - ${KCL_CLI_FILE}...\n"
-    else
-        echo -e "Installing KCL...\n"
+        echo -e "Reinstalling KCL into ${KCL_CLI_FILE} ...\n"
     fi
 }
 
@@ -128,8 +127,10 @@ downloadFile() {
     fi
 
     if [ ! -f "$ARTIFACT_TMP_FILE" ]; then
-        echo "failed to download $DOWNLOAD_URL ..."
+        echo "Failed to download $DOWNLOAD_URL ..."
         exit 1
+    else
+        echo "Scucessful to download $DOWNLOAD_URL"
     fi
 }
 
@@ -156,26 +157,24 @@ isReleaseAvailable() {
 }
 
 installFile() {
-    tar xf "$ARTIFACT_TMP_FILE" -C "$KCL_TMP_ROOT"
-    local tmp_root_kcl="$KCL_TMP_ROOT/kclvm/"
+    tar xf $ARTIFACT_TMP_FILE -C $KCL_TMP_ROOT
+    local tmp_kclvm_folder=$KCL_TMP_ROOT/kclvm
 
-    if [ ! -f "$tmp_root_kcl" ]; then
+    if [ ! -f "$tmp_kclvm_folder/bin/kcl" ]; then
         echo "Failed to unpack KCL executable."
         exit 1
     fi
 
-    if [ -f "$KCL_CLI_FILE" ]; then
-        runAsRoot rm "$KCL_CLI_FILE"
-    fi
-    chmod o+x $tmp_root_kcl
-    runAsRoot cp "$tmp_root_kcl" "$KCL_INSTALL_DIR"
+    # Copy temp kclvm folder into the target installation directory.
+    echo "Copy the kclvm folder $tmp_kclvm_folder into the target installation directory $KCL_INSTALL_DIR"
+    runAsRoot cp -rf $tmp_kclvm_folder $KCL_INSTALL_DIR
 
     if [ -f "$KCL_CLI_FILE" ]; then
         echo "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/kclvm/bin successfully."
         # Check the KCL CLI version
         $KCL_CLI_FILE -V
     else 
-        echo "Failed to install $KCL_CLI_FILENAME"
+        echo "Failed to install KCL into $KCL_CLI_FILE"
         exit 1
     fi
 }
@@ -210,7 +209,7 @@ getSystemInfo
 checkHttpRequestCLI
 
 if [ -z "$1" ]; then
-    echo "Getting the latest KCL..."
+    echo "Getting the latest KCL ..."
     getLatestRelease
 else
     ret_val=v$1
@@ -219,7 +218,7 @@ fi
 verifySupported $ret_val
 checkExistingKCL
 
-echo "Installing $ret_val KCL..."
+echo "Find the latest KCL version $ret_val"
 
 downloadFile $ret_val
 installFile
