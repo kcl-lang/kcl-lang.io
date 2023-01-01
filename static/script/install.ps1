@@ -27,7 +27,8 @@ $KCLRoot = $KCLRoot -replace ' ', '` '
 
 # Constants
 $KCLCliFileName = "kcl.exe"
-$KCLCliFilePath = "${KCLRoot}\${KCLCliFileName}"
+$KCLCliFileBinPath = "${KCLRoot}\bin"
+$KCLCliFilePath = "${KCLCliFileBinPath}\${KCLCliFileName}"
 
 # GitHub Org and repo hosting KCL CLI
 $GitHubOrg = "KusionStack"
@@ -160,8 +161,10 @@ if ($UserPathEnvironmentVar -like '*kcl*') {
 }
 else {
     [System.Environment]::SetEnvironmentVariable("PATH", $UserPathEnvironmentVar + ";$KCLRoot", "User")
+    [System.Environment]::SetEnvironmentVariable("PATH", $UserPathEnvironmentVar + ";$KCLCliFileBinPath", "User")
     $UserPathEnvironmentVar = [Environment]::GetEnvironmentVariable("PATH", "User")
     Write-Output "Added $KCLRoot to User Path - $UserPathEnvironmentVar"
+    Write-Output "Added $KCLCliFileBinPath to User Path - $UserPathEnvironmentVar"
 }
 
 Write-Output "`r`nKCL is installed successfully."
