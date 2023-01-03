@@ -1,5 +1,4 @@
 name: script
-
 on:
   pull_request:
     branches: 
@@ -7,7 +6,6 @@ on:
   push:
     branches: 
      - main
-
 jobs:
   check-macos:
     runs-on: macos-latest
