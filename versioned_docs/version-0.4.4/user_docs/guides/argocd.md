@@ -14,9 +14,9 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ## Config ArgoCD Plugin with KCL
 
-ArgoCD has already had some common built-in plugins, including helm, jsonnet, and kustomize. For KCL, as a brand-new configuration language, if you want to integrate ArgoCD to complete drift detection, you need to follow its plugin mechanism and configure KCL as a third-party plugin. The specific operations are as follows:
+ArgoCD has already some common built-in plugins, including helm, jsonnet, and kustomize. For KCL, as a brand-new configuration language, if you want to integrate ArgoCD to complete drift detection, you need to follow its plugin mechanism and configure KCL as a third-party plugin. The specific operations are as follows:
 
-1. Write the patch YAML configuration file and update configuration:
+1. Write the patch YAML configuration file and update the ArgoCD configuration:
 
 ```bash
 cat <<EOF > patch-argocd-cm.yaml
