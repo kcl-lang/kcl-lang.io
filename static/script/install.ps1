@@ -165,7 +165,7 @@ else {
 }
 
 # Check the KCL CLI version
-# Invoke-Expression "$KCLCliFilePath -V"
+Invoke-Expression "$KCLCliFilePath -V"
 
 Write-Output "`r`nKCL is installed successfully."
 Write-Output "To get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start ."
