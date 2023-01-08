@@ -95,7 +95,7 @@ First, you can visit the [KCL Quick Start](/docs/user_docs/getting-started/kcl-q
 
 ### Generate Kubernetes manifests
 
-We can write the following KCL code and name it `main k`. KCL is inspired by Python. Its basic syntax is very close to Python, which is easy to learn. The configuration mode is simple, `k [: T] = v`, where `k` denotes the configured attribute name, `v` denotes the configured attribute value and `: T` denotes an optional type annotation.
+We can write the following KCL code and name it `main.k`. KCL is inspired by Python. Its basic syntax is very close to Python, which is easy to learn. The configuration mode is simple, `k [: T] = v`, where `k` denotes the configured attribute name, `v` denotes the configured attribute value and `: T` denotes an optional type annotation.
 
 ```python
 apiVersion = "apps/v1"
