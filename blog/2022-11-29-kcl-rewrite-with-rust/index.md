@@ -11,7 +11,7 @@ tags: [KCL, Rust, Performance, Programming Language, Compiler]
 
 Rust has quietly become one of the most popular programming languages. As an emerging system language, Rust has many characteristics, such as the memory security mechanism, performance advantages close to C/C++, excellent developer community, experience of documents, tool chains and IDEs. This blog will introduce the process of using Rust to rewrite the project and gradually implementing the production environment, as well as the reasons for choosing Rust in the rewrite process, the problems encountered, and the results of using Rust to rewrite.
 
-The project we are using Rust to develop is called [KCL](https://github.com/KusionStack/KCLVM). (KCL) is an open source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality. For more specific KCL usage scenarios, please visit the [KCL website](https://kcl-lang.github.io/). This blog will not repeat them too much.
+The project we are using Rust to develop is called [KCL](https://github.com/KusionStack/KCLVM). (KCL) is an open-source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality. For more specific KCL usage scenarios, please visit the [KCL website](https://kcl-lang.github.io/). This blog will not repeat them too much.
 
 KCL was written in Python before. Considering the user experience, performance and stability, we have decided to rewrite it in Rust, and the following benefits were obtained:
 
@@ -137,7 +137,7 @@ Although not all modules get 40 times the performance (because the performance b
 
 I personally think that the most important thing after using Rust to rewrite the project is whether I have learned a new programming language or whether Rust is very popular and we have written many fancy codes using Rust. It really makes the KCL language and compiler more stable, and the startup speed and automation efficiency are no longer troubled. The performance of KCL is better than that of other programming languages in the same type of fields in the community, so that users of our language and tools can experience the improvement. These are all due to Rust's no-GC, high-performance, better error handling, memory management, zero abstraction and other features. In short, as users, they are the biggest beneficiaries.
 
-Finally, if you like the KCL project, or want to use KCL for your own scenarios, or want to use Rust to participate in an open source project, welcome to visit [https://github.com/KusionStack/community](https://github.com/KusionStack/community) to join our community to participate in discussion and co construction 👏👏👏。
+Finally, if you like the KCL project, or want to use KCL for your own scenarios, or want to use Rust to participate in an open-source project, welcome to visit [https://github.com/KusionStack/community](https://github.com/KusionStack/community) to join our community to participate in discussion and co construction 👏👏👏。
 
 ## Reference
 
