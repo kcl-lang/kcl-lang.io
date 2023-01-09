@@ -28,7 +28,7 @@ There is a JSON format file `data.json`:
 }
 ```
 
-Build a validate KCL file `schema.k`:
+Build a validated KCL file `schema.k`:
 
 ```py
 schema User:
