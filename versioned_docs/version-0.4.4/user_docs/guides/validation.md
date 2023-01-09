@@ -104,4 +104,4 @@ Based on this, KCL provides the corresponding [Validation Tool](/docs/tools/cli/
 
 The improvement of KCL validation capabilities will gradually focus on the "static" aspect, that is, at compile time, combined with the ability of formal validation, it can directly analyze whether the data meets the constraints, whether the constraints conflict with each other, etc., and can be exposed in real-time through the IDE.
 
-We also expect that KCL models and constraints can be managed as a package (this package has only KCL files). For example, the kubernetes models and constraints can be used out of the box. Users can generate configurations or verify existing configurations, and can simply extend the models and constraints users want through KCL inheritance.
+We also expect that KCL models and constraints can be managed as a package (this package has only KCL files). For example, the Kubernetes models and constraints can be used out of the box. Users can generate configurations or verify existing configurations, and can simply extend the models and constraints users want through KCL inheritance.
