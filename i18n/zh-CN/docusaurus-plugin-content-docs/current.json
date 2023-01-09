@@ -47,6 +47,9 @@
     "sidebar.reference.category.Multi-Language": {
       "message": "多语言集成"
     },
+    "sidebar.reference.category.Advanced-Concepts": {
+      "message": "进阶概念"
+    },
     "sidebar.tools.category.Command Line Tools": {
       "message": "命令行工具"
     },
