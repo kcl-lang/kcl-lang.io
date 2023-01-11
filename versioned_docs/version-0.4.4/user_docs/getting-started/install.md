@@ -45,7 +45,13 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 Install `kcl` through the `python3` and `pip` (`python3` requires 3.7.3+).
 
 ```bash
-python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
+python3 -m pip install kclvm
+```
+
+Add an alias for the kcl command (optional).
+
+```bash
+alias kcl='python3 -m kclvm'
 ```
 
 ### From Go
@@ -53,7 +59,13 @@ python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 Install `kcl` through the `Go` command.
 
 ```bash
-go install kusionstack.io/kclvm-go/cmds/kcl-go@main && alias kcl='kcl-go kcl'
+go install kusionstack.io/kclvm-go/cmds/kcl-go@main
+```
+
+Add an alias for the kcl command (optional).
+
+```bash
+alias kcl='kcl-go kcl'
 ```
 
 ### From Docker

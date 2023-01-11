@@ -45,7 +45,13 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)
 
 ```bash
-python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
+python3 -m pip install kclvm
+```
+
+添加一个 kcl 命令的别名 (可选)
+
+```bash
+alias kcl='python3 -m kclvm'
 ```
 
 ### 使用 Go 安装
@@ -53,7 +59,13 @@ python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
 通过 `Go` 命令安装
 
 ```bash
-go install kusionstack.io/kclvm-go/cmds/kcl-go@main && alias kcl='kcl-go kcl'
+go install kusionstack.io/kclvm-go/cmds/kcl-go@main
+```
+
+添加一个 kcl 命令的别名 (可选)
+
+```bash
+alias kcl='kcl-go kcl'
 ```
 
 ### 使用 Docker 镜像安装

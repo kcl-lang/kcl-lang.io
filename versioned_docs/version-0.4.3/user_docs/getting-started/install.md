@@ -19,7 +19,13 @@ export PATH=$PATH:{install-location}/kclvm/bin
 Install `kcl` through the `python3` and `pip` (`python3` requires 3.7.3+).
 
 ```bash
-python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
+python3 -m pip install kclvm
+```
+
+Add an alias for the kcl command (optional).
+
+```bash
+alias kcl='python3 -m kclvm'
 ```
 
 ### From Docker
