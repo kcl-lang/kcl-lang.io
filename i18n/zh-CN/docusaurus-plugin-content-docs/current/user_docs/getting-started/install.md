@@ -18,7 +18,7 @@ export PATH=$PATH:{install-location}/kclvm/bin
 
 #### MacOS
 
-将 KCL darwin 最新版本安装到 /usr/local/bin
+将 KCL darwin 最新版本安装到 /usr/local/kclvm
 
 ```bash
 curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
@@ -26,7 +26,7 @@ curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
 
 #### Linux
 
-将 KCL linux 最新版本安装到 /usr/local/bin
+将 KCL linux 最新版本安装到 /usr/local/kclvm
 
 ```bash
 wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash

@@ -18,7 +18,7 @@ export PATH=$PATH:{install-location}/kclvm/bin
 
 #### MacOS
 
-Install the latest darwin KCL to /usr/local/bin
+Install the latest darwin KCL to /usr/local/kclvm
 
 ```bash
 curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
@@ -26,7 +26,7 @@ curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
 
 #### Linux
 
-Install the latest linux KCL to /usr/local/bin
+Install the latest linux KCL to /usr/local/kclvm
 
 ```bash
 wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
@@ -34,7 +34,7 @@ wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
 
 #### Windows
 
-Install the latest windows KCL to $Env:SystemDrive\kcl and add this directory to User PATH environment variable.
+Install the latest windows KCL to $Env:SystemDrive\kclvm and add this directory to User PATH environment variable.
 
 ```bash
 powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
