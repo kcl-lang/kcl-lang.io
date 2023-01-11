@@ -14,7 +14,7 @@
 # ------------------------------------------------------------
 param (
     [string]$Version,
-    [string]$KCLRoot = "$Env:SystemDrive\kcl",
+    [string]$KCLRoot = "$Env:SystemDrive\kclvm",
     [string]$KCLReleaseJsonUrl = "",
     [scriptblock]$CustomAssetFactory = $null
 )
