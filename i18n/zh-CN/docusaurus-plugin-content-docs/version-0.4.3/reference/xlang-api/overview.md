@@ -116,7 +116,7 @@ person: &{Name:kcl Age:101}
 
 KCL 提供的 C-API 并没有 REST-API，REST-API 是通过 Protobuf 定义，最终由上层的 Go-SDK 提供实现。
 
-### 3.1. 启动 REST 服务
+### 启动 REST 服务
 
 通过以下方式可以启动 RestAPI 服务：
 
@@ -135,7 +135,7 @@ $ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}
 
 其中 POST 请求和返回的 JSON 数据和 Protobuf 定义的结构保持一致。
 
-### 3.2. `BuiltinService` 服务
+### `BuiltinService` 服务
 
 其中 `/api:protorpc/BuiltinService.Ping` 路径表示 `BuiltinService` 服务的 `Ping` 方法。
 

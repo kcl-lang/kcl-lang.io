@@ -187,7 +187,7 @@ At present, the KCL Python SDK is still in the early preview version. The KCL te
 
 The C-API provided by KCL does not have a REST-API. The REST-API is defined by Protobuf and is finally implemented by the upper-layer Go-SDK.
 
-### 3.1. Start REST Service
+### Start REST Service
 
 The RestAPI service can be started in the following ways:
 
@@ -207,7 +207,7 @@ $ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}
 
 The POST request and the returned JSON data are consistent with the structure defined by Protobuf.
 
-### 3.2. `BuiltinService`
+### `BuiltinService`
 
 Where the `/api:protorpc/BuiltinService.Ping` path represents the `Ping` method of the `BuiltinService` service.
 

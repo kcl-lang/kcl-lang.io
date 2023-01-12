@@ -207,7 +207,7 @@ $ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}
 
 The POST request and the returned JSON data are consistent with the structure defined by Protobuf.
 
-### 3.2. `BuiltinService`
+### `BuiltinService`
 
 Where the `/api:protorpc/BuiltinService.Ping` path represents the `Ping` method of the `BuiltinService` service.
 

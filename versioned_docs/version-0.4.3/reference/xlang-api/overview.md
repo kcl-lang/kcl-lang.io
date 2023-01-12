@@ -6,15 +6,15 @@ sidebar_position: 1
 
 The KCL language provides general programming language interfaces such as C/Rust/Go/Python/Java, and the related languages are under development.
 
-## 1. C/Rust API
+## C/Rust API
 
 The core of KCL is developed in Rust, and the C language API is exported externally for packaging and integration in high-level languages such as Go/Python/Java.
 
-## 2. Go API
+## Go API
 
 Go API is a C-API provided by CGO wrapping KCL, while providing deeper customization features to meet the needs of upper-level tools such as Kusion Engine.
 
-### 2.1. Abstract Model
+### Abstract Model
 
 The abstract model of the KCL Go API is as follows:
 
@@ -46,7 +46,7 @@ The abstract model of the KCL Go API is as follows:
 
 The input file contains the KCL file and the `setting.yml` configuration file, and `Options` can be used to specify additional parameters and information such as working directory. The "KCLVM-Go-API" part is the provided KCLVM execution function. The execution function executes the KCL program according to the input file and additional parameters, and finally outputs the result of `KCLResultList`. `KCLResultList` is a list of `KCLResult`, each `KCLResult` corresponding to a generated configuration file or `map[string]interface{}`.
 
-### 2.2. Example
+### Example
 
 ```go
 package main
@@ -112,11 +112,11 @@ x1.age: 101
 person: &{Name:kcl Age:101}
 ```
 
-## 3. REST-API
+## REST-API
 
 The C-API provided by KCL does not have a REST-API. The REST-API is defined by Protobuf and is finally implemented by the upper-layer Go-SDK.
 
-### 3.1. Start REST Service
+### Start REST Service
 
 The RestAPI service can be started in the following ways:
 
@@ -136,7 +136,7 @@ $ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}
 
 The POST request and the returned JSON data are consistent with the structure defined by Protobuf.
 
-### 3.2. `BuiltinService`
+### `BuiltinService`
 
 Where the `/api:protorpc/BuiltinService.Ping` path represents the `Ping` method of the `BuiltinService` service.
 
