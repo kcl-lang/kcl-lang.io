@@ -6,15 +6,15 @@ sidebar_position: 1
 
 The KCL language provides general programming language interfaces such as C/Rust/Go/Python/Java, and the related languages are under development.
 
-## 1. C/Rust API
+## C/Rust API
 
 The core of KCL is developed in Rust, and the C language API is exported externally for packaging and integration in high-level languages such as Go/Python/Java.
 
-## 2. Go API
+## Go API
 
 Go API is a C-API provided by CGO wrapping KCL, while providing deeper customization features to meet the needs of upper-level tools such as Kusion Engine.
 
-### 2.1. Abstract Model
+### Abstract Model
 
 The abstract model of the KCL Go API is as follows:
 
@@ -46,7 +46,7 @@ The abstract model of the KCL Go API is as follows:
 
 The input file contains the KCL file and the `setting.yml` configuration file, and `Options` can be used to specify additional parameters and information such as working directory. The "KCLVM-Go-API" part is the provided KCLVM execution function. The execution function executes the KCL program according to the input file and additional parameters, and finally outputs the result of `KCLResultList`. `KCLResultList` is a list of `KCLResult`, each `KCLResult` corresponding to a generated configuration file or `map[string]interface{}`.
 
-### 2.2. Example
+### Example
 
 ```go
 package main
@@ -112,7 +112,78 @@ x1.age: 101
 person: &{Name:kcl Age:101}
 ```
 
-## 3. REST-API
+## Python API
+
+Using the Python SDK requires that you have a local Python version higher than 3.7.3 and a local pip package management tool. You can use the following command to install and obtain helpful information.
+
+```bash
+$ python3 -m pip install kclvm && python3 -m kclvm --help
+```
+
+### Command Line Tool
+
+Prepare a KCL file named `main.k`
+
+```python
+name = "kcl"
+age = 1
+
+schema Person:
+    name: str = "kcl"
+    age: int = 1
+
+x0 = Person {}
+x1 = Person {
+    age = 101
+}
+```
+
+Execute the following command and get the output:
+
+```bash
+$ python3 -m kclvm hello.k
+name: kcl
+age: 1
+x0:
+  name: kcl
+  age: 1
+x1:
+  name: kcl
+  age: 101
+```
+
+### API
+
+In addition, we can also execute KCL files through Python code.
+
+Prepare a KCL file named `main.py`
+
+```python
+import kclvm.program.exec as kclvm_exec
+import kclvm.vm.planner as planner
+
+print(planner.plan(kclvm_exec.Run(["hello.k"]).filter_by_path_selector()))
+```
+
+Execute the following command and get the output:
+
+```bash
+$ python3 main.py
+name: kcl
+age: 1
+x0:
+  name: kcl
+  age: 1
+x1:
+  name: kcl
+  age: 101
+```
+
+You can see that the same output can be obtained through command line tools and APIs.
+
+At present, the KCL Python SDK is still in the early preview version. The KCL team will continue to update and provide more functions in the future. For more information, see [https://github.com/KusionStack/kclvm-py](https://github.com/KusionStack/kclvm-py)
+
+## REST-API
 
 The C-API provided by KCL does not have a REST-API. The REST-API is defined by Protobuf and is finally implemented by the upper-layer Go-SDK.
 
@@ -221,6 +292,6 @@ $ curl -X POST \
 }
 ```
 
-## 4. APIs in other languages
+## APIs in other languages
 
 Coming soon

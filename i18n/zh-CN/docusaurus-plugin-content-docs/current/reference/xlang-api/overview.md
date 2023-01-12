@@ -6,15 +6,15 @@ sidebar_position: 1
 
 KCL 语言提供 C/Rust/Go/Python/Java 等通用编程语言接口，相关语言正在开发完整中。
 
-## 1. C/Rust 语言
+## C/Rust 语言
 
 KCL 核心采用 Rust 语言开发，对外导出 C 语言 API 供 Go/Python/Java 等高级语言包装和集成。
 
-## 2. Go 语言
+## Go 语言
 
 Go 语言是通过 CGO 包装 KCL 提供的 C-API，同时提供更深度的定制特性以满足 KusionCtl 等上层工具的需求。
 
-### 2.1. API 抽象模型
+### API 抽象模型
 
 Go 语言 API 的抽象模型如下图：
 
@@ -46,7 +46,7 @@ Go 语言 API 的抽象模型如下图：
 
 其中输入的文件包含 KCL 文件和 `setting.yml` 配置文件，`Options` 可以用于指定额外的参数和工作目录等信息。“KCLVM-Go-API”部分是提供的 KCLVM 执行函数，执行函数根据输入文件和额外的参数执行 KCL 程序，最终输出 `KCLResultList` 结果。`KCLResultList` 是一个 `KCLResult` 构成的列表，每个 `KCLResult` 对应一个生成的配置文件或 `map[string]interface{}`。
 
-### 2.2. 例子
+### 例子
 
 ```go
 package main
@@ -112,11 +112,11 @@ x1.age: 101
 person: &{Name:kcl Age:101}
 ```
 
-## 3. REST-API
+## REST-API
 
 KCL 提供的 C-API 并没有 REST-API，REST-API 是通过 Protobuf 定义，最终由上层的 Go-SDK 提供实现。
 
-### 3.1. 启动 REST 服务
+### 启动 REST 服务
 
 通过以下方式可以启动 RestAPI 服务：
 
@@ -135,7 +135,7 @@ $ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}
 
 其中 POST 请求和返回的 JSON 数据和 Protobuf 定义的结构保持一致。
 
-### 3.2. `BuiltinService` 服务
+### `BuiltinService` 服务
 
 其中 `/api:protorpc/BuiltinService.Ping` 路径表示 `BuiltinService` 服务的 `Ping` 方法。
 
@@ -164,7 +164,7 @@ message ListMethod_Result {
 
 其中 `Ping` 方法可以验证服务是否正常，`ListMethod` 方法可以查询提供的全部服务和函数列表。
 
-### 3.3. `KclvmService` 服务
+### `KclvmService` 服务
 
 `KclvmService` 服务是和 KCLVM 功能相关的服务。用法和 `BuiltinService` 服务一样。
 
@@ -222,14 +222,77 @@ $ curl -X POST \
 
 说明校验成功。
 
-## 4. Python 语言
+## Python 语言
 
-Python 通过 SWIG 包装 Rust 提供的 C-API。同时提供访问 RestAPI 的客户端。具体细节待完善。
+使用 Python SDK 要求您本地具备高于 3.7.3 的 Python 版本和 pip 包管理工具，可以通过如下命令进行安装并获得帮助信息
 
-## 5. Java 语言
+```bash
+$ python3 -m pip install kclvm && python3 -m kclvm --help
+```
 
-Java 通过 Jni 包装 Rust 提供的 C-API。同时提供访问 RestAPI 的客户端。具体细节待完善。
+### 命令行工具
 
-## 6. 其它语言
+编写名为 `main.k` 的 KCL 文件:
+
+```python
+name = "kcl"
+age = 1
+
+schema Person:
+    name: str = "kcl"
+    age: int = 1
+
+x0 = Person {}
+x1 = Person {
+    age = 101
+}
+```
+
+执行如下命令并获得输出:
+
+```bash
+$ python3 -m kclvm hello.k
+name: kcl
+age: 1
+x0:
+  name: kcl
+  age: 1
+x1:
+  name: kcl
+  age: 101
+```
+
+### API
+
+此外，我们还可以通过 Python 代码实现对 KCL 文件的执行
+
+编写名为 `main.py` 的 python 文件:
+
+```python
+import kclvm.program.exec as kclvm_exec
+import kclvm.vm.planner as planner
+
+print(planner.plan(kclvm_exec.Run(["hello.k"]).filter_by_path_selector()))
+```
+
+执行如下命令并获得输出:
+
+```bash
+$ python3 main.py
+name: kcl
+age: 1
+x0:
+  name: kcl
+  age: 1
+x1:
+  name: kcl
+  age: 101
+```
+
+可以看出通过命令行工具和 API 可以获得同样的输出。
+
+目前 KCL Python SDK 还处于早期预览版本，后续 KCL 团队会持续更新并提供更丰富的功能，更多信息请参阅：[https://github.com/KusionStack/kclvm-py](https://github.com/KusionStack/kclvm-py)
+
+## 其它语言
 
 用户也可以基于 C-API 和 RestAPI 包装其它语言的 SDK。
