@@ -7,8 +7,8 @@ sidebar_position: 2
 
 The RestAPI service can be started in the following ways:
 
-```
-kcl-go rest-server -http=:2021
+```shell
+kclvm -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
 ```
 
 The service can then be requested via the POST protocol:
