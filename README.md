@@ -9,20 +9,25 @@ Source for KCL site <https://kcl-lang.io>.
 
 Powered by [Docusaurus 2](https://docusaurus.io/).
 
-## Build local
+## Update Dependencies
 
+```bash
+npm install
 ```
-$ npm install
-$ npm run start
+
+## Build
+
+```bash
+npm run start
 ```
 
 Open http://localhost:3000 in the browser.
 
-## Build local with i18n
+## Build with i18n
 
-```
-$ npm run build
-$ npx http-server ./build
+```bash
+npm run build
+npx http-server ./build
 ```
 
 Open http://localhost:8080 in the browser.

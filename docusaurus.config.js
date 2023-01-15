@@ -149,7 +149,6 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // hideableSidebar: true,
-      autoCollapseSidebarCategories: true,
       announcementBar: {
         id: 'announcementBar-1', // Increment on change
         content: `⭐️ If you like KCL, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/KusionStack/KCLVM">Github</a>`,
@@ -282,6 +281,11 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true
+        }
+      }
     }),
 };
 
