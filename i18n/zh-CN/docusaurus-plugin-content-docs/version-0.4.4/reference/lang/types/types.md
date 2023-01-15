@@ -106,7 +106,7 @@ $$
 Type Struct
 
 $$
-\frac{\Gamma \vdash T_{1} \ ... \  \Gamma \vdash T_{n} \  \ T_i \neq Void \  K_1到K_n是互不相同的字符串}{\Gamma \vdash structof(K_1 : T_{1}, ... , K_n : T_{n})}
+\frac{\Gamma \vdash T_{1} \ ... \  \Gamma \vdash T_{n} \  \ T_i \neq Void \  K_1 \neq K_n}{\Gamma \vdash structof(K_1 : T_{1}, ... , K_n : T_{n})}
 $$
 
 Type Union
@@ -216,7 +216,7 @@ $$
 Expr StructExpr
 
 $$
-\frac{\Gamma \vdash E_{1}: T_{1} \ ... \ \Gamma \vdash E_{n}: T_{n} \ K_1到K_n是互不相同的字符串}{\Gamma \vdash \{K_{1} = E_{1}, ..., K_{{n}} = E_{n}\}: structof(K_1 : T_{1}, ... , K_n : T_{n})}
+\frac{\Gamma \vdash E_{1}: T_{1} \ ... \ \Gamma \vdash E_{n}: T_{n} \ K_1 \neq K_n}{\Gamma \vdash \{K_{1} = E_{1}, ..., K_{{n}} = E_{n}\}: structof(K_1 : T_{1}, ... , K_n : T_{n})}
 $$
 
 Literal 类型是基础类型的值类型，Union 类型是类型的组合类型，Void、Any、Nothing 是特殊的类型指代，本身没有直接的值表达式对应关系。

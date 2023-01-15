@@ -49,7 +49,7 @@ $$
 \frac{\Gamma \vdash S_1, ..., \Gamma \vdash S_n}{\Gamma \vdash S}
 $$
 
-In the inference rules, $u $, $v$, and $w$ are used to represent variables, $i $, $j$, $k$ are used to represent integers, $a$ and $b$ are used to represent floating point numbers, $s$ is used to represent strings, $c$ is used to represent literal values of constants (integers, floating point numbers, strings, boolean), $f$ is used to represent functions, $T$, $S$, $U$ are used to represent types.
+In the inference rules, $u$, $v$, and $w$ are used to represent variables, $i$, $j$, $k$ are used to represent integers, $a$ and $b$ are used to represent floating point numbers, $s$ is used to represent strings, $c$ is used to represent literal values of constants (integers, floating point numbers, strings, boolean), $f$ is used to represent functions, $T$, $S$, $U$ are used to represent types.
 
 ## Environment Rules
 
@@ -106,7 +106,7 @@ $$
 Type Struct
 
 $$
-\frac{\Gamma \vdash T_{1} \ ... \  \Gamma \vdash T_{n} \  \ T_i \neq Void \  K_1到K_n是互不相同的字符串}{\Gamma \vdash structof(K_1 : T_{1}, ... , K_n : T_{n})}
+\frac{\Gamma \vdash T_{1} \ ... \  \Gamma \vdash T_{n} \  \ T_i \neq Void \  K_1 \neq K_n}{\Gamma \vdash structof(K_1 : T_{1}, ... , K_n : T_{n})}
 $$
 
 Type Union
@@ -216,7 +216,7 @@ $$
 Expr StructExpr
 
 $$
-\frac{\Gamma \vdash E_{1}: T_{1} \ ... \ \Gamma \vdash E_{n}: T_{n} \ K_1到K_n是互不相同的字符串}{\Gamma \vdash \{K_{1} = E_{1}, ..., K_{{n}} = E_{n}\}: structof(K_1 : T_{1}, ... , K_n : T_{n})}
+\frac{\Gamma \vdash E_{1}: T_{1} \ ... \ \Gamma \vdash E_{n}: T_{n} \ K_1 \neq K_n}{\Gamma \vdash \{K_{1} = E_{1}, ..., K_{{n}} = E_{n}\}: structof(K_1 : T_{1}, ... , K_n : T_{n})}
 $$
 
 The literal type is the value type of basic type, the union type is the combination type of types, void, any, nothing are special type references, and there is no direct value expression correspondence.
@@ -571,7 +571,7 @@ $$
 Type \ X \sqsubseteq Type \ X
 $$
 
-示例
+Example
 
 $$
 Type \ Bool \sqsubseteq Type \ Bool
@@ -1061,7 +1061,7 @@ func callSuffix(E) {
 
 #### Unary Expr
 
-根据每条双目运算符的推理规则推导，以 '+' 为例
+According to the reasoning rules of each binocular operator, take `+` as an example.
 
 $E \to + E_1$
 
@@ -1076,7 +1076,7 @@ func Plus(E) {
 
 #### Binary Expr
 
-According to the reasoning rules of each binocular operator, take `%` as an example
+According to the reasoning rules of each binocular operator, take `%` as an example.
 
 $E \to E_1 \ % \ E_2$
 
