@@ -13,32 +13,29 @@
 
 #### 断言
 
-S 的所有自由变量都定义在 $\Gamma$ 中
+$S$ 的所有自由变量都定义在 $\Gamma$ 中
 
 $$
 \Gamma \vdash S
 $$
 
-$\Gamma$ 是一个变量的类型声明环境(well-formed environment)，如：x_1:T_1, ..., x_n:T_n
+$\Gamma$ 是一个变量的类型声明环境(well-formed environment)，如：$x_1:T_1$, ..., $x_n:T_n$
 
-S 的断言有三种形式：
+$S$ 的断言有三种形式：
 
-环境断言
-断言表示 $\Gamma$ 是良构类型(well-formed type)
+**环境断言** 断言表示 $\Gamma$ 是良构类型 (well-formed type)
 
 $$
 \Gamma \vdash ◇
 $$
 
-良构类型断言
-在环境 $\Gamma$ 下，nat 是类型表达式
+**良构类型断言** 在环境 $\Gamma$ 下，$nat$ 是类型表达式
 
 $$
 \Gamma \vdash nat
 $$
 
-类型判断(typing judgment)断言
-在环境 $\Gamma$ 下，E 具有类型 T
+**类型判断(断言** 在环境 $\Gamma$ 下，$E$ 具有类型 $T$
 
 $$
 \Gamma \vdash E: T
@@ -53,32 +50,6 @@ $$
 $$
 
 推理规则中的 $u$, $v$, $w$ 用于表示变量，$i$, $j$, $k$ 用于表示整数，$a$, $b$ 用于表示浮点数，$s$ 用于表示字符串，$c$ 代表常量（整数、浮点数、字符串、布尔）的字面值, $f$ 用于表示函数, $T$, $S$, $U$ 用于表示类型。
-
-示例
-
-环境规则
-
-Env ⌀
-
-$$
-\frac{}{⌀ \vdash ◇ }
-$$
-
-类型规则
-
-Type Int
-
-$$
-\frac{\Gamma \vdash ◇}{\Gamma \vdash integer}
-$$
-
-类型判断规则
-
-Exp Add
-
-$$
-\frac{\Gamma \vdash E_1: integer \ \Gamma \vdash E_2: integer}{\Gamma \vdash E_1 \ add \ E_2: integer}
-$$
 
 ## 环境规则
 
@@ -496,7 +467,7 @@ $$
 + 当 $T_1$ 与 $T_2$ 不存在偏序关系时，有三种可选的处理逻辑：
   + 结构体 union 失败，返回 type_error
   + 返回后者的类型，此处为 $T_2$
-  + 返回类型 unionof($T_1$, $T_2$)
+  + 返回类型 $unionof(T_1, T_2)$
 
 此处需要根据实际需求选择适当的处理方式。
 
@@ -511,7 +482,7 @@ $$
 
 KCL 支持对结构体属性进行如 `p op E` 形式的操作。 即对给定结构体 $A: structof(K_{1}: T_{1}, ..., K_{n}: T_{n})$, 对结构体中的路径 `p` 以 `E` 的值进行指定的操作（如 union，assign，insert 等）。
 
-定义如上更新操作：
+定义如下更新操作：
 
 $$
 \frac{{\Gamma\vdash A: structof(K_{1}: T_{1}, ..., K_{n}: T_{n})}  {\Gamma\vdash p \in (K_{1}, ..., K_{n})} \ {\Gamma\vdash e:T}   k \neq k_1, ..., k \neq k_n}
@@ -679,7 +650,7 @@ Type \ Dict(T_{k1}, T_{v1}) \sqsubseteq Type \ Dict(T_{k2}, T_{v2}) \ if \ T_{k1
 $$
 
 $$
-Type \ Strucure(K_1: T_{a1}, K_2: T_{a2}, ..., K_n: T_{an}) \sqsubseteq Type \ Strucure(K_1: T_{b1}, K_2: T_{b2}, ..., K_n: T_{bn}) \ if \ T_{a1} \sqsubseteq T_{b1} \ and \ T_{a2} \sqsubseteq T_{b2} \ and \ ... \ and \ T_{an} \sqsubseteq T_{bn}
+Type \ Structure(K_1: T_{a1}, K_2: T_{a2}, ..., K_n: T_{an}) \sqsubseteq Type \ Structure(K_1: T_{b1}, K_2: T_{b2}, ..., K_n: T_{bn}) \ if \ T_{a1} \sqsubseteq T_{b1} \ and \ T_{a2} \sqsubseteq T_{b2} \ and \ ... \ and \ T_{an} \sqsubseteq T_{bn}
 $$
 
 ### 继承
@@ -914,7 +885,7 @@ func isPartialOrderRelatedTo(source: T, target: T) -> bool {
 
 ### 类型检查器
 
-类型检查器通过语法制导线的方式，自顶向下遍历语法树，并根据上下文有关的**定型规则**来判定程序构造是否为良类型程序。
+类型检查器通过语法制导翻译的方式，自顶向下遍历语法树，并根据上下文有关的**定型规则**来判定程序构造是否为良类型程序。
 
 类型检查器依赖类型规则，类型环境 $\Gamma$ 的信息记入符号表。对类型表达式采用抽象语法，如 listof(T)。类型检查失败时产生 type_error，并根据语法上下文产生错误信息。
 
@@ -1191,7 +1162,7 @@ func assignStmt(S) {
 
 ### 基础定义
 
-通过语法制导线的方式，根据运算符特征，对参与运算的值类型进行自动类型转换
+通过语法制导翻译的方式，根据运算符特征，对参与运算的值类型进行自动类型转换
 
 ### 转换规则
 

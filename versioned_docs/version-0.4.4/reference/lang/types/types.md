@@ -1,62 +1,57 @@
-# 类型系统
+# Type System
 
-本文档描述 KCL 的类型系统，包括：
+This document describes the type system of KCL, including:
 
-+ 类型规则
-+ 类型检查
-+ 类型转换
-+ 类型推导
++ Type rules
++ Type checking
++ Type conversion
++ Type inference
 
-## 类型规则
+## Type Rules
 
-### 基础定义
+### Basic Definition
 
-#### 断言
+#### Assertion
 
-S 的所有自由变量都定义在 $\Gamma$ 中
+All free variables of $S$ are defined in $\Gamma$
 
 $$
 \Gamma \vdash S
 $$
 
-$\Gamma$ 是一个变量的类型声明环境(well-formed environment)，如：x_1:T_1, ..., x_n:T_n
+$\Gamma$ is a variable's well-formed environment, such as $x_1:T_1$, ..., $x_n:T_n$
 
-S 的断言有三种形式：
+The assertion of $S$ has three forms:
 
-环境断言
-断言表示 $\Gamma$ 是良构类型(well-formed type)
+**Environment assertion** indicates that $\Gamma$ is a well-formed type.
 
 $$
 \Gamma \vdash ◇
 $$
 
-良构类型断言
-在环境 $\Gamma$ 下，nat 是类型表达式
+**Well-formed type assertion**. In the environment $\Gamma$, $nat$ is a type expression.
 
 $$
 \Gamma \vdash nat
 $$
 
-类型判断(typing judgment)断言
-在环境 $\Gamma$ 下，E 具有类型 T
+**Typing judgment assertion**. In the environment $\Gamma$，$E$ has the type $T$.
 
 $$
 \Gamma \vdash E: T
 $$
 
-#### 推理规则
+#### Inference Rules
 
-表示法
+Representation
 
 $$
 \frac{\Gamma \vdash S_1, ..., \Gamma \vdash S_n}{\Gamma \vdash S}
 $$
 
-推理规则中的 $u$, $v$, $w$ 用于表示变量，$i$, $j$, $k$ 用于表示整数，$a$, $b$ 用于表示浮点数，$s$ 用于表示字符串，$c$ 代表常量（整数、浮点数、字符串、布尔）的字面值, $f$ 用于表示函数, $T$, $S$, $U$ 用于表示类型。
+In the inference rules, $u $, $v$, and $w$ are used to represent variables, $i $, $j$, $k$ are used to represent integers, $a$ and $b$ are used to represent floating point numbers, $s$ is used to represent strings, $c$ is used to represent literal values of constants (integers, floating point numbers, strings, boolean), $f$ is used to represent functions, $T$, $S$, $U$ are used to represent types.
 
-示例
-
-环境规则
+## Environment Rules
 
 Env ⌀
 
@@ -64,31 +59,7 @@ $$
 \frac{}{⌀ \vdash ◇ }
 $$
 
-类型规则
-
-Type Int
-
-$$
-\frac{\Gamma \vdash ◇}{\Gamma \vdash integer}
-$$
-
-类型判断规则
-
-Exp Add
-
-$$
-\frac{\Gamma \vdash E_1: integer \ \Gamma \vdash E_2: integer}{\Gamma \vdash E_1 \ add \ E_2: integer}
-$$
-
-## 环境规则
-
-Env ⌀
-
-$$
-\frac{}{⌀ \vdash ◇ }
-$$
-
-## 类型定义
+## Type Definitions
 
 Type Bool
 
@@ -174,7 +145,7 @@ $$
 \frac{\Gamma \vdash ◇}{\Gamma \vdash Nothing}
 $$
 
-## 类型判断规则
+## Typing Judgment Rules
 
 ### Operand Expr
 
@@ -248,7 +219,7 @@ $$
 \frac{\Gamma \vdash E_{1}: T_{1} \ ... \ \Gamma \vdash E_{n}: T_{n} \ K_1到K_n是互不相同的字符串}{\Gamma \vdash \{K_{1} = E_{1}, ..., K_{{n}} = E_{n}\}: structof(K_1 : T_{1}, ... , K_n : T_{n})}
 $$
 
-Literal 类型是基础类型的值类型，Union 类型是类型的组合类型，Void、Any、Nothing 是特殊的类型指代，本身没有直接的值表达式对应关系。
+The literal type is the value type of basic type, the union type is the combination type of types, void, any, nothing are special type references, and there is no direct value expression correspondence.
 
 ### Primary Expr
 
@@ -310,8 +281,6 @@ $$
 
 ### Binary Expr
 
-算数运算符
-
 Expr op, op $\in$ {-, /, %, **, //}
 
 $$
@@ -330,15 +299,11 @@ $$
 \frac{\Gamma \vdash E_1: T_1 \ \ \ \Gamma \vdash E_2: T_2 \ \ \ \ (T_1==T_2 \in \{integer, float\}) \ or \ (T_1 == interger \ and \ T_2 \ \in \ \{string, listof(T_3)\}) \ or \ (T_2 == interger \ and \ T_1 \ \in \ \{string, listof(T_3)\})} {\Gamma \vdash E_1 \ * \ E_2: T}
 $$
 
-示例
-
 Expr %
 
 $$
 \frac{\Gamma \vdash E_1: interger \ \ \ \Gamma \vdash E_2: integer}{\Gamma \vdash E_1 \ \% \ E_2: interger}
 $$
-
-逻辑运算符
 
 Expr op, op $\in$ \{or, and\}
 
@@ -354,23 +319,17 @@ $$
 \frac{\Gamma \vdash E_1: boolean \ \ \ \Gamma \vdash E_2: boolean}{\Gamma \vdash E_1 \ and \ E_2: boolean}
 $$
 
-比较运算符
-
 Expr op, op $\in$ \{==, !=, <, >, <=, >=\}
 
 $$
 \frac{\Gamma \vdash E_1: T \ \ \ \Gamma \vdash E_2: T}{\Gamma \vdash E_1 \ op \ E_2: boolean}
 $$
 
-示例
-
 Expr >
 
 $$
 \frac{\Gamma \vdash E_1: boolean \ \ \ \Gamma \vdash E_2: boolean}{\Gamma \vdash E_1 \ > \ E_2: boolean}
 $$
-
-位运算符
 
 Expr op, op $\in$ {&, ^, ~, <<, >>}
 
@@ -384,21 +343,15 @@ $$
 \frac{\Gamma \vdash E_1: T \ \ \ \Gamma \vdash E_2: T \ \ \ T \in \{integer, listof(T_1), dictof(T_k, T_v), structof(K_1=T_1, ..., K_n=T_n)\}}{\Gamma \vdash E_1 \ | \ E_2: T}
 $$
 
-成员运算符
-
 Expr op, op $\in$ {in, not in}
 
 $$
 \frac{\Gamma \vdash E_1: string \ \ \ \Gamma \vdash E_2: T \ \ \ T \in \{dictof, structof\}}{\Gamma \vdash E_1 \ op \ E_2: bool}
 $$
 
-Expr op, op $\in$ {in, not in}
-
 $$
 \frac{\Gamma \vdash E_1: T \ \ \ \Gamma \vdash E_2: listof(S), T \sqsubseteq S}{\Gamma \vdash E_1 \ op \ E_2: bool}
 $$
-
-身份运算符
 
 Expr op $\in$ {is, is not}
 
@@ -436,8 +389,6 @@ $$
 
 ## Union
 
-### Union 规则
-
 List Union
 
 $$
@@ -452,15 +403,15 @@ $$
 
 Struct Union
 
-给定两个结构体 $structof(K_{1}: T_{1}, ..., K_{n}: T_{n})，structof(H_{1}: S_{1}, ..., H_{m}: S_{n})$
+Define two structures: $structof(K_{1}: T_{1}, ..., K_{n}: T_{n})，structof(H_{1}: S_{1}, ..., H_{m}: S_{n})$
 
-定义他们的 union 类型:
+Define their union types:
 
 $$
 structof(J_{1}: U_{1}, ..., J_{p}: U_{n}) = structof(K_{1}: T_{1}, ..., K_{n}: T_{n}) \bigcup structof(H_{1}: S_{1}, ..., H_{m}: S_{n})
 $$
 
-例如：
+Example
 
 $$
 structof() \ \bigcup \ structof(H_{1}: T_{1}, ..., H_{m}: T_{n}) = structof(H_{1}: T_{1}, ..., H_{m}: T_{n})
@@ -470,7 +421,7 @@ $$
 structof(K_{1}: T_{1}, ..., K_{n}: T_{n}) \ \bigcup \ structof(H_{1}: S_{1}, ..., H_{m}: S_{n}) = structof(K_1: T_1) :: (structof(K_{2}: T_{2}, ..., K_{n}: T_{n}) \ \bigcup \ structof(H_{1}: S_{1}, ..., H_{m}: S_{n}))
 $$
 
-其中把 "::" 表示把一个对偶加入到一个结构的操作，定义如下:
+where "::" denotes the operation of adding a dual to a structure, which is defined as follows:
 
 $$
 structof(K_{1}: T_{1}) :: structof() = structof(K_{1}: T_{1})
@@ -484,55 +435,55 @@ $$
 structof(K_{1}: T_{1}) :: structof(K_{2}: T_{2}, ..., K_n: T_{n}) = structof(K_{2}: T_2) :: structof(K_{1}: T_1) :: structof(K_{3}: T_3, ..., K_{n}: T_{n})
 $$
 
-基于此，两个 Struct 的 union 定义为：
+Based on this, the union of two structures is defined as:
 
 $$
 \frac{\Gamma \vdash structof(K_{1}: T_{1}, ..., K_{n}: T_{n}) \ \Gamma \vdash structof(H_{1}: S_{1}, ..., H_{m}: S_{n}) \ structof(J_{1}: U_{1}, ..., J_{p}: U_{n}) = structof(K_{1}: T_{1}, ..., K_{n}: T_{n}) \bigcup structof(H_{1}: S_{1}, ..., H_{m}: S_{n})}{\Gamma \vdash structof(J_{1}: U_{1}, ..., J_{p}: U_{n}))}
 $$
 
-其中 $union\_op(T_1, T_2)$ 表示对相同 $K_i$ 的不同类型的判断操作：
+where $union\_op(T_1, T_2)$ denotes different types of judgment operations for the same $K_i$.
 
-+ 当 $T_1$ 与 $T_2$ 有偏序关系时， 如果 $T_1 \sqsubseteq T_2$ 时，返回 $T_2$，否则返回 $T_1$，即取最小上界
-+ 当 $T_1$ 与 $T_2$ 不存在偏序关系时，有三种可选的处理逻辑：
-  + 结构体 union 失败，返回 type_error
-  + 返回后者的类型，此处为 $T_2$
-  + 返回类型 unionof($T_1$, $T_2$)
++ When $T_1$ and $T_2$ have the partial order relation. If $T_1 \sqsubseteq T_2$, return $T_2$, otherwise return $T_1$, which is the minimum upper bound
++ When $T_1$ and $T_2$ have no partial order relationship, there are three optional processing logic:
+  + Structure union failed, return a type error.
+  + Return the type of the latter $T_2$.
+  + Return the type $unionof (T_1, T_2)$.
 
-此处需要根据实际需求选择适当的处理方式。
+Here, we need to choose the appropriate processing method according to the actual needs.
 
-结构体继承可以看做一种特殊的 union，整体逻辑与 union 相似，但在 $union\_op(T_1, T_2)$ 中对相同 $K_i$ 的不同类型的判断操作如下：
+Structure inheritance can be regarded as a special union. The overall logic is similar to that of union, but in $union\_op(T_1, T_2)$ for the same $K_i$, the different types of judgment operations are as follows:
 
-+ 当 $T_1$ 与 $T_2$ 有偏序关系且 $T_1 \sqsubseteq T_2$ 时，返回 $T_1$，即仅当 $T_1$ 是 $T_2$ 的下界时以下界 $T_1$ 为准
-+ 否则返回 type_error
++ When $T_1$ and $T_2$ have the partial order relation and $T_1 \sqsubseteq T_2$, return $T_1$, that is, only if $T_1$ is the lower bound of $T_2$, the lower bound of $T_1$ shall prevail.
++ Otherwise, a type error is returned.
 
-通过这样的继承设计可以实现分层的、自下而上逐层收缩的类型定义。
+Through such inheritance design, we can achieve hierarchical, bottom-up and layer-by-layer contraction of type definition.
 
 ## Operation
 
-KCL 支持对结构体属性进行如 `p op E` 形式的操作。 即对给定结构体 $A: structof(K_{1}: T_{1}, ..., K_{n}: T_{n})$, 对结构体中的路径 `p` 以 `E` 的值进行指定的操作（如 union，assign，insert 等）。
+KCL supports operations on structure attributes in the form of $p op E$. That is, for the given structure $A: structof(K_{1}: T_{1}, ..., K_{n}: T_{n})$, the path $p$ in the structure is specified with the value of $E$ (such as union, assign, insert, etc.).
 
-定义如上更新操作：
+Define the following update operations:
 
 $$
 \frac{{\Gamma\vdash A: structof(K_{1}: T_{1}, ..., K_{n}: T_{n})}  {\Gamma\vdash p \in (K_{1}, ..., K_{n})} \ {\Gamma\vdash e:T}   k \neq k_1, ..., k \neq k_n}
 { A \{p \ op \ e\}:\{K_1:T_1, ..., K_n:T_n\}∪\{p:T\}}
 $$
 
-即对路径 $p$ 进行操作本质上是对两个结构体的一种 union，对同名属性类型 union 时的规则根据情况而定。例如路径 $p$ 是一个可用作字段名的标识符 $p=k_1$，并且结构体 A 中字段名也是 $k_1$,它的类型为 $T_1$，并且表达式 $e$ 的类型也为 $T_1$ ,那么
+That is to say, the operation on the path $p$ is essentially a union of two structures. The rules for the same name attribute type union depend on the situation. For example, the path $p$ is an identifier $p=k_1$ that can be used as a field name $k_1$, and the field name in structure A is also $k_1$, its type is $T_1$, and the type of the expression $e$ is also $T_1$, then
 
 $$
 \frac{{\Gamma\vdash A: structof(K_{1}: T_{1}, ..., K_{n}: T_{n})}  {\Gamma\vdash p = K_{1}} \ {\Gamma\vdash e:T_1}   k \neq k_1, ..., k \neq k_n}
 { A \{p \ op \ e\}:\{K_1:T_1, ..., K_n:T_n\}}
 $$
 
-注意：
+Note:
 
-+ 此处表达式 $e$ 的类型 $T_1$ 同原先同名属性 $K_1$ 的具有相同的类型。可根据实际情况需要适当放松，如 $e$ 的类型 $\sqsubseteq T_1$ 即可。
-+ 对于多层结构体嵌套的操作，递归的使用以上规则即可。
++ The type $T_1$ of the expression $e$ have the same type with the original attribute of the same name $K_1$. It can be relaxed appropriately according to the actual situation, such as the type of $e$ $\sqsubseteq T_1$ is enough.
++ For the operation of nested multi-layer structures, the above rules can be used recursively.
 
-## 类型偏序
+## Type Partial Order
 
-### 基础类型
+### Basic Types
 
 $$
 Type \ T \sqsubseteq Type \ Any
@@ -590,7 +541,7 @@ $$
 Type \ Nothing \sqsubseteq Type \ Any
 $$
 
-### 字面值类型
+### Literal Type
 
 $$
 Type \ Literal(Bool) \sqsubseteq Type \ Bool
@@ -608,13 +559,13 @@ $$
 Type \ Literal(String) \sqsubseteq Type \ String
 $$
 
-### 联合类型
+### Union Type
 
 $$
 Type \ X \sqsubseteq Type \ Union(X, Y)
 $$
 
-### 自反
+### Introspect
 
 $$
 Type \ X \sqsubseteq Type \ X
@@ -662,13 +613,13 @@ $$
 Type \ Union(Type Int, Type Bool) \sqsubseteq Type \ Union(Type Int, Type Bool)
 $$
 
-### 传递
+### Transmit
 
 $$
 Type \ X \sqsubseteq Type \ Z \ if \ Type \ X \sqsubseteq Type \ Y \ and \ Type \ Y \sqsubseteq \ Type \ Z
 $$
 
-### 包含
+### Contained
 
 $$
 Type \ List(T_1) \sqsubseteq Type \ List(T_2) \ if \ T_1 \sqsubseteq T_2
@@ -679,10 +630,10 @@ Type \ Dict(T_{k1}, T_{v1}) \sqsubseteq Type \ Dict(T_{k2}, T_{v2}) \ if \ T_{k1
 $$
 
 $$
-Type \ Strucure(K_1: T_{a1}, K_2: T_{a2}, ..., K_n: T_{an}) \sqsubseteq Type \ Strucure(K_1: T_{b1}, K_2: T_{b2}, ..., K_n: T_{bn}) \ if \ T_{a1} \sqsubseteq T_{b1} \ and \ T_{a2} \sqsubseteq T_{b2} \ and \ ... \ and \ T_{an} \sqsubseteq T_{bn}
+Type \ Structure(K_1: T_{a1}, K_2: T_{a2}, ..., K_n: T_{an}) \sqsubseteq Type \ Structure(K_1: T_{b1}, K_2: T_{b2}, ..., K_n: T_{bn}) \ if \ T_{a1} \sqsubseteq T_{b1} \ and \ T_{a2} \sqsubseteq T_{b2} \ and \ ... \ and \ T_{an} \sqsubseteq T_{bn}
 $$
 
-### 继承
+### Inheritance
 
 $$
 Type \ Struct \ A \sqsubseteq Type \ Struct \ B \ if \ A \ inherits \ B
@@ -700,59 +651,59 @@ $$
 Type \ Undefined \sqsubseteq Type \ X, X \notin \{Type \ Nothing, \ Type \ Void\}
 $$
 
-## 相等性
+## Equality
 
-交换律
++ Commutative law
 
 $$
 Type \ Union(X, Y) == Type \ Union(Y, X)
 $$
 
-示例
+Example
 
 $$
 Type \ Union(Int, Bool) == Type \ Union(Bool, Int)
 $$
 
-结合律
++ Associative law
 
 $$
 Type \ Union(Union(X, Y), Z) == Type \ Union(X, Union(Y, Z))
 $$
 
-示例
+Example
 
 $$
 Type \ Union(Union(Int, String), Bool) == Type \ Union(Int, Union(String, Bool))
 $$
 
-幂等性
++ Idempotent
 
 $$
 Type \ Union(X, X) == Type \ X
 $$
 
-示例
+Example
 
 $$
 Type \ Union(Int, Int) == Type \ Int
 $$
 
-偏序推导
+Partial order derivation
 
 $$
 Type \ Union(X, Y) == Type \ Y \ if \ X \sqsubseteq Y
 $$
 
-示例
+Example
 
-假设 Struct A 继承 Struct B
+Assume that Struct A inherits Struct B
 
 $$
 Type \ Union(A, B) == Type \ B
 $$
 
-幂等性是偏序自反的一个特例
+Idempotency is a special case of partial order reflexivity
 
 ### List
 
@@ -772,24 +723,24 @@ $$
 Type \ Struct(K_1: T_{1}, K_2: T_{2}, ..., K_n: T_{n}) == Type \ Struct(K_1: S_{1}, K_2: S_{2}, ..., K_n: S_{n}) \ if \ T_{1} == S_{1} \ and \ ... \ and \ T_{n} == S_{n}
 $$
 
-### 偏序检查
+### Partial Order Checking
 
 $$
 Type \ X == Type \ Y \ if \ Type \ X \sqsubseteq Type \ Y \ and \ Type \ Y \sqsubseteq \ Type \ X
 $$
 
-## 基础方法
+## Basic Methods
 
-+ sup(t1: T, t2: T) -> T: 根据类型偏序计算两类型 t1, t2 的最小上界。需要动态创建 union type。
-+ typeEqual(t1: T, t2: T) -> bool: 比较两类型 t1, t2 是否相等。
-+ typeToString(t: T) -> string: 自顶向下递归解析并转化类型成对应的字符串类型。
++ `sup(t1: T, t2: T) -> T`: Calculate the minimum upper bound of two types `t1` and `t2` according to the type partial order. The union type needs to be created dynamically.
++ `typeEqual(t1: T, t2: T) -> bool`: Compare whether the two types `t1` and `t2` are equal.
++ `typeToString(t: T) -> string`: Resolve and convert the type to the corresponding string type recursively from top to bottom.
 
 ### Sup Function
 
-+ 暂不考虑类型参数，条件类型等特性
-+ 使用一个有序集合存储 UnionType 的所有类型
-+ 使用一个全局的 Map 根据 UnionType 的名称存储产生的所有 UnionType
-+ 根据偏序关系计算类型之间的包含关系
++ Type parameters, condition types and other characteristics are not considered temporarily.
++ Use an ordered collection to store all types of `UnionType`.
++ Use a global map to store all generated union types according to the name of `UnionType`.
++ Calculate the inclusion relationship between types according to the partial order relationship.
 
 ```go
 // The Sup function returns the minimum supremum of all types in an array of types
@@ -910,24 +861,24 @@ func isPartialOrderRelatedTo(source: T, target: T) -> bool {
 }
 ```
 
-## 类型检查
+## Type Checking
 
-### 类型检查器
+### Checker
 
-类型检查器通过语法制导线的方式，自顶向下遍历语法树，并根据上下文有关的**定型规则**来判定程序构造是否为良类型程序。
+The type checker traverses the syntax tree from top to bottom through syntax-directed translation, and determines whether the program structure is a well-typed program according to context-sensitive training rules.
 
-类型检查器依赖类型规则，类型环境 $\Gamma$ 的信息记入符号表。对类型表达式采用抽象语法，如 listof(T)。类型检查失败时产生 type_error，并根据语法上下文产生错误信息。
+The type checker depends on type rules, and the information of type environment $\Gamma$ is recorded in the symbol table. Use abstract syntax for type expressions, such as `listof (T)`. When the type check fails, a type mismatch error is generated, and the error message is generated according to the syntax context.
 
-### 基础方法
+### Basic Methods
 
-1. isUpperBound(t1, t2): supUnify(t1, t2) == t2
-2. supUnify(t1, t2):
+1. `isUpperBound(t1, t2): supUnify(t1, t2) == t2`
+2. `supUnify(t1, t2):`
 
-- 对于基础类型，根据偏序关系计算 sup(t1, t2)
-- 对于 list、 dict、 Struct, 递归地对其中元素的类型进行 supUnify
-- 不存在偏序关系时，返回 Nothing
++ For the foundation type, `sup(t1, t2)` is calculated according to the partial order relationship
++ For list, dict, Struct, recursively `supUnify` the types of elements
++ When there is no partial order relationship, return `Nothing`
 
-### 检查逻辑
+### Checking Logic
 
 #### Operand Expr
 
@@ -1125,7 +1076,7 @@ func Plus(E) {
 
 #### Binary Expr
 
-根据每条双目运算符的推理规则推导，以 '%' 为例
+According to the reasoning rules of each binocular operator, take `%` as an example
 
 $E \to E_1 \ % \ E_2$
 
@@ -1187,13 +1138,13 @@ func assignStmt(S) {
 }
 ```
 
-## 类型转换
+## Type Conversion
 
-### 基础定义
+### Basic Definition
 
-通过语法制导线的方式，根据运算符特征，对参与运算的值类型进行自动类型转换
+Through syntax-directed translation, the value types involved in the operation are automatically converted according to the operator characteristics.
 
-### 转换规则
+### Conversion Rules
 
 $E \to E_1 \ op \ E_2, , op \in \{+, -, *, /, \%, **, //\}$
 
@@ -1211,19 +1162,19 @@ func binOp(E) {
 }
 ```
 
-## 类型推导
+## Type Inference
 
-### 基础定义
+### Basic Definition
 
-+ 在类型信息不完全的情况下类型规则推导、重建类型
-+ 自底向上推导并重建数程序中的数据结构类型，如基础类型，list, dict, Struct
++ Type rule derivation and type reconstruction in case of incomplete type information
++ Derive and reconstruct the data structure types in the program from the bottom up, such as basic type, e.g., list, dict and struct types.
 
-### 基础方法
+### Basic Methods
 
-1. typeOf(expr, subst): 输入为表达式和代换规则集合，返回 expr 的类型和新的代换规则集合
-2. unifier(t1, t2, subst, expr) 用 t1=t2 尝试代换，如果代换成功（未出现且无冲突），则将 t1=t2 加入 subst 并返回 subst。否则报错已出现或有冲突。
+1. `typeOf(expr, subst)`: The input is the expression and substitution rule set, and the type of expr and the new substitution rule set are returned.
+2. `unifier(t1, t2, subst, expr)`: Try substitution with `t1=t2`. If the substitution is successful (no occurrence and no conflict), add `t1=t2` to the subst and return the subst. Otherwise, an error has occurred or there is a conflict.
 
-### 推导逻辑
+### Inferential Logic
 
 $E \to id = E_1$
 
@@ -1382,9 +1333,9 @@ func isNoOccur(tvar, t) {
 }
 ```
 
-### 示例
+### Example
 
-#### 正常推导
+#### Normal Inference
 
 ```
 T : {
