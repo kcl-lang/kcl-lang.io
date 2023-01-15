@@ -652,6 +652,8 @@ Regular expressions can be used by importing the regular expression system modul
 Examples:
 
 ```python
+import regex
+
 regex_source = "Apple,Google,Baidu,Xiaomi"
 regex_split = regex.split(regex_source, ",")
 regex_replace = regex.replace(regex_source, ",", "|")
@@ -688,6 +690,8 @@ For longer regular expressions, we can also use **r-string** to ignore the escap
 Examples:
 
 ```python
+import regex
+
 isIp = regex.match("192.168.0.1", r"^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)$")  # Determine if it is an IP string
 ```
 

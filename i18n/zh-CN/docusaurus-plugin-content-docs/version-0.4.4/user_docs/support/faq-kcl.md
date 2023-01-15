@@ -654,6 +654,8 @@ string3: |
 使用举例:
 
 ```python
+import regex
+
 regex_source = "Apple,Google,Baidu,Xiaomi"
 regex_split = regex.split(regex_source, ",")
 regex_replace = regex.replace(regex_source, ",", "|")
@@ -688,6 +690,8 @@ regex_result_false: false
 对于比较长的正则表达式，还可以使用 r-string 忽略 `\` 符号的转义简化正则表达式字符串的书写:
 
 ```python
+import regex
+
 isIp = regex.match("192.168.0.1", r"^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)$")  # 判断是否是一个IP字符串
 ```
 
