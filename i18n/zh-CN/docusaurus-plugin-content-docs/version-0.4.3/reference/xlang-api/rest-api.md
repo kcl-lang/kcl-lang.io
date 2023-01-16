@@ -97,9 +97,9 @@ message ValidateCode_Args {
 
 ```shell
 $ curl -X POST \
-		http://127.0.0.1:2021/api:protorpc/KclvmService.ValidateCode \
-		-H  "accept: application/json" \
-		--data @./vet-hello.json
+    http://127.0.0.1:2021/api:protorpc/KclvmService.ValidateCode \
+    -H  "accept: application/json" \
+    --data @./vet-hello.json
 {
     "error": "",
     "result": {
