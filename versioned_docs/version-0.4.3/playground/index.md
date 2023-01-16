@@ -1,3 +1,3 @@
 # KCL Playground
 
-Coming Soon. Ref: https://github.com/KusionStack/kcl-playground
+Reference: https://github.com/KusionStack/kcl-playground
