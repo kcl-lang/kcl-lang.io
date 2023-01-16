@@ -10,7 +10,7 @@ A classic example of helm chart configuration management is used to explain the 
 
 ## Helm
 
-Helm has the concepts of `values.yaml` and `template`. In general, the Helm chart project is general a directory including a `Chart.yaml`.:
+Helm has the concepts of `values.yaml` and `template`. In general, the Helm chart project is generally a directory including a `Chart.yaml`.:
 
 We can execute the following command line to obtain a typical Helm Chart project.
 
