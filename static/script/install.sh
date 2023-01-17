@@ -218,12 +218,12 @@ fi
 verifySupported $ret_val
 checkExistingKCL
 
-echo "The KCL version is $ret_val"
-
-if [ -z "$ret_val" ]; then
-    echo "The latest version of KCL is not found. It may be due to network reasons. You can re-execute the installation script and try again."
-    exit 1
-fi
+# echo "The KCL version is $ret_val"
+# 
+# if [ -z "$ret_val" ]; then
+#     echo "The latest version of KCL is not found. It may be due to network reasons. You can re-execute the installation script and try again."
+#     exit 1
+# fi
 
 echo "Find the latest KCL version $ret_val"
 
