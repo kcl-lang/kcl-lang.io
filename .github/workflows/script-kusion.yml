@@ -1,4 +1,4 @@
-name: script
+name: script-kusion
 on:
   pull_request:
     branches: 
@@ -11,8 +11,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Check Install Script
-        run: static/script/install.sh
 
       - name: Check Brew Installation
         run: brew install KusionStack/tap/kusion && kusion compile ./static/samples.k
@@ -21,8 +19,6 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Check Install Script
-        run: static/script/install.sh
 
       - uses: actions/setup-python@v4
         with:
