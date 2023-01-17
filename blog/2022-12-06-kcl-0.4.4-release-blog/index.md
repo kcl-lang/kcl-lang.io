@@ -105,7 +105,7 @@ For more information, see [https://github.com/KusionStack/KCLVM/issues/94](https
 In addition to the existing [KCL Go SDK](https://github.com/KusionStack/kclvm-go), this release also adds the KCL Python SDK. Using the Python SDK requires that you have a local Python version higher than 3.7.3 and a local pip package management tool. You can use the following command to install and obtain helpful information.
 
 ```bash
-$ python3 -m pip install kclvm && python3 -m kclvm --help
+$ python3 -m pip install kclvm --user && python3 -m kclvm --help
 ```
 
 #### Command Line Tool

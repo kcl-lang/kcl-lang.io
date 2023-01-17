@@ -45,7 +45,7 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 Install `kcl` through the `python3` and `pip` (`python3` requires 3.7.3+).
 
 ```bash
-python3 -m pip install kclvm
+python3 -m pip install kclvm --user
 ```
 
 Add an alias for the kcl command (optional).

@@ -19,7 +19,7 @@ export PATH=$PATH:{install-location}/kclvm/bin
 通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)
 
 ```bash
-python3 -m pip install kclvm
+python3 -m pip install kclvm --user
 ```
 
 添加一个 kcl 命令的别名 (可选)

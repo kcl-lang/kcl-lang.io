@@ -45,7 +45,7 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)
 
 ```bash
-python3 -m pip install kclvm && alias kcl='python3 -m kclvm'
+python3 -m pip install kclvm --user && alias kcl='python3 -m kclvm'
 ```
 
 ### 使用 Go 安装
