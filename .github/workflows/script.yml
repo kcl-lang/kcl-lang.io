@@ -19,7 +19,7 @@ jobs:
           python-version: '3.9'
       - uses: actions/setup-go@v1
         with:
-          go-version: "1.17"
+          go-version: "1.18"
 
       - name: Check Python Installation
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
@@ -39,7 +39,7 @@ jobs:
           python-version: '3.9'
       - uses: actions/setup-go@v1
         with:
-          go-version: "1.17"
+          go-version: "1.18"
 
       - name: Check Python Installation
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
@@ -60,7 +60,7 @@ jobs:
           python-version: '3.9'
       - uses: actions/setup-go@v1
         with:
-          go-version: "1.17"
+          go-version: "1.18"
 
       - name: Check Python Installation
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
