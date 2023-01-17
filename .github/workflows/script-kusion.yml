@@ -19,6 +19,7 @@ jobs:
         run: |
           brew install KusionStack/tap/kusion
           echo "brew installed successfully"
+          kusion version
           kusion compile ./static/samples/hello.k
 
   check-go:
@@ -40,4 +41,5 @@ jobs:
         run: |
           go install kusionstack.io/kusion@latest
           echo "go installed successfully"
+          $HOME/go/bin/kusion version
           $HOME/go/bin/kusion compile ./static/samples/hello.k
