@@ -28,7 +28,7 @@ jobs:
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
 
       - name: Check Go Installation
-        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run ./static/samples/hello.k
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@latest && $HOME/go/bin/kcl-go run ./static/samples/hello.k
 
   check-linux:
     runs-on: ubuntu-latest
@@ -48,7 +48,7 @@ jobs:
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
 
       - name: Check Go Installation
-        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run ./static/samples/hello.k
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@latest && $HOME/go/bin/kcl-go run ./static/samples/hello.k
 
   check-windows:
     runs-on: windows-latest
@@ -68,4 +68,4 @@ jobs:
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
 
       # - name: Check Go Installation
-      #   run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run ./static/samples/hello.k
+      #   run: go install kusionstack.io/kclvm-go/cmds/kcl-go@latest && $HOME/go/bin/kcl-go run ./static/samples/hello.k
