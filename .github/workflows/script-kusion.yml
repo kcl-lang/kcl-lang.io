@@ -23,7 +23,7 @@ jobs:
   check-go:
     strategy:
       matrix:
-        os: [macos-10.15, macos-11, macos-12, ubuntu-latest, ubuntu-latest]
+        os: [macos-10.15, macos-11, macos-12, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v1
