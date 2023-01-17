@@ -25,10 +25,10 @@ jobs:
           go-version: "1.18"
 
       - name: Check Python Installation
-        run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
+        run: python3 -m pip install kclvm --user && python3 -m kclvm hello.k
 
       - name: Check Go Installation
-        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run ./static/samples/hello.k
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run hello.k
 
   check-linux:
     runs-on: ubuntu-latest
@@ -45,10 +45,10 @@ jobs:
           go-version: "1.18"
 
       - name: Check Python Installation
-        run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
+        run: python3 -m pip install kclvm --user && python3 -m kclvm hello.k
 
       - name: Check Go Installation
-        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run ./static/samples/hello.k
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run hello.k
 
   check-windows:
     runs-on: windows-latest
@@ -65,7 +65,7 @@ jobs:
           go-version: "1.18"
 
       - name: Check Python Installation
-        run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples/hello.k
+        run: python3 -m pip install kclvm --user && python3 -m kclvm hello.k
 
       # - name: Check Go Installation
-      #   run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go.exe run ./static/samples/hello.k
+      #   run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go.exe run hello.k
