@@ -18,6 +18,7 @@ jobs:
       - name: Check Brew Installation
         run: |
           brew install KusionStack/tap/kusion
+          echo "brew installed successfully"
           kusion compile ./static/samples/hello.k
 
   check-go:
@@ -38,4 +39,5 @@ jobs:
       - name: Check Go Installation
         run: |
           go install kusionstack.io/kusion@latest
+          echo "go installed successfully"
           $HOME/go/bin/kusion compile ./static/samples/hello.k
