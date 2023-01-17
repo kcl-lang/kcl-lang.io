@@ -21,11 +21,11 @@ jobs:
         with:
           go-version: "1.17"
 
-      - name: Check Go Installation
-        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go run ./static/samples.k
-
       - name: Check Python Installation
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples.k
+
+      - name: Check Go Installation
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go run ./static/samples.k
 
   check-linux:
     runs-on: ubuntu-latest
@@ -41,11 +41,11 @@ jobs:
         with:
           go-version: "1.17"
 
-      - name: Check Go Installation
-        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go run ./static/samples.k
-
       - name: Check Python Installation
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples.k
+
+      - name: Check Go Installation
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go run ./static/samples.k
 
 
   check-windows:
@@ -62,8 +62,77 @@ jobs:
         with:
           go-version: "1.17"
 
+      - name: Check Python Installation
+        run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples.k
+
       - name: Check Go Installation
         run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go run ./static/samples.k
+name: script
+on:
+  pull_request:
+    branches: 
+     - main
+  push:
+    branches: 
+     - main
+jobs:
+  check-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Check Install Script
+        run: static/script/install.sh
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - uses: actions/setup-go@v1
+        with:
+          go-version: "1.17"
 
       - name: Check Python Installation
         run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples.k
+
+      - name: Check Go Installation
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go run ./static/samples.k
+
+  check-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Check Install Script
+        run: static/script/install.sh
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - uses: actions/setup-go@v1
+        with:
+          go-version: "1.17"
+
+      - name: Check Python Installation
+        run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples.k
+
+      - name: Check Go Installation
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go run ./static/samples.k
+
+
+  check-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Check Install Script
+        run: static/script/install.ps1
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - uses: actions/setup-go@v1
+        with:
+          go-version: "1.17"
+
+      - name: Check Python Installation
+        run: python3 -m pip install kclvm --user && python3 -m kclvm ./static/samples.k
+
+      - name: Check Go Installation
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && kcl-go run ./static/samples.k
