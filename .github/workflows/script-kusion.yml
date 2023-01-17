@@ -28,4 +28,4 @@ jobs:
           go-version: "1.17"
 
       - name: Check Go Installation
-        run: go install kusionstack.io/kusion@latest && kcl-go run ./static/samples.k
+        run: go install kusionstack.io/kusion@latest && $HOME/go/bin/kusion compile ./static/samples.k
