@@ -2,42 +2,42 @@
 sidebar_position: 1
 ---
 
-# 快速开始
+# Quick Start
 
 ## 1. 安装 KCLOpenAPI tool
 
-```shell
-# 1. 下载二进制程序
-# https://github.com/KusionStack/kcl-openapi/releases
+您可通过 go install 快速安装 kcl-openapi：
 
-# 2. 将命令添加至PATH
-export PATH="<Your directory to store KCL OpenAPI binary>:$PATH"
+```shell
+go install kusionstack.io/kcl-openapi@latest
 ```
 
-- 验证安装结果，执行 `kcl-openapi -h`，看到如下信息说明安装成功：
+## 1.2 验证安装结果
+
+安装完成后，您可执行 `kcl-openapi generate model -h`，如果看到如下信息则说明安装成功：
 
 ```shell
+kcl-openapi command helps you to generate KCL schema structure from K8s CRD YAML/JSON file.
+  1. Translate Swagger Openapi Spec to KCL code
+  2. Translate Kubernetes CRD to KCL code
+
+Examples:
+
+  # convert a K8s CRD file into KCL files
+  kcl-openapi generate model -f FILENAME --crd --skip-validation
+
+Options:
+      --crd=false: Set the spec file is a kube crd
+  -f, --filename='': The filename to convert
+      --skip-validation=false: Skips validation of spec prior to generation
+  -t, --target='': The location to write output kcl files
+      --version=false: Show the KCLOpenAPI version
+
 Usage:
-  kcl-openapi [OPTIONS] <generate | validate>
-
-Swagger tries to support you as best as possible when building APIs.
-
-It aims to represent the contract of your API with a language agnostic description of your application in json or yaml.
-
-
-Application Options:
-  -q, --quiet                  silence logs
-      --log-output=LOG-FILE    redirect logs to file
-
-Help Options:
-  -h, --help                   Show this help message
-
-Available commands:
-  generate  generate kcl code
-  validate  validate the swagger document
+  kcl-openapi generate model -f FILENAME [options]
 ```
 
-## 2. 生成 KCL 文件
+# 2. 生成 KCL 文件
 
-- [OpenAPI to KCL](../openapi/openapi-to-kcl.md)
-- [CRD to KCL](../openapi/crd-to-kcl.md)
+- [将 OpenAPI 描述文件转换为 KCL](../openapi/openapi-to-kcl.md)
+- [将 Kubernetes CRD 转换为 KCL](../openapi/crd-to-kcl.md)

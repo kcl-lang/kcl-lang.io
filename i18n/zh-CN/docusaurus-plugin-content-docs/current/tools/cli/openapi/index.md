@@ -1,3 +1,3 @@
-# OpenAPI 工具
+# OpenAPI Tools
 
-KCL OpenAPI tools add support for the KCL to the OpenAPI specification, which can not only convert common models, but also support Kubernetes CRD and other models.
+kcl-openapi 工具支持将通过 OpenAPI 规范描述的模型转换为 KCL 配置策略语言，除了能直接转换 OpenAPI 描述文件之外，还可以从 Kubernetes CRD 中提取并转换为 KCL schema.

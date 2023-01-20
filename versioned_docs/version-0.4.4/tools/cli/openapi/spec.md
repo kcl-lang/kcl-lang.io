@@ -1,22 +1,25 @@
 # KCL OpenAPI Spec
 
-[OpenAPI](https://www.openapis.org/) 允许 API 提供方规范地描述 API 操作和模型，并基于它生成自动化工具和特定语言的客户端。
+[OpenAPI](https://www.openapis.org/) defines the API Specification for API providers to describe their operations and models in a normative way and provides generating tools to automatically convert to client codes in specific languages.
 
-## KCL OpenAPI 文件结构
+The KCL OpenAPI Spec describes the rules about how the OpenAPI definitions are translated to the KCL schemas. 
 
-依据 OpenAPI 3.0 规范，OpenAPI 文件中应至少包含 openapi、components、 info、paths 四种根节点对象，KCL OpenAPI 聚焦于其中模型定义的部分，即 OpenAPI 文件中的 `definitions`，而描述操作的 Restful API 部分（即 OpenAPI 文件中的 `paths`）则不属于 KCL OpenAPI 定义的范畴。
+## The File Structure of the KCL OpenAPI
+
+According to the OpenAPI 3.0 specification, an OpenAPI file should at least contains four root objects: `openapi`, `components`, `info`, `paths`. The KCL OpenAPI focuses on the part in which the models are defined -- the `definitions` object. Yet the `paths` part which describes the Restful API operations is not considered by the KCL OpenAPI Spec.
+
+:::info
+Note: In addition to the objects listed above, the OpenAPI spec also supports `servers`, `security`, `tags`, and `externalDocs` as optional root objects, but none of them are concerned by KCL OpenAPI when generating model codes, so we do not need to fill in this section. Yet it won't make any difference if you do.
+:::
+
 ​
+| OpenAPI Root Objects | Type              |        Befrif Description                                 | KCL OpenAPI support                                |
+| -------------------- | ----------------- | --------------------------------------------------------- | -------------------------------------------------- |
+| swagger          | string            | the version number of the OpenAPI Specification               | REQUIRED. only openapi 2.0 is supported currently  |
+| definitions      | Definition Object | the definitions of data types                                 | REQUIRED.                                          |
+| info             | Info Object       | Provides metadata(such as title, version, etc) about the API. | REQUIRED. The information won't be generated to the KCL code, but could be used by Swagger-UI tools for visualization |
 
-注：除以上列出的节点外，OpenAPI 官方规范还支持 servers、security、tags、externalDocs 四种可选的根节点，但都不是 KCL OpenAPI 所关心的，因此用户无需填写这部分内容，即使填写了也不会产生任何影响。
-​
-
-| OpenAPI 顶层对象 | 类型              | 含义                                                            | KCL OpenAPI 工具支持情况                                                                        |
-| ---------------- | ----------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
-| swagger          | string            | openapi 版本信息                                                | 必填项，目前支持 openapi 2.0，即合法取值为 "2.0"                                                 |
-| definitions      | Definition Object | 模型定义                                                        | 必填项                                                                                           |
-| info             | Info Object       | 当前 API 文件的元数据信息，例如标题、描述信息、版本、开源协议等 | 必填项，定义当前 OpenAPI 文件的基本信息，不会输出到 KCL 代码，但可用于 Swagger-UI 工具可视化展示 |
-
-为方便初学者快速理解，下面给出一个典型的 KCL OpenAPI 文件（截取自 swagger example [Petstore](https://petstore.swagger.io/)）应包含的节点图示。KCL OpenAPI 工具重点关注其中的 definitions 节点，可以看到文件中定义了两个模型（Pet 和 Category），并且 Pet 模型中包含三个属性（name、id、category）
+To put it more comprehensible for beginners, let's take a quick look at the root objects that forms the typical KCL OpenAPI file (snippets from swagger example [Petstore] (https://petstore.swagger.io/)). The KCL OpenAPI tool only focuses on the `definitions` object which describes two data models (`Pet` and `Category`), and the model `Pet` contains three attributes: `name`, `id`, and `category`)
 
 ## KCL schema
 
@@ -25,8 +28,20 @@ KCL 中使用 schema 结构来定义配置数据的“类型”，关于 KCL sch
 示例：
 下例在 KCL 代码中定义了 Pet、Category 两个 schema，同样地，其对应的 OpenAPI 也在 definitions 节点下包含这两个模型的描述。
 
+
+The KCL schema structure defines the "type" of configuration data. 
+
+:::info
+More information about KCL schema, see [KCL Language Tour#Schema](../../../reference/lang/tour.md)
+:::
+
+In the OpenAPI spec, a KCL schema can be defined by adding a `definition` element within the `definitions` object.
+
+Example:
+The following example defines two schemas in KCL: `Pet` and `Category`, followed by the corresponding data models defined in OpenAPI:
+
 ```python
-# KCL schema：
+# KCL schema
 schema Pet:
     name:      str
     id?:       int
@@ -35,7 +50,7 @@ schema Pet:
 schema Category:
     name?: str
 
-# 对应的 OpenAPI 描述
+# The corresponding OpenAPI spec
 {
     "definitions": {
         "Pet": {
@@ -71,49 +86,48 @@ schema Category:
         "version": "v1"
     }
 }
-
 ```
 
-### schema 名称
+### Schema Name
 
-在 KCL 中，schema 名称紧跟在 schema 关键字后声明，在 OpenAPI 中，模型的名称通过 definition 元素的 key 来定义。
+In KCL, the schema name is declared immediately after the schema keyword, and in OpenAPI, the name of the model is defined by the key of the definition element.
 
-### schema 类型
+### Schema Type
 
-KCL schema 在 OpenAPI 中的类型为 "object". 例如上例中 "Pet" 的 "type" 值应为 "object".
+The type of KCL schema in OpenAPI is always "object". As in the previous example, the value of the `type` object in `Pet` should be `object`.
 
-### schema 属性
+### Schema Attribute
 
-KCL schema 中可以定义若干属性，属性的声明一般包含如下几部分：
+Zero or more attributes can be defined in the KCL schema. The declaration of attributes generally includes the following parts:
 
-- 属性注解：可选，以 @ 开头，例如 @deprecated 注解表示属性被废弃
-- 属性访问修饰符（final）：可选，声明当前属性的值不可被修改
-- 属性名称：必须
-- 属性 optional 修饰符（?）：可选，带问号表示当前属性为可选属性，可以不被赋值。反之，不带问号表示必填属性
-- 属性类型：必须，可以是基本数据类型，也可以是 schema 类型， 或者是前述两种类型的并集
-- 属性默认值：非必须
+- Attribute annotation: Optional, starting with `@`, such as `@deprecated` to indicate a deprecated attribute
+- Attribute name: Required
+- Attribute optional modifiers(`?`): Optional. A question mark indicates that the current attribute is optional and may not be assigned. Conversely, the absence of a question mark indicates a required attribute
+- Attribute type: Required. The attribute can be a primitive data type, a schema type, or a combination of the two preceding types
+- Attribute default value: Optional
 
-它们与 OpenAPI 规范的对应关系如下：
+The mapping between them and the OpenAPI spec is as follows:
 
-| KCL schema 属性元素                                      | OpenAPI 元素                                                                                                                                                                                      |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 属性注解                                                 | 暂不支持，计划扩展一个 deprecate 字段用于描述 deprecated 注解                                                                                                                                     |                                                                                                                                 |
-| 属性名称                                                 | properties 节点下，每个属性的 key 即为属性名称                                                                                                                                                    |
-| 属性 optional 修饰符（？）                               | 模型节点下，通过 required 字段列出该模型的所有必填属性的名称，未被列出的属性即为 optional                                                                                                         |
-| 属性类型                                                 | 属性节点下，设置 type + format 可以标识属性的基本类型，如果是 schema 类型则用 $ref 字段表示，类型 union 则由扩展字段 x-kcl-types 来标识，此外，属性节点的 enum、pattern 也可以用于表示 KCL 类型。 |
-| KCL-OpenAPI 关于类型的对照关系，详见“基本数据类型”小节 |                                                                                                                                                                                                   |
-| 属性默认值                                               | 属性节点下，设置 default 字段即可为属性设置默认值                                                                                                                                                 |
+| Elements of KCL Schema Attribute            | Corresponding Elements in OpenAPI     |
+| ------------------------------------------- | ------------------------------------- |
+| attribute annotation                        | Not supported. We are planning to add an extension `deprecate` field to the KCL-OpenAPI  |
+| attribute name                              | The key of the property under the `property` object               |
+| attribute optional modifiers(`?`)           | In each element in the `definition` object, here's an optional `required` field which lists the all the required attributes of that model, and the attributes not listed are optional  |
+| attribute type                              | The basic types can be declared by a combination of `type` and `format`, and the schema type is declared by a `$ref` to the schema definition. KCL-OpenAPI spec adds a `x-kcl-types` extension to indicate a type union. `enum` indicates a union of several literal types. For the type declartion in KCL-OpenAPI, see the chapter - [basic data types](#basic-data-types)|
+| attribute default value                     | The value of the `default` field is used to set the default value for the attribute   |
 
-示例：
-下例中 Pet 模型包含了 2 个属性：name（string 类型，必填属性，无注解，无默认值）、id（int64 类型，无注解，非必填，默认值为 -1）
+Example:
+
+The following KCL code defines a Pet model which contains two attributes: name (`string` type, `required`, with no attribute annotation and no default value) and id (`int64` type, optional, with no attribute annotation, and the default value is -1).
+
 
 ```python
-# KCL schema Pet，包含两个属性 name 和 id
+# the KCL schema Pet defines two attributes: name, id
 schema Pet:
     name: str
     id?:  int = -1
 
-# 对应的 OpenAPI 文档
+# The corresponding OpenAPI spec
 {
     "definitions": {
         "Pet": {
@@ -141,36 +155,41 @@ schema Pet:
 }
 ```
 
-### schema 索引签名
+### Schema Index Signature
 
-KCL schema 允许定义索引签名，用于定义属性名不固定的 dict，起到静态模板的作用。具体来说，KCL schema 索引签名包含如下几个元素：
+In the KCL schema, the index signatures can be used to define attributes with unfined attribute names. The KCL schema index signature contains the following elements:
 
-- 索引签名中 key 的类型：在方括号中声明，必须是基础类型
-- 索引签名中 value 的类型：在冒号后声明，可以是任意合法的 KCL 类型
-- 索引签名中的省略符：在方括号中，key 类型之前声明，使用"..."表示。如果带有该符号，表示该索引签名只用于约束未在 schema 中定义的属性；否则，表示 schema 中所有已定义和未定义属性都收到该索引签名的约束。
-- 索引签名中 key 的别名：在方括号中，紧随左方括号之后声明，使用名称 + 冒号表示，该别名可用于按名称引用索引签名
-- 索引签名的默认值：可以为索引签名设置默认值
+- Type of the key in the index signature: Declared in square brackets. It must be the basic type
+- Type of value in the index signature: Declared after the colon in the square brackets. It can be any valid KCL type
+- Ellipses(`...`) in the index signature: In the square brackets, before the type declaration of the key. It indicates that the index signature is only used to constrain attributes not defined in the schema. The absentation of the symbol indicates that all defined and undefined attributes in the schema are constrained by the index signature.
+- Alias for key in index signature: Declared in square brackets, immediately after the left square bracket and takes the form of `<name>:`. The alias can then be used to reference the index signature by name
+- The default value of the index signature: Assign a value to the index signature as the default value
 
-在 OpenAPI 中，可以借助在模型节点的 `additionalProperties` 字段描述某些 key 为 string 的索引签名。但对于 KCL 索引签名中非 string 类型的 dict key、索引签名 key 的 check 校验，在 OpenAPI 规范没有对等的描述。它们与 OpenAPI 规范的对应关系如下：
+The index signature with its key in `string` type can be described based on the field `additionalProperties`. Other index signatures with a key in types besides `string`, and the `check` expressions used to validate the index signature are not supported by the KCL OpenAPI spec.
 
-| KCL 索引签名元素        | OpenAPI 元素                                                           |
-| ----------------------- | ---------------------------------------------------------------------- |
-| 索引签名中 key 的类型   | OpenAPI 仅支持 key 为 string 类型，无法自定义                          |
-| 索引签名中 value 的类型 | 模型节点的下 additionalProperties 下的 "type" 字段                     |
-| 索引签名中的省略符      | OpenAPI 中表示索引签名时，只能表示 KCL 中带有省略符的情况              |
-| 索引签名中 key 的别名   | OpenAPI 中不支持为索引签名定义 key 别名，（预计通过扩展支持：x-alias） |
-| 索引签名的默认值        | 目前不支持                                                             |
+The mapping between them and the OpenAPI spec is as follows:
 
-示例：下例中的 KCL schema Pet，包含两个预定义的属性 name 和 id，除此之外，还允许使用该 schema 的配置额外地赋值其他 key 为 string 类型，value 为 bool 类型的属性：
+|       Elements of KCL Index Signature        |                               Corresponding Elements in OpenAPI                                 |
+| -------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Type of the key in the KCL index signature   | Only string type is allowed in OpenAPI                                                          |
+| Type of the value in the KCL index signature | Declared by the `type` in the `additionalProperties` field                                      |
+| Ellipses(`...`) in the index signature       | Only the corresponding meaning of the attendance of the `...` symbol is allowed in OpenAPI      |
+| Alias for key in index signature             | Not supported in KCL-OpenAPI yet. We are planning to add an `x-alias` extension to support that |
+| Default value of the index signature         | Not supported in KCL-OpenAPI                                                                    |
+
+Example:
+
+The following KCL code defines a Pet model which contains two pre-declared attributes(`name` and `id`) and allows users to add attributes with `string` type keys and `bool` type values.
+
 
 ```python
-# KCL schema Pet，包含两个预定义的属性 name 和 id，允许额外给 key 为 string、value 为 bool 的属性赋值
+# the KCL schema Pet. Besides the pre-declared attributes name and id, it allows to add attributes with key in string type and value in bool type
 schema Pet:
     name:     str
     id?:      int
     [...str]: bool
 
-# 对应的 OpenAPI 描述
+# The corresponding OpenAPI spec
 {
     "definitions": {
         "Pet": {
@@ -200,22 +219,27 @@ schema Pet:
 }
 ```
 
-### schema 继承关系
+### Schema Inherit
 
-### 内联 schema
+working in progress
 
-OpenAPI 支持嵌套地定义 schema，但 KCL 目前暂不支持 schema 的内联。OpenAPI 中内联定义的 schema 将被转换为 KCL 中带名称的 schema，其名称的命名规则为：在该内联 schema 的上层 schema 名称的基础上，增加相应的后缀。在拼接后缀时，根据定义了该内联 schema 的外层 OpenAPI 元素类型，后缀内容如下：
+### Inline schema
 
-| OpenAPI 文档中定义内联 schema 的元素 | KCL schema 名称拼接规则        |
-| ------------------------------------ | ------------------------------ |
-| 某属性节点                           | 增加该属性节点的名称为后缀     |
-| AdditionalProperties 节点            | 增加"AdditionalProperties"后缀 |
+OpenAPI supports models to be declared inline. But KCL currently does not support that. The model defined inline in OpenAPI will be converted to a schema with a name in KCL. And the naming convention will be: 
 
-注：KCL 未来也可能会支持内联 schema，届时再更新这部分转换规则
-示例 1：下例中的模型 Deployment 包含有 kind、spec 两个属性，其中 deploymentSpec 属性的 schema 通过内联的方式定义：
+| element to define an inline schema in OpenAPI |           the name of the corresponding KCL schema             |
+| --------------------------------------------- | -------------------------------------------------------------- |
+| inline Property                               | add the Property name at the end of the outer schema Name      |
+| AdditionalProperties                          | add "AdditionalProperties" at the end of the outer schema Name |
+
+We are planning to support inline schema in KCL, and when supported, the naming convention will be updated then.
+
+Example-1:
+
+The following KCL code defines a `Deployment` model which contains two attributes(`kind` and `spec`). And the schema of the `spec` attribute is defined inline.
 
 ```python
-# OpenAPI 文档
+# The OpenAPI spec
 {
     "definitions": {
         "Deployment": {
@@ -247,7 +271,7 @@ OpenAPI 支持嵌套地定义 schema，但 KCL 目前暂不支持 schema 的内�
     }
 }
 
-# 转换为 KCL Schema 如下：
+# The corresponding KCL schemas
 schema Deployment:
     kind: str
     spec: DeploymentSpec
@@ -256,10 +280,12 @@ schema DeploymentSpec:
     replicas?: int
 ```
 
-示例 2：下例中的模型 Person 中除固定属性 name 外，还允许包含额外的属性（additionalProperties），并且这部分额外属性的属性值的 schema 通过内联的方式定义：
+Example-2:
+
+The following KCL code defines a Person model which contains a pre-declared attribute(`name`) and allows some `additionalProperties` to be assigned by user. And the type of the values in the `additionalProperties` is defined inline.
 
 ```python
-# OpenAPI 文档
+# The OpenAPI spec
 {
     "definitions": {
         "Person": {
@@ -296,7 +322,7 @@ schema DeploymentSpec:
     }
 }
 
-# 转换为 KCL Schema 如下：
+# The corresponding KCL schemas
 schema Person:
     name: str
     [...str]: [PersonAdditionalProperties]
@@ -306,30 +332,34 @@ schema PersonAdditionalProperties:
     description?: str
 ```
 
-## KCL 文档
+## KCL Doc
 
-KCL doc 规范请参考：[传送门](../kcl/docgen.md)
-KCL 文档包含 module 文档、schema 文档两类，其中 schema 文档可以由 OpenAPI 转换得到。KCL schema 文档包含：
+:::info
+More information about KCL doc specification, please refer to the [KCL Document Specification](../kcl/docgen.md)
+:::
 
-- schema 描述信息：位于 schema 声明之后、schema 属性声明之前，是对 schema 的总体介绍
-- schema 属性信息：位于 shcema 描述信息之后，以 Attributes + 分割线分隔
-- schema 附加信息：位于 schema 属性信息之后，以 See Also + 分割线分隔
-- schema 示例信息：位于 schema 附加信息之后，以 Examples + 分割线分隔
+KCL documents consist of module documents and schema documents. And only the schema documents can be extracted from OpenAPI. The KCL schema document contains four parts:
 
-它们与 OpenAPI 规范的对应关系如下：
+- Schema Description: Declared right after the schema declaration and before the schema attribute declaration. It provides an overview of schemas
+- Schema Attribute Doc: Declared right after the schema Description and separated by `Attributes` + `---` delimiters. It describes the attribute
+- Additional information about the schema: Declared right after the schema attribute doc and separated by `See Also` + `---` delimiters
+- Example information about the schema: Declared right after the schema additional information and separated by `Examples` + `---` delimiters
 
-| KCL 文档元素    | OpenAPI 元素                                         |
-| --------------- | ---------------------------------------------------- |
-| schema 描述信息 | definitions 节点下，每个模型节点的 description 字段  |
-| schema 属性信息 | properties 节点下，每个属性节点的 description 字段   |
-| schema 附加信息 | definitions 节点下，每个模型节点的 example 字段      |
-| schema 示例信息 | definitions 节点下，每个模型节点的 externalDocs 字段 |
+The mapping between them and the OpenAPI spec is as follows:
 
-示例：
-下例中为 Pet 模型定义了其 schema 描述文档 "The schema Pet definition"；Pet 的两个属性 "name" 和 "id" 也分别定义了其属性文档 "The name of the pet" 及 "The id of the pet"；Pet 的附加信息为 "Find more info here. [https://petstore.swagger.io/](https://petstore.swagger.io/)"；此外，Pet 模型还提供了模型实例的示例写法。
+|     Elements of KCL Schema Document     |            Corresponding Elements in OpenAPI            |
+| --------------------------------------- | ------------------------------------------------------- |
+| Schema Description                      | The value of the `description` field of the data model  |
+| Schema Attribute Doc                    | The value of the `description` field of the property    |
+| Additional information about the schema | The value of the `externalDocs` field of the data model |
+| Example information about the schema    | The value of the `example` field of the data model      |
+
+Example:
+
+The following KCL code defines a Pet model with a schema description `The schema Pet definition`, and two attributes `name` and `id` with their attribute doc `The name of the pet` and `The id of the pet`; The additional information about the Pet schema is `Find more info here. [https://petstore.swagger.io/](https://petstore.swagger.io/)` and the example to use the Pet schema are provided, too.
 
 ```python
-# KCL schema Pet，采用规范的 KCL 文档格式
+# The KCL schema Pet, with doc following the KCL Document Specification
 schema Pet:
     """The schema Pet definition
     
@@ -354,7 +384,7 @@ schema Pet:
     name: str
     id?:  int = -1
         
-# 对应的 OpenAPI 文档
+# The corresponding OpenAPI Spec
 {
     "definitions": {
         "Pet": {
@@ -392,30 +422,27 @@ schema Pet:
     }
 }
 ```
+## Basic Data Types
 
-​
-
-## 基本数据类型
-
-| JSON Schema type | swagger type                | KCL type        | comment                                                                                               |
-| ---------------- | --------------------------- | --------------- | ----------------------------------------------------------------------------------------------------- |
-| boolean          | boolean                     | bool            |                                                                                                       |
-| number           | number                      | float           |                                                                                                       |
-|                  | number format double        | **unsupported** |                                                                                                       |
-|                  | number format float         | float           |                                                                                                       |
-| integer          | integer                     | int (32)        |                                                                                                       |
-|                  | integer format int64        | **unsupported** |                                                                                                       |
-|                  | integer format int32        | int (32)        |                                                                                                       |
-| string           | string                      | str             |                                                                                                       |
-|                  | string format byte          | str             |                                                                                                       |
-|                  | string format int-or-string | int             | str                                                                                                   |
-|                  | string format binay         | str             |                                                                                                       |
+| JSON Schema type | swagger type                | KCL type        | comment     |
+| ---------------- | --------------------------- | --------------- | ----------- |
+| boolean          | boolean                     | bool            |             |
+| number           | number                      | float           |             |
+|                  | number format double        | **unsupported** |             |
+|                  | number format float         | float           |             |
+| integer          | integer                     | int (32)        |             |
+|                  | integer format int64        | **unsupported** |             |
+|                  | integer format int32        | int (32)        |             |
+| string           | string                      | str             |             |
+|                  | string format byte          | str             |             |
+|                  | string format int-or-string | int             | str         |
+|                  | string format binay         | str             |             |
 |                  | string format date          | unsupported     | As defined by full-date - [RFC3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14) |
 |                  | string format date-time     | unsupported     | As defined by date-time - [RFC3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14) |
-|                  | string format password     | unsupported     | for swagger: A hint to UIs to obscure input.                                                         |
-|                  | datetime                    | datetime        |                                                                                                       |
+|                  | string format password      | unsupported     | for swagger: A hint to UIs to obscure input |
+|                  | datetime                    | datetime        |             |
 
-## Reference
+# Reference
 
 - openapi spec 2.0：[https://swagger.io/specification/v2/](https://swagger.io/specification/v2/)
 - openapi spec 3.0：[https://spec.openapis.org/oas/v3.1.0](https://spec.openapis.org/oas/v3.1.0)
