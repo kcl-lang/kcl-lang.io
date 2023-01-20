@@ -87,7 +87,6 @@ KCL schema 在 OpenAPI 中的类型为 "object". 例如上例中 "Pet" 的 "type
 KCL schema 中可以定义若干属性，属性的声明一般包含如下几部分：
 
 - 属性注解：可选，以 @ 开头，例如 @deprecated 注解表示属性被废弃
-- 属性访问修饰符（final）：可选，声明当前属性的值不可被修改
 - 属性名称：必须
 - 属性 optional 修饰符（?）：可选，带问号表示当前属性为可选属性，可以不被赋值。反之，不带问号表示必填属性
 - 属性类型：必须，可以是基本数据类型，也可以是 schema 类型， 或者是前述两种类型的并集
@@ -322,8 +321,8 @@ KCL 文档包含 module 文档、schema 文档两类，其中 schema 文档可�
 | --------------- | ---------------------------------------------------- |
 | schema 描述信息 | definitions 节点下，每个模型节点的 description 字段  |
 | schema 属性信息 | properties 节点下，每个属性节点的 description 字段   |
-| schema 附加信息 | definitions 节点下，每个模型节点的 example 字段      |
-| schema 示例信息 | definitions 节点下，每个模型节点的 externalDocs 字段 |
+| schema 附加信息 | definitions 节点下，每个模型节点的 externalDocs 字段 |
+| schema 示例信息 | definitions 节点下，每个模型节点的 example 字段      |
 
 示例：
 下例中为 Pet 模型定义了其 schema 描述文档 "The schema Pet definition"；Pet 的两个属性 "name" 和 "id" 也分别定义了其属性文档 "The name of the pet" 及 "The id of the pet"；Pet 的附加信息为 "Find more info here. [https://petstore.swagger.io/](https://petstore.swagger.io/)"；此外，Pet 模型还提供了模型实例的示例写法。
