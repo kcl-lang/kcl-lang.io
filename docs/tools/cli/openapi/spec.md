@@ -6,30 +6,24 @@ The KCL OpenAPI Spec describes the rules about how the OpenAPI definitions are t
 
 ## The File Structure of the KCL OpenAPI
 
-According to the OpenAPI 3.0 specification, an OpenAPI file should at least contains four root objects: `openapi`, `components`, `info`, `paths`. The KCL OpenAPI focuses on the part in which the models are defined -- the `definitions` object. Yet the `paths` part which describes the Restful API operations is not considered by the KCL OpenAPI Spec.
+According to the OpenAPI 3.0 specification, an OpenAPI file should at least contains four root objects: `openapi`, `components`, `info`, `paths`. The KCL OpenAPI focuses on the part in which the models are defined in the `definitions` object. Yet the `paths` part which describes the Restful API operations is not considered by the KCL OpenAPI Spec.
 
 :::info
 Note: In addition to the objects listed above, the OpenAPI spec also supports `servers`, `security`, `tags`, and `externalDocs` as optional root objects, but none of them are concerned by KCL OpenAPI when generating model codes, so we do not need to fill in this section. Yet it won't make any difference if you do.
 :::
 
 ​
-| OpenAPI Root Objects | Type              |        Befrif Description                                 | KCL OpenAPI support                                |
+| OpenAPI Root Objects | Type              |        Brief Description                                 | KCL OpenAPI support                                |
 | -------------------- | ----------------- | --------------------------------------------------------- | -------------------------------------------------- |
 | swagger          | string            | the version number of the OpenAPI Specification               | REQUIRED. only openapi 2.0 is supported currently  |
 | definitions      | Definition Object | the definitions of data types                                 | REQUIRED.                                          |
 | info             | Info Object       | Provides metadata(such as title, version, etc) about the API. | REQUIRED. The information won't be generated to the KCL code, but could be used by Swagger-UI tools for visualization |
 
-To put it more comprehensible for beginners, let's take a quick look at the root objects that forms the typical KCL OpenAPI file (snippets from swagger example [Petstore] (https://petstore.swagger.io/)). The KCL OpenAPI tool only focuses on the `definitions` object which describes two data models (`Pet` and `Category`), and the model `Pet` contains three attributes: `name`, `id`, and `category`)
+To put it more comprehensible for beginners, let's take a quick look at the root objects that forms the typical KCL OpenAPI file (snippets from swagger example [Petstore](https://petstore.swagger.io/). The KCL OpenAPI tool only focuses on the `definitions` object which describes two data models (`Pet` and `Category`), and the model `Pet` contains three attributes: `name`, `id`, and `category`)
 
 ## KCL schema
 
-KCL 中使用 schema 结构来定义配置数据的“类型”，关于 KCL schema，可参考文档：传送门
-在 definitions 节点下新增 definition 元素，即可定义 KCL schema.
-示例：
-下例在 KCL 代码中定义了 Pet、Category 两个 schema，同样地，其对应的 OpenAPI 也在 definitions 节点下包含这两个模型的描述。
-
-
-The KCL schema structure defines the "type" of configuration data. 
+The KCL schema structure defines the "type" of configuration data.
 
 :::info
 More information about KCL schema, see [KCL Language Tour#Schema](../../../reference/lang/tour.md)
@@ -356,7 +350,7 @@ The mapping between them and the OpenAPI spec is as follows:
 
 Example:
 
-The following KCL code defines a Pet model with a schema description `The schema Pet definition`, and two attributes `name` and `id` with their attribute doc `The name of the pet` and `The id of the pet`; The additional information about the Pet schema is `Find more info here. [https://petstore.swagger.io/](https://petstore.swagger.io/)` and the example to use the Pet schema are provided, too.
+The following KCL code defines a Pet model with a schema description `The schema Pet definition`, and two attributes `name` and `id` with their attribute doc `The name of the pet` and `The id of the pet`; The additional information about the Pet schema is [here](https://petstore.swagger.io/) and the example to use the Pet schema are provided, too.
 
 ```python
 # The KCL schema Pet, with doc following the KCL Document Specification
@@ -435,18 +429,18 @@ schema Pet:
 |                  | integer format int32        | int (32)        |             |
 | string           | string                      | str             |             |
 |                  | string format byte          | str             |             |
-|                  | string format int-or-string | int             | str         |
+|                  | string format int-or-string | int \| str            |          |
 |                  | string format binay         | str             |             |
 |                  | string format date          | unsupported     | As defined by full-date - [RFC3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14) |
 |                  | string format date-time     | unsupported     | As defined by date-time - [RFC3339](http://xml2rfc.ietf.org/public/rfc/html/rfc3339.html#anchor14) |
 |                  | string format password      | unsupported     | for swagger: A hint to UIs to obscure input |
 |                  | datetime                    | datetime        |             |
 
-# Reference
+## Reference
 
-- openapi spec 2.0：[https://swagger.io/specification/v2/](https://swagger.io/specification/v2/)
-- openapi spec 3.0：[https://spec.openapis.org/oas/v3.1.0](https://spec.openapis.org/oas/v3.1.0)
-- openapi spec 3.0（swagger 版本）：[https://swagger.io/specification/](https://swagger.io/specification/)
-- openapi spec 2.0 #SchemaObject：[https://swagger.io/specification/v2/#schemaObject](https://swagger.io/specification/v2/#schemaObject)
-- go swagger：[https://goswagger.io/use/models/schemas.html](https://goswagger.io/use/models/schemas.html)
-- swagger data models：[https://swagger.io/docs/specification/data-models/](https://swagger.io/docs/specification/data-models/)
+- openapi spec 2.0: [https://swagger.io/specification/v2/](https://swagger.io/specification/v2/)
+- openapi spec 3.0: [https://spec.openapis.org/oas/v3.1.0](https://spec.openapis.org/oas/v3.1.0)
+- openapi spec 3.0: [https://swagger.io/specification/](https://swagger.io/specification/)
+- openapi spec 2.0: [https://swagger.io/specification/v2/#schemaObject](https://swagger.io/specification/v2/#schemaObject)
+- go swagger: [https://goswagger.io/use/models/schemas.html](https://goswagger.io/use/models/schemas.html)
+- swagger data models: [https://swagger.io/docs/specification/data-models/](https://swagger.io/docs/specification/data-models/)
