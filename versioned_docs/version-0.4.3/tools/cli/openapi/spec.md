@@ -12,13 +12,6 @@ According to the OpenAPI 3.0 specification, an OpenAPI file should at least cont
 Note: In addition to the objects listed above, the OpenAPI spec also supports `servers`, `security`, `tags`, and `externalDocs` as optional root objects, but none of them are concerned by KCL OpenAPI when generating model codes, so we do not need to fill in this section. Yet it won't make any difference if you do.
 :::
 
-​
-| OpenAPI Root Objects | Type              |        Brief Description                                 | KCL OpenAPI support                                |
-| -------------------- | ----------------- | --------------------------------------------------------- | -------------------------------------------------- |
-| swagger          | string            | the version number of the OpenAPI Specification               | REQUIRED. only openapi 2.0 is supported currently  |
-| definitions      | Definition Object | the definitions of data types                                 | REQUIRED.                                          |
-| info             | Info Object       | Provides metadata(such as title, version, etc) about the API. | REQUIRED. The information won't be generated to the KCL code, but could be used by Swagger-UI tools for visualization |
-
 To put it more comprehensible for beginners, let's take a quick look at the root objects that forms the typical KCL OpenAPI file (snippets from swagger example [Petstore](https://petstore.swagger.io/). The KCL OpenAPI tool only focuses on the `definitions` object which describes two data models (`Pet` and `Category`), and the model `Pet` contains three attributes: `name`, `id`, and `category`)
 
 ## KCL schema
@@ -438,9 +431,9 @@ schema Pet:
 
 ## Reference
 
-- openapi spec 2.0: [https://swagger.io/specification/v2/](https://swagger.io/specification/v2/)
-- openapi spec 3.0: [https://spec.openapis.org/oas/v3.1.0](https://spec.openapis.org/oas/v3.1.0)
-- openapi spec 3.0: [https://swagger.io/specification/](https://swagger.io/specification/)
-- openapi spec 2.0: [https://swagger.io/specification/v2/#schemaObject](https://swagger.io/specification/v2/#schemaObject)
-- go swagger: [https://goswagger.io/use/models/schemas.html](https://goswagger.io/use/models/schemas.html)
-- swagger data models: [https://swagger.io/docs/specification/data-models/](https://swagger.io/docs/specification/data-models/)
+- OpenAPI spec 2.0: [https://swagger.io/specification/v2/](https://swagger.io/specification/v2/)
+- OpenAPI spec 3.0: [https://spec.openapis.org/oas/v3.1.0](https://spec.openapis.org/oas/v3.1.0)
+- OpenAPI spec 3.0: [https://swagger.io/specification/](https://swagger.io/specification/)
+- OpenAPI spec 2.0: [https://swagger.io/specification/v2/#schemaObject](https://swagger.io/specification/v2/#schemaObject)
+- Go swagger: [https://goswagger.io/use/models/schemas.html](https://goswagger.io/use/models/schemas.html)
+- Swagger data models: [https://swagger.io/docs/specification/data-models/](https://swagger.io/docs/specification/data-models/)
