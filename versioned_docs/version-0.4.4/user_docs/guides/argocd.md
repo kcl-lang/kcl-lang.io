@@ -1,6 +1,6 @@
 ---
 title: "ArgoCD"
-sidebar_position: 9
+sidebar_position: 11
 ---
 
 ## Prerequisite
