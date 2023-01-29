@@ -25,7 +25,7 @@ data:
     - name: kusion
       generate:
         command: ["sh", "-c"]
-        args: ["kcl -Y kcl.yaml ci-test/settings.yaml"]
+        args: ["kcl -Y kcl.yaml ci-test/settings.yaml -o ci-test/stdout.golden.yaml"]
       lockRepo: true
 EOF
 kubectl -n argocd patch cm/argocd-cm -p "$(cat patch-argocd-cm.yaml)"
