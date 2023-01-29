@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # KCL 语言速览
 
-KCL(Kusion Configuration Language)是 Kusion 内置的面相云原生领域配置策略语言。KCL 设计之初受 Python3 启发，同时吸收了声明式、OOP 编程范式的理念设计等设计，是一种专用于配置策略定义、校验的静态强类型的面相配置和策略场景的语言。本节我们将快速展示 KCL 语言的基本特性。
+KCL(Kusion Configuration Language)是 Kusion 内置的面相云原生领域配置策略语言。KCL 设计之初受 Python3 启发，同时吸收了声明式、OOP 编程范式的设计理念，是一种专用于配置策略定义、校验的静态强类型的面相配置和策略场景的语言。本节我们将快速展示 KCL 语言的基本特性。
 
 ## 1. Hello KCL
 
