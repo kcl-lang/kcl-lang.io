@@ -151,7 +151,7 @@ const config = {
       // hideableSidebar: true,
       announcementBar: {
         id: 'announcementBar-1', // Increment on change
-        content: `⭐️ If you like KCL, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/KusionStack/KCLVM">Github</a>`,
+        content: `Give us a star ⭐️ - If you are using Backstage or think KCL is an interesting project, we would love a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/KusionStack/KCLVM">Github</a>`,
       },
       
       algolia: {
