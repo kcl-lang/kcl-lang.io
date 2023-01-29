@@ -65,7 +65,7 @@ The core model library is generally named `kusion_models`, mainly including fron
 
 ![](/img/docs/user_docs/concepts/project-stack.png)
 
-Project and Stack are logical isolation concepts used to orginize the Konfig.
+Project and Stack are logical isolation concepts used to organize the Konfig.
 
 ### Project
 
@@ -94,4 +94,4 @@ appops/nginx-example
 └── project.yaml    # Project metadata
 ```
 
-The Project represents an application and Stack represents different environments of this application, such as dev, pre and prod, etc. Common configurations can be stored in a `base` directory under this Project.
+The Project represents an application and Stack represents different environments of this application, such as dev, pre, prod, etc. Common configurations can be stored in a `base` directory under this Project.
