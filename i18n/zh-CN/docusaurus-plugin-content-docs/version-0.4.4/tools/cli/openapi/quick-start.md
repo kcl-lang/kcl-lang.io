@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# Quick Start
+# 快速开始
 
-## 1. 安装 KCLOpenAPI tool
+## 1. 安装 KCLOpenAPI 工具
 
 您可通过 go install 快速安装 kcl-openapi：
 
@@ -37,7 +37,7 @@ Usage:
   kcl-openapi generate model -f FILENAME [options]
 ```
 
-# 2. 生成 KCL 文件
+## 2. 生成 KCL 文件
 
 - [将 OpenAPI 描述文件转换为 KCL](../openapi/openapi-to-kcl.md)
 - [将 Kubernetes CRD 转换为 KCL](../openapi/crd-to-kcl.md)
