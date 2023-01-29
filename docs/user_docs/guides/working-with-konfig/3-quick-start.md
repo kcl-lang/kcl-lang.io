@@ -115,7 +115,7 @@ After compiling, we can see three resources:
 
 The above completes the configuration and takes effect. Later, we can use the command `kubectl apply` to apply and check the actual status of resources. This guide will not elaborate.
 
-## 配置修改
+## Modification
 
 The `image` attribute in the `Server` model is used to declare the application's container image. We can modify the `image` value in `base/main.k` to modify or upgrade the image:
 
