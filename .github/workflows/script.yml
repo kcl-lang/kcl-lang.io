@@ -13,6 +13,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Check Install Script
         run: static/script/install.sh
+      - name: Check KCL run
+        run: export PATH=$PATH:/usr/local/kclvm/bin && kcl hello.k && kcl hello.k --target native
 
       - uses: actions/setup-python@v4
         with:
@@ -33,6 +35,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Check Install Script
         run: static/script/install.sh
+      - name: Check KCL run
+        run: export PATH=$PATH:/usr/local/kclvm/bin && kcl hello.k && kcl hello.k --target native
 
       - uses: actions/setup-python@v4
         with:
@@ -53,6 +57,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Check Install Script
         run: static/script/install.ps1
+      - name: Check KCL run
+        run: kcl.exe hello.k && kcl hello.k --target native
 
       - uses: actions/setup-python@v4
         with:
