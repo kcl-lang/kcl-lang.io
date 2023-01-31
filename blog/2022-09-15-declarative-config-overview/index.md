@@ -616,7 +616,7 @@ temp = {"a${i}": a(1, 2) for i in range(10000)}
 ```jsonnet
 local a(x, y) = std.max(x, y);
 {
-    temp: [a(1, 2) for i in std.range(0, 10000)],
+    temp: {["a%d" % i]: a(1, 2) for i in std.range(0, 10000)},
 }
 ```
 
@@ -659,7 +659,7 @@ output "r10" {
 
 | Environment | KCL v0.4.3 Running time (including compilation+runtime) | CUE v0.4.3 Running time (including compilation+runtime) | Jsonnet v0.18.0 Running time (including compilation+runtime)  | HCL in Terraform v1.3.0 Running time (including compilation+runtime) |
 | --- | --- | --- | --- | --- |
-| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 440 ms (kclvm_cli run test.k) | 6290 ms (cue export test.cue) | 1890 ms (jsonnet test.jsonnet) | 1774 ms (terraform plan -parallelism=1) |
+| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 440 ms (kclvm_cli run test.k) | 6290 ms (cue export test.cue) | 3340 ms (jsonnet test.jsonnet) | 1774 ms (terraform plan -parallelism=1) |
 
 #### Another Complex Case
 
