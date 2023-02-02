@@ -157,13 +157,6 @@ print(all_true([True, None]))  # False
 
 Returns true when the list is empty.
 
-<!--
-反直觉特性:
-print(all_true({abc: False})) # True
-
-可以考虑调整对 str 和 dict 的语言
--->
-
 ## any_true
 
 `any_true(x:str|[]|{:}) -> bool`
@@ -265,10 +258,6 @@ print(min([1,2])) # 1
 print(min([2,1])) # 1
 ```
 
-<!--
-对字符串列表的语义是否需要收紧?
--->
-
 ## max
 
 `max(x:[number]) -> number`
@@ -350,7 +339,7 @@ t5 = typeof(_x2, full_name=True)
 
 t6 = typeof(_x1, full_name=True)
 
-# 输出
+# Output
 # t1: int
 # t2: str
 # t3: Person
@@ -370,7 +359,7 @@ a = zip([0, 1, 2], [3, 4, 5])
 b = zip([0, 1], [3, 4, 5])
 c = zip([0, 1, 2], [3, 4, 5, 6])
 
-# 输出
+# Output
 # a:
 # - - 0
 #   - 3
