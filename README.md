@@ -31,7 +31,3 @@ npx http-server ./build
 ```
 
 Open http://localhost:8080 in the browser.
-
-## Notice
-
-This website is built under Docusaurus version 2.0.0-beta.17. There may be unknown errors when compiling on other versions.
