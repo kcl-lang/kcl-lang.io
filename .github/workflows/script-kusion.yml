@@ -38,7 +38,7 @@ jobs:
       - name: Check Go Installation
         working-directory: .
         run: |
-          go install kusionstack.io/kusion@latest
+          go install kusionstack.io/kusion@main
           echo "go installed successfully"
           $HOME/go/bin/kusion version
           $HOME/go/bin/kusion compile hello.k
