@@ -442,7 +442,7 @@ It can be seen that, compared with Helm, KCL reduces the number of configuration
 
 Helm can define reusable templates in the `.tpl` file and support other templates to reference it. However, only defined templates can be reused. In a complex Helm chart project, we need to define a lot of additional basic templates. Compared with the cumbersome writing method of Helm, all contents in KCL are variables. No additional syntax is required to specify templates. Any variables can be referenced to each other.
 
-In addition, there are a large number of `{{- include}}}`, `nindent` and `toYaml` tag characters that have nothing to do with actual logic in Helm. You need to calculate spaces and indents at each reference. In KCL, there are fewer useless codes, and there is no need for too many `{{*}}` to mark code blocks. The information density is higher, and the indentation and space have been completely liberated.
+In addition, there are a large number of `{{- include }}`, `nindent` and `toYaml` tag characters that have nothing to do with actual logic in Helm. You need to calculate spaces and indents at each reference. In KCL, there are fewer useless codes, and there is no need for too many `{{*}}` to mark code blocks. The information density is higher, and the indentation and space have been completely liberated.
 
 In fact, KCL and Helm are not antagonistic. We can even use KCL to write HelmRelease templates and provide programmable extension capabilities for existing Helm chart to write YAML validators.
 
