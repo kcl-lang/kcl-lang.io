@@ -434,7 +434,7 @@ spec:
 
 ## 小结
 
-可以看出，与 Helm 相比，KCL 通过在配置重用和覆盖的基础上生成代码，减少了配置文件和代码行的数量。与 Helm 一样，它是一个纯客户端解决方案，可以将配置和策略验证尽可能的左移，而不会对集群造成额外的依赖或负担，或者甚至没有 Kubernetes 集群时也可以通过 KCL Schema 等特性对 YAML 进行充分验证和测试。
+可以看出，与 Helm 相比，KCL 通过在配置重用和覆盖的基础上生成代码，减少了配置文件和代码行的数量。与 Helm 一样，它是一个纯客户端解决方案，可以将配置和策略验证尽可能地左移，而不会对集群造成额外的依赖或负担，或者甚至没有 Kubernetes 集群时也可以通过 KCL Schema 等特性对 YAML 进行充分验证和测试。
 
 Helm 可以在 `.tpl` 文件中定义可重用模板，并支持其他模板引用它。但是，只有模板定义才能重用。在一个复杂的 Helm 图表项目中，我们需要定义许多附加的基本模板。与Helm繁 琐的写作方法相比，KCL 中的所有内容都是变量。指定模板不需要其他语法。任何变量都可以相互引用。
 
@@ -444,6 +444,16 @@ Helm 可以在 `.tpl` 文件中定义可重用模板，并支持其他模板引�
 
 ## 未来计划
 
-我们后续计划 KCL 的模型和约束可以作为一个包来管理（这个包只有 KCL 文件）。例如，Kubernetes 的模型和约束可以开箱即用。用户可以通过已有的模型生成配置或验证现有配置，并且可以通过 KCL 继承简单地扩展用户想要的模型和约束。
+我们后续计划 KCL 的模型和约束可以作为一个包来管理（这个包只有 KCL 文件）。例如，Kubernetes 的模型和约束可以开箱即用。用户可以通过已有的模型生成配置或验证现有配置，并且可以通过 KCL 继承手段简单地扩展用户想要的模型和约束。
 
 在此阶段，您可以使用 Git 或 [OCI Registry as Storage（ORAS)](https://github.com/oras-project/oras) 等工具来管理 KCL 配置版本。
+
+如果您喜欢这篇文章，一定记得收藏 + 关注！！更多精彩内容请访问:
+
++ KCL 仓库地址：https://github.com/KusionStack/KCLVM
++ Kusion 仓库地址：https://github.com/KusionStack/kusion
++ Konfig 仓库地址：https://github.com/KusionStack/konfig
+
+如果您喜欢这些项目，欢迎 Github Star 鼓励一下 🌟🌟🌟，同时欢迎访问下面的链接加入我们的社区进行交流 👏👏👏
+
++ https://github.com/KusionStack/community
