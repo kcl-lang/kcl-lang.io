@@ -447,13 +447,3 @@ Helm 可以在 `.tpl` 文件中定义可重用模板，并支持其他模板引�
 我们后续计划 KCL 的模型和约束可以作为一个包来管理（这个包只有 KCL 文件）。例如，Kubernetes 的模型和约束可以开箱即用。用户可以通过已有的模型生成配置或验证现有配置，并且可以通过 KCL 继承手段简单地扩展用户想要的模型和约束。
 
 在此阶段，您可以使用 Git 或 [OCI Registry as Storage（ORAS)](https://github.com/oras-project/oras) 等工具来管理 KCL 配置版本。
-
-如果您喜欢这篇文章，一定记得收藏 + 关注！！更多精彩内容请访问:
-
-+ KCL 仓库地址：https://github.com/KusionStack/KCLVM
-+ Kusion 仓库地址：https://github.com/KusionStack/kusion
-+ Konfig 仓库地址：https://github.com/KusionStack/konfig
-
-如果您喜欢这些项目，欢迎 Github Star 鼓励一下 🌟🌟🌟，同时欢迎访问下面的链接加入我们的社区进行交流 👏👏👏
-
-+ https://github.com/KusionStack/community
