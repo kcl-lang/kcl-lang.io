@@ -14,6 +14,12 @@ KCL 的每个版本都包含各种操作系统和体系结构。这些二进制�
 export PATH=$PATH:{install-location}/kclvm/bin
 ```
 
+### Homebrew
+
+```bash
+brew install kcl-lang/tap/kclvm
+```
+
 ### 使用 Python3 安装
 
 通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)

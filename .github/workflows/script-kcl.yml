@@ -1,4 +1,4 @@
-name: script
+name: script-kcl
 on:
   push:
     branches: 
@@ -72,3 +72,19 @@ jobs:
 
       - name: Check Go Installation
         run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && C:\Users\runneradmin\go\bin\kcl-go.exe run hello.k
+
+  check-kcl-brew-install:
+    strategy:
+      matrix:
+        os: [macos-10.15, macos-11, macos-12]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Check Brew Installation
+        working-directory: .
+        run: |
+          brew install kcl-lang/tap/kclvm
+          echo "brew installed successfully"
+          kcl -V
+          kcl hello.k

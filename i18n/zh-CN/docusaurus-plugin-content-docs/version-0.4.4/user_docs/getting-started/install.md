@@ -40,6 +40,12 @@ wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
 powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 ```
 
+### Homebrew
+
+```bash
+brew install kcl-lang/tap/kclvm
+```
+
 ### 使用 Python3 安装
 
 通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)

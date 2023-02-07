@@ -40,6 +40,12 @@ Install the latest windows KCL to $Env:SystemDrive\kclvm\bin and add this direct
 powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 ```
 
+### Homebrew
+
+```bash
+brew install kcl-lang/tap/kclvm
+```
+
 ### From Python3
 
 Install `kcl` through the `python3` and `pip` (`python3` requires 3.7.3+).
