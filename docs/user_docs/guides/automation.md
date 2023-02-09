@@ -13,13 +13,13 @@ In addition, the automation capability of KCL can be realized and integrated int
 
 KCL allows us to directly modify the values in the configuration model through the KCL CLI `-O|--overrides` parameter. The parameter contains three parts e.g., `pkg`, `identifier`, `attribute` and `override_value`.
 
-```
+```bash
 kcl main.k -O override_spec
 ```
 
 - `override_spec` represents a unified representation of the configuration model fields and values that need to be modified
 
-```
+```bash
 override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 ```
 
@@ -56,7 +56,7 @@ person = Person {
 
 The command is
 
-```
+```bash
 kcl main.k -O :person.name=\"Bob\" -O :person.age=10
 ```
 
@@ -70,7 +70,7 @@ person:
 
 Besides, when we use KCL CLI `-d` argument, the KCL file will be modified to the following content at the same time
 
-```
+```bash
 kcl main.k -O :person.name=\"Bob\" -O :person.age=10 -d
 ```
 
@@ -101,7 +101,7 @@ person = Person {
 
 The command is
 
-```
+```bash
 kcl main.k -O :person.ids=\[1,2\]
 ```
 
@@ -132,7 +132,7 @@ config = Config {
 
 The command is
 
-```
+```bash
 kcl main.k -O config.x-
 ```
 
@@ -142,4 +142,55 @@ The output is
 config:
   x: 1
   y: s
+```
+
+### API
+
+In addition, we can automatically modify the configuration attributes through the [multilingual API](/docs/reference/xlang-api/overview).
+
+Take the following KCL code fragment (main.k) and RestAPI as an example.
+
+```python
+import regex
+
+schema AppConfig:
+    image: str
+
+    check:
+        regex.match(image, r"^([a-z0-9\.\:]+)\.([a-z]+)\:([a-z0-9]+)\/([a-z0-9\.]+)\/([a-z0-9-_.:]+)$"), "image name should satisfy the \`REPOSITORY:TAG\` form"
+
+appConfig = AppConfig {
+    image = "nginx:1.13.9"
+}
+```
+
+The RestAPI service can be started in the following way:
+
+```bash
+kclvm -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+```
+
+The service can then be requested via the POST protocol:
+
+```bash
+curl -X POST http://127.0.0.1:2021/api:protorpc/KclvmService.OverrideFile -H 'content-type: accept/json' -d '{
+    "file": "main.k",
+    "specs": ["appConfig.image=\"nginx:1.14.0\""]
+}'
+```
+
+After the service call is completed, main.k will be modified as follows:
+
+```python
+import regex
+
+schema AppConfig:
+    image: str
+
+    check:
+        regex.match(image, r"^([a-z0-9\.\:]+)\.([a-z]+)\:([a-z0-9]+)\/([a-z0-9\.]+)\/([a-z0-9-_.:]+)$"), "image name should satisfy the \`REPOSITORY:TAG\` form"
+
+appConfig = AppConfig {
+    image = "nginx:1.14.0"
+}
 ```

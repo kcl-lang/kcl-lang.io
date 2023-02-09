@@ -185,7 +185,7 @@ At present, the KCL Python SDK is still in the early preview version. The KCL te
 
 ## REST-API
 
-The C-API provided by KCL does not have a REST-API. The REST-API is defined by Protobuf and is finally implemented by the upper-layer Go-SDK.
+The C-API provided by KCL does not have a REST-API. The REST-API is defined by Protobuf.
 
 ### Start REST Service
 
