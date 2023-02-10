@@ -10,8 +10,16 @@ sidebar_position: 2
 
 KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/KusionStack/KCLVM/releases/) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
 
+#### MacOS & Linux
+
 ```bash
 export PATH=$PATH:{install-location}/kclvm/bin
+```
+
+#### Windows
+
+```powershell
+$env:PATH += ";{install-location}\kclvm\bin;"
 ```
 
 ### 使用脚本安装最新版本

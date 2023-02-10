@@ -10,8 +10,16 @@ sidebar_position: 2
 
 Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/KusionStack/KCLVM/releases/) and add `{install-location}/kclvm/bin` to the environment PATH.
 
+#### MacOS & Linux
+
 ```bash
 export PATH=$PATH:{install-location}/kclvm/bin
+```
+
+#### Windows
+
+```powershell
+$env:PATH += ";{install-location}\kclvm\bin;"
 ```
 
 ### Using script to install the latest release
