@@ -52,6 +52,10 @@ jobs:
         run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run hello.k
 
   check-windows:
+    strategy:
+      matrix:
+        goversion: [1.17, 1.18]
+        pyversion: ['3.9', '3.10']
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
@@ -63,12 +67,12 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.17
+          go-version: ${{ matrix.goversion }}
 
       - name: Set up python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10' 
+          python-version: ${{ matrix.pyversion }}
 
       - name: Check Go Installation
         run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && C:\Users\runneradmin\go\bin\kcl-go.exe run hello.k
