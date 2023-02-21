@@ -627,6 +627,24 @@ person:
     key: value
 ```
 
+In KCL, different fields in dict can be referenced, such as the following example.
+
+```python
+config = {
+    name = "me"
+    metadata.name = name  # Reference `name` with the value `"me"` in `config` directly.
+}
+```
+
+The output YAML is
+
+```yaml
+config:
+  name: me
+  metadata:
+    name: me
+```
+
 We can declare a dict with dict comprehension:
 
 ```python

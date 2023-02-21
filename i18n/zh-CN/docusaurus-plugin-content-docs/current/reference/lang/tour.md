@@ -614,7 +614,7 @@ person = {
 }  # {"base": {"count": 2, "value": "value"}, "labels": {"key": "value"}}
 ```
 
-输出的 YAML 为：
+输出 YAML 为：
 
 ```yaml
 person:
@@ -623,6 +623,24 @@ person:
     value: value
   labels:
     key: value
+```
+
+在 KCL 中，dict 中的不同的字段可以直接引用，比如如下的例子
+
+```python
+config = {
+    name = "me"
+    metadata.name = name  # Reference `name` with the value `"me"` in `config` directly.
+}
+```
+
+输出 YAML 为：
+
+```yaml
+config:
+  name: me
+  metadata:
+    name: me
 ```
 
 我们可以使用字典推导式构建字典：
