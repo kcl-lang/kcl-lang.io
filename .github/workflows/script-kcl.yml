@@ -60,18 +60,21 @@ jobs:
       - name: Check KCL run
         run: C:\kclvm\bin\kcl.exe hello.k && C:\kclvm\bin\kcl.exe hello.k --target native
 
-      - uses: actions/setup-python@v4
+      - name: Set up Go
+        uses: actions/setup-go@v2
         with:
-          python-version: '3.9'
-      - uses: actions/setup-go@v1
-        with:
-          go-version: "1.18"
+          go-version: 1.17
 
-      - name: Check Python Installation
-        run: python3 -m pip install kclvm --user -U && python3 -m kclvm hello.k
+      - name: Set up python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
 
       - name: Check Go Installation
         run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && C:\Users\runneradmin\go\bin\kcl-go.exe run hello.k
+
+      - name: Check Python Installation
+        run: python3 -m pip install kclvm --user -U && python3 -m kclvm hello.k
 
   check-kcl-brew-install:
     strategy:
