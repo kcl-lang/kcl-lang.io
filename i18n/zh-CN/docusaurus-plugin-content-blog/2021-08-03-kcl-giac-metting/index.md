@@ -1,6 +1,6 @@
 ---
 slug: 2021-kcl-intro
-title: KCL云原生配置策略语言
+title: GIAC 2022 会议 KCL 介绍内容
 authors:
   name: 柴树杉
   title: KCL 团队成员

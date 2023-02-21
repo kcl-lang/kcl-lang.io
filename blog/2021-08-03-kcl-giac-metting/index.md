@@ -1,6 +1,6 @@
 ---
 slug: 2021-kcl-intro
-title: KCL - Cloud Native Configuration and Policy Language
+title: KCL Introduction on GIAC 2021 Meeting
 authors:
   name: Shushan, Chai
   title: KCL Team Member

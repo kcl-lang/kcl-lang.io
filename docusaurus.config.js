@@ -117,18 +117,17 @@ const config = {
           // lastVersion: 'current',
 
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/KusionStack/kcl-lang.io/blob/main',
+          editUrl: 'https://github.com/KusionStack/kcl-lang.io',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           remarkPlugins: [math],
           rehypePlugins: [katex],
         },
         blog: {
+          blogSidebarCount: "ALL",
           postsPerPage: 2,
           showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: 'https://github.com/KusionStack/kcl-lang.io/blob/main',
+          editUrl: 'https://github.com/KusionStack/kcl-lang.io',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
