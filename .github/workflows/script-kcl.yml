@@ -1,5 +1,6 @@
 name: script-kcl
 on:
+  pull_request:
   push:
     branches: 
      - main
@@ -74,11 +75,13 @@ jobs:
         with:
           python-version: ${{ matrix.pyversion }}
 
+      - name: Check Python Installation
+        run: python3 -m pip install kclvm --user -U && python3 -m kclvm hello.k
+
       - name: Check Go Installation
         run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && C:\Users\runneradmin\go\bin\kcl-go.exe run hello.k
 
-      - name: Check Python Installation
-        run: python3 -m pip install kclvm --user -U && python3 -m kclvm hello.k
+
 
   check-kcl-brew-install:
     strategy:
