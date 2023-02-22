@@ -59,6 +59,9 @@
     "sidebar.community.category.Community": {
       "message": "简介"
     },
+    "sidebar.community.category.Types": {
+      "message": "类型系统"
+    },
     "sidebar.community.category.Contribution Guide": {
       "message": "贡献指南"
     },
