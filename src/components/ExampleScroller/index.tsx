@@ -112,6 +112,9 @@ export const ExampleScroller = () => {
       )}
     >
       <h2
+        className={clsx(
+          "text--center",
+        )}
         style={{ color: "var(--ifm-color-primary)" }}
       >
         Codify and Manage Your Modern Configuration and Policy
