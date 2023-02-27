@@ -22,7 +22,7 @@ export PATH=$PATH:{install-location}/kclvm/bin
 $env:PATH += ";{install-location}\kclvm\bin;"
 ```
 
-### Homebrew
+### Homebrew (MacOS)
 
 ```bash
 brew install kcl-lang/tap/kclvm

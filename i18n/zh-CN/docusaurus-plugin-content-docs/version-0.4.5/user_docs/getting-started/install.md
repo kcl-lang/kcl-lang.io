@@ -48,7 +48,7 @@ wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
 powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 ```
 
-### Homebrew
+### Homebrew (MacOS)
 
 ```bash
 brew install kcl-lang/tap/kclvm

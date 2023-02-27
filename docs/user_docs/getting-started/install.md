@@ -48,7 +48,7 @@ Install the latest windows KCL to $Env:SystemDrive\kclvm\bin and add this direct
 powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 ```
 
-### Homebrew
+### Homebrew (MacOS)
 
 ```bash
 brew install kcl-lang/tap/kclvm
