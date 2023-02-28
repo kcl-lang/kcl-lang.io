@@ -128,7 +128,7 @@ data:
         name: metadata-name
 ```
 
-> Note: The current KCL version does not support the backward reference of the internal attributes of the configuration block and the direct reference of global variables by skipping the internal scope. The referenced attributes need to be written in front of the configuration reference.
+> ⚠️ Note: The current KCL version does not support the backward reference of the internal attributes of the configuration block and the direct reference of global variables by skipping the internal scope. The referenced attributes need to be written in front of the configuration reference.
 
 ### New Language Features
 
