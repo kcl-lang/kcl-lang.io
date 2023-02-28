@@ -54,6 +54,15 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 brew install kcl-lang/tap/kclvm
 ```
 
+### Scoop (Windows)
+
+首先安装 [Scoop](https://scoop.sh/), 然后通过如下命令安装 `kcl`:
+
+```bash
+scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
+scoop install kcl-lang/kclvm
+```
+
 ### 使用 Python3 安装
 
 通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)
