@@ -32,6 +32,40 @@ GITHUB_REPO=KCLVM
 KCL_CLI_FILENAME=kcl
 # KCL file path
 KCL_CLI_FILE=${KCL_INSTALL_DIR}/kclvm/bin/${KCL_CLI_FILENAME}
+# KCL Home dir
+KCLVM_HOME_DIR=${KCL_INSTALL_DIR}/kclvm
+
+# --- helper functions for logs ---
+info() {
+  local action="$1"
+  local details="$2"
+  command printf '\033[1;32m%12s\033[0m %s\n' "$action" "$details" 1>&2
+}
+
+warn() {
+	command printf '\033[1;33mWarn\033[0m: %s\n' "$1" 1>&2
+}
+
+error() {
+	command printf '\033[1;31mError\033[0m: %s\n' "$1" 1>&2
+}
+
+request() {
+    command printf '\033[1m%s\033[0m\n' "$1" 1>&2
+}
+
+eprintf() {
+    command printf '%s\n' "$1" 1>&2
+}
+
+bold() {
+    command printf '\033[1m%s\033[0m' "$1"
+}
+
+# If file exists, echo it
+echo_fexists() {
+  [ -f "$1" ] && echo "$1"
+}
 
 getSystemInfo() {
     ARCH=$(uname -m)
@@ -56,12 +90,12 @@ verifySupported() {
 
     for osarch in "${supported[@]}"; do
         if [ "$osarch" == "$current_osarch" ]; then
-            echo "Your system is ${OS}_${ARCH}"
+            info "Your system is ${OS}_${ARCH}"
             return
         fi
     done
 
-    echo "No prebuilt binary for ${current_osarch}"
+    error "No prebuilt binary for ${current_osarch}"
     exit 1
 }
 
@@ -81,7 +115,7 @@ checkHttpRequestCLI() {
     elif type "wget" > /dev/null; then
         KCL_HTTP_REQUEST_CLI=wget
     else
-        echo "Either curl or wget is required"
+        error "Either curl or wget is required"
         exit 1
     fi
 }
@@ -119,7 +153,7 @@ downloadFile() {
     KCL_TMP_ROOT=$(mktemp -dt kcl-install-XXXXXX)
     ARTIFACT_TMP_FILE="$KCL_TMP_ROOT/$KCL_CLI_ARTIFACT"
 
-    echo "Downloading $DOWNLOAD_URL ..."
+    info "Downloading $DOWNLOAD_URL ..."
     if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
         curl -SsL "$DOWNLOAD_URL" -o "$ARTIFACT_TMP_FILE"
     else
@@ -127,10 +161,10 @@ downloadFile() {
     fi
 
     if [ ! -f "$ARTIFACT_TMP_FILE" ]; then
-        echo "Failed to download $DOWNLOAD_URL ..."
+        error "Failed to download $DOWNLOAD_URL ..."
         exit 1
     else
-        echo "Scucessful to download $DOWNLOAD_URL"
+        info "Scucessful to download $DOWNLOAD_URL"
     fi
 }
 
@@ -161,29 +195,128 @@ installFile() {
     local tmp_kclvm_folder=$KCL_TMP_ROOT/kclvm
 
     if [ ! -f "$tmp_kclvm_folder/bin/kcl" ]; then
-        echo "Failed to unpack KCL executable."
+        error "Failed to unpack KCL executable."
         exit 1
     fi
 
     # Copy temp kclvm folder into the target installation directory.
-    echo "Copy the kclvm folder $tmp_kclvm_folder into the target installation directory $KCL_INSTALL_DIR"
+    info "Copy the kclvm folder $tmp_kclvm_folder into the target installation directory $KCL_INSTALL_DIR"
     runAsRoot cp -rf $tmp_kclvm_folder $KCL_INSTALL_DIR
 
     if [ -f "$KCL_CLI_FILE" ]; then
-        echo "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/kclvm/bin successfully."
+        updateProfile "$KCLVM_HOME_DIR" && info "Finished" "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/kclvm/bin successfully."
         # Check the KCL CLI version
         runAsRoot $KCL_CLI_FILE -V
     else 
-        echo "Failed to install KCL into $KCL_CLI_FILE"
+        error "Failed to install KCL into $KCL_CLI_FILE"
         exit 1
     fi
+}
+
+updateProfile() {
+	install_dir="$1"
+	profile_install_dir=$(echo "$install_dir" | sed "s:^$HOME:\$HOME:")
+	detected_profile=$(detectProfile "$(basename $SHELL)" "$(uname -s)")
+	path_str="$(buildPathStr "$detected_profile" "$profile_install_dir")"
+
+	info "Editing user profile ($detected_profile) with the profile install dir $profile_install_dir"
+
+	if [ -z "${detected_profile-}" ]; then
+        error "No user profile found."
+        eprintf "Tried \$PROFILE ($PROFILE), ~/.bashrc, ~/.bash_profile, ~/.zshrc, ~/.profile, and ~/.config/fish/config.fish."
+        eprintf "You can either create one of these and try again or add this to the appropriate file:"
+        eprintf "$path_str"
+		return 1
+	else
+		if ! command grep -qc 'KCLVM_HOME' "$detected_profile"; then
+            info "The KCLVM PATH string is"
+            info $path_str
+			command printf "$path_str" >> "$detected_profile"
+		else
+			warn "Your profile ($detected_profile) already mentions kclvm and has not been changed."
+		fi
+	fi
+}
+
+detectProfile() {
+	local shell_name="$1"
+	local uname="$2"
+
+	if [ -f "$PROFILE" ]; then
+		info "Current profile: $PROFILE"
+		return
+	fi
+
+	# try to detect the current shell
+	case "$shell_name" in
+	bash)
+		# Shells on macOS default to opening with a login shell, while Linuxes
+		# default to a *non*-login shell, so if this is macOS we look for
+		# `.bash_profile` first; if it's Linux, we look for `.bashrc` first. The
+		# `*` fallthrough covers more than just Linux: it's everything that is not
+		# macOS (Darwin). It can be made narrower later if need be.
+		case $uname in
+		Darwin)
+			echo_fexists "$HOME/.bash_profile" || echo_fexists "$HOME/.bashrc"
+			;;
+		*)
+			echo_fexists "$HOME/.bashrc" || echo_fexists "$HOME/.bash_profile"
+			;;
+		esac
+		;;
+	zsh)
+		echo "$HOME/.zshrc"
+		;;
+	fish)
+		echo "$HOME/.config/fish/config.fish"
+		;;
+	*)
+		# Fall back to checking for profile file existence. Once again, the order
+		# differs between macOS and everything else.
+		local profiles
+		case $uname in
+		Darwin)
+			profiles=(.profile .bash_profile .bashrc .zshrc .config/fish/config.fish)
+			;;
+		*)
+			profiles=(.profile .bashrc .bash_profile .zshrc .config/fish/config.fish)
+			;;
+		esac
+
+		for profile in "${profiles[@]}"; do
+			echo_fexists "$HOME/$profile" && break
+		done
+		;;
+	esac
+}
+
+# generate shell code to source the loading script and modify the path for the input profile
+buildPathStr() {
+	local profile="$1"
+	local profile_install_dir="$2"
+
+	if [[ $profile =~ \.fish$ ]]; then
+		# fish uses a little different syntax to modify the PATH
+		cat <<END_FISH_SCRIPT
+
+string match -r "kclvm" "\$PATH" > /dev/null; or set -gx PATH "\$profile_install_dir/bin" \$PATH
+
+END_FISH_SCRIPT
+	else
+		# bash and zsh
+		cat <<END_BASH_SCRIPT
+
+export PATH="$profile_install_dir/bin:\$PATH"
+
+END_BASH_SCRIPT
+	fi
 }
 
 fail_trap() {
     result=$?
     if [ "$result" != "0" ]; then
-        echo "Failed to install KCL"
-        echo "For support, go to https://kcl-lang.io"
+        error "Failed to install KCL"
+        error "For support, go to https://kcl-lang.io"
     fi
     cleanup
     exit $result
@@ -197,6 +330,7 @@ cleanup() {
 
 installCompleted() {
     echo -e "\nPlease add ${KCL_INSTALL_DIR}/kclvm/bin into your PATH"
+    echo -e "Remeber run the command `source ~/.bash_profile` or `source ~/.bashrc` to ensure your PATH is effective"
     echo -e "\nTo get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
 }
 
@@ -225,7 +359,7 @@ checkExistingKCL
 #     exit 1
 # fi
 
-echo "Find the latest KCL version $ret_val"
+info "Find the latest KCL version $ret_val"
 
 downloadFile $ret_val
 installFile
