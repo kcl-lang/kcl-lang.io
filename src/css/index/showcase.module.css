@@ -196,9 +196,9 @@
   
   @media (max-width: 622px) {
     .showcase {
-      --active-font-size: var(--font-size-small);
+      --active-font-size: calc(15px);
       padding: 0;
-      font-size: var(--font-size-small);
+      font-size: calc(12px);
     }
 
     .showcase__right {
