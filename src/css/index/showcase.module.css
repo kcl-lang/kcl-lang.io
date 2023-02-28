@@ -201,6 +201,18 @@
       font-size: calc(12px);
     }
 
+    .showcase__left {
+      max-height: 288px;
+      max-width: 400px;
+      flex: 0 0 385px;
+      flex-grow: 0;
+      flex-shrink: 1;
+    }
+
+    .showcase__inner {
+      flex-direction: column;
+    }
+
     .showcase__right {
       display: none;
     }
@@ -231,4 +243,9 @@
     }
   }
 
-  
+  @media (max-width: 450px) {
+    .showcase :global(.prism-code.language-questdb-sql) > div {
+      white-space: pre-line;
+      padding: 1rem;
+    }
+  }
