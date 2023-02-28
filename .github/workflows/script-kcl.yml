@@ -65,6 +65,16 @@ jobs:
       - name: Check KCL run
         run: C:\kclvm\bin\kcl.exe hello.k && C:\kclvm\bin\kcl.exe hello.k --target native
 
+      - name: Check Scoop Install
+        shell: powershell
+        run: |
+          iwr -useb get.scoop.sh -outfile 'install.ps1'
+          .\install.ps1 -RunAsAdmin
+          scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
+          scoop install kcl-lang/kclvm
+          kcl.exe hello.k
+          kcl.exe hello.k --target native
+
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
@@ -80,8 +90,6 @@ jobs:
 
       - name: Check Go Installation
         run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && C:\Users\runneradmin\go\bin\kcl-go.exe run hello.k
-
-
 
   check-kcl-brew-install:
     strategy:
