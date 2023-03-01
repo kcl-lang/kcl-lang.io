@@ -61,7 +61,7 @@ In versions before v0.4.5, KCL has not yet supported the mutual reference of att
 ```python
 name = "app-name"
 data = {
-    name = name`
+    name = name
     metadata.name = name  # `metadata.name` cannot directly reference the `name` attribute inside the `data` configuration.
 }
 ```
