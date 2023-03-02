@@ -12,6 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script
+        shell: bash -leo pipefail {0}
         run: |
           static/script/install.sh
           curl -fsSL https://kusionstack.io/scripts/install-kusion.sh | /bin/bash
