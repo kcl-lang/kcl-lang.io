@@ -7,7 +7,7 @@ jobs:
   check-kusion-script-install:
     strategy:
       matrix:
-        os: [macos-10.15, macos-11, macos-12]
+        os: [macos-11, macos-12]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -16,10 +16,8 @@ jobs:
           static/script/install.sh
           curl -fsSL https://kusionstack.io/scripts/install-kusion.sh | /bin/bash
       - name: Check Kusion run
+        shell: bash -leo pipefail {0}
         run: |
-          export KUSION_HOME=$HOME/.kusion
-          export PATH=$KUSION_HOME:$PATH
-          export PATH=$PATH:/usr/local/kclvm/bin
           kusion version
           kusion compile -w static/stack -o stdout
           cd static/stack && kusion compile
