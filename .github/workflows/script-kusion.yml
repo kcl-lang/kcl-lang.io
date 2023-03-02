@@ -1,5 +1,6 @@
 name: script-kusion
 on:
+  pull_request:
   push:
     branches: 
      - main
@@ -7,7 +8,7 @@ jobs:
   check-kusion-script-install:
     strategy:
       matrix:
-        os: [macos-11, macos-12]
+        os: [macos-10.15, macos-11, macos-12]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -18,9 +19,11 @@ jobs:
       - name: Check Kusion run
         shell: bash -leo pipefail {0}
         run: |
-          kusion version
-          kusion compile -w static/stack -o stdout
-          cd static/stack && kusion compile
+          sudo kcl -V
+          sudo kcl -Y static/stack/kcl.yaml
+          sudo kusion version
+          sudo kusion compile -w static/stack -o stdout
+          cd static/stack && sudo kusion compile
 
   check-kusion-brew-install:
     strategy:
@@ -61,4 +64,6 @@ jobs:
           echo "go installed successfully"
           $HOME/go/bin/kusion version
           $HOME/go/bin/kusion compile -w static/stack -o stdout
+          $HOME/go/bin/kcl -V
+          $HOME/go/bin/kcl -Y static/stack/kcl.yaml
           cd static/stack && $HOME/go/bin/kusion compile
