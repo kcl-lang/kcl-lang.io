@@ -16,7 +16,9 @@ jobs:
         run: |
           static/script/install.sh
           curl -fsSL https://kusionstack.io/scripts/install-kusion.sh | /bin/bash
-          echo "script installed successfully"
+      - name: Check Kusion run
+        shell: bash -leo pipefail {0}
+        run: |
           kusion version
           kusion compile -w static/stack -o stdout
           cd static/stack && kusion compile
