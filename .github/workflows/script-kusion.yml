@@ -17,6 +17,7 @@ jobs:
           curl -fsSL https://kusionstack.io/scripts/install-kusion.sh | /bin/bash
           echo "script installed successfully"
           kusion version
+          kusion compile -w static/stack -o stdout
           cd static/stack && kusion compile
 
   check-kusion-brew-install:
@@ -33,6 +34,7 @@ jobs:
           brew install KusionStack/tap/kusion
           echo "brew installed successfully"
           kusion version
+          kusion compile -w static/stack -o stdout
           cd static/stack && kusion compile
 
   check-kusion-go-install:
@@ -56,4 +58,5 @@ jobs:
           go install kusionstack.io/kusion@main
           echo "go installed successfully"
           $HOME/go/bin/kusion version
+          $HOME/go/bin/kusion compile -w static/stack -o stdout
           cd static/stack && $HOME/go/bin/kusion compile
