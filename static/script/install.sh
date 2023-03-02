@@ -330,7 +330,7 @@ cleanup() {
 
 installCompleted() {
     echo -e "\nPlease add ${KCL_INSTALL_DIR}/kclvm/bin into your PATH"
-    echo -e "Remeber run the command `source ~/.bash_profile` or `source ~/.bashrc` to ensure your PATH is effective"
+    echo -e "Remeber run the command source ~/.bash_profile or source ~/.bashrc to ensure your PATH is effective"
     echo -e "\nTo get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
 }
 
