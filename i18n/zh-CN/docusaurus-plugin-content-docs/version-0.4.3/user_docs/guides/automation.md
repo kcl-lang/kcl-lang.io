@@ -3,45 +3,45 @@ title: "自动化"
 sidebar_position: 6
 ---
 
-KCL provides many automation related capabilities, mainly including tools and multilingual APIs. Via `package_identifier : key_identifier` mode, KCL supports the indexing of any configured key value, thus completing the addition, deletion, modification and query of any key value. For example, the following figure shows that we can directly execute the following command to modify the image. The code diff before and after modification is also shown in the figure.
+在 KCL 中提供了很多自动化相关的能力，主要包括工具和多语言 API。 通过 `package_identifier : key_identifier`的模式支持对任意配置键值的索引，从而完成对任意键值的增删改查。比如下图所示修改某个应用配置的镜像内容，可以直接执行如下指令修改镜像，修改前后的 diff 如下图所示。
 
 ![](/img/blog/2022-09-15-declarative-config-overview/14-kcl-image-update.png)
 
-In addition, the automation capability of KCL can be realized and integrated into CI/CD.
+此外，KCL 的自动化能力也可以被集成到 CI/CD 中。
 
 ![](/img/blog/2022-09-15-declarative-config-overview/15-kcl-automation.png)
 
-KCL allows us to directly modify the values in the configuration model through the KCL CLI `-O|--overrides` parameter. The parameter contains three parts e.g., `pkg`, `identifier`, `attribute` and `override_value`.
+KCL 允许使用通过 CLI `-O|--overrides` 参数修改配置模型中的值，这个参数通常由三个部分组成: 包名 `pkg`, 配置标识符 `identifier`, 配置属性 `attribute` 和覆盖值 `override_value`
 
-```
+```bash
 kcl main.k -O override_spec
 ```
 
-- `override_spec` represents a unified representation of the configuration model fields and values that need to be modified
+- `override_spec`: 表示需要修改的配置模型字段和值的统一表示
 
 ```
 override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 ```
 
-- `pkgpath`: Indicates the path of the package whose identifier needs to be modified, usually in the form of `a.b.c`. For the main package, `pkgpath` is expressed as `__main__`, which can be omitted. If omitted, it means the main package.
-- `identifier`: Indicates the identifier that needs to modify the configuration, usually in the form of `a.b.c`.
-- `value`: Indicates the value of the configuration that needs to be modified, which can be any legal KCL expression, such as number/string literal value, list/dict/schema expression, etc.
-- `=`: means to modify the value of identifier.
-  - When the identifier exists, modify the value of the existing identifier to value.
-  - When identifier does not exist, add the identifier attribute and set its value to value.
-- `-`: means to delete the identifier attribute.
-  - When the identifier exists, delete it directly.
-  - When the identifier does not exist, no modification is made to the configuration.
+- `pkgpath`: 表示需要修改标识符的包路径，通常为 `a.b.c` 的形式，对于 main 包，`pkgpath` 表示为 `__main__`, 可省略，省略不写时表示 main 包
+- `identifier`: 表示需要修改配置的标识符，通常为 `a.b.c` 的形式
+- `value`: 表示需要修改配置的值，可以是任意合法的 KCL 表达式，比如数字/字符串字面值，list/dict/schema 表达式等
+- `=`: 表示修改identifier的值
+  - 当 identifier 存在时，修改已有 identifier的值为 value
+  - 当 identifier 不存在时，添加 identifier属性，并将其值设置为 value
+- `-`: 表示删除 identifier属性
+  - 当 identifier 存在时，直接进行删除
+  - 当 identifier 不存在时，对配置不作任何修改
 
-Note: When `identifier` appears multiple times, modify/delete all `identifier` values
+请注意，当 `identifier` 出现多次时，修改/删除全部 `identifier` 的值
 
-Besides, we provide `OverrideFile` API to achieve the same capabilities. For details, refer to [KCL APIs](/docs/reference/xlang-api/).
+此外，在 KCL 中还提供了 API 用于变量查询和修改，详见 [API 文档](/docs/reference/xlang-api/)
 
-## Examples
+## 示例
 
-### Override Update Sample
+### 修改示例
 
-KCL code:
+KCL 代码：
 
 ```python
 schema Person:
@@ -54,13 +54,13 @@ person = Person {
 }
 ```
 
-The command is
+执行如下命令
 
-```
+```bash
 kcl main.k -O :person.name=\"Bob\" -O :person.age=10
 ```
 
-The output is
+输出结果为：
 
 ```yaml
 person:
@@ -68,9 +68,9 @@ person:
   age: 10
 ```
 
-Besides, when we use KCL CLI `-d` argument, the KCL file will be modified to the following content at the same time
+此外，当我们使用 KCL CLI `-d` 参数时，KCL 文件将同时修改为以下内容
 
-```
+```bash
 kcl main.k -O :person.name=\"Bob\" -O :person.age=10 -d
 ```
 
@@ -85,7 +85,7 @@ person = Person {
 }
 ```
 
-Another more complicated example:
+另外一个更复杂的例子
 
 ```python
 schema Person:
@@ -99,13 +99,13 @@ person = Person {
 }
 ```
 
-The command is
+执行如下命令
 
-```
+```bash
 kcl main.k -O :person.ids=\[1,2\]
 ```
 
-The output is
+输出为
 
 ```yaml
 person:
@@ -116,9 +116,9 @@ person:
   - 2
 ```
 
-### Override Delete Sample
+### 删除示例
 
-KCL code:
+KCL 代码：
 
 ```python
 schema Config:
@@ -130,16 +130,67 @@ config = Config {
 }
 ```
 
-The command is
+执行如下命令
 
-```
+```bash
 kcl main.k -O config.x-
 ```
 
-The output is
+输出结果为：
 
 ```yaml
 config:
   x: 1
   y: s
+```
+
+### API
+
+此外，我们还可以通过[多语言 API](/docs/reference/xlang-api/overview) 自动修改配置属性
+
+以下面的 KCL 代码片段 (命名为 main.k) 和 RestAPI 为例
+
+```python
+import regex
+
+schema AppConfig:
+    image: str
+
+    check:
+        regex.match(image, r"^([a-z0-9\.\:]+)\.([a-z]+)\:([a-z0-9]+)\/([a-z0-9\.]+)\/([a-z0-9-_.:]+)$"), "image name should satisfy the \`REPOSITORY:TAG\` form"
+
+appConfig = AppConfig {
+    image = "nginx:1.13.9"
+}
+```
+
+执行如下命令启动 RestAPI 服务端
+
+```bash
+kclvm -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+```
+
+通过如下命令 POST 命令请求配置修改服务
+
+```bash
+curl -X POST http://127.0.0.1:2021/api:protorpc/KclvmService.OverrideFile -H 'content-type: accept/json' -d '{
+    "file": "main.k",
+    "specs": ["appConfig.image=\"nginx:1.14.0\""]
+}'
+```
+
+服务调用完成后，main.k 会被修改为如下形式:
+
+```python
+import regex
+
+schema AppConfig:
+    image: str
+
+    check:
+        regex.match(image, r"^([a-z0-9\.\:]+)\.([a-z]+)\:([a-z0-9]+)\/([a-z0-9\.]+)\/([a-z0-9-_.:]+)$"), "image name should satisfy the \`REPOSITORY:TAG\` form"
+
+appConfig = AppConfig {
+    image = "nginx:1.14.0"
+}
 ```
