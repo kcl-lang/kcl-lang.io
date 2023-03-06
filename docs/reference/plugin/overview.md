@@ -133,7 +133,7 @@ Where `INFO` specifies the name of the plugin, a brief description, a detailed d
 
 ## 5. Create Plugin
 
-An plugin can be created with the `kcl-plugin init` command:
+A plugin can be created with the `kcl-plugin init` command:
 
 ```
 $ kcl-plugin init hi
