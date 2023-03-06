@@ -316,7 +316,7 @@ fail_trap() {
     result=$?
     if [ "$result" != "0" ]; then
         error "Failed to install KCL"
-        error "For support, go to https://kcl-lang.io"
+        info "For support, go to https://kcl-lang.io"
     fi
     cleanup
     exit $result
