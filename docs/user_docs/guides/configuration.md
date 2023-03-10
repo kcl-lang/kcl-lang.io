@@ -27,7 +27,7 @@ schema Name:
     check:
         first != ""
         last != ""
-        middle != "" if middle
+        middle != ""
 
 alice = Person {
     # gendre: "Female" # Error: misspelled attribute
