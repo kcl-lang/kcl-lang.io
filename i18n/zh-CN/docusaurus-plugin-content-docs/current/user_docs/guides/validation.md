@@ -50,6 +50,54 @@ schema Sample:
 
 基于此，KCL 提供了相应的[校验工具](/docs/tools/cli/kcl/vet) 直接对 JSON/YAML 数据进行校验。此外，通过 KCL schema 的 check 表达式可以非常清晰简单地校验输入的 JSON 是否满足相应的 schema 结构定义与 check 约束。
 
+![](/img/blog/2022-09-15-declarative-config-overview/08-kcl-validation-ui.png)
+
+## 如何使用
+
+新建一个名为 `data.json` 的 JSON 配置文件:
+
+```json
+{
+    "name": "Alice",
+    "age": "18",
+    "message": "This is Alice",
+    "data": {
+        "id": "1",
+        "value": "value1"
+    },
+    "labels": {
+        "key": "value"
+    },
+    "hc": [1, 2, 3]
+}
+```
+
+构建一个用于校验上述 JSON 文件的 KCL 文件 `schema.k`
+
+```python
+schema User:
+    name: str
+    age: int
+    message?: str
+    data: Data
+    labels: {str:}
+    hc: [int]
+        
+    check:
+        age > 10
+
+schema Data:
+    id: int
+    value: str
+```
+
+执行如下命令获得校验结果
+
+```bash
+$ kcl-vet data.json schema.k
+Validate succuss!
+```
+
 ## 未来计划
 
 KCL 校验能力的提升将逐渐围绕“静态化”方面展开工作，即在编译时结合形式化验证的能力直接分析出数据是否满足约束条件，约束条件是否冲突等问题，并且可以通过 IDE 实时透出约束错误，而无需在运行时发现错误。

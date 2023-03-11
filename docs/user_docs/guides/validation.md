@@ -72,7 +72,7 @@ There is a JSON format file `data.json`:
 
 Build a validated KCL file `schema.k`:
 
-```py
+```python
 schema User:
     name: str
     age: int
@@ -91,7 +91,7 @@ schema Data:
 
 Execute the following command:
 
-```
+```bash
 $ kcl-vet data.json schema.k
 Validate succuss!
 ```
