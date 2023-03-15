@@ -2210,7 +2210,53 @@ a = 1  # 不可变导出变量
 _b = 2  # 可变非导出变量
 ```
 
-## 48. 如何通过编写 KCL 插件进行扩展?
+## 48. 在 KCL 中存在类似 Go `interface{}`/`any` 或者 Java `Object` 的类型嘛?
+
+In KCL, we can use the `any` type annotation to define a variable to store any values such as integers, strings and schemas. For example:
+
+在 KCL 中，我们可以使用 `any` 类型注解来定义一个变量存储任意类型比如整数、字符串、schema 结构等数据。比如如下例子:
+
+```python
+schema Data:
+    id: int = 1
+
+var_list: [any] = [1, "12", Data {}]
+```
+
+输出 YAML 为:
+
+```yaml
+var_list:
+- 1
+- '12'
+- id: 1
+```
+
+此外，我们可以使用 `typeof` 函数来判断 KCL 变量的类型:
+
+```python
+schema Data1:
+    id: int = 1
+
+schema Data2:
+    name: str = "name"
+
+data_list: [any] = [Data1 {}, Data2 {}]
+data_type_list: [str] = [typeof(data) for data in data_list]
+```
+
+输出 YAML 为:
+
+```yaml
+data_list:
+- id: 1
+- name: name
+data_type_list:
+- Data1
+- Data2
+```
+
+## 49. 如何通过编写 KCL 插件进行扩展?
 
 KCL 插件在 KCLVM 的 plugins 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。对于插件开发人员，插件都在 [Git 仓库](https://github.com/KusionStack/kcl-plugin)管理，可以将插件仓库克隆到该目录进行开发。
 

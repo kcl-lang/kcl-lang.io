@@ -2196,11 +2196,55 @@ a = 1 # immutable exported variable
 _b = 2 # mutable non-export variable
 ```
 
-## 48. How to develop a KCL plugin?
+## 48. Is there a type like Go `interface{}`/`any` or Java `Object` in KCL?
+
+In KCL, we can use the `any` type annotation to define a variable to store any values such as integers, strings and schemas. For example:
+
+```python
+schema Data:
+    id: int = 1
+
+var_list: [any] = [1, "12", Data {}]
+```
+
+The output YAML is
+
+```yaml
+var_list:
+- 1
+- '12'
+- id: 1
+```
+
+In addition, we can also use the `typeof` function to determine the type of variables during KCL code execution:
+
+```python
+schema Data1:
+    id: int = 1
+
+schema Data2:
+    name: str = "name"
+
+data_list: [any] = [Data1 {}, Data2 {}]
+data_type_list: [str] = [typeof(data) for data in data_list]
+```
+
+The output YAML is
+
+```yaml
+data_list:
+- id: 1
+- name: name
+data_type_list:
+- Data1
+- Data2
+```
+
+## 49. How to develop a KCL plugin?
 
 KCL plugins are installed in the plugins subdirectory of KCLVM (usually installed in the `$HOME/.kusion/kclvm/plugins` directory), or set through the `$KCL_PLUGINS_ROOT` environment variable. For plugin developers, plugins are managed in the [Git repository](https://github.com/KusionStack/kcl-plugin), and the plugin repository can be cloned to this directory for development.
 
-KCL has built-in kcl-plugin scaffolding command to assist users to write KCL plug-ins in Python language, so that the corresponding plug-ins can be called in the KCL file to enhance the KCL language itself, such as accessing the network, reading and writing IO, CMDB query and encryption and decryption functions. .
+KCL has built-in kcl-plugin scaffolding command to assist users to write KCL plug-ins in Python language, so that the corresponding plug-ins can be called in the KCL file to enhance the KCL language itself, such as accessing the network, reading and writing IO, CMDB query and encryption and decryption functions.
 
 ```
 usage: kcl-plugin [-h] {list,init,info,gendoc,test} ...
