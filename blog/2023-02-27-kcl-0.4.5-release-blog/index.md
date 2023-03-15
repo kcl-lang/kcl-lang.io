@@ -13,7 +13,7 @@ The KCL team is pleased to announce that KCL v0.4.5 is now available! This relea
 
 You can visit the [KCL release page](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.5) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
-[KCL](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language. KCL improves the complexity of writing numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
+[KCL](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
 This blog will introduce the content of KCL v0.4.5 and recent developments in the KCL community to readers.
 

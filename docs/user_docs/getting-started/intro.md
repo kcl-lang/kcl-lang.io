@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## What is KCL?
 
-[Kusion Configuration Language (KCL)](https://github.com/KusionStack/KCLVM) is an open-source constraint-based record and functional language. KCL improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionality.
+[Kusion Configuration Language (KCL)](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great ecological extensibility.
 
 ## What is Configuration?
 
@@ -47,6 +47,48 @@ database:
 
 We can choose to store the static configuration in JSON and YAML files as needed. In addition, the configuration can also be stored in a high-level language that allows more flexible configuration, which can be coded, rendered, and statically configured. KCL is such a configuration language. We can write KCL code to generate JSON/YAML and other configurations.
 
+When we manage the Kubernetes resources, we often maintain it by hand, or use Helm and Kustomize tools to maintain our YAML configurations or configuration templates, and then apply the resources to the cluster through kubectl tools. However, as a "YAML engineer", maintaining YAML configuration every day is undoubtedly trivial and boring, and prone to errors. For example as follows:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata: ... # Omit
+spec:
+  selector:
+    matchlabels:
+      cell: RZ00A
+  replicas: 2
+  template:
+    metadata: ... # Omit
+    spec:
+      tolerations:
+      - effect: NoSchedules
+        key: is-over-quota
+        operator: Equal
+        value: 'true'
+      containers:
+      - name: test-app
+          image: images.example/app:v1 # Wrong ident
+        resources:
+          limits:
+            cpu: 2 # Wrong type. The type of cpu should be str
+            memory: 4Gi
+            # Field missing: ephemeral-storage
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: is-over-quota
+                operator: In
+                values:
+                - 'true'
+```
+
++ The structured data in YAML is untyped and lacks validation methods, so the validity of all data cannot be checked immediately.
++ YAML has poor programming ability. It is easy to write incorrect indents and has no common code organization methods such as logical judgment. It is easy to write a large number of repeated configurations and difficult to maintain.
++ The design of Kubernetes is complex, and it is difficult for users to understand all the details, such as the `toleration` and `affinity` fields in the above configuration. If users do not understand the scheduling logic, it may be wrongly omitted or superfluous added.
+
 ## Why Develop KCL?
 
 In addition to the general configuration, the features of the cloud-native configuration include a large quantity and wide coverage. For example, Kubernetes provides a declarative Application Programming Interface (API) mechanism and the openness allows users to make full use of its resource management capabilities; however, this also implies error-prone behaviors.
@@ -56,9 +98,12 @@ In addition to the general configuration, the features of the cloud-native confi
 
 KCL expects to solve the following problems in Kubernetes YAML resource management:
 
-+ Use **production level high-performance programming language** to **write code** to improve the flexibility of configuration, such as conditional statements, loops, functions, package management and other features to improve the ability of configuration reuse.
-+ Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
-+ Provide the **ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
++ Hide infrastructure and platform details through **abstraction** to reduce the burden of developers.
++ **Additional capability enhancements such as configuration validation and editing** for configuration tools e.g., Helm, Kustomize.
++ Manage large-scale configuration data across teams without side effects through configuration language
+  + Use **production level high-performance programming language** to **write code** to improve the flexibility of configuration, such as conditional statements, loops, functions, package management and other features to improve the ability of configuration reuse.
+  + Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
+  + Provide the **ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
 
 The cloud-native communities have made considerable attempts to advance their configuration technologies, which can be divided into three categories:
 
@@ -69,11 +114,19 @@ The cloud-native communities have made considerable attempts to advance their co
 Previous efforts do not meet all these needs. Some tools verify configuration based on the Kubernetes API. Although it supports checking missing attributes, the validation is generally weak and limited to Open Application Programming Interface (OpenAPI).
 Some tools support custom validation rules, but the rule descriptions are cumbersome. In terms of configuration languages, focus on reducing boilerplates, and only a few focus on type checking, data validation, testing, etc.
 
-Helm used parameterized template techniques to solve the problem of dynamic configuration. As the scale increases, parameterized templates tend to become complex and difficult to maintain; parameter substitution sites must be identified manually. However, it is tedious and error-prone, parameters will gradually erode the template, and any value in the template may gradually evolve into parameters. Compared with using the Kubernetes API directly, the readability of such a template combined with many parameters is often worse. Kustomize uses code patching to realize the reuse of the multi-environment configuration code. 
+Helm used parameterized template techniques to solve the problem of dynamic configuration. As the scale increases, parameterized templates tend to become complex and difficult to maintain; parameter substitution sites must be identified manually. However, it is tedious and error-prone, parameters will gradually erode the template, and any value in the template may gradually evolve into parameters. Compared with using the Kubernetes API directly, the readability of such a template combined with many parameters is often worse. Kustomize uses code patching to realize the reuse of the multi-environment configuration code.
+
+## Overview
+
+![](/img/docs/user_docs/intro/kcl-overview.png)
+
+In addition to the language itself, KCL also provides many additional tools, such as formatting, testing, document, package management, to help users use, understand and check the configuration or policy they write. We can reduce the cost of configuration writing and sharing through IDE plug-ins such as VS Code and Playground. In addition, through KCL Rust, Go, and Python multilingual SDKs, the configuration can be automatically managed and executed.
 
 ## Why Use KCL?
 
 KCL is a modern high-level domain language, which is a compiled, static and strongly typed language. It provides developers with the ability to write configuration (config), modeling abstraction (schema), business logic (lambda), and environmental policies (rule) as the core elements through recording and functional language design.
+
+![](/img/docs/user_docs/intro/kcl-concepts.png)
 
 KCL tries to provide runtime-independent programmability and does not natively provide system functions such as threads and IO, but supports functions for cloud-native operation scenarios, and tries to provide stable, secure, low-noise, low-side effect, easy-to-automate and easy-to-govern programming support for solving domain problems.
 
