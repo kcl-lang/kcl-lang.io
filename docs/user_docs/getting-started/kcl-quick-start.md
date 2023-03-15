@@ -149,4 +149,4 @@ servers = [
 
 The attribute `ip` of `ServerConfig` is a string type, and no default value is given. We must manually add the value of the `ip` attribute when generating the `ServerConfig` type attribute, otherwise the KCL will report a missing required attribute error. The `role` attribute is a `"frontend" | "backend"` enumerated string type.
 
-In addition, `schema` can also combine `check`, `mixin`, optional attributes, inheritance and extension modules to achieve more complex configuration and policy data abstraction, details can be found at [here](/docs/reference/lang/tour).
+In addition, `schema` can also combine `check`, `mixin`, optional attributes, inheritance and extension modules to achieve more complex configuration and policy data abstraction, full language details can be found at [here](/docs/reference/lang/tour).
