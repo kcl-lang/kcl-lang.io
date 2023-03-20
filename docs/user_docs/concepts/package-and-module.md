@@ -4,7 +4,7 @@ This section mainly describes how to organize files in KCL.
 
 ## Overview
 
-Within a **module**, KCL organizes files grouped by **package**. A package can be defined within the module or externally (through KCL package manager `kpm`). In the latter case, KCL maintains a copy of the package within the module in a dedicated location.
+Within a **module**, KCL organizes files grouped by **package**. A package can be defined within a module or be imported externally (through KCL package manager `kpm`). In the latter case, KCL maintains a copy of the package within the module in a dedicated location.
 
 ## Module
 
@@ -26,7 +26,7 @@ The module name is **required** if a package within the module needs to import a
 
 In KCL, a package is usually composed of a "folder" containing KCL files. This folder can be a real disk physical path, or it can be composed of multiple KCL files (usually main package). Different packages are uniquely located by different package paths (such as `kubernetes.core.v1`)
 
-Within the same module, different packages can be imported from each other through the import statement of relative or absolute path. In the KCL, the relative import will be replaced by absolute import and the corresponding KCL code will be found through the package path.
+Within the same module, different packages can be imported from each other through the import statement of relative or absolute path. During the KCL parsing process, the relative import will be replaced by absolute import and the corresponding KCL code will be found through the package path.
 
 ### Relative Import Path
 
@@ -47,8 +47,8 @@ m = root.Schema {}
 
 The semantics of `import a.b.c.d` is
 
-1. If `kcl.mod` not exist, search the path `./a/b/c/d` from the current directory.
-2. If the current directory search fails, search from the root path `ROOT_PATH/a/b/c/d`, else raise a import error.
+1. If `kcl.mod` not exist, regard the current directory as the package root and search the path `a/b/c/d` from the current directory.
+2. If the current directory search fails, search from the root path `ROOT_PATH/a/b/c/d`, else raise an import error.
 
 The definition of the root path `ROOT_PATH` is the directory corresponding to the `kcl.mod` file from the current directory.
 
@@ -89,6 +89,8 @@ is_match: true
 
 ### Plugin Package
 
+<!--TODO: scenario-related kcl-plugin examples-->
+
 KCL also has a collection of plugin packages such as `hello`, `project_context`, etc. To use a plugin package, import it with a `kcl_plugin.` package path prefix and invoke the functions using its qualified identifier. For instance,
 
 ```python
@@ -123,7 +125,7 @@ If KCL is told to load the files for a specific directory, for example:
 kcl ./path/to/package
 ```
 
-It will only look KCL files with `.k` suffix and ignore files with `_` prefix or `_test.k` into the main package.
+It will only look KCL files with `.k` suffix and ignore files with `_` prefix or `_test.k` into the main package. Besides, if the `./path/to/package` contains `kcl.yaml` files, `kcl.yaml` files be ignored.
 
 In addition, we can set main package files through configuring the command-line compilation setting file (e.g., `kcl.yaml`) as follows:
 
