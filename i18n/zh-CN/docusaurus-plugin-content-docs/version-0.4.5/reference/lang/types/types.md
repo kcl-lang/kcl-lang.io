@@ -1397,6 +1397,5 @@ T : {
 + [https://en.wikipedia.org/wiki/Type_system](https://en.wikipedia.org/wiki/Type_system)
 + Pierce, Benjamin C. (2002). Types and Programming Languages. MIT Press.
 + [https://www.cs.cornell.edu/courses/cs4110/2010fa/](https://www.cs.cornell.edu/courses/cs4110/2010fa/)
-+ https://www.cmi.ac.in/~madhavan/courses/pl2009/lectureNotes/lecture-Notes/
 + [https://www.typescriptlang.org/docs/handbook/basic-types.html](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 + [https://www.typescriptlang.org/docs/handbook/advanced-types.html](https://www.typescriptlang.org/docs/handbook/advanced-types.html)

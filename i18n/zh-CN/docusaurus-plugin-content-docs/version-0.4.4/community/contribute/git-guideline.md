@@ -93,7 +93,7 @@ node_modules/*
 - 在向我们提交 PR 之后，请签署 [Contributor License Agreement (CLA)](#cla) ，如果拒绝签署，我们将无法接受 PR。
 - 请确保每次改动都创建了一个新的分支，并根据上文中提到的规范为分支命名。
 - 一次 PR 请不要超过两个 commit ，请将多余的 commit 通过 squash 压缩，并根据上文中提到的规范，编写 commit message 。
-- 我们提供了 [PR 模版](https://github.com/kcl-lang/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md)，只需要添加模版中要求的内容即可，如果在创建PR时发现没有模版或者模版内容为空，可以通过微信群，钉钉群或者邮件向我们反馈这个问题。
+- 我们提供了 [PR 模版](https://github.com/KusionStack/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md)，只需要添加模版中要求的内容即可，如果在创建PR时发现没有模版或者模版内容为空，可以通过微信群，钉钉群或者邮件向我们反馈这个问题。
 
 我们建议PR的标题与分支名、commit message 风格保持一致：
 ```

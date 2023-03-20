@@ -51,7 +51,7 @@ Structured K-V meets the minimum data declaration requirements (int, string, lis
 Representative technologies of structured KV include:
 
 - JSON/YAML: It is very convenient for reading and automation, and has different languages API support.
-- [Kustomize](https://kustomize.io/): It provides a solution to customize the Kubernetes resource base configuration and differential configuration without **template** and **DSL**. It does not solve the constraint problem itself, but needs to cooperate with a large number of additional tools to check constraints, such as [Kube-linter](https://github.com/stackroxkube-linter)、[Checkov](https://github.com/bridgecrewio/checkov). Fig. 2shows the typical working mode of Kustomize.
+- [Kustomize](https://kustomize.io/): It provides a solution to customize the Kubernetes resource base configuration and differential configuration without **template** and **DSL**. It does not solve the constraint problem itself, but needs to cooperate with a large number of additional tools to check constraints, such as [Kube-linter](https://github.com/stackrox/kube-linter)、[Checkov](https://github.com/bridgecrewio/checkov). Fig. 2shows the typical working mode of Kustomize.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/02-kustomize.png)
 
