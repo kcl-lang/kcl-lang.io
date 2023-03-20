@@ -15,9 +15,9 @@ The KCL team is pleased to announce that the new playground of KCL v0.4.5 is now
 
 You can visit the [KCL website](https://kcl-lang.io/) and click the playground link and play. In this new version, we support the ability to automatically compile and run KCL code, format it, and share code. Welcome to writing and sharing KCL codes.
 
-![](2023-03-17-kcl-playground-0.4.5-release/kcl-website-playground.png)
+![](/img/blog/2023-03-17-kcl-playground-0.4.5-release/kcl-website-playground.png)
 
-![](2023-03-17-kcl-playground-0.4.5-release/kcl-playground.png)
+![](/img/blog/2023-03-17-kcl-playground-0.4.5-release/kcl-playground.png)
 
 ## Next​
 

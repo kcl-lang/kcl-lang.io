@@ -15,9 +15,9 @@ KCL 团队很高兴地宣布 KCL Playground v0.4.5 版本现在已经可用！
 
 您可以访问 [KCL 网站](https://kcl-lang.io/) 点击 playground 进行体验。在这个新版本中，我们支持了根据输入 KCL 代码变化自动编译和运行 KCL 代码、格式化代码和以及共享代码的能力。欢迎参与撰写并将 KCL 代码分享给您的小伙伴。
 
-![](2023-03-17-kcl-playground-0.4.5-release/kcl-website-playground.png)
+![](/img/blog/2023-03-17-kcl-playground-0.4.5-release/kcl-website-playground.png)
 
-![](2023-03-17-kcl-playground-0.4.5-release/kcl-playground.png)
+![](/img/blog/2023-03-17-kcl-playground-0.4.5-release/kcl-playground.png)
 
 ## 下一步计划
 
