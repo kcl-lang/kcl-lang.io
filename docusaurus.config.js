@@ -127,7 +127,7 @@ const config = {
           blogSidebarCount: "ALL",
           postsPerPage: 2,
           showReadingTime: true,
-          editUrl: 'https://github.com/KusionStack/kcl-lang.io',
+          editUrl: 'https://github.com/KusionStack/kcl-lang.io/tree/main',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
