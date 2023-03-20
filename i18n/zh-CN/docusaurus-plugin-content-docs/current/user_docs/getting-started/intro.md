@@ -194,7 +194,7 @@ Jsonnet 和 GCL 非常擅长减少样板。它们都可以使用代码生成配�
 
 ### vs. HCL
 
-HCL 是一种 Go 实现的结构化配置语言。HCL的原生语法受到libucl和nginx配置的启发。它用于创建一种对人类和机器友好的结构化配置语言，主要用于devops工具、服务器配置和资源配置，作为[Terraform语言](https://www.terraform.io/language).
+HCL 是一种 Go 实现的结构化配置语言。HCL的原生语法受到libucl和nginx配置的启发。它用于创建一种对人类和机器友好的结构化配置语言，作为[Terraform语言](https://www.terraform.io/language)主要用于 DevOps工具、服务器配置和资源配置等。
 
 HCL 与 GCL 有一些比较相似的地方。它确实引入了穷人版本的继承：文件覆盖。可以在多个文件中定义字段，这些文件按文件名的特定顺序被覆盖。虽然没有GCL那么复杂，但它确实存在一些相同的问题。模式是固定的，能力是有限的。
 
