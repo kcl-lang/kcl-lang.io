@@ -117,7 +117,7 @@ const config = {
           // lastVersion: 'current',
 
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/KusionStack/kcl-lang.io',
+          editUrl: 'https://github.com/KusionStack/kcl-lang.io/tree/main',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           remarkPlugins: [math],
