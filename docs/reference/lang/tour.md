@@ -2841,7 +2841,7 @@ m = root.Schema {}
 
 The semantics of `import a.b.c.d` is
 
-1. Search the path `./a/b/c/d` from the current directory.
+1. Search the path `{work_dir}/a/b/c/d` from the working directory such as the `pwd` path.
 2. If the current directory search fails, search from the root path `ROOT_PATH/a/b/c/d`
 
 The definition of the root path `ROOT_PATH` is
