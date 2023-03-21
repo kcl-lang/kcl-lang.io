@@ -236,7 +236,7 @@ message ListMethod_Result {
 
 The `Ping` method can verify whether the service is normal, and the `ListMethod` method can query the list of all services and functions provided.
 
-### 3.3. `KclvmService`
+### `KclvmService`
 
 The `KclvmService` service is a service related to KCLVM functionality. The usage is the same as the `BuiltinService` service.
 
