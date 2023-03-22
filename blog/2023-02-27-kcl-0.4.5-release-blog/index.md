@@ -377,7 +377,7 @@ It is expected that in the middle of April 2023, we will release **KCL v0.4.6**.
 + KCL language is further improved for convenience, the user interface is continuously optimized and experience is improved, user support and pain points are solved.
 + A new version of the KCL language server and [VSCode language plug-in](https://github.com/KusionStack/vscode-kcl), the performance is expected to increase by **20 times**, and it is expected to support core basic capabilities such as code warning and error wavy line prompt, jump, reference search, etc.
 + Continuously improve the language ability for the pain points of Kubernetes Manifests configuration management scenarios. For example, design and provide the [Helm](https://github.com/helm/helm) KCL Schema plug-in and provide the KCL SDK for the [kpt](https://github.com/GoogleContainerTools/kpt) tool.
-+ [KCL package management tool called KPM](https://github.com/KusionStack/kpm)）release. It is expected to support Git repo code dependency configuration and update, code download, and other basic capabilities.
++ [KCL package management tool called KPM](https://github.com/KusionStack/kpm) release. It is expected to support Git repo code dependency configuration and update, code download, and other basic capabilities.
 + [KCL Playground](https://github.com/KusionStack/kcl-playground): Support code sharing and KCL version selection.
 + [KCL Go SDK](https://github.com/KusionStack/kclvm-go): More capability support such as supporting the bidirectional conversion of the KCL schema and Go structure
 + [KCL Python SDK](https://github.com/KusionStack/kclvm-py): More capability support.
