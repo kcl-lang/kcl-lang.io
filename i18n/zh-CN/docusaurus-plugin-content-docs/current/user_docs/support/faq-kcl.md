@@ -2351,4 +2351,4 @@ t_int: int = int(t_str)        # 输出的 t_int 为一个整型 "t_int: 1"
 t_float: float = float(t_str)  # 输出的 t_float 为一个浮点型 "t_float: 1.0"
 ```
 
-如果您想查看更多详细的关于KCL类型系统和类型转换的内容，您可以查阅 https://kcl-lang.io/docs/reference/lang/tour#built-in-types 和 https://kcl-lang.io/docs/reference/lang/tour#type-system。
+如果您想查看更多详细的关于KCL类型系统和类型转换的内容，您可以查阅 [KCL 内置类型](https://kcl-lang.io/docs/reference/lang/tour#built-in-types) 和 [KCL 类型系统](https://kcl-lang.io/docs/reference/lang/tour#type-system)。

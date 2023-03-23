@@ -2324,6 +2324,7 @@ kcl-plugin info io
 Finally, the plugin that has written the test can be merged with MR in the `kcl_plugins` repository.
 
 ## 50. How to do basic type conversion in KCL
+
 You can use the `int()`, `float()` function and `str()` function to convert the basic types between `int`, `float` and `str`.
 
 ```
@@ -2334,4 +2335,4 @@ t_int: int = int(t_str)        # you will get "t_int: 1"
 t_float: float = float(t_str)  # you will get "t_float: 1.0"
 ```
 
-For more information about type conversion, see https://kcl-lang.io/docs/reference/lang/tour#built-in-types and https://kcl-lang.io/docs/reference/lang/tour#type-system.
+For more information about type conversion, see [KCL Builtin Types](https://kcl-lang.io/docs/reference/lang/tour#built-in-types) and [KCL Type System](https://kcl-lang.io/docs/reference/lang/tour#type-system).
