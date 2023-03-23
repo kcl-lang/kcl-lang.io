@@ -56,6 +56,10 @@ docker run --rm -p 8080:8080 -it kusionstack/kclvm
 docker pull kusionstack/kclvm
 ```
 
+### 注意
+
+> ⚠️ 对于上述所有安装方式, 如果您想使用 [KCL Python 插件](https://kcl-lang.io/docs/reference/plugin/overview), 需要确保您已经安装了 Python 3.7+ 并将 python3 命令添加到您的 PATH 中
+
 ## 2. 安装 VS Code 插件
 
 为了提高 IDE 开发 KCL 的效率，KCL 为 VS Code 在线版和本地版本提供了插件支持。在线版本可以从 https://vscode.dev 地址打开，然后安装“KCL for vscode.dev 插件”，效果如下:

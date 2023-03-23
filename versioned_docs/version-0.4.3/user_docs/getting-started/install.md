@@ -56,6 +56,10 @@ docker run --rm -p 8080:8080 -it kusionstack/kclvm
 docker pull kusionstack/kclvm
 ```
 
+### Note
+
+> ⚠️ For all the above operating systems and installation methods, if you want to use [KCL Python plug-in](https://kcl-lang.io/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
+
 ## 2. Install the KCL VS Code Extension
 
 To improve the KCL development on VS Code, there are VS Code
