@@ -2756,8 +2756,8 @@ m = root.Schema {}
 
 `import a.b.c.d` 的语义为：
 
-1. 从当前目录寻找路径 `./a/b/c/d`。
-2. 如果当前目录寻找失败，从根目录寻找 `ROOT_PATH/a/b/c/d`
+1. 如果 `kcl.mod` 文件不存在，将当前目录作为包的根路径，并从当前目前查找 `a/b/c/d` 路径
+2. 如果 `kcl.mod` 文件存在，从 `ROOT_PATH/a/b/c/d` 查找，否则抛出一个导入错误
 
 根路径 `ROOT_PATH` 的定义为：
 

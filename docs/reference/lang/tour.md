@@ -2841,13 +2841,10 @@ m = root.Schema {}
 
 The semantics of `import a.b.c.d` is
 
-1. Search the path `{work_dir}/a/b/c/d` from the working directory such as the `pwd` path.
-2. If the current directory search fails, search from the root path `ROOT_PATH/a/b/c/d`
+1. If `kcl.mod` not exist, regard the current directory as the package root and search the path `a/b/c/d` from the current directory.
+2. If the current directory search fails, search from the root path `ROOT_PATH/a/b/c/d`, else raise an import error.
 
-The definition of the root path `ROOT_PATH` is
-
-1. Look up the directory corresponding to the `kcl.mod` file from the current directory.
-2. If `kcl.mod` is not found, read from the environment variable `KCL_MODULE_ROOT` e.g., `kclvm/lib/*`.
+The definition of the root path `ROOT_PATH` is the directory corresponding to the `kcl.mod` file from the current directory.
 
 Code structure:
 
