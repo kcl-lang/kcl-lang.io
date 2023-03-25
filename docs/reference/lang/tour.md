@@ -24,7 +24,7 @@ As we learn about the KCL language, keep these facts and concepts in mind:
 
 The following table lists the words that the KCL language treats specially.
 
-```
+```txt
     True       False      None        Undefined   import
     and        or         in          is          not
     as         if         else        elif        for
@@ -181,7 +181,7 @@ assert math.pow(100, 2) == 10000.0
 
 In addition, please note that the KCL number is 64-bit by default. We can perform a stricter 32-bit range check by adding the `-r` parameter to the KCL command-line tool.
 
-```
+```bash
 kcl main.k -r -d
 ```
 
@@ -805,7 +805,7 @@ f = str(Undefined)  # Undefined
 
 The following character sequences represent operators:
 
-```
+```txt
     +       -       *       **      /       //      %
     <<      >>      &       |       ^       <       >
     ~       <=      >=      ==      !=      @       \
@@ -882,7 +882,7 @@ schema x:
 
 The following tokens serve as delimiters in the grammar:
 
-```
+```bash
     (       )       [       ]       {       }
     ,       :       .       ;       =       ->
     +=      -=      *=      /=      //=     %=
@@ -2330,7 +2330,7 @@ aliceAndBob:
 
 In KCL, we can use the union operator `|` to achieve the merging of configurations, the types supported by the union operator are as follows:
 
-```
+```txt
 SchemaInstance | SchemaInstance
 SchemaInstance | Dict
 Dict | Dict
@@ -2788,7 +2788,7 @@ The modules in the same package are visible and cross-package references need to
 
 Code structure:
 
-```
+```bash
 . 
 └── root
     ├── model
@@ -2848,7 +2848,7 @@ The definition of the root path `ROOT_PATH` is the directory corresponding to th
 
 Code structure:
 
-```
+```bash
 . 
 └── root
     ├── kcl.mod
@@ -2887,13 +2887,13 @@ bankCard = option("bankCard")  # Get bankCard through the option function.
 
 Then we can use the module as below:
 
-```
+```bash
 kcl -DbankCard=123 employee.k
 ```
 
 Currently, supported types of top-level argument are number, string, bool, list and dict.
 
-```
+```bash
 kcl main.k -D list_key='[1,2,3]' -D dict_key='{"key":"value"}' 
 ```
 
@@ -2919,7 +2919,7 @@ kcl_options:
     value: 123
 ```
 
-```
+```bash
 kcl -Y setting.yaml employee.k
 ```
 
@@ -2942,7 +2942,7 @@ kcl_options:
 
 KCL CLI -Y parameters also support multi-file configuration, and support separate writing and merging of compilation parameters and option top level arguments parameter configuration.
 
-```
+```bash
 kcl -Y compile_setting.yaml option_setting.yaml
 ```
 
@@ -2970,7 +2970,7 @@ kcl_options:
 
 We can use the following command line to get the meaning of each configuration parameter or see KCL Quick Start
 
-```
+```bash
 kcl --help
 ```
 
@@ -2994,7 +2994,7 @@ Parameters
 
 In addition to the above KCL single file execution, we can compile multiple KCL entry files at the same time using the following command:
 
-```
+```bash
 kcl main_1.k main_2.k ... main_n.k
 ```
 
@@ -3076,7 +3076,7 @@ print("---\n".join([yaml.encode(_b, ignore_private=True) for _b in _backends]))
 
 The command is
 
-```
+```bash
 kcl model.k backend.k
 ```
 
@@ -3144,7 +3144,7 @@ It should be noted that KCL variables ensure global uniqueness through the combi
 
 Code structure:
 
-```
+```bash
 .
 ├── kcl.mod
 └── main.k
@@ -3178,7 +3178,7 @@ var = pkg.Person {
 
 The command is
 
-```
+```bash
 kcl main.k -S pkg:var -S :var.name
 ```
 
@@ -3199,13 +3199,13 @@ In addition to **Variable Selector**, KCL also allows us to directly modify the 
 
 The use of **Variable Override** is similar to [**Variable Selector**](#variable-selector), and the parameter contains three parts e.g., `pkg`, `identifier`, `attribute` and `override_value`.
 
-```
+```bash
 kcl main.k -O override_spec
 ```
 
 - `override_spec` represents a unified representation of the configuration model fields and values that need to be modified
 
-```
+```txt
 override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 ```
 
@@ -3240,7 +3240,7 @@ person = Person {
 
 The command is
 
-```
+```bash
 kcl main.k -O :person.name=\"Bob\" -O :person.age=10
 ```
 
@@ -3254,7 +3254,7 @@ person:
 
 Besides, when we use KCL CLI `-d` argument, the KCL file will be modified to the following content at the same time
 
-```
+```bash
 kcl main.k -O :person.name=\"Bob\" -O :person.age=10 -d
 ```
 
@@ -3285,7 +3285,7 @@ person = Person {
 
 The command is
 
-```
+```bash
 kcl main.k -O :person.ids=\[1,2\]
 ```
 
@@ -3316,7 +3316,7 @@ config = Config {
 
 The command is
 
-```
+```bash
 kcl main.k -O config.x-
 ```
 

@@ -181,7 +181,7 @@ assert math.pow(100, 2) == 10000.0
 
 In addition, please note that the KCL number is 64-bit by default. We can perform a stricter 32-bit range check by adding the `-r` parameter to the KCL command-line tool.
 
-```
+```bash
 kcl main.k -r -d
 ```
 
@@ -2828,7 +2828,7 @@ The semantics of `import a.b.c.d` is
 
 The definition of the root path `ROOT_PATH` is the directory corresponding to the `kcl.mod` file from the current directory.
 
-```
+```bash
 . 
 └── root
     ├── kcl.mod
