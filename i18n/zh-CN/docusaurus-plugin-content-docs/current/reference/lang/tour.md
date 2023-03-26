@@ -24,7 +24,7 @@ sidebar_position: 1
 
 下表列出了 KCL 语言的关键字。
 
-```
+```txt
     True       False      None        Undefined   import
     and        or         in          is          not
     as         if         else        elif        for
@@ -181,7 +181,7 @@ assert math.pow(100, 2) == 10000.0
 
 KCL 默认使用 64 位数字类型。我们可以在 KCL 命令行使用 `-r` 参数执行严格的 32 位范围检查。
 
-```
+```bash
 kcl main.k -r -d
 ```
 
@@ -803,7 +803,7 @@ f = str(Undefined)  # Undefined
 
 以下字符表示运算符：
 
-```
+```txt
     +       -       *       **      /       //      %
     <<      >>      &       |       ^       <       >
     ~       <=      >=      ==      !=      @       \
@@ -880,7 +880,7 @@ schema x:
 
 以下 token 作为语法中的分隔符：
 
-```
+```txt
     (       )       [       ]       {       }
     ,       :       .       ;       =       ->
     +=      -=      *=      /=      //=     %=
@@ -2266,7 +2266,7 @@ aliceAndBob:
 
 在 KCL 中，我们可以使用合并运算符 `|` 来合并配置。union 运算符支持的类型包括如下：
 
-```
+```txt
 SchemaInstance | SchemaInstance
 SchemaInstance | Dict
 Dict | Dict
@@ -2703,7 +2703,7 @@ KCL 配置文件以 **模块** 形式组织。 单个 KCL 文件被认为是一�
 
 同一个包内的模块是可见的，跨包引用需要通过导入可见。
 
-```
+```bash
 . 
 └── root
     ├── model
@@ -2763,7 +2763,7 @@ m = root.Schema {}
 
 从当前目录或者父级目录中查找 `kcl.mod` 文件对应的目录。
 
-```
+```bash
 . 
 └── root
     ├── kcl.mod
@@ -2802,13 +2802,13 @@ bankCard = option("bankCard")  # Get bankCard through the option function.
 
 我们可以如下使用 module：
 
-```
+```bash
 kcl -DbankCard=123 employee.k
 ```
 
 目前，支持顶级参数的类型有数字、字符串、布尔、列表和字典。
 
-```
+```bash
 kcl main.k -D list_key='[1,2,3]' -D dict_key='{"key":"value"}' 
 ```
 
@@ -2834,7 +2834,7 @@ kcl_options:
     value: 123
 ```
 
-```
+```bash
 kcl -Y setting.yaml employee.k
 ```
 
@@ -2857,7 +2857,7 @@ kcl_options:
 
 KCL CLI -Y 参数还支持多文件配置，并支持编译参数和顶级参数的单独写入与合并。
 
-```
+```bash
 kcl -Y compile_setting.yaml option_setting.yaml
 ```
 
@@ -2885,7 +2885,7 @@ kcl_options:
 
 我们可以使用以下指令获取每个参数的含义
 
-```
+```bash
 kcl --help
 ```
 
@@ -2909,7 +2909,7 @@ value = option(key="key", type='str', default="default_value", required=True, he
 
 除了上面的 KCL 单文件执行之外，我们还可以使用以下命令同时编译多个 KCL 入口文件：
 
-```
+```bash
 kcl main_1.k main_2.k ... main_n.k
 ```
 
@@ -2991,7 +2991,7 @@ print("---\n".join([yaml.encode(_b, ignore_private=True) for _b in _backends]))
 
 命令为：
 
-```
+```bash
 kcl model.k backend.k
 ```
 
@@ -3059,7 +3059,7 @@ spec:
 
 Code structure:
 
-```
+```bash
 .
 ├── kcl.mod
 └── main.k
@@ -3093,7 +3093,7 @@ var = pkg.Person {
 
 命令为：
 
-```
+```bash
 kcl main.k -S pkg:var -S :var.name
 ```
 
@@ -3114,13 +3114,13 @@ var:
 
 变量修改参数的使用与变量查询类似，参数包含三部分，如 `pkg`、`identifier`、`attribute` 和 `override_value` .
 
-```
+```bash
 kcl main.k -O override_spec
 ```
 
 - `override_spec`: 表示需要修改的配置模型字段和值的统一表示
 
-```
+```txt
 override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 ```
 
@@ -3157,7 +3157,7 @@ person = Person {
 
 命令为：
 
-```
+```bash
 kcl main.k -O :person.name=Bob -O :person.age=10
 ```
 
@@ -3171,7 +3171,7 @@ person:
 
 此外，当我们使用 KCL CLI `-d` 参数时，KCL 文件将同时修改为以下内容
 
-```
+```bash
 kcl main.k -O :person.name=Bob -O :person.age=10 -d
 ```
 
@@ -3202,7 +3202,7 @@ config = Config {
 
 命令为：
 
-```
+```bash
 kcl main.k -O config.x-
 ```
 
