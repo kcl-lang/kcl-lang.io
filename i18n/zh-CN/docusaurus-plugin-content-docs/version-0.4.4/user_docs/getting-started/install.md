@@ -88,7 +88,7 @@ docker pull kusionstack/kclvm
 
 > ⚠️ 对于上述所有安装方式, 如果您想使用 [KCL Python 插件](https://kcl-lang.io/docs/reference/plugin/overview), 需要确保您已经安装了 Python 3.7+ 并将 python3 命令添加到您的 PATH 中
 
-> 对于低版本的 linux 发行版如 centos7, 您可以在 [Github](https://github.com/KusionStack/KCLVM/releases/) 找到 kclvm-centos 版本并下载安装。
+> 为了避免 GLIBC 版本过低问题, 对于低版本的 linux 发行版如 centos7, 您可以在 [Github](https://github.com/KusionStack/KCLVM/releases/) 找到 kclvm-centos 版本并下载安装。
 
 ## 2. 安装 VS Code 插件
 

@@ -109,7 +109,7 @@ docker pull kusionstack/kclvm
 
 > ⚠️ For all the above operating systems and installation methods, if you want to use [KCL Python plug-in](https://kcl-lang.io/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
 
-> For lower versions of Linux such as Centos7, you can visit [Github](https://github.com/KusionStack/KCLVM/releases/) to find the version of kclvm-centos and download and install it.
+> To avoid the GLIBC version being too low, for lower versions of Linux such as Centos7, you can visit [Github](https://github.com/KusionStack/KCLVM/releases/) to find the release of kclvm-centos and download and install it.
 
 ## 2. Install the KCL VS Code Extension
 
