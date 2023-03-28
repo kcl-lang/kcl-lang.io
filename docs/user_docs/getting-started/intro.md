@@ -116,6 +116,8 @@ Some tools support custom validation rules, but the rule descriptions are cumber
 
 Helm used parameterized template techniques to solve the problem of dynamic configuration. As the scale increases, parameterized templates tend to become complex and difficult to maintain; parameter substitution sites must be identified manually. However, it is tedious and error-prone, parameters will gradually erode the template, and any value in the template may gradually evolve into parameters. Compared with using the Kubernetes API directly, the readability of such a template combined with many parameters is often worse. Kustomize uses code patching to realize the reuse of the multi-environment configuration code.
 
+Unlike other configuration or policy languages, KCL has been considered a more modern DSL from the beginning of its design, focusing on modeling and validation, while providing production-level performance and cross-team collaboration capabilities. At the same time, KCL also provides package management tools such as kpm to complete code distribution and reuse. The purpose of KCL is not to replace data such as Kubernetes YAML but to solve their pain points during use and provide additional enhancement capabilities, which to determines the design direction of KCL. These design decisions are more general and not only inspired by the KusionStack use case because KCL expects to provide users with more choices as glue layers for IaC and IaD. Besides, KCL allow developers and platform cross teams to define their own abstraction layers. There is no one-size fits all abstraction to meet every organization's needs.
+
 ## Overview
 
 ![](/img/docs/user_docs/intro/kcl-overview.png)
