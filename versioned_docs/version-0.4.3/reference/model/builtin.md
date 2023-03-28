@@ -379,3 +379,7 @@ c = zip([0, 1, 2], [3, 4, 5, 6])
 #   - 4
 # - - 2
 ```
+
+## String Builtin Member Functions
+
+Reference [String Spec](/docs/reference/lang/spec/datatypes.md#string)

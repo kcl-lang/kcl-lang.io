@@ -394,3 +394,7 @@ c = zip([0, 1, 2], [3, 4, 5, 6])
 #   - 4
 # - - 2
 ```
+
+## String 类型成员函数
+
+参考 [String 文档](/docs/reference/lang/spec/datatypes.md#string)
