@@ -30,6 +30,10 @@ s1 = str(1)  # 1
 l1 = list([1, 2, 3])
 ```
 
+## String Builtin Member Functions
+
++ [String Spec](/docs/reference/lang/spec/datatypes)
+
 ## print
 
 `print(*args:any, end:str='\n')`
@@ -379,7 +383,3 @@ c = zip([0, 1, 2], [3, 4, 5, 6])
 #   - 4
 # - - 2
 ```
-
-## String Builtin Member Functions
-
-Reference [String Spec](/docs/reference/lang/spec/datatypes.md#string)

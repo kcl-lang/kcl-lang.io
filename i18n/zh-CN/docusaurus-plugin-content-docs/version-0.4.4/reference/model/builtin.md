@@ -4,7 +4,7 @@ sidebar_position: 1
 ---
 KCL 提供了一个内置系统模块的列表，这些模块是自动加载的，无需提供任何模块名称即可直接使用。例如，`print` 就是一个广泛使用的内置模块提供的函数。
 
-## 类型转换
+## 类型转换函数
 
 KCL的 `bool`、`int`、`float`、`str`、`list`、`dict`等类型有内置同名的转换函数。其中 `int` 不仅仅可以用于截断浮点数，也可以用来将字符串转化为整数（解析时为10进制，也可以制定其他值）。
 
@@ -29,6 +29,10 @@ s1 = str(1)  # 1
 
 l1 = list([1, 2, 3])
 ```
+
+## String 类型成员函数
+
+参考 [String 文档](/docs/reference/lang/spec/datatypes)
 
 ## print
 
@@ -394,7 +398,3 @@ c = zip([0, 1, 2], [3, 4, 5, 6])
 #   - 4
 # - - 2
 ```
-
-## String 类型成员函数
-
-参考 [String 文档](/docs/reference/lang/spec/datatypes.md#string)
