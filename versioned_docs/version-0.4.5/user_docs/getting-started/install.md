@@ -111,16 +111,21 @@ docker pull kusionstack/kclvm
 
 > To avoid the GLIBC version being too low, for lower versions of Linux such as Centos7, you can visit [Github](https://github.com/KusionStack/KCLVM/releases/) to find the release of kclvm-centos and download and install it.
 
-## 2. Install the KCL VS Code Extension
+## 2. Install the KCL IDE Extension
 
-To improve the KCL development on VS Code, there are VS Code
- extensions for both VS Code Web IDE and VS Code.
+### VS Code
+
+There are VS Code extensions for both VS Code and VS Code Web IDE.
+
+The KCL extension for the local VS Code IDE can be download from [here](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension) and it provides more rich language support for the KCL language such as highlighting, auto-completion, quick info hover and code navigation, etc.
 
 The [VS Code Web IDE](https://vscode.dev) can be reached through the browser, and you can search and install the [KCL for vscode.dev](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-web-extension) in the VS Code Extension tab. And here's the syntax highlighting view you'll get:
 
 ![](/img/docs/user_docs/getting-started/install/ide-vscode.png)
 
-The KCL extension for the local VS Code IDE provides more rich language support for the KCL language such as highlighting, auto-completion, quick info hover and code navigation, etc. Although the extension is not a must-required part of KCL, it is recommended to install it to improve coding efficiency.
+### IntelliJ IDEA
+
+Download the distribution from [here](https://github.com/KusionStack/intellij-kcl) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
 
 ## Next step
 

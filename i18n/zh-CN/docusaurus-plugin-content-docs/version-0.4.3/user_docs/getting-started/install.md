@@ -62,13 +62,21 @@ docker pull kusionstack/kclvm
 
 > 为了避免 GLIBC 版本过低问题, 对于低版本的 linux 发行版如 centos7, 您可以在 [Github](https://github.com/KusionStack/KCLVM/releases/) 找到 kclvm-centos 版本并下载安装。
 
-## 2. 安装 VS Code 插件
+## 2. 安装 KCL IDE 插件
 
-为了提高 IDE 开发 KCL 的效率，KCL 为 VS Code 在线版和本地版本提供了插件支持。在线版本可以从 https://vscode.dev 地址打开，然后安装“KCL for vscode.dev 插件”，效果如下:
+### VS Code
+
+KCL 为 VS Code 本地版本和在线版本提供了插件支持。
+
+本地 VS Code 可以安装完整的 [KCL 插件](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension)，提供了高亮、自动补全（部分：关键字补全等）、跳转、悬停、大纲等功能。
+
+在线版本可以从 https://vscode.dev 地址打开，然后安装“KCL for vscode.dev 插件”，效果如下:
 
 ![](/img/docs/user_docs/getting-started/install/ide-vscode.png)
 
-本地 VS Code 可以安装完整的 [KCL 插件](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension)，提供了高亮、自动补全（部分：关键字补全等）、跳转、悬停、大纲等功能。插件虽然不是 KCL 必须的部分，但是可以提高效率推荐安装。
+### IntelliJ IDEA
+
+从[这里](https://github.com/KusionStack/intellij-kcl)下载发行版，在 IntelliJ IDEA 中，点击 Preference -> plugins -> install Plugin from Disk... -> 选择 kcl-idea-plugin zip -> 重启 IDE。此插件需要 IntelliJ IDEA 2020.2+
 
 ## 下一步
 
