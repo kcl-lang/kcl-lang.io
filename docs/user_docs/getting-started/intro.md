@@ -239,6 +239,6 @@ Rego has its roots in logic programming. It is based on Datalog, a restricted fo
 
 Besides, KCL’s approach is more amenable to finding normalized and simplified representations of constraints, which makes it more suitable for creating OpenAPI for generated from OpenAPI.
 
-## Next step
+## Next Step
 
 + [Install KCL](/docs/user_docs/getting-started/install)

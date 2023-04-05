@@ -236,6 +236,6 @@ Rego 起源于逻辑编程，它基于 Datalog，是一种受限制的 Prolog �
 
 此外，KCL 的方法更易于找到规范化、简化、面向人类易读，面向运行时性能优良的约束和校验表示，具备静态类型，并且它更适合于从 OpenAPI 生成或者创建 OpenAPI。
 
-## Next step
+## Next Step
 
 + [Install KCL](/docs/user_docs/getting-started/install)
