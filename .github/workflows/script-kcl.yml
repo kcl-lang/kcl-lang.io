@@ -32,7 +32,10 @@ jobs:
         run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run hello.k
 
   check-linux:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v1
       - name: Check Install Script
