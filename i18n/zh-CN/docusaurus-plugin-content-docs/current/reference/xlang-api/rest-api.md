@@ -121,7 +121,8 @@ $ curl -X POST \
 // We can use the following command to start a KCLVM RPC server.
 //
 // ```
-// kclvm -m kclvm.program.rpc-server -http=:2021
+// python3 -m pip install kclvm
+// python3 -m kclvm.program.rpc-server -http=:2021
 // ```
 //
 // The service can then be requested via the POST protocol:

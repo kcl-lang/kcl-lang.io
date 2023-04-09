@@ -119,7 +119,8 @@ Cross-language APIs defined via Protobuf([https://github.com/KusionStack/kclvm-g
 // We can use the following command to start a KCL RPC server.
 //
 // ```
-// kclvm -m kclvm.program.rpc-server -http=:2021
+// python3 -m pip install kclvm
+// python3 -m kclvm.program.rpc-server -http=:2021
 // ```
 //
 // The service can then be requested via the POST protocol:
