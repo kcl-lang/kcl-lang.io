@@ -310,6 +310,18 @@ Built-in function and members of a string
   ```
 + `upper() -> str`
   Return a copy of the string with all the cased characters 4 converted to uppercase. Note that `s.upper().isupper()` might be `False` if s contains uncased characters or if the Unicode category of the resulting character(s) is not “Lu” (Letter, uppercase), but e.g., “Lt” (Letter, titlecase).
++ `removeprefix(prefix: str) -> str`
+  If the string starts with the prefix string, return string[len(prefix):]. Otherwise, return a copy of the original string.
+  ```python
+  >>> "prefix-data".removeprefix("prefix-")
+  "data"
+  ```
++ `rermovesuffix(suffix: str) -> str`
+  If the string ends with the suffix string and that suffix is not empty, return string[:-len(suffix)]. Otherwise, return a copy of the original string.
+  ```python
+  >>> "data-suffix".removesuffix("-suffix")
+  "data"
+  ```
 
 ### List
 
