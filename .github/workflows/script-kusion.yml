@@ -19,7 +19,6 @@ jobs:
       - name: Check Kusion run
         shell: bash -leo pipefail {0}
         run: |
-          sudo kcl -V
           sudo kcl -Y static/stack/kcl.yaml
           sudo kusion version
           sudo kusion compile -w static/stack -o stdout
@@ -64,6 +63,5 @@ jobs:
           echo "go installed successfully"
           $HOME/go/bin/kusion version
           $HOME/go/bin/kusion compile -w static/stack -o stdout
-          $HOME/go/bin/kcl -V
           $HOME/go/bin/kcl -Y static/stack/kcl.yaml
           cd static/stack && $HOME/go/bin/kusion compile
