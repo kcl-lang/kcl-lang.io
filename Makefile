@@ -9,3 +9,6 @@ run-i18n:
 
 check-link:
 	go run ./hack/linkcheck.go
+
+version:
+	npm run docusaurus docs:version 0.4.6
