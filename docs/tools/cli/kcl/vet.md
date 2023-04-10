@@ -15,10 +15,10 @@ There is a JSON format file `data.json`:
 ```json
 {
     "name": "Alice",
-    "age": "18",
+    "age": 18,
     "message": "This is Alice",
     "data": {
-        "id": "1",
+        "id": 1,
         "value": "value1"
     },
     "labels": {
@@ -49,33 +49,39 @@ schema Data:
 
 Execute the following command:
 
-```
+```bash
 $ kcl-vet data.json schema.k
-Validate succuss!
 ```
 
 ## Specify the schema for validation
 
 When multiple schema definitions exist in the KCL file, by default, the KCL Validation tool will use the first schema to check. If you need to specify a schema for verification, you can use the `-d|--schema` parameter
 
-```
-$kcl-vet data.json schema.k -d User
+```bash
+$ kcl-vet data.json schema.k -d User
 ```
 
 ## Args
 
-```
+```bash
 $ kcl-vet -h
-usage: kcl-vet [-h] [-d schema] [--format format] [-n attribute_name]
-               data_file kcl_file
+USAGE:
+    kcl-vet [OPTIONS] [ARGS]
 
-positional arguments:
-  data_file             Validation data file
-  kcl_file              KCL file
+ARGS:
+    <data_file>    Validation data file
+    <kcl_file>     KCL file
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -d schema, --schema schema
-  --format format       Validation data file format, support YAML and JSON
-  -n attribute_name, --attribute-name attribute_name
+OPTIONS:
+    -d, --schema <schema>
+            Iterate through subdirectories recursively
+
+        --format <format>
+            Validation data file format, support YAML and JSON, default is JSON
+
+    -h, --help
+            Print help information
+
+    -n, --attribute_name <attribute_name>
+            The attribute name for the data loading
 ```

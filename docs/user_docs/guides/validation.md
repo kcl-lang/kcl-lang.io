@@ -57,10 +57,10 @@ There is a JSON format file `data.json`:
 ```json
 {
     "name": "Alice",
-    "age": "18",
+    "age": 18,
     "message": "This is Alice",
     "data": {
-        "id": "1",
+        "id": 1,
         "value": "value1"
     },
     "labels": {
@@ -93,7 +93,6 @@ Execute the following command:
 
 ```bash
 $ kcl-vet data.json schema.k
-Validate succuss!
 ```
 
 Based on this, KCL provides the corresponding [Validation Tool](/docs/tools/cli/kcl/vet) to validate JSON/YAML data directly. In addition, based on this capability, we can build a K-V validation visualization product.

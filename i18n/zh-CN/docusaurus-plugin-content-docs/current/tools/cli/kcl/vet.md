@@ -15,10 +15,10 @@ KCL 支持通过内置的 `kcl-vet` 命令行工具提供了基本的配置数�
 ```json
 {
     "name": "Alice",
-    "age": "18",
+    "age": 18,
     "message": "This is Alice",
     "data": {
-        "id": "1",
+        "id": 1,
         "value": "value1"
     },
     "labels": {
@@ -49,33 +49,39 @@ schema Data:
 
 在目录下执行如下命令
 
-```
+```bash
 $ kcl-vet data.json schema.k
-Validate succuss!
 ```
 
 ## 指定校验的 schema
 
 当校验的 KCL 文件中存在多个 schema 定义时，kcl-vet 工具会默认取第一个 schema 定义进行校验，如果需要指定校验的 schema，可以使用 `-d|--schema` 参数
 
-```
-$kcl-vet data.json schema.k -d User
+```bash
+$ kcl-vet data.json schema.k -d User
 ```
 
 ## 命令行参数
 
-```
+```bash
 $ kcl-vet -h
-usage: kcl-vet [-h] [-d schema] [--format format] [-n attribute_name]
-               data_file kcl_file
+USAGE:
+    kcl-vet [OPTIONS] [ARGS]
 
-positional arguments:
-  data_file             Validation data file
-  kcl_file              KCL file
+ARGS:
+    <data_file>    Validation data file
+    <kcl_file>     KCL file
 
-optional arguments:
-  -h, --help            show this help message and exit
-  -d schema, --schema schema
-  --format format       Validation data file format, support YAML and JSON
-  -n attribute_name, --attribute-name attribute_name
+OPTIONS:
+    -d, --schema <schema>
+            Iterate through subdirectories recursively
+
+        --format <format>
+            Validation data file format, support YAML and JSON, default is JSON
+
+    -h, --help
+            Print help information
+
+    -n, --attribute_name <attribute_name>
+            The attribute name for the data loading
 ```

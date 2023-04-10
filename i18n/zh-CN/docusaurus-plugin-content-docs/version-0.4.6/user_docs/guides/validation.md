@@ -59,10 +59,10 @@ schema Sample:
 ```json
 {
     "name": "Alice",
-    "age": "18",
+    "age": 18,
     "message": "This is Alice",
     "data": {
-        "id": "1",
+        "id": 1,
         "value": "value1"
     },
     "labels": {
@@ -95,7 +95,6 @@ schema Data:
 
 ```bash
 $ kcl-vet data.json schema.k
-Validate succuss!
 ```
 
 ## 未来计划
