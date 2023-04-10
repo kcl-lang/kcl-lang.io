@@ -124,14 +124,18 @@ When executed, an error similar to the following will be generated (the displaye
 
 ```shell
 $ kcl server.k 
-KCL Compile Error[E2G22] : The type got is inconsistent with the type expected
-    ---> File /path/to/server.k:8:2
-    8 |    ports = [1.2, 1.3]
-      5    ^  -> got [float(1.2)|float(1.3)]
-    ---> File /path/to/server.k:3:2
-    3 |    ports: [int] = [8000, 8001, 8002]
-      5    ~  -> expect [int]
-expect [int], got [float(1.2)|float(1.3)]
+error[E2G22]: TypeError
+ --> /path/to/server.k:8:5
+  |
+8 |     ports = [1.2, 1.3]
+  |     ^ expected [int], got [float(1.2)|float(1.3)]
+  |
+
+ --> /path/to/server.k:3:5
+  |
+3 |     ports: [int] = [8000, 8001, 8002]
+  |     ^ variable is defined here, its type is [int], but got [float(1.2)|float(1.3)]
+  |
 ```
 
 Similarly we can encapsulate the attributes of the `servers` section with the following code:

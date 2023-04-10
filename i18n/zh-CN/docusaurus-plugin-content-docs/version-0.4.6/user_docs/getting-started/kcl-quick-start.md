@@ -124,14 +124,18 @@ database = DatabaseConfig {
 
 ```shell
 $ kcl server.k 
-KCL Compile Error[E2G22] : The type got is inconsistent with the type expected
-    ---> File /path/to/server.k:8:2
-    8 |    ports = [1.2, 1.3]
-      5    ^  -> got [float(1.2)|float(1.3)]
-    ---> File /path/to/server.k:3:2
-    3 |    ports: [int] = [8000, 8001, 8002]
-      5    ~  -> expect [int]
-expect [int], got [float(1.2)|float(1.3)]
+error[E2G22]: TypeError
+ --> /path/to/server.k:8:5
+  |
+8 |     ports = [1.2, 1.3]
+  |     ^ expected [int], got [float(1.2)|float(1.3)]
+  |
+
+ --> /path/to/server.k:3:5
+  |
+3 |     ports: [int] = [8000, 8001, 8002]
+  |     ^ variable is defined here, its type is [int], but got [float(1.2)|float(1.3)]
+  |
 ```
 
 类似地我们可以用以下的代码封装 `servers` 部分的属性：
