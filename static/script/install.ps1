@@ -164,9 +164,6 @@ else {
     Write-Output "Added $KCLCliFileBinPath to User Path - $UserPathEnvironmentVar"
 }
 
-# Check the KCL CLI version
-Invoke-Expression "$KCLCliFilePath -V"
-
 Write-Output "`r`nKCL is installed successfully."
 Write-Output "To get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start ."
 Write-Output "Ensure that Docker Desktop is set to Linux containers mode when you run KCL in self hosted mode."

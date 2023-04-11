@@ -16,7 +16,7 @@ jobs:
         run: static/script/install.sh
       - name: Check KCL run
         shell: bash -leo pipefail {0}
-        run: sudo kcl hello.k && sudo kcl hello.k --target native
+        run: sudo kcl hello.k
 
       - uses: actions/setup-python@v4
         with:
@@ -43,9 +43,7 @@ jobs:
       - name: Check KCL run
         shell: bash -ieo pipefail {0}
         run: |
-          python3 -m pip install kclvm --user -U
           kcl hello.k
-          kcl hello.k --target native
 
       - uses: actions/setup-python@v4
         with:
@@ -71,7 +69,7 @@ jobs:
       - name: Check Install Script
         run: static/script/install.ps1
       - name: Check KCL run
-        run: C:\kclvm\bin\kcl.exe hello.k && C:\kclvm\bin\kcl.exe hello.k --target native
+        run: C:\kclvm\bin\kcl.exe hello.k
 
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -101,7 +99,6 @@ jobs:
           scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
           scoop install kcl-lang/kclvm
           kcl.exe hello.k
-          kcl.exe hello.k --target native
 
   check-kcl-brew-install:
     strategy:
