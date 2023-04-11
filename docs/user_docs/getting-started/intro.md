@@ -118,11 +118,11 @@ Helm used parameterized template techniques to solve the problem of dynamic conf
 
 Unlike other configuration or policy languages, KCL has been considered a more modern DSL from the beginning of its design, focusing on modeling and validation, while providing production-level performance and cross-team collaboration capabilities. At the same time, KCL also provides package management tools such as kpm to complete code distribution and reuse. The purpose of KCL is not to replace data such as Kubernetes YAML but to solve their pain points during use and provide additional enhancement capabilities, which to determines the design direction of KCL. These design decisions are more general and not only inspired by the KusionStack use case because KCL expects to provide users with more choices as glue layers for IaC and IaD. Besides, KCL allow developers and platform cross teams to define their own abstraction layers. There is no one-size fits all abstraction to meet every organization's needs.
 
-## Overview
+## KCL Overview
 
 ![](/img/docs/user_docs/intro/kcl-overview.png)
 
-In addition to the language itself, KCL also provides many additional tools, such as formatting, testing, document, package management, to help users use, understand and check the configuration or policy they write. We can reduce the cost of configuration writing and sharing through IDE plug-ins such as VS Code and Playground. In addition, through KCL Rust, Go, and Python multilingual SDKs, the configuration can be automatically managed and executed.
+In addition to the language itself, KCL also provides many additional tools, such as formatting, testing, document, package management, to help users use, understand and check the configuration or policy they write. We can reduce the cost of configuration writing and sharing through IDE plug-ins such as VS Code,playground and package manage tools. In addition, through KCL Rust, Go, and Python multilingual SDKs, the configuration can be automatically managed and executed.
 
 ## Why Use KCL?
 
