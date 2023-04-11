@@ -4,20 +4,19 @@ sidebar_position: 5
 
 # Command Line Tool
 
-### 1. What is the function of the `settings.yaml` in the application directory of the Konfig?
+## 1. What is the function of the `settings.yaml` in the application directory of the Konfig?
 
 The `settings.yaml` in KCL indicates the configuration file of the KCL command line tool. You can put the compiled configuration into it, such as the file to be compiled, the option dynamic parameter that needs to be input(`-d`), whether to ignore the null value(`-n`) and other configurations.
 
 For example, for the following arguments:
 
-```
+```shell
 kcl main.k -D key=value -n -r
 ```
 
 It can be replaced by the following command line arguments and `settings.yaml`
 
-```
-
+```shell
 kcl -Y settings.yaml
 ```
 
@@ -45,7 +44,7 @@ KCL supports multiple ways to input dynamic options
 
 - `-D`: Use the command line argument `-D` to input dynamic options. It supports basic data types str/int/float/bool and structured data types list/dict
 
-```
+```shell
 kcl main.k -D env-type=TEST -D deploy-topology='[{"cluster":"my-cluster","idc":"my-idc","replicas":2,"workspace":"my-idc","zone":"my-zone"}]'
 ```
 
@@ -87,7 +86,7 @@ deploy_topology:
 
 - Input multiple files in the command line:
 
-```
+```shell
 kcl file1.k file2.k file3.k
 ```
 
@@ -103,10 +102,6 @@ kcl_cli_configs:
     - file3.k
 ```
 
-```
+```shell
 kcl -Y settings.yaml
 ```
-
-### 4. What is the function of the `settings.yaml` in the application directory of the KCL?
-
-A Stack is an isolated logical workspace within a project. Stacks uniquely belong to a unique development group, such as the front-end development group in a web project, and uniquely represent a specific development phase, such as dev, test, or prod. From a development perspective, Stack is the basic unit of configuration for the KCL project. From an execution perspective, KCL code units are deployed into a Stack.

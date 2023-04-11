@@ -4,20 +4,19 @@ sidebar_position: 5
 
 # 命令行工具
 
-### 1. Konfig 大库应用目录下的 settings.yaml 文件的作用是什么？
+## 1. Konfig 大库应用目录下的 settings.yaml 文件的作用是什么？
 
 KCL 中 settings.yaml 文件表示 KCL 命令行工具的配置参数文件，可以将编译的配置放入其中进行调用比如需要编译的文件，需要输入的 option 动态参数 `-d`，是否需要忽略掉空值 None `-n` 等配置。
 
 比如对于如下的命令行运行参数
 
-```
+```shell
 kcl main.k -D key=value -n -r
 ```
 
 就可以使用如下的命令行参数和 settings.yaml 配置文件代替
 
-```
-
+```shell
 kcl -Y settings.yaml
 ```
 
@@ -45,7 +44,7 @@ KCL 支持多种方式传入动态参数
 
 - `-D`: 使用 KCL 命令行的-D 参数可以直接传入动态参数，支持基本数据类型 str/int/float/bool, 以及结构数据类型 list/dict
 
-```
+```shell
 kcl main.k -D env-type=TEST -D deploy-topology='[{"cluster":"my-cluster","idc":"my-idc","replicas":2,"workspace":"my-idc","zone":"my-zone"}]'
 ```
 
@@ -87,7 +86,7 @@ deploy_topology:
 
 - 使用 KCL 命令行工具直接书写多文件编译
 
-```
+```shell
 kcl file1.k file2.k file3.k
 ```
 
@@ -103,10 +102,6 @@ kcl_cli_configs:
     - file3.k
 ```
 
-```
+```shell
 kcl -Y settings.yaml
 ```
-
-### 4. Konfig 大库应用目录下的 stack.yaml 文件的定位是什么？
-
-Stack 是项目中的一个隔离的逻辑工作区。Stack 唯一地属于一个开发组，例如 Web 项目中的前端开发组，并且唯一表示特定的开发阶段，例如开发、测试、生产。从开发的角度看，Stack 是 Kusion 项目的基本配置单元。从执行的角度来看，KCL 代码单元被部署到一个 Stack 中。
