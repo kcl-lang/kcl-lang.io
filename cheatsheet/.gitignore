@@ -1,0 +1,20 @@
+# built cheatsheets and handouts
+# ----------------------------------
+cheatsheet*.pdf
+
+# TeX auxiliary files
+# ----------------------------------
+*.aux
+*.log
+*.out
+*.upa
+
+*.synctex(busy)
+*.synctex.gz
+
+# generated figures
+# ----------------------------------
+fonts/**/*.[ot]tf
+
+# OS specific
+.DS_Store
