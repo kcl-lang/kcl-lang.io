@@ -23,6 +23,9 @@
     "sidebar.user_docs.category.Validation": {
       "message": "验证"
     },
+    "sidebar.user_docs.category.Concepts": {
+      "message": "核心概念"
+    },
     "sidebar.user_docs.category.FAQ": {
       "message": "常见问答"
     },

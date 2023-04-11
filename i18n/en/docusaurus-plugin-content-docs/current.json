@@ -467,6 +467,9 @@
     "message": "FAQ",
     "description": "The label for category FAQ in sidebar docs"
   },
+  "sidebar.user_docs.category.Concepts": {
+    "message": "核心概念"
+  },
   "sidebar.user_docs.category.FAQ": {
     "message": "FAQ",
     "description": "The label for category FAQ in sidebar user_docs"
