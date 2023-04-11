@@ -1,5 +1,7 @@
 # KCL Language Cheatsheet
 
+![](cheatsheet.png)
+
 How to build:
 
 1. run `make -C ./font` to download the font files.
