@@ -148,7 +148,7 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 + **开发友好**：[语言工具](https://kusionstack.io/docs/reference/cli/kcl/) (Format，Lint，Test，Vet，Doc 等)、 [IDE 插件](https://github.com/KusionStack/vscode-kcl) 构建良好的研发体验
 + **安全可控**：面向领域，不原生提供线程、IO 等系统级功能，低噪音，低安全风险，易维护，易治理
 + **多语言API**：[Go](https://kcl-lang.io/docs/reference/xlang-api/go-api), [Python](https://kcl-lang.io/docs/reference/xlang-api/python-api) 和 [REST API](https://kcl-lang.io/docs/reference/xlang-api/rest-api) 满足不同场景和应用使用需求
-+ **K8s集成**：支持外置编辑和校验插件，分离数据和逻辑：[Helm KCL Plugin](https://github.com/KusionStack/helm-kcl), [KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk) 和 Kustomize KRM Plugin 等。
++ **K8s集成**：支持外置编辑和校验插件，分离数据和逻辑：[Helm KCL Plugin](https://github.com/KusionStack/helm-kcl), [KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk) 和 [Kustomize KCL Plugin](https://github.com/KusionStack/kustomize-kcl) 等。
 + **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
 有关更多语言设计和功能，请参阅[KCL文档](https://kcl-lang.github.io/docs/reference/lang/tour). 虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，我们还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
