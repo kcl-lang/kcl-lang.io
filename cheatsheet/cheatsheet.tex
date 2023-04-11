@@ -1,0 +1,705 @@
+% !TeX TS-program = xelatex
+
+\documentclass[10pt,landscape,a4paper]{article}
+
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=0pt,skipbelow=0pt}
+
+\usepackage{multicol}
+\usepackage{colortbl}
+\usepackage{array, multirow}
+
+\usepackage[right=2.5mm, left=2.5mm, top=2.5mm, bottom=2.5mm]{geometry}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage[percent]{overpic}
+\graphicspath{{./images}}
+\usepackage[export]{adjustbox}
+
+\usepackage[framemethod=TikZ]{mdframed}
+\mdfsetup{skipabove=0pt,skipbelow=0pt}
+\usepackage{menukeys}
+
+\usepackage{xcolor}
+\colorlet{citecolor}{black}
+\colorlet{linkcolor}{black}
+\colorlet{urlcolor}{black}
+\usepackage[
+  bookmarks=true,
+  breaklinks=true,
+  pdfborder={0 0 0},
+  citecolor=citecolor,
+  linkcolor=linkcolor,
+  urlcolor=urlcolor,
+  colorlinks=true,
+  linktocpage=false,
+  hyperindex=true,
+  colorlinks=true,
+  linktocpage=false,
+  linkbordercolor=white]{hyperref}
+
+\usepackage{fontspec}
+\usepackage[fixed]{fontawesome5}
+\usepackage[babel=true]{microtype}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Source Serif Pro}[
+  Path           = fonts/source-serif-pro/SourceSerifPro-,
+  Extension      = .otf,
+  UprightFont    = Regular,
+  ItalicFont     = LightIt,
+  BoldFont       = Semibold,
+  BoldItalicFont = It ]
+\newfontfamily\RobotoSlab{Roboto Slab}[
+  Path        = fonts/roboto-slab/RobotoSlab-,
+  Extension   = .ttf,
+  UprightFont = Light,
+  BoldFont    = Regular ]
+
+\definecolor{secbgcol}{HTML}{2D3E40}
+\definecolor{highlight}{HTML}{36A8B2}
+\definecolor{secftcol}{HTML}{ffffff}
+\definecolor{doccol}{HTML}{4cbdc7}
+\definecolor{myblue}{HTML}{12558c}
+
+\usepackage{listings}
+\definecolor{lightblue}{RGB}{240,245,255}
+\definecolor{darkblue}{RGB}{40,40,85}
+\lstset{
+    language=Python,
+    backgroundcolor = \color{lightblue},
+    basicstyle=\tiny\ttfamily,
+    breaklines=true,
+    showstringspaces=false,
+    keywordstyle=\color{green!35!black},
+    commentstyle=\selectfont\color{gray},
+    numberstyle=\color{blue},
+    morekeywords={constexpr},
+    classoffset=1,
+    morekeywords={dense},
+    keywordstyle=\color{myblue},
+    classoffset=2,
+    morekeywords={
+        True, False, None, Undefined, import,
+        and, or, in, is, not,
+        as, if, else, elif, for,
+        schema, mixin, protocol, check, assert,
+        all, any, map, filter, lambda, rule
+    },
+    keywordstyle=\color{highlight},
+    classoffset=3,
+    morekeywords={place, f32, f64, u8, u16, u32, u64, i8, i16, i32, i64, f16, float, int},
+    keywordstyle=\color{highlight},
+%    moredelim=**[is][\color{red}]{@}{@},
+    xleftmargin=0.1cm,
+    xrightmargin=0.1cm,
+    frame=tlbr,
+    framesep=0.1cm,
+    framerule=0pt,
+}
+\newcommand{\lcode}[1]{\lstinline[basicstyle=\scriptsize\ttfamily]{#1}}
+\setlength\parindent{0pt}
+\setlength{\tabcolsep}{2pt}
+\baselineskip=0pt
+\setlength\columnsep{0.5em}
+
+\newcommand{\offset}{\vspace*{0.4em}}
+
+\newcommand{\API}[1]{\tikz[baseline=(X.base)]
+  \node [fill=doccol, rectangle, inner sep=2pt,rounded corners=1pt] (X)
+        {\href{#1}{\color{white}{\tiny \sffamily \textbf{DOC}}}};}
+
+\newcommand{\LINK}[2]{\tikz[baseline=(X.base)]
+    \node [fill=doccol, rectangle, inner sep=2pt,rounded corners=1pt] (X)
+        {\href{#2}{\color{white}{\tiny \sffamily \textbf{#1}}}};}
+
+\newenvironment{myboxed}[1]
+{\begin{mdframed}[linecolor=black,
+                  backgroundcolor=white,
+                  outerlinewidth=0.25pt,
+                  %roundcorner=0.25em,
+                  innertopmargin=1ex,
+                  topline=true,
+                  rightline=true,
+                  leftline=true,
+                  bottomline=true,
+                  linecolor=black!0,
+                  frametitleaboveskip=0.5em,
+                  frametitlebelowskip=0.5em,
+                  innerbottommargin=.5\baselineskip,
+                  innerrightmargin=.5em,
+                  innerleftmargin=.5em,
+                  %userdefinedwidth=1\textwidth,
+                  % frametitle={\scshape \bfseries \sffamily #1},
+                  frametitle={\footnotesize\color{secftcol}\RobotoSlab \bfseries \hspace*{0mm} #1},
+                  % frametitlerule=true,
+                  %frametitlerulecolor=red,
+                  frametitlebackgroundcolor=secbgcol,
+                  frametitlerulewidth=2pt]}
+{\end{mdframed}}
+
+\begin{document}
+\thispagestyle{empty}
+% \footnotesize
+\scriptsize
+
+% -----------------------------------------------------------------------------
+
+\begin{multicols*}{5}
+
+% -----------------------------------------------------------------------------
+% Header + Logo
+% -----------------------------------------------------------------------------
+
+\begin{overpic}[width=\columnwidth,tics=6, trim=-10 10 0 0, clip]{kcl-lang-logo.pdf}
+\end{overpic}
+
+\textbf{ }
+
+
+%\vspace{\fill}
+
+
+% -----------------------------------------------------------------------------
+% Intro: https://kcl-lang.io/docs/user_docs/getting-started/intro
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Intro \hfill \API{https://kcl-lang.io/docs/user_docs/getting-started/intro}}
+\offset
+
+\textbf{KCL} is an open\-source constraint-based record \& functional language mainly used in configuration and policy scenarios.
+
+\textbf{ }
+
+\href{https://github.com/KusionStack/KCLVM}{\color{myblue}{\sffamily \textbf{https://github.com/KusionStack/KCLVM}}}
+
+\href{https://kcl-lang.io}{\color{myblue}{\sffamily \textbf{https://kcl-lang.io}}}
+
+\end{myboxed}
+
+% -----------------------------------------------------------------------------
+% Installation
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Installation \hfill \API{https://kcl-lang.io/docs/user_docs/getting-started/install}}
+
+\hspace*{1mm}\raisebox{0.5pt}{\tiny$\bullet$}~\textbf{Docker}
+
+\begin{lstlisting}
+docker pull kusionstack/kclvm
+\end{lstlisting}
+
+\hspace*{1mm}\raisebox{0.5pt}{\tiny$\bullet$}~\textbf{macOS}
+
+\begin{lstlisting}
+brew install kcl-lang/tap/kclvm
+\end{lstlisting}
+
+\hspace*{1mm}\raisebox{0.5pt}{\tiny$\bullet$}~\textbf{Linux}
+
+\begin{lstlisting}
+wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
+\end{lstlisting}
+
+\hspace*{1mm}\raisebox{0.5pt}{\tiny$\bullet$}~\textbf{Windows}
+
+\begin{lstlisting}
+powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
+\end{lstlisting}
+
+
+\end{myboxed}
+
+% -----------------------------------------------------------------------------
+% Quick start
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Quick start \hfill \API{https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start}}
+\begin{lstlisting}
+# This is a KCL document
+
+title = "KCL Example"
+
+owner = {
+    name = "The KCL Authors"
+    data = "2020-01-02T03:04:05"
+}
+
+database = {
+    enabled = True
+    ports = [8000, 8001, 8002]
+    data = [["delta", "phi"], [3.14]]
+    temp_targets = {cpu = 79.5, case = 72.0}
+}
+
+servers = [
+    {ip = "10.0.0.1", role = "frontend"}
+    {ip = "10.0.0.2", role = "backend"}
+]
+\end{lstlisting}
+\end{myboxed}
+
+
+% -----------------------------------------------------------------------------
+% VS Code
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{VS Code Extension \hfill \LINK{LINK}{https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension}}
+
+\begin{overpic}[width=\columnwidth,tics=6, trim=-10 10 0 0, clip]{ide-vscode.png}
+\end{overpic}
+
+Highlighting, auto-completion, quick info hover and code navigation, etc
+
+\end{myboxed}
+
+% -----------------------------------------------------------------------------
+\vspace{\fill}
+% -----------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------
+% Keywords
+% https://kcl-lang.io/docs/reference/lang/tour#keywords
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Keywords \hfill \LINK{DOC}{https://kcl-lang.io/docs/reference/lang/tour}}
+\offset
+
+\begin{lstlisting}
+True    False  None      Undefined  import
+and     or     in        is         not
+as      if     else      elif       for
+schema  mixin  protocol  check      assert
+all     any    map       filter     lambda
+rule
+\end{lstlisting}
+
+\end{myboxed}
+
+% -----------------------------------------------------------------------------
+% Data Types
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Data Types(bool/int/float/units/str) \hfill \LINK{DOC}{https://kcl-lang.io/docs/reference/lang/tour}}
+\offset
+
+\begin{lstlisting}
+name = "Foo"  # exported, can only be set once.
+_name = "Foo"  # internal and are mutable
+$if = 3  # equal to `if = 2`
+\end{lstlisting}
+
+\textbf{boolean}
+
+\begin{lstlisting}
+a = True
+b = False
+\end{lstlisting}
+
+\textbf{int}
+
+\begin{lstlisting}
+a = 123
+b = 0x10 # hexadecimal literal
+c = int("10") # int constructor
+\end{lstlisting}
+
+
+\textbf{float}
+
+\begin{lstlisting}
+a = 1.10
+b = -35.59
+c = 32.3e+18
+d = 70.2E-12
+e = float("112") # float constructor
+\end{lstlisting}
+
+\textbf{units}
+
+\begin{lstlisting}
+# SI
+n = 1n  # 1e-09
+u = 1u  # 1e-06
+m = 1m  # 1e-03
+k = 1k  # 1000
+K = 1K  # 1000
+M = 1M  # 1000000
+G = 1G  # 1000000000
+T = 1T  # 100000000000
+P = 1P  # 1000000000000000
+# IEC
+Ki = 1Ki  # 1024
+Mi = 1Mi  # 1024 ** 2
+Gi = 1Gi  # 1024 ** 3
+Ti = 1Ti  # 1024 ** 4
+Pi = 1Pi  # 1024 ** 5
+\end{lstlisting}
+
+\textbf{str}
+
+\begin{lstlisting}
+'allows embedded "double" quotes'
+"allows embedded 'single' quotes"
+
+'''Three single quotes'''
+"""Three double quotes"""
+
+"""This is a long triple quoted string
+may span multiple lines.
+"""
+
+s = "Hi\nHello"
+
+# This is a KCL raw string with the `r` prefix.
+raw_s = r"Hi\nHello"
+
+
+x = 'The + operator ' + 'works, as well.'
+x = str(3.5) # "3.5"
+
+worldString = "world"
+s = "Hello ${worldString}"
+
+# This is a KCL raw string with the `r` prefix. 
+raw_s = r"Hello ${worldString}"
+
+x = "length"
+assert len(x) == 6 # True
+assert "{} {}".format("ab", "12") == 'ab 12'
+\end{lstlisting}
+
+
+\end{myboxed}
+
+\vspace{\fill}
+
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Data Types(List/Dict/Schema/Alias) \hfill \LINK{DOC}{https://kcl-lang.io/docs/reference/lang/tour}}
+\offset
+
+\textbf{list}
+
+\begin{lstlisting}
+list = [1, 2, 3]
+assert len(list) == 3  # True
+assert list[0] == 1  # True
+
+list = [ _x for _x in range(10) if _x % 2 == 0]
+assert list == [0, 2, 4, 6, 8] # True
+
+# [1000, 2000, 3000]
+dataLoop = [i if i > 2 else i + 1 for i in data]
+\end{lstlisting}
+
+\textbf{dict}
+
+\begin{lstlisting}
+a = {"one" = 1, "two" = 2, "three" = 3}
+b = {'one' = 1, 'two' = 2, 'three' = 3}
+assert a == b # True
+assert len(a) == 3 # True
+
+person = {
+    base.count = 2
+    base.value = "value"
+    labels.key = base.value
+}
+\end{lstlisting}
+
+\textbf{Schema}
+
+\begin{lstlisting}
+schema Person:
+    firstName: str
+    lastName: str
+    age: int = 0 # default value: 0
+\end{lstlisting}
+
+\textbf{Type Alias}
+
+\begin{lstlisting}
+type Int = int
+type String = str
+type StringOrInt = String | Int
+type IntList = [int]
+type StringAnyDict = {str:}
+\end{lstlisting}
+
+
+\end{myboxed}
+
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Operators \hfill}
+\offset
+
+\begin{lstlisting}
++   -   *   **  /   //  %
+<<  >>  &   |   ^   <   >
+~   <=  >=  ==  !=  @   \
+\end{lstlisting}
+
+\textbf{Arithmetic}
+
+\begin{lstlisting}
+assert 2 + 3 == 5
+assert 2 - 3 == -1
+assert 2 * 3 == 6
+assert 5 / 2 == 2.5
+assert 5 // 2 == 2
+assert 5 % 2 == 1
+\end{lstlisting}
+
+\textbf{Equality and Relational}
+
+\begin{lstlisting}
+assert 2 == 2
+assert 2 != 3
+assert 3 > 2
+assert 2 < 3
+assert 3 >= 3
+assert 2 <= 3
+\end{lstlisting}
+
+\textbf{Bitwise and Shift}
+
+\begin{lstlisting}
+value = 0x22
+bitmask = 0x0f
+
+assert (value & bitmask) == 0x02
+assert (value & ~bitmask) == 0x20
+assert (value | bitmask) == 0x2f
+assert (value ^ bitmask) == 0x2d
+assert (value << 4) == 0x220
+assert (value >> 4) == 0x02
+\end{lstlisting}
+
+\textbf{Bitwise and Shift}
+
+\begin{lstlisting}
+_x = True and (col == 0 or col == 3)
+\end{lstlisting}
+
+\end{myboxed}
+
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Operators \hfill}
+\offset
+
+\begin{lstlisting}
+empty_String = ""
+empty_String is not None # True
+
+1 in [1, 2, 3]                  # True
+
+d = {one = 1, two = 2}
+"one" in d                      # True
+"three" in d                    # False
+1 in d                          # False
+[] in d                         # False
+
+"nasty" in "dynasty"            # True
+"a" in "banana"                 # True
+"f" not in "way"                # True
+
+# Data is a schema with attributes one and two
+d = Data {one = 1, two = 2}
+
+"one" in d                      # True
+"three" in d                    # False
+
+\end{lstlisting}
+
+\end{myboxed}
+
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Control Flow Statements \hfill}
+\offset
+
+\textbf{If}
+
+\begin{lstlisting}
+a = 10
+if a == 0:
+    print("a is zero")
+elif a < 100:
+    print("a < 100")
+else:
+    print("a >= 100")
+
+_result = "success" if success else "failed"
+\end{lstlisting}
+
+\textbf{Assert}
+
+\begin{lstlisting}
+assert a != b
+assert a == b, "SOS"
+\end{lstlisting}
+
+\textbf{Function}
+
+\begin{lstlisting}
+func = lambda x: int, y: int -> int {
+    x + y
+}
+a = func(1, 1)  # 2
+\end{lstlisting}
+
+\end{myboxed}
+
+\vspace{\fill}
+
+% -----------------------------------------------------------------------------
+% Top-Level Argument
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Top-Level Argument \hfill}
+\offset
+
+\begin{lstlisting}
+# kcl -DbankCard=123 employee.k
+bankCard = option("bankCard")
+
+# kcl main.k -D list_key='[1,2,3]' -D dict_key='{"key":"value"}'
+list_key = option("list_key")
+dict_key = option("dict_key")
+\end{lstlisting}
+
+\textbf{Arguments with Setting Files}
+
+\begin{lstlisting}
+# kcl -Y setting.yaml employee.k
+
+# setting.yaml
+kcl_options:
+  - key: key_number
+    value: 1
+  - key: key_dict
+    value:
+      innerDictKey:  innerDictValue
+  - key: key_list
+    value:
+      - 1
+      - 2
+      - 3
+  - key: bankCard
+    value: 123
+\end{lstlisting}
+
+
+\end{myboxed}
+
+\vspace{\fill}
+
+
+% -----------------------------------------------------------------------------
+% Concepts
+% -----------------------------------------------------------------------------
+
+\begin{myboxed}{Concepts \hfill \API{https://kcl-lang.io/docs/user_docs/getting-started/intro}}
+\offset
+
+\textbf{KCL: Config}
+
+\begin{lstlisting}
+import kubernetes.core.v1
+
+# Create a kubernetes deployment resource
+deployment = v1.Deployment {
+    metadata.name = "nginx"
+    metadata.labels.app = metadata.name
+    spec = {
+        replicas = 3
+        selector.matchLabels.app = metadata.name
+        template = {
+            metadata.labels.app = metadata.name
+            spec.containers = [{
+                name = metadata.name
+                image = "nginx:1.14.2"
+                ports = [{containerPort=80}]
+            }]
+        }
+    }
+}
+\end{lstlisting}
+
+
+\textbf{KCL: Schema}
+
+\begin{lstlisting}
+import units
+
+type UnitType = units.NumberMultiplier
+
+# Define a schema named Resource with
+# three attributes and constraints
+schema Resource:
+    cpu: int | UnitType = 1
+    memory: UnitType = 1024Mi
+    dist: UnitType = 10Gi
+
+    check:
+        0 < cpu < 64
+        0 < memory <= 64 Gi
+        0 < disk <= 1Ti
+\end{lstlisting}
+
+\textbf{KCL: Rule}
+
+\begin{lstlisting}
+data: Data = option("data")
+input: Input = option("input")
+
+# Define a RBAC rule
+rule Allow:
+    any grant in UserIsGranted() {
+        input.action == grant.action and input.type == grant.type
+    }
+    any user in data.user_roles[input.user] {
+        user == "admin"
+    }
+
+rule UserIsGranted:
+    [   grant 
+        for role in data.user_roles[input.user]
+        for grant in data.role_grants[role]
+    ]
+
+allow = Allow or False
+\end{lstlisting}
+
+\textbf{KCL: Lambda}
+
+\begin{lstlisting}
+# Transform input resource  and change annotation
+
+transformer = lambda res {
+    res | {
+        metadata.annotations: {
+            "managed-by" = "kcl"
+        }
+    } if res.kind == "Deployment" else res
+}
+
+output = [transformer(res) for res in option("input")]
+\end{lstlisting}
+
+
+
+\textbf{KCL = Config + Schema + Rule + Lambda}
+
+\end{myboxed}
+
+\vspace{\fill}
+
+% -----------------------------------------------------------------------------
+% end
+% -----------------------------------------------------------------------------
+
+\end{multicols*}
+\end{document}
