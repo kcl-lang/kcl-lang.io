@@ -89,7 +89,7 @@ message ValidateCode_Args {
 ```json
 {
     "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
-    "data": "{\"attr_name\": {\"key\": \"value\"}}"
+    "data": "{\"key\": \"value\"}"
 }
 ```
 
