@@ -79,7 +79,7 @@ go install kusionstack.io/kclvm-go/cmds/kcl-go@main
 Add an alias for the kcl command (optional).
 
 ```bash
-alias kcl='kcl-go kcl'
+alias kcl='kcl-go run'
 ```
 
 ### From Docker

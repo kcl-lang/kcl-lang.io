@@ -88,7 +88,7 @@ go install kusionstack.io/kclvm-go/cmds/kcl-go@main
 添加一个 kcl 命令的别名 (可选)
 
 ```bash
-alias kcl='kcl-go kcl'
+alias kcl='kcl-go run'
 ```
 
 ### 使用 Docker 镜像安装
