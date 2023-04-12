@@ -1,4 +1,11 @@
-# KCL papers were accepted by SETTA 2022
+---
+slug: 2022-kcl-setta-paper
+title: KCL papers were accepted by SETTA 2022
+authors:
+  name: Pengfei, Xu
+  title: KCL Team Member
+tags: [KCL, Configuration]
+---
 
 Recently, the KCL paper written by the team members was accepted by SETTA 2022 International Conference.
 

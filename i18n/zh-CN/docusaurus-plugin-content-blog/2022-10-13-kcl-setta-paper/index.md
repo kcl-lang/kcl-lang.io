@@ -1,6 +1,13 @@
-# KCL 论文被 SETTA 2022 会议录用
+---
+slug: 2022-kcl-setta-paper
+title: KCL 论文被 SETTA 2022 会议录用
+authors:
+  name: 徐鹏飞
+  title: KCL 团队成员
+tags: [KCL, Configuration]
+---
 
-近日，由 kcl-lang 团队成员撰写的关于 KCL 创新论文被 SETTA 2022 国际会议长文录用。
+近日，由 KCL 团队成员撰写的关于 KCL 创新论文被 SETTA 2022 国际会议长文录用。
 
 ![](/img/docs/events/2022/kcl_paper_setta.png)
 
