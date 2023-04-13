@@ -14,7 +14,7 @@ Before joining the KCL community, please read the [Contributor Covenant](https:/
 
 - Submit an issue on Github
 - Communicate in the Github discussion group
-- Get the latest status through official website, Github, Twitter, Slack, Wechat and other accounts
+- Get the latest status through official website, Github, Twitter, Slack, Wechat and other accounts. See the [community](https://github.com/KusionStack/community) for ways to join us.
 
 ## New Features
 
