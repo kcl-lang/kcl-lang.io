@@ -63,20 +63,6 @@ scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
 scoop install kcl-lang/kclvm
 ```
 
-### 使用 Python3 安装
-
-通过 `Python3` 和 `pip` 安装 `kcl` (Python3 要求 3.7.3+)
-
-```bash
-python3 -m pip install kclvm --user
-```
-
-添加一个 kcl 命令的别名 (可选)
-
-```bash
-alias kcl='python3 -m kclvm'
-```
-
 ### 使用 Go 安装
 
 通过 `Go` 命令安装 (Go 要求 1.17+)
@@ -96,7 +82,7 @@ alias kcl='kcl-go run'
 + 基本命令
 
 ```bash
-docker run --rm -p 8080:8080 -it kusionstack/kclvm
+docker run --rm -it kusionstack/kclvm
 ```
 
 + 更新镜像
