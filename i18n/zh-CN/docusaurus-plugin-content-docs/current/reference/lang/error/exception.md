@@ -871,11 +871,12 @@ schema Scholar(KnowledgeMixin, Person): # KCL中不支持多继承
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
 ```shell
-KCL Complier Error[E2D32] : Multiple inheritance is illegal
----> File /schema/inherit/multi_inherit_fail_1/main.k:9:16
-9 |schema Scholar(KnowledgeMixin, Person):
-               16 ^^^^^^^^^^^^^^^^^^^^^^  -> Failure
-Multiple inheritance of Scholar is prohibited
+error[E1001]: InvalidSyntax
+ --> /schema/inherit/multi_inherit_fail_1/main.k:9:30
+  |
+9 | schema Scholar(KnowledgeMixin, Person):
+  |                              ^ expected one of [")"] got ,
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1248,13 +1249,18 @@ JohnDoe = Person {
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
 ```shell
-KCL Runtime Error[E3B17] : Schema check is failed to check condition
----> File /check_block/check_block_fail_1/main.k:9:11
-9 |JohnDoe = Person {
-          11 ^  -> Check failed in the schema
----> File /check_block/check_block_fail_1/main.k:7
-7 |        age < 140, "age is too large" -> Check failed on the condition
-age is too large
+error[E3M38]: EvaluationError
+ --> /check_block/check_block_fail_1/main.k:7:11
+  |
+7 | JohnDoe = Person {
+  |           ^ Instance check failed
+  |
+
+ --> /check_block/check_block_fail_1/main.k:5:1
+  |
+5 |         age < 140, "age is too large"
+  |  Check failed on the condition
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1288,11 +1294,12 @@ person = Person {
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
 ```shell
-KCL Runtime Error[E3B19] : Cannot add members to a schema
----> File /nest_var/nest_var_fail_1/main.k:8:5
-8 |    name.err_name: "Alice"
-     5 ^  -> Failure
-err_name: No such member in the schema
+error[E2L23]: CompileError
+ --> /nest_var/nest_var_fail_1/main.k:8:5
+  |
+8 |     name.err_name: "Alice" # err_name is not found in schema Name
+  |     ^ Cannot add member 'err_name' to schema 'Name'
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：

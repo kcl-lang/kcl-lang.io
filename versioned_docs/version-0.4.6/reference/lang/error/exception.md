@@ -788,7 +788,7 @@ schema Scholar(KnowledgeMixin, Person):
 
 The KCL program will cause the following error message.
 
-```
+```shell
 error[E1001]: InvalidSyntax
  --> /schema/inherit/multi_inherit_fail_1/main.k:9:30
   |
@@ -1172,11 +1172,12 @@ person = Person {
 The KCL program will cause the following error message.
 
 ```shell
-KCL Runtime Error[E3B19] : Cannot add members to a schema
----> File /nest_var/nest_var_fail_1/main.k:8:5
-8 |    name.err_name: "Alice"
-     5 ^  -> Failure
-err_name: No such member in the schema
+error[E2L23]: CompileError
+ --> /nest_var/nest_var_fail_1/main.k:8:5
+  |
+8 |     name.err_name: "Alice" # err_name is not found in schema Name
+  |     ^ Cannot add member 'err_name' to schema 'Name'
+  |
 ```
 
 Possible resolution:
