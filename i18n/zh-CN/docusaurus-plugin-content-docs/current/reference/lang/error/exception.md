@@ -45,25 +45,24 @@ KCL 会出现的语法错误信息如下表所示:
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 a, b = 1, 2 # 通过 “=” 赋值多个变量在KCL中是非法的。
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
+```shell
+error[E1001]: InvalidSyntax
+ --> /syntax_error/general/multiple_assign/case0/main.k:1:2
+  |
+1 | a, b = 1, 2 # Multiple assign is illegal in KCL syntax
+  |  ^ expected statement
+  |
 ```
-KCL Syntax Error[E1001] : Invalid syntax
----> File /syntax_error/general/multiple_assign/case0/main.k:1:6
-1 |a = 1, 2
-      6 ^  -> Expected one of ['newline']
-Invalid syntax
-```
 
-### 1.1.2 KCLTabError [E1002]
+### 1.1.2 KCLTabError
 
-如果在运行 KCL 时遇到错误:
-
-- `KCLTabError`, 对应的 encode 为 `E1002`
+如果在运行 KCL 时遇到错误: `KCLTabError`
 
 那么此时 KCL 程序中出现了
 
@@ -71,7 +70,7 @@ Invalid syntax
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     name: str # 通过tab表示缩进
     age: int # 通过四个空格标识缩进, 
@@ -80,23 +79,22 @@ schema Person:
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Syntax Error[E1002] : Tab Error
----> File /syntax_error/tab/tab_error_0/main.k:2:14
-2 |    name: str
-             14 ^  -> Failure
-Inconsistent use of tabs and spaces in indentation
+```shell
+error[E1001]: InvalidSyntax
+ --> File /syntax_error/tab/tab_error_0/main.k:6:5
+  |
+3 |     age: int = 1
+  |     ^ inconsistent use of tabs and spaces in indentation
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
 - 在 KCL 程序中全部使用 Tab 或者全部使用四个空格，不要混用。
 
-### 1.1.3 KCLIndentationError [E1003]
+### 1.1.3 KCLIndentationError
 
-如果在运行 KCL 时遇到错误:
-
-- `KCLIndentationError`, 对应的 encode 为 `E1003`
+如果在运行 KCL 时遇到错误: `KCLIndentationError`
 
 那么此时 KCL 程序中出现了
 
@@ -104,7 +102,7 @@ Inconsistent use of tabs and spaces in indentation
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     name: str # 使用一个tab或者四个空格表示缩进
    age: int # KCL不支持使用三个空格表示缩进
@@ -113,23 +111,22 @@ schema Person:
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Syntax Error[E1003] : Indentation Error
----> File /syntax_error/indent/indent_error_0/main.k:2:14
-2 |    name: str
-             14 ^  -> Failure
-Unindent 3 does not match any outer indentation level
+```shell
+error[E1001]: InvalidSyntax
+ --> /syntax_error/indent/indent_error_0/main.k:6:5
+  |
+6 |     age: int = 1
+  |     ^ inconsistent use of tabs and spaces in indentation
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
 - 在 KCL 程序中全部使用 Tab 或者全部使用四个空格来表示缩进。
 
-### 1.1.4 IllegalArgumentSyntaxError [E1I37]
+### 1.1.4 IllegalArgumentSyntaxError
 
-如果在运行 KCL 时遇到错误:
-
-- `IllegalArgumentSyntaxError`, 对应的 encode 为 `E1I37`
+如果在运行 KCL 时遇到错误: `IllegalArgumentSyntaxError`
 
 那么此时 KCL 程序中出现了
 
@@ -137,7 +134,7 @@ Unindent 3 does not match any outer indentation level
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 # KCL中带有keyword的参数必须出现在不带有keyword参数后面
 # 带有keyword的参数: type="list", default={"key": "value"}
 # 不带有keyword的参数: "key1"
@@ -146,21 +143,21 @@ a = option(type="list", default={"key": "value"}, "key1")
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Syntax Error[E1I37] : Illegal argument syntax
----> File /option/type_convert_fail_2/main.k:1:51
-1 |a = option(type="list", default={"key": "value"}, "key1")
-                                                  51 ^^^^^^  -> Failure
-positional argument follows keyword argument
+```shell
+error[E1001]: InvalidSyntax
+ --> /option/type_convert_fail_2/main.k:3:57
+  |
+3 | a = option(type="list", default={"key": "value"}, "key1")
+  |                                                         ^ positional argument follows keyword argument
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
 - KCL 中带有 keyword 的参数必须出现在不带有 keyword 参数后面, 参数正常顺序:
 
-```
-func(input_1, ..., input_n, 
-    param_with_key_1 = input_with_key_1, ..., param_with_key_n = input_with_key_n)
+```python
+func(input_1, ..., input_n, param_with_key_1 = input_with_key_1, ..., param_with_key_n = input_with_key_n)
 ```
 
 ## 1.2 KCL 编译错误 (E2xxx)
@@ -201,7 +198,7 @@ KCL 会出现的编译错误信息如下表所示:
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 import .some0.pkg1 as some00  # some0 not found in package
 
 Name1 = some00.Name  # some0.pkg1.name
@@ -209,17 +206,18 @@ Name1 = some00.Name  # some0.pkg1.name
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2F04] : Cannot find the module
----> File import_abs_fail_0/app-main/main.k:1:1
-1 |import .some0.pkg1 as some00  # some0 not found in app-main package
- 1 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -> Failure
-Cannot find the module .some0.pkg1 from import_abs_fail_0/app-main/some0/pkg1
+```shell
+error[E2F04]: CannotFindModule
+ --> import_abs_fail_0/app-main/main.k:1:1
+  |
+1 | import .some0.pkg1 as some00  # some0 not found in package
+  |  Cannot find the module .some0.pkg1
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- 在 imoprt 路径下添加导入模块文件。
+- 在 import 路径下添加导入模块文件。
 
 ### 1.2.2 FailedLoadModule [E2F05]
 
@@ -236,7 +234,7 @@ Cannot find the module .some0.pkg1 from import_abs_fail_0/app-main/some0/pkg1
 - 查看文件是否可读
 - 查看文件是否为 kcl 文件
 
-### 1.2.3 UnKnownDecoratorError [E2H13]
+### 1.2.3 UnKnownDecoratorError
 
 如果在运行 KCL 时遇到错误:
 
@@ -248,7 +246,7 @@ Cannot find the module .some0.pkg1 from import_abs_fail_0/app-main/some0/pkg1
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 @err_deprecated # 这是一个非法的装饰器
 schema Person:
     firstName: str = "John"
@@ -262,12 +260,13 @@ JohnDoe = Person {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2H13] : UnKnown decorator
----> File deprecated/unknown_fail_1/main.k:1:2
-1 |@err_deprecated
-  2 ^  -> Failure
-UnKnown decorator err_deprecated
+```shell
+error[E2L23]: CompileError
+ --> deprecated/unknown_fail_1/main.k:1:2
+  |
+1 | @err_deprecated # 这是一个非法的装饰器
+  |  ^ UnKnown decorator err_deprecated
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -300,7 +299,7 @@ UnKnown decorator err_deprecated
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     firstName: str
     lastName: str
@@ -322,12 +321,13 @@ JohnDoe = Scholar {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2C15] : Illegal mixin naming
----> File mixin/invalid_name_failure/main.k:10:12
-10 |    mixin [Fullname]
-            12 ^  -> Failure
-a valid mixin name should end with 'Mixin', got 'Fullname'
+```shell
+error[E2D34]: IllegalInheritError
+  --> mixin/invalid_name_failure/main.k:10:12
+   |
+10 |     mixin [Fullname]
+   |            ^ illegal schema mixin object type 'Fullname'
+   |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -360,7 +360,7 @@ a valid mixin name should end with 'Mixin', got 'Fullname'
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Girl:
     gender: str = "female"
 
@@ -373,18 +373,33 @@ alice = Girl {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2B18] : Cannot add members to a schema
----> File /invalid/add_attribute/main.k:9:9
-9 |alice = Girl {
-         9 ^  -> Failure
-first,last,age: No such member in the schema
+```shell
+error[E2L23]: CompileError
+ --> /invalid/add_attribute/main.k:5:5
+  |
+5 |     "first": "alice",
+  |     ^ Cannot add member 'first' to schema 'Girl'
+  |
+
+error[E2L23]: CompileError
+ --> /invalid/add_attribute/main.k:6:5
+  |
+6 |     "last": " Green",
+  |     ^ Cannot add member 'last' to schema 'Girl'
+  |
+
+error[E2L23]: CompileError
+ --> /invalid/add_attribute/main.k:7:5
+  |
+7 |     "age": 10
+  |     ^ Cannot add member 'age' to schema 'Girl'
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
 - 为 Schema 添加缺少的成员。
-- 不要使用 Schema 中不存在的成员。
+- 不要使用 Schema 中不存在的成员。
 
 ### 1.2.8 IndexSignatureError [E2B20]
 
@@ -398,7 +413,7 @@ first,last,age: No such member in the schema
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Data:
     [str]: str
     [str]: int # 在同一个schema中使用了多个索引签名
@@ -410,23 +425,24 @@ data = Data {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2B20] : Invalid index signature
----> File index_signature/fail_1/main.k:3:5
+```shell
+error[E2L23]: CompileError
+---> index_signature/fail_1/main.k:3:5
+  |
 3 |    [str]: int
-     5 ^^^^^^^^^^  -> Failure
-only one index signature is allowed in the schema
+  |  5 ^ only one index signature is allowed in the schema
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- - 删除多余的索引签名。
+- 删除多余的索引签名。
 
 2. schema 中索引签名的名称与 schema 中其他属性的名称存在同名冲突。
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Data:
     name: str  # name
     [name: str]: str # 已有名称为name的schema属性
@@ -438,23 +454,24 @@ data = Data {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2B20] : Invalid index signature
----> File index_signature/fail_2/main.k:3:5
-3 |    [name: str]: str
-     5 ^  -> Failure
-index signature attribute name 'name' cannot have the same name as schema attributes
+```shell
+error[E1001]: IndexSignatureError
+ --> index_signature/fail_2/main.k:3:5
+  |
+3 |     [name: str]: str # the same name with the above attribute
+  |     ^ index signature attribute name 'name' cannot have the same name as schema attributes
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- - 删除 schema 中出现同名冲突的属性或者索引签名，或者为它们更换不同的名称。
+- 删除 schema 中出现同名冲突的属性或者索引签名，或者为它们更换不同的名称。
 
 3. schema 索引签名的类型与 schema 实例化的属性类型冲突。
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Data:
     [str]: int
 
@@ -465,23 +482,24 @@ data = Data {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File index_signature/fail_3/main.k:4:8
-4 |data = Data {
-        8 ^  -> Failure
-expected schema index signature value type int, got str(test) of the key 'name'
+```shell
+error[E2G22]: TypeError
+ --> index_signature/fail_3/main.k:5:5
+  |
+5 |     name: "test" # Conflict with [str]:int, "test" is a string.
+  |     ^ expected int, got str(test)
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- - 检查 schema 索引签名的类型与 schema 实例中的属性类型是否一致。
+- 检查 schema 索引签名的类型与 schema 实例中的属性类型是否一致。
 
 4. Schema 中的属性与索引签名冲突
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Data:
     count: int # int 和 str 冲突
     [str]: str
@@ -493,17 +511,18 @@ data = Data {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2B20] : Invalid index signature
----> File index_signature/fail_4/main.k:2:5
-2 |    count: int
-     5 ^  -> Failure
-the type 'int' of schema attribute 'count' does not meet the index signature definition [str]: str
+```shell
+error[E1001]: IndexSignatureError
+ --> index_signature/fail_4/main.k:2:5
+  |
+2 |     count: int
+  |     ^ the type 'int' of schema attribute 'count' does not meet the index signature definition [str]: str
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- - 调整 Schema 属性或者调整索引签名。
+- 调整 Schema 属性或者调整索引签名。
 
 ### 1.2.9 TypeComplieError [E2G22]
 
@@ -517,7 +536,7 @@ the type 'int' of schema attribute 'count' does not meet the index signature def
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     firstName: str
     lastName: int
@@ -530,12 +549,19 @@ JohnDoe = Person {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2G22] : The type got is inconsistent with the type expected
----> File type/type_fail_0/main.k:7:5
-7 |    "lastName": "Doe"
-     5 ^  -> Failure
-expect int, got str(Doe)
+```shell
+error[E2G22]: TypeError
+ --> type/type_fail_0/main.k:7:5
+  |
+7 |     "lastName": "Doe" # Type Error，lastName: int，“Doe” is a string.
+  |     ^ expected int, got str(Doe)
+  |
+
+ --> type/type_fail_0/main.k:3:5
+  |
+3 |     lastName: int
+  |     ^ variable is defined here, its type is int, but got str(Doe)
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -554,72 +580,77 @@ expect int, got str(Doe)
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 _data = [1, 2, 3]
 _data |= "value"
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File union/fail/fail_1/main.k:2
-2 |_data |= "value" -> Failure
-unsupported operand type(s) for |=: '[int]' and 'str(value)'
+```shell
+error[E2G22]: TypeError
+ --> union/fail/fail_1/main.k:2:1
+  |
+2 | _data |= "value"
+  | ^ unsupported operand type(s) for |: '[int]' and 'str(value)'
+  |
 ```
 
 1. 不支持的操作符类型
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 a = None
 b = 1 + None # KCL中不支持None和int之间进行+操作
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File operator/operator_fail_0/main.k:2
-2 |b = 1 + None -> Failure
-unsupported operand type(s) for +: 'int(1)' and 'NoneType'
+```shell
+error[E2G22]: TypeError
+ --> operator/operator_fail_0/main.k:2:5
+  |
+2 | b = 1 + None # Unsupport operand type + for int and None
+  |     ^ unsupported operand type(s) for +: 'int(1)' and 'NoneType'
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- - 调整操作符号，使其同时支持两个操作数的类型。
-- - 调整操作数，使其同时符合操作符号的约束。
+- 调整操作符号，使其同时支持两个操作数的类型。
+- 调整操作数，使其同时符合操作符号的约束。
 
 1. 没有定义的变量
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 a = 1
 b = "${c + 1}" # 'c' 没有定义
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File var_not_define_fail_0/main.k:2:8
-2 |b = "${c + 1}"
-        8 ^  -> Failure
-name 'c' is not defined
+```shell
+error[E2L23]: CompileError
+ --> var_not_define_fail_0/main.k:2:8
+  |
+2 | b = "${c + 1}" # 'c' is not defined
+  |        ^ name 'c' is not defined
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- - 对未定义的变量进行定义。
-- - 在表达式中去掉对未定义变量的操作。
+- 对未定义的变量进行定义。
+- 在表达式中去掉对未定义变量的操作。
 
 4. 无效的赋值表达式
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 # pkg.k
 a = 1
 
@@ -630,58 +661,61 @@ pkg.a |= 2
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File pkg_inplace_modify_1/main.k:3:1
-3 |pkg.a |= 2
- 1 ^^^^^  -> Failure
-module 'pkg' can't be assigned
+```shell
+error[E2G22]: TypeError
+ --> pkg_inplace_modify_1/main.k:3:1
+  |
+6 | pkg |= 2
+  | ^ unsupported operand type(s) for |: 'module 'pkg'' and 'int(2)'
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- - 检查赋值表达式的内容。
+- 检查赋值表达式的内容。
 
 1. 无效的字符串表达式
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 a = 1
 b = "${b = a + 1}" # Invalid string interpolation expression
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File invalid_format_value_fail_0/main.k:2:5
-2 |b = "${b = a + 1}"
-     5 ^^^^^^^^^^^^^^  -> Failure
-invalid string interpolation expression 'b = a + 1'
+```shell
+error[E2L23]: CompileError
+ --> invalid_format_value_fail_0/main.k:2:5
+  |
+2 | b = "${b = a + 1}"
+  |    5 ^ invalid string interpolation expression 'b = a + 1'
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
 
-- - 检查字符串表达式的内容。
+- 检查字符串表达式的内容。
 
 1. 无效的循环变量
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 data = {"key1": "value1", "key2": "value2"}
 dataLoop = [i for i, j, k in data]  # the number of loop variables can only be 1 or 2
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File dict/invalid_loop_var_fail_0/main.k:2:19
-2 |dataLoop = [i for i, j, k in data]  # error
-                  19 ^^^^^^^  -> Failure
-the number of loop variables is 3, which can only be 1 or 2
+```shell
+error[E2L23]: CompileError
+ --> dict/invalid_loop_var_fail_0/main.k:2:25
+  |
+2 | dataLoop = [i for i, j, k in data]  # the number of loop variables can only be 1 or 2
+  |                         ^ the number of loop variables is 3, which can only be 1 or 2
+  |
 ```
 
 ### 1.2.11 KCLNameError [E2L25]
@@ -738,7 +772,7 @@ the number of loop variables is 3, which can only be 1 or 2
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     name: str = "kcl"
     age: int = 1
@@ -752,12 +786,19 @@ x1 = Person{age:101}
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2L28] : Unique key error
----> File /schema/same_name/main.k:5:1
-5 |schema Person:
- 1 ^  -> Failure
-Variable name 'Person' must be unique in package context
+```shell
+error[E2L28]: UniqueKeyError
+ --> /schema/same_name/main.k:5:8
+  |
+5 | schema Person:
+  |        ^ Unique key error name 'Person'
+  |
+
+ --> /schema/same_name/main.k:1:8
+  |
+1 | schema Person:
+  |        ^ The variable 'Person' is declared here
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -776,7 +817,7 @@ Variable name 'Person' must be unique in package context
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 # pkg
 schema A:
     field_A: str
@@ -789,12 +830,13 @@ a = p.D + 1
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2A29] : Attribute error occurs during compiling
----> File /import/module/no_module_attr_fail_0/main.k:3:5
-3 |a = p.D + 1
-     5 ^  -> Failure
-module 'pkg' has no attribute 'D'
+```shell
+error[E2G22]: TypeError
+ --> /import/module/no_module_attr_fail_0/main.k:4:5
+  |
+4 | a = p.D + 1
+  |     ^ module 'pkg' has no attribute D
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -813,7 +855,7 @@ module 'pkg' has no attribute 'D'
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     firstName: str
     lastName: str
@@ -828,7 +870,7 @@ schema Scholar(KnowledgeMixin, Person): # KCL中不支持多继承
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
+```shell
 KCL Complier Error[E2D32] : Multiple inheritance is illegal
 ---> File /schema/inherit/multi_inherit_fail_1/main.k:9:16
 9 |schema Scholar(KnowledgeMixin, Person):
@@ -852,7 +894,7 @@ Multiple inheritance of Scholar is prohibited
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema FullnameMixin:
     fullName = "{} {}".format(firstName, lastName)
 
@@ -862,12 +904,9 @@ schema Scholar(FullnameMixin): # KCL中不支持Schema继承Mixin
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2D34] : Illegal inheritance
----> File /schema/inherit/inherit_mixin_fail/main.k:8:1
-8 |schema Scholar(FullnameMixin):
- 1 ^  -> Failure
-mixin inheritance FullnameMixin is prohibited
+```shell
+error[E3M38]: EvaluationError
+Invalid value for top level arguments
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -886,7 +925,7 @@ mixin inheritance FullnameMixin is prohibited
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 a = option("key")
 
 # kcl main.k -D key=value= 
@@ -895,9 +934,9 @@ a = option("key")
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2I36] : Illegal argument during compiling
-'key=value='
+```shell
+error[E3M38]: EvaluationError
+Invalid value for top level arguments
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -916,19 +955,27 @@ KCL Complier Error[E2I36] : Illegal argument during compiling
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 a = 2147483646
 a += 1
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Compile Error[E2L41] : Immutable variable is modified
----> File /range_check_int/augment_assign/main.k:2:1
-2 |a += 1
- 1 ^  -> Failure
-Immutable variable is modified
+```shell
+error[E1001]: ImmutableError
+ --> augment_assign/main.k:2:1
+  |
+2 | a += 1
+  | ^ Immutable variable 'a' is modified during compiling
+  |
+
+ --> augment_assign/main.k:1:1
+  |
+1 | a = 2147483646
+  | ^ The variable 'a' is declared here firstly
+  |
+note: change the variable name to '_a' to make it mutable
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -982,11 +1029,13 @@ print('main')
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3F06] : Recursively loading module
----> File /import/recursive_import_fail/main.k:4
-4 | -> Failure
-In module module, recursively loading modules: module, main
+```shell
+error[E2L23]: CompileError
+ --> /import/recursive_import_fail/main.k:4
+  |
+2 | import module # main.k imports module.k
+  | ^ There is a circular import reference between module main and module
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1005,8 +1054,8 @@ In module module, recursively loading modules: module, main
 
 可能出现错误的 KCL 程序片段如下:
 
-```
-uplimit = 3.402823466e+38
+```python
+uplimit = 3.402823466e+39
 epsilon = 2.220446049250313e-16
 a = uplimit * (1 + epsilon)
 
@@ -1015,11 +1064,13 @@ a = uplimit * (1 + epsilon)
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3K07] : Float overflow
----> File /range_check_float/overflow/number_0/main.k:6
-6 |a = uplimit * (1 + epsilon) -> Failure
-3.402823466000001e+38: A 32-bit floating point number overflow
+```shell
+error[E3M38]: EvaluationError
+ --> /range_check_float/overflow/number_0/main.k:3:1
+  |
+3 | a = uplimit * (1 + epsilon)
+  |  3.4028234660000003e+39: A 32-bit floating point number overflow
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1038,7 +1089,7 @@ KCL Runtime Error[E3K07] : Float overflow
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 _a = 9223372036854775807
 _a += 1
 
@@ -1047,11 +1098,13 @@ _a += 1
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3K09] : Integer overflow
----> File /range_check_int/augment_assign_fail_1/main.k:2
-2 |_a += 1 -> Failure
-9223372036854775808: A 64 bit integer overflow
+```shell
+error[E3M38]: EvaluationError
+ --> /range_check_int/augment_assign_fail_1/main.k:2:1
+  |
+2 | _a += 1
+  |  9223372036854775808: A 64 bit integer overflow
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1070,7 +1123,7 @@ KCL Runtime Error[E3K09] : Integer overflow
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     firstName: str = "John"
     lastName: str
@@ -1084,11 +1137,13 @@ JohnDoe = Person {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3N11] : Deprecated error
----> File /schema/deprecated/member_standard_1/main.k:7
-7 |JohnDoe = Person { -> Failure
-name was deprecated since version 1.16, use firstName and lastName instead
+```shell
+error[E3M38]: EvaluationError
+ --> /range_check_float/overflow/number_0/main.k:7:1
+  |
+7 | JohnDoe = Person {
+  |  name was deprecated since version 1.16, use firstName and lastName instead
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1108,7 +1163,7 @@ name was deprecated since version 1.16, use firstName and lastName instead
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 import math
 
 a = math.err_func(1) # err_func is not found in math
@@ -1116,11 +1171,13 @@ a = math.err_func(1) # err_func is not found in math
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3A30] : Attribute error occurs at runtime
----> File /import/module/no_module_attr_fail_2/main.k:3
-3 |a = math.err_func(1) -> Failure
-module 'math' has no attribute 'err_func'
+```shell
+error[E3M38]: EvaluationError
+ --> /import/module/no_module_attr_fail_2/main.k:3:5
+  |
+3 | a = math.err_func(1) # err_func is not found in math
+  |     ^ module 'math' has no attribute err_func
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1139,22 +1196,24 @@ module 'math' has no attribute 'err_func'
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     name: str = "Alice"
 
 _personA = Person {}
-_personA |= {"name": 123.0} # name: str = "Alice"
+_personA |= {"name" = 123.0} # name: str = "Alice"
 personA = _personA
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3G21] : The type got is inconsistent with the type expected
----> File /fail/fail_4/main.k:5
-5 |_personA |= {"name": 123.0} -> Failure
-expect str, got float
+```shell
+error[E3M38]: EvaluationError
+ --> /fail/fail_4/main.k:2:1
+  |
+2 |     name: str = "Alice"
+  |  expect str, got float
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1173,7 +1232,7 @@ expect str, got float
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     lastName: str
     age: int
@@ -1188,7 +1247,7 @@ JohnDoe = Person {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
+```shell
 KCL Runtime Error[E3B17] : Schema check is failed to check condition
 ---> File /check_block/check_block_fail_1/main.k:9:11
 9 |JohnDoe = Person {
@@ -1214,7 +1273,7 @@ age is too large
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Name:
     name: str
 
@@ -1228,7 +1287,7 @@ person = Person {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
+```shell
 KCL Runtime Error[E3B19] : Cannot add members to a schema
 ---> File /nest_var/nest_var_fail_1/main.k:8:5
 8 |    name.err_name: "Alice"
@@ -1253,7 +1312,7 @@ err_name: No such member in the schema
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 _list1 = [1, 2, 3] # _list1 is a variable, and its type can only be known at runtime
 _list2 = None # _list1 is a variable, and its type can only be known at runtime
 
@@ -1262,11 +1321,13 @@ result2 = _list1 + _list2 # list + NoneType is illegal
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3M38] : Evaluation failure
----> File /datatype/list/add_None_fail/main.k:4
-4 |result2 = _list1 + _list2 -> Failure
-can only concatenate list (not "NoneType") to list
+```shell
+error[E3M38]: EvaluationError
+ --> /datatype/list/add_None_fail/main.k:1
+  |
+4 | result2 = _list1 + _list2 # list + NoneType is illegal
+  |  can only concatenate list (not "NoneType") to list
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1285,7 +1346,7 @@ can only concatenate list (not "NoneType") to list
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 a = 1
 b = 1
 data = "${a: #js}" + " $$ " #  KCL插值字符串中，#js是非法的
@@ -1293,11 +1354,13 @@ data = "${a: #js}" + " $$ " #  KCL插值字符串中，#js是非法的
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3M39] : Invalid format specification
----> File /datatype/str_interpolation/invalid_format_spec_fail_0/main.k:3
-3 |data = "${a: #js}" + " $$ " -> Failure
-#js is invalid format spec
+```shell
+error[E2L23]: CompileError
+ --> /datatype/str_interpolation/invalid_format_spec_fail_0/main.k:3
+  |
+3 | data = "${a: #js}" + " $$ " #  #js is illegal string
+  |           ^ #js is a invalid format spec
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1316,17 +1379,19 @@ KCL Runtime Error[E3M39] : Invalid format specification
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 assert False
 ```
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3M40] : Assertion failure
----> File /assert/invalid/fail_0/main.k:1
-1 |assert False -> Failure
-Assertion failure
+```shell
+error[E3M38]: EvaluationError
+ --> /assert/invalid/fail_0/main.k:1
+  |
+1 | assert False
+  | 
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1345,7 +1410,7 @@ Assertion failure
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Person:
     final firstName : str
     lastName : str
@@ -1362,12 +1427,13 @@ scholar = Scholar {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3M41] : Immutable variable is modified
----> File /final/fail_lazy_init_0/main.k:12:5
-12 |    "firstName": "ABC"
-      5 ^  -> Failure
-final schema field 'firstName'
+```shell
+error[E3M38]: EvaluationError
+ --> /final/fail_lazy_init_0/main.k:8:1
+  |
+8 | scholar = Scholar {
+  |  attribute 'lastName' of Scholar is required and can't be None or Undefined
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1386,7 +1452,7 @@ final schema field 'firstName'
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Parent(Son):
     parent_field: str
 
@@ -1403,12 +1469,13 @@ parent = Parent {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Complier Error[E2D33] : Cycle Inheritance is illegal
----> File /inherit/cycle_inherit_fail_1/main.k:7:1
-7 |schema GrandSon(Parent):
- 1 ^  -> Failure
-GrandSon and Parent
+```shell
+error[E2L23]: CompileError
+ --> /inherit/cycle_inherit_fail_1/main.k:7:8
+  |
+7 | schema GrandSon(Parent):
+  |        ^ There is a circular reference between schema GrandSon and Parent
+  |
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1427,7 +1494,7 @@ GrandSon and Parent
 
 可能出现错误的 KCL 程序片段如下:
 
-```
+```python
 schema Parent(Son):
     parent_field: str
     son: Son = Son {  # Parent has attribute Son
@@ -1451,11 +1518,9 @@ parent = Parent {
 
 KCL 在运行上述 KCL 程序片段时的输出信息如下.
 
-```
-KCL Runtime Error[E3M42] : Recursively reference
----> File /init/init_cycle_fail_0/main.k:10
-10 |    son_field: str -> Failure
-maximum recursion depth exceeded in __instancecheck__
+```shell
+thread 'main' has overflowed its stack
+fatal runtime error: stack overflow
 ```
 
 可以尝试以下步骤来修复这个错误：
@@ -1477,33 +1542,6 @@ KCL 中的编译警告如下表所示：
 如果在运行 KCL 时遇到错误:
 
 - `FloatUnderflow`, 对应的 encode 为 `W2K08`
-
-那么此时 KCL 程序中出现了
-
-- 看看 python 里面是怎么说的
-
-可能出现错误的 KCL 程序片段如下:
-
-```
-downlimit = 1.175494351e-38
-uplimit = 3.402823466e+38
-
-epsilon = 2.220446049250313e-16
-
-a = uplimit / (1 + epsilon)
-b = downlimit / (1 + epsilon)
-
-# kcl main.k -r -d
-```
-
-KCL 在运行上述 KCL 程序片段时的输出信息如下.
-
-```
-KCL Complier Warning[W2K08] : Float underflow
----> File /range_check_float/underflow/number_0/main.k:7
-7 |b = downlimit / (1 + epsilon) -> Failure
-1.1754943509999997e-38: A 32-bit floating point number underflow
-```
 
 可以尝试以下步骤来修复这个错误：
 
@@ -1532,27 +1570,6 @@ KCL Complier Warning[W2K08] : Float underflow
 那么此时 KCL 程序中出现了
 
 - 过时的代码警告
-
-可能出现错误的 KCL 程序片段如下:
-
-```
-schema Person:
-    firstName?: str = "John"
-    lastName?: str
-    @deprecated(version="1.16", reason="use firstName and lastName instead", strict=False)
-    name?: str
-
-JohnDoe = Person {
-    name: "deprecated" # name is deprecated and strict is False
-}
-```
-
-KCL 在运行上述 KCL 程序片段时的输出信息如下.
-
-```
-KCL Compile Warning[W2N12] : Deprecated warning
-name was deprecated since version 1.16, use firstName and lastName instead
-```
 
 可以尝试以下步骤来修复这个错误：
 

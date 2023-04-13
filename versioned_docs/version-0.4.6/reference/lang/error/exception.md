@@ -40,35 +40,34 @@ The `ewcode` of `InvalidSyntaxError` is `E1001`.
 
 For example:
 
-```
+```python
 a, b = 1, 2 # Multiple assign is illegal in KCL syntax
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Syntax Error[E1001] : Invalid syntax
----> File /syntax_error/general/multiple_assign/case0/main.k:1:6
-1 |a = 1, 2
-      6 ^  -> Expected one of ['newline']
-Invalid syntax
+```shell
+error[E1001]: InvalidSyntax
+ --> /syntax_error/general/multiple_assign/case0/main.k:1:2
+  |
+1 | a, b = 1, 2 # Multiple assign is illegal in KCL syntax
+  |  ^ expected statement
+  |
 ```
 
 Possible resolution:
 
 - Check and fix KCL syntax errors based on the KCL Language Standard
 
-### 1.1.2 KCLTabError (E1002)
+### 1.1.2 KCLTabError
 
 KCL will report `KCLTabError` when KCL has a tab and white space syntax error.
 
 In KCL, it is forbidden to mix tabs and four spaces in one indentation block. And we recommend only using white spaces or tabs for indentation in the entire KCL project, don’t mix them.
 
-The `ewcode` of `KCLTabError` is `E1002`.
-
 For example:
 
-```
+```python
 schema Person:
     name: str # begin with a tab
     age: int # begin with four white spaces, 
@@ -77,29 +76,28 @@ schema Person:
 
 The KCL program will cause the following error message.
 
-```
-KCL Syntax Error[E1002] : Tab Error
----> File /syntax_error/tab/tab_error_0/main.k:2:14
-2 |    name: str
-             14 ^  -> Failure
-Inconsistent use of tabs and spaces in indentation
+```shell
+error[E1001]: InvalidSyntax
+ --> File /syntax_error/tab/tab_error_0/main.k:6:5
+  |
+3 |     age: int = 1
+  |     ^ inconsistent use of tabs and spaces in indentation
+  |
 ```
 
 Possible resolution:
 
 - Only use a tab or four white spaces in KCL, do not mix them.
 
-### 1.1.3 KCLIndentationError(E1003)
+### 1.1.3 KCLIndentationError
 
 KCL will report `KCLIndentationError` when KCL has an indentation syntax error.
 
 The KCL syntax includes indentation. A tab or four white spaces in KCL represents an indentation. The other cases will be regarded as syntax errors by KCL.
 
-The `ewcode` of `KCLIndentationError` is `E1003`.
-
 For example:
 
-```
+```python
 schema Person:
     name: str # a tab or four white spaces is legal.
    age: int # three white spaces are illegal
@@ -108,12 +106,13 @@ schema Person:
 
 The KCL program will cause the following error message.
 
-```
-KCL Syntax Error[E1003] : Indentation Error
----> File /syntax_error/indent/indent_error_0/main.k:2:14
-2 |    name: str
-             14 ^  -> Failure
-Unindent 3 does not match any outer indentation level
+```shell
+error[E1001]: InvalidSyntax
+ --> /syntax_error/indent/indent_error_0/main.k:6:5
+  |
+6 |     age: int = 1
+  |     ^ inconsistent use of tabs and spaces in indentation
+  |
 ```
 
 Possible resolution:
@@ -124,11 +123,9 @@ Possible resolution:
 
 KCL will report `IllegalArgumentSyntaxError` when KCL has an illegal argument in KCL syntax.
 
-The `ewcode` of `IllegalArgumentSyntaxError` is `E1I37`.
-
 For example:
 
-```
+```python
 # Parameters without default values 
 # must be in front of parameters with default values.
 a = option(type="list", default={"key": "value"}, "key1")
@@ -136,19 +133,19 @@ a = option(type="list", default={"key": "value"}, "key1")
 
 The KCL program will cause the following error message.
 
-```
-KCL Syntax Error[E1I37] : Illegal argument syntax
----> File /option/type_convert_fail_2/main.k:1:51
-1 |a = option(type="list", default={"key": "value"}, "key1")
-                                                  51 ^^^^^^  -> Failure
-positional argument follows keyword argument
+```shell
+error[E1001]: InvalidSyntax
+ --> /option/type_convert_fail_2/main.k:3:57
+  |
+3 | a = option(type="list", default={"key": "value"}, "key1")
+  |                                                         ^ positional argument follows keyword argument
+  |
 ```
 
 Possible resolution:
 
-```
-func(input_1, ..., input_n, 
-    param_with_key_1 = input_with_key_1, ..., param_with_key_n = input_with_key_n)
+```python
+func(input_1, ..., input_n, param_with_key_1 = input_with_key_1, ..., param_with_key_n = input_with_key_n)
 ```
 
 ## 1.2 KCL Compile Error (E2xxx)
@@ -185,7 +182,7 @@ The `ewcode` of `CannotFindModule` is `E2F04`.
 
 For example:
 
-```
+```python
 import .some0.pkg1 as some00  # some0 not found in package
 
 Name1 = some00.Name  # some0.pkg1.name
@@ -193,12 +190,13 @@ Name1 = some00.Name  # some0.pkg1.name
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2F04] : Cannot find the module
----> File import_abs_fail_0/app-main/main.k:1:1
-1 |import .some0.pkg1 as some00  # some0 not found in app-main package
- 1 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^  -> Failure
-Cannot find the module .some0.pkg1 from import_abs_fail_0/app-main/some0/pkg1
+```shell
+error[E2F04]: CannotFindModule
+ --> import_abs_fail_0/app-main/main.k:1:1
+  |
+1 | import .some0.pkg1 as some00  # some0 not found in package
+  |  Cannot find the module .some0.pkg1
+  |
 ```
 
 Possible resolution:
@@ -224,7 +222,7 @@ The `ewcode` of `UnKnownDecoratorError` is `E2H13`.
 
 For example:
 
-```
+```python
 @err_deprecated # It is an unknown decorator
 schema Person:
     firstName: str = "John"
@@ -238,12 +236,13 @@ JohnDoe = Person {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2H13] : UnKnown decorator
----> File deprecated/unknown_fail_1/main.k:1:2
-1 |@err_deprecated
-  2 ^  -> Failure
-UnKnown decorator err_deprecated
+```shell
+error[E2L23]: CompileError
+ --> deprecated/unknown_fail_1/main.k:1:2
+  |
+1 | @err_deprecated # 这是一个非法的装饰器
+  |  ^ UnKnown decorator err_deprecated
+  |
 ```
 
 Possible resolution:
@@ -268,7 +267,7 @@ The `ewcode` of `MixinNamingError` is `E2C15`.
 
 For example:
 
-```
+```python
 schema Person:
     firstName: str
     lastName: str
@@ -290,12 +289,13 @@ JohnDoe = Scholar {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2C15] : Illegal mixin naming
----> File mixin/invalid_name_failure/main.k:10:12
-10 |    mixin [Fullname]
-            12 ^  -> Failure
-a valid mixin name should end with 'Mixin', got 'Fullname'
+```shell
+error[E2D34]: IllegalInheritError
+  --> mixin/invalid_name_failure/main.k:10:12
+   |
+10 |     mixin [Fullname]
+   |            ^ illegal schema mixin object type 'Fullname'
+   |
 ```
 
 Possible resolution:
@@ -333,12 +333,27 @@ alice = Girl {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2B18] : Cannot add members to a schema
----> File /invalid/add_attribute/main.k:9:9
-9 |alice = Girl {
-         9 ^  -> Failure
-first,last,age: No such member in the schema
+```shell
+error[E2L23]: CompileError
+ --> /invalid/add_attribute/main.k:5:5
+  |
+5 |     "first": "alice",
+  |     ^ Cannot add member 'first' to schema 'Girl'
+  |
+
+error[E2L23]: CompileError
+ --> /invalid/add_attribute/main.k:6:5
+  |
+6 |     "last": " Green",
+  |     ^ Cannot add member 'last' to schema 'Girl'
+  |
+
+error[E2L23]: CompileError
+ --> /invalid/add_attribute/main.k:7:5
+  |
+7 |     "age": 10
+  |     ^ Cannot add member 'age' to schema 'Girl'
+  |
 ```
 
 Possible resolution:
@@ -356,7 +371,7 @@ KCL will report `IndexSignatureError` when:
 
 For example:
 
-```
+```python
 schema Data:
     [str]: str
     [str]: int # Multiple index signatures in one schema.
@@ -368,23 +383,24 @@ data = Data {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2B20] : Invalid index signature
----> File index_signature/fail_1/main.k:3:5
+```shell
+error[E2L23]: CompileError
+---> index_signature/fail_1/main.k:3:5
+  |
 3 |    [str]: int
-     5 ^^^^^^^^^^  -> Failure
-only one index signature is allowed in the schema
+  |  5 ^ only one index signature is allowed in the schema
+  |
 ```
 
 Possible resolution:
 
-- - Remove the extra index signature in the schema.
+- Remove the extra index signature in the schema.
 
 2. The name of index signature attributes has the same name that conflicts with other attributes in the schema.
 
 For example:
 
-```
+```python
 schema Data:
     name: str  # name
     [name: str]: str # the same name with the above attribute
@@ -396,12 +412,13 @@ data = Data {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2B20] : Invalid index signature
----> File index_signature/fail_2/main.k:3:5
-3 |    [name: str]: str
-     5 ^  -> Failure
-index signature attribute name 'name' cannot have the same name as schema attributes
+```shell
+error[E1001]: IndexSignatureError
+ --> index_signature/fail_2/main.k:3:5
+  |
+3 |     [name: str]: str # the same name with the above attribute
+  |     ^ index signature attribute name 'name' cannot have the same name as schema attributes
+  |
 ```
 
 Possible resolution:
@@ -412,7 +429,7 @@ Possible resolution:
 
 For example:
 
-```
+```python
 schema Data:
     [str]: int
 
@@ -423,23 +440,24 @@ data = Data {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File index_signature/fail_3/main.k:4:8
-4 |data = Data {
-        8 ^  -> Failure
-expected schema index signature value type int, got str(test) of the key 'name'
+```shell
+error[E2G22]: TypeError
+ --> index_signature/fail_3/main.k:5:5
+  |
+5 |     name: "test" # Conflict with [str]:int, "test" is a string.
+  |     ^ expected int, got str(test)
+  |
 ```
 
 Possible resolution:
 
-- - Check that the type of schema index signature is consistent with the attribute type in the schema instance.
+- Check that the type of schema index signature is consistent with the attribute type in the schema instance.
 
 4. Schema index signature has conflicts with schema.
 
 For example:
 
-```
+```python
 schema Data:
     count: int # got int 
     [str]: str # except str
@@ -451,17 +469,18 @@ data = Data {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2B20] : Invalid index signature
----> File index_signature/fail_4/main.k:2:5
-2 |    count: int
-     5 ^  -> Failure
-the type 'int' of schema attribute 'count' does not meet the index signature definition [str]: str
+```shell
+error[E1001]: IndexSignatureError
+ --> index_signature/fail_4/main.k:2:5
+  |
+2 |     count: int
+  |     ^ the type 'int' of schema attribute 'count' does not meet the index signature definition [str]: str
+  |
 ```
 
 Possible resolution:
 
-- - Change schema for index signature or change index signature for schema.
+- Change schema for index signature or change index signature for schema.
 
 ### 1.2.9 TypeComplieError(E2G22)
 
@@ -471,7 +490,7 @@ The `ewcode` of `TypeComplieError` is `E2G22`.
 
 For example:
 
-```
+```python
 schema Person:
     firstName: str
     lastName: int
@@ -484,12 +503,19 @@ JohnDoe = Person {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2G22] : The type got is inconsistent with the type expected
----> File type/type_fail_0/main.k:7:5
-7 |    "lastName": "Doe"
-     5 ^  -> Failure
-expect int, got str(Doe)
+```shell
+error[E2G22]: TypeError
+ --> type/type_fail_0/main.k:7:5
+  |
+7 |     "lastName": "Doe" # Type Error，lastName: int，“Doe” is a string.
+  |     ^ expected int, got str(Doe)
+  |
+
+ --> type/type_fail_0/main.k:3:5
+  |
+3 |     lastName: int
+  |     ^ variable is defined here, its type is int, but got str(Doe)
+  |
 ```
 
 Possible resolution:
@@ -506,18 +532,20 @@ KCL will report `CompileError` when:
 
 For example:
 
-```
+```python
 _data = [1, 2, 3]
 _data |= "value"
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File union/fail/fail_1/main.k:2
-2 |_data |= "value" -> Failure
-unsupported operand type(s) for |=: '[int]' and 'str(value)'
+```shell
+error[E2G22]: TypeError
+ --> union/fail/fail_1/main.k:2:1
+  |
+2 | _data |= "value"
+  | ^ unsupported operand type(s) for |: '[int]' and 'str(value)'
+  |
 ```
 
 Possible resolution:
@@ -526,18 +554,20 @@ Possible resolution:
 
 For example:
 
-```
+```python
 a = None
 b = 1 + None # Unsupport operand type + for int and None
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File operator/operator_fail_0/main.k:2
-2 |b = 1 + None -> Failure
-unsupported operand type(s) for +: 'int(1)' and 'NoneType'
+```shell
+error[E2G22]: TypeError
+ --> operator/operator_fail_0/main.k:2:5
+  |
+2 | b = 1 + None # Unsupport operand type + for int and None
+  |     ^ unsupported operand type(s) for +: 'int(1)' and 'NoneType'
+  |
 ```
 
 Possible resolution:
@@ -549,31 +579,32 @@ Possible resolution:
 
 For example:
 
-```
+```python
 a = 1
 b = "${c + 1}" # 'c' is not defined
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File var_not_define_fail_0/main.k:2:8
-2 |b = "${c + 1}"
-        8 ^  -> Failure
-name 'c' is not defined
+```shell
+error[E2L23]: CompileError
+ --> var_not_define_fail_0/main.k:2:8
+  |
+2 | b = "${c + 1}" # 'c' is not defined
+  |        ^ name 'c' is not defined
+  |
 ```
 
 Possible resolution:
 
-- - Define undefined variables.
-- - Remove the undefined variable from the expression.
+- Define undefined variables.
+- Remove the undefined variable from the expression.
 
 1. invalid assign expression.
 
 For example:
 
-```
+```python
 # pkg.k
 a = 1
 
@@ -584,58 +615,61 @@ pkg.a |= 2
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File pkg_inplace_modify_1/main.k:3:1
-3 |pkg.a |= 2
- 1 ^^^^^  -> Failure
-module 'pkg' can't be assigned
+```shell
+error[E2G22]: TypeError
+ --> pkg_inplace_modify_1/main.k:3:1
+  |
+6 | pkg |= 2
+  | ^ unsupported operand type(s) for |: 'module 'pkg'' and 'int(2)'
+  |
 ```
 
 Possible resolution:
 
-- - Check the assignment expression.
+- Check the assignment expression.
 
 1. invalid string expression.
 
 For example:
 
-```
+```python
 a = 1
 b = "${b = a + 1}" # Invalid string interpolation expression
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File invalid_format_value_fail_0/main.k:2:5
-2 |b = "${b = a + 1}"
-     5 ^^^^^^^^^^^^^^  -> Failure
-invalid string interpolation expression 'b = a + 1'
+```shell
+error[E2L23]: CompileError
+ --> invalid_format_value_fail_0/main.k:2:5
+  |
+2 | b = "${b = a + 1}"
+  |    5 ^ invalid string interpolation expression 'b = a + 1'
+  |
 ```
 
 Possible resolution:
 
-- - Check the string expression.
+- Check the string expression.
 
 1. invalid loop variable.
 
 For example:
 
-```
+```python
 data = {"key1": "value1", "key2": "value2"}
 dataLoop = [i for i, j, k in data]  # the number of loop variables can only be 1 or 2
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2L23] : A complie error occurs during compiling
----> File dict/invalid_loop_var_fail_0/main.k:2:19
-2 |dataLoop = [i for i, j, k in data]  # error
-                  19 ^^^^^^^  -> Failure
-the number of loop variables is 3, which can only be 1 or 2
+```shell
+error[E2L23]: CompileError
+ --> dict/invalid_loop_var_fail_0/main.k:2:25
+  |
+2 | dataLoop = [i for i, j, k in data]  # the number of loop variables can only be 1 or 2
+  |                         ^ the number of loop variables is 3, which can only be 1 or 2
+  |
 ```
 
 ### 1.2.11 KCLNameError(E2L25)
@@ -664,7 +698,7 @@ The `ewcode` of `UniqueKeyError` is `E2L28`.
 
 For example:
 
-```
+```python
 schema Person:
     name: str = "kcl"
     age: int = 1
@@ -678,12 +712,19 @@ x1 = Person{age:101}
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2L28] : Unique key error
----> File /schema/same_name/main.k:5:1
-5 |schema Person:
- 1 ^  -> Failure
-Variable name 'Person' must be unique in package context
+```shell
+error[E2L28]: UniqueKeyError
+ --> /schema/same_name/main.k:5:8
+  |
+5 | schema Person:
+  |        ^ Unique key error name 'Person'
+  |
+
+ --> /schema/same_name/main.k:1:8
+  |
+1 | schema Person:
+  |        ^ The variable 'Person' is declared here
+  |
 ```
 
 Possible resolution:
@@ -698,7 +739,7 @@ The `ewcode` of `KCLAttributeComplieError` is `E2A29`.
 
 For example:
 
-```
+```python
 # pkg
 schema A:
     field_A: str
@@ -711,12 +752,13 @@ a = p.D + 1
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2A29] : Attribute error occurs during compiling
----> File /import/module/no_module_attr_fail_0/main.k:3:5
-3 |a = p.D + 1
-     5 ^  -> Failure
-module 'pkg' has no attribute 'D'
+```shell
+error[E2G22]: TypeError
+ --> /import/module/no_module_attr_fail_0/main.k:4:5
+  |
+4 | a = p.D + 1
+  |     ^ module 'pkg' has no attribute D
+  |
 ```
 
 Possible resolution:
@@ -731,7 +773,7 @@ The `ewcode` of `MultiInheritError` is `E2D32`.
 
 For example:
 
-```
+```python
 schema Person:
     firstName: str
     lastName: str
@@ -747,11 +789,12 @@ schema Scholar(KnowledgeMixin, Person):
 The KCL program will cause the following error message.
 
 ```
-KCL Complier Error[E2D32] : Multiple inheritance is illegal
----> File /schema/inherit/multi_inherit_fail_1/main.k:9:16
-9 |schema Scholar(KnowledgeMixin, Person):
-               16 ^^^^^^^^^^^^^^^^^^^^^^  -> Failure
-Multiple inheritance of Scholar is prohibited
+error[E1001]: InvalidSyntax
+ --> /schema/inherit/multi_inherit_fail_1/main.k:9:30
+  |
+9 | schema Scholar(KnowledgeMixin, Person):
+  |                              ^ expected one of [")"] got ,
+  |
 ```
 
 Possible resolution:
@@ -766,7 +809,7 @@ The `ewcode` of `IllegalInheritError` is `E2D34`.
 
 For example:
 
-```
+```python
 schema FullnameMixin:
     fullName = "{} {}".format(firstName, lastName)
 
@@ -776,12 +819,13 @@ schema Scholar(FullnameMixin): # mixin inheritance is illegal
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2D34] : Illegal inheritance
----> File /schema/inherit/inherit_mixin_fail/main.k:8:1
-8 |schema Scholar(FullnameMixin):
- 1 ^  -> Failure
-mixin inheritance FullnameMixin is prohibited
+```shell
+error[E2D34]: IllegalInheritError
+ --> /schema/inherit/inherit_mixin_fail/main.k:4:16
+  |
+4 | schema Scholar(FullnameMixin):
+  |                ^ invalid schema inherit object type, expect schema, got 'FullnameMixin'
+  |
 ```
 
 Possible resolution:
@@ -795,7 +839,7 @@ KCL will report `IllegalArgumentComplieError` when the argument of option in KCL
 The `ewcode` of `IllegalArgumentComplieError` is `E2I36`.
 For example:
 
-```
+```python
 a = option("key")
 
 # kcl main.k -D key=value= 
@@ -804,9 +848,9 @@ a = option("key")
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2I36] : Illegal argument during compiling
-'key=value='
+```shell
+error[E3M38]: EvaluationError
+Invalid value for top level arguments
 ```
 
 Possible resolution:
@@ -821,19 +865,27 @@ The `ewcode` of `ImmutableCompileError` is `E3L41`.
 
 For example:
 
-```
+```python
 a = 2147483646
 a += 1
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Compile Error[E2L41] : Immutable variable is modified
----> File /range_check_int/augment_assign/main.k:2:1
-2 |a += 1
- 1 ^  -> Failure
-Immutable variable is modified
+```shell
+error[E1001]: ImmutableError
+ --> augment_assign/main.k:2:1
+  |
+2 | a += 1
+  | ^ Immutable variable 'a' is modified during compiling
+  |
+
+ --> augment_assign/main.k:1:1
+  |
+1 | a = 2147483646
+  | ^ The variable 'a' is declared here firstly
+  |
+note: change the variable name to '_a' to make it mutable
 ```
 
 Possible resolution:
@@ -869,7 +921,7 @@ The `ewcode` of `RecursiveLoad` is `E2F06`.
 
 For example:
 
-```
+```python
 # module.k 
 import main # module.k imports main.k
 
@@ -883,16 +935,18 @@ print('main')
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3F06] : Recursively loading module
----> File /import/recursive_import_fail/main.k:4
-4 | -> Failure
-In module module, recursively loading modules: module, main
+```shell
+error[E2L23]: CompileError
+ --> /import/recursive_import_fail/main.k:4
+  |
+2 | import module # main.k imports module.k
+  | ^ There is a circular import reference between module main and module
+  |
 ```
 
 Possible resolution:
 
-- - Check whether there is a circle import in KCL.
+- Check whether there is a circle import in KCL.
 
 ### 1.3.2 FloatOverflow (E3K04)
 
@@ -902,8 +956,8 @@ The `ewcode` of `FloatOverflow` is `E3K04`.
 
 For example:
 
-```
-uplimit = 3.402823466e+38
+```python
+uplimit = 3.402823466e+39
 epsilon = 2.220446049250313e-16
 a = uplimit * (1 + epsilon)
 
@@ -912,11 +966,13 @@ a = uplimit * (1 + epsilon)
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3K07] : Float overflow
----> File /range_check_float/overflow/number_0/main.k:6
-6 |a = uplimit * (1 + epsilon) -> Failure
-3.402823466000001e+38: A 32-bit floating point number overflow
+```shell
+error[E3M38]: EvaluationError
+ --> /range_check_float/overflow/number_0/main.k:3:1
+  |
+3 | a = uplimit * (1 + epsilon)
+  |  3.4028234660000003e+39: A 32-bit floating point number overflow
+  |
 ```
 
 Possible resolution:
@@ -931,7 +987,7 @@ The `ewcode` of `IntOverflow` is `E3K09`.
 
 For example:
 
-```
+```python
 _a = 9223372036854775807
 _a += 1
 
@@ -940,11 +996,13 @@ _a += 1
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3K09] : Integer overflow
----> File /range_check_int/augment_assign_fail_1/main.k:2
-2 |_a += 1 -> Failure
-9223372036854775808: A 64 bit integer overflow
+```shell
+error[E3M38]: EvaluationError
+ --> /range_check_int/augment_assign_fail_1/main.k:2:1
+  |
+2 | _a += 1
+  |  9223372036854775808: A 64 bit integer overflow
+  |
 ```
 
 Possible resolution:
@@ -959,7 +1017,7 @@ The `ewcode` of `DeprecatedError` is `E3N11`.
 
 For example:
 
-```
+```python
 schema Person:
     firstName: str = "John"
     lastName: str
@@ -973,11 +1031,13 @@ JohnDoe = Person {
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3N11] : Deprecated error
----> File /schema/deprecated/member_standard_1/main.k:7
-7 |JohnDoe = Person { -> Failure
-name was deprecated since version 1.16, use firstName and lastName instead
+```shell
+error[E3M38]: EvaluationError
+ --> /range_check_float/overflow/number_0/main.k:7:1
+  |
+7 | JohnDoe = Person {
+  |  name was deprecated since version 1.16, use firstName and lastName instead
+  |
 ```
 
 Possible resolution:
@@ -994,7 +1054,7 @@ The `ewcode` of `KCLAttributeRuntimeError` is `E3A30`.
 
 For example:
 
-```
+```python
 import math
 
 a = math.err_func(1) # err_func is not found in math
@@ -1002,11 +1062,13 @@ a = math.err_func(1) # err_func is not found in math
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3A30] : Attribute error occurs at runtime
----> File /import/module/no_module_attr_fail_2/main.k:3
-3 |a = math.err_func(1) -> Failure
-module 'math' has no attribute 'err_func'
+```shell
+error[E3M38]: EvaluationError
+ --> /import/module/no_module_attr_fail_2/main.k:3:5
+  |
+3 | a = math.err_func(1) # err_func is not found in math
+  |     ^ module 'math' has no attribute err_func
+  |
 ```
 
 Possible resolution:
@@ -1021,22 +1083,24 @@ The `ewcode` of `TypeRuntimeError` is `E3G21`.
 
 For example:
 
-```
+```python
 schema Person:
     name: str = "Alice"
 
 _personA = Person {}
-_personA |= {"name": 123.0} # name: str = "Alice"
+_personA |= {"name" = 123.0} # name: str = "Alice"
 personA = _personA
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3G21] : The type got is inconsistent with the type expected
----> File /fail/fail_4/main.k:5
-5 |_personA |= {"name": 123.0} -> Failure
-expect str, got float
+```shell
+error[E3M38]: EvaluationError
+ --> /fail/fail_4/main.k:2:1
+  |
+2 |     name: str = "Alice"
+  |  expect str, got float
+  |
 ```
 
 Possible resolution:
@@ -1051,7 +1115,7 @@ The `ewcode` of `SchemaCheckFailure` is `E3B17`.
 
 For example:
 
-```
+```python
 schema Person:
     lastName: str
     age: int
@@ -1066,19 +1130,24 @@ JohnDoe = Person {
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3B17] : Schema check is failed to check condition
----> File /check_block/check_block_fail_1/main.k:9:11
-9 |JohnDoe = Person {
-          11 ^  -> Check failed in the schema
----> File /check_block/check_block_fail_1/main.k:7
-7 |        age < 140, "age is too large" -> Check failed on the condition
-age is too large
+```shell
+error[E3M38]: EvaluationError
+ --> /check_block/check_block_fail_1/main.k:7:11
+  |
+7 | JohnDoe = Person {
+  |           ^ Instance check failed
+  |
+
+ --> /check_block/check_block_fail_1/main.k:5:1
+  |
+5 |         age < 140, "age is too large"
+  |  Check failed on the condition
+  |
 ```
 
 Possible resolution:
 
-- - Check whether the attributes of schema can satisfy the conditions in check.
+- Check whether the attributes of schema can satisfy the conditions in check.
 
 ### 1.3.8 CannotAddMembersRuntimeError(E3B19)
 
@@ -1088,7 +1157,7 @@ The `ewcode` of `CannotAddMembersRuntimeError` is `E3B19`.
 
 For example:
 
-```
+```python
 schema Name:
     name: str
 
@@ -1102,7 +1171,7 @@ person = Person {
 
 The KCL program will cause the following error message.
 
-```
+```shell
 KCL Runtime Error[E3B19] : Cannot add members to a schema
 ---> File /nest_var/nest_var_fail_1/main.k:8:5
 8 |    name.err_name: "Alice"
@@ -1123,7 +1192,7 @@ The `ewcode` of `EvaluationError` is `E3M38`.
 
 For example:
 
-```
+```python
 _list1 = [1, 2, 3] # _list1 is a variable, and its type can only be known at runtime
 _list2 = None # _list1 is a variable, and its type can only be known at runtime
 
@@ -1132,11 +1201,13 @@ result2 = _list1 + _list2 # list + NoneType is illegal
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3M38] : Evaluation failure
----> File /datatype/list/add_None_fail/main.k:4
-4 |result2 = _list1 + _list2 -> Failure
-can only concatenate list (not "NoneType") to list
+```shell
+error[E3M38]: EvaluationError
+ --> /datatype/list/add_None_fail/main.k:1
+  |
+4 | result2 = _list1 + _list2 # list + NoneType is illegal
+  |  can only concatenate list (not "NoneType") to list
+  |
 ```
 
 Possible resolution:
@@ -1151,7 +1222,7 @@ The `ewcode` of `InvalidFormatSpec` is `E3M39`.
 
 For example:
 
-```
+```python
 a = 1
 b = 1
 data = "${a: #js}" + " $$ " #  #js is illegal string
@@ -1159,11 +1230,13 @@ data = "${a: #js}" + " $$ " #  #js is illegal string
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3M39] : Invalid format specification
----> File /datatype/str_interpolation/invalid_format_spec_fail_0/main.k:3
-3 |data = "${a: #js}" + " $$ " -> Failure
-#js is invalid format spec
+```shell
+error[E2L23]: CompileError
+ --> /datatype/str_interpolation/invalid_format_spec_fail_0/main.k:3
+  |
+3 | data = "${a: #js}" + " $$ " #  #js is illegal string
+  |           ^ #js is a invalid format spec
+  |
 ```
 
 Possible resolution:
@@ -1178,17 +1251,19 @@ The `ewcode` of `KCLAssertionError` is `E3M40`.
 
 For example:
 
-```
+```python
 assert False
 ```
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3M40] : Assertion failure
----> File /assert/invalid/fail_0/main.k:1
-1 |assert False -> Failure
-Assertion failure
+```shell
+error[E3M38]: EvaluationError
+ --> /assert/invalid/fail_0/main.k:1
+  |
+1 | assert False
+  | 
+  |
 ```
 
 Possible resolution:
@@ -1203,7 +1278,7 @@ The `ewcode` of `ImmutableRuntimeError` is `E3M44`.
 
 For example:
 
-```
+```python
 schema Person:
     final firstName : str
     lastName : str
@@ -1218,12 +1293,13 @@ scholar = Scholar {
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3M41] : Immutable variable is modified
----> File /final/fail_lazy_init_0/main.k:12:5
-12 |    "firstName": "ABC"
-      5 ^  -> Failure
-final schema field 'firstName'
+```shell
+error[E3M38]: EvaluationError
+ --> /final/fail_lazy_init_0/main.k:8:1
+  |
+8 | scholar = Scholar {
+  |  attribute 'lastName' of Scholar is required and can't be None or Undefined
+  |
 ```
 
 Possible resolution:
@@ -1238,7 +1314,7 @@ The `ewcode` of `CycleInheritError` is `E2D33`.
 
 For example:
 
-```
+```python
 schema Parent(Son):
     parent_field: str
 
@@ -1255,12 +1331,13 @@ parent = Parent {
 
 The KCL program will cause the following error message.
 
-```
-KCL Complier Error[E2D33] : Cycle Inheritance is illegal
----> File /inherit/cycle_inherit_fail_1/main.k:7:1
-7 |schema GrandSon(Parent):
- 1 ^  -> Failure
-GrandSon and Parent
+```shell
+error[E2L23]: CompileError
+ --> /inherit/cycle_inherit_fail_1/main.k:7:8
+  |
+7 | schema GrandSon(Parent):
+  |        ^ There is a circular reference between schema GrandSon and Parent
+  |
 ```
 
 Possible resolution:
@@ -1275,7 +1352,7 @@ The `ewcode` of `KCLRecursionError` is `E3M42`.
 
 For example:
 
-```
+```python
 schema Parent(Son):
     parent_field: str
     son: Son = Son {  # Parent has attribute Son
@@ -1299,11 +1376,9 @@ parent = Parent {
 
 The KCL program will cause the following error message.
 
-```
-KCL Runtime Error[E3M42] : Recursively reference
----> File /init/init_cycle_fail_0/main.k:10
-10 |    son_field: str -> Failure
-maximum recursion depth exceeded in __instancecheck__
+```shell
+thread 'main' has overflowed its stack
+fatal runtime error: stack overflow
 ```
 
 Possible resolution:
@@ -1326,29 +1401,6 @@ KCL will report `FloatUnderflow`  when a floating-point number underflows in KCL
 
 The `ewcode` of `FloatUnderflow` is `W2K08`.
 
-For example:
-
-```
-downlimit = 1.175494351e-38
-uplimit = 3.402823466e+38
-
-epsilon = 2.220446049250313e-16
-
-a = uplimit / (1 + epsilon)
-b = downlimit / (1 + epsilon)
-
-# kcl main.k -r -d
-```
-
-The KCL program will cause the following error message.
-
-```
-KCL Complier Warning[W2K08] : Float underflow
----> File /range_check_float/underflow/number_0/main.k:7
-7 |b = downlimit / (1 + epsilon) -> Failure
-1.1754943509999997e-38: A 32-bit floating point number underflow
-```
-
 Possible resolution:
 
 - Check whether the value of the float number is in the range supported by KCL.
@@ -1368,27 +1420,6 @@ Possible resolution:
 KCL will report `DeprecatedWarning` when a deprecated variable is used and the strict is False.
 
 The `ewcode` of `DeprecatedWarning` is `W2N12`.
-
-For example:
-
-```
-schema Person:
-    firstName?: str = "John"
-    lastName?: str
-    @deprecated(version="1.16", reason="use firstName and lastName instead", strict=False)
-    name?: str
-
-JohnDoe = Person {
-    name: "deprecated" # name is deprecated and strict is False
-}
-```
-
-The KCL program will cause the following error message.
-
-```
-KCL Compile Warning[W2N12] : Deprecated warning
-name was deprecated since version 1.16, use firstName and lastName instead
-```
 
 Possible resolution:
 
