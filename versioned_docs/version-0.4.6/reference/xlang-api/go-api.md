@@ -5,7 +5,7 @@ sidebar_position: 3
 # Go API
 
 ```go
-import "github.com/KusionStack/kclvm-go"
+import "kusionstack.io/kclvm-go"
 ```
 
 ## KCLVM binding for Go
@@ -42,12 +42,10 @@ import "github.com/KusionStack/kclvm-go"
 ```go
 {
 	const k_code = `
-import kcl_plugin.hello
-
 name = "kcl"
 age = 1
 
-two = hello.add(1, 1)
+two = 2
 
 schema Person:
     name: str = "kcl"
@@ -87,49 +85,65 @@ x1 = Person {
 ## Index
 
 - [Go API](#go-api)
-	- [KCLVM binding for Go](#kclvm-binding-for-go)
+		- [KCLVM binding for Go](#kclvm-binding-for-go)
 	- [Index](#index)
+	- [Constants](#constants)
 	- [func FormatCode](#func-formatcode)
 			- [Output](#output)
 	- [func FormatPath](#func-formatpath)
+	- [func InitKclvmPath](#func-initkclvmpath)
 	- [func InitKclvmRuntime](#func-initkclvmruntime)
 	- [func LintPath](#func-lintpath)
 			- [Output](#output-1)
+	- [func ListDepFiles](#func-listdepfiles)
+	- [func ListDownStreamFiles](#func-listdownstreamfiles)
+	- [func ListUpStreamFiles](#func-listupstreamfiles)
 	- [func OverrideFile](#func-overridefile)
-	- [func RunPlayground](#func-runplayground)
 	- [func ValidateCode](#func-validatecode)
 	- [type KCLResult](#type-kclresult)
 			- [Output](#output-2)
 			- [Output](#output-3)
-		- [func EvalCode](#func-evalcode)
 	- [type KCLResultList](#type-kclresultlist)
 		- [func MustRun](#func-mustrun)
 			- [Output](#output-4)
-		- [func Run](#func-run)
 			- [Output](#output-5)
+			- [Output](#output-6)
+		- [func Run](#func-run)
+			- [Output](#output-7)
 		- [func RunFiles](#func-runfiles)
 	- [type KclType](#type-kcltype)
 		- [func GetSchemaType](#func-getschematype)
+	- [type ListDepFilesOption](#type-listdepfilesoption)
+	- [type ListDepsOptions](#type-listdepsoptions)
 	- [type Option](#type-option)
 		- [func WithCode](#func-withcode)
 		- [func WithDisableNone](#func-withdisablenone)
 		- [func WithKFilenames](#func-withkfilenames)
 		- [func WithOptions](#func-withoptions)
-			- [Output](#output-6)
+			- [Output](#output-8)
 		- [func WithOverrides](#func-withoverrides)
 		- [func WithPrintOverridesAST](#func-withprintoverridesast)
 		- [func WithSettings](#func-withsettings)
+		- [func WithSortKeys](#func-withsortkeys)
 		- [func WithWorkDir](#func-withworkdir)
 	- [type ValidateOptions](#type-validateoptions)
 
 
-## func [FormatCode](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L98>)
+## Constants
+
+KclvmAbiVersion is the current kclvm ABI version.
+
+```go
+const KclvmAbiVersion = scripts.KclvmAbiVersion
+```
+
+## func [FormatCode](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L110>)
 
 ```go
 func FormatCode(code interface{}) ([]byte, error)
 ```
 
-FormatCode returns the formatted code\.
+FormatCode returns the formatted code.
 
 <details><summary>Example</summary>
 <p>
@@ -154,13 +168,13 @@ a = 1 + 2
 </p>
 </details>
 
-## func [FormatPath](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L110>)
+## func [FormatPath](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L122>)
 
 ```go
 func FormatPath(path string) (changedPaths []string, err error)
 ```
 
-FormatPath formats files from the given path path: if path is \`\.\` or empty string\, all KCL files in current directory will be formatted\, not recursively if path is \`path/file\.k\`\, the specified KCL file will be formatted if path is \`path/to/dir\`\, all KCL files in the specified dir will be formatted\, not recursively if path is \`path/to/dir/\.\.\.\`\, all KCL files in the specified dir will be formatted recursively
+FormatPath formats files from the given path path: if path is \`.\` or empty string, all KCL files in current directory will be formatted, not recursively if path is \`path/file.k\`, the specified KCL file will be formatted if path is \`path/to/dir\`, all KCL files in the specified dir will be formatted, not recursively if path is \`path/to/dir/...\`, all KCL files in the specified dir will be formatted recursively
 
 the returned changedPaths are the changed file paths \(relative path\)
 
@@ -180,18 +194,26 @@ the returned changedPaths are the changed file paths \(relative path\)
 </p>
 </details>
 
-## func [InitKclvmRuntime](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L52>)
+## func [InitKclvmPath](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L54>)
+
+```go
+func InitKclvmPath(kclvmRoot string)
+```
+
+InitKclvmPath init kclvm path.
+
+## func [InitKclvmRuntime](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L59>)
 
 ```go
 func InitKclvmRuntime(n int)
 ```
 
-InitKclvmRuntime init kclvm process\.
+InitKclvmRuntime init kclvm process.
 
-## func [LintPath](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L115>)
+## func [LintPath](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L142>)
 
 ```go
-func LintPath(path string) (results []string, err error)
+func LintPath(paths []string) (results []string, err error)
 ```
 
 LintPath lint files from the given path
@@ -202,7 +224,7 @@ LintPath lint files from the given path
 ```go
 {
 
-	results, err := kclvm.LintPath("testdata/lint/import.k")
+	results, err := kclvm.LintPath([]string{"testdata/lint/import.k"})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -216,46 +238,53 @@ LintPath lint files from the given path
 #### Output
 
 ```
-Unable to import abc.
-a is reimported multiple times.
-a imported but unused.
+Module 'a' is reimported multiple times
+Module 'a' imported but unused
 ```
 
 </p>
 </details>
 
-## func [OverrideFile](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L124>)
+## func [ListDepFiles](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L127>)
 
 ```go
-func OverrideFile(file string, specs []string) (bool, error)
+func ListDepFiles(workDir string, opt *ListDepFilesOption) (files []string, err error)
 ```
 
-OverrideFile rewrites a file with override spec file: string\. The File that need to be overridden specs: \[\]string\. List of specs that need to be overridden\. Each spec string satisfies the form: \<pkgpath\>:\<field\_path\>=\<filed\_value\> or \<pkgpath\>:\<field\_path\>\- When the pkgpath is '\_\_main\_\_'\, it can be omitted\.
+ListDepFiles return the depend files from the given path
 
-## func [RunPlayground](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L150>)
+## func [ListDownStreamFiles](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L137>)
 
 ```go
-func RunPlayground(address string) error
+func ListDownStreamFiles(workDir string, opt *ListDepsOptions) ([]string, error)
 ```
 
-RunPlayground start KCL playground on given address\.
+ListDownStreamFiles return a list of downstream depend files from the given changed path list.
 
-<details><summary>Example</summary>
-<p>
+## func [ListUpStreamFiles](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L132>)
 
 ```go
-{
-	addr := "localhost:2022"
-	fmt.Printf("listen at http://%s\n", addr)
-
-	kclvm.RunPlayground(addr)
-}
+func ListUpStreamFiles(workDir string, opt *ListDepsOptions) (deps []string, err error)
 ```
 
-</p>
-</details>
+ListUpStreamFiles return a list of upstream depend files from the given path list
 
-## func [ValidateCode](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L129>)
+## func [OverrideFile](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L154>)
+
+```go
+func OverrideFile(file string, specs, importPaths []string) (bool, error)
+```
+
+OverrideFile rewrites a file with override spec file: string. The File that need to be overridden specs: \[\]string. List of specs that need to be overridden.
+
+```
+Each spec string satisfies the form: <pkgpath>:<field_path>=<filed_value> or <pkgpath>:<field_path>-
+When the pkgpath is '__main__', it can be omitted.
+```
+
+importPaths. List of import statements that need to be added
+
+## func [ValidateCode](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L159>)
 
 ```go
 func ValidateCode(data, code string, opt *ValidateOptions) (ok bool, err error)
@@ -263,7 +292,7 @@ func ValidateCode(data, code string, opt *ValidateOptions) (ok bool, err error)
 
 ValidateCode validate data match code
 
-## type [KCLResult](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L45>)
+## type [KCLResult](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L47>)
 
 ```go
 type KCLResult = kcl.KCLResult
@@ -275,12 +304,10 @@ type KCLResult = kcl.KCLResult
 ```go
 {
 	const k_code = `
-import kcl_plugin.hello
-
 name = "kcl"
 age = 1
 	
-two = hello.add(1, 1)
+two = 2
 	
 schema Person:
     name: str = "kcl"
@@ -347,25 +374,19 @@ person: {Name:kcl Age:101}
 </p>
 </details>
 
-### func [EvalCode](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L133>)
-
-```go
-func EvalCode(code string) (*KCLResult, error)
-```
-
-## type [KCLResultList](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L46>)
+## type [KCLResultList](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L48>)
 
 ```go
 type KCLResultList = kcl.KCLResultList
 ```
 
-### func [MustRun](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L57>)
+### func [MustRun](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L64>)
 
 ```go
 func MustRun(path string, opts ...Option) *KCLResultList
 ```
 
-MustRun is like Run but panics if return any error\.
+MustRun is like Run but panics if return any error.
 
 <details><summary>Example</summary>
 <p>
@@ -387,6 +408,66 @@ name: kcl
 </p>
 </details>
 
+<details><summary>Example (Raw Yaml)</summary>
+<p>
+
+```go
+{
+	const code = `
+b = 1
+a = 2
+`
+	yaml := kclvm.MustRun("testdata/main.k", kclvm.WithCode(code)).GetRawYamlResult()
+	fmt.Println(yaml)
+
+	yaml_sorted := kclvm.MustRun("testdata/main.k", kclvm.WithCode(code), kclvm.WithSortKeys(true)).GetRawYamlResult()
+	fmt.Println(yaml_sorted)
+
+}
+```
+
+#### Output
+
+```
+b: 1
+a: 2
+a: 2
+b: 1
+```
+
+</p>
+</details>
+
+<details><summary>Example (Schema Type)</summary>
+<p>
+
+```go
+{
+	const code = `
+schema Person:
+	name: str = ""
+
+x = Person()
+`
+	json := kclvm.MustRun("testdata/main.k", kclvm.WithCode(code)).First().JSONString()
+	fmt.Println(json)
+
+}
+```
+
+#### Output
+
+```
+{
+    "x": {
+        "name": ""
+    }
+}
+```
+
+</p>
+</details>
+
 <details><summary>Example (Settings)</summary>
 <p>
 
@@ -400,13 +481,13 @@ name: kcl
 </p>
 </details>
 
-### func [Run](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L62>)
+### func [Run](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L69>)
 
 ```go
 func Run(path string, opts ...Option) (*KCLResultList, error)
 ```
 
-Run evaluates the KCL program with path and opts\, then returns the object list\.
+Run evaluates the KCL program with path and opts, then returns the object list.
 
 <details><summary>Example (Get Field)</summary>
 <p>
@@ -425,19 +506,19 @@ Run evaluates the KCL program with path and opts\, then returns the object list\
 #### Output
 
 ```
-RZ24A
+R000A
 ```
 
 </p>
 </details>
 
-### func [RunFiles](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L67>)
+### func [RunFiles](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L74>)
 
 ```go
 func RunFiles(paths []string, opts ...Option) (*KCLResultList, error)
 ```
 
-RunFiles evaluates the KCL program with multi file path and opts\, then returns the object list\.
+RunFiles evaluates the KCL program with multi file path and opts, then returns the object list.
 
 <details><summary>Example</summary>
 <p>
@@ -452,21 +533,49 @@ RunFiles evaluates the KCL program with multi file path and opts\, then returns 
 </p>
 </details>
 
-## type [KclType](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L48>)
+## type [KclType](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L50>)
 
 ```go
 type KclType = kcl.KclType
 ```
 
-### func [GetSchemaType](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L145>)
+### func [GetSchemaType](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L176>)
 
 ```go
 func GetSchemaType(file, code, schemaName string) ([]*KclType, error)
 ```
 
-GetSchemaType returns schema types from a kcl file or code\.
+GetSchemaType returns schema types from a kcl file or code.
 
-file: string The kcl filename code: string The kcl code string schema\_name: string The schema name got\, when the schema name is empty\, all schemas are returned\.
+file: string
+
+```
+The kcl filename
+```
+
+code: string
+
+```
+The kcl code string
+```
+
+schema\_name: string
+
+```
+The schema name got, when the schema name is empty, all schemas are returned.
+```
+
+## type [ListDepFilesOption](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L45>)
+
+```go
+type ListDepFilesOption = list.Option
+```
+
+## type [ListDepsOptions](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L44>)
+
+```go
+type ListDepsOptions = list.DepOptions
+```
 
 ## type [Option](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L43>)
 
@@ -474,37 +583,37 @@ file: string The kcl filename code: string The kcl code string schema\_name: str
 type Option = kcl.Option
 ```
 
-### func [WithCode](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L72>)
+### func [WithCode](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L79>)
 
 ```go
 func WithCode(codes ...string) Option
 ```
 
-WithCode returns a Option which hold a kcl source code list\.
+WithCode returns a Option which hold a kcl source code list.
 
-### func [WithDisableNone](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L90>)
+### func [WithDisableNone](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L97>)
 
 ```go
 func WithDisableNone(disableNone bool) Option
 ```
 
-WithDisableNone returns a Option which hold a disable none switch\.
+WithDisableNone returns a Option which hold a disable none switch.
 
-### func [WithKFilenames](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L75>)
+### func [WithKFilenames](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L82>)
 
 ```go
 func WithKFilenames(filenames ...string) Option
 ```
 
-WithKFilenames returns a Option which hold a filenames list\.
+WithKFilenames returns a Option which hold a filenames list.
 
-### func [WithOptions](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L78>)
+### func [WithOptions](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L85>)
 
 ```go
 func WithOptions(key_value_list ...string) Option
 ```
 
-WithOptions returns a Option which hold a key=value pair list for option function\.
+WithOptions returns a Option which hold a key=value pair list for option function.
 
 <details><summary>Example</summary>
 <p>
@@ -537,44 +646,48 @@ name: kcl
 </p>
 </details>
 
-### func [WithOverrides](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L81>)
+### func [WithOverrides](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L88>)
 
 ```go
 func WithOverrides(override_list ...string) Option
 ```
 
-WithOverrides returns a Option which hold a override list\.
+WithOverrides returns a Option which hold a override list.
 
-### func [WithPrintOverridesAST](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L93>)
+### func [WithPrintOverridesAST](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L100>)
 
 ```go
 func WithPrintOverridesAST(printOverridesAST bool) Option
 ```
 
-WithPrintOverridesAST returns a Option which hold a printOverridesAST switch\.
+WithPrintOverridesAST returns a Option which hold a printOverridesAST switch.
 
-### func [WithSettings](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L84>)
+### func [WithSettings](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L91>)
 
 ```go
 func WithSettings(filename string) Option
 ```
 
-WithSettings returns a Option which hold a settings file\.
+WithSettings returns a Option which hold a settings file.
 
-### func [WithWorkDir](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L87>)
+### func [WithSortKeys](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L105>)
+
+```go
+func WithSortKeys(sortKeys bool) Option
+```
+
+WithSortKeys returns a Option which hold a sortKeys switch.
+
+### func [WithWorkDir](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L94>)
 
 ```go
 func WithWorkDir(workDir string) Option
 ```
 
-WithWorkDir returns a Option which hold a work dir\.
+WithWorkDir returns a Option which hold a work dir.
 
-## type [ValidateOptions](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L44>)
+## type [ValidateOptions](<https://github.com/KusionStack/kclvm-go/blob/main/kclvm.go#L46>)
 
 ```go
 type ValidateOptions = validate.ValidateOptions
 ```
-
-
-
-Generated by [gomarkdoc](<https://github.com/princjef/gomarkdoc>)
