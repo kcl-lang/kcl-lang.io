@@ -82,32 +82,31 @@ demo = nd.demo
 你可以使用 kpm 编译刚才编写的 `main.k` 文件。
 
 ```shell
-kpm run --input main.k
+kcl main.k -S demo
 ```
 
 如果你得到如下输出，恭喜你！你成功使用 `kpm` 编译了一个 kcl 包。
 
 ```shell
-demo:
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: nginx-deployment
-  spec:
-    replicas: 3
-    selector:
-      matchLabels:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
         app: nginx
-    template:
-      metadata:
-        labels:
-          app: nginx
-      spec:
-        containers:
-          - image: "nginx:1.14.2"
-            name: nginx
-            ports:
-              - containerPort: 80
+    spec:
+      containers:
+        - image: "nginx:1.14.2"
+          name: nginx
+          ports:
+            - containerPort: 80
 ```
 
 ## 打包您的 kcl 包

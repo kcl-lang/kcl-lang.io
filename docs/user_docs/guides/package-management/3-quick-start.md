@@ -82,32 +82,31 @@ demo = nd.demo
 You can use `kpm` to compile the `main.k` file you just wrote.
 
 ```shell
-kpm run --input main.k
+kcl main.k -S demo
 ```
 
 If you get the following output, congratulations !, you have successfully compiled your kcl package with `kpm`.
 
 ```shell
-demo:
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    name: nginx-deployment
-  spec:
-    replicas: 3
-    selector:
-      matchLabels:
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
         app: nginx
-    template:
-      metadata:
-        labels:
-          app: nginx
-      spec:
-        containers:
-          - image: "nginx:1.14.2"
-            name: nginx
-            ports:
-              - containerPort: 80
+    spec:
+      containers:
+        - image: "nginx:1.14.2"
+          name: nginx
+          ports:
+            - containerPort: 80
 ```
 
 ## Package your current kcl package with its dependencies
