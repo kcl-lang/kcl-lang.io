@@ -8,6 +8,10 @@ KCL provides plugin support through a plugin agent and auxiliary command line to
 
 KCL plugin Git repository: [https://github.com/KusionStack/kcl-plugin](https://github.com/KusionStack/kcl-plugin)
 
+## 0. Prerequisites
+
+Using the KCL Python plugin requires the presence of `Python 3.7+` in your `PATH`.
+
 ## 1. Hello Plugin
 
 KCL plugins are installed in the `plugins` subdirectory of KCL (usually installed in the `$HOME/.kusion/kclvm/plugins` directory), or set through the `$KCL_PLUGINS_ROOT` environment variable. KCL plugins are managed in the Git repository: [https://github.com/KusionStack/kcl-plugin](https://github.com/KusionStack/kcl-plugin), we can clone the repository for development.
@@ -40,7 +44,7 @@ three = hello.add(1,2)
 The output result is
 
 ```shell
-$ kcl main.k
+$ python3 -m kclvm main.k
 name: kcl
 three: 3
 ```
