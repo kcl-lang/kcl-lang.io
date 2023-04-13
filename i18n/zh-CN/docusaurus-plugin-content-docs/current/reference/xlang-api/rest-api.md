@@ -8,7 +8,15 @@ sidebar_position: 2
 通过以下方式可以启动 RestAPI 服务：
 
 ```shell
-kclvm -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+python3 -m pip install kclvm -U
+python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+```
+
+或者
+
+```shell
+go install kusionstack.io/kclvm-go/cmds/kcl-go@main
+kcl-go rest-server
 ```
 
 然后可以通过 POST 协议请求服务：
@@ -115,31 +123,14 @@ $ curl -X POST \
 跨语言的 API 通过 Protobuf 定义([https://github.com/KusionStack/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/KusionStack/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto))：
 
 ```protobuf
-// Copyright 2021 The KCL Authors. All rights reserved.
+// Copyright 2023 The KCL Authors. All rights reserved.
 //
 // This file defines the request parameters and return structure of the KCLVM RPC server.
 // We can use the following command to start a KCLVM RPC server.
-//
-// ```
-// python3 -m pip install kclvm
-// python3 -m kclvm.program.rpc-server -http=:2021
-// ```
-//
-// The service can then be requested via the POST protocol:
-//
-// ```
-// $ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
-// {
-//    "error": "",
-//    "result": {}
-// }
-// ```
 
 syntax = "proto3";
 
 package gpyrpc;
-
-option go_package = "kusionstack.io/kclvm-go/pkg/spec/gpyrpc;gpyrpc";
 
 import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";
@@ -200,29 +191,16 @@ service BuiltinService {
 service KclvmService {
 	rpc Ping(Ping_Args) returns(Ping_Result);
 
-	rpc ParseFile_LarkTree(ParseFile_LarkTree_Args) returns(ParseFile_LarkTree_Result);
-	rpc ParseFile_AST(ParseFile_AST_Args) returns(ParseFile_AST_Result);
-	rpc ParseProgram_AST(ParseProgram_AST_Args) returns(ParseProgram_AST_Result);
-
 	rpc ExecProgram(ExecProgram_Args) returns(ExecProgram_Result);
-
-	rpc ResetPlugin(ResetPlugin_Args) returns(ResetPlugin_Result);
 
 	rpc FormatCode(FormatCode_Args) returns(FormatCode_Result);
 	rpc FormatPath(FormatPath_Args) returns(FormatPath_Result);
 	rpc LintPath(LintPath_Args) returns(LintPath_Result);
 	rpc OverrideFile(OverrideFile_Args) returns (OverrideFile_Result);
-
-	rpc EvalCode(EvalCode_Args) returns(EvalCode_Result);
-	rpc ResolveCode(ResolveCode_Args) returns(ResolveCode_Result);
+	
 	rpc GetSchemaType(GetSchemaType_Args) returns(GetSchemaType_Result);
+	rpc GetSchemaTypeMapping(GetSchemaTypeMapping_Args) returns(GetSchemaTypeMapping_Result);
 	rpc ValidateCode(ValidateCode_Args) returns(ValidateCode_Result);
-	rpc SpliceCode(SpliceCode_Args) returns(SpliceCode_Result);
-
-	rpc Complete(Complete_Args) returns(Complete_Result);
-	rpc GoToDef(GoToDef_Args) returns(GoToDef_Result);
-	rpc DocumentSymbol(DocumentSymbol_Args) returns(DocumentSymbol_Result);
-	rpc Hover(Hover_Args) returns(Hover_Result);
 
 	rpc ListDepFiles(ListDepFiles_Args) returns(ListDepFiles_Result);
 	rpc LoadSettingsFiles(LoadSettingsFiles_Args) returns(LoadSettingsFiles_Result);
@@ -242,21 +220,13 @@ message ListMethod_Result {
 	repeated string method_name_list = 1;
 }
 
-message ParseFile_LarkTree_Args {
-	string filename = 1;
-	string source_code = 2;
-	bool ignore_file_line = 3;
-}
-message ParseFile_LarkTree_Result {
-	string lark_tree_json = 1;
-}
-
 message ParseFile_AST_Args {
 	string filename = 1;
 	string source_code = 2;
 }
 message ParseFile_AST_Result {
 	string ast_json = 1; // json value
+	KclError kcl_err = 2;
 }
 
 message ParseProgram_AST_Args {
@@ -264,6 +234,7 @@ message ParseProgram_AST_Args {
 }
 message ParseProgram_AST_Result {
 	string ast_json = 1; // json value
+	KclError kcl_err = 2;
 }
 
 message ExecProgram_Args {
@@ -289,6 +260,11 @@ message ExecProgram_Args {
 
 	// -d --debug
 	int32 debug = 11;
+
+	// yaml/json: sort keys
+	bool sort_keys = 12;
+	// include schema type path in JSON/YAML result
+	bool include_schema_type_path = 13;
 }
 message ExecProgram_Result {
 	string json_result = 1;
@@ -317,11 +293,11 @@ message FormatPath_Args {
 }
 
 message FormatPath_Result {
-	repeated string changedPaths = 1;
+	repeated string changed_paths = 1;
 }
 
 message LintPath_Args {
-	string path = 1;
+	repeated string paths = 1;
 }
 
 message LintPath_Result {
@@ -331,6 +307,7 @@ message LintPath_Result {
 message OverrideFile_Args {
 	string file = 1;
 	repeated string specs = 2;
+	repeated string import_paths = 3;
 }
 
 message OverrideFile_Result {
@@ -355,10 +332,19 @@ message ResolveCode_Result {
 message GetSchemaType_Args {
 	string file = 1;
 	string code = 2;
-	string schema_name = 3; // emtry is all
+	string schema_name = 3;
 }
 message GetSchemaType_Result {
 	repeated KclType schema_type_list = 1;
+}
+
+message GetSchemaTypeMapping_Args {
+	string file = 1;
+	string code = 2;
+	string schema_name = 3;
+}
+message GetSchemaTypeMapping_Result {
+	map<string, KclType> schema_type_mapping = 1;
 }
 
 message ValidateCode_Args {
@@ -374,60 +360,10 @@ message ValidateCode_Result {
 	string err_message = 2;
 }
 
-message CodeSnippet {
-    string schema = 1;
-    string rule = 2;
-}
-
-message SpliceCode_Args {
-	repeated CodeSnippet codeSnippets = 1;
-}
-
-message SpliceCode_Result {
-	string spliceCode = 1;
-}
-
 message Position {
 	int64 line = 1;
 	int64 column = 2;
 	string filename = 3;
-}
-
-message Complete_Args {
-	Position pos = 1;
-	string name = 2;
-	string code = 3;
-}
-
-message Complete_Result {
-	string completeItems = 1;
-}
-
-message GoToDef_Args {
-	Position pos = 1;
-	string code = 2;
-}
-
-message GoToDef_Result {
-	string locations = 1;
-}
-
-message DocumentSymbol_Args {
-	string file = 1;
-	string code = 2;
-}
-
-message DocumentSymbol_Result {
-	string symbol = 1;
-}
-
-message Hover_Args {
-	Position pos = 1;
-	string code = 2;
-}
-
-message Hover_Result {
-	string hoverResult = 1;
 }
 
 message ListDepFiles_Args {
