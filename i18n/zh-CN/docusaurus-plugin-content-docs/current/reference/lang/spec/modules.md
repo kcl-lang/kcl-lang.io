@@ -55,7 +55,7 @@ However, other modules are uncached. Importing a module multiple time would crea
 An `import` statement specifies the name of the module to import. The syntax is:
 
 ```
-import <module_name>
+import <module_name> [as <alias name>]
 ```
 
 The rule to search with the module name is very simple:
@@ -353,6 +353,8 @@ KCL supports a few standard system modules. The following is the full list of th
     Encrypt the string `value` using `SHA384` and the codec registered for encoding.
   - sha512(value: str, encoding: str = "utf-8") -> str
     Encrypt the string `value` using `SHA512` and the codec registered for encoding.
+- manifests
+  - `yaml_stream(values: [any], opts: {str:} = {sort_keys = False, ignore_private = True, ignore_none = False, sep = "---"}`. This function is used to serialize the KCL object list into YAML output with the `---` separator
 
 ### The Built-in System Module
 

@@ -13,26 +13,26 @@ A schema is a language element to define a type of configuration data.
 
 To define a schema, the syntax is the following:
 
-```
+```bnf
 schema_stmt: [decorators] "schema" ["relaxed"] identifier ["[" [arguments] "]"] ["(" operand_name ")"] ":" NEWLINE [schema_body]
 schema_body: _INDENT (string NEWLINE)* [mixin_stmt] (schema_attribute_stmt | schema_index_signature | statement)* [check_block] _DEDENT
 ```
 
 Attributes could be defined in a schema, the syntax is the following:
 
-```
+```bnf
 schema_attribute_stmt: [decorators] identifier ["?"] ":" type [(ASSIGN | augassign) test] NEWLINE
 ```
 
 Index signature could be defined in a schema, the syntax is the following:
 
-```
+```bnf
 schema_index_signature: LEFT_BRACKETS [NAME COLON] [ELLIPSIS] basic_type RIGHT_BRACKETS COLON type [ASSIGN test] NEWLINE
 ```
 
 Once defined, an attribute must have a valid type:
 
-```
+```bnf
 type: type_element ("|" type_element)*
 type_element: schema_type | basic_type | list_type | dict_type
 schema_type: operand_name
@@ -73,7 +73,7 @@ Each attribute **must** be assigned with a not-None value as a schema instance u
 
 Examples:
 
-```
+```bnf
 schema employee(person):
     bankCard?: int # bankCard is an optional attribute 
     nationality?: str # # nationality is an optional attribute 
@@ -89,7 +89,7 @@ When there is an inheritance relationship:
 A configuration is structured data stored in a dict-like structure. In KCL, we have introduced
 the configuration definition syntax as a variant of dict definition syntax.
 
-```
+```bnf
 schema_expr: operand_name ("(" [arguments] ")")? dict_expr
 ```
 
@@ -165,7 +165,7 @@ The result is a **dict**:
 
 Each key identifier in the configuration expr identifies an element or a range of elements in a schema. The key identifier may consist of multiple attribute identifiers, and each attribute may be a basic type value, a list, a dict or schema. For example, the key identifier 'a.b.c' identifies the element 'c' in the 'A' schema:
 
-```
+```python
 
 schema C:
     c: int
@@ -189,7 +189,7 @@ Suppose we have a list attribute a.
 
 Identify an element in a:
 
-```
+```python
 a[0]   # the first element
 a[3]   # the 4th element
 a[-1]  # the last element
@@ -198,7 +198,7 @@ a[-2]  # the penultimate element
 
 Identify a range of elements in the list:
 
-```
+```python
 a[2:5]  # a slice of the third, 4th, and 5th elements
 a[:5]   # a slice of the first to 5th elements
 ```
@@ -215,7 +215,7 @@ The value of the expression `E` will be unioned into the element value.
 
 Examples:
 
-```
+```python
 a = A {
     # union {d:4} into the element b.c, suppose c is a schema with an int type attribute d.
     b.c : {
@@ -234,7 +234,7 @@ The value of the expression `E` will override the element value.
 
 Examples:
 
-```
+```python
 a = A {
     # override {c:4} to the element b, suppose b is a schema with an int type attribute c.
     b = {
@@ -259,10 +259,10 @@ List `E` will be inserted just after the specified index of the list `identifier
 
 Examples:
 
-```
+```python
 a = A {
-    # insert {c:4} to the `index=2` position(just after index=1), suppose b is a list of schema with an int type attribute c.
-    b[1] += {
+    # insert {c:4} to the end position(just after index=1), suppose b is a list of schema with an int type attribute c.
+    b += {
         c: 4 
     }
 }
@@ -344,7 +344,7 @@ The schema definition space can be regarded as a separate function context.
 
 Init statement could be defined inside the schema, the syntax is the following:
 
-```
+```bnf
 statement: small_stmt NEWLINE | if_stmt
 ```
 
@@ -417,7 +417,7 @@ additional checking to be performed.
 
 The syntax is the following:
 
-```
+```bnf
 check_block: "check" ":" NEWLINE _INDENT check_expr+ _DEDENT
 check_expr: test (IF test)? [":" primary_expr] NEWLINE
 ```
@@ -695,7 +695,7 @@ In addition to **composition** and **inheritance**, KCL supports declarative reu
 
 The **mixin** syntax is the following:
 
-```
+```bnf
 //////////// mixin_stmt ////////////
 mixin_stmt: "mixin" "[" [mixins | multiline_mixins] "]" "\n"
 multiline_mixins: "\n" _INDENT mixins "\n" _DEDENT
@@ -765,7 +765,7 @@ protocol DataProtocol:
 
 mixin DataMixin for DataProtocol:
     x: int = data  # Error: expect int, got str
-    x: str = data  # Ok
+    x: str = data  # Error: can't change schema field type of 'x' from int to str
 ```
 
 Please note that the host type **protocol** can only be used for **mixin** definitions (the suffix name is `Mixin`), otherwise an error will be reported.
@@ -790,7 +790,7 @@ The schema definition is composed of attribute statements, configuration data, i
 |------------------------------------------|
 |            attribute templating          |
 |------------------------------------------|
-|   init statements in declaration order   |
+|       statements in declaration order    |
 |------------------------------------------|
 |          mixins in declaration order     |
 |------------------------------------------|

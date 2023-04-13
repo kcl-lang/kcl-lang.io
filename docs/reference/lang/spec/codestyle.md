@@ -317,7 +317,7 @@ a = 1  # This is an inline comment
 
 ### Documentation Strings
 
-Write docstrings for all public schema and schema attributes.
+Write doc strings for all public schema and schema attributes.
 
 ```python
 schema Person:
@@ -326,9 +326,6 @@ schema Person:
     """
 
     name: str = "Alice"
-    """
-    Person schema attribute name doc string
-    """
 ```
 
 ## String
@@ -339,9 +336,6 @@ schema Person:
 - When a string contains single or double quote characters, use the other one to avoid backslashes in the string.
 
 ```python
-strA = b"123"  # recommended
-strB = B'123'  # non-recommended
-
 strC = "'123'"  # recommended
 strD = "\"123\""  # non-recommended
 ```
@@ -468,7 +462,7 @@ b = l[0 : 2]  # non-recommended
 c = l[0: 2]  # non-recommended
 
 d = l[0 + 0 : 1 + 1]  # recommended
-d = l[0 + 0:1 + 1]  # non-recommended
+e = l[0 + 0:1 + 1]  # non-recommended
 ```
 
 ## Schema
@@ -579,7 +573,7 @@ print("", end = '')  # non-recommended
 
 ## Keywords
 
-- Only one space is usually reserved around the keyword, such as `schema`, `mixin`, `final`, `is` and `not`, etc.
+- Only one space is usually reserved around the keyword, such as `schema`, `mixin`, `is` and `not`, etc.
 
 ```python
 schema NameMixin:
@@ -592,7 +586,7 @@ schema Person:
     """
     mixin [NameMixin]
 
-    final name: str = "Alice"
+    name: str = "Alice"
     age: int
 
 person = Person {
@@ -610,14 +604,4 @@ import math
 
 print(math.log(10))   # recommended
 print( math . log (10))  # non-recommended
-```
-
-## Other Recommendations
-
-- All commas `,` semicolons `;`, colons `:` has no spaces before them.
-
-```python
-if True:
-    a = 1;b = 2  # non-recommended
-    c = 3; d = 4  # recommended
 ```

@@ -339,9 +339,6 @@ schema Person:
 - When a string contains single or double quote characters, use the other one to avoid backslashes in the string.
 
 ```python
-strA = b"123"  # recommended
-strB = B'123'  # non-recommended
-
 strC = "'123'"  # recommended
 strD = "\"123\""  # non-recommended
 ```

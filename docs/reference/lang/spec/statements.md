@@ -9,7 +9,7 @@ description: Statements
 
 In KCL, statements consist of small statements and compound statements. The syntax is the following:
 
-```
+```bnf
 preamble_statement: preamble_small_stmt | preamble_compound_stmt
 preamble_small_stmt: (small_stmt | import_stmt) NEWLINE
 preamble_compound_stmt: compound_stmt | schema_stmt
@@ -28,7 +28,7 @@ A small statement is comprised of a single logical line. Multiple statements in 
 
 Generally, assign_stmt is divided into assignment and augmented assignment. The syntax is the following:
 
-```
+```bnf
 assign_stmt: target_primary ("=" target_primary)* "=" test | target_primary augassign test
 augassign: "+=" | "-=" | "*=" | "**=" | "/=" | "//=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | "or" | "and"
 target_primary: identifier | target_primary DOT identifier
@@ -74,7 +74,7 @@ An expression statement evaluates an expression and discards its result.
 
 Syntax:
 
-```
+```bnf
 expr_stmt: expression
 ```
 
@@ -90,7 +90,7 @@ Import statements are used to **search** and **load** a module, and define a nam
 
 Syntax:
 
-```
+```bnf
 import_stmt: "import" dot_name ("as" NAME)?
 dot_name: [leading_dots] identifier (DOT identifier)*
 leading_dots: "."+
@@ -136,7 +136,7 @@ The only type of control-flow syntax is the well-known `if-elif-else` syntax.
 
 The syntax of the `if-elif-else` statement is the following.
 
-```
+```bnf
 if_stmt: "if" test ":" suite ("elif" test ":" suite)* (ELSE ":" suite)?
 suite: small_stmt | NEWLINE _INDENT statement+ _DEDENT
 ```
@@ -176,7 +176,7 @@ else:
 
 Schema statements are used to define a type of configuration data. The syntax is the following:
 
-```
+```bnf
 schema_stmt: [decorators] "schema" ["relaxed"] identifier ["[" [arguments] "]"] ["(" operand_name ")"] ":" NEWLINE [schema_body]
 schema_body: _INDENT (string NEWLINE)* [mixin_stmt] (schema_attribute_stmt | statement)* [check_block] _DEDENT
 ```

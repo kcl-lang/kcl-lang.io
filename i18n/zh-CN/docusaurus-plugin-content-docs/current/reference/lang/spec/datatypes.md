@@ -310,6 +310,18 @@ Built-in function and members of a string
   ```
 + `upper() -> str`
   Return a copy of the string with all the cased characters 4 converted to uppercase. Note that `s.upper().isupper()` might be `False` if s contains uncased characters or if the Unicode category of the resulting character(s) is not “Lu” (Letter, uppercase), but e.g., “Lt” (Letter, titlecase).
++ `removeprefix(prefix: str) -> str`
+  If the string starts with the prefix string, return string[len(prefix):]. Otherwise, return a copy of the original string.
+  ```python
+  >>> "prefix-data".removeprefix("prefix-")
+  "data"
+  ```
++ `rermovesuffix(suffix: str) -> str`
+  If the string ends with the suffix string and that suffix is not empty, return string[:-len(suffix)]. Otherwise, return a copy of the original string.
+  ```python
+  >>> "data-suffix".removesuffix("-suffix")
+  "data"
+  ```
 
 ### List
 
@@ -379,10 +391,10 @@ Dictionaries can be created by placing a comma-separated list of keys: value pai
 
 + `dict(obj)`
 
-Return a new dictionary initialized from an optional positional argument and a possibly empty set of keyword arguments.If no positional argument is given, an empty dictionary is created. If a positional argument is given and it is a mapping object, a dictionary is created with the same key-value pairs as the mapping object. Otherwise, the positional argument must be an iterable object. Each item in the iterable must itself be an iterable with exactly two objects. The first object of each item becomes a key in the new dictionary, and the second object the corresponding value. If a key occurs more than once, the last value for that key becomes the corresponding value in the new dictionary. If keyword arguments are given, the keyword arguments and their values are added to the dictionary created from the positional argument. If a key being added is already present, the value from the keyword argument replaces the value from the positional argument.To illustrate, the following examples all return a dictionary equal to `{"one": 1, "two": 2, "three": 3}`:
+Return a new dictionary initialized from an optional positional argument and a possibly empty set of keyword arguments.If no positional argument is given, an empty dictionary is created. If a positional argument is given and it is a mapping object, a dictionary is created with the same key-value pairs as the mapping object. Otherwise, the positional argument must be an iterable object. Each item in the iterable must itself be an iterable with exactly two objects. The first object of each item becomes a key in the new dictionary, and the second object the corresponding value. If a key occurs more than once, the last value for that key becomes the corresponding value in the new dictionary. If keyword arguments are given, the keyword arguments and their values are added to the dictionary created from the positional argument. If a key being added is already present, the value from the keyword argument replaces the value from the positional argument. To illustrate, the following examples all return a dictionary equal to `{"one": 1, "two": 2, "three": 3}`:
 
 ```python
->>> a = {'two': 1, 'one': 2, 'three': 3}
+>>> a = {'two': 2, 'one': 1, 'three': 3}
 >>> b = {'one': 1, 'two': 2, 'three': 3}
 >>> c = {'three': 3, 'one': 1, 'two': 2}
 >>> a == b == c

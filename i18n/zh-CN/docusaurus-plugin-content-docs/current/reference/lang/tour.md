@@ -3041,15 +3041,15 @@ spec:
 
 - 在包中按名称选择节点 `pkg`
 
-`pkg:var.{name1,name2}`
+`pkg:var.{name1,name2}` (暂未实现)
 
 - 在包中选择多个节点 `pkg`
 
-`pkg:var.*`
+`pkg:var.*` (暂未实现)
 
 - 选择包中给定级别的所有节点 `pkg`
 
-`pkg:var.[index]`
+`pkg:var.[index]` (暂未实现)
 
 - 选择包 `pkg` 中列表 `var` 由 `index` 索引的元素
 
