@@ -1,23 +1,31 @@
 # KCL Release Policy
 
-The KCL development team hopes to adopt [semantic version](https://semver.org) to simplify management. Version format: `{major}.{minor}.{revision}`. The rules for increasing version numbers are as follows: major version numbers correspond to incompatible API modifications, minor version numbers correspond to downward compatible functional additions, and revision numbers correspond to downward compatible problem corrections. The major version number and minor version number contain different features, which are called the large version and the patch repair is called the small version.
+# KCL 发布策略
 
-The overall goal is to release a large version with enhanced features every quarter, support the two recently released large versions, and release revisions of other versions from time to time as needed.
+KCL 开发团队采用 [语义化版本](https://semver.org/lang/zh-CN/) 来简化管理。版本格式：主版本号.次版本号.修订号。版本号递增规则如下：主版本号对应不兼容的 API 修改，次版本号对应向下兼容的功能性新增，修订号对应向下兼容的问题修正。总体目标是每一个半月发布一个特性增强的次要版本，根据需要不定期发布其他版本的修订。
 
-## 1. Release Process
+KCL 项目版本发布策略如下：
 
-The release process is as follows:
++ 主版本号：当进行重大的架构调整或者加入重大的新功能时，需要提升主版本号。对于 KCL 项目来说，目前的主版本号为 0。
++ 次版本号：当添加的功能和特性有较大的变化时，提升次版本号。目前的次版本号为 4，2023 年度会相继发布 0.5, 0.6, 0.7 版本。
++ 修订号：通过修复漏洞或者改进性能来更新程序时，会提升修订号，修订号从 0 开始计数以此加 1。
++ 发布周期：在未达到 v1.0.0 版本之前，计划每隔 1.5 个月发布一个新的次要版本。在此期间，需要持续收集用户反馈，并进行必要的修复和改进。
++ 发布流程：在发布新版本之前，需要进行严格的测试和审核，确保新版本的质量。封板并测试完成后，会在 Github 上发布新版本的源代码，二进制和镜像，并提供详细的文档和使用指南。
++ 版本支持：我们将对最新的版本提供长期支持，包括漏洞修复和安全更新。对于旧版本，我们将提供有限的支持，仅在必要时进行修复。
 
-- The main branch is developed, and a Nightly version is produced every day, and the CI system is tested
-- The beta test branch produces a beta version from Nightly after 6 weeks
-- Stable branch. After 6 weeks, a stable version will be produced from the beta version
-- release-branch.kcl-x. Y Release branch, produce a RC candidate version from the Stable version every quarter, and finally release it
-- release-branch.kcl-x. BUG fix of branch y needs to be merged back to the main branch, and then synchronized to the beta and stable branches step by step
+## 发布流程与规则
 
-Among them, stable and beta are only delayed the main branch, release branch.kcl-x after publishing, `y` will be saved independently from the master.
++ 特性开发：main 分支主干开发，分支发布，block 用户使用的问题和严重的 bug, 安全隐患，高优先级解决，尽可能保持在一周内收敛，高于一般的功能研发。
++ 迭代周期：我们的迭代周期通常为 1.5 个月，即每 1.5 个月发布一个新版本。
++ 版本规划：发版前两周产出 alpha 版本，前一周产出 beta 版本，alpha 版本仍可进行特性合并，beta 版本只合并错误修复，最终产出正式版本并打 tag 作为长期保存的 release 分支。
++ 发版计划：在每个发布周期开始时制定详细的发版计划（Github Milestone），包括发布日期、版本号、功能列表和测试计划等。需要尽可能地遵守发版计划，确保按时发布新版本。
++ 发布前测试：在发布新版本之前，需要进行全面的测试，包括单元测试、集成测试，模糊测试，压测，用户验收测试等。只有经过测试并无问题后，我们才会发布新版本。
++ 版本回滚：如果在发布后发现了严重的问题，需要立即回滚版本，并尽快修复问题。并通过邮件、社交媒体等渠道及时通知用户，并提供解决方案。
++ 发布文档：需要在发布时提供详细的文档，包括发布说明、更新日志、API 文档和使用指南等，帮助用户了解和使用新版本。在 KCL 中，我们统一在 KCL 网站进行维护。
++ 版本兼容性：在发布新版本时，需要尽可能保持兼容性，以确保用户无需进行过多的修改和适应。对于可能引入兼容性问题的功能或变更，需要提供相应的提示和解决方案。同时，我们也会提供逐步升级的指南，以帮助用户平滑地迁移到新版本。
 
-If this release fails, it will be postponed to the next release cycle.
+## 发布组件
 
-## 2. Release Maintenance
+![](/img/docs/community/release-policy/kcl-components.png)
 
-Release minor versions to solve one or more critical problems that have no solution (usually related to stability or security). The only code changes included in the release are fixes for specific critical issues. Important only document changes and security test updates may also be included, but that's all. Once `KCL 1.x+2` is released, minor versions that address the non security issues of `KCL 1.x` will stop updating. The minor version to solve `KCL 1.x` security problems will stop after `KCL 1.x+2` is released.
+每次版本发布时，KCL 相关所有组件保持一个依赖同一个 KCLVM 核心主要版本，整体采用树形结构组织依赖顺序发布并进行回归测试，直到发布测试完成，尽力避免三角依赖，禁止循环依赖。
