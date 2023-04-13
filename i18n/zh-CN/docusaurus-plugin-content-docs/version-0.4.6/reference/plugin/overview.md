@@ -8,6 +8,10 @@ KCL 是声明式配置策略语言，对于不方便通过配置直接描述的�
 
 插件的 Git 仓库: [https://github.com/KusionStack/kcl-plugin](https://github.com/KusionStack/kcl-plugin)
 
+## 0. 前置依赖
+
+使用 KCL Python 插件需要您的 `PATH` 中存在 `Python3.7+`。
+
 ## 1. 你好插件
 
 KCL 插件在 KCLVM 的 `plugins` 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。对于插件开发人员，插件都在 Git 仓库管理： [https://github.com/KusionStack/kcl-plugin](https://github.com/KusionStack/kcl-plugin) ，可以将插件仓库克隆到该目录进行开发。
@@ -40,7 +44,7 @@ three = hello.add(1,2)
 输出结果如下：
 
 ```shell
-$ kcl main.k
+$ python3 -m kclvm main.k
 name: kcl
 three: 3
 ```

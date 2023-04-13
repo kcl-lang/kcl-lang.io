@@ -192,7 +192,8 @@ The C-API provided by KCL does not have a REST-API. The REST-API is defined by P
 The RestAPI service can be started in the following way:
 
 ```shell
-kclvm -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+python3 -m pip install kclvm -U
+python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
 ```
 
 The service can then be requested via the POST protocol:

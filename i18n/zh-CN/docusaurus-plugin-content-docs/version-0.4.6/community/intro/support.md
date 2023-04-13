@@ -12,7 +12,7 @@ KCL拥有一个由众多爱好者组成的开发者和用户社区。在此页�
 
 - 在 Github 上提交问题
 - 在 Github 讨论组中交流
-- 通过官方网站、Github、Twitter、微信和其他帐户获取 KCL 最新状态
+- 通过官方网站、Github、Twitter、微信和其他帐户获取 KCL 最新状态。可以查看[社区](https://github.com/KusionStack/community)并加入我们。
 
 ## 新功能
 
