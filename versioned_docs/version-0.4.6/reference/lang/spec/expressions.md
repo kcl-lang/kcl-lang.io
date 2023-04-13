@@ -11,7 +11,7 @@ In KCL, an expression specifies the computation of a value.
 
 The syntax is the following:
 
-```
+```bnf
 expression: test ("," test)*
 test: if_expr | primary_expr | unary_expr | binary_expr
 ```
@@ -26,7 +26,7 @@ Operands are self-delimiting. An **operand** may be followed by any number of se
 
 Syntax:
 
-```
+```bnf
 primary_expr: operand | primary_expr select_suffix | primary_expr call_suffix | primary_expr subscript_suffix
 ```
 
@@ -36,8 +36,8 @@ Operand denotes the elementary value in an expression. An operand may be an iden
 
 Syntax:
 
-```
-operand: operand_name | number | string | "True" | "False" | "None" | list_expr | list_comp | dict_expr | dict_comp | "(" expression ")"
+```bnf
+operand: operand_name | number | string | "True" | "False" | "None" | "Undefined" | list_expr | list_comp | dict_expr | dict_comp | "(" expression ")"
 operand_name: identifier | qualified_identifier
 ```
 
@@ -47,7 +47,7 @@ In KCL, an identifier is a name, may with selectors, that identifies a value.
 
 Syntax:
 
-```
+```bnf
 identifier: NAME
 ```
 
@@ -77,7 +77,7 @@ To simplify the definition of the qualified identifier, such as 'pkg.type', we a
 
 Syntax:
 
-```
+```bnf
 qualified_identifier: identifier "." identifier
 ```
 
@@ -95,7 +95,7 @@ Basic literals supported in KCL are `int`, `float`, `string` and `bool` includin
 
 Syntax:
 
-```
+```bnf
 operand: number | string | "True" | "False" | "None" | "Undefined"
 ```
 
@@ -119,8 +119,8 @@ An expression enclosed in parentheses yields the result of that expression.
 
 Syntax:
 
-```
-operand: '(' [expression] ')'
+```bnf
+operand: '(' expression ')'
 ```
 
 Examples:
@@ -133,10 +133,17 @@ x = (1 + 2) * (3 + 4)  # 21
 
 A dictionary expression is a comma-separated immutable list of colon-separated key/value expression pairs, enclosed in curly brackets, and it yields a new dictionary object. An optional comma may follow the final pair.
 
-```
-dict_expr: '{' [entries [',']] '}'
-entries: entry {',' entry}
-entry: test ':' test | "**" primary_expr
+```bnf
+config_expr: '{' config_entries '}'
+config_entries: config_entry [config_entry*]
+config_comp: '{' (config_entry comp_clause+) '}'
+config_entry: expr (':' | '=' | '+=') expr | double_star_expr | if_entry
+double_star_expr: "**" expression
+if_entry:
+  'if' expr ';' if_entry_exec_block
+  ('elif' expr ':' if_entry_exec_block)*
+  ('else' ':' if_entry_exec_block)?
+NEWLINE: '/r?/n'
 ```
 
 Examples:
@@ -228,9 +235,9 @@ data2 = {
 
 A list expression is a comma-separated immutable list of element expressions, enclosed in square brackets, and it yields a new list. An optional comma may follow the last element expression.
 
-```
+```bnf
 list_expr: '[' [list_item [',']] ']'
-list_item: test | "*" primary_expr 
+list_item: test | "*" primary_expr | if_expr
 ```
 
 Element expressions are evaluated in left-to-right order.
@@ -280,7 +287,7 @@ A comprehension constructs a new list or dictionary value by looping over one or
 
 Syntax:
 
-```
+```bnf
 list_comp: '[' list_item comp_clause+ ']' .
 dict_comp: '{' entry comp_clause+ '}' .
 
@@ -339,7 +346,7 @@ dataValues3 = {v: v for _, v in data}  # {"value1": "value1", "value2": "value2"
 As with a `for` loop, the loop variables may exploit compound assignment:
 
 ```python
-[x * y + z for [x, y], z in [[[2, 3], 5], [["o", 2], "!"]]      # [11, 'oo!']
+[x * y + z for [x, y], z in [[[2, 3], 5], [["o", 2], "!"]]]      # [11, 'oo!']
 ```
 
 KCL does not accept an un-parenthesized list as the operand of a for clause:
@@ -384,7 +391,7 @@ A conditional expression has the form `a if cond else b`. It first evaluates the
 
 Syntax:
 
-```
+```bnf
 if_expr: test "if" test "else" test
 ```
 
@@ -400,14 +407,14 @@ In KCL, supported unary operators are `+`, `-`, `~`, and `not`.
 
 Syntax:
 
-```
+```bnf
 unary_expr: ("+" | "-" | "~") primary_expr
           | "not" test
 ```
 
 Usage:
 
-```
+```bnf
 + number        unary positive          (int, float)
 - number        unary negation          (int, float)
 ~ number        unary bitwise inversion (int)
@@ -433,7 +440,7 @@ In KCL, binary expressions consist of `comparisons`, `logical operations`, `arit
 
 Syntax:
 
-```
+```bnf
 binary_expr: test bin_op test
 bin_op: 'or'
       | 'and'
@@ -483,7 +490,7 @@ The `==` operator reports whether its operands are equal; the `!=` operator is i
 
 The operators `<`, `>`, `<=`, and `>=` perform an ordered comparison of their operands. It is an error to apply these operators to operands of unequal type, unless one of the operands is an `int` and the other is a `float`. Of the built-in types, only the following support ordered comparison, using the ordering relation shown:
 
-```
+```bnf
 NoneType        # None <= None
 bool            # False < True
 int             # mathematical
@@ -496,7 +503,7 @@ Comparison of floating-point values follows the IEEE 754 standard, which breaks 
 
 The remaining built-in types support only equality comparisons. Values of type `dict` and `schema` compare equal if their elements compare equal, and values of type function or `builtin_function_or_method` are equal only to themselves.
 
-```
+```bnf
 dict                            # equal contents
 schema                          # equal exported-attributes
 function                        # identity
@@ -507,7 +514,7 @@ builtin_function_or_method      # identity
 
 The following table summarizes the binary arithmetic operations available for built-in types:
 
-```
+```bnf
 Arithmetic (int or float; result has type float unless both operands have type int)
    number + number              # addition
    number - number              # subtraction
@@ -602,7 +609,7 @@ The union operation for schema is similar to dict.
 
 Schema union could be done as:
 
-```
+```bnf
 schema Person:
     firstName: str
     lastName: str
@@ -633,7 +640,7 @@ The `<<` and `>>` operators require operands of `int` type both. They shift the 
 
 Usage:
 
-```
+```bnf
       any in     sequence		(list, dict, schema, string)
       any not in sequence
 ```
@@ -666,7 +673,7 @@ KCL allows calling built-in functions and functions from built-in and system mod
 
 Syntax:
 
-```
+```bnf
 call_suffix: "(" [arguments [","]] ")"
 arguments: argument ("," argument)*
 argument: test | identifier "=" test | "*" test | "**" test
@@ -696,11 +703,11 @@ an error will be reported.
 
 A selector expression selects the attribute or method of the value.
 
-#### Select attribute
+#### Select Attributes
 
 Syntax:
 
-```
+```bnf
 select_suffix: ["?"] "." identifier
 ```
 
@@ -713,7 +720,7 @@ x.y
 
 Examples:
 
-```
+```python
 schema Person:
     name: str
     age: int
@@ -732,7 +739,7 @@ If the x if None/Undefined or empty(empty list or dict), just return None, other
 
 Examples
 
-```
+```python
 noneData = None
 data?.name # None
 
@@ -745,11 +752,11 @@ emptyList?[0] # None
 
 As a supplementary of the `selector` expression in KCL code, the KCL compiler needs to provide corresponding identifying and filtering features through the command line and api form.
 
-#### Select method
+#### Select Methods
 
 Syntax:
 
-```
+```bnf
 select_suffix: "." identifier
 ```
 
@@ -769,20 +776,20 @@ Person.instances()                              # all instances of schema Person
 
 But when not called immediately, the selector expression evaluates to a bound method, that is, a method coupled to a specific receiver value. A bound method can be called like an ordinary function, without a receiver argument:
 
-```
+```bnf
 f = "banana".count
 f                                               # <built-in method count of string value>
 f("a")                                          # 3
 f("n")                                          # 2
 ```
 
-### Index expressions
+### Index Expressions
 
 An index expression `a[i]` yields the `i` th element of an indexable type such as a string or list. The index `i` must be an `int` value in the range `-n` ≤ `i` < `n`, where `n` is `len(a)`; any other index results in an error.
 
 Syntax:
 
-```
+```bnf
 subscript_suffix: "[" [test] "]"
 ```
 
@@ -811,11 +818,11 @@ coins["suzie b"] = 100
 
 It is a dynamic error to attempt to update an element of an immutable type, such as a list or string, or a frozen value of a mutable type.
 
-### Slice expressions
+### Slice Expressions
 
 A slice expression `a[start:stop:stride]` yields a new value containing a sub-sequence of `a`, which must be a string, or list.
 
-```
+```bnf
 subscript_suffix: "[" [test] [":" [test] [":" [test]]] "]"
 ```
 
@@ -840,3 +847,68 @@ The effective start and stop indices are computed from the three operands as fol
 
 It's not allowed to define a slice expression as a left value in KCL.
 Cause list and string are immutable, re-slicing can directly operate to operand to ensure better performance.
+
+#### Quantifier Expressions
+
+Quantifier expressions act on collection: list or dict, generally used to obtain a certain result after processing the collection, mainly in the following four forms:
+
+```bnf
+quant_expr: quant_op [ identifier ',' ] identifier 'in' quant_target '{' expr ['if' expr] '}'
+quant_target: string | identifier | list_expr |list_comp | dict_expr | dict_comp
+quant_op: 'all' | 'any' | 'filter' | 'map'
+```
+
+- **all**
+  - Used to detect that all elements in the collection satisfy the given logical expression, and return a boolean value as the result.
+  - Only when all elements in the collection satisfy the expression true, the `all` expression is true, otherwise it is false.
+  - If the original collection is empty, return true.
+  - Supports short-circuiting of logical expressions during expression execution.
+- **any**
+  - Used to detect that at least one element in the collection satisfies the given logical expression, and returns a boolean value as the result.
+  - When at least one element in the collection satisfies the expression true, the `any` expression is true, otherwise it is false.
+  - If the original collection is empty, return false.
+  - Supports short-circuiting of logical expressions during expression execution.
+- **map**
+  - Generate a new **list** by mapping the elements in the original collection.
+  - The length of the new list is exactly the same as the original collection.
+- **filter**
+  - By logically judging and filtering the elements in the original collection, and returning the filtered sub-collection.
+  - Only when the element judges the expression to be true, it is added to the sub-collection.
+  - The type (list, dict and schema) of the new collection is exactly the same as the original collection, and the length range is `[0, len(original-collection)]`.
+
+**all** and **any** expression sample codes:
+
+```python
+schema Config:
+    volumes: [{str:}]
+    services: [{str:}]
+
+    check:
+        all service in services {
+            service.clusterIP == "NONE" if service.type == "ClusterIP"
+        }, "invalid cluster ip"
+
+        any volume in volumes {
+            volume.mountPath in ["/home/admin", "/home/myapp"]
+        }
+```
+
+**map** and **filter** expression sample codes:
+
+```python
+a = map e in [{name = "1", value = 1}, {name = "2", value = 2}] {
+    {name = e.name, value = int(e.value) ** 2}
+}  # [{"name": "1", value: 1}, {"name": "2", "value": 4}]
+
+b = map k, v in {a = "foo", b = "bar"} { v }  # ["foo", "bar"]
+
+c = filter e in [{name = "1", value = 1}, {name = "2", value = 2}] {
+    int(e.value) > 1
+}  # [{"name": "2", "value": 2}]
+
+d = filter _, v in {a = "foo", b = "bar"} {
+    v == "foo"
+}  # {"a": "foo"}
+```
+
+Please pay attention to distinguish the difference between any expression and any type. When `any` is used in type annotations, it means that the value of the variable is arbitrary, while the any expression means that one of the elements in a set satisfies the condition.

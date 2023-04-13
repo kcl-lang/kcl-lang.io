@@ -15,8 +15,8 @@ schema is violated.
 
 The syntax of the `assert` statement is the following.
 
-```
-assert_stmt: 'assert' test [',' test]
+```bnf
+assert_stmt: 'assert' test ['if' test] [',' test]
 ```
 
 In the basic form, an `assert` statement evaluates an expression. If the
@@ -33,10 +33,13 @@ The following is an example:
 ```python
 a = 1
 b = 3
+condition = False
 # a != b evaluates to True, therefore no error should happen.
 assert a != b
 # a == b is False, in the reported error message, the message "SOS" should be printed.
 assert a == b, "SOS"
+# if condition is True, then assert `a == b`, if failed, the message "error message" will be printed.
+assert a == b if condition, "error message"
 ```
 
 ## The Implementation
@@ -44,8 +47,6 @@ assert a == b, "SOS"
 When an error happens, no matter it is caused by the `assert` or the `schema` syntax,
 the virtual machine should exit with an exit code greater than `0`.
 
-The virtual machine may choose to dump the back trace information, and it is strongly
-recommended to implement it.
+The virtual machine may choose to dump the back trace information, and it is strongly recommended to implement it.
 
-In practice, KCL can dump back trace by default, and an argument can be introduced
-to disable it.
+In practice, KCL can dump back trace by default, and an argument can be introduced to disable it.

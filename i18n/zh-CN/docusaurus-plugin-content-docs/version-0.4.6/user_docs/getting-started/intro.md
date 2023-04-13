@@ -134,8 +134,6 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 
 与用 GPL 编写的客户端运行时不同，KCL 程序通常运行并生成低级数据，并集成到客户端运行时工具中，该工具可以通过在推送到运行时之前分别测试和验证 KCL 代码来提供稳定性保证。KCL 代码也可以编译成 WASM 模块，在完全测试后，可以将其集成到服务器运行时中。
 
-![](/img/docs/user_docs/intro/kcl.png)
-
 + **简单易用**：源于 Python、Golang 等高级语言，采纳函数式编程语言特性，低副作用
 + **设计良好**：独立的 Spec 驱动的语法、语义、运行时和系统库设计
 + **快速建模**：以 [Schema](https://kusionstack.io/docs/reference/lang/lang/tour#schema) 为中心的配置类型及模块化抽象
@@ -169,6 +167,57 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 + **配置和自动化**：抽象、管理与自动化不同规模的配置，包括小型配置（应用程序、网络、微服务、数据库、监控、CI/CD、kubernetes 资源等配置）。此外，通过 [KCL OpenAPI工具](/docs/tools/cli/openapi/index) 和 KCL 的包管理功能，我们可以完全抽象和重用现有模型。
 + **安全与合规**：利用 KCL 动态参数的功能，使用代码定义、更新、共享和执行策略。通过利用基于 KCL 代码的自动化而不是依赖手动流程来管理策略，这使团队能够更快地移动，并减少由于人为错误而导致错误的可能性。
 + **意图描述**：KCL 可用于描述 UI、工具、脚本和工作流，通过自定义引擎使用和执行 KCL 定义的意图。
+
+## 示例
+
+下面是一个用 KCL 生成 kubernetes 资源的例子
+
+```python
+apiVersion = "apps/v1"
+kind = "Deployment"
+metadata = {
+    name = "nginx"
+    labels.app = "nginx"
+}
+spec = {
+    replicas = 3
+    selector.matchLabels = metadata.labels
+    template.metadata.labels = metadata.labels
+    template.spec.containers = [
+        {
+            name = metadata.name
+            image = "${metadata.name}:1.14.2"
+            ports = [{ containerPort = 80 }]
+        }
+    ]
+}
+```
+
+我们可以使用上述 KCL 代码生成一个 Kubernetes YAML 配置
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
 
 ## 如何选择
 

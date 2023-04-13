@@ -134,8 +134,6 @@ KCL tries to provide runtime-independent programmability and does not natively p
 
 Unlike client runtime written in GPL, KCL programs usually run and generate low-level data and are integrated into the client-side runtime access tools, which can provide a left-shifted stability guarantee by testing and validation of KCL code separately before pushing to runtime. KCL code can also be compiled into a wasm module, which could be integrated into the server runtime after full testing.
 
-![](/img/docs/user_docs/intro/kcl.png)
-
 + **Easy-to-use**: Originated from high-level languages ​​such as Python and Golang, incorporating functional language features with low side effects.
 + **Well-designed**: Independent Spec-driven syntax, semantics, runtime and system modules design.
 + **Quick modeling**: [Schema](https://kcl-lang.github.io/docs/reference/lang/tour#schema)-centric configuration types and modular abstraction.
@@ -169,6 +167,57 @@ Through KCL compiler, language tools, IDE, and multilingual APIs, you can use KC
 + **Configuration & Automation**: Abstract and manage configurations of different scales including small-scale configuration (application, network, micro service, database, monitoring, CI/CD pipeline and etc.), large-scale cloud native kubernetes configuration and automation. In addition, through [KCL OpenAPI tools](/docs/tools/cli/openapi/) and KCL's package management capabilities, we can fully abstract and reuse existing models.
 + **Security & Compliance**: Utilize the ability of KCL dynamic parameters to define, update, share, and execute policies using code. Manage policies by leveraging KCL code based automation rather than relying on manual processes, which allow teams to move faster and reduce the likelihood of errors due to human error.
 + **Intent Description**: KCL can be used to describe tools, scripts and workflows, and it accesses a customized engine to consume and execute intentions.
+
+## Showcase
+
+This is an example of generating kubernetes manifests.
+
+```python
+apiVersion = "apps/v1"
+kind = "Deployment"
+metadata = {
+    name = "nginx"
+    labels.app = "nginx"
+}
+spec = {
+    replicas = 3
+    selector.matchLabels = metadata.labels
+    template.metadata.labels = metadata.labels
+    template.spec.containers = [
+        {
+            name = metadata.name
+            image = "${metadata.name}:1.14.2"
+            ports = [{ containerPort = 80 }]
+        }
+    ]
+}
+```
+
+We can use the KCL code to generate a Kubernetes YAML
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+```
 
 ## How to Choose?
 

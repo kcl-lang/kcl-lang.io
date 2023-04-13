@@ -3126,15 +3126,15 @@ The path selector looks like this:
 
 - Select node by name in the package `pkg`
 
-`pkg:var.{name1,name2}`
+`pkg:var.{name1,name2}` (Not yet implement)
 
 - Select multiple nodes in the package `pkg`
 
-`pkg:var.*`
+`pkg:var.*` (Not yet implement)
 
 - Select all nodes at a given level in the package `pkg`
 
-`pkg:var.[index]`
+`pkg:var.[index]` (Not yet implement)
 
 - Select the element of the list `var` indexed by `index` in the package `pkg`
 

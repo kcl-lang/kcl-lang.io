@@ -27,7 +27,7 @@ The syntax is specified using Extended Backus-Naur Form (EBNF), porting to lark 
 
 ## Source File Encoding
 
-KCL source code is Unicode text encoded in UTF-8.
+KCL source code is Unicode text encoded in **UTF-8**.
 
 The following are basic Unicode elements, which will be used in literal notations.
 
@@ -99,21 +99,21 @@ Identifiers are unlimited in length. The case is significant.
 The following identifiers are used as reserved words, or keywords of the language, and cannot be used as ordinary identifiers. They must be spelled exactly as written here:
 
 ```
-True       False      None        Undefined   import
-and        or         in          is          not
-as         if         else        elif        for
-schema     mixin      protocol    check       assert
-all        any        map         filter      final
-lambda     rule
+    True       False      None        Undefined   import
+    and        or         in          is          not
+    as         if         else        elif        for
+    schema     mixin      protocol    check       assert
+    all        any        map         filter      lambda
+    rule
 ```
 
 The following tokens are not used, but they are reserved as possible future keywords:
 
 ```
-pass       return     validate   rule        flow
-def        del        raise      except      try
-finally    while      from       with        yield
-global     nonlocal   struct     class
+    pass       return     validate   rule        flow
+    def        del        raise      except      try
+    finally    while      from       with        yield
+    global     nonlocal   struct     class       final
 ```
 
 ### Literals
@@ -126,8 +126,7 @@ String literals are described by the following lexical definitions:
 
 ```
 stringliteral   ::=  [stringprefix](shortstring | longstring)
-stringprefix    ::=  "r" | "u" | "R" | "U" | "f" | "F"
-                    | "fr" | "Fr" | "fR" | "FR" | "rf" | "rF" | "Rf" | "RF"
+stringprefix    ::=  "r" | "R"
 shortstring     ::=  "'" shortstringitem* "'" | '"' shortstringitem* '"'
 longstring      ::=  "'''" longstringitem* "'''" | '"""' longstringitem* '"""'
 shortstringitem ::=  shortstringchar | stringescapeseq
