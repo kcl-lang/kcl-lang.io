@@ -39,7 +39,7 @@ alice = Person {
 
 Run
 
-```
+```bash
 kcl main.k
 ```
 
