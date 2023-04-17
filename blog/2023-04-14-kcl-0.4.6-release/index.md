@@ -11,7 +11,7 @@ tags: [Release Blog, KCL, KusionStack, Kusion]
 
 ## Introduction
 
-The KCL team is pleased to announce that KCL v0.4.6 is now available! This release has brought three key updates to everyone: **Language**, **Tools**, **Integrations**.
+The KCL team is pleased to announce that KCL v0.4.6 is now available! This release has brought three key updates to everyone: **Language**, **Tools**, and **Integrations**.
 
 + *Use KCL IDE extensions to improve KCL code writing experience and efficiency*
 + *Helm/Kustomize/KPT cloud-native community tool integrations*
@@ -95,7 +95,7 @@ app = App {
 
 ## Tools
 
-### 1. KCL VS Code Extension
+### KCL VS Code Extension
 
 In this version, we have released a new KCL VS Code extension and a language service server rewritten using the Rust language, which has improved performance by about 20 times compared to previous KCL IDE versions. We also support real-time display of KCL errors and warnings in the IDE, as well as new features such as KCL code completion.
 
@@ -117,11 +117,11 @@ In this version, we have released a new KCL VS Code extension and a language ser
 
 See [here](https://kcl-lang.io/docs/tools/Ide/vs-code) for more.
 
-### 2. Kusion VS Code Extension
+### Kusion VS Code Extension
 
 On the basis of the KCL VS Code extension, we also provide a Kusion VS Code extension that is more closely integrated with cloud-native scenarios, supporting one click application configuration preview and deploying. See [here](https://github.com/KusionStack/vscode-kusion) for more.
 
-### 3. Package Management Tools
+### Package Management Tools
 
 In the new version of KCL v0.4.6, we have provided a new KCL package management tool with the alpha version, which allows users to access the KCL modules in the community with a few commands. For example, the KCL Kubernetes model can be imported through the following command.
 
@@ -138,15 +138,11 @@ demo = apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3
-        selector.matchLabels = {
-            app = "nginx"
-        }
-        template.metadata.labels = {
-            app = "nginx"
-        }
+        selector.matchLabels.app = "nginx"
+        template.metadata.labels = selector.matchLabels
         template.spec.containers = [
             {
-                name = "nginx"
+                name = selector.matchLabels.app
                 image = "nginx:1.14.2"
                 ports = [
                     {containerPort = 80}
@@ -187,7 +183,7 @@ spec:
 
 ## Integrations
 
-### 1. Kubernetes Tool Integrations
+### Kubernetes Tool Integrations
 
 In KCL v0.4.6, we provide KCL plugin support for configuration management tools such as Helm, Kustomize, and KPT in the Kubernetes community using a unified programming interface. Writing a few lines of KCL code can non-intrusively complete the mutation and validation of existing Kustomize YAML and Helm Charts.
 
@@ -265,7 +261,7 @@ In addition, we have provided commonly used container and service configuration 
 + See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin) for more information about the Helm KCL Plugin.
 + See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk) for more information about the KPT KCL Plugin.
 
-## 2. Multilingual SDK
+### Multilingual SDK
 
 In this new version, we have released a new kclvm-go SDK that integrates KCL into your Go application and provides rich APIs for interacting with KCL. You can click [here](https://kcl-lang.io/docs/next/reference/xlang-api/go-api) for detailed API documents. In addition, we have also updated the following features and bug fixes:
 

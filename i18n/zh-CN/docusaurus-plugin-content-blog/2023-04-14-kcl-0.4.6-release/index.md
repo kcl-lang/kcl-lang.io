@@ -25,7 +25,7 @@ KCL 团队很高兴地宣布 KCL v0.4.6 新版本现在已经可用！本次发�
 
 ## 语言更新
 
-### 1. 内置函数更新
+### 内置函数更新
 
 KCL 字符串新增 `removeprefix` 和 `removesuffix` 成员函数用于去除字符串的前缀和后缀子字符串
 
@@ -36,7 +36,7 @@ data2 = "string-suffix".removesuffix("-suffix") # "string"
 
 更多使用方式 [详见](https://kcl-lang.io/docs/reference/model/builtin#string-builtin-member-functions)
 
-### 2. 编译器提示信息改进
+### 编译器提示信息改进
 
 在之前的 KCL 版本中，运行一次 KCL 命令行工具只会显示一个错误信息与警告，在 KCL v0.4.6 版本中，支持了一次编译显示多个错误与警告的能力并改善了错误提示信息，用于提升 KCL 代码错误排查效率，比如对于如下 KCL 代码 (main.k)
 
@@ -65,7 +65,7 @@ error[E1001]: InvalidSyntax
   |
 ```
 
-### 3. 错误修复
+### 错误修复
 
 #### 单行条件配置块语法解析错误
 
@@ -95,7 +95,7 @@ app = App {
 
 ## 工具链更新
 
-### 1. KCL VS Code 插件
+### KCL VS Code 插件
 
 在此次更新中，我们发布了全新的 KCL VS Code 插件和使用 Rust 语言重写的语言服务服务器，相比于之前 KCL 版本性能约提升 20 倍，并支持了 KCL 错误警告在 IDE 中实时显示，以及 KCL 代码补全等新功能。
 
@@ -117,11 +117,11 @@ app = App {
 
 更多 KCL VS Code 插件安装方式及详细更新内容[详见](https://kcl-lang.io/docs/tools/Ide/vs-code)
 
-### 2. Kusion VS Code 插件
+### Kusion VS Code 插件
 
 在 KCL VS Code 插件的基础上，我们还提供了与云原生运维发布场景结合更紧密的 Kusion VS Code 插件，支持一键应用配置预览与发布，[详见](https://github.com/KusionStack/vscode-kusion)
 
-### 3. 包管理工具
+### 包管理工具
 
 在 KCL v0.4.6 新版本中，我们提供了全新的 KCL 包管理工具 alpha 版本，用户可以通过几个命令即可获得社区中已经编写好的 KCL 模型。比如可以通过包管理工具一键导入 KCL Kubernetes 模型并使用
 
@@ -138,15 +138,11 @@ demo = apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3
-        selector.matchLabels = {
-            app = "nginx"
-        }
-        template.metadata.labels = {
-            app = "nginx"
-        }
+        selector.matchLabels.app = "nginx"
+        template.metadata.labels = selector.matchLabels
         template.spec.containers = [
             {
-                name = "nginx"
+                name = selector.matchLabels.app
                 image = "nginx:1.14.2"
                 ports = [
                     {containerPort = 80}
@@ -187,7 +183,7 @@ spec:
 
 ## 社区集成 & 扩展更新
 
-### 1. Kubernetes 配置管理工具扩展支持
+### Kubernetes 配置管理工具扩展支持
 
 在 KCL v0.4.6 中，我们以统一的编程界面方式为 Kubernetes 社区的 Helm, Kustomize, KPT 等配置管理工具提供了插件支持，编写几行 KCL 代码即可无侵入地完成对存量 Kustomize YAML，Helm Charts 的编辑和校验，比如编写少量 KCL 代码修改资源标签/注解, 注入 sidecar 容器配置，使用 KCL schema 校验资源等。
 
@@ -263,7 +259,7 @@ spec:
 + 更多 Helm KCL 插件详细内容以及用例 [详见](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin)
 + 更多 KPT KCL 插件详细内容以及用例 [详见](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk)
 
-## 2. 多语言 SDK
+### 多语言 SDK
 
 在此次更新中，我们发布了全新的 kclvm-go SDK 将 KCL 集成到您的 Go 应用程序中，并提供丰富的 API 与 KCL 进行交互。您可以在 [这里](https://kcl-lang.io/docs/next/reference/xlang-api/go-api) 查询详细的 API 文档。此外我们还更新了如下特性和错误修复：
 
