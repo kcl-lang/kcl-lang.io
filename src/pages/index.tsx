@@ -63,7 +63,7 @@ function FeaturesSection() {
     {
       title: "Easy-to-Use",
       description:
-        `Originated from high-level languages ​​such as Python and Golang, incorporating functional language features.`,
+        `Originated from languages ​​such as Python and Golang, rich language features, IDEs and tools.`,
       icon: <IoAccessibility fontSize={30} color="var(--ifm-color-primary-dark)"/>,
     },
     {

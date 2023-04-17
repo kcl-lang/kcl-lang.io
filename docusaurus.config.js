@@ -49,8 +49,7 @@ const config = {
             title: 'Easy-to-Use',
             imageUrl: 'img/microsite/reasons/extensible.svg',
             description: `
-                Originated from high-level languages ​​such as Python and Golang, incorporating functional
-                language features with low side effects.
+                Originated from languages ​​such as Python and Golang, rich language features, IDEs and tools.
             `,
           },
           {
