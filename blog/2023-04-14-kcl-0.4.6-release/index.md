@@ -7,21 +7,38 @@ authors:
 tags: [Release Blog, KCL, KusionStack, Kusion]
 ---
 
-## 简介
+<!-- KCL v0.4.6 is Coming - New IDE Extension, Helm/Kustomize/KPT Integrations-->
 
-KCL 团队很高兴地宣布 KCL v0.4.6 版本现在已经可用！本次发布主要内容为语言错误提示改进，支持错误警告实时显示，跳转，代码补全等功能的全新 KCL VS Code 插件，支持 Git 依赖拉取的 KCL 包管理工具，为 Helm/Kustomize/KPT 等主流 Kubernetes 配置管理工具提供 KCL 插件支持；此外此次更新还包含多项编译器报错信息优化和错误修复。
+## Introduction
 
-在 KCL v0.4.6 版本中，KCL 二进制的体积整体相比 KCL v0.4.5 体积减小约 100%，用户可以快速下载并进行安装；您可以在 [KCL v0.4.6 发布页面](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.6) 或者 [KCL 官方网站](https://kcl-lang.io) 获得 KCL 二进制下载链接和更多详细发布信息。
+The KCL team is pleased to announce that KCL v0.4.6 is now available! This release has brought three key updates to everyone: **Language**, **Tools**, **Integrations**.
 
-[KCL](https://github.com/KusionStack/KCLVM) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
++ *Use KCL IDE extensions to improve KCL code writing experience and efficiency*
++ *Helm/Kustomize/KPT cloud-native community tool integrations*
++ *Improve the KCL multilingual SDK for easy application integration*
 
-本文将会介绍 KCL v0.4.6 版本的更新内容以及 KCL 社区的近期动态。
+You can visit the [KCL release page](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.6) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
-## 语言更新
+[KCL](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
-### KCL 错误提示改进
+This blog will introduce the content of KCL v0.4.6 and recent developments in the KCL community to readers.
 
-在之前的 KCL 版本中，运行一次 KCL 命令行工具只会显示一个错误信息与警告，在 KCL v0.4.6 版本中，支持了一次编译显示多个错误与警告的能力并改善了错误提示信息，用于提升 KCL 代码错误排查效率，比如对于如下 KCL 代码 (main.k)
+## Language
+
+### 1. Builtin Functions
+
+Added KCL string `removeprefix` and `removesuffix` member functions to remove prefix and suffix substrings from strings
+
+```python
+data1 = "prefix-string".removeprefix("prefix-") # "string" 
+data2 = "string-suffix".removesuffix("-suffix") # "string"
+```
+
+See [here](https://kcl-lang.io/docs/reference/model/builtin#string-builtin-member-functions) for more.
+
+### 2. Compiler Information
+
+In previous versions of KCL, running the KCL command-line tool once only displayed one error message and warning. In KCL v0.4.6, it supported the ability to display multiple errors and warnings in one compilation and improved error nformation to improve the efficiency of KCL code error troubleshooting, such as for the following KCL code (main.k).
 
 ```python
 metadata = {
@@ -29,7 +46,7 @@ metadata = {
 }
 ```
 
-我们执行如下 KCL 命令行，可以看到会同时提示字符串编写错误和花括号未正确匹配错误的语法错误信息
+Execute the following KCL command, then you can see the syntax errors including the unterminated string and the brace mismatch errors.
 
 ```shell
 $ kcl main.k
@@ -48,77 +65,149 @@ error[E1001]: InvalidSyntax
   |
 ```
 
-## IDE 插件
+### 3. Bugfix
 
-### KCL VS Code 插件
+#### Inline conditional configuration block syntax error
 
-在此次更新中，我们发布了全新的 KCL VS Code 插件和使用 Rust 语言重写的语言服务服务器，相比于之前 KCL 版本性能约提升 20 倍，并支持了 KCL 错误警告在 IDE 中实时显示，以及 KCL 代码补全等新功能。
+Before KCL v0.4.6, Unexpected syntax error will appear when writing the following KCL code. In the new version, we fixed such similar issues.
 
-+ **错误与告警实时显示**
+```python
+env = "prod"
+config = {if env == "prod": labels = {"kubernetes.io/env" = env}}
+```
+
+#### Schema required attribute check
+
+In previous versions of KCL, for the following KCL code, there was an error where the `versions` attribute was not assigned as expected. In KCL v0.4.6, we fixed such similar issues.
+
+```python
+schema App:
+    data?: [int]
+    version: Version
+
+schema Version:
+    versions: [str]
+
+app = App {
+    version = Version {}
+}
+```
+
+## Tools
+
+### 1. KCL VS Code Extension
+
+In this version, we have released a new KCL VS Code extension and a language service server rewritten using the Rust language, which has improved performance by about 20 times compared to previous KCL IDE versions. We also support real-time display of KCL errors and warnings in the IDE, as well as new features such as KCL code completion.
+
++ **Real-time display of KCL errors and warnings**
 
 ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
 
-+ **跳转**
++ **Go to Definition**
 
 ![Goto Definition](/img/docs/tools/Ide/vs-code/GotoDef.gif)
 
-+ **补全**
++ **Completion**
 
 ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
-+ **悬停**
++ **Hover**
 
 ![Hover](/img/docs/tools/Ide/vs-code/Hover.gif)
 
-更多 KCL VS Code 插件安装方式及详细更新内容请参考：https://kcl-lang.io/docs/tools/Ide/vs-code
+See [here](https://kcl-lang.io/docs/tools/Ide/vs-code) for more.
 
-### Kusion VS Code 插件
+### 2. Kusion VS Code Extension
 
-在 KCL VS Code 插件的基础上，我们还提供了与云原生运维发布场景结合更紧密的 Kusion VS Code 插件，支持一键应用配置预览与发布，详细请参考：https://github.com/KusionStack/vscode-kusion
+On the basis of the KCL VS Code extension, we also provide a Kusion VS Code extension that is more closely integrated with cloud-native scenarios, supporting one click application configuration preview and deploying. See [here](https://github.com/KusionStack/vscode-kusion) for more.
 
-## 社区工具集成
+### 3. Package Management Tools
 
-在 KCL v0.4.6 中，我们以统一的编程界面方式为 Kubernetes 社区 Helm, Kustomize, KPT 等配置管理工具提供了插件支持，编写几行 KCL 代码即可无侵入地完成对存量 Kustomize YAML，Helm Charts 的编辑和校验，比如编写少量 KCL 代码修改资源标签/注解, 注入 sidecar 容器配置，使用 KCL schema 校验资源等。
-
-比如为 Deployment 资源添加一个 `managed-by=kcl` 注解，仅需编写一行 KCL 代码
-
-```python
-[resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kcl"}} for resource in option("resource_list").items]
-```
-
-下面以 Kustomize 工具对 KCL 的集成为例进行详细说明。使用 Kustomize KCL 插件无需安装任何与 KCL 相关的二进制，仅需您本地安装有 Kustomize 工具即可。
-
-首先执行如下命令获取一个 Kustomize YAML 配置示例:
+In the new version of KCL v0.4.6, we have provided a new KCL package management tool with the alpha version, which allows users to access the KCL modules in the community with a few commands. For example, the KCL Kubernetes model can be imported through the following command.
 
 ```shell
-git clone https://github.com/KusionStack/kustomize-kcl.git
-cd ./kustomize-kcl/examples/set-annotation/
+kpm init kubernetes_demo && kpm add -git https://github.com/awesome-kusion/konfig.git -tag v0.0.1
 ```
 
-编辑其中的 `KCLRun` 资源:
+Write a KCL code to import the kubernetes models (main.k).
 
-```yaml
-apiVersion: krm.kcl.dev/v1alpha1
-kind: KCLRun
+```python
+import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
+
+demo = apps.Deployment {
+    metadata.name = "nginx-deployment"
+    spec = {
+        replicas = 3
+        selector.matchLabels = {
+            app = "nginx"
+        }
+        template.metadata.labels = {
+            app = "nginx"
+        }
+        template.spec.containers = [
+            {
+                name = "nginx"
+                image = "nginx:1.14.2"
+                ports = [
+                    {containerPort = 80}
+                ]
+            }
+        ]
+    }
+}
+```
+
+Execute the following command to run the KCL code to obtain an nginx deployment YAML output.
+
+```shell
+$ kcl main.k -S demo
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  annotations:
-    config.kubernetes.io/function: |
-      container:
-        image: docker.io/peefyxpf/kustomize-kcl:v0.1.0
-    config.kubernetes.io/path: example-use.yaml
-# EDIT THE SOURCE! This should be your KCL code which preloads the `ResourceList` to `option("resource_list")
+  name: nginx-deployment
 spec:
-  source: |
-    [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kustomize-kcl"}} for resource in option("resource_list").items]
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - image: "nginx:1.14.2"
+          name: nginx
+          ports:
+            - containerPort: 80
 ```
 
-然后执行如下命令使用 KCL 代码仅为所有的 `Deployment` 资源添加一个 `managed-by=kustomize-kcl` 注解
++ See [here](https://kcl-lang.io/docs/user_docs/guides/package-management/overview) for more information about the kpm tool.
++ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview) for more information about the konfig model.
+
+## Integrations
+
+### 1. Kubernetes Tool Integrations
+
+In KCL v0.4.6, we provide KCL plugin support for configuration management tools such as Helm, Kustomize, and KPT in the Kubernetes community using a unified programming interface. Writing a few lines of KCL code can non-intrusively complete the mutation and validation of existing Kustomize YAML and Helm Charts.
+
+For example, writing a small amount of KCL code to modify resource labels/annotations, injecting sidecar container configuration, and using KCL schema to verify resources.
+
+Below is a detailed explanation of the integration of KCL using the Kustomize tool. There is no need to install any KCL related binaries to use the Kustomize KCL plugin, just install the Kustomize tool locally.
+
+Firstly, execute the following command to obtain a Kustomize YAML configuration example:
+
+```shell
+git clone https://github.com/KusionStack/kustomize-kcl.git &&cd ./kustomize-kcl/examples/set-annotation/
+```
+
+Then execute the following command using KCL code to add only one `managed-by=kustomize-kcl` annotation for all `Deployment` resources
 
 ```shell
 sudo kustomize fn run ./local-resource/ --as-current-user --dry-run
 ```
 
-可以得到如下 YAML 输出:
+The output YAML is:
 
 ```yaml
 apiVersion: v1
@@ -164,134 +253,64 @@ spec:
         - containerPort: 80
 ```
 
-此外我们为 Kustomize/Helm/KPT 三个工具均提供了常用的容器、服务配置修改校验 KCL 模型，并且会持续完善，欢迎社区小伙伴一起参与共建。
-
-+ 更多 Kustomize KCL 插件详细内容以及用例详见：https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kustomize_kcl_plugin
-+ 更多 Helm KCL 插件详细内容以及用例详见：https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin
-+ 更多 KPT KCL 插件详细内容以及用例详见：https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk
-
-## 包管理工具
-
-在 KCL v0.4.6 新版本中，我们提供了全新的 KCL 包管理工具，用户可以通过几个命令即可获得，比如可以通过包管理工具一键导入 KCL Kubernetes 模型并使用
-
-```shell
-kpm init kubernetes_demo && kpm add -git https://github.com/awesome-kusion/konfig.git -tag v0.0.1
-```
-
-编写 KCL 代码 (main.k)
+In the YAML configuration mentioned above, we only wrote one line of KCL code to add a `managed-by=kustomize-kcl` annotation to all deployment resources.
 
 ```python
-import konfig.base.examples.native.nginx_deployment as nd
-
-demo = nd.demo
+[resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kcl"}} for resource in option("resource_list").item]
 ```
 
-执行如下 KCL 命令即可获得一个 Nginx Deployment YAML 输出
+In addition, we have provided commonly used container and service configuration mutation and validation KCL models for Kustomize/Helm/KPT tools, and will continue to improve them.
 
-```shell
-$ kcl main.k -S demo
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - image: "nginx:1.14.2"
-          name: nginx
-          ports:
-            - containerPort: 80
-```
++ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kustomize_kcl_plugin) for more information about the Kustomize KCL plugin.
++ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin) for more information about the Helm KCL Plugin.
++ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk) for more information about the KPT KCL Plugin.
 
-+ 更多 KCL 包管理工具安装方式、详细内容及用例详见：https://kcl-lang.io/docs/user_docs/guides/package-management/overview
-+ 更多 Konfig 模型库的内容和使用方式详见：https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview
+## 2. Multilingual SDK
 
-## 错误修复
+In this new version, we have released a new kclvm-go SDK that integrates KCL into your Go application and provides rich APIs for interacting with KCL. You can click [here](https://kcl-lang.io/docs/next/reference/xlang-api/go-api) for detailed API documents. In addition, we have also updated the following features and bug fixes:
 
-### 单行条件配置块语法解析错误
++ Thank @jakezhu9 for fixing unexpected KCL formatting API unit testing errors in CI Pipeline for kclvm-go.
++ Thank @Ekko for contributing to the bidirectional conversion support of Go struct and KCL schema. Please refer to:
+  + [Go struct -> KCL schema](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genkcl.go#L23)
+  + [KCL schema -> Go struct](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/gengo.go#L23)
++ Support for conversion from KCL schema to protobuf message，see [here](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genpb.go#L25) for more.
++ Support APIs for obtaining schema types and instances from the KCL code，see [here](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype) for more.
 
-在之前的 KCL 版本中，在编写如下 KCL 代码时会出现非预期的语法错误，在 KCL v0.4.6 版本中，我们修复了此类类似的问题
+## Other updates and bug fixes
 
-```python
-env = "prod"
-config = {if env == "prod": labels = {"kubernetes.io/env" = env}}
-```
++ The KCL Python plugin function is not enabled by default. If you need to enable it, please refer to [plugin documents](https://kcl-lang.io/docs/reference/plugin/overview).
++ KCL playground supports code sharing capabilities, which can be accessed by visiting the [KCL website](https://kcl-lang.io/) and click on the playground button to experience.
++ See [here](https://github.com/KusionStack/KCLVM/milestone/3?closed=1) for more updates and bug fixes.
 
-### Schema 必选属性检查
+## Documents
 
-在之前的 KCL 版本中，在编写如下 KCL 代码时，没有按预期提示 `versions` 属性没有赋值的错误，在 KCL v0.4.6 版本中，我们修复了此类类似的问题
+The versioning semantic option is added to the [KCL website](https://kcl-lang.io/). Currently, v0.4.3, v0.4.4, v0.4.5, and v0.4.6 versions are supported.
 
-```python
-schema App:
-    data?: [int]
-    version: Version
+## Next
 
-schema Version:
-    versions: [str]
+It is expected that in the middle of 2023, we will release **KCL v0.5.0**. The expected key evolution includes:
 
-app = App {
-    version = Version {}
-}
-```
++ More IDE extensions, package management tools, Helm/Kustomize/KPT scenario integration, feature support, and user experience improvement.
++ Provide more out of the box KCL model support for cloud native scenarios, mainly including containers, services, computing, storage, and networks.
++ Support KCL Schema to directly generate Kubernetes CRD.
++ Support kubectl and helmfile KCL plugins, directly generating, mutating, and validating Kubernetes resources through the KCL code.
++ Support for mutating and validating YAML by running KCL code through the admission controller at the Kubernetes runtime.
++ More support for non Kubernetes scenarios, such as data cleaning of AI models through the KCL schema and database schema integration support.
 
-## 其他更新与错误修复
+For more details, please refer to [KCL v0.5.0 Milestone](https://github.com/KusionStack/KCLVM/milestone/5)
 
-+ KCL 字符串新增 `removeprefix` 和 `removesuffix` 成员函数，[详见](https://kcl-lang.io/docs/reference/model/builtin#string-builtin-member-functions)
-+ Go struct 和 KCL schema 双向转换支持，详见
-  + [Go Struct -> KCL Schema](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genkcl.go#L23)
-  + [KCL Schema -> Go Struct](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/gengo.go#L23)
-+ KCL schema 到 protobuf message 的转换支持，[详见](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genpb.go#L25)
-+ KCL 新增获取 schema 类型和实例 API，[详见](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype)
-+ KCL python plugin 功能默认不开启，如需开启可参考 [KCL Plugin 文档](https://kcl-lang.io/docs/reference/plugin/overview)
-+ KCL playground 支持代码分享能力，您可以通过访问 [KCL 官网](https://kcl-lang.io/) 并点击 Playground 按钮进行体验
-+ 更多更新与错误修复，[详见](https://github.com/KusionStack/KCLVM/milestone/3?closed=1)
+## FAQ
 
-## 文档更新
+For more information, see [KCL FAQ](https://kcl-lang.io/docs/user_docs/support/).
 
-[KCL 网站](https://kcl-lang.io/) 新增 KCL v0.4.6 文档内容并支持版本化语义选项，目前支持 v0.4.3, v0.4.4, v0.4.5 和 v0.4.6 版本选择。
+## Additional Resources
 
-## 社区动态
+Thank all KCL users for their valuable feedback and suggestions during this version release. For more resources, please refer to:
 
-+ KCL 社区新增两名外部贡献者 @Ekko, @jakezhu9, 感谢他们热情并积极地参与贡献
-+ 感谢 @Ekko 为 kclvm-go SDK 的贡献，支持 Go Struct 和 KCL Schema 双向转换能力，[PR 链接](https://github.com/KusionStack/kclvm-go/pull/97)
-+ 感谢 @jakezhu9 修复了 kclvm-go 未预期的 KCL 格式化 API 在 CI Pipeline 中单元测试错误，[PR 链接](https://github.com/KusionStack/kclvm-go/pull/94)
++ [KCL Website](https://kcl-lang.io/)
++ [Kusion Website](https://kusionstack.io/)
++ [KCL Repo](https://github.com/KusionStack/KCLVM)
++ [Kusion Repo](https://github.com/KusionStack/kusion)
++ [Konfig Repo](https://github.com/KusionStack/konfig)
 
-## 下一步计划
-
-预计 2023 年 6 月上旬，我们将发布 **KCL v0.5.0 版本**，预期重点演进包括：
-
-+ 更多针对场景问题的 KCL 语言编写便利性改进，用户界面持续优化与体验提升，用户支持和痛点解决
-+ 更多 IDE 插件、包管理工具、Helm/Kustomize/KPT 场景集成、功能支持和用户体验提升
-+ 针对云原生场景提供更多开箱即用的 KCL 模型支持，主要包含容器、服务、计算、存储和网络等
-+ 支持 KCL Schema 直接生成 Kubernetes CRD
-+ 支持 kubectl 和 helmfile KCL plugin，通过 KCL 代码直接生成、编辑和校验 Kubernetes 原生资源
-+ 支持在 Kubernetes 运行时通过 Admission Controller 运行 KCL 代码对 YAML 进行编辑和校验
-+ 更多非 Kubernetes 场景支持，如通过 KCL Schema 对 AI 模型进行数据清理和数据库 Schema 集成支持
-
-更多详情请参考 [KCL v0.5.0 Milestone](https://github.com/KusionStack/KCLVM/milestone/5)
-
-## 常见问题及解答
-
-详见 [KCL 常见问题](https://kcl-lang.io/docs/user_docs/support/faq-kcl)
-
-## 其他资源
-
-感谢所有 KCL 用户和社区小伙伴在此次版本更新过程中提出的宝贵的反馈与建议。受限于文章篇幅，后续我们会撰写更多 KCL v0.4.6 新版本功能解读系列文章，敬请期待!
-
-更多其他资源请参考：
-
-+ [KCL 网站](https://kcl-lang.io/)
-+ [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/KusionStack/KCLVM)
-+ [Kusion Github 仓库](https://github.com/KusionStack/kusion)
-+ [Konfig Github 仓库](https://github.com/KusionStack/konfig)
-
-欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/KusionStack/community](https://github.com/KusionStack/community)
+See the [community](https://github.com/KusionStack/community) for ways to join us. 👏👏👏
