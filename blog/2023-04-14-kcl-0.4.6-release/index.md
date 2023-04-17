@@ -25,7 +25,7 @@ This blog will introduce the content of KCL v0.4.6 and recent developments in th
 
 ## Language
 
-### 1. Builtin Functions
+### Builtin Functions
 
 Added KCL string `removeprefix` and `removesuffix` member functions to remove prefix and suffix substrings from strings
 
@@ -36,9 +36,9 @@ data2 = "string-suffix".removesuffix("-suffix") # "string"
 
 See [here](https://kcl-lang.io/docs/reference/model/builtin#string-builtin-member-functions) for more.
 
-### 2. Compiler Information
+### Compiler Information
 
-In previous versions of KCL, running the KCL command-line tool once only displayed one error message and warning. In KCL v0.4.6, it supported the ability to display multiple errors and warnings in one compilation and improved error nformation to improve the efficiency of KCL code error troubleshooting, such as for the following KCL code (main.k).
+In previous versions of KCL, running the KCL command-line tool once only displayed one error message and warning. In KCL v0.4.6, it supported the ability to display multiple errors and warnings in one compilation and improved error information to improve the efficiency of KCL code error troubleshooting, such as for the following KCL code (main.k).
 
 ```python
 metadata = {
@@ -65,11 +65,11 @@ error[E1001]: InvalidSyntax
   |
 ```
 
-### 3. Bugfix
+### Bugfix
 
 #### Inline conditional configuration block syntax error
 
-Before KCL v0.4.6, Unexpected syntax error will appear when writing the following KCL code. In the new version, we fixed such similar issues.
+Before KCL v0.4.6, an unexpected syntax error will appear when writing the following KCL code. In the new version, we fixed similar issues.
 
 ```python
 env = "prod"
@@ -78,7 +78,7 @@ config = {if env == "prod": labels = {"kubernetes.io/env" = env}}
 
 #### Schema required attribute check
 
-In previous versions of KCL, for the following KCL code, there was an error where the `versions` attribute was not assigned as expected. In KCL v0.4.6, we fixed such similar issues.
+In previous versions of KCL, for the following KCL code, there was an error where the `versions` attribute was not assigned as expected. In KCL v0.4.6, we fixed similar issues.
 
 ```python
 schema App:
@@ -119,7 +119,7 @@ See [here](https://kcl-lang.io/docs/tools/Ide/vs-code) for more.
 
 ### Kusion VS Code Extension
 
-On the basis of the KCL VS Code extension, we also provide a Kusion VS Code extension that is more closely integrated with cloud-native scenarios, supporting one click application configuration preview and deploying. See [here](https://github.com/KusionStack/vscode-kusion) for more.
+On the basis of the KCL VS Code extension, we also provide a Kusion VS Code extension that is more closely integrated with cloud-native scenarios, supporting one-click application configuration preview and deploying. See [here](https://github.com/KusionStack/vscode-kusion) for more.
 
 ### Package Management Tools
 
@@ -129,7 +129,7 @@ In the new version of KCL v0.4.6, we have provided a new KCL package management 
 kpm init kubernetes_demo && kpm add -git https://github.com/awesome-kusion/konfig.git -tag v0.0.1
 ```
 
-Write a KCL code to import the kubernetes models (main.k).
+Write a KCL code to import the Kubernetes models (main.k).
 
 ```python
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
@@ -178,8 +178,8 @@ spec:
             - containerPort: 80
 ```
 
-+ See [here](https://kcl-lang.io/docs/user_docs/guides/package-management/overview) for more information about the kpm tool.
-+ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview) for more information about the konfig model.
++ See [here](https://kcl-lang.io/docs/user_docs/guides/package-management/overview) for more information about the **kpm** tool.
++ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview) for more information about the **konfig** model.
 
 ## Integrations
 
@@ -189,7 +189,7 @@ In KCL v0.4.6, we provide KCL plugin support for configuration management tools 
 
 For example, writing a small amount of KCL code to modify resource labels/annotations, injecting sidecar container configuration, and using KCL schema to verify resources.
 
-Below is a detailed explanation of the integration of KCL using the Kustomize tool. There is no need to install any KCL related binaries to use the Kustomize KCL plugin, just install the Kustomize tool locally.
+Below is a detailed explanation of the integration of KCL using the Kustomize tool. There is no need to install any KCL-related binaries to use the Kustomize KCL plugin, just install the Kustomize tool locally.
 
 Firstly, execute the following command to obtain a Kustomize YAML configuration example:
 
@@ -255,7 +255,7 @@ In the YAML configuration mentioned above, we only wrote one line of KCL code to
 [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kcl"}} for resource in option("resource_list").item]
 ```
 
-In addition, we have provided commonly used container and service configuration mutation and validation KCL models for Kustomize/Helm/KPT tools, and will continue to improve them.
+In addition, we have provided commonly used container and service configuration mutation and validation KCL models for Kustomize/Helm/KPT tools and will continue to improve them.
 
 + See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kustomize_kcl_plugin) for more information about the Kustomize KCL plugin.
 + See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin) for more information about the Helm KCL Plugin.
@@ -269,13 +269,13 @@ In this new version, we have released a new kclvm-go SDK that integrates KCL int
 + Thank @Ekko for contributing to the bidirectional conversion support of Go struct and KCL schema. Please refer to:
   + [Go struct -> KCL schema](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genkcl.go#L23)
   + [KCL schema -> Go struct](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/gengo.go#L23)
-+ Support for conversion from KCL schema to protobuf message，see [here](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genpb.go#L25) for more.
-+ Support APIs for obtaining schema types and instances from the KCL code，see [here](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype) for more.
++ Support for conversion from KCL schema to protobuf message, see [here](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genpb.go#L25) for more.
++ Support APIs for obtaining schema types and instances from the KCL code, see [here](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype) for more.
 
 ## Other updates and bug fixes
 
-+ The KCL Python plugin function is not enabled by default. If you need to enable it, please refer to [plugin documents](https://kcl-lang.io/docs/reference/plugin/overview).
-+ KCL playground supports code sharing capabilities, which can be accessed by visiting the [KCL website](https://kcl-lang.io/) and click on the playground button to experience.
++ The KCL Python plugin function is not enabled by default. If you need to enable it, please refer to the [plugin document](https://kcl-lang.io/docs/reference/plugin/overview).
++ KCL playground supports code-sharing capabilities, which can be accessed by visiting the [KCL website](https://kcl-lang.io/) and clicking on the playground button to experience.
 + See [here](https://github.com/KusionStack/KCLVM/milestone/3?closed=1) for more updates and bug fixes.
 
 ## Documents
@@ -287,11 +287,11 @@ The versioning semantic option is added to the [KCL website](https://kcl-lang.io
 It is expected that in the middle of 2023, we will release **KCL v0.5.0**. The expected key evolution includes:
 
 + More IDE extensions, package management tools, Helm/Kustomize/KPT scenario integration, feature support, and user experience improvement.
-+ Provide more out of the box KCL model support for cloud native scenarios, mainly including containers, services, computing, storage, and networks.
++ Provide more out-of-box KCL model support for cloud-native scenarios, mainly including containers, services, computing, storage, and networks.
 + Support KCL Schema to directly generate Kubernetes CRD.
-+ Support kubectl and helmfile KCL plugins, directly generating, mutating, and validating Kubernetes resources through the KCL code.
++ Support `kubectl` and `helmfile` KCL plugins, directly generating, mutating, and validating Kubernetes resources through the KCL code.
 + Support for mutating and validating YAML by running KCL code through the admission controller at the Kubernetes runtime.
-+ More support for non Kubernetes scenarios, such as data cleaning of AI models through the KCL schema and database schema integration support.
++ More support for non-Kubernetes scenarios, such as data cleaning of AI models through the KCL schema and database schema integration support.
 
 For more details, please refer to [KCL v0.5.0 Milestone](https://github.com/KusionStack/KCLVM/milestone/5)
 
