@@ -293,7 +293,7 @@ kcl -Y kcl.yaml ci-test/settings.yaml -o ci-test/stdout.golden.yaml -d -O :appCo
 
 ```yaml
 kcl_cli_configs:
-  file:
+  files:
     - ${KCL_MOD}/base/pkg/kusion_models/kube/metadata/metadata.k
     - ../base/base.k
     - ./main.k
