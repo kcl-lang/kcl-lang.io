@@ -99,13 +99,9 @@ docker pull kusionstack/kclvm
 
 ### VS Code
 
-KCL 为 VS Code 本地版本和在线版本提供了插件支持。
+KCL 为 VS Code 本地版本提供了插件支持，并提供了高亮、自动补全、跳转、悬停、大纲等功能。您可以[点击这里](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension)进行安装。
 
-本地 VS Code 可以安装完整的 [KCL 插件](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension)，提供了高亮、自动补全（部分：关键字补全等）、跳转、悬停、大纲等功能。
-
-在线版本可以从 https://vscode.dev 地址打开，然后安装“KCL for vscode.dev 插件”，效果如下:
-
-![](/img/docs/user_docs/getting-started/install/ide-vscode.png)
+![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
 ### IntelliJ IDEA
 
