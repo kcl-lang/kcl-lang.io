@@ -2,13 +2,13 @@
 
 ## Quick Start
 
-- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to Path
+- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to Path:
   ```bash
   which kcl
   which kcl-language-server
   ```
 
-- **Step 2.** Install the [KCL extension](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension) for Visual Studio Code. This extension requires the VS Code 1.50+
+- **Step 2.** Install the [KCL extension](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension) for Visual Studio Code. This extension requires the VS Code 1.50+.
 - **Step 3.** Open or create a KCL file and begin your KCL tour!
 
 ## Features
@@ -21,9 +21,9 @@ This extension provides some coding assistance, including the following features
   ![Goto Definition](/img/docs/tools/Ide/vs-code/GotoDef.gif)
 - **Completion:** Keywords completions and dot(`.`) completion.
   ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
-- **Outline:** Main definition(schema def) and variables in KCL file
+- **Outline:** Main definition(schema def) and variables in KCL file.
   ![Outline](/img/docs/tools/Ide/vs-code/Outline.gif)
-- **Hover:** Identifier information (type and schema documentation)
+- **Hover:** Identifier information (type and schema documentation).
   ![Hover](/img/docs/tools/Ide/vs-code/Hover.gif)
 - **Diagnostics:** Warnings and errors in KCL file.
   ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
@@ -41,7 +41,7 @@ We recommend that you use the latest version of KCLVM, but the minimum required 
 
 ## Ask for help
 
-If the extension isn't working as you expect, please contact us with [community](https://kcl-lang.io/docs/community/intro/support) for help
+If the extension isn't working as you expect, please contact us with [community](https://kcl-lang.io/docs/community/intro/support) for help.
 
 ## Contributing
 
