@@ -2158,7 +2158,7 @@ import regex
 schema DataMap:
     [attr: str]: str
     check:
-        regex.match(attr, r'[-._a-zA-Z0-9]+')
+        regex.match(attr, r'^[-._a-zA-Z0-9]+$')
 
 data = DataMap {
     key1 = "value1"
