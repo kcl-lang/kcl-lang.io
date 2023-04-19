@@ -65,6 +65,42 @@ error[E1001]: InvalidSyntax
   |
 ```
 
+### 顶级 schema 语句合并运算符
+
+在之前的 KCL 版本中，在编写如下 KCL 代码时，会将两个 schema 配置进行合并后输出，在 KCL v0.4.6 版本中，要求显式使用属性合并运算符而不是属性覆盖运算符
+
++ 更新前
+
+```python
+schema Config:
+    id?: int
+    value?: str
+
+config = Config {
+    id = 1
+}
+config = Config {
+    value = "value"
+}
+```
+
++ 更新后
+
+```python
+schema Config:
+    id?: int
+    value?: str
+
+# Use the union operator `:` instead of the override operator
+config: Config {
+    id = 1
+}
+# Use the union operator `:` instead of the override operator
+config: Config {
+    value = "value"
+}
+```
+
 ### 错误修复
 
 #### 单行条件配置块语法解析错误

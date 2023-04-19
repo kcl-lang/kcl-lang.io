@@ -65,6 +65,42 @@ error[E1001]: InvalidSyntax
   |
 ```
 
+### Top-level schema assign statement union operator
+
+In previous versions of KCL, when writing the following KCL code, the two schema configurations with the same name were merged and output. In KCL v0.4.6, it was required to explicitly use the attribute merge operator instead of the attribute overlay operator.
+
++ Before
+
+```python
+schema Config:
+    id?: int
+    value?: str
+
+config = Config {
+    id = 1
+}
+config = Config {
+    value = "value"
+}
+```
+
++ After
+
+```python
+schema Config:
+    id?: int
+    value?: str
+
+# Use the union operator `:` instead of the override operator
+config: Config {
+    id = 1
+}
+# Use the union operator `:` instead of the override operator
+config: Config {
+    value = "value"
+}
+```
+
 ### Bugfix
 
 #### Inline conditional configuration block syntax error
