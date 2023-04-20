@@ -16,7 +16,7 @@ check-link:
 
 .PHONY: version
 version:
-	npm run docusaurus docs:version 0.4.6
+	npm run docusaurus docs:version $(shell cat VERSION)
 
 .PHONY: algolia
 # Edit your API_KEY in .env before run `make algolia` for the `kcl-lang` index.
