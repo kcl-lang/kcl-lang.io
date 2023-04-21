@@ -3037,23 +3037,7 @@ spec:
 
 变量查询形式如下：
 
-`pkg:var.name`
-
-- 在包中按名称选择节点 `pkg`
-
-`pkg:var.{name1,name2}` (暂未实现)
-
-- 在包中选择多个节点 `pkg`
-
-`pkg:var.*` (暂未实现)
-
-- 选择包中给定级别的所有节点 `pkg`
-
-`pkg:var.[index]` (暂未实现)
-
-- 选择包 `pkg` 中列表 `var` 由 `index` 索引的元素
-
-请注意，KCL 变量通过包名和变量标识符 `pkg:identifier` 的组合来确保全局唯一性。 因此，我们需要同时指定 `pkg` 和 `identifier`。 省略参数 `pkg` 时，表示从当前路径的入口文件中查找变量。
+`var.name`
 
 #### 示例
 
@@ -3094,7 +3078,7 @@ var = pkg.Person {
 命令为：
 
 ```bash
-kcl main.k -S pkg:var -S :var.name
+kcl main.k -S var
 ```
 
 输出结果为：

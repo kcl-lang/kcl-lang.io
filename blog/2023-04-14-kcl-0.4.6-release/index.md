@@ -101,6 +101,31 @@ config: Config {
 }
 ```
 
+### Path selector simplification
+
+We use the path selector CLI parameter (-S) without filling in the package path, and can directly filter internal variables.
+
+For the KCL code (main.k):
+
+```python
+schema Person:
+    name: str
+    age: int
+
+person = Person {
+    name = "Alice"
+    age = 18
+}
+```
+
+We run the following command:
+
+```shell
+$ kcl main.k -S person
+name: Alice
+age: 18
+```
+
 ### Bugfix
 
 #### Inline conditional configuration block syntax error

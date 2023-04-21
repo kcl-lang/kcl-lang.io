@@ -3122,23 +3122,7 @@ We can use KCL CLI `-S|--path-selector` parameter to select one or more values o
 
 The path selector looks like this:
 
-`pkg:var.name`
-
-- Select node by name in the package `pkg`
-
-`pkg:var.{name1,name2}` (Not yet implement)
-
-- Select multiple nodes in the package `pkg`
-
-`pkg:var.*` (Not yet implement)
-
-- Select all nodes at a given level in the package `pkg`
-
-`pkg:var.[index]` (Not yet implement)
-
-- Select the element of the list `var` indexed by `index` in the package `pkg`
-
-It should be noted that KCL variables ensure global uniqueness through the combination of the package name and variable identifier `pkg:identifier`. Therefore, we need to specify both `pkg` and `identifier`. When the parameter `pkg` is omitted, it means to find the variable from the entry file in the current path.
+`var.name`
 
 #### Examples
 
@@ -3179,18 +3163,14 @@ var = pkg.Person {
 The command is
 
 ```bash
-kcl main.k -S pkg:var -S :var.name
+kcl main.k -S var
 ```
 
 The output is
 
 ```yaml
-var:
-  name: Bob
----
-var:
-  name: Alice
-  age: 18
+name: Alice
+age: 18
 ```
 
 ### KCL CLI Variable Override

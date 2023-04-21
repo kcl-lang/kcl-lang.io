@@ -101,6 +101,31 @@ config: Config {
 }
 ```
 
+### 路径选择器参数简化
+
+我们使用 path selector CLI 参数 (-S) 不必再填入包路径，并且可以直接筛选内部变量
+
+对于如下的 KCL 代码 (main.k):
+
+```python
+schema Person:
+    name: str
+    age: int
+
+person = Person {
+    name = "Alice"
+    age = 18
+}
+```
+
+我们可以执行如下命令
+
+```shell
+$ kcl main.k -S person
+name: Alice
+age: 18
+```
+
 ### 错误修复
 
 #### 单行条件配置块语法解析错误
