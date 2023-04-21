@@ -65,7 +65,7 @@ scoop install kcl-lang/kclvm
 
 ### From Go
 
-Install `kcl` through the `Go` command (`Go` requires 1.17+).
+Install `kcl` through the `Go` command (`Go` requires 1.18+).
 
 ```bash
 go install kusionstack.io/kclvm-go/cmds/kcl-go@main
