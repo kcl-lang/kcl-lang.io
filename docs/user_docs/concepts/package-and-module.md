@@ -143,7 +143,7 @@ kcl -Y kcl.yaml
 > Note: If we do not specify any input files for KCL, KCL will find the default `kcl.yaml` from the command line execution path to read the input file. Besides, if we tell KCL both the input files and the compilation setting file, KCL will take input files entered by the user as the final value.
 
 ```bash
-# Whether the 'files' field is configured in `kcl.yaml` or not, the final value of input files is ["file1.k", "file2.k"]
+# Whether the `files` field is configured in `kcl.yaml` or not, the final value of input files is ["file1.k", "file2.k"]
 kcl -Y kcl.yaml file1.k file2.k
 ```
 

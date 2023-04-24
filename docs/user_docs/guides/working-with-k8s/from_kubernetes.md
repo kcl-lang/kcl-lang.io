@@ -20,7 +20,7 @@ We provide an out-of-the-box `kusion_models` package for you to quickly start. I
 
 ### 3.2 Build Your Custom Frontend Models
 
-The existing KCL Models may not meet your specific business requirements, then you can also design your custom frontend model package. In Konfig's `kusion_kubernetes` directory, there's a copy of the generated Kubernetes 1.22 models and you can design your custom models based on it. And you can also develop your custom scripts to migrate your configuration data as what `kube2kcl` tool does. 
+The existing KCL Models may not meet your specific business requirements, then you can also design your custom frontend model package. In Konfig's `kusion_kubernetes` directory, there's a copy of the generated Kubernetes 1.22 models and you can design your custom models based on it. And you can also develop your custom scripts to migrate your configuration data as what `kube2kcl` tool does.
 
 #### 3.2.1 Convert Kubernetes Deployment Into KCL Schema
 
@@ -90,7 +90,7 @@ If you developed CRDs, you can generate the KCL version of the CRD schemas and d
 
 * Generate KCL Schema from CRD
 
-    ```
+    ```bash
     kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
     ```
 
