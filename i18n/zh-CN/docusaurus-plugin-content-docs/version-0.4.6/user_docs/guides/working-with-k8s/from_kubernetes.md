@@ -2,31 +2,31 @@
 
 ## 1. Kubernetes OpenAPI Spec
 
-Starting from Kubernetes 1.4, the alpha support for the OpenAPI specification (known as Swagger 2.0 before it was donated to the OpenAPI Initiative) was introduced, and the API descriptions follow the [OpenAPI Spec 2.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md). And since Kubernetes 1.5, Kubernetes supports [directly extracting models from source code and then generating the OpenAPI spec file](https://github.com/kubernetes/kube-openapi) to automatically keep the specifications and documents up to date with the operation and models.
+从 Kubernetes 1.4 开始，引入了对 OpenAPI 规范的 alpha 支持（之前称为 Swagger 2.0，后来捐赠给了 OpenAPI Initiative），并且 API 描述遵循 [OpenAPI Spec 2.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md)。自 Kubernetes 1.5 开始，Kubernetes 可以[直接从源代码中提取模型，然后生成 OpenAPI 规范文件](https://github.com/kubernetes/kube-openapi)，以便自动保持规范和文档与操作和模型一致更新。
 
-In addition, Kubernetes CRD uses [OpenAPI V3.0 validation](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#validation) to describe a custom schema (in addition to the built-in attributes apiVersion, Kind, and metadata), that APIServer uses to validate the CR during the resource creation and update phases.
+除此之外，Kubernetes CRD 使用 [OpenAPI V3.0 验证](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#validation)来描述自定义模式（除了内置的 apiVersion、Kind 和 metadata 属性之外），APIServer 在资源创建和更新阶段使用它来验证 CR。
 
-## 2. KCL OpenAPI Support
+## 2. KCL 的 OpenAPI 支持
 
-The `kcl-openapi` tool supports extracting and generating KCL schemas from Kubernetes OpenAPI/CRD. the [KCL OpenAPI Spec](/docs/tools/cli/openapi/spec) defines the mapping between the OpenAPI specification and the KCL language features. For a quick start with the tool, see [KCL OpenAPI tool](/docs/tools/cli/openapi/)
+`kcl-openapi` 工具支持从 Kubernetes OpenAPI/CRD 中提取和生成 KCL 模型（schema）。[KCL OpenAPI 规范](/docs/tools/cli/openapi/spec) 定义了 OpenAPI 规范和 KCL 语言特性之间的映射关系。要快速开始使用该工具，请参见 [KCL OpenAPI 工具](/docs/tools/cli/openapi/)。
 
-## 3. Migrate From Kubernetes To KCL
+## 3. 从 Kubernetes 迁移到 KCL
 
-The entirely OpenAPI definition of the Kubernetes built-in model is stored in the [Kubernetes OpenAPI-Spec File](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json). Taking this file as input, the KCL OpenAPI tool can generate all model schemas of the corresponding version. In the following sections, we will introduce how to migrate from Kubernetes to KCL with a deployment release scenario as an example. Assume that your project is using [Kubernetes Deployment] (https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) to define Deployment configuration, Migrating to KCL requires only the following steps:
+完整的 Kubernetes 内置模型 OpenAPI 定义存储在 [Kubernetes OpenAPI-Spec 文件](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json)中。将该文件作为输入，KCL OpenAPI 工具可以生成相应版本的所有模型模式（model schema）。在下面的部分中，我们将以部署发布场景为例介绍如何从 Kubernetes 迁移到 KCL。假设你的项目正在使用 [Kubernetes Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) 来定义 Deployment 配置，迁移到 KCL 只需要以下步骤：
 
-### 3.1 Write Config Based On The Models
+### 3.1 基于模型编写配置
 
-We provide an out-of-the-box `kusion_models` package for you to quickly start. It contains a well-designed frontend model called [`Server schema`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k). You can declare their configurations by initializing the `Server schema`. For the description and usage of the schema and its attributes, please refer to the [Server schema documentation](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server).
+我们为你提供了一个开箱即用的 `kusion_models` 包，让你可以快速开始。其中包含一个精心设计的前端模型，称为[服务器模型](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k)(`Server schema`)。你可以通过初始化 `Server schema` 来声明其配置。有关模式及其属性的说明和用法，请参阅 [Server schema 文档](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server)。
 
-### 3.2 Build Your Custom Frontend Models
+### 3.2 构建你的自定义前端模型
 
-The existing KCL Models may not meet your specific business requirements, then you can also design your custom frontend model package. In Konfig's `kusion_kubernetes` directory, there's a copy of the generated Kubernetes 1.22 models and you can design your custom models based on it. And you can also develop your custom scripts to migrate your configuration data as what `kube2kcl` tool does. 
+现有的 KCL 模型可能无法满足你的特定业务需求，那么你也可以设计你自己的自定义前端模型包。在 Konfig 的`kusion_kubernetes` 目录中，有一个 Kubernetes 1.22 生成模型的副本，你可以基于它设计你的自定义模型。你还可以开发自定义脚本以迁移你的配置数据，就像 `kube2kcl` 工具所做的那样。
 
-#### 3.2.1 Convert Kubernetes Deployment Into KCL Schema
+### 3.2.1 将 Kubernetes Deployment 转换为 KCL 模型
 
-We already have a copy of [generated Kubernetes 1.22 models](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_kubernetes/api/apps/v1/deployment.k) under the `base/pkg/kusion_kubernetes` directory in the Konfig repository. You can skip this step and use the existing models, or you can generate other versions of that if needed.
+在 Konfig 存储库的 `base/pkg/kusion_kubernetes` 目录下已经有 [Kubernetes 1.22 生成模型](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_kubernetes/api/apps/v1/deployment.k)的副本。你可以跳过这一步并使用现有的模型，或者如果需要，可以生成其他版本的模型。
 
-Now let's generate a v1.23 version of Kubernetes models. From [Kubernetes v1.23 OpenAPI Spec](https://github.com/kubernetes/kubernetes/blob/release-1.23/api/openapi-spec/swagger.json), we can find the definition of the `apps/v1.Deployment` model, and here is a partial excerpt:
+现在让我们生成 Kubernetes 模型的 v1.23 版本。从 [Kubernetes v1.23 OpenAPI 规范](https://github.com/kubernetes/kubernetes/blob/release-1.23/api/openapi-spec/swagger.json)中，我们可以找到 `apps/v1.Deployment` 模型的定义，以下是部分内容摘录：
 
 ```json
 {
@@ -74,26 +74,26 @@ Now let's generate a v1.23 version of Kubernetes models. From [Kubernetes v1.23 
 }
 ```
 
-You can save the above spec as `deployment.json` and run `kcl-openapi generate model -f deployment.json`, and the KCL Schemas will be generated and output to your current workspace. Other Kubernetes models can also be saved in that spec file and can be generated similarly.
+你可以将上述规范保存为 `deployment.json` 文件，并运行 `kcl-openapi generate model -f deployment.json`，KCL Schemas 将会生成并输出到你当前的工作空间。其他 Kubernetes 模型也可以保存在该规范文件中，并且可以类似地进行生成。
 
-#### 3.2.2 Design Custom Frontend Models
+#### 3.2.2 设计自定义前端模型
 
-Since the Kubernetes built-in models are atomistic and kind of complex to beginners, we recommend taking the native model of Kubernetes as the backend output model and designing a batch of frontend models which could become a more abstract, friendlier and simpler interface to the user. You can refer to the design pattern in the [`Server Schema in the Konfig repo`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k).
+由于 Kubernetes 内置模型结构复杂且对初学者来说有些棘手，我们建议将 Kubernetes 的原生模型作为后端输出模型，并设计一批前端模型，将其作为一种更抽象、更友好和更简单的用户接口。你可以参考 [Konfig 存储库中 Server Schema](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k) 的设计模式。
 
-#### 3.2.3 Migrate The Configuration Data
+#### 3.2.3 迁移配置数据
 
-You can develop your custom scripts to migrate your configuration data automatically. KCL will later provide writing scaffolding and writing guidelines for this script.
+你可以开发自定义脚本以自动迁移你的配置数据。KCL 稍后将为此脚本提供编写脚手架和编写指南。
 
-## 4. Migrate From Kubernetes CRD
+## 4. 从 Kubernetes CRD 迁移
 
-If you developed CRDs, you can generate the KCL version of the CRD schemas and declare CRs based on that.
+如果你已经开发了 CRD，你可以生成KCL 版本的 CRD 模式，并基于它声明 CR。
 
-* Generate KCL Schema from CRD
+- 从 CRD 生成 KCL Schema
 
+    ```bash
+        kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
     ```
-    kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
-    ```
 
-* Define CR based on CRDs in KCL
+- 在 KCL 中基于 CRD 定义 CR
 
-    You can initialize the CRD schema to define a CR, or further, you can use the generated schema as a backend model and design a frontend interface for users to initialize. The practice is similar to what `KCL Models` does on Kubernetes built-in models.
+    你可以初始化 CRD 模式来定义 CR，或者你可以使用生成的模式作为后端模型，并为用户设计一个前端界面进行初始化。这类似于 `KCL Models` 在 Kubernetes 内置模型上的实践。
