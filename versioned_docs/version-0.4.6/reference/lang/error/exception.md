@@ -108,10 +108,10 @@ The KCL program will cause the following error message.
 
 ```shell
 error[E1001]: InvalidSyntax
- --> /syntax_error/indent/indent_error_0/main.k:6:5
+ --> /syntax_error/indent/indent_error_0/main.k:3:4
   |
-6 |     age: int = 1
-  |     ^ inconsistent use of tabs and spaces in indentation
+3 |    age: int # three white spaces are illegal
+  |    ^ unindent 3 does not match any outer indentation level
   |
 ```
 
