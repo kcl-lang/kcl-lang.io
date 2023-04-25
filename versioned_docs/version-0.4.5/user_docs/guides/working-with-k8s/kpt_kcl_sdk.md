@@ -40,14 +40,15 @@ set-annotation
 
 ```yaml
 # kcl-fn-config.yaml
-apiVersion: fn.kpt.dev/v1alpha1
+apiVersion: krm.kcl.dev/v1alpha1
 kind: KCLRun
 metadata: # kpt-merge: /set-annotation
   name: set-annotation
-# EDIT THE SOURCE!
-# This should be your KCL code which preloads the `ResourceList` to `option("resource_list")
-source: |
-  [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kpt"}} for resource in option("resource_list").items]
+spec:
+  # EDIT THE SOURCE!
+  # This should be your KCL code which preloads the `ResourceList` to `option("resource_list")
+  source: |
+    [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kpt"}} for resource in option("resource_list").items]
 ```
 
 ## Test and Run
@@ -56,7 +57,7 @@ Run the KCL code via kpt
 
 ```bash
 # Note: you need add sudo and --as-current-user flags to ensure KCL has permission to write temp files in the container filesystem.
-sudo kpt fn eval ./data -i docker.io/peefyxpf/kcl-kpt:unstable --as-current-user --fn-config kcl-fn-config.yaml
+sudo kpt fn eval ./data -i docker.io/peefyxpf/kpt-kcl:v0.1.0 --as-current-user --fn-config kcl-fn-config.yaml
 
 # Verify that the annotation is added to the `Deployment` resource and the other resource `Service` 
 # does not have this annotation.
