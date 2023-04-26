@@ -72,14 +72,30 @@ konfig = { git = "https://github.com/awesome-kusion/konfig.git", tag = "v0.0.1" 
 并且将下面的内容写入 `main.k` 文件中。
 
 ```kcl
-import konfig.base.examples.native.nginx_deployment as nd
+import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = nd.demo
+demo = apps.Deployment {
+    metadata.name = "nginx-deployment"
+    spec = {
+        replicas = 3
+        selector.matchLabels.app = "nginx"
+        template.metadata.labels = selector.matchLabels
+        template.spec.containers = [
+            {
+                name = selector.matchLabels.app
+                image = "nginx:1.14.2"
+                ports = [
+                    {containerPort = 80}
+                ]
+            }
+        ]
+    }
+}
 ```
 
-## 使用 `kpm` 编译 kcl 包
+## 编译 kcl 包
 
-你可以使用 kpm 编译刚才编写的 `main.k` 文件。
+你可以使用如下命令编译刚才编写的 `main.k` 文件。你可以使用如下命令编译刚才编写的 `main.k` 文件。
 
 ```shell
 kcl main.k -S demo
