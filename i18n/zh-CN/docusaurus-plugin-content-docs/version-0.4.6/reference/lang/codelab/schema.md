@@ -6,29 +6,29 @@ weight: 2
 description: 使用 KCL Schema 编写复杂配置
 sidebar_position: 2
 ---
-## 1. Introduction
+## 1. 介绍
 
-Kusion Configuration Language (KCL) is a simple and easy-to-use configuration language, where users can simply write the reusable configuration code.
+KCL（Kusion Configuration Language）是一种简单易用的配置语言，用户可以简单地编写可重用的配置代码。
 
-In this codelab, we will learn how to write customized config using KCL, such that we can define a schema and write the config in a collaborative way.
+在本节教程中，我们将学习如何使用 KCL 编写定制配置，这样我们就可以定义一个架构并以协作方式编写配置。
 
-### What We Will Learn
+### 本节将会学习
 
-1. Define a simple schema
-2. Set default immutable values to schema fields
-3. Create config based on a simple schema
-4. Write complex logic in schema
-5. Create a new schema via schema combinations
-6. Create a config of a deeply nested schema using dict/map
-7. Create new schema via schema inheritance
-8. Create new schema via multiple mixin schemas
-9. Declare validation rules for the schema
-10. Config schema output layout
-11. Share and reuse schema
+1. 定义一个简单的 schema
+2. 为 schema 字段设置默认的不可变值
+3. 基于简单的 schema 创建配置
+4. 在 schema 中编写复杂的逻辑
+5. 通过 schema 的组合创建新的 schema
+6. 使用 dict/map 创建具有深度嵌套 schema 的配置
+7. 通过 schema 继承创建新的 schema
+8. 通过多个 mixin schema 创建新的 schema
+9. 声明 schema 验证规则
+10. 配置 schema 的输出布局
+11. 共享和重用 schema
 
-## 2. Write Simple Schema
+## 2. 编写简单的 Schema
 
-Suppose we want to define a workload with certain attributes, we can create a simple config by creating a `my_config.k`, we can fill in the following code as below which defines a reusable schema of the configuration of deploy.
+假设我们希望定义一个具有特定属性的工作负载，我们可以通过创建一个 `my_config.k` 文件来创建一个简单的配置。我们可以按以下方式填写下面的代码，定义一个可重复使用的部署配置的 schema：
 
 ```python
 schema Deployment:
@@ -42,9 +42,9 @@ schema Deployment:
     labels: {str:str}
 ```
 
-In the code above, `cpu` and `memory` are defined as int value; `name`, `image` and `service` are string; `command` is a list of string type; `labels` is a dict type, whose key type and value type are both string.
+在上述代码中，`cpu` 和 `memory` 被定义为 int 值；`name`、`image` 和 `service` 是字符串；`command` 是由字符串构成的列表；`labels` 是字典类型，其键和值的类型均为字符串。
 
-Besides, each attribute **must** be assigned with a not-None value as a schema instance unless it is modified by a question mark **?** as an optional attribute.
+另外，每个属性都**必须**被赋予非 None 值作为 schema 实例，除非它被标记问号 **?** 而作为可选参数。
 
 ```python
 schema Deployment:
@@ -55,13 +55,13 @@ schema Deployment:
     service: str
     replica: int
     command: [str]
-    labels?: {str:str}  # labels is an optional attribute 
+    labels?: {str:str}  # labels 是一个可选的参数
 ```
 
-When there is an inheritance relationship:
+当存在继承关系时：
 
-- If the attribute is optional in the base schema, it could be optional or required in the sub-schema.
-- If the attribute is required in the base schema, it must be required in the sub-schema.
+- 如果在基 schema 中该属性为可选（optional）参数，则在子 schema 中它应该是可选的（optional）或必需的（required）。
+- 如果在基 schema 中该属性为必需（required）属性，则在子 schema 中它需要是必需的（required）。
 
 ## 3. Enhance Schema as Needed
 
@@ -97,9 +97,9 @@ In the schema, type hint is a `must`, for example we can define cpu as `cpu: int
 
 Specially, we can define a string-interface dict as `{str:}`, and in case we want to define an object or interface, just define as `{:}`.
 
-## 4. Create Config Based on Simple Schema
+## 4. 基于简单 Schema 创建配置
 
-Now we have a simple schema definition, we can use it to define config as:
+现在我们有了一个简单的 schema 定义，我们可以用它来定义配置：
 
 ```python
 nginx = Deployment {
@@ -115,15 +115,15 @@ nginx = Deployment {
 }
 ```
 
-Run with the following KCL command, we should be able to see the generated yaml files as the output as below:
+使用以下 KCL 命令运行，我们应该能够看到生成的 yaml 文件作为输出，如下所示：
 
-KCL command:
+KCL 命令：
 
-```
+```python
     kcl my_config.k
 ```
 
-Stdout:
+标准输出:
 
 ```yaml
 nginx:
@@ -140,9 +140,9 @@ nginx:
     env: pre-prod
 ```
 
-> Check the manual and specification out for more details about collection data types and block.
+> 有关集合数据类型和块的更多详细信息，请查看手册和规范。
 
-In addition, the **config selector expressions** can be used to init a schema instance, and we can ignore the comma at the end of the line in the config expression.
+此外，**配置选择器表达式**（config selector expressions）可以用于初始化 schema 实例，我们可以忽略配置表达式中行末的逗号。
 
 ```python
 nginx = Deployment {
@@ -150,15 +150,15 @@ nginx = Deployment {
     cpu = 256
     memory = 512
     image = "nginx:1.14.2"
-    command = ["nginx"]  # Ignore the comma at the end of the line
-    labels.run = "my-nginx"  # A dict variable in schema can use selector expressions
-    labels.env = "pre-prod"  # A dict variable in schema can use selector expressions
+    command = ["nginx"]  # 忽略行尾的逗号 
+    labels.run = "my-nginx" # schema 中的字典变量可以使用选择器表达式 
+    labels.env = "pre-prod" # schema 中的字典变量可以使用选择器表达式 
 }
 ```
 
-## 5. Write More Complex Logic in Schema
+## 5. 在 Schema 中编写更为复杂的逻辑
 
-Suppose we have some schema logic, we can wrapper it into schema:
+假设我们有一些schema逻辑，我们可以将它包装进 schema 中：
 
 ```python
 schema Deployment[priority]:
@@ -182,7 +182,7 @@ schema Deployment[priority]:
         _cpu = 2048
 ```
 
-Now, we can define a config by creating a schema instance and pass in priority as an argument to schema:
+现在，我们可以通过创建 schema 实例来定义配置，并将优先级作为参数传递给模式：
 
 ```python
 nginx = Deployment(priority=2) {
@@ -194,15 +194,15 @@ nginx = Deployment(priority=2) {
 }
 ```
 
-Run with kcl, we should see the generated yaml files as output as below:
+使用以下 KCL 命令运行，我们应该能够看到生成的 yaml 文件作为输出，如下所示：
 
-KCL command:
+KCL 命令：
 
-```
+```python
 kcl my_config.k
 ```
 
-Stdout:
+标准输出:
 
 ```yaml
 nginx:
@@ -219,9 +219,9 @@ nginx:
     env: pre-prod
 ```
 
-## 6. Create New Schema via Schema Combinations
+## 6. 通过 Schema 组合创建新 Schema
 
-Now we want to define a detailed schema with service and volumes, we can do it as follows:
+现在我们想要定义一个详细的 schema，包括服务（service）和卷（volumes），我们可以按以下方式进行操作：
 
 ```python
 schema Deployment[priority]:
@@ -260,13 +260,13 @@ schema Volume:
     hostPath: str
 ```
 
-In this case, Deployment is composed of Service and a list of Volumes, and Service is composed of a list of Ports.
+在这种情况下，Deployment 由 Service 和一系列 Volume 组成，而 Service 又由一系列 Port 组成。
 
-## 7. Create Config of Deeply Nested Schema using Dict/Map
+## 7. 使用 dict/map 创建具有深度嵌套 schema 的配置
 
-Now we have a new Deployment schema, however, we may notice that it contains multiple layers of nested structures, in fact, this is very common in complex structure definitions, and we often have to write imperative assembly code to generate the final structure.
+现在我们有一个新的 Deployment schema，但我们可能会注意到，它包含多层嵌套的结构，在复杂的结构定义中，这是非常常见的，我们通常必须编写命令式组装代码来生成最终结构。
 
-With KCL, we can create the config with simple dict declaration, with the capability of full schema initialization and validation. For example, we can simply config nginx by the new Deployment schema as follows:
+使用 KCL，我们可以使用简单的字典声明创建配置，并具有完整的 schema 初始化和验证功能。例如，我们可以按照以下方式使用新的 Deployment schema简单地配置 nginx：
 
 ```python
 nginx = Deployment(priority=2) {
@@ -289,15 +289,15 @@ nginx = Deployment(priority=2) {
 }
 ```
 
-Run with KCL, we will see the generated yaml files as below:
+使用以下 KCL 命令运行，我们应该能够看到生成的 yaml 文件作为输出，如下所示：
 
-KCL command:
+KCL 命令：
 
-```
+```python
 kcl my_config.k
 ```
 
-Stdout:
+标准输出:
 
 ```yaml
 nginx:
@@ -324,7 +324,7 @@ nginx:
     env: pre-prod
 ```
 
-Note that, the dict that we use to define Deployment config must be aligned with the schema definition, otherwise we will get an error. For example, suppose we define a wrong type of service port as below:
+请注意，我们用于定义 Deployment 配置的字典必须与 schema 定义对齐，否则我们将会得到一个错误。例如，假设我们将服务端口的类型定义错误如下：
 
 ```python
 nginx = Deployment(priority=2) {
@@ -341,31 +341,31 @@ nginx = Deployment(priority=2) {
     service.ports = [Port {
         name = "http"
         protocol = "TCP"
-        port = [80]  # wrong data type, trying to assign List to int
+        port = [80]  # 错误的数据类型，试图将 List 分配给 int
         targetPort = 9376
     }]
 }
 ```
 
-Run with KCL, we will see the error message as output as below:
+使用以下 KCL 命令运行，我们应该能够看到生成的 yaml 文件作为输出，如下所示：
 
-KCL command:
+KCL 命令：
 
 ```python
 kcl my_config.k
 ```
 
-Stderr:
+标准错误输出:
 
 ```
 The type got is inconsistent with the type expected: expect int, got [int(80)]
 ```
 
-## 8. Declare Schema Validation Rules
+## 8. 声明 Schema 验证规则
 
-Now we have seen a complex schema, in which every field has a type hint to make it less error-prone. But this is not good enough, we want to support more enhanced verifications to our schemas, so that code errors in schemas and configs can be discovered as soon as possible.
+现在我们已经看到了一个复杂的 schema，在其中每个字段都有一个类型提示，以使其更加不容错（error-prone）。
 
-Lots of validation rules, like None type check, range check, value check, length check, regular expression matching, enum check have already been added or in progress. Here is a code sample:
+但是这还不够好，我们希望为我们的 schema 支持更多的增强验证，以便尽快发现 schema 和配置中的代码错误。许多验证规则，如 None 类型检查、范围检查、值检查、长度检查、正则表达式匹配、枚举检查已经被添加或陆续添加进来。以下是一段代码示例：
 
 ```python
 import regex
@@ -422,7 +422,7 @@ schema Volume:
     hostPath: str
 ```
 
-Since the attributes defined by the schema are **required** by default, the verification that judges that the variable cannot be None/Undefined can be omitted.
+由于schema定义的属性默认是**必需的**（required），因此可以省略判断变量不能为 None/Undefined 的验证。
 
 ```python
 schema Volume:
@@ -431,12 +431,12 @@ schema Volume:
     hostPath: str
 ```
 
-Now we can write the config based on the new schema and expose config errors in time. For example, with the invalid config as below:
+现在我们可以基于新的 schema 编写配置，并及时暴露配置错误。例如，使用以下无效的配置：
 
 ```python
 nginx = Deployment(priority=2) {
     name = "my-nginx"
-    image = "nginx:1142"  # image value is not matching the regex
+    image = "nginx:1142"  # 镜像值不匹配正则表达式
     volumes = [Volume {
         name = "mydir"
         mountPath = "/test-pd"
@@ -454,34 +454,31 @@ nginx = Deployment(priority=2) {
 }
 ```
 
-Every field is type-valid, but the image name is invalid.
+每个字段都是类型有效的，但镜像名无效。
 
-Run with KCL, we will see the error message as below:
+运行 KCL，我们将看到如下错误信息：
 
-KCL command:
+KCL 命令：
 
-```
+```python
 kcl my_config.k
 ```
 
-Stderr:
+标准错误输出:
 
 ```
 Schema check is failed to check condition: regex.match(image, "^[a-zA-Z]+:\d+\.\d+\.\d+$"), "image name should be like 'nginx:1.14.2'"
 ```
 
-> The verification capability of KCL covers the verification defined by Openapi so that we can write any API verifications through KCL.
+> KCL 的验证功能涵盖了 Openapi 定义的验证，因此我们可以通过 KCL 编写任何 API 验证。
 
-## 9. Create New Schema via Schema Inheritance
+## 9. 通过 Schema 继承创建新 Schema
 
-Now we have a solid Deployment schema definition and we can use it to declare config.
+现在，我们拥有了一个稳定的部署 schema 定义，可以用它来声明配置。
 
-Usually, schema Deployment will be used in multiple scenarios. We can directly use the schema to declare the configurations in different use cases (see the above section), or we can produce a more specific schema definition through inheritance.
+通常，部署 schema 将被用于多个场景中。我们可以直接使用 schema 在不同的用例中声明配置（见上文的部分），或者我们可以通过继承生成一个更具体的 schema 定义。
 
-For example, we can use the Deployment schema as a basis, to define the nginx's base schema, and extend the definition
-in each scenario.
-
-In this case, we define some commonly used attributes. Please note that we mark the name to be immutable with the 'final' keyword to prevent it from being overwritten.
+例如，我们可以使用部署 schema 作为基础，来定义 nginx 的基本 schema，并在每个场景中扩展定义。在这种情况下，我们定义了一些常用的属性。请注意，我们使用“final”关键字将名称标记为不可变，以防止被覆盖。
 
 ```python
 schema Nginx(Deployment):
@@ -510,7 +507,7 @@ schema NginxProd(Nginx):
     """ An 80 port to target backend server """
 ```
 
-Now we have some static configurations for nginx. It is recommended to declare configurations that we think are static there, and put more dynamic configurations as below:
+现在我们有了一些 nginx 的静态配置。建议将我们认为是静态的配置声明在那里，并将更多的动态配置放在下面：
 
 ```python
 nginx = Nginx {
@@ -526,19 +523,19 @@ nginx = NginxProd {
 }
 ```
 
-Now, we can simply define nginx prod config just with runtime label value "prod" which is not that static.
+现在，我们只需要通过运行时标签值 “prod” 来简单定义 不那么静态的 nginx 生产环境配置。
 
-In fact, under some complex situation, we can split all configurations into the basic, business, and environment configuration definitions in this way, and achieve collaboration among team members based on this.
+实际上，在某些复杂情况下，我们可以将所有配置分为基本配置、业务配置和环境配置定义，并基于此实现团队成员之间的协作。
 
-Run with KCL, we will see the generated yaml files as output as below:
+使用以下 KCL 命令运行，我们应该能够看到生成的 yaml 文件作为输出，如下所示：
 
-KCL command:
+KCL 命令：
 
-```
+```python
 kcl prod_config.k
 ```
 
-Stdout:
+标准输出:
 
 ```yaml
 nginx:
@@ -567,11 +564,11 @@ nginx:
 
 ## 10. Create New Schema by Multiple Protocol and Mixin Schemas Inheritance
 
-Now, we can complete the declaration of the server configuration through the Deployment schema.
+现在，我们可以通过 Deployment schema 完成服务器配置的声明。
 
-However, usually, the actual situation is more complicated, and the deployment may have a variety of optional variable accessories.
+然而，通常实际情况更为复杂，部署可能有各种可选变量附件。
 
-For example, we want to support a persistent volume claim based on an existing schema, as a reusable Kubernetes schema. In this case, we can just wrapper it with a `mixin` and a `protocol` as follows:
+例如，我们想要在现有 schema 中支持声明持久卷，作为可重用的 Kubernetes schema。在这种情况下，我们可以通过以下 `mixin` 和 `protocal` 进行包装：
 
 ```python
 import kusion_kubernetes.api.core.v1
@@ -600,20 +597,20 @@ mixin PersistentVolumeClaimMixin for PVCProtocol:
         }
 ```
 
-With this PersistentVolumeClaimMixin, we define a PVC schema with a clear `user interface`, and use Kubernetes PVC as an implementation. Then, we can define a server schema with Deployment schema, and PVC mixin schema.
+有了 PersistentVolumeClaimMixin，我们使用清晰的用户界面（user interface）定义了一个 PVC schema，并使用 Kubernetes PVC 作为实现。然后，我们可以使用 Deployment schema 和 PVC mixin schema 定义一个 server schema。
 
-```
+```python
 schema Server(Deployment):
     mixin [PersistentVolumeClaimMixin]
     pvc?: {str:}
     """ pvc user interface data defined by PersistentVolumeClaimMixin """
 ```
 
-In the Server schema, Deployment is the base schema, and PersistentVolumeClaimMixin is an optional add-on whose user interface data is `pvc?: {str:}`.
+在 Server schema 中，Deployment schema 是基础 schema，而 PersistentVolumeClaimMixin 是一个可选附加项，其用户界面数据为`pvc？：{str：}`。
 
-Note, the `mixin` is often used to add new attributes to the host schema, or to modify the existing attributes of the host schema. Thus, `mixin` can use the attributes in the host schema. Since the `mixin` is designed to be reusable, we need an additional `protocol` to constrain the attribute names and types in the host schema for the `mixin`.
+请注意，mixin 通常用于向宿主 schema 添加新属性，或修改宿主 schema 的现有属性。因此，mixin 可以使用宿主 schema 中的属性。由于其被设计为可重用，因此我们需要一个额外的协议来限制 mixin 中宿主 schema 中属性的名称和类型。
 
-Now, if we want a deploy with a PVC, just declare as user interface:
+现在，如果我们想要使用 PVC 进行部署，只需声明用户界面：
 
 ```python
 server = Server {
@@ -644,15 +641,15 @@ server = Server {
 }
 ```
 
-Run with kcl, we will see the generated yaml files as output as below:
+使用以下 KCL 命令运行，我们应该能够看到生成的 yaml 文件作为输出，如下所示：
 
-KCL command:
+KCL 命令：
 
-```
+```python
 kcl server.k
 ```
 
-Stdout:
+标准输出:
 
 ```yaml
 server:
@@ -699,11 +696,11 @@ spec:
       storage: 8Gi
 ```
 
-If we don't want a persistent volume, just remove the pvc config block.
+如果我们不需要持久卷，只需删除 pvc 配置块。
 
-## 11. Share and Reuse Schema
+## 11. 共享和重用 Schema
 
-The Server schema could be shared via `import`, we can simply package our code with KCL.
+可以通过导入来共享 Server schema，我们只需要将代码与 KCL 一起打包即可。
 
 ```python
 import pkg
@@ -728,9 +725,9 @@ server = pkg.Server {
 }
 ```
 
-Another skill we should know about sharing code is, modules under the same package do not need to import each other.
+另一个关于共享代码的技巧是：在同一包下的模块不需要相互导入。
 
-Suppose we have models in a pkg:
+假设我们在 pkg 中有如下 models：
 
 ```
 pkg/
@@ -739,17 +736,17 @@ pkg/
     - pvc.k
 ```
 
-And in `server.k`, we can just use Deployment schema in `deploy.k` and pvc schema in `pvc.k` without import:
+在 `server.k` 中，我们可以只使用 `deploy.k` 中的 Deployment schema 和 `pvc.k` 中的 pvc schema 而无需导入：
 
 ```python
-# no import needed
+# 无需 import 
 schema Server(Deployment):
     mixin [PersistentVolumeClaimMixin]
     pvc?: {str:}
     """ pvc user interface data defined by PersistentVolumeClaimMixin """
 ```
 
-And then users must import the pkg to use it as a whole:
+然后用户必须导入 pkg 才能作为一个整体使用它：
 
 ```python
 import pkg
@@ -776,9 +773,9 @@ server = pkg.Server {
 }
 ```
 
-Run kcl command:
+运行 KCL 命令:
 
-```
+```python
 kcl pkg_server.k
 ```
 
