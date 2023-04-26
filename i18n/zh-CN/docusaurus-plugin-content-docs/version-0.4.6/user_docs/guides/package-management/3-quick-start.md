@@ -95,7 +95,7 @@ demo = apps.Deployment {
 
 ## 编译 kcl 包
 
-你可以使用如下命令编译刚才编写的 `main.k` 文件。你可以使用如下命令编译刚才编写的 `main.k` 文件。
+你可以使用如下命令编译刚才编写的 `main.k` 文件。
 
 ```shell
 kcl main.k -S demo
