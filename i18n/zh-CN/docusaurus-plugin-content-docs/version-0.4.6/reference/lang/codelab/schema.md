@@ -809,8 +809,8 @@ server:
     env: pre-prod
 ```
 
-## 12. The Final Step
+## 12. 最后
 
-Congratulations!
+恭喜！
 
-We have completed the second lesson about KCL, we have used KCL to replace our key-value text file to get better programming support.
+我们已经完成了 KCL 的第二节课。我们使用 KCL 来替换我们的 key-value 文本文件，以便获得更好的可编程性。

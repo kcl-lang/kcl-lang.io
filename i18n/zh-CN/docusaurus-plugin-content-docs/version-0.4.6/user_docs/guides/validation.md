@@ -15,26 +15,26 @@ sidebar_position: 2
 import regex
 
 schema Sample:
-    foo: str  # Required, 不能为None/Undefined, 且类型必须为str
-    bar: int  # Required, 不能为None/Undefined, 且类型必须为int
-    fooList: [int]  # Required, 不能为None/Undefined, 且类型必须为int列表
-    color: "Red" | "Yellow" | "Blue"  # Required, 字面值联合类型，且必须为"Red", "Yellow", "Blue"中的一个，枚举作用
-    id?: int  # Optional，可以留空，类型必须为int
+    foo: str  # Required, 不能为 None/Undefined, 且类型必须为 str
+    bar: int  # Required, 不能为 None/Undefined, 且类型必须为 int
+    fooList: [int]  # Required, 不能为 None/Undefined, 且类型必须为 int 列表
+    color: "Red" | "Yellow" | "Blue"  # Required, 字面值联合类型，且必须为 "Red", "Yellow", "Blue" 中的一个，枚举作用
+    id?: int  # Optional，可以留空，类型必须为 int
 
     check:
-        0 <= bar < 100  # bar必须大于等于0，小于100
-        0 < len(fooList) < 100  # fooList不能为None/Undefined，并且长度必须大于0,小于100
+        0 <= bar < 100  # bar 必须大于等于 0，小于 100
+        0 < len(fooList) < 100  # fooList 不能为 None/Undefined，并且长度必须大于 0,小于 100
         regex.match(foo, "^The.*Foo$") # regex 正则表达式匹配
-        bar in range(100) # range, bar范围只能为1到99
-        bar in [2, 4, 6, 8] # enum, bar只能取2, 4, 6, 8
-        bar % 2 == 0  # bar必须为2的倍数
+        bar in range(100) # range, bar范围只能为 1 到 99
+        bar in [2, 4, 6, 8] # enum, bar只能取 2, 4, 6, 8
+        bar % 2 == 0  # bar 必须为 2 的倍数
         all foo in fooList {
             foo > 1
-        }  # fooList中的所有元素必须大于1
+        }  # fooList 中的所有元素必须大于 1
         any foo in fooList {
             foo > 10
-        }  # fooList中至少有一个元素必须大于10
-        abs(id) > 10 if id  # check if 表达式，当 id 不为空时，id的绝对值必须大于10
+        }  # fooList 中至少有一个元素必须大于 10
+        abs(id) > 10 if id  # check if 表达式，当 id 不为空时，id 的绝对值必须大于 10
 ```
 
 综上所述，KCL Schema 中支持的校验类型为:

@@ -147,7 +147,7 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 + **K8s集成**：支持外置编辑和校验插件，分离数据和逻辑：[Helm KCL Plugin](https://github.com/KusionStack/helm-kcl), [KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk) 和 [Kustomize KCL Plugin](https://github.com/KusionStack/kustomize-kcl) 等。
 + **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
-有关更多语言设计和功能，请参阅[KCL文档](https://kcl-lang.github.io/docs/reference/lang/tour). 虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，我们还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
+有关更多语言设计和功能，请参阅[KCL文档](https://kcl-lang.github.io/docs/reference/lang/tour)。虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，我们还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
 
 ## KCL 使用场景
 
@@ -158,7 +158,7 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 + 为配置数据定义带有规则约束的 schema 并对数据进行自动验证
 + 无副作用地组织、简化、统一和管理庞大的配置
 + 通过分块编写配置数据可扩展地管理庞大的配置
-+ 与 [Kusion Stack](https://kusionstack.io) 一起，用作平台工程语言来交付现代应用程序
++ 与 [KusionStack](https://kusionstack.io) 一起，用作平台工程语言来交付现代应用程序
 
 通过 KCL 编译器、语言工具、IDE 和多语言 API，您可以在以下场景中使用 KCL：
 

@@ -25,15 +25,15 @@ override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 
 - `pkgpath`: 表示需要修改标识符的包路径，通常为 `a.b.c` 的形式，对于 main 包，`pkgpath` 表示为 `__main__`, 可省略，省略不写时表示 main 包
 - `identifier`: 表示需要修改配置的标识符，通常为 `a.b.c` 的形式
-- `value`: 表示需要修改配置的值，可以是任意合法的 KCL 表达式，比如数字/字符串字面值，list/dict/schema 表达式等
+- `value`: 表示需要修改配置的值，可以是任意合法的 KCL 表达式，比如数字/字符串字面值，`list`/`dict`/`schema` 表达式等
 - `=`: 表示修改identifier的值
-  - 当 identifier 存在时，修改已有 identifier的值为 value
-  - 当 identifier 不存在时，添加 identifier属性，并将其值设置为 value
-- `-`: 表示删除 identifier属性
+  - 当 identifier 存在时，修改已有 identifier 的值为 value
+  - 当 identifier 不存在时，添加 identifier 属性，并将其值设置为 value
+- `-`: 表示删除 identifier 属性
   - 当 identifier 存在时，直接进行删除
   - 当 identifier 不存在时，对配置不作任何修改
 
-请注意，当 `identifier` 出现多次时，修改/删除全部 `identifier` 的值
+请注意，当 `identifier` 多次出现时，修改/删除全部 `identifier` 的值
 
 此外，在 KCL 中还提供了 API 用于变量查询和修改，详见 [API 文档](/docs/reference/xlang-api/)
 
@@ -148,7 +148,7 @@ config:
 
 此外，我们还可以通过[多语言 API](/docs/reference/xlang-api/overview) 自动修改配置属性
 
-以下面的 KCL 代码片段 (命名为 main.k) 和 RestAPI 为例
+以下面的 KCL 代码片段 (命名为 `main.k`) 和 RestAPI 为例
 
 ```python
 import regex
@@ -180,7 +180,7 @@ curl -X POST http://127.0.0.1:2021/api:protorpc/KclvmService.OverrideFile -H 'co
 }'
 ```
 
-服务调用完成后，main.k 会被修改为如下形式:
+服务调用完成后，`main.k` 会被修改为如下形式:
 
 ```python
 import regex

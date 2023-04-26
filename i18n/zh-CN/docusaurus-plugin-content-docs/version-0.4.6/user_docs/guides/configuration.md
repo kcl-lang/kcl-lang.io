@@ -21,7 +21,7 @@ schema Person:
 
 schema Name:
     first: str
-    middle?: str  # Optional, but must be non-empty when specified
+    middle?: str  # 可选，但指定时必须非空 
     last: str
 
     check:
@@ -30,7 +30,7 @@ schema Name:
         middle != ""
 
 alice = Person {
-    # gendre: "Female" # Error: misspelled attribute
+    # gender: "Female" # Error: 属性拼写错误 
     gender: "Female"
     name.first: "Alice"
     name.last: "White"

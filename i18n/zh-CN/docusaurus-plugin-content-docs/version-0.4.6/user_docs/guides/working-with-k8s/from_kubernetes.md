@@ -4,7 +4,7 @@
 
 从 Kubernetes 1.4 开始，引入了对 OpenAPI 规范的 alpha 支持（之前称为 Swagger 2.0，后来捐赠给了 OpenAPI Initiative），并且 API 描述遵循 [OpenAPI Spec 2.0](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md)。自 Kubernetes 1.5 开始，Kubernetes 可以[直接从源代码中提取模型，然后生成 OpenAPI 规范文件](https://github.com/kubernetes/kube-openapi)，以便自动保持规范和文档与操作和模型一致更新。
 
-除此之外，Kubernetes CRD 使用 [OpenAPI V3.0 验证](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#validation)来描述自定义模式（除了内置的 apiVersion、Kind 和 metadata 属性之外），APIServer 在资源创建和更新阶段使用它来验证 CR。
+除此之外，Kubernetes CRD 使用 [OpenAPI V3.0 验证](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#validation) 来描述自定义模式（除了内置的 apiVersion、Kind 和 metadata 属性之外），APIServer 在资源创建和更新阶段使用它来验证 CR。
 
 ## 2. KCL 的 OpenAPI 支持
 

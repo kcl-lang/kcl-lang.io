@@ -109,4 +109,4 @@ KCL 为 VS Code 本地版本提供了插件支持，并提供了高亮、自动�
 
 ## 下一步
 
-+ [KCL 快速开始](/docs/user_docs/getting-started/kcl-quick-start)
++ [KCL 语言速览](/docs/user_docs/getting-started/kcl-quick-start)
