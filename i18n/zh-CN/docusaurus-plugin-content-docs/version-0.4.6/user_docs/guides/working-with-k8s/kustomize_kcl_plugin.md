@@ -30,7 +30,7 @@ sudo kustomize fn run ./local-resource/ --as-current-user --dry-run
 
 ```yaml
 # kcl-fn-config.yaml
-apiVersion: fn.kpt.dev/v1alpha1
+apiVersion: krm.kcl.dev/v1alpha1
 kind: KCLRun
 metadata:
   annotations:
@@ -39,8 +39,8 @@ metadata:
         image: docker.io/peefyxpf/kustomize-kcl:v0.1.0
     config.kubernetes.io/path: example-use.yaml
     internal.config.kubernetes.io/path: example-use.yaml
-# 编辑此源代码
-# 您的 KCL 代码将 `ResourceList` 预加载到 `option("resource_list")
+  # 编辑此源代码
+  # 您在此的 KCL 代码将 `ResourceList` 预加载到 `option("resource_list")
 spec:
   source: |
     [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kustomize-kcl"}} for resource in option("resource_list").items]

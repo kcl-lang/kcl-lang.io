@@ -42,7 +42,7 @@ Run with KCL, we will see the generated data in yaml format as below:
 
 KCL command:
 
-```
+```bash
 kcl my_config.k
 ```
 
@@ -61,7 +61,7 @@ The exported variable is immutable by default so that once it is declared, we ca
 
 Sometimes we want to write a logic in configuration, then we can use:
 
-- Mutable and non-exported variable starting with '_'
+- Mutable and non-exported variable starting with `_`
 - If-else statement
 
 A non-exported variable means it will not appear in the output YAML, and it can be assigned multiple times.
@@ -143,7 +143,7 @@ Run with kcl, we will see the generated data as yaml format as below:
 
 KCL command:
 
-```
+```bash
 kcl my_config.k
 ```
 
@@ -245,13 +245,13 @@ assert cpu >= 256, "cpu cannot be less than 256"
 
 Run with KCL, we will see eval failure with an error message as output as below:
 
-```
+```bash
 kcl my_config.k
 ```
 
 Stderr:
 
-```
+```bash
 Assertion failure: env label is a must.
 ```
 
@@ -302,7 +302,7 @@ service = "my-service"
 print(labels) # debugging by print
 
 # test
-assert len(labels) > 0, "labels can't be empty" # uselen() to get list length
+assert len(labels) > 0, "labels can't be empty" # use len() to get list length
 assert "env" in labels, "env label is a must"
 assert cpu >= 256, "cpu cannot be less than 256"
 ```
@@ -313,7 +313,7 @@ Run with KCL, we will see the generated data in yaml format as below:
 
 KCL command:
 
-```
+```bash
 kcl my_config.k
 ```
 
@@ -367,7 +367,7 @@ image = "{}:1.14.2".format(_name) # string format
 service = "my-service"
 ```
 
-And test code defined in `my_config_test.k`, in which we can import my_config.k:
+And test code defined in `my_config_test.k`, in which we can import `my_config.k`:
 
 ```python
 import my_config
@@ -419,7 +419,7 @@ service = "my-service"
 
 Run with KCL, we will see the generated data in yaml format as below:
 
-```
+```bash
 kcl -D priority=2 -D env=pre-prod my_config.k
 ```
 
@@ -468,7 +468,7 @@ Run with KCL, we will see the generated data in yaml format as below:
 
 KCL command:
 
-```
+```bash
 kcl -D priority=2 -D env=pre-prod my_config.k
 ```
 
