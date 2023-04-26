@@ -3039,7 +3039,6 @@ spec:
 
 `var.name`
 
-
 #### 示例
 
 Code structure:
@@ -3085,8 +3084,12 @@ kcl main.k -S var
 输出结果为：
 
 ```yaml
-name: Alice
-age: 18
+var:
+  name: Bob
+---
+var:
+  name: Alice
+  age: 18
 ```
 
 ### KCL 变量修改
