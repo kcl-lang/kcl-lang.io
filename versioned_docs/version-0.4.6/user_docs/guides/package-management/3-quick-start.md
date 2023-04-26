@@ -72,14 +72,30 @@ Create the `main.k` file in the current package.
 And write the following into the `main.k` file.
 
 ```kcl
-import konfig.base.examples.native.nginx_deployment as nd
+import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = nd.demo
+demo = apps.Deployment {
+    metadata.name = "nginx-deployment"
+    spec = {
+        replicas = 3
+        selector.matchLabels.app = "nginx"
+        template.metadata.labels = selector.matchLabels
+        template.spec.containers = [
+            {
+                name = selector.matchLabels.app
+                image = "nginx:1.14.2"
+                ports = [
+                    {containerPort = 80}
+                ]
+            }
+        ]
+    }
+}
 ```
 
-## Use the `kpm` compile the kcl package
+## Compile the kcl package
 
-You can use `kpm` to compile the `main.k` file you just wrote.
+You can use the command to compile the `main.k` file you just wrote.
 
 ```shell
 kcl main.k -S demo
