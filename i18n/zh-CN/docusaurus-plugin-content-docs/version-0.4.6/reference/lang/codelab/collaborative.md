@@ -8,21 +8,21 @@ sidebar_position: 3
 ---
 ## 1. Introduction
 
-Kusion Configuration Language (KCL) is a simple and easy-to-use configuration language, where users can simply write the reusable configuration code.
+KCL（Kusion Configuration Language）是一种简单易用的配置语言，用户可以简单地编写可重复使用的配置代码。
 
-In this codelab, we will learn how to write the config in a collaborative way using the KCL config operation features.
+在这个教程中，我们将学习如何使用 KCL 配置操作（config operation）功能以协同的方式编写配置。
 
-### What We Will Learn
+### 本节将会学习
 
-1. Define schemas and organize project directories.
-2. Create multiple environment configurations via the KCL config operation features.
-3. Configure compiling parameters and tests.
+1. 定义 schema 并组织项目目录。
+2. 通过KCL的配置操作功能创建多个环境配置。
+3. 配置编译参数和测试。
 
-## 2. Define Schemas and Organize Project Directories
+## 2. 定义 Schema 和 组织项目目录
 
-### Schema Definitions
+### Schema 定义
 
-Suppose we want to define a server configuration with certain attributes, we can create a simple config by creating a `server.k`, we can fill in the following code as below which defines a reusable schema of the configuration of a server.
+假设我们想定义具有某些属性的服务器配置，我们可以通过创建一个 `server.k` 文件来创建一个简单的配置，我们可以填写以下代码来定义服务器配置的可重用模式：
 
 ```python
 import units
@@ -58,11 +58,11 @@ schema Port:
         targetPort > 1024, "targetPort must be larger than 1024"
 ```
 
-In the code above, we define a schema named `Server`, which represents the configuration type that the user will write, which contains some basic type attributes (e.g., `replicas`, `image`, etc) and some composite type attributes (e.g., `resource`, `main`, etc). In addition to some basic types mentioned in the [schema codelab](./schema.md), we can see two types in the above code `Unit` and `units.NumberMultiplier`. Among them, `units.NumberMultiplier` denotes the KCL number unit type, which means that a natural unit or binary unit can be added after the KCL number, such as `1K` for `1000`, `1Ki` for `1024`. `Unit` is the type alias of `units.NumberMultiplier`, which is used to simplify the writing of type annotations.
+在上面的代码中，我们定义了一个名为 Server 的 schema，该 schema 表示用户将要编写的配置类型，其中包含一些基本类型属性（例如`replicas`、`image` 等）和一些复合类型属性（例如 `resource`、`main` 等）。除了一些在 [schema codelab](./schema.md)中提到的基本类型之外，我们可以看到上面的代码中有两种类型 `Unit` 和 `units.NumberMultiplier`。其中，`units.NumberMultiplier` 表示 KCL 数字单位类型，意味着可以在 KCL 数字后添加自然单位或二进制单位，例如 `1K` 表示 `1000`，`1Ki` 表示 `1024`。 `Unit` 是 `units.NumberMultiplier` 的类型别名，用于简化类型注释的编写。
 
-### Project Directories
+### 项目目录
 
-In order to complete the collaborative configuration development, we first need a configuration project, which contains the configuration of the test application and the differential configuration of different environments, so we are creating the following project directory:
+为了完成协同的配置的开发，我们首先需要一个配置项目，其中包含测试应用程序的配置以及不同环境的差异化配置，因此我们正在创建以下项目目录：
 
 ```
 .
@@ -85,34 +85,34 @@ In order to complete the collaborative configuration development, we first need 
     └── sever.k
 ```
 
-The directory of the project mainly contains three parts:
+该项目目录主要包含三个部分：
 
-- `kcl.mod`: The file used to identify the root directory of the KCL project.
-- `pkg`: `Server` Schema structure reused by different application configurations.
-- `appops`: Server configurations of different applications, currently only one application `test_app` is placed.
-  - `base`: Application common configurations for all environments.
-  - `dev`: Application configuration for the development environment.
-  - `prod`: Application configuration for the production environment.
+- `kcl.mod`：用于标识KCL项目的根目录的文件。
+- `pkg`：不同应用程序配置所共用的 `Server Schema` 结构。
+- `appops`：不同应用程序的 Server 配置，目前仅包含一个名为 `test_app` 的应用程序。
+  - `base`：供所有环境使用的应用程序通用配置。
+  - `dev`：供开发环境使用的应用程序配置。
+  - `prod`：供生产环境使用的应用程序配置。
 
-The meaning of `base.k`, `main.k`, `kcl.yaml` and `ci-test/stdout.golden.yaml` will be mentioned in subsequent sections.
+后续章节将会介绍`base.k`、`main.k`、`kcl.yaml` 和 `ci-test/stdout.golden.yaml` 的含义。
 
-## 3. Create multiple environment configurations via the KCL config operation features
+## 3. 通过 KCL 配置操作功能创建多个环境配置
 
-### Create a baseline configuration
+### 创建基线配置
 
-After we have organized the project directory and the basic server configuration model, we can write the configuration of the user application. We can create our own test application folder `test_app` and place it in the application configuration folder `appops`.
+在组织好项目目录和基本的服务器配置模型之后，我们可以编写用户应用程序的配置。我们可以创建自己的测试应用程序文件夹 `test_app`，并将其放置在应用程序配置文件夹 `appops` 中。
 
-For the configuration of an application, we often divide it into a basic configuration and the differential configuration of multiple environments and merge them. Through the configuration merging feature of KCL, we can easily do this. Assuming that we have two configurations of development environment and production environment, we can create three folders: `base`, `dev` and `prod` to store baseline, development environment and production environment configurations respectively. First, we write the configuration of `base/base.k`:
+对于应用程序的配置，我们通常将其分为基本配置和多个环境的差异化配置并进行合并。通过 KCL 的配置合并功能，我们可以轻松实现这一点。假设我们有开发环境和生产环境的两个配置，我们可以创建三个文件夹：`base`、`dev` 和 `prod` 分别存储基线、开发环境和生产环境的配置。首先，我们编写 `base/base.k` 的配置：
 
 ```python
 import pkg
 
 server: pkg.Server {
-    # Set the image with the value "nginx:1.14.2"
+    # 设置镜像的值为 "nginx:1.14.2"
     image = "nginx:1.14.2"
-    # Add a label app into labels
+    # 添加 app label
     labels.app = "test_app"
-    # Add a mainContainer config, and its ports are [{protocol = "HTTP", port = 80, targetPort = 1100}]
+    # 添加一个mainContainer配置，它的端口是 [{protocol = "HTTP", port = 80, targetPort = 1100}]
     mainContainer.ports = [{
         protocol = "HTTP"
         port = 80
@@ -121,15 +121,15 @@ server: pkg.Server {
 }
 ```
 
-As in the above code, we use the `import` keyword in `base.k` to import the `Server` schema placed under `pkg` and use it to instantiate a configuration named `server`, in which we set `image` attribute  to `"nginx:1.14.2"`, and a label `app` with the value `test_app` is added. In addition, we also added the configuration of the main container `mainContainer` with the value `[{protocol = "HTTP", port = 80, targetPort = 1100}]` for the ports attribute.
+正如上述代码中所示，我们使用 `import` 关键字在 `base.k` 中导入放置在 `pkg` 下的 `Server` schema，并使用它实例化一个名为`server` 的配置，在其中将 `image` 属性设置为 `"nginx:1.14.2"`，并添加一个带有值为 `test_app` 的标签 `app`。此外，我们还在 `ports` 属性中添加了主容器 `mainContainer` 的配置，其值为 `[{protocol = "HTTP", port = 80, targetPort = 1100}]`。
 
-KCL command:
+KCL 命令:
 
-```
+```bash
 kcl appops/test_app/base/base.k
 ```
 
-Output:
+输出:
 
 ```yaml
 server:
@@ -149,28 +149,28 @@ server:
     app: test_app
 ```
 
-At this point, we have a baseline configuration.
+当前，我们已经有了一个基线配置。
 
-### Create multiple environment configurations
+### 创建多重环境配置
 
-Next we configure a differentiated multi-environment configuration. First assume that we want to use a temporary image of our own `nginx:1.14.2-dev` in the development environment, and then use it to override the server configuration in the baseline, we can write the following configuration in `dev/main.k`:
+接下来我们将配置一个差异化的多环境配置。首先假设我们想在开发环境中使用自己的临时镜像 `nginx:1.14.2-dev`，然后使用它来覆盖基准中的服务器配置，我们可以在 `dev/main.k` 中编写以下配置：
 
 ```python
 import pkg
 
 server: pkg.Server {
-    # Override the image declared in the base
+    # 覆盖 base 配置中的声明的镜像
     image = "nginx:1.14.2-dev"
 }
 ```
 
-KCL command:
+KCL 命令:
 
-```
+```bash
 kcl appops/test_app/base/base.k appops/test_app/dev/main.k
 ```
 
-Output:
+输出:
 
 ```yaml
 server:
@@ -190,22 +190,22 @@ server:
     app: test_app
 ```
 
-It can be seen that the `image` field of the output YAML is overwritten to `nginx:1.14.2-dev`. Suppose we also want to add a label to the `dev` environment with a key of `env` and a value of `dev`, we add the following code to `dev/main.k`:
+可以看出输出的 YAML 文件的 `image` 字段被覆盖为 `nginx:1.14.2-dev`。假设我们还想将一个具有键为 `env`，值为 `dev` 的标签添加到 `dev` 环境中，我们将以下代码添加到 `dev/main.k` 中：
 
 ```python
 import pkg
 
 server: pkg.Server {
-    # Override the image declared in the base
+    # 覆盖 base 配置中的声明的镜像
     image = "nginx:1.14.2-dev"
-    # Union a new label env into base labels
+    # 将新标签 env 合并到 base 标签中
     labels.env = "dev"
 }
 ```
 
-KCL command:
+KCL 命令:
 
-```
+```bash
 kcl appops/test_app/base/base.k appops/test_app/dev/main.k
 ```
 
@@ -228,19 +228,19 @@ server:
     env: dev
 ```
 
-It can be seen that there are two labels in the `labels` field of the output YAML.
+可以看到输出的 YAML 文件的 `labels` 字段中有两个标签。
 
-In addition, we can also use the `+=` operator to add new values to list type attributes, such as the `mainContainer.ports` configuration in the baseline environment, continue to modify the code in `dev/main.k`:
+此外，我们还可以使用 `+=` 运算符将新值添加到列表类型属性中，例如在基准环境中的 `mainContainer.ports` 配置，继续修改 `dev/main.k` 中的代码：
 
 ```python
 import pkg
 
 server: pkg.Server {
-    # Override the base image.
+    # 覆盖 base 配置中的声明的镜像
     image = "nginx:1.14.2-dev"
-    # Union a new label env into base labels.
+    # 将新标签 env 合并到 base 标签中
     labels.env = "dev"
-    # Append a port into base ports.
+    # 在 base ports配置中添加一个 port
     mainContainer.ports += [{
         protocol = "TCP"
         port = 443
@@ -249,13 +249,13 @@ server: pkg.Server {
 }
 ```
 
-KCL command:
+KCL 命令:
 
-```
+```bash
 kcl appops/test_app/base/base.k appops/test_app/dev/main.k
 ```
 
-Output:
+输出:
 
 ```yaml
 server:
@@ -279,24 +279,24 @@ server:
     env: dev
 ```
 
-Using the same method, we can build the production configuration, write the code in the `dev/main.k` file, and add a label to it.
+使用相同的方法，我们可以构建生产配置，在 `dev/main.k` 文件中编写代码，并为其添加标签。
 
 ```python
 import pkg
 
 server: pkg.Server {
-    # Union a new label env into base labels
+    # 将新标签 env 合并到 base 标签中
     labels.env = "prod"
 }
 ```
 
-KCL command:
+KCL 命令:
 
-```
+```bash
 kcl appops/test_app/base/base.k appops/test_app/prod/main.k
 ```
 
-Output:
+输出:
 
 ```yaml
 server:
@@ -317,9 +317,9 @@ server:
     env: prod
 ```
 
-## 4. Configure compiling parameters and tests
+## 4. 配置编译参数和测试
 
-In the previous section, we built a multi-environment configuration through code. It can be seen that the KCL command line compilation parameters of different environments are similar, so we can configure these compilation parameters into a file and input them to the KCL command line for invocation. Configure the following code in `dev/kcl.yaml`:
+在前面的章节中，我们通过代码构建了一个多环境配置。可以看出不同环境的 KCL 命令行编译参数相似，因此我们可以将这些编译参数配置到一个文件中，并将其输入到 KCL 命令行中进行调用。请将以下代码配置在 `dev/kcl.yaml`中：
 
 ```yaml
 kcl_cli_configs:
@@ -329,16 +329,16 @@ kcl_cli_configs:
   output: ./ci-test/stdout.golden.yaml
 ```
 
-Then we can compile the configuration in the development environment with the following command:
+然后我们可以使用以下命令在开发环境中编译配置：
 
-```
+```bash
 cd appops/test_app/dev && kcl -Y ./kcl.yaml
 ```
 
-In addition, we have configured the `output` field in `dev/kcl.yaml` to output YAML to a file for subsequent configuration distribution or testing. You can verify that the application's configuration is as expected by walking through the `kcl.yaml` builds in each environment and comparing with `./ci-test/stdout.golden.yaml`.
+此外，我们已经在 `dev/kcl.yaml` 中配置了 `output` 字段，以将 YAML 输出到文件，以便进行后续配置分发或测试。您可以通过遍历每个环境中的 `kcl.yaml` 构建，并将其与 `./ci-test/stdout.golden.yaml` 进行比较，可以验证应用程序的配置是否符合预期。
 
-## 5. The Final Step
+## 5. 最后
 
-Congratulations!
+恭喜！
 
-We have completed the third lesson about KCL.
+我们已经完成了关于 KCL 的第三课。
