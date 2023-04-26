@@ -30,7 +30,7 @@ The output YAML is
 
 ```yaml
 # kcl-fn-config.yaml
-apiVersion: fn.kpt.dev/v1alpha1
+apiVersion: krm.kcl.dev/v1alpha1
 kind: KCLRun
 metadata:
   annotations:
