@@ -1,8 +1,8 @@
 # Kustomize KCL 插件
 
-[Kustomize](https://github.com/kubernetes-sigs/kustomize) 允许自定义用于多种目的原始的、无模板的YAML文件，同时保留原始YAML不变和可用。
+[Kustomize](https://github.com/kubernetes-sigs/kustomize) 允许自定义用于多种目的原始的、无模板的 YAML 文件，同时保留原始 YAML 不变和可用。
 
-KCL 可用于创建函数，以改变和/或验证Kubernetes资源模型（KRM）的YAML输入/输出格式，并且我们提供 Kustomize KCL 函数来简化函数编写过程。
+KCL 可用于创建函数，以改变和/或验证 Kubernetes 资源模型（KRM）的 YAML 输入/输出格式，并且我们提供 Kustomize KCL 函数来简化函数编写过程。
 
 ## 先决条件
 
@@ -10,7 +10,7 @@ KCL 可用于创建函数，以改变和/或验证Kubernetes资源模型（KRM�
 
 ## 快速开始
 
-让我们编写一个仅向 Deployment 资源添加注释（annotation）managed-by=kustomize-kcl 的 KCL 函数
+让我们编写一个仅向 Deployment 资源添加 annotation `managed-by=kustomize-kcl` 的 KCL 函数
 
 ### 获取示例
 
@@ -40,7 +40,7 @@ metadata:
     config.kubernetes.io/path: example-use.yaml
     internal.config.kubernetes.io/path: example-use.yaml
   # 编辑此源代码
-  # 您在此的 KCL 代码将 `ResourceList` 预加载到 `option("resource_list")
+  # 您在此的 KCL 代码将 `ResourceList` 预加载到 `option("resource_list")`
 spec:
   source: |
     [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kustomize-kcl"}} for resource in option("resource_list").items]
@@ -87,11 +87,11 @@ spec:
         - containerPort: 80
 ```
 
-## KCL开发指南
+## KCL 开发指南
 
 以下是可以使用 KCL 执行的操作：
 
-+ 从`option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
++ 从 `option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
 + 返回输出资源的 KPM 列表。
 + 使用 `assert {condition}，{error_message}` 返回错误消息。
 
