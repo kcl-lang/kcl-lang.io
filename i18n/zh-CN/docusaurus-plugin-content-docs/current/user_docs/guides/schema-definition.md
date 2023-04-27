@@ -18,25 +18,25 @@ KCL 的核心场景是写配置和校验，因此 KCL 被设计之初的一个�
 schema App:
     domainType: "Standard" | "Customized" | "Global"
     containerPort: int
-    services?: [Service]  # `?` specifies a optional attribute
-    volumes?: [Volume]  # `?` specifies a optional attribute
+    services?: [Service]  # `?` 标记为可选属性 
+    volumes?: [Volume]  # `?` 标记为可选属性
 
     check:
-        1 <= containerPort <= 65535  # `containerPort` must be in range [1, 65535]
+        1 <= containerPort <= 65535  # `containerPort` 值必须在 [1, 65535] 范围内
 
 schema Service:
     clusterIP: str
     $type: str
 
     check:
-        clusterIP == "None" if $type == "ClusterIP" # When `type` is "ClusterIP", `clusterIP` must be `"None"`
+        clusterIP == "None" if $type == "ClusterIP" # 如果 `type` 是 "ClusterIP", `clusterIP` 必须为 `"None"`
 
 schema Volume:
-    container: str = "*"  # The default value of `container` is "*"
+    container: str = "*"  # `container` 的默认值为 "*"
     mountPath: str
 
     check:
-        mountPath not in ["/", "/boot", "/home", "dev", "/etc", "/root"]  # `mountPath` must not be one of the list `["/", "/boot", "/home", "dev", "/etc", "/root"]`
+        mountPath not in ["/", "/boot", "/home", "dev", "/etc", "/root"]  # `mountPath` 必须为列表中 `["/", "/boot", "/home", "dev", "/etc", "/root"]` 中的一项
 
 app: App {
     domainType = "Standard"
@@ -70,7 +70,7 @@ app:
     type: ClusterIP
 ```
 
-此外，我们还可以将 `App` 模型放入单独的 app_module.k 中，在需要时我们可以在 main.k 中使用 `import` 关键字进行模块化管理，比如下面的文件结构
+此外，我们还可以将 `App` 模型放入单独的 `app_module.k` 中，在需要时我们可以在 `main.k` 中使用 `import` 关键字进行模块化管理，比如下面的文件结构
 
 ```
 .
@@ -78,7 +78,7 @@ app:
 └── main.k
 ```
 
-其中 app_module.k 的内容为
+其中 `app_module.k` 的内容为
 
 ```python
 schema App:
@@ -98,17 +98,17 @@ schema Service:
         clusterIP == "None" if $type == "ClusterIP"
 
 schema Volume:
-    container: str = "*"  # The default value of `container` is "*"
+    container: str = "*"  # `container` 的默认值为 "*"
     mountPath: str
 
     check:
         mountPath not in ["/", "/boot", "/home", "dev", "/etc", "/root"]
 ```
 
-main.k 的内容为
+`main.k` 的内容为
 
 ```python
-import .app_module  # A relative path import
+import .app_module  # 相对路径导入
 
 app: app_module.App {
     domainType = "Standard"

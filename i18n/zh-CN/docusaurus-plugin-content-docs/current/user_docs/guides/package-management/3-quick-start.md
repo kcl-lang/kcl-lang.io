@@ -21,7 +21,7 @@ kpm init my_package
 - my_package
         |- kcl.mod
         |- kcl.mod.lock
-        |- # 你可以直接在这个目录下写你的kcl程序。
+        |- # 你可以直接在这个目录下写你的 kcl 程序
 ```
 
 `kcl.mod.lock` 是 `kpm` 用来固定依赖版本的文件，是自动生成的，请不要人工修改这个文件。
@@ -37,13 +37,13 @@ version = "0.0.1"
 
 ## 为 KCL 包添加依赖
 
-如果你想要使用 [Konfig](https://github.com/awesome-kusion/konfig.git) 中的 KCL 程序.
+如果你想要使用 [Konfig](https://github.com/awesome-kusion/konfig.git) 中的 KCL 程序。
 
 ```shell
 kpm add -git https://github.com/awesome-kusion/konfig.git -tag v0.0.1
 ```
 
-`kpm` 会为您将依赖添加到 kcl.mod 文件中.
+`kpm` 会为您将依赖添加到 kcl.mod 文件中。
 
 ```shell
 [package]
@@ -66,7 +66,7 @@ konfig = { git = "https://github.com/awesome-kusion/konfig.git", tag = "v0.0.1" 
 - my_package
         |- kcl.mod
         |- kcl.mod.lock
-        |- main.k # Your KCL program.
+        |- main.k # 你的 KCL 程序
 ```
 
 并且将下面的内容写入 `main.k` 文件中。
@@ -127,7 +127,7 @@ spec:
 
 ## 打包您的 kcl 包
 
-你可以使用 `kpm pkg` 将您的包与其对应的依赖打包在一起.
+你可以使用 `kpm pkg` 将您的包与其对应的依赖打包在一起。
 
 ```shell
 kpm pkg --target my_package.tar
@@ -140,7 +140,7 @@ kpm pkg --target my_package.tar
         |- kcl.mod
         |- kcl.mod.lock
         |- main.k
-        |- my_package.tar # `kpm pkg` 命令生成的 tar 包。
-        |- vendor # 当前包所有的依赖都将被复制到 `vendor`中。 
+        |- my_package.tar # `kpm pkg` 命令生成的 tar 包
+        |- vendor # 当前包所有的依赖都将被复制到 `vendor` 中 
              |- konfig_v0.0.1
 ```

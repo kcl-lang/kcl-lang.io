@@ -47,8 +47,8 @@ kind: KCLRun
 metadata: # kpt-merge: /set-annotation
   name: set-annotation
 spec:
-  # EDIT THE SOURCE!
-  # This should be your KCL code which preloads the `ResourceList` to `option("resource_list")
+  # 编辑此源代码
+  # 您在此的 KCL 代码将 `ResourceList` 预加载到 `option("resource_list")
   source: |
     [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kpt"}} for resource in option("resource_list").items]
 ```
@@ -58,11 +58,11 @@ spec:
 通过 kpt 运行 KCL 代码
 
 ```bash
-# Note: you need add sudo and --as-current-user flags to ensure KCL has permission to write temp files in the container filesystem.
+# 注意：您需要添加 sudo 和 --as-current-user 标志以确保 KCL 有权在容器文件系统中写入临时文件。
 sudo kpt fn eval ./data -i docker.io/peefyxpf/kpt-kcl:v0.1.0 --as-current-user --fn-config kcl-fn-config.yaml
 
-# Verify that the annotation is added to the `Deployment` resource and the other resource `Service` 
-# does not have this annotation.
+# 验证 annotation 是否添加到 `Deployment` 资源并且其他资源 `Service`
+# 没有这个 annotation。
 cat ./data/resources.yaml | grep annotations -A1 -B5
 ```
 
