@@ -2034,7 +2034,7 @@ lambda 函数具有如下特性：
 ```python
 _func = lambda x: int, y: int -> int {
     x + y
-}  # Define a function using the lambda expression
+}  # 使用 lambda 表达式定义一个函数
 _func = lambda x: int, y: int -> int {
     x - y
 }  # Ok
@@ -2211,8 +2211,6 @@ _b = 2  # 可变非导出变量
 ```
 
 ## 48. 在 KCL 中存在类似 Go `interface{}`/`any` 或者 Java `Object` 的类型嘛?
-
-In KCL, we can use the `any` type annotation to define a variable to store any values such as integers, strings and schemas. For example:
 
 在 KCL 中，我们可以使用 `any` 类型注解来定义一个变量存储任意类型比如整数、字符串、schema 结构等数据。比如如下例子:
 

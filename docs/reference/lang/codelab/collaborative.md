@@ -125,7 +125,7 @@ As in the above code, we use the `import` keyword in `base.k` to import the `Ser
 
 KCL command:
 
-```
+```bash
 kcl appops/test_app/base/base.k
 ```
 
@@ -166,7 +166,7 @@ server: pkg.Server {
 
 KCL command:
 
-```
+```bash
 kcl appops/test_app/base/base.k appops/test_app/dev/main.k
 ```
 
@@ -205,7 +205,7 @@ server: pkg.Server {
 
 KCL command:
 
-```
+```bash
 kcl appops/test_app/base/base.k appops/test_app/dev/main.k
 ```
 
@@ -251,7 +251,7 @@ server: pkg.Server {
 
 KCL command:
 
-```
+```bash
 kcl appops/test_app/base/base.k appops/test_app/dev/main.k
 ```
 
@@ -292,7 +292,7 @@ server: pkg.Server {
 
 KCL command:
 
-```
+```bash
 kcl appops/test_app/base/base.k appops/test_app/prod/main.k
 ```
 
@@ -331,7 +331,7 @@ kcl_cli_configs:
 
 Then we can compile the configuration in the development environment with the following command:
 
-```
+```bash
 cd appops/test_app/dev && kcl -Y ./kcl.yaml
 ```
 
