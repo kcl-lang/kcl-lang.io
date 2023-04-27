@@ -1,6 +1,6 @@
 ---
 slug: 2023-new-version-feature-interpretation-kclvm-go-feature-overview
-title: See Goodbye to Old KCL Go SDK, New One is Out
+title: See Goodbye to Old KCL Go SDK, the New One is Out!
 authors:
   name: KCL Team
   title: KCL Team
