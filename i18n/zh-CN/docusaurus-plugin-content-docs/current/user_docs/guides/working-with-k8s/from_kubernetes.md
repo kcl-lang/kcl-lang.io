@@ -91,7 +91,7 @@
 - 从 CRD 生成 KCL Schema
 
     ```bash
-        kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
+    kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
     ```
 
 - 在 KCL 中基于 CRD 定义 CR
