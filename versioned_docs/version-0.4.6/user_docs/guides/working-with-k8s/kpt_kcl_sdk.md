@@ -46,7 +46,7 @@ metadata: # kpt-merge: /set-annotation
   name: set-annotation
 spec:
   # EDIT THE SOURCE!
-  # This should be your KCL code which preloads the `ResourceList` to `option("resource_list")
+  # This should be your KCL code which preloads the `ResourceList` to `option("resource_list")`
   source: |
     [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kpt"}} for resource in option("resource_list").items]
 ```
