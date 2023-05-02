@@ -11,9 +11,7 @@ KCL 可用于创建函数来转换和/或验证 YAML Kubernetes 资源模型 (KR
 
 ## 快速开始
 
-Let’s write a KCL function which add annotation `managed-by=kpt` only to Deployment resources.
-
-让我们编写一个仅向 Deployment 资源添加注释 `managed-by=kpt` 的 KCL 函数
+让我们编写一个仅向 Deployment 资源添加 annotation `managed-by=kpt` 的 KCL 函数
 
 ## 获取示例
 
@@ -48,7 +46,7 @@ metadata: # kpt-merge: /set-annotation
   name: set-annotation
 spec:
   # 编辑此源代码
-  # 您在此的 KCL 代码将 `ResourceList` 预加载到 `option("resource_list")
+  # 您在此的 KCL 代码将 `ResourceList` 预加载到 `option("resource_list")`
   source: |
     [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kpt"}} for resource in option("resource_list").items]
 ```
@@ -61,8 +59,7 @@ spec:
 # 注意：您需要添加 sudo 和 --as-current-user 标志以确保 KCL 有权在容器文件系统中写入临时文件。
 sudo kpt fn eval ./data -i docker.io/peefyxpf/kpt-kcl:v0.1.0 --as-current-user --fn-config kcl-fn-config.yaml
 
-# 验证 annotation 是否添加到 `Deployment` 资源并且其他资源 `Service`
-# 没有这个 annotation。
+# 验证 annotation 是否添加到 `Deployment` 资源并且其他资源 `Service` 没有这个 annotation。
 cat ./data/resources.yaml | grep annotations -A1 -B5
 ```
 

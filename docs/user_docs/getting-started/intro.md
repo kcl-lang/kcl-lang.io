@@ -287,7 +287,3 @@ Although not designed as a data definition language, Rego, the language used for
 Rego has its roots in logic programming. It is based on Datalog, a restricted form of Prolog, whereas KCL is based on static type structure. Typed-feature structures were designed to deal with the shortcomings of Prolog for applications in encoding human languages. Using a Datalog variant for what is essentially a constraint validation task is somewhat curious. Datalog makes an excellent query language. But for constraint enforcement, it is a bit cumbersome as one effectively first needs to query values to which to apply the constraints.
 
 Besides, KCL’s approach is more amenable to finding normalized and simplified representations of constraints, which makes it more suitable for creating OpenAPI for generated from OpenAPI.
-
-## Next Step
-
-+ [Install KCL](/docs/user_docs/getting-started/install)

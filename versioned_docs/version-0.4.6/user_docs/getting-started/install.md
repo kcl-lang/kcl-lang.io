@@ -106,7 +106,3 @@ The KCL Extension extension provides some coding assistance, e.g., highlight, go
 ### IntelliJ IDEA
 
 Download the distribution from [here](https://github.com/KusionStack/intellij-kcl) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
-
-## Next Step
-
-+ [KCL Quick Start](/docs/user_docs/getting-started/kcl-quick-start)
