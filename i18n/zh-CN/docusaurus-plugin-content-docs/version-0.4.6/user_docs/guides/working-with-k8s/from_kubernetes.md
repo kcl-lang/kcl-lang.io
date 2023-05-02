@@ -12,15 +12,15 @@
 
 ## 3. 从 Kubernetes 迁移到 KCL
 
-完整的 Kubernetes 内置模型 OpenAPI 定义存储在 [Kubernetes OpenAPI-Spec 文件](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json)中。将该文件作为输入，KCL OpenAPI 工具可以生成相应版本的所有模型模式（model schema）。在下面的部分中，我们将以部署发布场景为例介绍如何从 Kubernetes 迁移到 KCL。假设你的项目正在使用 [Kubernetes Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) 来定义 Deployment 配置，迁移到 KCL 只需要以下步骤：
+完整的 Kubernetes 内置模型 OpenAPI 定义存储在 [Kubernetes OpenAPI-Spec 文件](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json)中。将该文件作为输入，KCL OpenAPI 工具可以生成相应版本的所有模型（model）的 schema。在下面的部分中，我们将以部署发布场景为例介绍如何从 Kubernetes 迁移到 KCL。假设你的项目正在使用 [Kubernetes Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) 来定义 Deployment 配置，迁移到 KCL 只需要以下步骤：
 
 ### 3.1 基于模型编写配置
 
-我们为你提供了一个开箱即用的 `kusion_models` 包，让你可以快速开始。其中包含一个精心设计的前端模型，称为[服务器模型](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k)(`Server schema`)。你可以通过初始化 `Server schema` 来声明其配置。有关模式及其属性的说明和用法，请参阅 [Server schema 文档](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server)。
+我们为你提供了一个开箱即用的 `kusion_models` 包，让你可以快速开始。其中包含一个精心设计的前端模型，称为[服务器模型](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k)(Server schema)。你可以通过初始化 `Server schema` 来声明其配置。有关模式及其属性的说明和用法，请参阅 [Server schema 文档](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server)。
 
 ### 3.2 构建你的自定义前端模型
 
-现有的 KCL 模型可能无法满足你的特定业务需求，那么你也可以设计你自己的自定义前端模型包。在 Konfig 的`kusion_kubernetes` 目录中，有一个 Kubernetes 1.22 生成模型的副本，你可以基于它设计你的自定义模型。你还可以开发自定义脚本以迁移你的配置数据，就像 `kube2kcl` 工具所做的那样。
+现有的 KCL 模型可能无法满足你的特定业务需求，那么你也可以设计你自己的自定义前端模型包。在 Konfig 的 `kusion_kubernetes` 目录中，有一个 Kubernetes 1.22 生成模型的副本，你可以基于它设计你的自定义模型。你还可以开发自定义脚本以迁移你的配置数据，就像 `kube2kcl` 工具所做的那样。
 
 ### 3.2.1 将 Kubernetes Deployment 转换为 KCL 模型
 
@@ -91,7 +91,7 @@
 - 从 CRD 生成 KCL Schema
 
     ```bash
-        kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
+    kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
     ```
 
 - 在 KCL 中基于 CRD 定义 CR

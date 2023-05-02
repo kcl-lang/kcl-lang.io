@@ -6,7 +6,7 @@
 
 ```shell
 mkdir my_package # 创建一个新的文件夹 'my_package'
-cd my_package # 进入这个文件夹中 'my_package'
+cd my_package    # 进入这个文件夹 'my_package' 中
 ```
 
 创建一个叫做 `my_package` 的包。

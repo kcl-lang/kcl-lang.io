@@ -90,7 +90,7 @@ If you developed CRDs, you can generate the KCL version of the CRD schemas and d
 
 * Generate KCL Schema from CRD
 
-    ```
+    ```bash
     kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
     ```
 

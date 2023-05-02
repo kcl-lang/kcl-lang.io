@@ -23,7 +23,7 @@ sidebar_label: 快速开始
 
 在开始之前，我们需要做以下准备工作：
 
-1. 安装 KCL - 详情信息请参阅[下载和安装](/docs/user_docs/getting-started/install)。
+1. 安装 KCL, 详情信息请参阅[下载和安装](/docs/user_docs/getting-started/install)。
 
 2. 下载开源 Konfig 大库，仓库地址: [https://github.com/KusionStack/konfig.git](https://github.com/KusionStack/konfig.git)
 
