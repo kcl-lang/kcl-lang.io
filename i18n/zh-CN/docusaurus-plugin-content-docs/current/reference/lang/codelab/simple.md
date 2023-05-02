@@ -6,26 +6,25 @@ weight: 2
 description: 使用 KCL 编写简单配置
 sidebar_position: 1
 ---
-## 1. Introduction
+## 1. 介绍
 
-Kusion Configuration Language (KCL) is a simple and easy-to-use configuration language, where users can simply
-write the reusable configuration code.
+KCL（Kusion Configuration Language）是一种简单易用的配置语言，用户可以简单地编写可重用的配置代码。
 
-In this first codelab, we will learn how to write a simple config with KCL.
+在这个第一个教程中，我们将学习如何使用 KCL 编写一个简单的配置。
 
-Learning this codelab only requires basic programming knowledge, and experience with python will make it even easier.
+学习这个代码实验只需要基本的编程知识，如果你有 Python 经验，将会更容易上手。
 
-### What We Will Learn
+### 本节将会学习
 
-1. Write simple key-value configuration in a programmable way
-2. Write simple logic in KCL code
-3. Write collections in KCL code
-4. Test and debug with KCL code
-5. Use built-in support in KCL code
-6. Share and reuse KCL code
-7. Write config with dynamic input arguments
+1. 用一种可编程的方式编写简单的 key-value 配置
+2. 使用 KCL 编写简单的逻辑
+3. 使用 KCL 编写集合（collections）
+4. 使用 KCL 代码进行测试和调试
+5. 在 KCL 代码中使用内置（built-in）支持
+6. 共享和重用 KCL 代码
+7. 使用动态输入参数编写配置
 
-## 2. Write Key-Value Pairs
+## 2. 编写Key-Value键值对
 
 Generate a simple config by creating a `my_config.k`, we can fill in the following code without strict format which describes the configuration of deploy.
 
@@ -36,17 +35,17 @@ image = "nginx:1.14.2"
 service = "my-service"
 ```
 
-In the code above, cpu and memory are declared as int value, while image and service are string literal.
+在上述代码中，cpu 和 memory 被声明为 int 类型的值，而 image 和 service 被声明为字符串字面值。
 
-Run with KCL, we will see the generated data in yaml format as below:
+使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
-KCL command:
+KCL 命令:
 
-```
+```bash
 kcl my_config.k
 ```
 
-Stdout:
+标准输出:
 
 ```yaml
 cpu: 256
@@ -55,28 +54,28 @@ image: nginx:1.14.2
 service: my-service
 ```
 
-The exported variable is immutable by default so that once it is declared, we can't modify it some where else.
+可导出变量（exported variable）默认情况下是不可变的，一旦声明，就不能在其他地方修改它。
 
-## 3. Write Simple Logic
+## 3. 编写简单逻辑
 
-Sometimes we want to write a logic in configuration, then we can use:
+有时候我们想在配置中编写一些逻辑，那么我们就可以使用:
 
-- Mutable and non-exported variable starting with '_'
-- If-else statement
+- 以 `_` 开头的非导出可变变量（mutable and non-exported variable）
+- if-else 语句
 
-A non-exported variable means it will not appear in the output YAML, and it can be assigned multiple times.
+非导出变量表示它不会出现在输出的 YAML 中，且它可以被多次赋值。
 
-Here is a sample to show how to adjust the resource with conditions.
+这是一个示例，显示如何根据条件调整资源。
 
-KCL command:
+KCL 命令：
 
 ```python
 kcl my_config.k
 ```
 
 ```python
-_priority = 1 # a non-exported and mutable variable
-_cpu = 256 # a non-exported and mutable variable
+_priority = 1 # 非导出可变变量
+_cpu = 256 # 非导出可变变量
 
 if _priority == 1:
     _cpu = 256
@@ -93,13 +92,13 @@ image = "nginx:1.14.2"
 service = "my-service"
 ```
 
-Run with KCL, we will see the generated data in yaml format as below:
+使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
 ```python
 kcl my_config.k
 ```
 
-Stdout:
+标准输出：
 
 ```yaml
 cpu: 256
@@ -111,16 +110,19 @@ service: my-service
 .. note::
 KCL has rich support of operators and string member functions, please read manual and specification for more details.
 
-## 4. Write Collections
+.. 注意::
+KCL 对运算符和字符串成员函数有丰富的支持，请阅读手册和规范以了解更多细节。
 
-We can use collections to represent complex data types. The collections which are already supported are:
+## 4. 编写集合
+
+我们可以使用集合来表示复杂的数据类型。已支持的集合类型有:
 
 - list
 - dict
 
 ```python
-_priority = 1  # a non-exported and mutable variable
-_cpu = 256  # a non-exported and mutable variable
+_priority = 1  # 非导出可变变量
+_cpu = 256  # 非导出可变变量
 
 if _priority == 1:
     _cpu = 256
@@ -133,21 +135,21 @@ else:
 
 cpu = _cpu
 memory = _cpu * 2
-command = ["nginx"] # a list
+command = ["nginx"] # 列表
 labels = {run = "my-nginx"} # a dict
 image = "nginx:1.14.2"
 service = "my-service"
 ```
 
-Run with kcl, we will see the generated data as yaml format as below:
+使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
-KCL command:
+KCL 命令：
 
-```
+```bash
 kcl my_config.k
 ```
 
-Stdout:
+标准输出：
 
 ```yaml
 cpu: 512
@@ -160,15 +162,15 @@ image: nginx:1.14.2
 service: my-service
 ```
 
-> Check manual and specification out for more about collection date type and member functions.
+> 有关集合数据类型和成员函数的更多信息，请查阅手册和规范。
 
-## 5. Append Items Into Collections
+## 5. 在集合中添加元素
 
-We can combine logical expressions, comprehensions, slices, unions and other characteristics to dynamically add elements to the collection
+我们可以将逻辑表达式、推导式、切片、联合类型等特性组合起来，动态地将元素添加到集合中。
 
 ```python
-_priority = 1 # a non-exported and mutable variable
-_cpu = 256 # a non-exported and mutable variable
+_priority = 1 # 非导出可变变量
+_cpu = 256 # 非导出可变变量
 _env = "pre-prod"
 
 if _priority == 1:
@@ -182,26 +184,26 @@ else:
 
 cpu = _cpu
 memory = _cpu * 2
-_command = ["nginx"] # a list
-_command = _command + ["-f", "file"]  # Append itemsinto command using + operator to contact two lists
-command = [c.lower() for c in _command]  # Take eachelement in the list to lowercase
+_command = ["nginx"] # 列表
+_command = _command + ["-f", "file"]  # 使用 + 运算符将元素附加到命令中以连接两个列表
+command = [c.lower() for c in _command]  # # 将列表中的每个元素转为小写
 _labels = {
     run = "my-nginx"
     if _env:
-        env = _env  # Append a dict key-value pair when the _env is not None/Undefined or empty using if expressions
-} # a dict
+        env = _env  # 当 _env 不是 None/Undefined 或为空时使用 if 表达式添加一个字典键值对
+} # 字典
 labels = _labels
 image = "nginx:1.14.2"
 service = "my-service"
 ```
 
-Run with kcl, we will see the generated data as yaml format as below:
+使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
 ```python
 kcl my_config.k
 ```
 
-Stdout:
+标准输出：
 
 ```yaml
 cpu: 256
@@ -216,13 +218,13 @@ image: nginx:1.14.2
 service: my-service
 ```
 
-## 6. Write Assert
+## 6. 编写断言
 
-To make code testable and robust, we can verify config data with assertions.
+为了使代码可测试且健壮，我们可以使用断言（assertions）验证配置数据。
 
 ```python
-_priority = 1 # a non-exported and mutable variable
-_cpu = 256 # a non-exported and mutable variable
+_priority = 1 # 非导出可变变量
+_cpu = 256 # 非导出可变变量
 
 if _priority == 1:
     _cpu = 256
@@ -235,27 +237,27 @@ else:
 
 cpu = _cpu
 memory = _cpu * 2
-command = ["nginx"] # a list
-labels = {run = "my-nginx"} # a dict
+command = ["nginx"] # 列表
+labels = {run = "my-nginx"} # 字典
 image = "nginx:1.14.2"
 service = "my-service"
 assert "env" in labels, "env label is a must"
 assert cpu >= 256, "cpu cannot be less than 256"
 ```
 
-Run with KCL, we will see eval failure with an error message as output as below:
+使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
-```
+```bash
 kcl my_config.k
 ```
 
-Stderr:
+标准错误输出:
 
-```
+```bash
 Assertion failure: env label is a must.
 ```
 
-After adding env:pre-prod pair into labels, we will get the output as:
+将 env:pre-prod 对添加到标签中后，我们将得到如下输出：
 
 ```yaml
 cpu: 512
@@ -269,13 +271,13 @@ image: nginx:1.14.2
 service: my-service
 ```
 
-## 7. Use Handy Built-in Support
+## 7. 使用方便的内置支持
 
-What's more, we can use built-in functions to help we debug or simplify coding.
+更重要的是，我们可以使用内置函数来帮助我们调试或简化编码。
 
 ```python
-_priority = 1  # a non-exported and mutable variable
-_cpu = 256  # a non-exported and mutable variable
+_priority = 1  # 非导出可变变量
+_cpu = 256  # 非导出可变变量
 
 if _priority == 1:
     _cpu = 256
@@ -290,34 +292,34 @@ _name = "nginx"
 # exported variables
 cpu = _cpu
 memory = _cpu * 2
-command = [_name] # a list
+command = [_name] # 列表
 labels = {
     run = "my-{}".format(_name)
     env = "pre-prod"
 } # a dict
-image = "{}:1.14.2".format(_name) # string format
+image = "{}:1.14.2".format(_name) # 字符串格式
 service = "my-service"
 
 # debugging
-print(labels) # debugging by print
+print(labels) # 通过打印调式
 
 # test
-assert len(labels) > 0, "labels can't be empty" # uselen() to get list length
+assert len(labels) > 0, "labels can't be empty" # 使用 len() 得到列表长度
 assert "env" in labels, "env label is a must"
 assert cpu >= 256, "cpu cannot be less than 256"
 ```
 
-This sample shows how we use `format()`, `len()`, `print()` function to help customize the config.
+此示例展示了我们如何使用 `format()`、`len()`、`print()` 函数来帮助自定义配置。
 
-Run with KCL, we will see the generated data in yaml format as below:
+使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
-KCL command:
+KCL 命令:
 
-```
+```bash
 kcl my_config.k
 ```
 
-Stdout:
+标准输出:
 
 ```yaml
 cpu: 512
@@ -333,17 +335,17 @@ run: my-nginx
 env: pre-prod
 ```
 
-Note: more built-in functions and modules can be seen in spec/module
+注意：更多的内置函数和模块可以在 spec/module 目录中查看。
 
-## 8. Reuse Variables in Another Module
+## 8. 重用另一个模块的变量
 
-To make our code well-organized, we can simply separate our code to `my_config.k` and `my_config_test.k`.
+为了使我们的代码得到良好的组织，我们可以将代码简单地分为 `my_config.k` 和 `my_config_test.k` 两个文件。
 
-Config data defined in `my_config.k`,
+在 `my_config.k` 中定义配置数据：
 
 ```python
-_priority = 1  # a non-exported and mutable variable
-_cpu = 256  # a non-exported and mutable variable
+_priority = 1  # 非导出可变变量 
+_cpu = 256  # 非导出可变变量 
 
 if _priority == 1:
     _cpu = 256
@@ -355,45 +357,45 @@ else:
     _cpu = 2048
 _name = "nginx"
 
-# exported variables
+# 可导出变量
 cpu = _cpu
 memory = _cpu * 2
-command = [_name] # a list
+command = [_name] # 列表
 labels = {
     run = "my-{}".format(_name)
     env = "pre-prod"
 } # a dict
-image = "{}:1.14.2".format(_name) # string format
+image = "{}:1.14.2".format(_name) # 字符串格式
 service = "my-service"
 ```
 
-And test code defined in `my_config_test.k`, in which we can import my_config.k:
+而测试代码定义在 `my_config_test.k` 中，我们可以在其中导入 `my_config.k`：
 
 ```python
 import my_config
 
 # debugging
-print(my_config.labels) # debugging by print
+print(my_config.labels) # 通过打印调试 
 
 # test
-assert len(my_config.labels) > 0, "labels can't beempty" # use len() to get list length
+assert len(my_config.labels) > 0, "labels can't beempty" # 使用 len() 得到列表长度
 assert "env" in my_config.labels, "env label is a must"
 assert my_config.cpu >= 256, "cpu cannot be less than256"
 ```
 
-## 9. Config with Input Arguments
+## 9. 配置输入参数
 
-Sometimes we need to get external input via parameters dynamically from the end user or platform.
+有时我们需要获得通过从最终用户或平台动态获取的外部输入参数。
 
-In this case, we can pass in `priority` and `env` on demand:
+在这种情况下，我们可以按需传递 `priority` 和 `env` 参数：
 
-- Pass in arguments: `-D priority=1 -D env=pre-prod`
-- Get value by `option` keyword in KCL code
+- 通过参数传递: `-D priority=1 -D env=pre-prod`
+- 可以在 KCL 代码中使用 `option` 关键字获取这些值
 
 ```python
-_priority = option("priority") # a non-exported and mutable variable
-_env = option("env") # a non-exported and mutable variable
-_cpu = 256 # a non-exported and mutable variable
+_priority = option("priority") # 非导出可变变量
+_env = option("env") # 非导出可变变量
+_cpu = 256 # 非导出可变变量
 
 if _priority == 1:
     _cpu = 256
@@ -405,25 +407,25 @@ else:
     _cpu = 2048
 
 _name = "nginx"
-# exported variables
+# 可导出变量
 cpu = _cpu
 memory = _cpu * 2
-command = [_name] # a list
+command = [_name] # 列表
 labels = {
     run = "my-{}".format(_name)
     env = _env
 } # a dict
-image = "{}:1.14.2".format(_name) # string format
+image = "{}:1.14.2".format(_name) # 字符串格式 
 service = "my-service"
 ```
 
-Run with KCL, we will see the generated data in yaml format as below:
+使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
-```
+```bash
 kcl -D priority=2 -D env=pre-prod my_config.k
 ```
 
-Stdout:
+标准输出:
 
 ```yaml
 cpu: 512
@@ -437,42 +439,42 @@ image: nginx:1.14.2
 service: my-service
 ```
 
-## 10. Simplify Logic Expression using Dict
+## 10. 使用 Dict 简化逻辑表达式
 
-When we need to write complex logic, we can use dict to simplify the writing of logic.
+当我们需要编写复杂的逻辑时，可以使用dict来简化逻辑的编写。
 
 ```python
-_priority = option("priority") # a non-exported and mutable variable
-_env = option("env") # a non-exported and mutable variable
+_priority = option("priority") # 非导出可变变量
+_env = option("env") # 非导出可变变量
 _priorityCpuMap = {
     "1" = 256
     "2" = 512
     "3" = 1024
 }
-# Using a dict to simplify logic and the default value is 2048
+# 使用字典简化逻辑，默认值为2048
 _cpu = _priorityCpuMap[_priority] or 2048
 _name = "nginx"
-# exported variables
+# 可导出变量
 cpu = _cpu
 memory = _cpu * 2
-command = [_name] # a list
+command = [_name] # 列表
 labels = {
     run = "my-{}".format(_name)
     env = _env
 } # a dict
-image = "{}:1.14.2".format(_name) # string format
+image = "{}:1.14.2".format(_name) # 字符串格式
 service = "my-service"
 ```
 
-Run with KCL, we will see the generated data in yaml format as below:
+使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
-KCL command:
+KCL 命令:
 
-```
+```bash
 kcl -D priority=2 -D env=pre-prod my_config.k
 ```
 
-Stdout:
+标准输出：
 
 ```yaml
 cpu: 512
@@ -486,10 +488,10 @@ image: nginx:1.14.2
 service: my-service
 ```
 
-## 11. The Final Step
+## 11. 最后
 
-Congratulations!
+恭喜！
 
-We have completed the first lesson about KCL, we have used KCL to replace our key-value text file to get better programming support.
+我们已经完成了关于 KCL 的第一课程，我们使用 KCL 来替换我们的键值文本文件，以获得更好的编程支持。
 
-Please check schema codelab out now to learn how to write an advanced config collaboratively with KCL `schema` mechanism.
+建议立即查看架构代码实验，以了解如何使用 KCL `schema` 机制协作编写高级配置。

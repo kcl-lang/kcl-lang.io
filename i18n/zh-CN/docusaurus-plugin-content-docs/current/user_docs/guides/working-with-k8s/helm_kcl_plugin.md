@@ -13,7 +13,7 @@
 
 ## 快速开始
 
-让我们编写一个仅向 `Deployment` 资源添加注释（annotation） `managed-by=helm-kcl-plugin` 的 KCL 函数
+让我们编写一个仅向 `Deployment` 资源添加 annotation `managed-by=helm-kcl-plugin` 的 KCL 函数
 
 ### 获取示例
 
@@ -24,7 +24,7 @@ cd ./helm-kcl/examples/workload-charts-with-kcl
 
 ### 测试和运行
 
-通过`Helm KCL Plugin`运行KCL代码。
+通过 `Helm KCL Plugin` 运行KCL代码。
 
 ```bash
 helm kcl template --file ./kcl-run.yaml
@@ -82,14 +82,14 @@ spec:
         name: frontend
 ```
 
-### KCL开发指南
+### KCL 开发指南
 
-以下是您可以在KCL代码中执行的操作：
+以下是您可以在 KCL 代码中执行的操作：
 
-+ 从`option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
++ 从 `option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
 + 返回输出资源的 KPM 列表。
 + 使用 `assert {condition}，{error_message}` 返回错误消息。
 
 ## 更多文档和示例
 
-+ [Helm KCL Plugin](https://github.com/KusionStack/helm-kcl)
++ [Helm KCL 插件](https://github.com/KusionStack/helm-kcl)
