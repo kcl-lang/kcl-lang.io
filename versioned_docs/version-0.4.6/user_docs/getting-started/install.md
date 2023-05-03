@@ -99,7 +99,7 @@ docker pull kusionstack/kclvm
 
 ### VS Code
 
-The KCL Extension extension provides some coding assistance, e.g., highlight, goto definition, completion, hover, outline, and diagnostics. You can go [here](https://kcl-lang.io/docs/tools/Ide/vs-code) for more information。
+The KCL Extension extension provides some coding assistance, e.g., highlight, goto definition, completion, hover, outline, and diagnostics. You can go [here](https://kcl-lang.io/docs/tools/Ide/vs-code) for more information about the installation.
 
 ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
