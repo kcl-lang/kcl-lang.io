@@ -38,6 +38,9 @@
     "sidebar.reference.category.Errors and Warnings": {
       "message": "错误与警告"
     },
+    "sidebar.reference.category.Types": {
+      "message": "类型系统"
+    },
     "sidebar.reference.category.System Module": {
       "message": "系统模块"
     },
