@@ -15,11 +15,7 @@ function HomepageHeader() {
       <div className="container">
         <h1 className={styles.heroTitle}>
           <span style={{ color: "var(--ifm-color-primary)" }}>
-            Abstract,
-          </span>
-            {" "}
-          <span style={{ color: "var(--ifm-color-primary)" }}>
-            Validation
+            Mutation  Validation  Abstraction
           </span>
         </h1>
         <h1 className={styles.heroTitle}>

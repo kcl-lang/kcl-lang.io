@@ -271,7 +271,7 @@
     "message": "kcl-lang"
   },
   "homepage.tagline": {
-    "message": "Abstraction  Validation  Production-Ready"
+    "message": "Mutation  Validation  Abstraction  Production-Ready"
   },
   "homepage.feature.kcl": {
     "message": "KCL"
