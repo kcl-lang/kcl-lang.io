@@ -99,3 +99,37 @@ nginx:
         root: /var/www/html
         index: index.html
 ```
+
+Besides, we can dynamically receive external parameters through the KCL builtin function `option`. For example, for the following KCL file (db.k), we can use the KCL command line `-D` flag to receive an external dynamic parameter.
+
+```python
+env: str = option("env") or "dev"  # The attribute `env` has a default value "den"
+database: str = option("database")
+hosts = {
+    dev = "postgres.dev"
+    stage = "postgres.stage"
+    prod = "postgres.prod"
+}
+dbConfig = {
+    host = hosts[env]
+    database = database
+    port = "2023"
+    conn = "postgres://${host}:${port}/${database}"
+}
+```
+
+```bash
+# Use the `-D` flag to input external parameters.
+$ kcl db.k -D database="foo"
+env: dev
+database: foo
+hosts:
+  dev: postgres.dev
+  stage: postgres.stage
+  prod: postgres.prod
+dbConfig:
+  host: postgres.dev
+  database: foo
+  port: "2023"
+  conn: "postgres://postgres.dev:2023/foo"
+```
