@@ -52,3 +52,50 @@ alice:
     first: Alice
     last: White
 ```
+
+Another example (`nginx.k`)
+
+```python
+schema Nginx:
+    """Schema for Nginx configuration files"""
+    http: Http
+
+schema Http:
+    server: Server
+
+schema Server:
+    listen: int | str    # The attribute `listen` can be int type or a string type.
+    location?: Location  # Optional, but must be non-empty when specified
+
+schema Location:
+    root: str
+    index: str
+
+nginx = Nginx {
+    http.server = {
+        listen = 80
+        location = {
+            root = "/var/www/html"
+            index = "index.html"
+        }
+    }
+}
+```
+
+Run
+
+```bash
+kcl nginx.k
+```
+
+We can get the output YAML
+
+```yaml
+nginx:
+  http:
+    server:
+      listen: 80
+      location:
+        root: /var/www/html
+        index: index.html
+```

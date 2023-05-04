@@ -52,3 +52,50 @@ alice:
     first: Alice
     last: White
 ```
+
+另一个 KCL 例子 (`nginx.k`)
+
+```python
+schema Nginx:
+    """Schema for Nginx configuration files"""
+    http: Http
+
+schema Http:
+    server: Server
+
+schema Server:
+    listen: int | str    # The attribute `listen` can be int type or a string type.
+    location?: Location  # Optional, but must be non-empty when specified
+
+schema Location:
+    root: str
+    index: str
+
+nginx = Nginx {
+    http.server = {
+        listen = 80
+        location = {
+            root = "/var/www/html"
+            index = "index.html"
+        }
+    }
+}
+```
+
+执行命令
+
+```bash
+kcl nginx.k
+```
+
+我们可以得到如下 YAML 输出
+
+```yaml
+nginx:
+  http:
+    server:
+      listen: 80
+      location:
+        root: /var/www/html
+        index: index.html
+```
