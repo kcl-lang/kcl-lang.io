@@ -17,6 +17,9 @@
     "sidebar.user_docs.category.Data Integration": {
       "message": "数据集成"
     },
+    "sidebar.user_docs.category.Package Management": {
+      "message": "包管理工具"
+    },
     "sidebar.user_docs.category.Schema Definition": {
       "message": "模型定义"
     },
