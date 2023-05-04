@@ -7,4 +7,6 @@ authors:
 tags: [KCL, Configuration, Policy]
 ---
 
+![KCL Talk Cover](/img/blog/2022-12-10-kcl-osdt-meeting/talk-cover.jpg)
+
 [PDF 下载](https://kcl-lang.github.io/talks/kcl-osdt2022.pdf)

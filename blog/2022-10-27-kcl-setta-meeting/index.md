@@ -7,4 +7,6 @@ authors:
 tags: [KCL, Configuration]
 ---
 
+![KCL Talk Cover](/img/blog/2022-10-27-kcl-setta-meeting/talk-cover.jpg)
+
 [Download PDF](https://kcl-lang.github.io/talks/kcl-setta2022.pdf)
