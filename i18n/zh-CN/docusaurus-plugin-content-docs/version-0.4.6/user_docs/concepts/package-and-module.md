@@ -1,4 +1,4 @@
-# KCL Module 和 Package
+# KCL 模块和包
 
 本节主要介绍如何组织 KCL 中的文件。
 
