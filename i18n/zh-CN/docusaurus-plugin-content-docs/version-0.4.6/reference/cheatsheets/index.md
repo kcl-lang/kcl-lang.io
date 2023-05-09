@@ -1,4 +1,4 @@
-# KCL Cheat Sheet
+# KCL 备忘录
 
 ![](/img/docs/reference/cheatsheets/cheatsheet.png)
 
