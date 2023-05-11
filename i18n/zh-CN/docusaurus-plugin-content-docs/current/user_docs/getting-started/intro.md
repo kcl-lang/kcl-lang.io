@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## KCL 是什么?
 
-[Kusion 配置语言（KCL）](https://github.com/KusionStack/KCLVM) 是一个开源的基于约束的记录及函数语言。KCL 通过成熟的编程语言技术和实践来改进对大量繁杂配置比如云原生 Kubernetes 配置场景的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
+[Kusion 配置语言（KCL）](https://github.com/KusionStack/KCLVM) 是一个开源的基于约束的记录及函数语言。KCL 通过成熟的编程语言技术和实践来改进对大量繁杂配置比如云原生 Kubernetes 配置场景的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更简单的自动化和生态工具集成。
 
 ## 配置是什么?
 
@@ -47,90 +47,46 @@ database:
 
 我们可以根据需要选择在 JSON 和 YAML 文件中存储静态配置。此外，配置还可以存储在允许更灵活配置的高级语言中，通过代码编写、渲染并得到静态配置。KCL 就是这样一种配置语言，我们可以编写 KCL 代码来生成 JSON/YAML 等配置。
 
-## 为什么开发 KCL?
+## 为什么使用 KCL?
 
-除了常规配置外，云原生配置的特点还包括数量大、覆盖范围广。例如 Kubernetes 提供了一个声明性的应用编程接口（API）机制，通过开放性允许用户充分利用其资源管理能力；然而，这也意味着容易出错的行为。
-
-+ Kubernetes 配置缺少用户端验证方法，无法检查数据的有效性。
-+ Kubernetes 公开了 500 多个模型，2000 多个字段，并允许用户自定义模型，而无需考虑多个站点，多个环境和多个部署拓扑的配置重用，碎片化配置给大规模配置的协同编写和自动管理带来了许多困难。
-
-比如当我们管理 Kubernetes 资源清单时，我们常常会手写维护，或者使用 Helm 和 Kustomize 等工具来维护我们 YAML 配置或者配置模版，然后通过 kubectl 和 helm 命令行等工具将资源下发到集群。但是作为一个 "YAML 工程师" 每天维护 YAML 配置无疑是琐碎且无聊的，并且容易出错。
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata: ... # Omit
-spec:
-  selector:
-    matchlabels:
-      cell: RZ00A
-  replicas: 2
-  template:
-    metadata: ... # Omit
-    spec:
-      tolerations:
-      - effect: NoSchedules
-        key: is-over-quota
-        operator: Equal
-        value: 'true'
-      containers:
-      - name: test-app
-          image: images.example/app:v1 # Wrong ident
-        resources:
-          limits:
-            cpu: 2 # Wrong type. The type of cpu should be str
-            memory: 4Gi
-            # Field missing: ephemeral-storage
-      affinity:
-        nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-            - matchExpressions:
-              - key: is-over-quota
-                operator: In
-                values:
-                - 'true'
-```
-
-+ YAML 中的结构化数据是无类型的，缺乏验证方法，无法立即检查所有数据的有效性
-+ YAML 编程能力欠佳，容易写出不正确的缩进，也没有逻辑判断、等常见代码组织方式，容易写出大量重复配置，难以维护
-+ Kubernetes 设计是复杂的，用户很难理解所有细节，比如上面配置中的 `toleration` 和 `affinity` 字段，如果用户不理解调度逻辑，它可能被错误地省略掉或者多余的添加
-
-因此，KCL 期望通过更现代化的声明式配置语言在 Kubernetes 资源管理解决如下问题：
+KCL 期望通过更现代化的声明式配置语言在 Kubernetes 资源管理解决如下问题：
 
 + 通过**代码抽象**等手段屏蔽基础设施和平台的细节，降低研发者负担
-+ 为已有的 Kubernetes 配置管理工具如 Kustomize, Helm 等提供**额外的能力增强如配置校验和编辑**等而不是替代它们，比如 Helm KCL Plugin, Kustomize KCL Plugin 等
++ **编辑**和**校验**已有的存量配置或模版
 + 通过配置语言无副作用地管理跨团队的大规模配置数据，提升团队协作效率
   + 用**生产级高性能编程语言**以**编写代码**的方式提升配置的灵活度，比如条件语句、循环、函数、包管理等特性提升配置重用的能力
   + 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
   + 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
   + 通过**多语言 SDK**，**KCL 语言插件**等手段提升其**自动化**集成能力
 
-目前云原生社区已经进行了大量的尝试来改进其配置技术，主要可分为三类：
+您可以将 KCL 用于
 
-+ 用于模板、修补和验证的基于低级数据格式的工具，使用外部工具来增强重用和验证。
-+ 领域特定语言（DSL）和配置语言（CL），以增强语言能力。
-+ 基于通用语言（GPL）的解决方案，使用 GPL 的云开发工具包（CDK）或框架来定义配置。
-
-以前的工作并不能满足所有这些需求。一些工具基于 Kubernetes API 验证配置。虽然它支持检查缺失的属性，但验证通常很弱，仅限于开放应用程序编程接口（OpenAPI）。
-
-一些工具支持自定义验证规则，但规则描述很繁琐。在配置语言方面，专注于减少样板，只有少数专注于类型检查、数据验证、测试等。比如 Helm 使用参数化模板技术来解决动态配置问题。随着规模的增加，参数化模板往往变得复杂且难以维护；必须手动识别参数替换。然而，这是一个乏味且容易出错的过程，参数会逐渐侵蚀模板，模板中的任何值都可能逐渐演变为参数。与直接使用 Kubernetes API 相比，这种模板与许多参数相结合的可读性通常更差。Kustomize 使用代码覆盖等手段来实现多环境配置代码的重用，但是缺乏诸如 Helm 的包管理能力。此外，在某些场景中可能会结合使用 Kustomize 和 Helm 这两个工具来弥补双方的能力。
-
-## KCL 概览
-
-![](/img/docs/user_docs/intro/kcl-overview.png)
++ 生成静态配置数据如 JSON, YAML 等
++ 使用 schema 对配置数据进行建模并减少配置数据中的样板文件
++ 为配置数据定义带有规则约束的 schema 并对数据进行自动验证
++ 无副作用地组织、简化、统一和管理庞大的配置
++ 通过分块编写配置数据可扩展地管理庞大的配置
++ 与 [KusionStack](https://kusionstack.io) 一起，用作平台工程语言来交付现代应用程序
 
 除了语言自身，KCL 还提供了许多额外的工具如格式化，测试、文档、包管理等工具帮助用户使用、理解和检查他们编写的配置或策略；通过 VS Code 等 IDE 插件和 Playground 降低配置编写、分享的成本；通过 Rust, Go, 和 Python 多语言 SDK 自动化地管理和执行配置。
 
-## 为什么使用 KCL?
+![](/img/docs/user_docs/intro/kcl-overview.png)
 
-KCL 是一种现代高级领域编程语言，并且它是一种编译静态的强类型语言。KCL 为开发人员提供了通过记录和函数语言设计将配置（config）、建模抽象（schema）、业务逻辑（lambda）和策略（rule）作为核心能力。
+通过 KCL 编译器、语言工具、IDE 和多语言 API，您可以在以下场景中使用 KCL：
+
++ **配置和自动化**：抽象、管理与自动化不同规模的配置，包括小型配置（应用程序、网络、微服务、数据库、监控、CI/CD、kubernetes 资源等配置）。此外，通过 [KCL OpenAPI工具](/docs/tools/cli/openapi/index) 和 KCL 的包管理功能，我们可以完全抽象和重用现有模型。
++ **安全与合规**：利用 KCL 动态参数的功能，使用代码定义、更新、共享和执行策略。通过利用基于 KCL 代码的自动化而不是依赖手动流程来管理策略，这使团队能够更快地移动，并减少由于人为错误而导致错误的可能性。
++ **意图描述**：KCL 可用于描述 UI、工具、脚本和工作流，通过自定义引擎使用和执行 KCL 定义的意图。
+
+此外，KCL 是一种现代高级领域编程语言，并且它是一种编译静态的强类型语言。KCL 为开发人员提供了通过记录和函数语言设计将**配置（config）**、**建模抽象（schema）**、**逻辑（lambda）**和**策略（rule）**作为核心能力。
 
 ![](/img/docs/user_docs/intro/kcl-concepts.png)
 
 KCL 试图提供独立于运行时的可编程性，不在本地提供线程和IO等系统功能，但支持云本地操作场景的功能，并试图为解决领域问题并提供稳定、安全、低噪声、低副作用、易于自动化和易于管理的编程支持。
 
 与用 GPL 编写的客户端运行时不同，KCL 程序通常运行并生成低级数据，并集成到客户端运行时工具中，该工具可以通过在推送到运行时之前分别测试和验证 KCL 代码来提供稳定性保证。KCL 代码也可以编译成 WASM 模块，在完全测试后，可以将其集成到服务器运行时中。
+
+总之，KCL 具备如下特点:
 
 + **简单易用**：源于 Python、Golang 等高级语言，采纳函数式编程语言特性，低副作用
 + **设计良好**：独立的 Spec 驱动的语法、语义、运行时和系统库设计
@@ -143,30 +99,11 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 + **API 亲和**：原生支持 [OpenAPI](https://github.com/KusionStack/kcl-openapi)、 Kubernetes CRD， Kubernetes YAML 等 API 生态规范
 + **开发友好**：[语言工具](https://kusionstack.io/docs/reference/cli/kcl/) (Format，Lint，Test，Vet，Doc 等)、 [IDE 插件](https://github.com/KusionStack/vscode-kcl) 构建良好的研发体验
 + **安全可控**：面向领域，不原生提供线程、IO 等系统级功能，低噪音，低安全风险，易维护，易治理
-+ **多语言API**：[Go](https://kcl-lang.io/docs/reference/xlang-api/go-api), [Python](https://kcl-lang.io/docs/reference/xlang-api/python-api) 和 [REST API](https://kcl-lang.io/docs/reference/xlang-api/rest-api) 满足不同场景和应用使用需求
++ **多语言API**：[Go](https://kcl-lang.io/docs/reference/xlang-api/go-api)，[Python](https://kcl-lang.io/docs/reference/xlang-api/python-api)，[Java](https://kcl-lang.io/docs/reference/xlang-api/java-api) 和 [REST API](https://kcl-lang.io/docs/reference/xlang-api/rest-api) 满足不同场景和应用使用需求
 + **K8s集成**：支持外置编辑和校验插件，分离数据和逻辑：[Helm KCL Plugin](https://github.com/KusionStack/helm-kcl), [KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk) 和 [Kustomize KCL Plugin](https://github.com/KusionStack/kustomize-kcl) 等。
 + **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
 有关更多语言设计和功能，请参阅[KCL文档](https://kcl-lang.github.io/docs/reference/lang/tour)。虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，我们还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
-
-## KCL 使用场景
-
-您可以将 KCL 用于
-
-+ 生成静态配置数据如 JSON, YAML 等
-+ 使用 schema 对配置数据进行建模并减少配置数据中的样板文件
-+ 为配置数据定义带有规则约束的 schema 并对数据进行自动验证
-+ 无副作用地组织、简化、统一和管理庞大的配置
-+ 通过分块编写配置数据可扩展地管理庞大的配置
-+ 与 [KusionStack](https://kusionstack.io) 一起，用作平台工程语言来交付现代应用程序
-
-通过 KCL 编译器、语言工具、IDE 和多语言 API，您可以在以下场景中使用 KCL：
-
-+ **配置和自动化**：抽象、管理与自动化不同规模的配置，包括小型配置（应用程序、网络、微服务、数据库、监控、CI/CD、kubernetes 资源等配置）。此外，通过 [KCL OpenAPI工具](/docs/tools/cli/openapi/index) 和 KCL 的包管理功能，我们可以完全抽象和重用现有模型。
-+ **安全与合规**：利用 KCL 动态参数的功能，使用代码定义、更新、共享和执行策略。通过利用基于 KCL 代码的自动化而不是依赖手动流程来管理策略，这使团队能够更快地移动，并减少由于人为错误而导致错误的可能性。
-+ **意图描述**：KCL 可用于描述 UI、工具、脚本和工作流，通过自定义引擎使用和执行 KCL 定义的意图。
-
-## 示例
 
 下面是一个用 KCL 生成 kubernetes 资源的例子
 
@@ -175,7 +112,7 @@ apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {
     name = "nginx"
-    labels.app = "nginx"
+    labels.app = name
 }
 spec = {
     replicas = 3
@@ -219,7 +156,13 @@ spec:
 
 ## 如何选择
 
-简单的答案：
+目前社区已经进行了大量的尝试来改进其配置技术，主要可分为三类：
+
++ 用于模板、修补和验证的基于低级数据格式的工具，使用外部工具来增强重用和验证。
++ 领域特定语言（DSL）和配置语言（CL），以增强语言能力。
++ 基于通用语言（GPL）的解决方案，使用 GPL 的云开发工具包（CDK）或框架来定义配置。
+
+简单的选择答案：
 
 + 如果你需要编写结构化的静态的 K-V，或使用 Kubernetes 原生的技术工具，建议选择 YAML
 + 如果你希望引入编程语言便利性以消除文本(如 YAML、JSON) 模板，有良好的可读性，或者你已是 Terraform 的用户，建议选择 HCL
