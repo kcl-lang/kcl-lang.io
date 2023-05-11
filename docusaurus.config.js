@@ -193,7 +193,7 @@ const config = {
             label: 'Playground',
           },
           {
-            href: 'https://github.com/KusionStack/examples',
+            href: 'https://github.com/KusionStack/kcl-lang.io/tree/main/examples',
             position: 'left',
             sidebarId: 'examples',
             label: 'Examples',
