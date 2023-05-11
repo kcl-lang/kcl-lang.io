@@ -12,7 +12,7 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
-.heroBanner {
+.banner {
   padding: 4rem 0;
   width: 60%;
   margin: auto;
@@ -21,13 +21,13 @@
   overflow: hidden;
 }
 
-.heroTitle {
+.title {
   font-family: "Poppins";
   font-weight: 800;
-  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-size: clamp(2rem, 5.5vw, 3.3rem);
 }
 
-.heroDescription {
+.description {
   font-family: "Poppins";
   font-weight: 500;
   width: 70%;
@@ -38,7 +38,7 @@
   font-size: clamp(17px, 3vw, 1rem);
 }
 
-.heroButton {
+.button {
   font-weight: 500;
   padding: 12px 25px;
   font-size: 18px;
@@ -60,20 +60,19 @@
 }
 
 @media screen and (max-width: 966px) {
-  .heroBanner {
+  .banner {
     width: 100%;
     padding: 2rem 1rem;
   }
 
-  .heroDescription {
+  .description {
     width: 100%;
   }
 }
 
 @media screen and (max-width: 405px) {
-  .heroButton {
+  .button {
     width: 100%;
     margin-bottom: 10px;
   }
 }
-

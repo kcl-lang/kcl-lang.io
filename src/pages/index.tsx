@@ -11,25 +11,21 @@ import { IoColorPaletteSharp, IoAccessibility, IoInvertModeSharp, IoStatsChart, 
 
 function HomepageHeader() {
   return (
-    <header className={clsx("hero", styles.heroBanner)}>
+    <header className={clsx("hero", styles.banner)}>
       <div className="container">
-        <h1 className={styles.heroTitle}>
-          <span style={{ color: "var(--ifm-color-primary)" }}>
-            Mutation  Validation  Abstraction
-          </span>
-        </h1>
-        <h1 className={styles.heroTitle}>
-        <span style={{ color: "var(--ifm-color-primary)" }}>
-            Production-Ready
-          </span>
-        </h1>
-        <p className={styles.heroDescription}>
+        <h2 className={styles.title} style={{ color: "var(--ifm-color-primary)" }}>
+          Mutation, Validation, Abstraction
+        </h2>
+        <h2 className={styles.title} style={{ color: "var(--ifm-color-primary)" }}>
+          Production-Ready
+        </h2>
+        <p className={styles.description}>
           KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.
         </p>
         <Link
           className={clsx(
             "button button--primary button--lg",
-            styles.heroButton
+            styles.button
           )}
           to="/docs/user_docs/getting-started/intro"
           style={{ marginRight: 10 }}
@@ -40,7 +36,7 @@ function HomepageHeader() {
         <Link
           className={clsx(
             "button button--secondary button--lg",
-            styles.heroButton
+            styles.button
           )}
           to="/docs/user_docs/getting-started/install"
         >
@@ -60,48 +56,48 @@ function FeaturesSection() {
       title: "Easy-to-Use",
       description:
         `Originated from languages ​​such as Python and Golang, rich language features, IDEs and tools.`,
-      icon: <IoAccessibility fontSize={30} color="var(--ifm-color-primary-dark)"/>,
+      icon: <IoAccessibility fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
       title: "Quick Modeling",
       description:
-      `
+        `
       Schema-centric configuration types and modular abstraction with logic and policy based on Config, Schema, Lambda, Rule.
   `,
-      icon: <IoInvertModeSharp fontSize={30} color="var(--ifm-color-primary-dark)"/>,
+      icon: <IoInvertModeSharp fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
       title: "Stability",
       description:
-      `
+        `
       Configuration stability built on static type system, strong immutablity , and constraints.
   `,
-      icon: <IoBowlingBallOutline fontSize={30} color="var(--ifm-color-primary-dark)"/>,
+      icon: <IoBowlingBallOutline fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
       title: "Scalability",
       description:
-      `
+        `
       High scalability through automatic merge mechanism of isolated config blocks with multiple strategies.
   `,
-      icon: <IoStatsChart fontSize={30} color="var(--ifm-color-primary-dark)"/>,
+      icon: <IoStatsChart fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
       title: "Fast Automation",
       description:
-      `
+        `
       High performance and
       gradient automation scheme of CRUD APIs, multilingual SDKs, language plugin.
   `,
-      icon: <HiLightningBolt fontSize={30} color="var(--ifm-color-primary-dark)"/>,
+      icon: <HiLightningBolt fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
       title: "API Affinity",
       description:
-      `
+        `
       Native support API ecological specifications such as OpenAPI, Kubernetes CRD, Kubernetes YAML spec.
   `,
-      icon: <IoColorPaletteSharp fontSize={30} color="var(--ifm-color-primary-dark)"/>,
+      icon: <IoColorPaletteSharp fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
   ];
 
@@ -144,7 +140,7 @@ export default function Home(): JSX.Element {
       <br />
       <FeaturesSection />
       <div className="hero">
-          <ExampleScroller />
+        <ExampleScroller />
       </div>
       <br />
       <br />
