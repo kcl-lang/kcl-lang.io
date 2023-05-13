@@ -32,7 +32,7 @@ yaml_stream(values: [any], opts: {str:} = {
 # 使用 `import` 关键词导入 `manifests` 模块
 import manifests
 
-# The schema `Deployment` definition.
+# `Deployment` schema 
 schema Deployment:
     apiVersion: str = "v1"
     kind: str = "Deployment"
