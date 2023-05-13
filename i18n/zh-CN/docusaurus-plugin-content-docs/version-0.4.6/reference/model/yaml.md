@@ -16,13 +16,13 @@ encode(
 ) -> str
 ```
 
-Serialize a KCL object `data` to a YAML formatted str.
+将 KCL 对象 `data` 序列化为 YAML 格式的字符串。
 
 ## decode
 
 `decode(value: str) -> any`
 
-Deserialize `value` (a string instance containing a YAML document) to a KCL object.
+反序列化 `value`（一个包含 YAML 格式文档的字符串实例）为一个 KCL 对象。
 
 ## dump_to_file
 
@@ -35,4 +35,4 @@ dump_to_file(
 ) -> None
 ```
 
-Serialize a KCL object `data` to a YAML formatted str and write it into the file `filename`.
+将 KCL 对象 `data` 序列化为 YAML 格式的字符串，并将其写入文件 `filename` 中。

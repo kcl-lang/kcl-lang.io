@@ -9,94 +9,94 @@ weight: 100
 
 `split_host_port(ip_end_point: str) -> List[str]`
 
-Split the 'host' and 'port' from the ip end point.
+从 `ip_end_point` 分离出 `host` 和 `port`。
 
 ## join_host_port
 
 `join_host_port(host, port) -> str`
 
-Merge the 'host' and 'port'.
+合并 `host` 和 `port`。
 
 ## fqdn
 
 `fqdn(name: str = '') -> str`
 
-Return Fully Qualified Domain Name (FQDN).
+返回完全限定域名（FQDN）。
 
 ## parse_IP
 
 `parse_IP(ip) -> str`
 
-Parse 'ip' to a real IP address
+将 `ip` 解析为真实的 IP 地址。
 
 ## to_IP4
 
 `to_IP4(ip) -> str`
 
-Get the IP4 form of 'ip'.
+获取 `ip` 的 IPv4 表示形式。
 
 ## to_IP16
 
 `to_IP16(ip) -> int`
 
-Get the IP16 form of 'ip'.
+获取 `ip` 的 IPv6 表示形式。
 
 ## IP_string
 
 `IP_string(ip: str | int) -> str`
 
-Get the IP string.
+返回 IP 字符串。
 
 ## is_IPv4
 
 `is_IPv4(ip: str) -> bool`
 
-Whether 'ip' is a IPv4 one.
+判断 `ip` 是否为 IPv4。
 
 ## is_IP
 
 `is_IP(ip: str) -> bool`
 
-Whether ip is a valid ip address.
+判断 `ip` 是否为有效的 IP 地址。
 
 ## is_loopback_IP
 
 `is_loopback_IP(ip: str) -> bool`
 
-Whether 'ip' is a loopback one.
+判断 `ip` 是否为回环地址。
 
 ## is_multicast_IP
 
 `is_multicast_IP(ip: str) -> bool`
 
-Whether 'ip' is a multicast one.
+判断 `ip` 是否为组播地址。
 
 ## is_interface_local_multicast_IP
 
 `is_interface_local_multicast_IP(ip: str) -> bool`
 
-Whether 'ip' is a interface, local and multicast one.
+判断 `ip` 是否为接口、本地和组播地址。
 
 ## is_link_local_multicast_IP
 
 `is_link_local_multicast_IP(ip: str) -> bool`
 
-Whether 'ip' is a link local and multicast one.
+判断 `ip` 是否为链路本地和组播地址。
 
 ## is_link_local_unicast_IP
 
 `is_link_local_unicast_IP(ip: str) -> bool`
 
-Whether 'ip' is a link local and unicast one.
+判断 `ip` 是否为链路本地和单播地址。
 
 ## is_global_unicast_IP
 
 `is_global_unicast_IP(ip: str) -> bool`
 
-Whether 'ip' is a global and unicast one.
+判断 `ip` 是否为全局单播地址。
 
 ## is_unspecified_IP
 
 `is_unspecified_IP(ip: str) -> bool`
 
-Whether 'ip' is a unspecified one.
+判断 `ip` 是否为 `unspecified` 地址。

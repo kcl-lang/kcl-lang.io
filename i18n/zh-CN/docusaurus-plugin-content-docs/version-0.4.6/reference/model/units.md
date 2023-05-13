@@ -7,34 +7,34 @@ weight: 100
 ---
 ## 单位的常量
 
-- 定点数: `n`, `u`, `m`, `k`, `K`, `G`, `T` and `P`.
-- 2 的幂: `Ki`, `Mi`, `Gi`, `Ti` and `Pi`.
+- 定点数: `n`, `u`, `m`, `k`, `K`, `G`, `T` 和 `P`.
+- 2 的幂: `Ki`, `Mi`, `Gi`, `Ti` 和 `Pi`.
 
 ## 函数列表
 
 - `to_n(num: int) -> str`
-  Int literal to string with `n` suffix
+  将 int 转换为以 `n` 作为后缀的字符串
 - `to_u(num: int) -> str`
-  Int literal to string with `u` suffix
+  将 int 转换为以 `u` 作为后缀的字符串
 - `to_m(num: int) -> str`
-  Int literal to string with `m` suffix
+  将 int 转换为以 `m` 作为后缀的字符串
 - `to_K(num: int) -> str`
-  Int literal to string with `K` suffix
+  将 int 转换为以 `K` 作为后缀的字符串
 - `to_M(num: int) -> str`
-  Int literal to string with `M` suffix
+  将 int 转换为以 `M` 作为后缀的字符串
 - `to_G(num: int) -> str`
-  Int literal to string with `G` suffix
+  将 int 转换为以 `G` 作为后缀的字符串
 - `to_T(num: int) -> str`
-  Int literal to string with `T` suffix
+  将 int 转换为以 `T` 作为后缀的字符串
 - `to_P(num: int) -> str`
-  Int literal to string with `P` suffix
+  将 int 转换为以 `P` 作为后缀的字符串
 - `to_Ki(num: int) -> str`
-  Int literal to string with `Ki` suffix
+  将 int 转换为以 `Ki` 作为后缀的字符串
 - `to_Mi(num: int) -> str`
-  Int literal to string with `Mi` suffix
+  将 int 转换为以 `Mi` 作为后缀的字符串
 - `to_Gi(num: int) -> str`
-  Int literal to string with `Gi` suffix
+  将 int 转换为以 `Gi` 作为后缀的字符串
 - `to_Ti(num: int) -> str`
-  Int literal to string with `Ti` suffix
+  将 int 转换为以 `Ti` 作为后缀的字符串
 - `to_Pi(num: int) -> str`
-  Int literal to string with `Pi` suffix
+  将 int 转换为以 `Pi` 作为后缀的字符串
