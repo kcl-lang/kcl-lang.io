@@ -15,8 +15,6 @@ weight: 100
 
 `factorial(x) -> int`
 
-Return x!. Raise a error if x is negative or non-integral.
-
 返回 `x` 的阶乘（即 `x!`），如果 `x` 是负数或者不是整数，则会引发一个错误。
 
 ## floor
