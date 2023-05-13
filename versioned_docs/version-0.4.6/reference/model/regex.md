@@ -15,7 +15,7 @@ Return the string obtained by replacing the leftmost non-overlapping occurrences
 
 `match(string: str, pattern: str) -> bool`
 
-Try to apply the pattern at the start of the string, returning a bool value True if any match was found, or False if no match was found.
+Try to apply the pattern at the start of the string, returning a bool value `True` if any match was found, or `False` if no match was found.
 
 ## compile
 
@@ -33,10 +33,10 @@ Return a list of all non-overlapping matches in the string.
 
 `search(string: str, pattern: str) -> bool`
 
-Scan through string looking for a match to the pattern, returning a bool value True if any match was found, or False if no match was found.
+Scan through string looking for a match to the pattern, returning a bool value `True` if any match was found, or `False` if no match was found.
 
 ## split
 
 `split(string: str, pattern: str, maxsplit=0) -> List[str]`
 
-Scan through string looking for a match to the pattern, returning a Match object, or None if no match was found.
+Return a list composed of words from the string, splitting up to a maximum of `maxsplit` times using `pattern` as the separator.

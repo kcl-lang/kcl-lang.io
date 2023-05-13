@@ -9,93 +9,94 @@ weight: 100
 
 `ceil(x) -> int`
 
-Return the ceiling of x as an Integral. This is the smallest integer >= x.
+返回 `x` 向上取整得到的整数，这是大于等于 `x` 的最小整数。
 
 ## factorial
 
 `factorial(x) -> int`
 
-Return x!. Raise a error if x is negative or non-integral.
+返回 `x` 的阶乘（即 `x!`），如果 `x` 是负数或者不是整数，则会引发一个错误。
 
 ## floor
 
 `floor(x) -> int`
 
-Return the floor of x as an Integral. This is the largest integer <= x.
+返回 `x` 向下取整得到的整数，这是小于等于 `x` 的最大整数。
 
 ## gcd
 
 `gcd(a: int, b: int) -> int`
 
-Return the greatest common divisor of x and y
+返回 `x` 和 `y` 的最大公约数。
 
 ## isfinite
 
 `isfinite(x) -> bool`
 
-Return True if x is neither an infinity nor a NaN, and False otherwise.
+如果 `x` 既不是无穷大也不是 `NaN` 返回 `True`，否则返回 `False`。
 
 ## isinf
 
 `isinf(x) -> bool`
 
-Return True if x is a positive or negative infinity, and False otherwise.
+如果 `x` 是正无穷或负无穷返回 `True`，否则返回 `False`。
 
 ## isnan
 
 `isnan(x) -> bool`
 
-Return True if x is a NaN (not a number), and False otherwise.
+如果 `x` 是 `NaN` 返回 `True`，否则返回 `False`。
 
 ## modf
 
-`modf(x) -> Listfloat, float]`
+`modf(x) -> List[float, float]`
 
-Return the fractional and integer parts of x. Both results carry the sign of x and are floats.
+返回 `x` 的整数和小数部分，两个结果均与 `x` 的正负号相同，并且均为浮点数。
 
 ## exp
 
 `exp(x) -> float`
 
-Return e raised to the power of x.
+返回以 `e` 为底数， `x` 的幂。
 
 ## expm1
 
 `expm1(x) -> float`
 
-Return exp(x)-1. This function avoids the loss of precision involved in the direct evaluation of exp(x)-1 for small x.
+返回 `e` 的 `x` 次方减去 1，该函数能够避免由于直接计算 `exp(x) - 1` 而引起的精度损失。
 
 ## log
 
 `log(x) -> float`
 
-Return the logarithm of x to the base e.
+返回以 `e` 为底数，`x` 的对数。
 
 ## log1p
 
 `log1p(x) -> float`
 
-Return the natural logarithm of 1+x (base e). The result is computed in a way which is accurate for x near zero.
+返回以 `e` 为底数，`1 + x` 的自然对数，该函数能够在 `x` 靠近 0 时精确计算结果。
 
 ## log2
 
 `log2(x) -> float`
-Return the base 2 logarithm of x.
+
+返回 `x` 的以 2 为底的对数。
 
 ## log10
 
 `log10(x) -> float`
 
-Return the base 10 logarithm of x.
+返回 `x` 的以 10 为底的对数。
 
 ## pow
 
 `pow(x, y) -> float`
 
-Return x**y (x to the power of y).
+返回 `x` 的 `y` 次幂（即 `x` 的 `y` 次方）。
 
 ## sqrt
 
 `sqrt(x) -> float`
 
-Return the square root of x.
+返回 `x` 的平方根。

@@ -9,10 +9,10 @@ weight: 100
 
 `encode(value: str, encoding: str = "utf-8") -> str`
 
-Encode the string `value` using the codec registered for encoding.
+使用注册的编码器对字符串 `value` 进行编码。
 
 ## decode
 
 `decode(value: str, encoding: str = "utf-8") -> str`
 
-Decode the string `value` using the codec registered for encoding.
+使用注册的编码器对字符串 `value` 进行解码。

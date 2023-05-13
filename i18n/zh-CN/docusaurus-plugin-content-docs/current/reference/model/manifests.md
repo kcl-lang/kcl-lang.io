@@ -29,10 +29,10 @@ yaml_stream(values: [any], opts: {str:} = {
 下面我们通过一个例子来说明:
 
 ```python
-# Use the `import` keyword to import the `manifests` module.
+# 使用 `import` 关键词导入 `manifests` 模块
 import manifests
 
-# The schema `Deployment` definition.
+# `Deployment` schema 
 schema Deployment:
     apiVersion: str = "v1"
     kind: str = "Deployment"
@@ -43,7 +43,7 @@ schema Deployment:
         replica = 2
     }
 
-# The schema `Service` definition.
+# `Service` schema 定义
 schema Service:
     apiVersion: str = "v1"
     kind: str = "Service"
@@ -52,11 +52,11 @@ schema Service:
     }
     spec: {str:} = {}    
 
-# Define two `Deployment` resources.
+# 定义两个 `Deployment` 资源
 deployments = [Deployment {}, Deployment {}]
-# Define two `Service` resources.
+# 定义两个 `Service` 资源
 services = [Service {}, Service {}]
-# Put them into a KCL list and call the `manifests.yaml_stream` function.
+# 将它们放入 KCL 列表，并调用 `manifests.yaml_stream` 函数。
 manifests.yaml_stream(deployments + services)
 ```
 

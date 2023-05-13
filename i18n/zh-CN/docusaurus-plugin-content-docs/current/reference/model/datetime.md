@@ -5,36 +5,26 @@ type: "docs"
 description: datetime 包 - 时间处理
 weight: 100
 ---
-- datetime
-  - ticks() -> float
-    Return the current time in seconds since the Epoch. Fractions of a second may be present if the system clock provides them.
-  - date() -> str
-    Return the `%Y-%m-%d %H:%M:%S` format date.
-  - now() -> str
-    Return the local time. e.g. `'Sat Jun 06 16:26:11 1998'`
-  - today() -> str
-    Return the `%Y-%m-%d %H:%M:%S.%{ticks}` format date.
-
 ## time
 
 `ticks() -> float`
 
-Return the current time in seconds since the Epoch. Fractions of a second may be present if the system clock provides them.
+返回从 1970 年 1 月 1 日 0 时 0 分 0 秒（Epoch）开始到当前时间经过的秒数。如果系统时钟能提供更精确的时间，则秒数后可能会有小数部分。
 
 ## date
 
 `date() -> str`
 
-Return the `%Y-%m-%d %H:%M:%S` format date.
+返回以 `%Y-%m-%d %H:%M:%S` 格式表示的时间。
 
 ## now
 
 `now() -> str`
 
-Return the local time. e.g. `'Sat Jun 06 16:26:11 1998'`
+返回当地时间，例如 `'Sat Jun 06 16:26:11 1998'`。
 
 ## today
 
 `today() -> str`
 
-Return the `%Y-%m-%d %H:%M:%S.%{ticks}` format date.
+返回以 `%Y-%m-%d %H:%M:%S.%{ticks}` 格式表示的时间。
