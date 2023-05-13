@@ -58,6 +58,7 @@ deployments = [Deployment {}, Deployment {}]
 services = [Service {}, Service {}]
 # 将它们放入 KCL 列表，并调用 `manifests.yaml_stream` 函数。
 manifests.yaml_stream(deployments + services)
+```
 
 首先我们通过 `import` 关键字导入 `manifests` 模块并定义 2 个 Deployment 以及 2 个 Service 资源，当我们想以 YAML stream 并以 `---` 作为分隔符的格式依次输出这 4 个资源时，我们可以将它们合并为一个 KCL 列表并作为 `manifests.yaml_stream` 函数的 `values` 形参进行传入 (如无特殊需求，opts 参数一般使用默认值即可)，最终得到 YAML 输出为:
 
