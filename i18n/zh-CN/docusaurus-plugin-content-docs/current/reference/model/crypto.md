@@ -27,15 +27,11 @@ weight: 100
 
 `sha256(value: str, encoding: str = "utf-8") -> str`
 
-Encrypt the string `value` using `SHA256` and the codec registered for encoding.
-
 使用注册编码器和 `SHA256` 算法对字符串 `value` 进行加密。
 
 ## sha384
 
 `sha384(value: str, encoding: str = "utf-8") -> str`
-
-Encrypt the string `value` using `SHA384` and the codec registered for encoding.
 
 使用注册编码器和 `SHA384` 算法对字符串 `value` 进行加密。
 
