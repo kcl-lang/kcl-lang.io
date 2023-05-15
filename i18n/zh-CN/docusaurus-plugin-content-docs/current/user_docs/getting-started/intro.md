@@ -103,7 +103,7 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 + **K8s集成**：支持外置编辑和校验插件，分离数据和逻辑：[Helm KCL Plugin](https://github.com/KusionStack/helm-kcl), [KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk) 和 [Kustomize KCL Plugin](https://github.com/KusionStack/kustomize-kcl) 等。
 + **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
-有关更多语言设计和功能，请参阅[KCL文档](https://kcl-lang.github.io/docs/reference/lang/tour)。虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，我们还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
+虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，我们还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
 
 下面是一个用 KCL 生成 kubernetes 资源的例子
 
@@ -211,7 +211,7 @@ Kustomize 的核心功能是其文件级覆盖功能。但是它存在多个覆�
 
 Helm 的概念源于操作系统的包管理机制。它是一个基于模板化 YAML 文件的包管理工具，支持包中资源的执行和管理。
 
-KCL 自然提供了 Helm 功能的超集，因此您可以直接使用 KCL 作为替代。对于采用 Helm 的用户，KCL 中的堆栈编译结果可以打包并以 Helm 格式使用，通过 kpm 包管理工具进行分发复用。
+KCL 自然提供了 Helm 功能的超集，因此您可以直接使用 KCL 作为替代。对于采用 Helm 的用户，KCL 中的堆栈编译结果可以打包并以 Helm 格式使用，通过 kpm 包管理工具进行分发复用。此外，我们还可以直接使用 Helm-KCL 插件直接对已有的 Helm Charts 进行无侵入的可编程扩展。
 
 ### vs. CDK
 
