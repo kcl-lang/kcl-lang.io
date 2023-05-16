@@ -261,9 +261,184 @@ kcl -Y kcl.yaml ci-test/settings.yaml -o ci-test/stdout.golden.yaml -d -O :appCo
 
 更多与自动化相关的使用文档请参考 [自动化](/docs/user_docs/guides/automation) 一节
 
+### 使用函数
+
+```python
+# Define a function that adds two numbers and returns the result。
+add = lambda x, y {
+    x + y
+}
+# Define a function that subs two numbers and returns the result。
+sub = lambda x, y {
+    x - y
+}
+# Call the function, pass in arguments, and obtain the return value.
+result = sub(add(2, 3), 2)  # The result is 3.
+```
+
+输出 YAML 为:
+
+```yaml
+result: 3
+```
+
+### 使用代码包
+
+创建一个名为 `utils.k` 的包，在其中定义一个名为 KCL 函数 `add`，并将其导入另一个文件中使用。
+
++ `utils.k`
+
+```python
+# utils.k
+
+# Define a function that adds two numbers and returns the result。
+add = lambda x, y {
+    x + y
+}
+
+# Define a function that subs two numbers and returns the result。
+sub = lambda x, y {
+    x - y
+}
+```
+
++ `main.k`
+
+```python
+# main.k
+import .utils
+
+# Call the function, pass in arguments, and obtain the return value.
+result = utils.sub(utils.add(2, 3), 2)  # The result is 3.
+```
+
+### 使用配置简化逻辑表达式
+
+```python
+# Complex Logic, `_cpu` is a non-exported and mutable attribute.
+_cpu = 256
+_priority = "1"
+
+if _priority == "1":
+    _cpu = 256
+elif _priority == "2":
+    _cpu = 512
+elif _priority == "3":
+    _cpu = 1024
+else:
+    _cpu = 2048
+
+# Simplify Logic Expression using Config
+cpuMap = {
+    "1" = 256
+    "2" = 512
+    "3" = 1024
+}
+# Get cpu from the cpuMap, when not found, use the default value 2048.
+cpu = cpuMap[_priority] or 2048
+```
+
+输出 YAML 为:
+
+```yaml
+cpuMap:
+  "1": 256
+  "2": 512
+  "3": 1024
+cpu256: 256
+cpu2048: 2048
+```
+
+### 分离逻辑和数据
+
+我们可以使用 KCL **schema**、**config** 和 **lambda**尽可能多地分离**数据**和**逻辑**。
+
+比如我们可以编写如下代码 (main.k)
+
+```python
+schema Student:
+    """Define a `Student` schema model with documents.
+
+    Attributes
+    ----------
+    name : str, required
+        The name of the student.
+    id : int, required.
+        The id number of the student.
+    grade : int, required.
+        The grade of the student.
+
+    Examples
+    --------
+    s = Student {
+        name = "Alice"
+        id = 1
+        grade = 80
+    }
+
+    """
+    name: str
+    id: int
+    grade: int
+
+    # Define constraints for the `Student` model.
+    check:
+        id >= 0
+        0 <= grade <= 100
+
+# Student data.
+students: [Student] = [
+    {name = "Alice", id = 1, grade = 85}
+    {name = "Bob", id = 2, grade = 70}
+    {name = "Charlie", id = 3, grade = 90}
+    {name = "David", id = 4, grade = 80}
+    {name = "Eve", id = 5, grade = 95}
+]
+
+# Student logic.
+query_student_where_name = lambda students: [Student], name: str {
+    # Query the first student where name is `name`
+    filter s in students {
+        s.name == name
+    }?[0]
+}
+
+alice = query_student_where_name(students, name="Alice")
+bob = query_student_where_name(students, name="Bob")
+```
+
+输出 YAML 为:
+
+```yaml
+students:
+  - name: Alice
+    id: 1
+    grade: 85
+  - name: Bob
+    id: 2
+    grade: 70
+  - name: Charlie
+    id: 3
+    grade: 90
+  - name: David
+    id: 4
+    grade: 80
+  - name: Eve
+    id: 5
+    grade: 95
+alice:
+  name: Alice
+  id: 1
+  grade: 85
+bob:
+  name: Bob
+  id: 2
+  grade: 70
+```
+
 ### 为模型添加代码注释
 
-为便于用户理解以及模型文档自动生成，需要对定义的模型编写注释，注释内容一般包括模型的解释，模型字段的解释，类型，默认值，使用样例等。详细的 KCL Schema 代码注释编写规范以及模型文档自动生成可以参考 [KCL 文档规范](/docs/tools/cli/kcl/docgen)
+为便于用户理解以及模型文档自动生成，需要对定义的模型编写注释，注释内容一般包括模型的解释，模型字段的解释，类型，默认值，使用样例等。详细的 KCL Schema 代码注释编写规范以及模型文档自动生成可以参考 [KCL 文档规范](/docs/tools/cli/kcl/docgen)。并且我们可以使用 `kcl-doc generate` 命令从用户指定的文件或目录中提取文档，并将其输出到指定的目录。
 
 ## 后端模型
 
