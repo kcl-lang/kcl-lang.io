@@ -15,7 +15,7 @@ image = "nginx:1.14.2"
 service = "my-service"
 ```
 
-上述 KCL 代码中，定义了 4 个变量 `cpu` 和 `memory` 被声明为整数类型，并且它们的值为 `256` 和 `512`，而 `image` 和 `service` 是字符串类型，它们的值为 `image` 和 `service`
+上述 KCL 代码中，定义了 4 个变量 `cpu` 和 `memory` 被声明为整数类型，并且它们的值分别为 `256` 和 `512`，而 `image` 和 `service` 是字符串类型，它们的值分别为 `image` 和 `service`
 
 使用如下命令可以将上述 KCL 文件编译为 YAML 进行输出
 
