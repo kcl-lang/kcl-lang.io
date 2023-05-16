@@ -2,7 +2,7 @@ schema App:
     """The application model."""
     name: str
     replicas: int = 1
-    labels?: {str:str}
+    labels?: {str:str} = {app = name}
     service?: Service
     containers?: {str: Container}
 
