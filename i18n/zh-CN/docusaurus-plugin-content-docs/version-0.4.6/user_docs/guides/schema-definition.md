@@ -9,7 +9,7 @@ KCL 的核心场景是写配置和校验，因此 KCL 被设计之初的一个�
 
 比如我们有如下定义的 KCL 文件 (main.k)。在其中，我们使用 `schema` 关键字定义了三个模型 `App`，`Service` 和 `Volume`。并且 `App` 模型具有四个属性 `domainType`, `containerPort`, `volumes` 和 `services`，其中
 
-+ `domainType` 的类型为字符串字面值联合类型，与一个“枚举”类似，这表明 `domainType` 的值只能取 `"Standard"`, `"Customized"` 和 `"Global"` 中的一个
++ `domainType` 的类型为字符串字面值联合类型，与“枚举”类似，这表明 `domainType` 的值只能取 `"Standard"`, `"Customized"` 和 `"Global"` 中的一个
 + `containerPort` 的类型为整数 `int`, 此外我们使用 `check` 关键字定义了其取值范围 1 ~ 65535
 + `services` 的类型为 `Service` 列表类型，`Service`，并且我们用 `?` 标记了它是一个可选属性，这意味着我们可以不为其赋值。
 + `volumes` 的类型为 `Volume` 列表类型，并且我们用 `?` 标记了它是一个可选属性，这意味着我们可以不为其赋值。
