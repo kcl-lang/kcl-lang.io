@@ -160,7 +160,7 @@ $ kcl main.k | kubectl apply -f -
 deployment.apps/nginx-deployment configured
 ```
 
-可以从命令行的结果看出看出与我们使用直接使用 YAML 配置和 kubectl apply 的一个 Deployment 体验完全一致
+可以从命令行的结果看出与我们使用直接使用 YAML 配置和 kubectl apply 的一个 Deployment 体验完全一致
 
 通过 kubectl 检查部署状态
 
