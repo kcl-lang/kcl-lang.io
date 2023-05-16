@@ -9,7 +9,7 @@ sidebar_position: 2
 
 ## 简介
 
-在 schema 定义当中可以使用 check 关键字编写 schema 属性的校验规则, 如下所示，check 代码块中的每一行都对应一个条件表达式，当满足条件时校验成功，当不满足条件时校验失败, 条件表达式后可跟 `, "check error message"` 表示当校验失败时需要显示的信息。
+在 schema 定义当中可以使用 check 关键字编写 schema 属性的校验规则, 如下所示，check 代码块中的每一行都对应一个条件表达式，当满足条件时校验成功，当不满足条件时校验失败。条件表达式后可跟 `, "check error message"` 表示当校验失败时需要显示的信息。
 
 ```python
 import regex
