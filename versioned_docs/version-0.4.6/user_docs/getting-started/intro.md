@@ -6,9 +6,9 @@ sidebar_position: 1
 
 ## What is KCL?
 
-[Kusion Configuration Language (KCL)](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, and easier to automate and integrate with homegrown systems.
+[Kusion Configuration Language (KCL)](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language that enhances the writing of complex configurations, including those for cloud-native scenarios. With its advanced programming language technology and practices, KCL is dedicated to promoting better modularity, scalability, and stability for configurations. It enables simpler logic writing and offers ease of automation APIs and integration with homegrown systems.
 
-When we deploy software systems, we do not think they are fixed. Evolving business requirements, infrastructure requirements, and other factors mean that systems are constantly changing. When we need to change the system behavior quickly, and the change process needs expensive and lengthy reconstruction and redeployment process, business code change is often not enough. Configuration can provide us with a low overhead way to change system functions. For example, we often write JSON or YAML files as shown below for our system configuration.
+When we deploy software systems, we don't consider them as static entities generally. Given the constantly evolving business and infrastructure requirements, these systems undergo constant transformations. Therefore, whenever we need to quickly alter the system behavior, relying solely on business code alterations may not suffice, especially if the change process necessitates expensive and time-consuming reconstruction and redeployment processes. In such scenarios, the configuration can offer us a cost-effective and efficient way to modify system functions. A common example of this is the use of JSON or YAML files for system configuration.
 
 + JSON configuration
 
@@ -43,7 +43,7 @@ database:
   - 8002
 ```
 
-We can choose to store the static configuration in JSON and YAML files as needed. In addition, the configuration can also be stored in a high-level language that allows more flexible configuration, which can be coded, rendered, and statically configured. KCL is such a configuration language. We can write KCL code to generate JSON/YAML and other configurations.
+We have the flexibility to store the static configuration either in JSON or YAML files as required. Furthermore, the configuration can also be stored in a more sophisticated language that offers greater flexibility in terms of coding, rendering, and static configuration. KCL is an example of such a configuration language that we can leverage. We can write KCL code to generate JSON/YAML and other configurations as per our needs.
 
 ## Why Use KCL?
 
@@ -64,7 +64,7 @@ You can use KCL to
 + Organize, simplify, unify and manage large configurations scalably without side effects.
 + Used as a platform engineering language to deliver modern app with [KusionStack](https://kusionstack.io/).
 
-In addition to the language itself, KCL also provides many additional tools, such as formatting, testing, document, package management, to help users use, understand and check the configuration or policy they write. We can reduce the cost of configuration writing and sharing through IDE plug-ins such as VS Code, playground and package manage tools. In addition, through KCL Rust, Go, and Python multilingual SDKs, the configuration can be automatically managed and executed.
+In addition to the language itself, KCL also provides many additional tools, such as formatting, testing, document, package management, to help users use, understand and check the configuration or policy they write. We can reduce the cost of configuration writing and sharing through IDE extensions such as VS Code, playground and package manage tools. In addition, through KCL Rust, Go, and Python multilingual SDKs, the configuration can be automatically managed and executed.
 
 ![](/img/docs/user_docs/intro/kcl-overview.png)
 
@@ -93,13 +93,13 @@ In summary, KCL has the following characteristics:
 + **Fast automation**: Gradient automation scheme of [CRUD APIs](https://kcl-lang.github.io/docs/reference/lang/tour/#kcl-cli-variable-override), [multilingual SDKs](https://kcl-lang.github.io/docs/reference/xlang-api/overview), [language plugin](https://kcl-lang.github.io/docs/reference/plugin/overview)
 + **High performance**: High compile time and runtime performance using Rust & C and [LLVM](https://llvm.org/), and support compilation to native code and [WASM](https://webassembly.org/).
 + **API affinity**: Native support API ecological specifications such as [OpenAPI](https://kcl-lang.github.io/docs/tools/cli/openapi/), Kubernetes CRD, Kubernetes YAML spec.
-+ **Development friendly**: Friendly development experiences with rich [language tools](https://kcl-lang.github.io/docs/tools/cli/kcl/overview) (Format, Lint, Test, Vet, Doc, etc.) and [IDE plugins](https://kcl-lang.github.io/docs/tools/Ide/).
++ **Development friendly**: Friendly development experiences with rich [language tools](https://kcl-lang.github.io/docs/tools/cli/kcl/overview) (Format, Lint, Test, Vet, Doc, etc.) and [IDE extensions](https://kcl-lang.github.io/docs/tools/Ide/).
 + **Safety & maintainable**: Domain-oriented, no system-level functions such as native threads and IO, low noise and security risk, easy maintenance and governance.
 + **Rich multi-language API**: Rich multilingual API: [Go](https://kcl-lang.io/docs/reference/xlang-api/go-api), [Python](https://kcl-lang.io/docs/reference/xlang-api/python-api), [Java](https://kcl-lang.io/docs/reference/xlang-api/java-api) and [REST APIs](https://kcl-lang.io/docs/reference/xlang-api/rest-api) meet different scenarios and application use prelude.
 + **Kubernetes Integrations**: External mutation, and validation plugins including [Kustomize KCL Plugin](https://github.com/KusionStack/kustomize-kcl), [Helm KCL Plugin](https://github.com/KusionStack/helm-kcl), [KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk) to separate data and logic.
 + **Production-ready**: Widely used in production practice of platform engineering and automation at Ant Group.
 
-For more language design and capabilities, see [KCL Documents](https://kcl-lang.github.io/docs/reference/lang/tour). Although KCL is not a general language, it has corresponding application scenarios. Developers can write **config**, **schema**, **function** and **rule** through KCL, where config is used to define data, schema is used to describe the model definition of data, rule is used to validate data, and schema and rule can also be combined to use models and constraints that fully describe data, In addition, we can also use the lambda pure function in KCL to organize data code, encapsulate common code, and call it directly when needed.
+Although KCL is not a general language, it has corresponding application scenarios. Developers can write **config**, **schema**, **function** and **rule** through KCL, where config is used to define data, schema is used to describe the model definition of data, rule is used to validate data, and schema and rule can also be combined to use models and constraints that fully describe data, In addition, we can also use the lambda pure function in KCL to organize data code, encapsulate common code, and call it directly when needed.
 
 This is an example of generating kubernetes manifests.
 
@@ -124,7 +124,7 @@ spec = {
 }
 ```
 
-We can use the KCL code to generate a Kubernetes YAML
+We can use the KCL code to generate a Kubernetes YAML manifest.
 
 ```yaml
 apiVersion: apps/v1
@@ -152,75 +152,75 @@ spec:
 
 ## How to Choose?
 
-The communities have made considerable attempts to advance their configuration technologies, which can be divided into three categories:
+Communities have been making significant efforts to improve their configuration technologies, which can be categorized into three groups:
 
-+ Low-level data format based tools for templating, patching, and validation, which use external tools to enhance the reuse and validation.
-+ Domain-Specific Languages (DSLs) and Configuration Languages (CLs) to enhance language abilities.
-+ General Purpose Language (GPL)-based solutions, using GPLs' Cloud-Development Kit (CDK) or framework to define the configuration.
++ Low-level data format-based tools that utilize external tools for enhancing reuse and validation, specifically for templating, patching, and validation.
++ Domain-Specific Languages (DSLs) and Configuration Languages (CLs), which enhance language abilities.
++ General Purpose Language (GPL)-based solutions that utilize Cloud-Development Kit (CDK) or framework to define the configuration.
 
-The simple answer:
+To simplify, here are some recommended options:
 
-+ YAML/JSON/Kustomize/Helm are recommended if you need to write structured key-value pairs, or use Kubernetes' native tools.
++ YAML/JSON/Kustomize/Helm are recommended if you need to write structured key-value pairs, or use Kubernetes native tools.
 + HCL is recommended if you want to use programming language convenience to remove boilerplate with good human readability, or if you are already a Terraform user.
 + CUE is recommended if you want to use type system to improve stability and maintain scalable configurations.
 + KCL is recommended if you want types and modeling like a modern language, scalable configurations, in-house pure functions and rules, and production-ready performance and automation.
 
 ### vs. YAML/JSON
 
-YAML/JSON configurations are suitable for small-scale configuration scenarios. For large-scale cloud native configuration scenarios that need frequent modifications, they are more suitable for KCL. The main difference involved is the difference between configuration data abstraction and deployment:
+YAML/JSON configurations are suitable for small-scale configuration scenarios. However, if you require frequent modifications in large-scale cloud-native configuration scenarios, KCL is more appropriate. The primary difference between the two is the abstraction of configuration data and deployment.
 
-The advantages of using KCL for configuration are: for static data, the advantage of abstracting one layer means that the overall system has deployment flexibility. Different configuration environments, tenants, and runtime may have different requirements for static data, and even different organizations may have different specifications and product requirements. KCL can be used to expose the most needed and frequently modified configurations to users.
+The advantages of using KCL for configuration are numerous. First, abstracting one layer for static data provides deployment flexibility, allowing various configuration environments, tenants, and runtime to have distinct requirements for static data. Additionally, different organizations may have different specifications and product requirements. By leveraging KCL, administrators can expose the most important and frequently modified configurations to users.
 
 ### vs. Jsonnet/GCL
 
-GCL is a declarative configuration programming language implemented in Python provides the necessary language capabilities to support template abstraction. However, the compiler itself is written in Python, and the language itself is interpreted and executed. For large template instances (such as kubernetes model), the performance is poor.
+GCL is a declarative configuration programming language implemented in Python, providing necessary language capabilities for template abstraction. However, the compiler itself is written in Python, and the language runs with interpretation, leading to poor performance for large template instances, such as the Kubernetes model.
 
-Jsonnet is a data template language implemented in C++, suitable for application and tool developers, can generate configuration data and organize, simplify and manage large configurations without side effects.
+On the other hand, Jsonnet is a data template language implemented in C++/Go, suitable for application and tool developers. It can generate configuration data and organize, simplify, and manage large configurations without any side effects.
 
-Jsonnet and GCL are great at reducing boilerplate. They can both uses code to generate configuration, just like engineers only need to write advanced GPL code, rather than manually writing error-prone and difficult-to-understand server binary code. Jsonnet reduces some of the complexities of GCL, but largely falls into the same category. The both have many runtime errors, insufficient type check and constraint capacity.
+Both Jsonnet and GCL are excellent at reducing boilerplate, using code to generate configuration, so engineers can write advanced GPL code instead of manually writing error-prone and difficult-to-understand server binary code. Despite reducing some of the complexities of GCL, Jsonnet largely falls into the same category. Both have runtime errors, insufficient type-checking and constraint capacity.
 
 ### vs. HCL
 
-HCL is a Go implementation structured configuration language. The native syntax of HCL is inspired by libucl and nginx configurations. It is used to create a structured configuration language that is friendly to humans and machines, mainly for devops tools, server configurations, and resource configurations as a [Terraform language](https://www.terraform.io/language).
+HCL is a configuration language implemented in Go that is structured and inspired by the syntax of libucl and nginx configurations. It is designed to be both human and machine-friendly, primarily for use in devops tools, server configurations, and resource configurations as a [Terraform language](https://www.terraform.io/language).
 
-HCL has some striking similarities with GCL. It does introduce a poor man’s version of inheritance: file overlays. Fields may be defined in multiple files that get overwritten in a certain order of the file names. Although not nearly as complex as GCL, it does have some of the same issues. The mode is fixed and the capability is limited.
+While HCL shares some similarities with GCL, it employs a simpler version of inheritance through file overlays. However, like GCL, it has limitations such as a fixed mode and limited capabilities.
 
-The user interface of HCL is not directly perceived through the Terraform provider Schema definition. In addition, the user interface is cumbersome when writing complex object and required/optional field definitions. The dynamic parameters are constrained by the condition field of the variable. The constraints of the resource itself need to be defined by provider schema or combined with Sentinel/Rego and other policy languages. The integrity of the language itself cannot be self closed, and its implementation methods are not unified.
+The user interface of HCL is not readily apparent in the Terraform provider Schema definition and can be cumbersome when defining complex object and required/optional fields. Dynamic parameters are constrained by the condition field of the variable, and resource constraints must be defined either by the provider schema or through the use of Sentinel/Rego and other policy languages. The language itself may not be self-contained.
 
 ### vs. CUE
 
-CUE can be used as modeling through struct, no inheritance and other features, can achieve high abstraction when there is no conflict between model definitions. Because CUE performs all constraint checks at runtime, there may be performance bottlenecks in large-scale modeling scenarios. CUE combines types and values into one concept. It simplifies the writing of constraints through various syntax. For example, generic types and enumerations are not required. Summing types and null value merging are the same thing. CUE supports configuration merging but it is completely idempotent. It may not meet the requirements of complex multi-tenant and multi- environment configuration scenarios. For complex loop and constraint scenarios, it is complex to write, and it is cumbersome to write scenarios that require accurate configuration modifications.
+CUE can be utilized for modeling through struct without the need for inheritance or other features. This can lead to high abstraction as long as there are no conflicts with model definitions. However, since CUE performs all constraint checks at runtime, there may be performance bottlenecks in large-scale modeling scenarios. Despite this, CUE simplifies constraint writing through various syntax options, eliminating the need for generic types and enumerations. Additionally, configuration merging is supported but is completely idempotent, which may not be suitable for complex multi-tenant and multi-environment configuration scenarios. Writing complex loop and constraint scenarios can be challenging and cumbersome for accurately modifying configurations.
 
-For KCL, modeling is conducted through KCL schema, and high model abstraction can be achieved through language level engineering and some object-oriented features (such as single inheritance). KCL is a statically compiled language with low overhead for large-scale modeling scenarios. KCL provides a richer check declarative constraint syntax, which makes it easier to write. For some configuration field combination constraints, it is simpler to write (compared with CUE, KCL provides more if guard combination constraints, all/any/map/filter and other collection constraint writing methods, which makes it easier to write).
+On the other hand, KCL conducts modeling through the schema and achieves high model abstraction through language-level engineering and some object-oriented features, such as single inheritance. KCL is a statically compiled language with low overhead for large-scale modeling scenarios. Additionally, KCL provides a richer declarative constraint syntax, making it easier to write. Compared to CUE, KCL offers more if guard combination constraints, all/any/map/filter, and other collection constraint writing methods, which simplify configuration field combination constraints.
 
 ### vs. Dhall
 
-Dhall is a programmable configuration language, it combines JSON, functions, types and imports. Its style is functional. If you have learned Haskell and other languages, you may be familiar with it. Compared with Dhall, KCL also provides a combination of similar functions, providing users with the ability to configure programmability and abstraction. However, KCL has made more improvements in modeling, constraint checking, automation, etc., and can share models through package management. In addition, the syntax and semantics of KCL are closer to the object-oriented language, and to some extent, it is more acceptable than the pure functional style.
+Dhall is a functional, programmable configuration language that incorporates JSON, functions, types and imports. If you have experience with languages like Haskell, you may find Dhall familiar. KCL also offers similar functionality for programmability and abstraction, but has made greater advancements in areas such as modeling, constraint checking, automation and package management for sharing models. KCL's syntax and semantics are more aligned with object-oriented languages, making it more approachable than pure functional styles in some cases.
 
 ### vs. Kustomize
 
-The core capability of Kustomize is its file level overlay capability. However, there is a problem of multiple overlay chains, because finding the statement of a specific attribute value does not guarantee that it is the final value, because another specific value that appears elsewhere can override it. For complex scenarios, retrieval of the inheritance chain of Kustomize files is often not as convenient as retrieval of the inheritance chain of KCL code, The specified configuration file overwrite order needs to be carefully considered. In addition, Kustomize cannot solve the problems of YAML configuration writing, constraint verification, model abstraction and development, and is more suitable for simple configuration scenarios.
+The key feature of Kustomize is its ability to overlay files at a granular level. However, it faces challenges with multiple overlay chains as a specific attribute value may not be the final value, as it can be overridden by another value elsewhere. Retrieving the inheritance chain of Kustomize files can be less convenient than retrieving the inheritance chain of KCL code, particularly for complex scenarios where careful consideration of the specified configuration file overwrite order is necessary. Additionally, Kustomize does not address issues related to YAML configuration writing, constraint verification, model abstraction, and development, making it more suited for simpler configuration scenarios.
 
-In KCL, the configuration merge operation can be fine-grained to each configuration attribute in the code, and the merge strategy can be flexibly set, not limited to the overall resource, and the dependency between configurations can be statically analyzed through the import statement of KCL.
+In contrast, KCL offers fine-grained configuration merge operations for each attribute in the code, with flexible merge strategy settings that are not limited to overall resources. KCL also allows for static analysis of configuration dependencies through import statements.
 
 ### vs. Helm
 
-The concept of Helm originates from the package management mechanism of the operating system. It is a package management tool based on templated YAML files and supports the execution and management of resources in the package.
+The idea behind Helm can be traced back to the package management system used in operating systems. It is a package management tool that relies on templated YAML files to execute and manage resources within packages.
 
-KCL naturally provides a superset of Helm capabilities, so that you can use KCL directly as an alternative. For users who have adopted Helm, the stack compilation results in KCL can be packaged and used in Helm format.
+KCL provides a greater range of capabilities than Helm, making it a viable alternative. Users who have already adopted Helm can still utilize KCL by packaging the stack compilation results in a Helm format or by using the Helm-KCL plugin to programmatically extend existing Helm charts.
 
 ### vs. CDK
 
-Writing in CDK's high-level language can be well integrated into the application project, which is actually part of the client runtime. For KCL, external configurations and policies written by KCL are decoupled from the client runtime.
+CDK's high-level language integrates well into application projects, effectively becoming part of the client runtime. In contrast, KCL decouples external configurations and policies written using KCL from the client runtime.
 
-The general language is usually overkill, that is, it goes far beyond the problems that need to be solved. There are various security problems in the general language, such as the ability boundary problem (starting local threads, accessing IO, network, code infinitive looping and other security risks). For example, in the music field, there are special notes to express music, which is convenient for learning and communication, It can not be expressed clearly in general language.
+General-purpose languages can often be over-engineered, going beyond the requirements of the problem being solved. These languages can also present various security issues, such as problems with the ability boundary, such as accessing I/O, network, code infinite looping, and other security risks. In specialized fields, such as music, there are special notes used to communicate effectively, which cannot be expressed clearly in general-purpose languages.
 
-In addition, because of its various styles of the general language, which has the cost of unified maintenance, management and automation. The general language is usually used to write the client runtime, which is a continuation of the server runtime. It is not suitable for writing configurations that are independent of the runtime, and it is compiled into binary and started from the process finally. Besides, the stability and scalability are not easy to control. However, the configuration language often be used to write data, which is combined with simple logic, and it describes the expected final result, which is then consumed by the compiler or engine.
+Furthermore, general-purpose languages come in a variety of styles, which can create challenges in terms of unified maintenance, management, and automation. These languages are generally better suited to writing the client runtime, which is a continuation of the server runtime. They are not ideal for writing configurations that are independent of the runtime, as they are compiled into binaries and started from the process, making stability and scalability challenging to control. In contrast, configuration languages are often used to write data combined with simple logic, and they describe the expected final result, which is then consumed by the compiler or engine.
 
 ### vs. OPA/Rego
 
-Although not designed as a data definition language, Rego, the language used for Open Policy Agent (OPA), also solves the issue of being able to add constraints from multiple sources.
+While not originally intended as a data definition language, Rego, the language used for Open Policy Agent (OPA), can also address the issue of adding constraints from multiple sources.
 
-Rego has its roots in logic programming. It is based on Datalog, a restricted form of Prolog, whereas KCL is based on static type structure. Typed-feature structures were designed to deal with the shortcomings of Prolog for applications in encoding human languages. Using a Datalog variant for what is essentially a constraint validation task is somewhat curious. Datalog makes an excellent query language. But for constraint enforcement, it is a bit cumbersome as one effectively first needs to query values to which to apply the constraints.
+Rego has its roots in logic programming and is based on Datalog, a restricted form of Prolog. In contrast, KCL is based on a static type structure. Typed-feature structures were developed to address the limitations of Prolog in encoding human languages. Using a Datalog variant for a constraint validation task may seem unusual. Datalog excels as a query language, but it can be cumbersome for constraint enforcement, in that values must be queried before applying constraints.
 
-Besides, KCL’s approach is more amenable to finding normalized and simplified representations of constraints, which makes it more suitable for creating OpenAPI for generated from OpenAPI.
+KCL's approach to constraint validation is more conducive to finding normalized and simplified representations of constraints, making it well-suited for creating structures generated from OpenAPI.
