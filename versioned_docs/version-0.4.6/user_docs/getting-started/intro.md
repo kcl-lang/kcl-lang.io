@@ -8,43 +8,6 @@ sidebar_position: 1
 
 [Kusion Configuration Language (KCL)](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language that enhances the writing of complex configurations, including those for cloud-native scenarios. With its advanced programming language technology and practices, KCL is dedicated to promoting better modularity, scalability, and stability for configurations. It enables simpler logic writing and offers ease of automation APIs and integration with homegrown systems.
 
-When we deploy software systems, we don't consider them as static entities generally. Given the constantly evolving business and infrastructure requirements, these systems undergo constant transformations. Therefore, whenever we need to quickly alter the system behavior, relying solely on business code alterations may not suffice, especially if the change process necessitates expensive and time-consuming reconstruction and redeployment processes. In such scenarios, the configuration can offer us a cost-effective and efficient way to modify system functions. A common example of this is the use of JSON or YAML files for system configuration.
-
-+ JSON configuration
-
-```json
-{
-    "server": {
-        "addr": "127.0.0.1",
-        "listen": 4545
-    },
-    "database": {
-        "enabled": true,
-        "ports": [
-            8000,
-            8001,
-            8002
-        ],
-    }
-}
-```
-
-+ YAML configuration
-
-```yaml
-server:
-  addr: 127.0.0.1
-  listen: 4545
-database:
-  enabled: true
-  ports:
-  - 8000
-  - 8001
-  - 8002
-```
-
-We have the flexibility to store the static configuration either in JSON or YAML files as required. Furthermore, the configuration can also be stored in a more sophisticated language that offers greater flexibility in terms of coding, rendering, and static configuration. KCL is an example of such a configuration language that we can leverage. We can write KCL code to generate JSON/YAML and other configurations as per our needs.
-
 ## Why Use KCL?
 
 KCL expects to solve the following problems:
@@ -68,19 +31,11 @@ In addition to the language itself, KCL also provides many additional tools, suc
 
 ![](/img/docs/user_docs/intro/kcl-overview.png)
 
-Through KCL compiler, language tools, IDE, and multilingual APIs, you can use KCL in the following scenarios:
-
-+ **Configuration & Automation**: Abstract and manage configurations of different scales including small-scale configuration (application, network, micro service, database, monitoring, CI/CD pipeline and etc.), large-scale cloud native kubernetes configuration and automation. In addition, through [KCL OpenAPI tools](/docs/tools/cli/openapi/) and KCL's package management capabilities, we can fully abstract and reuse existing models.
-+ **Security & Compliance**: Utilize the ability of KCL dynamic parameters to define, update, share, and execute policies using code. Manage policies by leveraging KCL code based automation rather than relying on manual processes, which allow teams to move faster and reduce the likelihood of errors due to human error.
-+ **Intent Description**: KCL can be used to describe tools, scripts and workflows, and it accesses a customized engine to consume and execute intentions.
-
 Besides, KCL is a modern high-level domain language, which is a compiled, static and strongly typed language. It provides developers with the ability to write **configuration (config)**, **modeling abstraction (schema)**, **logic (lambda)**, and **policies (rule)** as the core elements through recording and functional language design.
 
 ![](/img/docs/user_docs/intro/kcl-concepts.png)
 
 KCL tries to provide runtime-independent programmability and does not natively provide system functions such as threads and IO, but supports functions for cloud-native operation scenarios, and tries to provide stable, secure, low-noise, low-side effect, easy-to-automate and easy-to-govern programming support for solving domain problems.
-
-Unlike client runtime written in GPL, KCL programs usually run and generate low-level data and are integrated into the client-side tools, which can provide a left-shifted stability guarantee by testing and validation of KCL code separately before pushing to runtime. KCL code can also be compiled into a wasm module, which could be integrated into the server runtime after full testing.
 
 In summary, KCL has the following characteristics:
 
