@@ -10,7 +10,7 @@ jobs:
   LinkCheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - uses: actions/setup-go@v1
         with:
           go-version: "1.16.6"

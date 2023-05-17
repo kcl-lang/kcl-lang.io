@@ -10,7 +10,7 @@ jobs:
         os: [macos-10.15, macos-11, macos-12, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Check Install Script
         run: static/script/install.sh
       - name: Check KCL run
@@ -36,7 +36,7 @@ jobs:
         os: [ubuntu-20.04, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Check Install Script
         run: static/script/install.sh
       - name: Check KCL run
@@ -64,7 +64,7 @@ jobs:
         pyversion: ['3.9', '3.10']
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Check Install Script
         run: static/script/install.ps1
       - name: Check KCL run
@@ -89,7 +89,7 @@ jobs:
   check-kcl-scoop-install:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
       - name: Check Scoop Install
         shell: powershell
         run: |
@@ -99,13 +99,26 @@ jobs:
           scoop install kcl-lang/kclvm
           kcl.exe hello.k
 
-  check-kcl-brew-install:
+  check-kcl-brew-install-macos:
     strategy:
       matrix:
         os: [macos-10.15, macos-11, macos-12]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+
+      - name: Check Brew Installation
+        working-directory: .
+        run: |
+          brew install kcl-lang/tap/kclvm
+          echo "brew installed successfully"
+          kcl hello.k
+
+  check-kcl-brew-install-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Homebrew/actions/setup-homebrew@master
 
       - name: Check Brew Installation
         working-directory: .
