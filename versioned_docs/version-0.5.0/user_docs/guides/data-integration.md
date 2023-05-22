@@ -3,7 +3,28 @@ title: "Data Integration"
 sidebar_position: 4
 ---
 
+## Introduction
+
 In KCL, we can not only compile and output the configuration code written by KCL into YAML format data, but also directly embed JSON/YAML and other data into the KCL language. For example, for the following KCL code (main.k):
+
+## Use KCL for Data Integration
+
+### 1. Get the Example
+
+Firstly, let's get the example.
+
+```bash
+git clone https://github.com/KusionStack/kcl-lang.io.git/
+cd ./kcl-lang.io/examples/data-integration
+```
+
+### 2. YAML Integration
+
+We can run the following command to show the YAML integration config.
+
+```bash
+cat yaml.k
+```
 
 ```python
 import yaml
@@ -16,56 +37,55 @@ ports:
 - 80
 - 8080
 """)
+server_yaml = yaml.encode({
+    ports = [80, 8080]
+})
 ```
 
-In the above code, we use the built-in `yaml` module of KCL and its `yaml.decode` function directly integrates YAML data, and uses the `Server` schema to directly verify the integrated YAML data. We can obtain the configuration output through the following command:
+In the above code, we use the built-in `yaml` module of KCL and its `yaml.decode` function directly integrates YAML data, and uses the `Server` schema to directly verify the integrated YAML data. In addition, we can use `yaml.encode` to serialize YAML data. We can obtain the configuration output through the following command:
 
 ```bash
-$ kcl main.k
+$ kcl yaml.k
 server:
   ports:
-  - 80
-  - 8080
+    - 80
+    - 8080
+server_yaml: "ports:\n  - 80\n  - 8080\n"
 ```
 
-In addition, we can use `yaml.encode` to serialize YAML data:
+### 3. JSON Integration
 
-```kcl
-import yaml
+Similarly, for JSON data, we can use `json.encode` and `json.decode` function performs data integration in the same way.
 
-server = yaml.encode({
-    ports = [80, 8080]
-})
-```
-
-The output of the execution command is:
+We can run the following command to show the JSON integration config.
 
 ```bash
-$ kcl main.k
-server: |
-  ports:
-  - 80
-  - 8080
+cat json.k
 ```
 
-Similarly, for JSON data, we can use `json.encode` and `json.decode` function performs data integration in the same way:
-
-```kcl
+```python
 import json
 
-server_json_encode = json.encode({
+schema Server:
+    ports: [int]
+
+server: Server = json.decode('{"ports": [80, 8080]}')
+server_json = json.encode({
     ports = [80, 8080]
 })
-server_json_decode = json.decode('{"ports": [80, 8080]}')
 ```
 
 The output of the execution command is:
 
 ```bash
-$ kcl main.k
-server_json_encode: '{"ports": [80, 8080]}'
-server_json_decode:
+$ kcl json.k
+server:
   ports:
-  - 80
-  - 8080
+    - 80
+    - 8080
+server_json: "{\"ports\": [80, 8080]}"
 ```
+
+## Summary
+
+This document introduces how to perform data integration in KCL, using the built-in yaml and json modules to directly integrate YAML and JSON data into the KCL language, and verify and serialize it using the corresponding decoding and encoding functions. Specific code examples and execution results are provided.
