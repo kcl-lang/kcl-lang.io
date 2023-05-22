@@ -1,7 +1,10 @@
 name: example-e2e-test
 on:
+  pull_request:
+    branches:
+     - main
   push:
-    branches: 
+    branches:
      - main
 jobs:
   example-e2e-test:
@@ -11,8 +14,9 @@ jobs:
       - name: Check Install Script
         run: static/script/install.sh
       - name: Check KCL run
-        shell: bash -leo pipefail {0}
-        run: sudo kcl hello.k
+        shell: bash -ieo pipefail {0}
+        run: kcl hello.k
 
       - name: Example tests
+        shell: bash -ieo pipefail {0}
         run: ./examples/test.sh
