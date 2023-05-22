@@ -3,7 +3,13 @@ title: "Validation"
 sidebar_position: 2
 ---
 
-## Use KCL to Validate the Data
+## What is Validation
+
+Validation is the process of verifying that data is accurate, reliable, and meets certain requirements or constraints. This includes checking the data for completeness, consistency, accuracy, and relevance. Data validation is performed to ensure that the data is fit for its intended purpose and that it can be used effectively and efficiently.
+
+We can use KCL and its vet tools to manually or automatically perform data validation to ensure data consistency.
+
+## Use KCL for Validation
 
 In addition to using KCL code to generate configuration formats such as JSON/YAML, KCL also supports format validation of JSON/YAML data. As a configuration language, KCL covers almost all features of [OpenAPI](https://www.openapis.org/).
 
