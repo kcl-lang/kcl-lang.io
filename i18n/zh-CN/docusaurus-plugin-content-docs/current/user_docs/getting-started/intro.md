@@ -29,7 +29,7 @@ KCL 期望通过更现代化的声明式配置语言在 Kubernetes 资源管理�
 + 通过分块编写配置数据可扩展地管理庞大的配置
 + 与 [KusionStack](https://kusionstack.io) 一起，用作平台工程语言来交付现代应用程序
 
-除了语言自身，KCL 还提供了许多额外的工具如格式化，测试、文档、包管理等工具帮助用户使用、理解和检查他们编写的配置或策略；通过 VS Code 等 IDE 插件和 Playground 降低配置编写、分享的成本；通过 Rust, Go, 和 Python 多语言 SDK 自动化地管理和执行配置。
+除了语言自身，KCL 还提供了许多额外的工具如格式化，测试、文档、包管理等工具帮助您使用、理解和检查编写的配置或策略；通过 VS Code 等 IDE 插件和 Playground 降低配置编写、分享的成本；通过 Rust, Go, 和 Python 多语言 SDK 自动化地管理和执行配置。
 
 ![](/img/docs/user_docs/intro/kcl-overview.png)
 
@@ -56,7 +56,7 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 + **K8s集成**：支持外置编辑和校验插件，分离数据和逻辑：[Helm KCL Plugin](https://github.com/KusionStack/helm-kcl)，[KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk)，[Kustomize KCL Plugin](https://github.com/KusionStack/kustomize-kcl) 和 [Kubectl KCL Plugin](https://github.com/KusionStack/kubectl-kcl) 等。
 + **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
-虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，我们还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
+虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
 
 下面是一个用 KCL 生成 kubernetes 资源的例子
 
@@ -117,7 +117,7 @@ spec:
 
 简单的选择答案：
 
-+ 如果你需要编写结构化的静态的 K-V，或使用 Kubernetes 原生的技术工具，建议选择 YAML。
++ 如果您需要编写结构化的静态的 K-V，或使用 Kubernetes 原生的技术工具，建议选择 YAML。
 + 如果您希望引入编程语言便利性以消除文本(如 YAML、JSON) 模板，有良好的可读性，或者你已是 Terraform 的用户，建议选择 HCL。
 + 如果您希望引入类型功能提升稳定性，维护可扩展的配置文件，建议选择 CUE。
 + 如果您希望以现代语言方式编写复杂类型和建模，维护可扩展的配置文件，原生的纯函数和策略，和生产级的性能和自动化，建议直接选择 KCL 或将 KCL 用于对已有配置手段或工具进行增强。
@@ -126,7 +126,7 @@ spec:
 
 YAML/JSON 适用于小型配置场景。对于需要频繁修改的大型云原生配置场景，它们更适合 KCL。所涉及的主要区别是配置数据抽象和部署之间的区别：
 
-使用 KCL 进行配置的优点是：对于静态数据，抽象一层的优点意味着整个系统具有部署灵活性。不同的配置环境、租户和运行时可能对静态数据有不同的要求，甚至不同的组织可能有不同的规范和产品要求。KCL可用于向用户公开最需要的和经常修改的配置。
+使用 KCL 进行配置的优点是：对于静态数据，抽象一层的优点意味着整个系统具有部署灵活性。不同的配置环境、租户和运行时可能对静态数据有不同的要求，甚至不同的组织可能有不同的规范和产品要求。KCL 可用于公开最需要的和经常修改的配置。
 
 ### vs. Jsonnet/GCL
 
