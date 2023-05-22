@@ -3,57 +3,34 @@ title: "Configuration"
 sidebar_position: 1
 ---
 
-## Use KCL to Write Configurations
+## What is Configuration
 
-The core features of KCL are its **modeling** and **constraint** capabilities, and the basic functions of KCL revolve around the two core features. In addition, KCL follows the user-centric configuration concept to design its basic functions, which can be understood from two aspects:
+Configuration is a vital aspect of software systems that are constantly in flux due to evolving business requirements, infrastructure demands, and other factors. Often, changing these systems' behavior quickly can be challenging, especially when doing so requires a costly and time-consuming reconstruction and redeployment process. In such cases, making changes to the business code may not be sufficient. Fortunately, configuration provides a low-overhead way to modify system functions. For instance, many developers write JSON or YAML files to configure their systems.
 
-- **Domain model-centric configuration view**: With the rich features of KCL language and [KCL OpenAPI](https://kcl-lang.github.io/docs/tools/cli/openapi/quick-start) tools, we can directly integrate a wide range of well-designed models in the community into KCL (such as the K8s resource model). We can also design and implement our own KCL models or libraries according to different scenarios, forming a complete set of domain models for other configuration end users to use.
-- **End user-centric configuration view**: With KCL's code encapsulation, abstraction and reuse capabilities, the model architecture can be further abstracted and simplified (for example, the K8s resource model is abstracted into an application-centered server model) to **minimize the end user configuration input**, simplify the user's configuration interface, and facilitate manual or automatic API modification.
+We can store the static configuration in JSON and YAML files as needed. Moreover, configuration can also be stored in a high-level language that allows for more flexible configuration. This language can be coded, rendered, and statically configured. KCL is a configuration language that offers such functionality. Developers can write KCL code to generate JSON/YAML and other configurations.
 
-No matter what configuration view is centered on, for configuration code, there are requirements for configuration data constraints, such as type constraints, required/optional constraints on configuration attributes, range constraints, and immutability constraints. This is also one of the core issues KCL is committed to solving.
+## Use KCL for Configuration
 
-Thus, we can write a KCL file named `main.k`
+KCL's core features are its modeling and constraint capabilities, and its basic functions revolve around these two key elements. Additionally, KCL follows a user-centric configuration concept when designing its basic functions. Configuration code has requirements for configuration data constraints, such as type constraints and required/optional constraints on configuration attributes, range constraints, and immutability constraints. These are also some of the core issues that KCL is committed to resolving.
 
-```python
-schema Person:
-    gender: "Male" | "Female"
-    name: Name
+Now that we have an understanding of KCL's capabilities, let's explore how to use it to generate configurations.
 
-schema Name:
-    first: str
-    middle?: str  # Optional, but must be non-empty when specified
-    last: str
+### 1. Get the Example
 
-    check:
-        first != ""
-        last != ""
-        middle != ""
+Firstly, let's get the example.
 
-alice = Person {
-    # gendre: "Female" # Error: misspelled attribute
-    gender: "Female"
-    name.first: "Alice"
-    name.last: "White"
-}
+```shell
+git clone https://github.com/KusionStack/kcl-lang.io.git/
+cd ./kcl-lang.io/examples/configuration
 ```
 
-Run
+We can run the following command to show the config.
 
 ```bash
-kcl main.k
+cat nginx.k
 ```
 
-We can get the output YAML
-
-```yaml
-alice:
-  gender: Female
-  name:
-    first: Alice
-    last: White
-```
-
-Another example (`nginx.k`)
+The output is
 
 ```python
 schema Nginx:
@@ -82,7 +59,9 @@ nginx = Nginx {
 }
 ```
 
-Run
+### 2. Generate YAML using KCL
+
+Run the following command
 
 ```bash
 kcl nginx.k
@@ -99,6 +78,8 @@ nginx:
         root: /var/www/html
         index: index.html
 ```
+
+### 3. Configuration with Dynamic Parameters
 
 Besides, we can dynamically receive external parameters through the KCL builtin function `option`. For example, for the following KCL file (db.k), we can use the KCL command line `-D` flag to receive an external dynamic parameter.
 
@@ -133,3 +114,7 @@ dbConfig:
   port: "2023"
   conn: "postgres://postgres.dev:2023/foo"
 ```
+
+## Summary
+
+By using KCL, we can generate low-level data configurations. For different situations, we set dynamic parameters through the `-D` flag to meet the scene requirements. For more KCL features, please refer to [here](/docs/reference/lang/tour).

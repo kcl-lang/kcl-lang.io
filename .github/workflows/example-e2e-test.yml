@@ -1,0 +1,18 @@
+name: example-e2e-test
+on:
+  push:
+    branches: 
+     - main
+jobs:
+  example-e2e-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Install Script
+        run: static/script/install.sh
+      - name: Check KCL run
+        shell: bash -leo pipefail {0}
+        run: sudo kcl hello.k
+
+      - name: Example tests
+        run: ./examples/test.sh
