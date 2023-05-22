@@ -113,6 +113,7 @@ jobs:
           brew install kcl-lang/tap/kclvm
           echo "brew installed successfully"
           kcl hello.k
+          kclvm_cli run hello.k
 
   check-kcl-brew-install-linux:
     runs-on: ubuntu-latest
