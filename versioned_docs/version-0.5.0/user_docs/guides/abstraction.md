@@ -3,7 +3,7 @@ title: "Abstraction"
 sidebar_position: 3
 ---
 
-## What is Abstraction
+## Introduction
 
 Abstraction refers to a simplified representation of an entity, typically used in computing. It allows for the concealment of specific details while presenting the most relevant information to the programmer. Each abstraction is tailored to suit a specific need, and can greatly enhance the usability of a given entity. In the context of KCL, abstraction can make code easier to understand and maintain, while also simplifying the user interface.
 

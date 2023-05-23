@@ -3,7 +3,7 @@ title: "Configuration"
 sidebar_position: 1
 ---
 
-## What is Configuration
+## Introduction
 
 Configuration is a vital aspect of software systems that are constantly in flux due to evolving business requirements, infrastructure demands, and other factors. Often, changing these systems' behavior quickly can be challenging, especially when doing so requires a costly and time-consuming reconstruction and redeployment process. In such cases, making changes to the business code may not be sufficient. Fortunately, configuration provides a low-overhead way to modify system functions. For instance, many developers write JSON or YAML files to configure their systems.
 

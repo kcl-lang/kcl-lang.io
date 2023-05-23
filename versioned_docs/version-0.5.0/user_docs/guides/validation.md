@@ -3,7 +3,7 @@ title: "Validation"
 sidebar_position: 2
 ---
 
-## What is Validation
+## Introduction
 
 Validation is the process of verifying that data is accurate, reliable, and meets certain requirements or constraints. This includes checking the data for completeness, consistency, accuracy, and relevance. Data validation is performed to ensure that the data is fit for its intended purpose and that it can be used effectively and efficiently.
 
