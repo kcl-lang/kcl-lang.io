@@ -3,6 +3,8 @@ title: "Automation"
 sidebar_position: 6
 ---
 
+## Introduction
+
 KCL provides many automation related capabilities, mainly including tools and multilingual APIs. Via `package_identifier : key_identifier` mode, KCL supports the indexing of any configured key value, thus completing the addition, deletion, modification and query of any key value. For example, the following figure shows that we can directly execute the following command to modify the image. The code diff before and after modification is also shown in the figure.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/14-kcl-image-update.png)
@@ -10,6 +12,58 @@ KCL provides many automation related capabilities, mainly including tools and mu
 In addition, the automation capability of KCL can be realized and integrated into CI/CD.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/15-kcl-automation.png)
+
+## Use KCL for Automation
+
+### 1. Get the Example
+
+Firstly, let's get the example.
+
+```bash
+git clone https://github.com/KusionStack/kcl-lang.io.git/
+cd ./kcl-lang.io/examples/automation
+```
+
+We can run the following command to show the config.
+
+```bash
+cat main.k
+```
+
+The output is
+
+```python
+schema App:
+    """The application model."""
+    name: str
+    replicas: int
+    labels?: {str:str} = {app = name}
+
+app: App {
+    name = "app"
+    replicas = 1
+    labels.key = "value"
+}
+```
+
+We can run the command to get the config
+
+```bash
+kcl main.k
+```
+
+The output is
+
+```yaml
+app:
+  name: app
+  replicas: 1
+  labels:
+    app: app
+    key: value
+```
+
+### 2. Use KCL CLI for Automation
 
 KCL allows us to directly modify the values in the configuration model through the KCL CLI `-O|--overrides` parameter. The parameter contains three parts e.g., `pkg`, `identifier`, `attribute` and `override_value`.
 
@@ -23,148 +77,73 @@ kcl main.k -O override_spec
 override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 ```
 
-- `pkgpath`: Indicates the path of the package whose identifier needs to be modified, usually in the form of `a.b.c`. For the main package, `pkgpath` is expressed as `__main__`, which can be omitted. If omitted, it means the main package.
-- `identifier`: Indicates the identifier that needs to modify the configuration, usually in the form of `a.b.c`.
-- `value`: Indicates the value of the configuration that needs to be modified, which can be any legal KCL expression, such as number/string literal value, list/dict/schema expression, etc.
-- `=`: means to modify the value of identifier.
-  - When the identifier exists, modify the value of the existing identifier to value.
-  - When identifier does not exist, add the identifier attribute and set its value to value.
-- `-`: means to delete the identifier attribute.
-  - When the identifier exists, delete it directly.
-  - When the identifier does not exist, no modification is made to the configuration.
+- `identifier` indicates the identifier that needs to modify the configuration, usually in the form of `a.b.c`.
+- `value` indicates the value of the configuration that needs to be modified, which can be any legal KCL expression, such as number/string literal value, list/dict/schema expression, etc.
 
-Note: When `identifier` appears multiple times, modify/delete all `identifier` values
+#### Override Configuration
 
-Besides, we provide `OverrideFile` API to achieve the same capabilities. For details, refer to [KCL APIs](/docs/reference/xlang-api/).
-
-## Examples
-
-### Override Update Sample
-
-KCL code:
-
-```python
-schema Person:
-    name: str
-    age: int
-
-person = Person {
-    name = "Alice"
-    age = 18
-}
-```
-
-The command is
+Run the command to update the application name.
 
 ```bash
-kcl main.k -O :person.name=\"Bob\" -O :person.age=10
+kcl main.k -O app.name='new_app'
 ```
 
 The output is
 
 ```yaml
-person:
-  name: Bob
-  age: 10
+app:
+  name: new_app
+  replicas: 1
+  labels:
+    app: new_app
+    key: value
 ```
 
-Besides, when we use KCL CLI `-d` argument, the KCL file will be modified to the following content at the same time
+We can see the `name` attribute of the `app` config is updated to `new_app`.
+
+Besides, when we use KCL CLI `-d` argument, the KCL file will be modified to the following content at the same time.
 
 ```bash
-kcl main.k -O :person.name=\"Bob\" -O :person.age=10 -d
+kcl main.k -O app.name='new_app' -d
 ```
 
 ```python
-schema Person:
+schema App:
+    """The application model."""
     name: str
-    age: int
+    replicas: int
+    labels?: {str:str} = {app = name}
 
-person = Person {
-    name = "Bob"
-    age = 10
+app: App {
+    name = "new_app"
+    replicas = 1
+    labels: {key = "value"}
 }
 ```
 
-Another more complicated example:
+### Delete Configuration
 
-```python
-schema Person:
-    name: str
-    age: int
-    ids?: [int]
-
-person = Person {
-    name = "Alice"
-    age = 10
-}
-```
-
-The command is
+Run the command to delete the `key` attribute of `labels`.
 
 ```bash
-kcl main.k -O :person.ids=\[1,2\]
+kcl main.k -O app.labels.key-
 ```
 
 The output is
 
 ```yaml
-person:
-  name: Alice
-  age: 10
-  ids:
-  - 1
-  - 2
+app:
+  name: app
+  replicas: 1
+  labels:
+    app: app
 ```
 
-### Override Delete Sample
-
-KCL code:
-
-```python
-schema Config:
-    x?: int = 1
-    y?: str = "s"
-    
-config = Config {
-    x = 2
-}
-```
-
-The command is
-
-```bash
-kcl main.k -O config.x-
-```
-
-The output is
-
-```yaml
-config:
-  x: 1
-  y: s
-```
-
-### API
+### 3. Use KCL API for Automation
 
 In addition, we can automatically modify the configuration attributes through the [multilingual API](/docs/reference/xlang-api/overview).
 
-Take the following KCL code fragment (main.k) and RestAPI as an example.
-
-```python
-import regex
-
-schema AppConfig:
-    image: str
-
-    check:
-        regex.match(image, r"^([a-z0-9\.\:]+)\.([a-z]+)\:([a-z0-9]+)\/([a-z0-9\.]+)\/([a-z0-9-_.:]+)$"), "image name should satisfy the \`REPOSITORY:TAG\` form"
-
-appConfig = AppConfig {
-    image = "nginx:1.13.9"
-}
-```
-
-The RestAPI service can be started in the following way:
+Take the following KCL code fragment (main.k) and RestAPI as an example. The RestAPI service can be started in the following way:
 
 ```bash
 python3 -m pip install kclvm -U
@@ -176,22 +155,28 @@ The service can then be requested via the POST protocol:
 ```bash
 curl -X POST http://127.0.0.1:2021/api:protorpc/KclvmService.OverrideFile -H 'content-type: accept/json' -d '{
     "file": "main.k",
-    "specs": ["appConfig.image=\"nginx:1.14.0\""]
+    "specs": ["app.name=\"nginx\""]
 }'
 ```
 
 After the service call is completed, main.k will be modified as follows:
 
 ```python
-import regex
+schema App:
+    """The application model."""
+    name: str
+    replicas: int
+    labels?: {str:str} = {app = name}
 
-schema AppConfig:
-    image: str
-
-    check:
-        regex.match(image, r"^([a-z0-9\.\:]+)\.([a-z]+)\:([a-z0-9]+)\/([a-z0-9\.]+)\/([a-z0-9-_.:]+)$"), "image name should satisfy the \`REPOSITORY:TAG\` form"
-
-appConfig = AppConfig {
-    image = "nginx:1.14.0"
+app: App {
+    name = "nginx"
+    replicas = 1
+    labels: {
+        "key" = "value"
+    }
 }
 ```
+
+## Summary
+
+The document introduces the automation capabilities of KCL, including tools and multilingual APIs. It supports indexing of any configured key value, allowing for the addition, deletion, modification, and querying of any key value. It can also be integrated into CI/CD. The document provides an example of using KCL to automate configuration management, including using the KCL CLI to override and delete configurations, and using the KCL API to modify configuration attributes.
