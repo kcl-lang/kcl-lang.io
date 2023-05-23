@@ -179,4 +179,4 @@ app: App {
 
 ## Summary
 
-The document introduces the automation capabilities of KCL, including tools and multilingual APIs. It supports indexing of any configured key value, allowing for the addition, deletion, modification, and querying of any key value. It can also be integrated into CI/CD. The document provides an example of using KCL to automate configuration management, including using the KCL CLI to override and delete configurations, and using the KCL API to modify configuration attributes.
+The document introduces the automation capabilities of KCL, including tools and multilingual APIs. It supports indexing of any configured key value, allowing for the addition, deletion, modification, and querying of any key value. It can also be integrated into CI/CD. The document provides an example of using KCL to automate configuration management, including using the KCL CLI to override and delete configurations, and using the KCL API to modify configuration attributes. For more information about KCL automation and Override API, please refer to [here](/docs/reference/lang/tour#kcl-cli-variable-override).
