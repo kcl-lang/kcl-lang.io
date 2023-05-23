@@ -121,7 +121,7 @@ app: App {
 }
 ```
 
-### Delete Configuration
+#### Delete Configuration
 
 Run the command to delete the `key` attribute of `labels`.
 
