@@ -62,5 +62,4 @@ jobs:
           echo "go installed successfully"
           $HOME/go/bin/kusion version
           $HOME/go/bin/kusion compile -w static/stack -o stdout
-          $HOME/go/bin/kcl -Y static/stack/kcl.yaml
           cd static/stack && $HOME/go/bin/kusion compile
