@@ -1,9 +1,9 @@
 import .app
 
 app.App {
-    name = "ngnix"
+    name = "app"
     containers.ngnix = {
-        image = name
+        image = "ngnix"
         ports = [{containerPort = 80}]
     }
     service.ports = [{ port = 80 }]

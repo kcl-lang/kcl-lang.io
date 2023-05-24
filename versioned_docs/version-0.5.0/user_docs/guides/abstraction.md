@@ -55,9 +55,9 @@ The output is
 import .app
 
 app.App {
-    name = "ngnix"
+    name = "app"
     containers.ngnix = {
-        image = name
+        image = "ngnix"
         ports = [{containerPort = 80}]
     }
     service.ports = [{ port = 80 }]
@@ -75,7 +75,7 @@ If we want to convert the application config into the docker compose config, we 
 ```shell
 $ kcl main.k docker_compose_render.k
 services:
-  ngnix:
+  app:
     image: ngnix
     ports:
       - published: 80
@@ -92,18 +92,18 @@ $ kcl main.k kubernetes_render.k
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ngnix
+  name: app
   labels:
-    app: ngnix
+    app: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ngnix
+      app: app
   template:
     metadata:
       labels:
-        app: ngnix
+        app: app
     spec:
       containers:
         - name: ngnix
@@ -115,12 +115,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ngnix
+  name: app
   labels:
-    app: ngnix
+    app: app
 spec:
   selector:
-    app: ngnix
+    app: app
   ports:
     - port: 80
       protocol: TCP

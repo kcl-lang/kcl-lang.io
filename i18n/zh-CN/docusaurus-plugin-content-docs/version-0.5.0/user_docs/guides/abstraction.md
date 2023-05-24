@@ -53,9 +53,9 @@ cat main.k
 import .app
 
 app.App {
-    name = "ngnix"
+    name = "app"
     containers.ngnix = {
-        image = name
+        image = "ngnix"
         ports = [{containerPort = 80}]
     }
     service.ports = [{ port = 80 }]
@@ -73,7 +73,7 @@ app.App {
 ```shell
 $ kcl main.k docker_compose_render.k
 services:
-  ngnix:
+  app:
     image: ngnix
     ports:
       - published: 80
@@ -90,18 +90,18 @@ $ kcl main.k kubernetes_render.k
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ngnix
+  name: app
   labels:
-    app: ngnix
+    app: app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ngnix
+      app: app
   template:
     metadata:
       labels:
-        app: ngnix
+        app: app
     spec:
       containers:
         - name: ngnix
@@ -113,12 +113,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ngnix
+  name: app
   labels:
-    app: ngnix
+    app: app
 spec:
   selector:
-    app: ngnix
+    app: app
   ports:
     - port: 80
       protocol: TCP
@@ -128,7 +128,7 @@ spec:
 
 ## 小结
 
-通过使用 KCL，我们能够分离模型的抽象和实现细节，允许将抽象模型映射到各种基础设施或平台。这是通过不同实现之间的灵活切换和 KCL 组合编译来实现的，屏蔽配置差异，减轻认知负担。
+通过使用 KCL，我们能够分离模型的抽象和实现细节，允许将抽象模型映射到各种基础设施或平台。这是通过不同实现之间的灵活切换和 KCL 组合编译来实现的，以屏蔽配置差异，减轻认知负担。
 
 ## 更多信息
 
