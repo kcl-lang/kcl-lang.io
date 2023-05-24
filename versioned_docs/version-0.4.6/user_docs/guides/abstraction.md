@@ -107,7 +107,7 @@ spec:
     spec:
       containers:
         - name: ngnix
-          image: "ngnix:v1.4.2"
+          image: ngnix
           ports:
             - protocol: TCP
               containerPort: 80
