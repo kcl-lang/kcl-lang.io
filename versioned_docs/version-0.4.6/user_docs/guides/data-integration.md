@@ -26,25 +26,6 @@ We can run the following command to show the YAML integration config.
 cat yaml.k
 ```
 
-## Use KCL for Data Integration
-
-### 1. Get the Example
-
-Firstly, let's get the example.
-
-```bash
-git clone https://github.com/KusionStack/kcl-lang.io.git/
-cd ./kcl-lang.io/examples/data-integration
-```
-
-### 2. YAML Integration
-
-We can run the following command to show the YAML integration config.
-
-```bash
-cat yaml.k
-```
-
 ```python
 import yaml
 
