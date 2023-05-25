@@ -5,7 +5,26 @@ sidebar_position: 4
 
 ## Introduction
 
-In KCL, we can not only compile and output the configuration code written by KCL into YAML format data, but also directly embed JSON/YAML and other data into the KCL language. For example, for the following KCL code (main.k):
+In KCL, we can not only compile and output the configuration code written by KCL into YAML format data, but also directly embed JSON/YAML and other data into the KCL language.
+
+## Use KCL for Data Integration
+
+### 1. Get the Example
+
+Firstly, let's get the example.
+
+```bash
+git clone https://github.com/KusionStack/kcl-lang.io.git/
+cd ./kcl-lang.io/examples/data-integration
+```
+
+### 2. YAML Integration
+
+We can run the following command to show the YAML integration config.
+
+```bash
+cat yaml.k
+```
 
 ## Use KCL for Data Integration
 
@@ -88,4 +107,4 @@ server_json: "{\"ports\": [80, 8080]}"
 
 ## Summary
 
-This document introduces how to perform data integration in KCL, using the built-in yaml and json modules to directly integrate YAML and JSON data into the KCL language, and verify and serialize it using the corresponding decoding and encoding functions. Specific code examples and execution results are provided.
+This document introduces how to perform data integration in KCL, using the built-in yaml and json modules to directly integrate YAML and JSON data into the KCL language, and verify and serialize it using the corresponding decoding and encoding functions.

@@ -38,14 +38,14 @@ schema User:
     hc: [int]
         
     check:
-        age > 10
+        age > 10, "age must > 10"
 
 schema Data:
     id: int
     value: str
 ```
 
-In the schema, we can use the `check` keyword to write the validation rules of every schema attribute. Each line in the check block corresponds to a conditional expression. When the condition is satisfied, the validation is successful. The conditional expression can be followed by `, "check error message"` to indicate the message to be displayed when the check fails. Here is an example of a schema with constraint expressions.
+In the schema, we can use the `check` keyword to write the validation rules of every schema attribute. Each line in the check block corresponds to a conditional expression. When the condition is satisfied, the validation is successful. The conditional expression can be followed by `, "check error message"` to indicate the message to be displayed when the check fails.
 
 To sum up, the validation kinds supported in KCL schema are:
 
