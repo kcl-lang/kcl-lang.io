@@ -3,39 +3,49 @@ title: "校验"
 sidebar_position: 2
 ---
 
+## 简介
+
+验证是校验数据是否准确、可靠并满足某些要求或限制的过程，包括检查数据的完整性、一致性、准确性和相关性。进行数据验证是为了确保数据符合其预期目的，并能有效使用。
+
+我们可以使用 KCL 及其校验工具手动或自动进行数据验证，以确保数据的一致性。
+
 ## 使用 KCL 校验数据
 
 除了使用 KCL 代码生成 JSON/YAML 等配置格式，KCL 还支持对 JSON/YAML 数据进行格式校验。作为一种配置语言，KCL 在验证方面几乎涵盖了 OpenAPI 的所有功能。在 KCL 中可以通过一个结构定义来约束配置数据，同时支持通过 check 块自定义约束规则，在 schema 中书写校验表达式对 schema 定义的属性进行校验和约束。通过 check 表达式可以非常清晰简单地校验输入的 JSON/YAML 是否满足相应的 schema 结构定义与 check 约束。
 
-## 简介
+### 1. 获得示例
 
-在 schema 定义当中可以使用 check 关键字编写 schema 属性的校验规则, 如下所示，check 代码块中的每一行都对应一个条件表达式，当满足条件时校验成功，当不满足条件时校验失败。条件表达式后可跟 `, "check error message"` 表示当校验失败时需要显示的信息。
+```shell
+git clone https://github.com/KusionStack/kcl-lang.io.git/
+cd ./kcl-lang.io/examples/validation
+```
+
+我们可以执行如下命令显示配置
+
+```bash
+cat schema.k
+```
+
+输出为
 
 ```python
-import regex
-
-schema Sample:
-    foo: str  # Required, 不能为 None/Undefined, 且类型必须为 str
-    bar: int  # Required, 不能为 None/Undefined, 且类型必须为 int
-    fooList: [int]  # Required, 不能为 None/Undefined, 且类型必须为 int 列表
-    color: "Red" | "Yellow" | "Blue"  # Required, 字面值联合类型，且必须为 "Red", "Yellow", "Blue" 中的一个，枚举作用
-    id?: int  # Optional，可以留空，类型必须为 int
-
+schema User:
+    name: str
+    age: int
+    message?: str
+    data: Data
+    labels: {str:}
+    hc: [int]
+        
     check:
-        0 <= bar < 100  # bar 必须大于等于 0，小于 100
-        0 < len(fooList) < 100  # fooList 不能为 None/Undefined，并且长度必须大于 0,小于 100
-        regex.match(foo, "^The.*Foo$") # regex 正则表达式匹配
-        bar in range(100) # range, bar范围只能为 1 到 99
-        bar in [2, 4, 6, 8] # enum, bar只能取 2, 4, 6, 8
-        bar % 2 == 0  # bar 必须为 2 的倍数
-        all foo in fooList {
-            foo > 1
-        }  # fooList 中的所有元素必须大于 1
-        any foo in fooList {
-            foo > 10
-        }  # fooList 中至少有一个元素必须大于 10
-        abs(id) > 10 if id  # check if 表达式，当 id 不为空时，id 的绝对值必须大于 10
+        age > 10, "age must > 10"
+
+schema Data:
+    id: int
+    value: str
 ```
+
+在 schema 中，我们可以使用 `check` 关键字来编写每个 schema 属性的验证规则。`check` 块中的每一行都对应于一个条件表达式。当满足条件时，验证成功。条件表达式后面可以跟 `, "报错信息"`，以指示检查失败时要给用户显示的消息。
 
 综上所述，KCL Schema 中支持的校验类型为:
 
@@ -48,11 +58,7 @@ schema Sample:
 | 非空校验 | 使用 schema 的可选/必选属性                             |
 | 条件校验 | 使用 check if 条件表达式                                |
 
-基于此，KCL 提供了相应的[校验工具](/docs/tools/cli/kcl/vet) 直接对 JSON/YAML 数据进行校验。此外，通过 KCL schema 的 check 表达式可以非常清晰简单地校验输入的 JSON 是否满足相应的 schema 结构定义与 check 约束。
-
-![](/img/blog/2022-09-15-declarative-config-overview/08-kcl-validation-ui.png)
-
-## 如何使用
+### 2. 验证数据
 
 新建一个名为 `data.json` 的 JSON 配置文件:
 
@@ -72,31 +78,18 @@ schema Sample:
 }
 ```
 
-构建一个用于校验上述 JSON 文件的 KCL 文件 `schema.k`
-
-```python
-schema User:
-    name: str
-    age: int
-    message?: str
-    data: Data
-    labels: {str:}
-    hc: [int]
-        
-    check:
-        age > 10
-
-schema Data:
-    id: int
-    value: str
-```
-
 执行如下命令获得校验结果
 
 ```bash
-$ kcl-vet data.json schema.k
+kcl-vet data.json schema.k
 ```
+
+## 小结
+
+KCL 是一种配置语言，通过其结构定义和用户定义的约束规则来支持数据验证。KCL Schema 中支持的验证类型包括范围、正则表达式、长度、枚举、可选/必需和条件。并且可以使用 KCL 验证工具或在此基础上构建的可视化产品来验证数据。
 
 ## 未来计划
 
 KCL 校验能力的提升将逐渐围绕"静态化"方面展开工作，即在编译时，结合形式化验证的能力直接分析得出数据是否满足约束条件、约束条件是否冲突等结论，并且可以通过 IDE 实时透出约束错误，而无需在运行时发现错误。
+
+我们还期望 KCL Schema 和约束可以作为一个包来管理（这个包只有 KCL 文件）。例如，Kubernetes 模型和约束可以开箱即用。用户可以生成配置或验证现有配置，并且可以通过 KCL 继承简单地扩展用户想要的模型和约束。

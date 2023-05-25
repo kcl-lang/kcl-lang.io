@@ -46,7 +46,7 @@ app: app_module.App {
 }
 ```
 
-In addition, we can put the `app` model into a separate `app_module.k`, then we can use the `import` keyword in `main.k` for modular management, such as the following file structure
+We put the `app` model into a separate `app_module.k`, then we can use the `import` keyword in `main.k` for modular management, such as the following file structure
 
 ```
 .
@@ -122,4 +122,4 @@ app:
 
 ## Summary
 
-KCL is a language for defining configurations and constraints, with a core feature of modeling using the schema keyword. This allows for the definition of structures with attributes, default values, range checks, and other constraints. Structures defined using KCL schema can be used to verify implementation, validate input, or generate code. The example demonstrates how to define models using schema, import them for modular management, and output the YAML configuration of an instance of the defined structure using the kcl command.
+KCL is a language for defining configurations and constraints, with a core feature of modeling using the schema keyword. This allows for the definition of structures with attributes, default values, range checks, and other constraints. Structures defined using KCL schema can be used to validate data, or generate code. The example demonstrates how to define models using schema, import them for modular management, and output the YAML configuration of an instance of the defined structure using the kcl command.

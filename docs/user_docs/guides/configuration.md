@@ -5,9 +5,9 @@ sidebar_position: 1
 
 ## Introduction
 
-Configuration is a vital aspect of software systems that are constantly in flux due to evolving business requirements, infrastructure demands, and other factors. Often, changing these systems' behavior quickly can be challenging, especially when doing so requires a costly and time-consuming reconstruction and redeployment process. In such cases, making changes to the business code may not be sufficient. Fortunately, configuration provides a low-overhead way to modify system functions. For instance, many developers write JSON or YAML files to configure their systems.
+Configuration is a vital aspect of software systems that are constantly in flux due to evolving business requirements, infrastructure demands, and other factors. Often, changing these systems' behavior quickly can be challenging, especially when doing so requires a costly and time-consuming reconstruction and redeployment process. In such cases, making changes to the business code may not be sufficient. Fortunately, the configuration provides a low-overhead way to modify system functions. For instance, many developers write JSON or YAML files to configure their systems.
 
-We can store the static configuration in JSON and YAML files as needed. Moreover, configuration can also be stored in a high-level language that allows for more flexible configuration. This language can be coded, rendered, and statically configured. KCL is a configuration language that offers such functionality. Developers can write KCL code to generate JSON/YAML and other configurations.
+We can store the static configuration in JSON and YAML files as needed. Moreover, the configuration can also be stored in a high-level language that allows for more flexible configuration. This language can be coded, rendered, and statically configured. KCL is a configuration language that offers such functionality. Developers can write KCL code to generate JSON/YAML and other configurations.
 
 ## Use KCL for Configuration
 

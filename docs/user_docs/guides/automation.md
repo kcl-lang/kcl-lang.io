@@ -77,8 +77,11 @@ kcl main.k -O override_spec
 override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 ```
 
+- `pkgpath`: indicates the package path where the identifier needs to be modified, usually in the form of `a.b.c`. For the main package,`pkgpath` is represented as `__ main__`. When omitted or not written, it indicates the main package
 - `identifier` indicates the identifier that needs to modify the configuration, usually in the form of `a.b.c`.
 - `value` indicates the value of the configuration that needs to be modified, which can be any legal KCL expression, such as number/string literal value, list/dict/schema expression, etc.
+- `=` denotes modifying of the value of the identifier.
+- `-` denotes deleting of the identifier.
 
 #### Override Configuration
 
@@ -143,7 +146,7 @@ app:
 
 In addition, we can automatically modify the configuration attributes through the [multilingual API](/docs/reference/xlang-api/overview).
 
-Take the following KCL code fragment (main.k) and RestAPI as an example. The RestAPI service can be started in the following way:
+Take the RestAPI as an example. The RestAPI service can be started in the following way:
 
 ```bash
 python3 -m pip install kclvm -U
