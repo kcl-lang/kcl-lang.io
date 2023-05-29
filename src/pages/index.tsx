@@ -11,7 +11,7 @@ import { IoColorPaletteSharp, IoAccessibility, IoInvertModeSharp, IoStatsChart, 
 
 function HomepageHeader() {
   return (
-    <header className={clsx("hero", styles.banner)}>
+    <header className={clsx("container", styles.banner)}>
       <div className="container">
         <h2 className={styles.title} style={{ color: "var(--ifm-color-primary)" }}>
           Mutation, Validation, Abstraction
@@ -139,7 +139,9 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <br />
       <FeaturesSection />
-      <div className="hero">
+      <br />
+      <br />
+      <div className="container">
         <ExampleScroller />
       </div>
       <br />
