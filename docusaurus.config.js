@@ -18,7 +18,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/kcl-logo.jpg',
+  favicon: 'img/kcl-logo.png',
 
   i18n: {
     defaultLocale: 'en',
@@ -162,7 +162,7 @@ const config = {
         title: 'KCL',
         logo: {
           alt: 'KCL Logo',
-          src: 'img/kcl-logo.jpg',
+          src: 'img/kcl-logo.png',
         },
         items: [
           {
@@ -185,8 +185,8 @@ const config = {
             label: 'Tools',
           },
           {
-            href: 'http://play.kcl-lang.io/', // Fixme: change the playground website listening port.
-            //href: 'http://39.106.40.108/-/play/index.html',
+            // href: 'http://play.kcl-lang.io/', // Fixme: change the playground website listening port.
+            href: 'http://39.106.40.108/-/play/index.html',
             // type: 'docSidebar',
             position: 'left',
             sidebarId: 'playground',
