@@ -2,6 +2,7 @@ import React from "react";
 import clsx from "clsx";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import useBaseUrl from '@docusaurus/useBaseUrl'
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
 import { ExampleScroller } from "../components/ExampleScroller";
@@ -126,6 +127,70 @@ function FeaturesSection() {
   );
 }
 
+function ExampleSection() {
+  return <section><div className="container">
+    <ExampleScroller />
+  </div></section>
+}
+
+function PartnerSection() {
+  const partners = [
+    {
+      name: 'Ant Group',
+      img: '/img/logos/antgroup.png',
+      href: 'https://www.antgroup.com/'
+    },
+    {
+      name: 'Youzan',
+      img: '/img/logos/youzan.png',
+      href: 'https://www.youzan.com/',
+    },
+    {
+      name: 'Huawei',
+      img: '/img/logos/huawei.png',
+      href: 'https://www.huawei.com/',
+    },
+    {
+      name: 'TuSimple',
+      img: '/img/logos/tusimple.jpg',
+      href: 'https://www.tusimple.com/',
+    },
+    {
+      name: 'Kyligence',
+      img: '/img/logos/kyligence.png',
+      href: 'https://www.kyligence.io/',
+    },
+  ]
+
+  return <section>
+    <div className="container">
+      <h2
+        className={clsx(
+          "text--center",
+        )}
+        style={{ color: "var(--ifm-color-primary)" }}
+      >
+        Adopters and Partners
+      </h2>
+      <div className={styles.whiteboard}>
+        <div className="row">
+          {partners.map((w) => (
+            <div key={w.name} className={clsx('col col--4', styles.whiteboardCol)}>
+              <a className={styles.logoWrapper} href={w.href} target="_blank">
+                <img src={useBaseUrl(w.img)} alt={w.name} />
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+function BreakSection() {
+  return <section><br /><br /></section>
+}
+
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -133,19 +198,14 @@ export default function Home(): JSX.Element {
       title={`${siteConfig.title} - ${siteConfig.tagline}`}
       description="KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios."
     >
-      {/* <Head>
-        <script async src="https://snack.expo.dev/embed.js"></script>
-      </Head> */}
       <HomepageHeader />
-      <br />
+      <BreakSection />
       <FeaturesSection />
-      <br />
-      <br />
-      <div className="container">
-        <ExampleScroller />
-      </div>
-      <br />
-      <br />
+      <BreakSection />
+      <ExampleSection />
+      <BreakSection />
+      <PartnerSection />
+      <BreakSection />
     </Layout>
   );
 }
