@@ -15,7 +15,7 @@ jobs:
         run: static/script/install.sh
       - name: Check KCL run
         shell: bash -leo pipefail {0}
-        run: sudo kcl hello.k
+        run: sudo kcl ./static/stack/main.k
 
       - uses: actions/setup-python@v4
         with:
@@ -42,7 +42,7 @@ jobs:
       - name: Check KCL run
         shell: bash -ieo pipefail {0}
         run: |
-          kcl hello.k
+          kcl ./static/stack/main.k
 
       - uses: actions/setup-python@v4
         with:
@@ -112,7 +112,7 @@ jobs:
         run: |
           brew install kcl-lang/tap/kclvm
           echo "brew installed successfully"
-          kcl hello.k
+          kcl ./static/stack/main.k
           kclvm_cli run hello.k
 
   check-kcl-brew-install-linux:
@@ -126,4 +126,4 @@ jobs:
         run: |
           brew install kcl-lang/tap/kclvm
           echo "brew installed successfully"
-          kcl hello.k
+          kcl ./static/stack/main.k
