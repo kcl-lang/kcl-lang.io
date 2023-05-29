@@ -86,7 +86,7 @@ const config = {
             title: 'API Affinity',
             imageUrl: 'img/microsite/reasons/file.svg',
             description: `
-                Native support API ecological specifications such as OpenAPI, Kubernetes CRD, Kubernetes YAML spec.
+                Native support API ecological specifications such as OpenAPI, Kubernetes CRD, Kubernetes YAML and KRM spec.
             `,
           },
         ],
@@ -185,8 +185,8 @@ const config = {
             label: 'Tools',
           },
           {
-            // href: 'http://play.kcl-lang.io/', // Fixme: change the playground website listening port.
-            href: 'http://39.106.40.108/-/play/index.html',
+            href: 'http://play.kcl-lang.io/', // Fixme: change the playground website listening port.
+            //href: 'http://39.106.40.108/-/play/index.html',
             // type: 'docSidebar',
             position: 'left',
             sidebarId: 'playground',
