@@ -15,7 +15,7 @@ jobs:
         run: static/script/install.sh
       - name: Check KCL run
         shell: bash -ieo pipefail {0}
-        run: kcl hello.k
+        run: kcl ./static/stack/main.k
 
       - name: Example tests
         shell: bash -ieo pipefail {0}
