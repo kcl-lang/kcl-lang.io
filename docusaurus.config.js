@@ -239,6 +239,14 @@ const config = {
                 label: 'Introduction',
                 to: '/docs/user_docs/getting-started/intro',
               },
+              {
+                label: 'User Guide',
+                to: '/docs/user_docs/guides',
+              },
+              {
+                label: 'Tutorial',
+                to: '/docs/reference/lang/tour',
+              },
             ],
           },
           {
