@@ -468,7 +468,8 @@
     "description": "The label for category FAQ in sidebar docs"
   },
   "sidebar.user_docs.category.Concepts": {
-    "message": "Concepts"
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar user_docs"
   },
   "sidebar.user_docs.category.FAQ": {
     "message": "FAQ",
@@ -701,5 +702,21 @@
   "sidebar.events.category.Events 2022": {
     "message": "Events 2022",
     "description": "The label for category Events 2022 in sidebar events"
+  },
+  "sidebar.docs.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar docs"
+  },
+  "sidebar.docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar docs"
+  },
+  "sidebar.user_docs.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Konfig": {
+    "message": "Konfig",
+    "description": "The label for category Konfig in sidebar user_docs"
   }
 }

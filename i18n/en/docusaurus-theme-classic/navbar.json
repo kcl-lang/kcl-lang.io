@@ -42,5 +42,9 @@
   "item.label.Community": {
     "message": "Community",
     "description": "Navbar item with label Community"
+  },
+  "logo.alt": {
+    "message": "KCL Logo",
+    "description": "The alt text of navbar logo"
   }
 }
