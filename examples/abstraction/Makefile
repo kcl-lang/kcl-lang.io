@@ -3,3 +3,7 @@ docker:
 
 k8s:
 	kcl main.k kubernetes_render.k
+
+test:
+	make docker
+	make k8s
