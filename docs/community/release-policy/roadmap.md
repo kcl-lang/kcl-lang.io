@@ -1,3 +1,3 @@
 # Roadmap
 
-![](img/docs/community/release-policy/roadmap.jpg)
+![](/img/docs/community/release-policy/roadmap.jpg)
