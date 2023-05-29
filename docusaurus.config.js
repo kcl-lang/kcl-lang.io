@@ -253,16 +253,20 @@ const config = {
             title: 'Resource',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
                 label: 'Github',
                 href: 'https://github.com/KusionStack/KCLVM',
               },
               {
-                label: 'Slack',
-                href: 'https://join.slack.com/t/KusionStack/shared_invite/zt-19lqcc3a9-_kTNwagaT5qwBE~my5Lnxg',
+                label: 'Gitee',
+                href: 'https://gitee.com/kusionstack/KCLVM',
+              },
+              {
+                label: 'Blog',
+                to: '/blog',
+              },
+              {
+                label: 'Community',
+                href: '/docs/community/intro',
               },
             ],
           },
