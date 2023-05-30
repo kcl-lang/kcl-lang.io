@@ -151,7 +151,7 @@ const config = {
         id: 'announcementBar-1', // Increment on change
         content: `Give us a star ⭐️ - If you are using KCL or think it is an interesting project, we would love a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/KusionStack/KCLVM">Github</a>`,
       },
-      
+
       algolia: {
         appId: 'I3BKOKGSD5',
         apiKey: '20af56a3665effe7fa744b4b6cf78d60',
@@ -205,7 +205,7 @@ const config = {
             label: 'Community',
           },
 
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             type: 'docsVersionDropdown',
             position: 'right',
@@ -247,6 +247,10 @@ const config = {
                 label: 'Tutorial',
                 to: '/docs/reference/lang/tour',
               },
+              {
+                label: 'FAQ',
+                to: '/docs/user_docs/support',
+              },
             ],
           },
           {
@@ -267,6 +271,15 @@ const config = {
               {
                 label: 'Community',
                 href: '/docs/community/intro',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              {
+                label: 'KusionStack',
+                href: 'https://kusionstack.io',
               },
             ],
           },
