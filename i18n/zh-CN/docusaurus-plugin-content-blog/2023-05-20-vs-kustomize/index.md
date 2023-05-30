@@ -1,8 +1,13 @@
-# KCL 与其他 Kubernetes 配置管理工具的异同 - Kustomize 篇
+---
+slug: 2023-05-20-vs-kustomize
+title: KCL 与其他 Kubernetes 配置管理工具的异同 - Kustomize 篇
+authors:
+  name: KCL Team
+  title: KCL Team
+tags: [KCL, Kustomize]
+---
 
-在[上一节](/docs/user_docs/guides/working-with-k8s/generate_k8s_manifests)中，我们介绍了如何使用 KCL 编写并管理 Kubernetes 配置并将配置下发到集群，这一节我们通过与其他 Kubernetes 配置管理工具的对比如 Kustomize 介绍 KCL 在 Kubernetes 配置管理场景更丰富的内容。
-
-## KCL 和 Kustomize 的区别
+## 简介
 
 [Kustomize](https://kustomize.io/) 提供了一种无需模板和即可自定义 Kubernetes 资源基础配置和差异化配置的解决方案，通过文件级的 YAML 配置方式完成配置合并或覆盖。在 Kustomize 中用户需要更详细地了解将要发生更改的内容和位置，对于复杂递归过深的基础 YAML 可能不太容易通过选择器来匹配 Kustomize 文件。
 

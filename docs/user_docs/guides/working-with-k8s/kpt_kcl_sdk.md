@@ -1,4 +1,7 @@
-# KPT KCL SDK
+---
+title: "KPT KCL SDK"
+sidebar_position: 5
+---
 
 [kpt](https://github.com/GoogleContainerTools/kpt) is a package-centric toolchain that enables a configuration authoring, automation, and delivery experience, which simplifies managing Kubernetes platforms and KRM-driven infrastructure (e.g., Config Connector, Crossplane) at scale by manipulating declarative Configuration as Data for automating Kubernetes configuration editing including transforming and validating.
 

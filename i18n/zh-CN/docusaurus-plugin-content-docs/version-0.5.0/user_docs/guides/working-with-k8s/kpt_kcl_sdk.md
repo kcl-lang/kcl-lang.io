@@ -1,4 +1,7 @@
-# KPT KCL SDK
+---
+title: "KPT KCL SDK"
+sidebar_position: 5
+---
 
 [kpt](https://github.com/GoogleContainerTools/kpt) 是一个以包为中心的工具链，可实现配置原地编辑、自动化和交付，通过将声明性配置作为数据进行操作，从而简化 Kubernetes 平台和 KRM 驱动的基础设施（例如，Config Connector、Crossplane）的大规模管理，以实现 Kubernetes 配置编辑的自动化包括转换和验证。
 

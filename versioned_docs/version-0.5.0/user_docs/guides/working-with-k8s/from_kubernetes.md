@@ -1,4 +1,7 @@
-# From Kubernetes to KCL
+---
+title: "From Kubernetes to KCL"
+sidebar_position: 1
+---
 
 ## 1. Kubernetes OpenAPI Spec
 

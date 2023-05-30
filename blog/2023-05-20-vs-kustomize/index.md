@@ -1,6 +1,13 @@
-# Differences between KCL and Kustomize
+---
+slug: 2023-05-20-vs-kustomize
+title: Differences between KCL and Kustomize
+authors:
+  name: KCL Team
+  title: KCL Team
+tags: [KCL, Kustomize]
+---
 
-In the [previous section](/docs/user_docs/guides/working-with-k8s/generate_k8s_manifests), we introduced how to use KCL to write and manage Kubernetes configurations and apply them to the cluster. In this section, we introduced KCL's Kubernetes configuration management scenarios more richly by comparing it with other Kubernetes configuration management tools, such as Kustomize.
+## Introduction
 
 [Kustomize](https://kustomize.io/) provides a solution to customize the basic configuration and differential configuration of Kubernetes resources without templates. The configuration can be merged or overwritten through file-level YAML configuration with multiple strategies. In Kustomize, users need to know more about the content and location to be changed, For basic YAML with complex recursion too deep, it may not be easy to match Kustomize files through selectors.
 

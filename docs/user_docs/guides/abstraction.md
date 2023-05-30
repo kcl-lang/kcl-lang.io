@@ -68,9 +68,9 @@ In the above code, we defined a configuration using the `App` schema, where we c
 
 Besides, KCL allows developers to define the resources required for their applications in a declarative manner and is tied to a platform such as Docker Compose or Kubernetes manifests and allows to generate a platform-specific configuration file such as `docker-compose.yaml` or a Kubernetes `manifests.yaml` file. Next, let's generate the corresponding configuration.
 
-### 2. Convert the Application Config into Docker Compose Config
+### 2. Transform the Application Config into Docker Compose Config
 
-If we want to convert the application config into the docker compose config, we can run the command simply:
+If we want to transform the application config into the docker compose config, we can run the command simply:
 
 ```shell
 $ kcl main.k docker_compose_render.k
@@ -83,9 +83,9 @@ services:
         protocol: TCP
 ```
 
-### 3. Convert the Application Config into Kubernetes Deployment and Service Manifests
+### 3. Transform the Application Config into Kubernetes Deployment and Service Manifests
 
-If we want to convert the application config into the Kubernetes manifests, we can run the command simply:
+If we want to transform the application config into the Kubernetes manifests, we can run the command simply:
 
 ```shell
 $ kcl main.k kubernetes_render.k

@@ -1,20 +1,25 @@
-# Differences between KCL and Helm
+---
+slug: 2023-05-30-vs-helm
+title: KCL 与其他 Kubernetes 配置管理工具的异同 - Helm 篇
+authors:
+  name: KCL Team
+  title: KCL Team
+tags: [KCL, Helm]
+---
 
-In the [previous section](/docs/user_docs/guides/working-with-k8s/generate_k8s_manifests), we introduced how to use KCL to write and manage Kubernetes configurations and apply them to the cluster. In this section, we introduced KCL's Kubernetes configuration management scenarios more richly by comparing it with other Kubernetes configuration management tools, such as Helm.
+## 简介
 
-[Helm](https://helm.sh/) is a tool for generating deployable manifests for Kubernetes objects, which philosophically takes the task of generating the final manifests in two distinct forms. Helm is an imperative templating tool for managing Kubernetes packages called charts. Charts are a templated version of your yaml manifests with a subset of Go Templating mixed throughout, as well it is a package manager for kubernetes that can package, configure, and deploy/apply the helm charts onto kubernetes clusters.
+[Helm](https://helm.sh/) 是一个为 Kubernetes 对象生成可部署清单的工具，它承担了以两种不同形式生成最终清单的任务。Helm 是一个管理 Kubernetes 包（称为 charts）的必备模板工具。图表是 YAML 清单的模板化版本，其中混合了 Go template 的子集，它也是 Kubernetes 的包管理器，可以打包、配置和部署/应用 Helm 图表到 Kubernetes 集群。
 
-In KCL, the user can directly write the configuration instead of template files with more tools and IDE plugin support that needs to be modified in the corresponding code in the corresponding place, eliminating the cost of reading basic YAML. At the same time, the user can reuse the configuration fragments by code, avoiding massive copying and pasting of YAML configuration. The information density is higher, and it is not easy to make mistakes through KCL.
+在 KCL 中，用户可以使用更多的工具和 IDE 插件支持直接编写配置代码文件，而不是模板文件，这些工具和插件支持需要在相应位置的代码中进行修改，从而消除了读取 YAML 的成本。同时，用户可以通过代码重用配置片段，避免了YAML 配置的大量复制和粘贴。信息密度更高，更不容易出错。
 
-A classic example of helm chart configuration management is used to explain the differences between Helm and KCL in Kubernetes resource configuration management.
+下面以一个经典的 Helm Chart 配置管理的例子详细说明 Kustomize 和 KCL 在 Kubernetes 资源配置管理上的区别。
 
 ## Helm
 
-Helm has the concepts of `values.yaml` and `template`. In general, the Helm chart project is generally a directory including a `Chart.yaml`.:
+Helm 具备 `values.yaml` 和 `template` 的概念, 通常一个 Helm Chart 由一个包含 `Chart.yaml` 的路径组成。我们可以执行如下命令获得一个典型的 Helm Chart 工程
 
-We can execute the following command line to obtain a typical Helm Chart project.
-
-+ Create a directory named `workload-helm` to hold the chart project
++ 创建 `workload-helm` 目录来保存 chart 工程
 
 ```bash
 # Create a directory to hold the chart project
@@ -56,7 +61,7 @@ containers:
 EOF
 ```
 
-+ Create a directory to hold templates
++ 创建模版文件夹
 
 ```bash
 # Create a directory to hold templates
@@ -177,7 +182,7 @@ spec:
 EOF
 ```
 
-Thus, we can get a basic Helm chart directory
+可以得到如下的 Helm chart 工程
 
 ```txt
 .
@@ -189,13 +194,13 @@ Thus, we can get a basic Helm chart directory
 └── values.yaml
 ```
 
-We can display the real deployment configuration of through the following command.
+我们可以通过如下的命令渲染真实的部署配置
 
 ```bash
 helm template workload-helm
 ```
 
-The output YAML is
+可以得到如下 YAML 输出
 
 ```yaml
 ---
@@ -262,11 +267,9 @@ spec:
 
 ## KCL
 
-In KCL, we provide the ability similar to Helm `values.yaml` to configure dynamic parameters through configuration files `kcl.yaml`.
+在 KCL 中，我们提供了与 Helm `values.yaml` 相似的动态配置参数 `kcl.yaml` 文件，我们可以执行如下的命令获得一个典型的 KCL 工程。
 
-We can execute the following command line to obtain a typical KCL project with the `kcl.yaml`.
-
-+ Create a directory named `workload-kcl` to hold the KCL project
++ 创建 `workload-kcl` 目录来保存 KCL 工程
 
 ```bash
 # Create a directory to hold the KCL project
@@ -302,7 +305,7 @@ kcl_options:
 EOF
 ```
 
-+ Create KCL files to hold kubernetes resources.
++ 创建如下 KCL 文件来保存 kubernetes 资源
 
 ```bash
 # Create a workload-kcl/deployment.k
@@ -349,15 +352,15 @@ spec = {
 EOF
 ```
 
-In the above KCL code, we declare the `apiVersion`, `kind`, `metadata`, `spec` and other attributes of Kubernetes `Deployment` and `Service` resources, and assign the corresponding contents respectively. In particular, we assign `metadata.labels` to `spec.selector.matchLabels` and `spec.template.metadata.labels`. It can be seen that the data structure defined by KCL is more compact than Helm template or YAML, and configuration reuse can be realized by defining local variables.
+上述 KCL 代码中我们分别声明了一个 Kubernetes `Deployment` 和 `Service` 资源的 `apiVersion`、`kind`、`metadata` 和 `spec` 等变量，并分别赋值了相应的内容，特别地，我们将 `metadata.labels` 字段分别重用在 `spec.selector.matchLabels` 和 `spec.template.metadata.labels` 字段。可以看出，相比于 Helm 模版 或者 YAML，KCL 定义的数据结构更加紧凑，而且可以通过定义局部变量实现配置重用。
 
-In KCL, we can dynamically receive external parameters through conditional statements and the `option` builtin function, and set different configuration values to generate resources.
+在 KCL 中，我们可以通过条件语句和 `option` 内置函数接收动态参数，并设置不同的配置值以生成资源。
 
-We can get the `Deployment` and `Service` resources throw the following command:
+可以通过如下的命令得到 `Deployment` 和 `Service` YAML 输出:
 
 + `Deployment`
 
-```bash
+```yaml
 $ kcl workload-kcl/deployment.k -Y workload-kcl/kcl.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -394,7 +397,7 @@ spec:
 
 + `Service`
 
-```bash
+```yaml
 $ kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml
 apiVersion: v1
 kind: Service
@@ -416,9 +419,9 @@ spec:
     targetPort: 80
 ```
 
-In addition, we can overwrite the value in the `kcl.yaml` file with the `-D` parameter, such as executing the following command.
+此外我们可以通过 `-D` 标志设置额外的参数并覆盖 `kcl.yaml` 文件的配置值
 
-```bash
+```yaml
 $ kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml -D service=None
 apiVersion: v1
 kind: Service
@@ -436,23 +439,18 @@ spec:
   ports: null
 ```
 
-## Summary
+## 小结
 
-It can be seen that, compared with Helm, KCL reduces the number of configuration files and code lines by means of code generation on the basis of configuration reuse and coverage, And like Helm, it is a pure client solution, which can move the configuration and policy verification to the left as far as possible without additional dependency or burden on the cluster, or even without a real Kubernetes cluster.
+可以看出，与 Helm 相比，KCL 通过在配置重用和覆盖的基础上生成代码，减少了配置文件和代码行的数量。与 Helm 一样，它是一个纯客户端解决方案，可以将配置和策略验证尽可能地左移，而不会对集群造成额外的依赖或负担，或者甚至没有 Kubernetes 集群时也可以通过 KCL Schema 等特性对 YAML 进行充分验证和测试。
 
-Helm can define reusable templates in the `.tpl` file and support other templates to reference it. However, only defined templates can be reused. In a complex Helm chart project, we need to define a lot of additional basic templates. Compared with the cumbersome writing method of Helm, all contents in KCL are variables. No additional syntax is required to specify templates. Any variables can be referenced to each other.
+Helm 可以在 `.tpl` 文件中定义可重用模板，并支持其他模板引用它。但是，只有模板定义才能重用。在一个复杂的 Helm 图表项目中，我们需要定义许多附加的基本模板。与 Helm 繁琐的写作方法相比，KCL 中的所有内容都是变量。指定模板不需要其他语法。任何变量都可以相互引用。
 
-In addition, there are a large number of `{{- include }}`, `nindent` and `toYaml` tag characters that have nothing to do with actual logic in Helm. You need to calculate spaces and indents at each reference. In KCL, there are fewer useless codes, and there is no need for too many `{{*}}` to mark code blocks. The information density is higher, and the indentation and space have been completely liberated.
+此外，Helm 中还有大量与实际逻辑无关的 `{{- include }}`, `nindent` 和 `toYaml` 标记字符，我们需要计算每个 Helm 引用处的空格和缩进。在 KCL 中，无用代码更少，并且不需要很多的 `{{*}}` 来标记代码块，信息密度更高。
 
-In fact, KCL and Helm are not antagonistic. We can even use KCL to write HelmRelease templates and provide programmable extension capabilities for existing Helm chart to write YAML validators.
+事实上，KCL 和 Helm Chart 并不对立。我们甚至可以使用 KCL 编写 Helm 模板或者使用 KCL 来生成 `values.yaml`，或者为现有的 Helm 图表提供可编程扩展功能，比如为 Helm 开发可选的 KCL Schema 插件来验证已有的 Helm 图表或者为 Helm Chart 编写额外的 Transformer 来 Patch 已有的 Helm Chart。
 
-## Future Plan
+## 未来计划
 
-We also expect that KCL models and constraints can be managed as a package (this package has only KCL files). For example, the Kubernetes models and constraints can be used out of the box. Users can generate configurations or verify existing configurations, and can simply extend the models and constraints users want through KCL inheritance.
+我们后续计划 KCL 的模型和约束可以作为一个包来管理（这个包只有 KCL 文件）。例如，Kubernetes 的模型和约束可以开箱即用。用户可以通过已有的模型生成配置或验证现有配置，并且可以通过 KCL 继承手段简单地扩展用户想要的模型和约束。
 
-At this stage, you can use tools such as Git or [OCI Registry As Storage (ORAS)]( https://github.com/oras-project/oras) to manage KCL configuration versions.
-
-## More Documents
-
-+ KCL Github Repo: [https://github.com/KusionStack/KCLVM](https://github.com/KusionStack/KCLVM)
-+ KCL Website: [https://kcl-lang.io](https://kcl-lang.io)
+在此阶段，您可以使用 Git 或 [OCI Registry as Storage（ORAS)](https://github.com/oras-project/oras) 等工具来管理 KCL 配置版本。

@@ -1,43 +1,9 @@
-# 使用 KCL 生成并管理 Kubernetes 资源配置
+---
+title: "使用 KCL 生成并管理 Kubernetes 资源配置"
+sidebar_position: 2
+---
 
-所谓配置就是当我们部署软件系统时，我们并不认为它们是固定不变的。不断发展的业务需求、基础架构要求和其他因素意味着系统不断变化。当我们需要快速更改系统行为，并且更改过程需要昂贵、冗长的重建和重新部署过程时，业务代码更改往往是不够的。而配置可以为我们提供了一种低开销的方式来改变系统功能，比如我们会经常为系统编写一些如下所示的 JSON 或 YAML 文件作为我们系统的配置。
-
-+ JSON 配置
-
-```json
-{
-    "server": {
-        "addr": "127.0.0.1",
-        "listen": 4545
-    },
-    "database": {
-        "enabled": true,
-        "ports": [
-            8000,
-            8001,
-            8002
-        ],
-    }
-}
-```
-
-+ YAML 配置
-
-```yaml
-server:
-  addr: 127.0.0.1
-  listen: 4545
-database:
-  enabled: true
-  ports:
-  - 8000
-  - 8001
-  - 8002
-```
-
-我们可以根据需要选择在 JSON 和 YAML 文件中存储静态配置。此外，配置还可以存储在允许更灵活配置的高级语言中，通过代码编写、渲染并得到静态配置。KCL 就是这样一种配置语言，我们可以编写 KCL 代码来生成 JSON/YAML 等配置。
-
-## 为什么使用 KCL
+## 简介
 
 当我们管理 Kubernetes 资源清单时，我们常常会手写维护，或者使用 Helm 和 Kustomize 等工具来维护我们 YAML 配置或者配置模版，然后通过 kubectl 和 helm 命令行等工具将资源下发到集群。但是作为一个 "YAML 工程师" 每天维护 YAML 配置无疑是琐碎且无聊的，并且容易出错。
 
@@ -89,11 +55,11 @@ spec:
 
 ## 使用 KCL 生成并管理 Kubernetes 资源
 
-### 前提条件
+### 0. 前提条件
 
 首先可以在 [KCL 快速开始](/docs/user_docs/getting-started/kcl-quick-start) 根据指导下载并安装 KCL，然后准备一个 [Kubernetes](https://kubernetes.io/) 环境
 
-### 生成 Kubernetes 资源
+### 1. 生成 Kubernetes 资源
 
 我们可以编写如下 KCL 代码并命名为 main.k ，KCL 受 Python 启发，基础语法十分接近 Python, 比较容易学习和上手, 配置模式写法很简单，`k [: T] = v`, 其中 `k` 表示配置的属性名称; `v` 表示配置的属性值; `: T` 表示一个可选的类型注解。
 
@@ -171,7 +137,7 @@ NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           15s
 ```
 
-### 编写代码管理 Kubernetes 资源
+### 2. 编写代码管理 Kubernetes 资源
 
 对于 Kubernetes 资源发布时，我们常常会遇到配置参数需要动态指定的场景，比如不同的环境需要设置不同的 `image` 字段值生成不同环境的资源。对于这种场景，我们可以通过 KCL 的条件语句和 `option` 函数动态地接收外部参数。我们可以在上述例子的基础上根据不同的环境调整配置参数，比如对于如下代码，我们编写了一个条件语句并输入一个名为 `env` 的动态参数
 

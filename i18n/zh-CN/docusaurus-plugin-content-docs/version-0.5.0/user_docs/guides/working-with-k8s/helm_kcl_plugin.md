@@ -1,4 +1,7 @@
-# Helm KCL 插件
+---
+title: "Helm KCL 插件"
+sidebar_position: 4
+---
 
 [Helm](https://github.com/helm/helm) 是一个管理 Charts 的工具。Charts 是预配置的 Kubernetes 资源的包。您可以使用 `Helm-KCL-Plugin` 来完成以下操作：
 
