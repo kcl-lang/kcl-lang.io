@@ -1,43 +1,6 @@
-# Use KCL to Generate and Manage Kubernetes Resources
+# Generate and Manage Kubernetes Resource
 
-When we deploy software systems, we do not think they are fixed. Evolving business requirements, infrastructure requirements, and other factors mean that systems are constantly changing. When we need to change the system behavior quickly, and the change process needs expensive and lengthy reconstruction and redeployment process, business code change is often not enough. Configuration can provide us with a low overhead way to change system functions. For example, we often write JSON or YAML files as shown below for our system configuration.
-
-+ JSON configuration
-
-```json
-{
-    "server": {
-        "addr": "127.0.0.1",
-        "listen": 4545
-    },
-    "database": {
-        "enabled": true,
-        "ports": [
-            8000,
-            8001,
-            8002
-        ],
-    }
-}
-```
-
-+ YAML configuration
-
-```yaml
-server:
-  addr: 127.0.0.1
-  listen: 4545
-database:
-  enabled: true
-  ports:
-  - 8000
-  - 8001
-  - 8002
-```
-
-We can choose to store the static configuration in JSON and YAML files as needed. In addition, the configuration can also be stored in a high-level language that allows more flexible configuration, which can be coded, rendered, and statically configured. KCL is such a configuration language. We can write KCL code to generate JSON/YAML and other configurations.
-
-## Why use KCL
+## Introduction
 
 When we manage the Kubernetes resources, we often maintain it by hand, or use Helm and Kustomize tools to maintain our YAML configurations or configuration templates, and then apply the resources to the cluster through kubectl tools. However, as a "YAML engineer", maintaining YAML configuration every day is undoubtedly trivial and boring, and prone to errors. For example as follows:
 
@@ -87,13 +50,13 @@ Therefore, KCL expects to solve the following problems in Kubernetes YAML resour
 + Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
 + Provide **the ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
 
-## How to use KCL to generate and manage Kubernetes resources
+## Use KCL to Generate and Manage Kubernetes Resource
 
-### Prerequisite
+### 0. Prerequisite
 
 First, you can visit the [KCL Quick Start](/docs/user_docs/getting-started/kcl-quick-start) to download and install KCL according to the instructions, and then prepare a [Kubernetes](https://kubernetes.io/) environment.
 
-### Generate Kubernetes manifests
+### 1. Generate Kubernetes Resource
 
 We can write the following KCL code and name it `main.k`. KCL is inspired by Python. Its basic syntax is very close to Python, which is easy to learn. The configuration mode is simple, `k [: T] = v`, where `k` denotes the configured attribute name, `v` denotes the configured attribute value and `: T` denotes an optional type annotation.
 
@@ -171,7 +134,7 @@ NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           15s
 ```
 
-### Write code to manage Kubernetes resources
+### 2. Write Code to Manage Kubernetes resources
 
 When publishing Kubernetes resources, we often encounter scenarios where configuration parameters need to be dynamically specified. For example, different environments need to set different `image` field values to generate resources in different environments. For this scenario, we can dynamically receive external parameters through KCL conditional statements and `option` functions. Based on the above example, we can adjust the configuration parameters according to different environments. For example, for the following code, we wrote a conditional statement and entered a dynamic parameter named `env`.
 
