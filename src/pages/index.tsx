@@ -129,6 +129,19 @@ function FeaturesSection() {
 
 function ExampleSection() {
   return <section><div className="container">
+    <h2
+      className={clsx(
+        "text--center",
+      )}
+      style={{ color: "var(--ifm-color-primary)" }}
+    >
+      Codify and Manage Your Modern Configuration and Policy
+    </h2>
+    <p className={clsx(
+      "text--center", styles.description
+    )}>
+      With configs, models, functions and rules
+    </p>
     <ExampleScroller />
   </div></section>
 }
