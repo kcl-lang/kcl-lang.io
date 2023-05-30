@@ -195,7 +195,7 @@ Write a KCL code to import the Kubernetes models (main.k).
 ```python
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = apps.Deployment {
+apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3

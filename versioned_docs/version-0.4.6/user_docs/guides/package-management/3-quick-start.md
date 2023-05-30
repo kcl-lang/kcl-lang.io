@@ -12,7 +12,7 @@ cd my_package # go into the folder 'my_package'
 Create a new kcl package named `my_package`.
 
 ```shell
-kpm init my_package
+kpm init
 ```
 
 `kpm` will create two kcl package configuration files: `kcl.mod` and `kcl.mod.lock` in the directory where you executed the command.

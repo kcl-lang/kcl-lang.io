@@ -12,10 +12,10 @@ cd my_package    # 进入这个文件夹 'my_package' 中
 创建一个叫做 `my_package` 的包。
 
 ```shell
-kpm init my_package
+kpm init
 ```
 
-`kpm` 将会在执行`kpm init my_package`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
+`kpm` 将会在执行`kpm init`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
 
 ```shell
 - my_package
