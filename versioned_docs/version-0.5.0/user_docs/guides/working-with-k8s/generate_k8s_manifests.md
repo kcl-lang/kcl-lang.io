@@ -1,4 +1,7 @@
-# Generate and Manage Kubernetes Resource
+---
+title: "Generate and Manage Kubernetes Resource"
+sidebar_position: 2
+---
 
 ## Introduction
 

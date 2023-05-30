@@ -1,4 +1,7 @@
-# Kustomize KCL 插件
+---
+title: "Kustomize KCL 插件"
+sidebar_position: 3
+---
 
 [Kustomize](https://github.com/kubernetes-sigs/kustomize) 允许自定义用于多种目的原始的、无模板的 YAML 文件，同时保留原始 YAML 不变和可用。
 

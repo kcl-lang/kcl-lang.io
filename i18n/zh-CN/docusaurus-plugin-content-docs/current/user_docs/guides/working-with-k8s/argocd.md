@@ -1,4 +1,7 @@
-# ArgoCD
+---
+title: "ArgoCD"
+sidebar_position: 6
+---
 
 ## 准备开始
 

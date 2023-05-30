@@ -1,4 +1,7 @@
-# 将 Kubernetes 模型转换为 KCL 模型
+---
+title: "将 Kubernetes 模型转换为 KCL 模型"
+sidebar_position: 1
+---
 
 ## 1. Kubernetes OpenAPI Spec
 

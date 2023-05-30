@@ -1,4 +1,7 @@
-# 使用 KCL 生成并管理 Kubernetes 资源配置
+---
+title: "使用 KCL 生成并管理 Kubernetes 资源配置"
+sidebar_position: 2
+---
 
 ## 简介
 

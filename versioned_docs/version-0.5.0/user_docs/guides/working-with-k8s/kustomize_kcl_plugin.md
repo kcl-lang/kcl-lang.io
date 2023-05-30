@@ -1,4 +1,7 @@
-# Kustomize KCL Plugin
+---
+title: "Kustomize KCL Plugin"
+sidebar_position: 3
+---
 
 [Kustomize](https://github.com/kubernetes-sigs/kustomize) lets you customize raw, template-free YAML files for multiple purposes, leaving the original YAML untouched and usable as is.
 

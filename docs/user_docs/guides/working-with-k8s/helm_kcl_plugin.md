@@ -1,4 +1,7 @@
-# Helm KCL Plugin
+---
+title: "Helm KCL Plugin"
+sidebar_position: 4
+---
 
 [Helm](https://github.com/helm/helm) is a tool for managing Charts. Charts are packages of pre-configured Kubernetes resources. You can use the `Helm-KCL-Plugin` to
 

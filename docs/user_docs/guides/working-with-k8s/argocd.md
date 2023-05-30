@@ -1,4 +1,7 @@
-# ArgoCD Integration
+---
+title: "ArgoCD"
+sidebar_position: 6
+---
 
 ## Prerequisite
 
