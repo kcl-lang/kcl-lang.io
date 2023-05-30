@@ -28,17 +28,18 @@ NAME:
 USAGE:
    kpm  <command> [arguments]...
 
-VERSION:
-   v0.0.1
-
 COMMANDS:
-   init     initialize new module in current directory
-   add      add new dependancy
-   pkg      package a kcl package into tar
-   run      compile kcl package.
-   help, h  Shows a list of commands or help for one command
+   init      initialize new module in current directory
+   add       add new dependancy
+   pkg       package a kcl package into tar
+   metadata  output the resolved dependencies of a package
+   run       compile kcl package.
+   login     login to a registry
+   logout    logout from a registry
+   push      push kcl package to OCI registry.
+   pull      pull kcl package from OCI registry.
+   help, h   Shows a list of commands or help for one command
 
 GLOBAL OPTIONS:
-   --help, -h     show help
-   --version, -v  print the version
+   --help, -h  show help
 ```
