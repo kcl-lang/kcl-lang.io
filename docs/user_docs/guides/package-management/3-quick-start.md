@@ -1,6 +1,6 @@
 # Quick Start
 
-## Init an empty kcl package
+## 1. Init an Empty KCL Package
 
 Create a new kcl package named `my_package`. And after we have created the package `my_package`, we need to go inside the package by `cd my_package` to complete the following operations.
 
@@ -30,7 +30,7 @@ edition = "0.0.1"
 version = "0.0.1"
 ```
 
-## Add a dependency from Git Registry
+## 2. Add a Dependency from OCI Registry
 
 You can then add a dependency to the current kcl package using the `kpm add` command
 
@@ -82,12 +82,27 @@ k8core.Pod {
 
 ```
 
-## Use the `kpm` compile the kcl package
+## 3. Run the KCL Code
 
 In the `my_package` directory, you can use `kpm` to compile the `main.k` file you just wrote.
 
 ```shell
 kpm run
+```
+
+The output is
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app
+spec:
+  containers:
+    - image: nginx
+      name: main-container
+      ports:
+        - containerPort: 80
 ```
 
 ![kpm_run](/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif)

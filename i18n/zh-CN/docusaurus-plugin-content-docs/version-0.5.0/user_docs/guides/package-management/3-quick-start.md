@@ -1,6 +1,6 @@
 # 快速开始
 
-## 初始化一个空的 KCL 包
+## 1. 初始化一个空的 KCL 包
 
 使用 `kpm init` 命令创建一个名为 `my_package` 的 kcl 程序包, 并且在我们创建完成一个名为 `my_package` 的包后，我们需要通过命令 `cd my_package` 进入这个包来进行后续的操作。
 
@@ -8,7 +8,7 @@
 kpm init my_package
 ```
 
-![](/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif)
+![kpm_init](/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif)
 
 `kpm` 将会在执行`kpm init my_package`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
 
@@ -30,7 +30,7 @@ edition = "0.0.1"
 version = "0.0.1"
 ```
 
-## 为 KCL 包添加依赖
+## 2. 为 KCL 包添加依赖
 
 然后，您可以通过 `kpm add` 命令来为您当前的库添加一个外部依赖。
 
@@ -40,7 +40,7 @@ version = "0.0.1"
 kpm add k8s:1.27.2
 ```
 
-![](/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif)
+![kpm_add_k8s](/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif)
 
 `kpm` 会为您将依赖添加到 kcl.mod 文件中.
 
@@ -82,7 +82,7 @@ k8core.Pod {
 
 ```
 
-## 使用 `kpm` 编译 kcl 包
+## 3. 运行 KCL 代码
 
 你可以使用 kpm 编译刚才编写的 `main.k` 文件, 得到编译后的结果。
 
@@ -90,4 +90,19 @@ k8core.Pod {
 kpm run
 ```
 
-![](/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif)
+输出为
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app
+spec:
+  containers:
+    - image: nginx
+      name: main-container
+      ports:
+        - containerPort: 80
+```
+
+![kpm_run](/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif)
