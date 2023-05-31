@@ -37,7 +37,7 @@ version = "0.0.1"
 如下面的命令所示，为当前包添加一个版本号为 `1.27.2` 并且名为 `k8s` 的依赖包。
 
 ```shell
-kpm add k8s
+kpm add k8s:1.27.2
 ```
 
 ![kpm_add_k8s](/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif)
