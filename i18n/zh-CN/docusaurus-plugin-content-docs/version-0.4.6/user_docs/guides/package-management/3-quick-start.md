@@ -2,26 +2,21 @@
 
 ## 初始化一个空的 KCL 包
 
-首先，为 KCL 包创建一个空的文件夹, 并且进入到这个文件夹中。
+使用 `kpm init` 命令创建一个名为 `my_package` 的 kcl 程序包, 并且在我们创建完成一个名为 `my_package` 的包后，我们需要通过命令 `cd my_package` 进入这个包来进行后续的操作。
 
 ```shell
-mkdir my_package # 创建一个新的文件夹 'my_package'
-cd my_package    # 进入这个文件夹 'my_package' 中
+kpm init my_package
 ```
 
-创建一个叫做 `my_package` 的包。
+<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif" width="600" align="center" />
 
-```shell
-kpm init
-```
-
-`kpm` 将会在执行`kpm init`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
+`kpm` 将会在执行`kpm init my_package`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
 
 ```shell
 - my_package
         |- kcl.mod
         |- kcl.mod.lock
-        |- # 你可以直接在这个目录下写你的 kcl 程序
+        |- # 你可以直接在这个目录下写你的kcl程序。
 ```
 
 `kcl.mod.lock` 是 `kpm` 用来固定依赖版本的文件，是自动生成的，请不要人工修改这个文件。
@@ -37,13 +32,17 @@ version = "0.0.1"
 
 ## 为 KCL 包添加依赖
 
-如果你想要使用 [Konfig](https://github.com/awesome-kusion/konfig.git) 中的 KCL 程序。
+然后，您可以通过 `kpm add` 命令来为您当前的库添加一个外部依赖。
+
+如下面的命令所示，为当前包添加一个版本号为 `1.27.2` 并且名为 `k8s` 的依赖包。
 
 ```shell
-kpm add -git https://github.com/awesome-kusion/konfig.git -tag v0.0.1
+kpm add k8s:1.27.2
 ```
 
-`kpm` 会为您将依赖添加到 kcl.mod 文件中。
+<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif" width="600" align="center" />
+
+`kpm` 会为您将依赖添加到 kcl.mod 文件中.
 
 ```shell
 [package]
@@ -52,10 +51,7 @@ edition = "0.0.1"
 version = "0.0.1"
 
 [dependencies]
-# 'konfig' 是依赖的包的名称
-# 如果你想在你的 kcl 程序中使用包 'konfig' 中的内容，
-# 你需要在 import 语句中使用包名 'konfig' 作为导入内容的前缀。
-konfig = { git = "https://github.com/awesome-kusion/konfig.git", tag = "v0.0.1" }
+k8s = "1.27.2" # The dependency 'k8s' with version '1.27.2'
 ```
 
 ## 编写一个程序使用包 `konfig` 中的内容
@@ -66,81 +62,31 @@ konfig = { git = "https://github.com/awesome-kusion/konfig.git", tag = "v0.0.1" 
 - my_package
         |- kcl.mod
         |- kcl.mod.lock
-        |- main.k # 你的 KCL 程序
+        |- main.k # Your KCL program.
 ```
 
 并且将下面的内容写入 `main.k` 文件中。
 
 ```kcl
-import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
+# 导入并使用外部依赖 `k8s` 包中的内容。
+import k8s.api.core.v1 as k8core
 
-apps.Deployment {
-    metadata.name = "nginx-deployment"
-    spec = {
-        replicas = 3
-        selector.matchLabels.app = "nginx"
-        template.metadata.labels = selector.matchLabels
-        template.spec.containers = [
-            {
-                name = selector.matchLabels.app
-                image = "nginx:1.14.2"
-                ports = [
-                    {containerPort = 80}
-                ]
-            }
-        ]
-    }
+k8core.Pod {
+    metadata.name = "web-app"
+    spec.containers = [{
+        name = "main-container"
+        image = "nginx"
+        ports = [{containerPort = 80}]
+    }]
 }
+
 ```
 
-## 编译 kcl 包
+## 使用 `kpm` 编译 kcl 包
 
-你可以使用如下命令编译刚才编写的 `main.k` 文件。
+你可以使用 kpm 编译刚才编写的 `main.k` 文件, 得到编译后的结果。
 
 ```shell
 kpm run
 ```
-
-如果你得到如下输出，恭喜你！你成功使用 `kpm` 编译了一个 kcl 包。
-
-```shell
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx-deployment
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - image: "nginx:1.14.2"
-          name: nginx
-          ports:
-            - containerPort: 80
-```
-
-## 打包您的 kcl 包
-
-你可以使用 `kpm pkg` 将您的包与其对应的依赖打包在一起。
-
-```shell
-kpm pkg --target my_package.tar
-```
-
-这个命令执行后，您可以看到您的 kcl 包已经被打包到了 `my_package.tar` 文件中，并且 `my_package` 的依赖也都被复制到了当前包的 `vendor` 子目录下。
-
-```shell
-- my_package
-        |- kcl.mod
-        |- kcl.mod.lock
-        |- main.k
-        |- my_package.tar # `kpm pkg` 命令生成的 tar 包
-        |- vendor # 当前包所有的依赖都将被复制到 `vendor` 中 
-             |- konfig_v0.0.1
-```
+<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif" width="600" align="center" />

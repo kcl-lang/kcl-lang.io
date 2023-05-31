@@ -2,7 +2,17 @@
 
 ## 安装 `kpm`
 
-kpm 将调用 `KCLVM` 来编译 KCL 程序。在使用 `kpm` 之前，您需要确保 `KCLVM` 已经成功安装，您可以参照[如何安装 KCLVM](https://kcl-lang.io/docs/user_docs/getting-started/install)。
+kpm 将调用 `KCL`编译器来编译 KCL 程序。在使用 `kpm` 之前，您需要确保 `KCL` 编译器已经成功安装，您可以参照[如何安装 KCL 编译器](https://kcl-lang.io/docs/user_docs/getting-started/install)。
+
+### 使用 `go install` 安装 `kpm`
+
+您可以使用 go install 命令安装 kpm。
+
+```shell
+go install kusionstack.io/kpm@latest
+```
+
+### 从 Github release 页面手动安装 `kpm`
 
 您可以从 [kpm Github Release](https://github.com/KusionStack/kpm/releases) 中获取 `kpm` ，并将 `kpm` 的二进制文件路径设置到环境变量 PATH 中。
 
