@@ -18,6 +18,10 @@ check-link:
 version:
 	npm run docusaurus docs:version $(shell cat VERSION)
 
+.PHONY: test
+test:
+	./examples/test.sh
+
 .PHONY: translations
 translations:
 	npm run docusaurus write-translations
