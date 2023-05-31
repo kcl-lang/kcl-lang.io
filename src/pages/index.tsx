@@ -183,7 +183,7 @@ function PartnerSection() {
         )}
         style={{ color: "var(--ifm-color-primary)" }}
       >
-        Adopters and Partners
+        Trusted By
       </h2>
       <div className={styles.whiteboard}>
         <div className="row">
