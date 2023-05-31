@@ -3,6 +3,8 @@
 # Stop on error.
 
 # Note: Before you start tests, please install kcl and kpm
+# kcl Installation: https://kcl-lang.io/docs/user_docs/getting-started/install
+# kpm Installation: https://kcl-lang.io/docs/user_docs/guides/package-management/installation
 
 set -e
 
