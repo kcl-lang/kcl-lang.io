@@ -3,6 +3,8 @@ title: "Helm KCL 插件"
 sidebar_position: 4
 ---
 
+## 简介
+
 [Helm](https://github.com/helm/helm) 是一个管理 Charts 的工具。Charts 是预配置的 Kubernetes 资源的包。您可以使用 `Helm-KCL-Plugin` 来完成以下操作：
 
 + 以 hook 的方式编辑 Helm charts，将数据和逻辑分离以便更好地管理 Kubernetes manifests
@@ -18,14 +20,14 @@ sidebar_position: 4
 
 让我们编写一个仅向 `Deployment` 资源添加 annotation `managed-by=helm-kcl-plugin` 的 KCL 函数
 
-### 获取示例
+### 1. 获取示例
 
 ```bash
 git clone https://github.com/KusionStack/helm-kcl.git/
 cd ./helm-kcl/examples/workload-charts-with-kcl
 ```
 
-### 测试和运行
+### 2. 测试和运行
 
 通过 `Helm KCL Plugin` 运行KCL代码。
 
@@ -85,7 +87,7 @@ spec:
         name: frontend
 ```
 
-### KCL 开发指南
+## KCL 开发指南
 
 以下是您可以在 KCL 代码中执行的操作：
 

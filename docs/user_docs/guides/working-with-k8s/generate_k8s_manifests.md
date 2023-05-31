@@ -53,11 +53,11 @@ Therefore, KCL expects to solve the following problems in Kubernetes YAML resour
 + Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
 + Provide **the ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
 
-## Use KCL to Generate and Manage Kubernetes Resource
-
-### 0. Prerequisite
+## Prerequisite
 
 First, you can visit the [KCL Quick Start](/docs/user_docs/getting-started/kcl-quick-start) to download and install KCL according to the instructions, and then prepare a [Kubernetes](https://kubernetes.io/) environment.
+
+## Quick Start
 
 ### 1. Generate Kubernetes Resource
 
@@ -235,3 +235,7 @@ spec:
         ports:
         - containerPort: 80
 ```
+
+## Summary
+
+KCL can be used to generate and manage Kubernetes resources, addressing the limitations of managing YAML configurations, such as a lack of validation methods and poor programming capabilities. It can also dynamically receive external parameters through conditional statements and option functions, allowing configuration parameters to be adjusted according to different environments. In addition, KCL can be used in conjunction with other tools such as kubectl to apply configuration to the cluster.

@@ -3,6 +3,8 @@ title: "KPT KCL SDK"
 sidebar_position: 5
 ---
 
+## Introduction
+
 [kpt](https://github.com/GoogleContainerTools/kpt) is a package-centric toolchain that enables a configuration authoring, automation, and delivery experience, which simplifies managing Kubernetes platforms and KRM-driven infrastructure (e.g., Config Connector, Crossplane) at scale by manipulating declarative Configuration as Data for automating Kubernetes configuration editing including transforming and validating.
 
 KCL can be used to create functions to transform and/or validate the YAML Kubernetes Resource Model (KRM) input/output format, but we provide KPT KCL SDKs to simplify the function authoring process.
@@ -16,14 +18,14 @@ KCL can be used to create functions to transform and/or validate the YAML Kubern
 
 Let’s write a KCL function which add annotation `managed-by=kpt` only to Deployment resources.
 
-### Get the Example
+### 1. Get the Example
 
 ```bash
 git clone https://github.com/KusionStack/kpt-kcl-sdk.git/
 cd ./kpt-kcl-sdk/get-started/set-annotation
 ```
 
-### Show the KRM
+### 2. Show the KRM
 
 ```bash
 kpt pkg tree
@@ -39,7 +41,7 @@ set-annotation
     └── [resources.yaml]  Service test
 ```
 
-### Update the `FunctionConfig`
+### 3. Update the `FunctionConfig`
 
 ```yaml
 # kcl-fn-config.yaml
@@ -54,7 +56,7 @@ spec:
     [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kpt"}} for resource in option("resource_list").items]
 ```
 
-### Test and Run
+### 4. Test and Run
 
 Run the KCL code via kpt
 

@@ -3,6 +3,8 @@ title: "Helm KCL Plugin"
 sidebar_position: 4
 ---
 
+## Introduction
+
 [Helm](https://github.com/helm/helm) is a tool for managing Charts. Charts are packages of pre-configured Kubernetes resources. You can use the `Helm-KCL-Plugin` to
 
 + Edit the helm charts in a hook way to separate data and logic for the Kubernetes manifests management.
@@ -18,14 +20,14 @@ sidebar_position: 4
 
 Let’s write a KCL function which add annotation `managed-by=helm-kcl-plugin` only to `Deployment` resources in the helm chart.
 
-### Get the Example
+### 1. Get the Example
 
 ```bash
 git clone https://github.com/KusionStack/helm-kcl.git/
 cd ./helm-kcl/examples/workload-charts-with-kcl
 ```
 
-### Test and Run
+### 2. Test and Run
 
 Run the KCL code via the `Helm KCL Plugin`.
 
@@ -85,7 +87,7 @@ spec:
         name: frontend
 ```
 
-### Guides for Developing KCL
+## Guides for Developing KCL
 
 Here's what you can do in the KCL code:
 

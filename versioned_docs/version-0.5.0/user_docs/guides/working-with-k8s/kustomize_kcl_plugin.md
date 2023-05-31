@@ -3,6 +3,8 @@ title: "Kustomize KCL Plugin"
 sidebar_position: 3
 ---
 
+## Introduction
+
 [Kustomize](https://github.com/kubernetes-sigs/kustomize) lets you customize raw, template-free YAML files for multiple purposes, leaving the original YAML untouched and usable as is.
 
 KCL can be used to create functions to mutate and/or validate the YAML Kubernetes Resource Model (KRM) input/output format, and we provide Kustomize KCL functions to simplify the function authoring process.
@@ -15,14 +17,14 @@ KCL can be used to create functions to mutate and/or validate the YAML Kubernete
 
 Let’s write a KCL function which add annotation `managed-by=kustomize-kcl` only to Deployment resources.
 
-### Get the Example
+### 1. Get the Example
 
 ```bash
 git clone https://github.com/KusionStack/kustomize-kcl.git
 cd ./kustomize-kcl/examples/set-annotation/
 ```
 
-### Test and Run
+### 2. Test and Run
 
 ```bash
 # Note: you need add sudo and --as-current-user flags to ensure KCL has permission to write temp files in the container filesystem.
