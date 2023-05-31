@@ -2,9 +2,19 @@
 
 ## Install `kpm`
 
-Before installing and using kpm, ensure that KCLVM has been installed successfully.
+Before installing and using kpm, ensure that KCL compiler has been installed successfully.
 
-[How to install KCLVM.](https://kcl-lang.io/docs/user_docs/getting-started/install)
+[How to install KCL compiler.](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
+### Go install
+
+You can download kpm via go install.
+
+```shell
+go install kusionstack.io/kpm@latest
+```
+
+### Download from GITHUB release page
 
 You can get `kpm` from the [kpm github release](https://github.com/KusionStack/kpm/releases) and set the `kpm` binary path to the environment variable PATH.
 

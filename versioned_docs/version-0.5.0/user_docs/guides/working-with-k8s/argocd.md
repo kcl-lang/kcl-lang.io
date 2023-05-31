@@ -136,7 +136,7 @@ Git commit and push
 
 ```bash
 git add .
-git commit -m "mannual drifted config for appops/guestbook-frontend/prod"
+git commit -m "manual drifted config for appops/guestbook-frontend/prod"
 git push origin main
 ```
 
@@ -146,4 +146,4 @@ Drift configuration auto-convergence
 
 ## Summary
 
-
+This document introduces how to integrate KCL as a third-party plugin into ArgoCD for configuration drift detection. It includes the prerequisite of installing ArgoCD, the quick start steps including configuring plugins, updating ArgoCD deployment, creating KCL projects, and configuring drift detection.

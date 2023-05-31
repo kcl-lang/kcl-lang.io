@@ -32,7 +32,7 @@ Other useful features such as refactoring and testing are in development.
 
 ## Dependencies
 
-We recommend that you use the latest version of KCLVM, but the minimum required version for this extension is 0.4.6. If you are using an earlier version, the extension may not work properly.
+We recommend that you use the latest version of KCL, but the minimum required version for this extension is 0.4.6. If you are using an earlier version, the extension may not work properly.
 
 ## Known Issues
 

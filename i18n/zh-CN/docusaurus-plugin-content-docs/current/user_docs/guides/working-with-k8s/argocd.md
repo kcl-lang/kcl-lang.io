@@ -129,7 +129,7 @@ Git 提交并推送
 
 ```bash
 git add .
-git commit -m "mannual drifted config for appops/guestbook-frontend/prod"
+git commit -m "manual drifted config for appops/guestbook-frontend/prod"
 git push origin main
 ```
 
@@ -138,3 +138,5 @@ git push origin main
 ![](/img/docs/user_docs/guides/argocd/reconcile-drifted-config.jpg)
 
 ## 小结
+
+本文档介绍了如何将 KCL 作为第三方插件集成到 ArgoCD 中进行配置漂移检测。它包括安装 ArgoCD 的先决条件，快速启动步骤，包括配置插件、更新 ArgoCD 部署、创建 KCL 项目和配置漂移检测等。
