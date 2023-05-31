@@ -10,4 +10,4 @@ The title of the paper "KCL: A Declarative Language for Large scale Configuratio
 
 In addition, SETTA 2022 will hold an online conference from October 27 to October 28 (Beijing time), at which time the details of KCL papers will be shared and welcome to join [KCL Community](https://github.com/KusionStack/community). For details of SETTA 2022 meeting agenda, please refer to https://lcs.ios.ac.cn/setta2022/program.php
 
-Note: KCL has been open-source in Github. Visit https://github.com/KusionStack/KCLVM for more information.
+Note: KCL has been open-source in Github. Visit https://github.com/KusionStack/kcl for more information.

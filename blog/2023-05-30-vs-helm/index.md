@@ -461,5 +461,5 @@ At this stage, you can use tools such as Git or [OCI Registry As Storage (ORAS)]
 
 ## More Documents
 
-+ KCL Github Repo: [https://github.com/KusionStack/KCLVM](https://github.com/KusionStack/KCLVM)
++ KCL Github Repo: [https://github.com/KusionStack/kcl](https://github.com/KusionStack/kcl)
 + KCL Website: [https://kcl-lang.io](https://kcl-lang.io)

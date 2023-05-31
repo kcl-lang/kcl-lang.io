@@ -11,7 +11,7 @@ tags: [Release Blog, KCL, KusionStack, Kusion, Playground]
 
 KCL 团队很高兴地宣布 KCL Playground v0.4.5 版本现在已经可用！
 
-[KCL](https://github.com/KusionStack/KCLVM) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
+[KCL](https://github.com/KusionStack/kcl) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
 
 您可以访问 [KCL 网站](https://kcl-lang.io/) 点击 playground 进行体验。在这个新版本中，我们支持了根据输入 KCL 代码变化自动编译和运行 KCL 代码、格式化代码和以及共享代码的能力。欢迎参与撰写并将 KCL 代码分享给您的小伙伴。
 
@@ -33,7 +33,7 @@ KCL 团队很高兴地宣布 KCL Playground v0.4.5 版本现在已经可用！
 
 + [KCL 网站](https://kcl-lang.io/)
 + [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/KusionStack/KCLVM)
++ [KCL Github 仓库](https://github.com/KusionStack/kcl)
 + [Kusion Github 仓库](https://github.com/KusionStack/kusion)
 + [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 

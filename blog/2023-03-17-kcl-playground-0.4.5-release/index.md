@@ -11,7 +11,7 @@ tags: [Release Blog, KCL, KusionStack, Kusion, Playground]
 
 The KCL team is pleased to announce that the new playground of KCL v0.4.5 is now available!
 
-[KCL](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language. KCL improves the complexity of writing numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
+[KCL](https://github.com/KusionStack/kcl) is an open-source, constraint-based record and functional language. KCL improves the complexity of writing numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
 You can visit the [KCL website](https://kcl-lang.io/) and click the playground link and play. In this new version, we support the ability to automatically compile and run KCL code, format it, and share code. Welcome to writing and sharing KCL codes.
 
@@ -33,7 +33,7 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 
 + [KCL Website](https://kcl-lang.io/)
 + [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/KusionStack/KCLVM)
++ [KCL Repo](https://github.com/KusionStack/kcl)
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 

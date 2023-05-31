@@ -9,7 +9,7 @@ tags: [KCL, Configuration]
 
 ## 零、前言
 
-文本仅用于澄清声明式配置技术概述，[KCL](https://github.com/KusionStack/KCLVM) 概念以及核心设计，以及与其他配置语言的对比。
+文本仅用于澄清声明式配置技术概述，[KCL](https://github.com/KusionStack/kcl) 概念以及核心设计，以及与其他配置语言的对比。
 
 ## 一、声明式配置概述
 
@@ -133,7 +133,7 @@ Configuration as Code (CaC), 使用代码产生配置，就像工程师们只需
 
 模型化 KV 的代表技术有:
 
-- [KCL](https://github.com/KusionStack/KCLVM)：一种 Rust 实现的声明式配置策略编程语言，把运维类研发统一为一种声明式的代码编写，可以针对差异化应用交付场景抽象出用户模型并添加相应的约束能力，期望借助可编程 DevOps 理念解决规模化运维场景中的配置策略编写的效率和可扩展性等问题。图 4 示出了一个 KCL 编写应用交付配置代码的典型场景
+- [KCL](https://github.com/KusionStack/kcl)：一种 Rust 实现的声明式配置策略编程语言，把运维类研发统一为一种声明式的代码编写，可以针对差异化应用交付场景抽象出用户模型并添加相应的约束能力，期望借助可编程 DevOps 理念解决规模化运维场景中的配置策略编写的效率和可扩展性等问题。图 4 示出了一个 KCL 编写应用交付配置代码的典型场景
 
 ![](/img/blog/2022-09-15-declarative-config-overview/04-kcl-app-code.png)
 

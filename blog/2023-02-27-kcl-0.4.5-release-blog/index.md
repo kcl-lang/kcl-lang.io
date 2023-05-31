@@ -11,9 +11,9 @@ tags: [Release Blog, KCL, KusionStack, Kusion]
 
 The KCL team is pleased to announce that KCL v0.4.5 is now available! This release is mainly aimed at improving the convenience and stability of KCL language writing, improving error information, and supporting more platforms including Windows version and more download methods. In KCL v0.4.5, users can eliminate more configuration templates by writing fewer KCL codes. In the new version, preliminary KCL Playground support is provided, which can be used to write and run KCL code online without installation. In addition, this release also includes many compiler error information optimization and bug fixes.
 
-You can visit the [KCL release page](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.5) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
+You can visit the [KCL release page](https://github.com/KusionStack/kcl/releases/tag/v0.4.5) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
-[KCL](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
+[KCL](https://github.com/KusionStack/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
 This blog will introduce the content of KCL v0.4.5 and recent developments in the KCL community to readers.
 
@@ -171,7 +171,7 @@ In the subsequent KCL versions, we will continue to update the KCL playground to
 
 #### Windows
 
-KCL Windows binary version can now be downloaded from [Github](https://github.com/KusionStack/KCLVM/releases/) manually. After the download, add `{install_location}\kclvm\bin` to the environment variable `PATH`.
+KCL Windows binary version can now be downloaded from [Github](https://github.com/KusionStack/kcl/releases/) manually. After the download, add `{install_location}\kclvm\bin` to the environment variable `PATH`.
 
 ```powershell
 $env:PATH += ";{install-location}\kclvm\bin;"
@@ -244,7 +244,7 @@ config:
     memory: 8Gi
 ```
 
-For more information, see [KCL Issue #422](https://github.com/KusionStack/KCLVM/issues/422).
+For more information, see [KCL Issue #422](https://github.com/KusionStack/kcl/issues/422).
 
 ### Configure if expression type mismatch error optimization
 
@@ -265,7 +265,7 @@ KCL Compile Error[E2G22] : The type got is inconsistent with the type expected
 expect {str(A)|str(B):int}, got {str(A):str(2)}
 ```
 
-For more information, see [KCL Issue #389](https://github.com/KusionStack/KCLVM/issues/389).
+For more information, see [KCL Issue #389](https://github.com/KusionStack/kcl/issues/389).
 
 ### Rule statement validation does not work
 
@@ -357,7 +357,7 @@ Before KCL v0.4.5, executing the above code will result in an unexpected undefin
 
 ## Other Updates and Issues
 
-For more updates and bug fixes, see [here](https://github.com/KusionStack/KCLVM/milestone/3)
+For more updates and bug fixes, see [here](https://github.com/KusionStack/kcl/milestone/3)
 
 ## Documents
 
@@ -382,7 +382,7 @@ It is expected that in the middle of April 2023, we will release **KCL v0.4.6**.
 + [KCL Go SDK](https://github.com/KusionStack/kclvm-go): More capability support such as supporting the bidirectional conversion of the KCL schema and Go structure
 + [KCL Python SDK](https://github.com/KusionStack/kclvm-py): More capability support.
 
-For more details, please refer to [KCL v0.4.6 Milestone](https://github.com/KusionStack/KCLVM/milestone/4)
+For more details, please refer to [KCL v0.4.6 Milestone](https://github.com/KusionStack/kcl/milestone/4)
 
 ## FAQ
 
@@ -394,7 +394,7 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 
 + [KCL Website](https://kcl-lang.io/)
 + [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/KusionStack/KCLVM)
++ [KCL Repo](https://github.com/KusionStack/kcl)
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 

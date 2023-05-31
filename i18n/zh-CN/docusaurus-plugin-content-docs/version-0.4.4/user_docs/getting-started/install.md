@@ -8,7 +8,7 @@ sidebar_position: 2
 
 ### 二进制下载
 
-KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/KusionStack/KCLVM/releases/) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
+KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/KusionStack/kcl/releases/) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
 
 #### MacOS & Linux
 
@@ -88,7 +88,7 @@ docker pull kusionstack/kclvm
 
 > ⚠️ 对于上述所有安装方式, 如果您想使用 [KCL Python 插件](https://kcl-lang.io/docs/reference/plugin/overview), 需要确保您已经安装了 Python 3.7+ 并将 python3 命令添加到您的 PATH 中
 
-> 为了避免 GLIBC 版本过低问题, 对于低版本的 linux 发行版如 centos7, 您可以在 [Github](https://github.com/KusionStack/KCLVM/releases/) 找到 kclvm-centos 版本并下载安装。
+> 为了避免 GLIBC 版本过低问题, 对于低版本的 linux 发行版如 centos7, 您可以在 [Github](https://github.com/KusionStack/kcl/releases/) 找到 kclvm-centos 版本并下载安装。
 
 ## 2. 安装 KCL IDE 插件
 
