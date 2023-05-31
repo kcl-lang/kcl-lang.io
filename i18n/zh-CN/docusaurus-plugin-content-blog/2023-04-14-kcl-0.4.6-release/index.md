@@ -195,7 +195,7 @@ kpm init kubernetes_demo && kpm add -git https://github.com/awesome-kusion/konfi
 ```python
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = apps.Deployment {
+apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3
@@ -217,7 +217,7 @@ demo = apps.Deployment {
 执行如下 KCL 命令即可获得一个 Nginx Deployment YAML 输出
 
 ```shell
-$ kcl main.k -S demo
+$ kpm run
 apiVersion: apps/v1
 kind: Deployment
 metadata:

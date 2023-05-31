@@ -74,7 +74,7 @@ konfig = { git = "https://github.com/awesome-kusion/konfig.git", tag = "v0.0.1" 
 ```kcl
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = apps.Deployment {
+apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3
@@ -98,7 +98,7 @@ demo = apps.Deployment {
 你可以使用如下命令编译刚才编写的 `main.k` 文件。
 
 ```shell
-kcl main.k -S demo
+kpm run
 ```
 
 如果你得到如下输出，恭喜你！你成功使用 `kpm` 编译了一个 kcl 包。

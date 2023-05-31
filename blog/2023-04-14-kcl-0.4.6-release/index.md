@@ -217,7 +217,7 @@ apps.Deployment {
 Execute the following command to run the KCL code to obtain an nginx deployment YAML output.
 
 ```shell
-$ kcl main.k -S demo
+$ kpm run
 apiVersion: apps/v1
 kind: Deployment
 metadata:
