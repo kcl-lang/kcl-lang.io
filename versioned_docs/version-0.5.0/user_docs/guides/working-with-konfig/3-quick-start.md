@@ -2,7 +2,7 @@
 id: guide
 sidebar_label: Quick Start
 ---
-# Quick Start
+# Introduction
 
 This guide shows you how to use the KCL language and CLIs to complete the deployment of an application running in Kubernetes. We call the abstraction of application operation and maintenance configuration as `Server`, and its instance as `Application`. It is essentially an operation and maintenance model defined by KCL.
 
@@ -12,15 +12,12 @@ In actual production, the application online generally needs to update several k
 - Deployment
 - Service
 
-:::tip
-
 This guide requires you to have a basic understanding of Kubernetes. If you are not familiar with the relevant concepts, please refer to the links below:
 
 - [Learn Kubernetes Basics](https://kubernetes.io/docs/tutorials/kubernetes-basics/)
 - [Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/)
 - [Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/)
 - [Service](https://kubernetes.io/docs/concepts/services-networking/service/)
-:::
 
 ## Prerequisites
 
@@ -34,7 +31,9 @@ Before we start, we need to complete the following steps:
 git clone https://github.com/KusionStack/konfig.git && cd konfig
 ```
 
-## Compiling
+## Quick Start
+
+### 1. Compiling
 
 The programming language of the project is KCL, not JSON/YAML which Kubernetes recognizes, so it needs to be compiled to get the final output.
 
@@ -115,7 +114,7 @@ After compiling, we can see three resources:
 
 The above completes the configuration and takes effect. Later, we can use the command `kubectl apply` to apply and check the actual status of resources. This guide will not elaborate.
 
-## Modification
+### 2. Modification
 
 The `image` attribute in the `Server` model is used to declare the application's container image. We can modify the `image` value in `base/main.k` to modify or upgrade the image:
 
@@ -192,3 +191,7 @@ spec:
     app.kubernetes.io/component: nginx-exampledev
   type: NodePort
 ```
+
+## Summary
+
+This document mainly introduces how to use the KCL and Konfig library to deploy a Long Running application running in Kubernetes.
