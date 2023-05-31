@@ -8,7 +8,7 @@ Create a new kcl package named `my_package`. And after we have created the packa
 kpm init my_package
 ```
 
-<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif" width="600" align="center" />
+![kpm_init](/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif)
 
 `kpm` will create two kcl package configuration files: `kcl.mod` and `kcl.mod.lock` in the directory where you executed the command.
 
@@ -37,10 +37,10 @@ You can then add a dependency to the current kcl package using the `kpm add` com
 As shown below, taking the example of adding a package dependency named `k8s`, the version of the package is `1.27.2`.
 
 ```shell
-kpm add k8s:1.27.2
+kpm add k8s
 ```
 
-<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif" width="600" align="center" />
+![kpm_add_k8s](/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif)
 
 You can see that `kpm` adds the dependency you just added to kcl.mod.
 
@@ -90,4 +90,4 @@ In the `my_package` directory, you can use `kpm` to compile the `main.k` file yo
 kpm run
 ```
 
-<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif" width="600" align="center" />
+![kpm_run](/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif)

@@ -8,7 +8,7 @@
 kpm init my_package
 ```
 
-<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif" width="600" align="center" />
+![kpm_init](/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif)
 
 `kpm` 将会在执行`kpm init my_package`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
 
@@ -37,10 +37,10 @@ version = "0.0.1"
 如下面的命令所示，为当前包添加一个版本号为 `1.27.2` 并且名为 `k8s` 的依赖包。
 
 ```shell
-kpm add k8s:1.27.2
+kpm add k8s
 ```
 
-<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif" width="600" align="center" />
+![kpm_add_k8s](/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif)
 
 `kpm` 会为您将依赖添加到 kcl.mod 文件中.
 
@@ -89,4 +89,4 @@ k8core.Pod {
 ```shell
 kpm run
 ```
-<img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif" width="600" align="center" />
+![kpm_run](/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif)
