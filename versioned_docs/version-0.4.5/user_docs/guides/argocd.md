@@ -138,7 +138,7 @@ kusion compile -w appops/guestbook-frontend/prod
 
 ```bash
 git add .
-git commit -m "mannual drifted config for appops/guestbook-frontend/prod"
+git commit -m "manual drifted config for appops/guestbook-frontend/prod"
 git push origin main
 ```
 

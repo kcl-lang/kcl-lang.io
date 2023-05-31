@@ -238,7 +238,7 @@ The `Ping` method can verify whether the service is normal, and the `ListMethod`
 
 ### `KclvmService`
 
-The `KclvmService` service is a service related to KCLVM functionality. The usage is the same as the `BuiltinService` service.
+The `KclvmService` service is a service related to KCL functionality. The usage is the same as the `BuiltinService` service.
 
 For example, there is the following `Person` structure definition:
 

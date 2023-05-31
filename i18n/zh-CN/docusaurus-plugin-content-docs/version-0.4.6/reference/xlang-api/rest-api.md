@@ -125,8 +125,8 @@ $ curl -X POST \
 ```protobuf
 // Copyright 2023 The KCL Authors. All rights reserved.
 //
-// This file defines the request parameters and return structure of the KCLVM RPC server.
-// We can use the following command to start a KCLVM RPC server.
+// This file defines the request parameters and return structure of the KCL RPC server.
+// We can use the following command to start a KCL RPC server.
 
 syntax = "proto3";
 
