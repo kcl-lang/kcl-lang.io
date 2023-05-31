@@ -37,7 +37,7 @@ You can then add a dependency to the current kcl package using the `kpm add` com
 As shown below, taking the example of adding a package dependency named `k8s`, the version of the package is `1.27.2`.
 
 ```shell
-kpm add k8s:1.27.2
+kpm add k8s
 ```
 
 <img src="/static/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif" width="600" align="center" />
