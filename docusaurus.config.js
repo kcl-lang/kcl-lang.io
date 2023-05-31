@@ -13,7 +13,7 @@ const config = {
 
   url: 'https://kcl-lang.github.io',
   organizationName: 'KusionStack', // Usually your GitHub org/user name.
-  projectName: 'KCLVM', // Usually your repo name.
+  projectName: 'kcl', // Usually your repo name.
 
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -149,7 +149,7 @@ const config = {
       // hideableSidebar: true,
       announcementBar: {
         id: 'announcementBar-1', // Increment on change
-        content: `Give us a star ⭐️ - If you are using KCL or think it is an interesting project, we would love a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/KusionStack/KCLVM">Github</a>`,
+        content: `Give us a star ⭐️ - If you are using KCL or think it is an interesting project, we would love a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/KusionStack/kcl">Github</a>`,
       },
 
       algolia: {
@@ -222,7 +222,7 @@ const config = {
             ],
           },
           {
-            href: 'https://github.com/KusionStack/KCLVM',
+            href: 'https://github.com/KusionStack/kcl',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
             position: 'right',
@@ -258,11 +258,11 @@ const config = {
             items: [
               {
                 label: 'Github',
-                href: 'https://github.com/KusionStack/KCLVM',
+                href: 'https://github.com/KusionStack/kcl',
               },
               {
                 label: 'Gitee',
-                href: 'https://gitee.com/kusionstack/KCLVM',
+                href: 'https://gitee.com/kusionstack/kcl',
               },
               {
                 label: 'Blog',

@@ -7,7 +7,7 @@ authors:
 tags: [KCL, Configuration]
 ---
 
-The blog is only used to clarify the landscape of declarative configuration, [KCL](https://github.com/KusionStack/KCLVM) core concept and features, as well as the comparison with other configuration languages.
+The blog is only used to clarify the landscape of declarative configuration, [KCL](https://github.com/KusionStack/kcl) core concept and features, as well as the comparison with other configuration languages.
 
 ## 1. The Landscape of Declarative Configuration
 
@@ -138,7 +138,7 @@ Representative technologies of typed KV include:
 
 Representative technologies of modeled KV include:
 
-- [KCL](https://github.com/KusionStack/KCLVM): A declarative configuration and policy programming language implemented by Rust, which improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionally. Fig. 4 shows a typical scenario of KCL writing application delivery configuration code.
+- [KCL](https://github.com/KusionStack/kcl): A declarative configuration and policy programming language implemented by Rust, which improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionally. Fig. 4 shows a typical scenario of KCL writing application delivery configuration code.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/04-kcl-app-code.png)
 

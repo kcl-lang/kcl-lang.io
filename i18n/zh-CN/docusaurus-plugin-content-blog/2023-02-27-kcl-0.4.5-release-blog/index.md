@@ -11,9 +11,9 @@ tags: [Release Blog, KCL, KusionStack, Kusion]
 
 KCL 团队很高兴地宣布 KCL v0.4.5 版本现在已经可用！本次发布主要为 KCL 语言编写便利性和稳定性提升，错误信息改进以及更多平台包括 windows 版本支持以及更多下载方式支持。在 KCL v0.4.5 版本中，用户可以通过编写更少的 KCL 代码消除更多的配置模版；在新版本中提供了初步的 KCL Playground 支持可用于在线免安装编写并运行 KCL 代码；此外此次更新还包含多项编译器报错信息优化和错误修复。
 
-您可以在 [KCL v0.4.5 发布页面](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.5) 或者 [KCL 官方网站](https://kcl-lang.io/) 获得 KCL 二进制下载链接和更多详细发布信息。
+您可以在 [KCL v0.4.5 发布页面](https://github.com/KusionStack/kcl/releases/tag/v0.4.5) 或者 [KCL 官方网站](https://kcl-lang.io/) 获得 KCL 二进制下载链接和更多详细发布信息。
 
-[KCL](https://github.com/KusionStack/KCLVM) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
+[KCL](https://github.com/KusionStack/kcl) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
 
 本文将会介绍 KCL v0.4.5 版本的更新内容以及 KCL 社区的近期动态。
 
@@ -171,7 +171,7 @@ dictIndexFormat: "00, 11, HelloWorld"
 
 #### Windows 版本支持
 
-KCL Windows 二进制版本可以从 [Github](https://github.com/KusionStack/KCLVM/releases/) 手动下载并安装，下载完成后将 `{install-location}\kclvm\bin` 添加到环境变量 `PATH` 中。
+KCL Windows 二进制版本可以从 [Github](https://github.com/KusionStack/kcl/releases/) 手动下载并安装，下载完成后将 `{install-location}\kclvm\bin` 添加到环境变量 `PATH` 中。
 
 ```powershell
 $env:PATH += ";{install-location}\kclvm\bin;"
@@ -244,7 +244,7 @@ config:
     memory: 8Gi
 ```
 
-更多详情请参考 [KCL Issue #422](https://github.com/KusionStack/KCLVM/issues/422)
+更多详情请参考 [KCL Issue #422](https://github.com/KusionStack/kcl/issues/422)
 
 ### 配置 if 表达式类型不匹配错误优化
 
@@ -265,7 +265,7 @@ KCL Compile Error[E2G22] : The type got is inconsistent with the type expected
 expect {str(A)|str(B):int}, got {str(A):str(2)}
 ```
 
-更多详情请参考 [KCL Issue #389](https://github.com/KusionStack/KCLVM/issues/389)
+更多详情请参考 [KCL Issue #389](https://github.com/KusionStack/kcl/issues/389)
 
 ### Rule 语句校验不生效问题
 
@@ -357,7 +357,7 @@ data = math?.log(10)  # v0.4.5 版本之前，此处会得到一个非预期的 
 
 ## 其他更新与错误修复
 
-更多更新与错误修复 [详见](https://github.com/KusionStack/KCLVM/milestone/3)
+更多更新与错误修复 [详见](https://github.com/KusionStack/kcl/milestone/3)
 
 ## 文档更新
 
@@ -382,7 +382,7 @@ data = math?.log(10)  # v0.4.5 版本之前，此处会得到一个非预期的 
 + [KCL Go SDK](https://github.com/KusionStack/kclvm-go) 更多能力支持：如支持 KCL Schema 和 Go 结构体的双向转换等
 + [KCL Python SDK](https://github.com/KusionStack/kclvm-py) 更多能力支持
 
-更多详情请参考 [KCL v0.4.6 Milestone](https://github.com/KusionStack/KCLVM/milestone/4)
+更多详情请参考 [KCL v0.4.6 Milestone](https://github.com/KusionStack/kcl/milestone/4)
 
 ## 常见问题及解答
 
@@ -394,7 +394,7 @@ data = math?.log(10)  # v0.4.5 版本之前，此处会得到一个非预期的 
 
 + [KCL 网站](https://kcl-lang.io/)
 + [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/KusionStack/KCLVM)
++ [KCL Github 仓库](https://github.com/KusionStack/kcl)
 + [Kusion Github 仓库](https://github.com/KusionStack/kusion)
 + [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 

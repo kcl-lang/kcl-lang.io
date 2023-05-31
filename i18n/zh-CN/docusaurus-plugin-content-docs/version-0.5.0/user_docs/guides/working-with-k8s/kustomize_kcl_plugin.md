@@ -3,6 +3,8 @@ title: "Kustomize KCL 插件"
 sidebar_position: 3
 ---
 
+## 简介
+
 [Kustomize](https://github.com/kubernetes-sigs/kustomize) 允许自定义用于多种目的原始的、无模板的 YAML 文件，同时保留原始 YAML 不变和可用。
 
 KCL 可用于创建函数，以改变和/或验证 Kubernetes 资源模型（KRM）的 YAML 输入/输出格式，并且我们提供 Kustomize KCL 函数来简化函数编写过程。
@@ -15,14 +17,14 @@ KCL 可用于创建函数，以改变和/或验证 Kubernetes 资源模型（KRM
 
 让我们编写一个仅向 Deployment 资源添加 annotation `managed-by=kustomize-kcl` 的 KCL 函数
 
-### 获取示例
+### 1. 获取示例
 
 ```bash
 git clone https://github.com/KusionStack/kustomize-kcl.git
 cd ./kustomize-kcl/examples/set-annotation/
 ```
 
-### 测试和运行
+### 2. 测试和运行
 
 ```bash
 # 注意：您需要添加 sudo 和 --as-current-user 以确保 KCL 有权在容器文件系统中写入临时文件。

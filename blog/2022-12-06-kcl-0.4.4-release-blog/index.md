@@ -7,7 +7,7 @@ authors:
 tags: [Release Blog, KCL, KusionStack, Kusion]
 ---
 
-The KCL team is pleased to announce that v0.4.4 is now available! This release mainly adds the ability to customize YAML manifests output for KCL. Users can customize the style of YAML output by writing code and calling system functions without understanding the complex schema settings semantics. In addition, this release provides the latest [KCL Python SDK](https://github.com/KusionStack/kclvm-py), which can be used for Python users to directly integrate KCL. At the same time, we have greatly reduced the size of the KCL installation package. The average installation package size has been reduced to one-fifth of that of the previous version. It also includes a number of compiler error message optimization and bug fix. You can visit the [KCL release page](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.4-alpha.2) to get more detailed release information and KCL binary download link.
+The KCL team is pleased to announce that v0.4.4 is now available! This release mainly adds the ability to customize YAML manifests output for KCL. Users can customize the style of YAML output by writing code and calling system functions without understanding the complex schema settings semantics. In addition, this release provides the latest [KCL Python SDK](https://github.com/KusionStack/kclvm-py), which can be used for Python users to directly integrate KCL. At the same time, we have greatly reduced the size of the KCL installation package. The average installation package size has been reduced to one-fifth of that of the previous version. It also includes a number of compiler error message optimization and bug fix. You can visit the [KCL release page](https://github.com/KusionStack/kcl/releases/tag/v0.4.4-alpha.2) to get more detailed release information and KCL binary download link.
 
 ## Background
 
@@ -98,7 +98,7 @@ metadata:
 
 > Note: The feature of schema `__settings__` meta attribute setting YAML output style can still be used in v0.4.4. We will remove this feature in KCL v0.4.6 after the next two minor versions are released.
 
-For more information, see [https://github.com/KusionStack/KCLVM/issues/94](https://github.com/KusionStack/KCLVM/issues/94).
+For more information, see [https://github.com/KusionStack/kcl/issues/94](https://github.com/KusionStack/kcl/issues/94).
 
 ### Python SDK
 
@@ -193,7 +193,7 @@ foo = Foo(1,2,3)  # Error: "Foo" takes 1 positional argument but 3 were given
 f(1,2)  # Error: "f" takes 1 positional argument but 2 were given
 ```
 
-For more information, see [https://github.com/KusionStack/KCLVM/issues/299](https://github.com/KusionStack/KCLVM/issues/299)
+For more information, see [https://github.com/KusionStack/kcl/issues/299](https://github.com/KusionStack/kcl/issues/299)
 
 ### Formatting Error of Interpolated Three Quote String
 
@@ -212,11 +212,11 @@ ${foo}
 """
 ```
 
-For more information, see [https://github.com/KusionStack/KCLVM/issues/294](https://github.com/KusionStack/KCLVM/issues/294)
+For more information, see [https://github.com/KusionStack/kcl/issues/294](https://github.com/KusionStack/kcl/issues/294)
 
 ### Other Issues
 
-For more issues, see [https://github.com/KusionStack/KCLVM/milestone/2?closed=1](https://github.com/KusionStack/KCLVM/milestone/2?closed=1)
+For more issues, see [https://github.com/KusionStack/kcl/milestone/2?closed=1](https://github.com/KusionStack/kcl/milestone/2?closed=1)
 
 ## Documents
 
@@ -238,7 +238,7 @@ It is estimated that by the end of January 2023, we will release KCL v0.4.5, and
 + KCL package management tool `kpm` release.
 + The new version of KCL playground.
 
-For more information, see [KCL v0.4.5 Milestone](https://github.com/KusionStack/KCLVM/milestone/3).
+For more information, see [KCL v0.4.5 Milestone](https://github.com/KusionStack/kcl/milestone/3).
 
 ## FAQ
 
@@ -248,7 +248,7 @@ For more information, see [https://kcl-lang.github.io/docs/user_docs/support/](h
 
 + [KCL Website](https://kcl-lang.github.io/)
 + [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/KusionStack/KCLVM)
++ [KCL Repo](https://github.com/KusionStack/kcl)
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 

@@ -10,4 +10,4 @@ Symposium on Dependable Software Engineering（以下简称 SETTA）可靠软件
 
 此外，SETTA 2022 将在北京时间 10 月 27 日至 10 月 28 日举办线上会议，届时会分享 KCL 论文详细内容，欢迎加入 [KCL 社区](https://github.com/KusionStack/community) 进行围观。SETTA 2022 会议议程详情请参考：https://lcs.ios.ac.cn/setta2022/program.php
 
-注：目前 KCL 已在 Github 开源，欢迎访问 https://github.com/KusionStack/KCLVM 获得更多信息。
+注：目前 KCL 已在 Github 开源，欢迎访问 https://github.com/KusionStack/kcl 获得更多信息。

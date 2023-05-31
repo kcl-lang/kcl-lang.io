@@ -12,7 +12,7 @@ If you only need to modify the typos in the code and comments, you can directly 
 
 ## 2. How to Contribute KCL
 
-See [KCL contribute guide](https://github.com/KusionStack/KCLVM/blob/main/docs/dev_guide/1.about_this_guide.md) for more information.
+See [KCL contribute guide](https://github.com/KusionStack/kcl/blob/main/docs/dev_guide/1.about_this_guide.md) for more information.
 
 ## 3. How to Contribute VS Code KCL Plugin
 

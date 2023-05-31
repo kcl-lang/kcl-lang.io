@@ -15,7 +15,7 @@ The `kcl-openapi` tool supports extracting and generating KCL schemas from Kuber
 
 ## 3. Migrate From Kubernetes To KCL
 
-The entirely OpenAPI definition of the Kubernetes built-in model is stored in the [Kubernetes OpenAPI-Spec File](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json). Taking this file as input, the KCL OpenAPI tool can generate all model schemas of the corresponding version. In the following sections, we will introduce how to migrate from Kubernetes to KCL with a deployment release scenario as an example. Assume that your project is using [Kubernetes Deployment] (https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) to define Deployment configuration, Migrating to KCL requires only the following steps:
+The entirely OpenAPI definition of the Kubernetes built-in model is stored in the [Kubernetes OpenAPI-Spec File](https://github.com/kubernetes/kubernetes/blob/master/api/openapi-spec/swagger.json). Taking this file as input, the KCL OpenAPI tool can generate all model schemas of the corresponding version. In the following sections, we will introduce how to migrate from Kubernetes to KCL with a deployment release scenario as an example. Assume that your project is using [Kubernetes Deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) to define Deployment configuration, Migrating to KCL requires only the following steps:
 
 ### 3.1 Write Config Based On The Models
 

@@ -12,10 +12,10 @@ cd my_package    # 进入这个文件夹 'my_package' 中
 创建一个叫做 `my_package` 的包。
 
 ```shell
-kpm init my_package
+kpm init
 ```
 
-`kpm` 将会在执行`kpm init my_package`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
+`kpm` 将会在执行`kpm init`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
 
 ```shell
 - my_package
@@ -74,7 +74,7 @@ konfig = { git = "https://github.com/awesome-kusion/konfig.git", tag = "v0.0.1" 
 ```kcl
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = apps.Deployment {
+apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3
@@ -98,7 +98,7 @@ demo = apps.Deployment {
 你可以使用如下命令编译刚才编写的 `main.k` 文件。
 
 ```shell
-kcl main.k -S demo
+kpm run
 ```
 
 如果你得到如下输出，恭喜你！你成功使用 `kpm` 编译了一个 kcl 包。

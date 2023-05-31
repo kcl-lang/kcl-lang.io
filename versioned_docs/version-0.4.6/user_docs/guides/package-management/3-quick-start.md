@@ -12,7 +12,7 @@ cd my_package # go into the folder 'my_package'
 Create a new kcl package named `my_package`.
 
 ```shell
-kpm init my_package
+kpm init
 ```
 
 `kpm` will create two kcl package configuration files: `kcl.mod` and `kcl.mod.lock` in the directory where you executed the command.
@@ -74,7 +74,7 @@ And write the following into the `main.k` file.
 ```kcl
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = apps.Deployment {
+apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3
@@ -98,7 +98,7 @@ demo = apps.Deployment {
 You can use the command to compile the `main.k` file you just wrote.
 
 ```shell
-kcl main.k -S demo
+kpm run
 ```
 
 If you get the following output, congratulations !, you have successfully compiled your kcl package with `kpm`.

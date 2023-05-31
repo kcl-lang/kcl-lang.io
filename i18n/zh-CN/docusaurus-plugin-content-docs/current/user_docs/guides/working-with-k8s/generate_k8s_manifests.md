@@ -53,11 +53,11 @@ spec:
 + 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
 + 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
 
-## 使用 KCL 生成并管理 Kubernetes 资源
-
-### 0. 前提条件
+## 先决条件
 
 首先可以在 [KCL 快速开始](/docs/user_docs/getting-started/kcl-quick-start) 根据指导下载并安装 KCL，然后准备一个 [Kubernetes](https://kubernetes.io/) 环境
+
+## 快速开始
 
 ### 1. 生成 Kubernetes 资源
 
@@ -235,3 +235,7 @@ spec:
         ports:
         - containerPort: 80
 ```
+
+## 小结
+
+KCL 可以用于生成和管理 Kubernetes 资源，解决管理 YAML 配置的局限性，例如缺乏验证方法和较弱的编程能力等，并可以通过条件语句和 option 函数动态接收外部参数，从而能够根据不同的环境调整配置参数。此外，KCL 可以与 kubectl 等其他工具一起使用将配置一键生效到集群。

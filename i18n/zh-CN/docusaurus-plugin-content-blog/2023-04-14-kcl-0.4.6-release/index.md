@@ -17,9 +17,9 @@ KCL 团队很高兴地宣布 KCL v0.4.6 新版本现在已经可用！本次发�
 + *Helm/Kustomize/KPT 云原生社区工具集成*
 + *完善 KCL 多语言 SDK，方便应用程序集成*
 
-进一步您可以在 [KCL v0.4.6 发布页面](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.6) 或者 [KCL 官方网站](https://kcl-lang.io) 获得下载安装指南和详细发布信息。
+进一步您可以在 [KCL v0.4.6 发布页面](https://github.com/KusionStack/kcl/releases/tag/v0.4.6) 或者 [KCL 官方网站](https://kcl-lang.io) 获得下载安装指南和详细发布信息。
 
-[KCL](https://github.com/KusionStack/KCLVM) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
+[KCL](https://github.com/KusionStack/kcl) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
 
 本文重点介绍 KCL v0.4.6 版本的更新内容以及 KCL 社区的近期动态。
 
@@ -195,7 +195,7 @@ kpm init kubernetes_demo && kpm add -git https://github.com/awesome-kusion/konfi
 ```python
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = apps.Deployment {
+apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3
@@ -217,7 +217,7 @@ demo = apps.Deployment {
 执行如下 KCL 命令即可获得一个 Nginx Deployment YAML 输出
 
 ```shell
-$ kcl main.k -S demo
+$ kpm run
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -335,7 +335,7 @@ spec:
 
 + KCL python plugin 功能默认不开启，如需开启可参考 [KCL Plugin 文档](https://kcl-lang.io/docs/reference/plugin/overview)
 + KCL playground 支持代码分享能力，您可以通过访问 [KCL 官网](https://kcl-lang.io/) 并点击 Playground 按钮进行体验
-+ 更多更新与错误修复，[详见](https://github.com/KusionStack/KCLVM/milestone/3?closed=1)
++ 更多更新与错误修复，[详见](https://github.com/KusionStack/kcl/milestone/3?closed=1)
 
 ## 文档更新
 
@@ -353,9 +353,9 @@ spec:
 + 支持在 Kubernetes 运行时通过 Admission Controller 运行 KCL 代码对 YAML 进行编辑和校验
 + 更多非 Kubernetes 场景支持，如通过 KCL Schema 对 AI 模型进行数据清理和数据库 Schema 集成支持
 
-更多详情请参考 [KCL v0.5.0 Milestone](https://github.com/KusionStack/KCLVM/milestone/5)
+更多详情请参考 [KCL v0.5.0 Milestone](https://github.com/KusionStack/kcl/milestone/5)
 
-如果您有更多的想法和需求，欢迎在 KCL Github 仓库发起 [Issues](https://github.com/KusionStack/KCLVM/issues)，也欢迎加入我们的社区进行交流 🙌 🙌 🙌
+如果您有更多的想法和需求，欢迎在 KCL Github 仓库发起 [Issues](https://github.com/KusionStack/kcl/issues)，也欢迎加入我们的社区进行交流 🙌 🙌 🙌
 
 ## 常见问题及解答
 
@@ -369,7 +369,7 @@ spec:
 
 + [KCL 网站](https://kcl-lang.io/)
 + [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/KusionStack/KCLVM)
++ [KCL Github 仓库](https://github.com/KusionStack/kcl)
 + [Kusion Github 仓库](https://github.com/KusionStack/kusion)
 + [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 

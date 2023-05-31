@@ -17,9 +17,9 @@ The KCL team is pleased to announce that KCL v0.4.6 is now available! This relea
 + *Helm/Kustomize/KPT cloud-native community tool integrations*
 + *Improve the KCL multilingual SDK for easy application integration*
 
-You can visit the [KCL release page](https://github.com/KusionStack/KCLVM/releases/tag/v0.4.6) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
+You can visit the [KCL release page](https://github.com/KusionStack/kcl/releases/tag/v0.4.6) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
-[KCL](https://github.com/KusionStack/KCLVM) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
+[KCL](https://github.com/KusionStack/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
 This blog will introduce the content of KCL v0.4.6 and recent developments in the KCL community to readers.
 
@@ -195,7 +195,7 @@ Write a KCL code to import the Kubernetes models (main.k).
 ```python
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
-demo = apps.Deployment {
+apps.Deployment {
     metadata.name = "nginx-deployment"
     spec = {
         replicas = 3
@@ -217,7 +217,7 @@ demo = apps.Deployment {
 Execute the following command to run the KCL code to obtain an nginx deployment YAML output.
 
 ```shell
-$ kcl main.k -S demo
+$ kpm run
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -337,7 +337,7 @@ In this new version, we have released a new kclvm-go SDK that integrates KCL int
 
 + The KCL Python plugin function is not enabled by default. If you need to enable it, please refer to the [plugin document](https://kcl-lang.io/docs/reference/plugin/overview).
 + KCL playground supports code-sharing capabilities, which can be accessed by visiting the [KCL website](https://kcl-lang.io/) and clicking on the playground button to experience.
-+ See [here](https://github.com/KusionStack/KCLVM/milestone/3?closed=1) for more updates and bug fixes.
++ See [here](https://github.com/KusionStack/kcl/milestone/3?closed=1) for more updates and bug fixes.
 
 ## Documents
 
@@ -354,7 +354,7 @@ It is expected that in the middle of 2023, we will release **KCL v0.5.0**. The e
 + Support for mutating and validating YAML by running KCL code through the admission controller at the Kubernetes runtime.
 + More support for non-Kubernetes scenarios, such as data cleaning of AI models through the KCL schema and database schema integration support.
 
-For more details, please refer to [KCL v0.5.0 Milestone](https://github.com/KusionStack/KCLVM/milestone/5)
+For more details, please refer to [KCL v0.5.0 Milestone](https://github.com/KusionStack/kcl/milestone/5)
 
 ## FAQ
 
@@ -366,7 +366,7 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 
 + [KCL Website](https://kcl-lang.io/)
 + [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/KusionStack/KCLVM)
++ [KCL Repo](https://github.com/KusionStack/kcl)
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 
