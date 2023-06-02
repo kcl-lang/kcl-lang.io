@@ -56,6 +56,14 @@ In summary, KCL has the following characteristics:
 
 Although KCL is not a general language, it has corresponding application scenarios. Developers can write **config**, **schema**, **function** and **rule** through KCL, where config is used to define data, schema is used to describe the model definition of data, rule is used to validate data, and schema and rule can also be combined to use models and constraints that fully describe data, In addition, we can also use the lambda pure function in KCL to organize data code, encapsulate common code, and call it directly when needed.
 
+The configuration of attributes in KCL usually meets the simple pattern:
+
+$$
+k = (T) v
+$$
+
+where $k$ is the attribute name, $v$ is the attributes value, and $T$ is the type annotation. Since KCL has the ability of the type inference, $T$ is usually omitted.
+
 This is an example of generating kubernetes manifests.
 
 ```python
