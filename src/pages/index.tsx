@@ -15,7 +15,7 @@ function HomepageHeader() {
     <header className={clsx("container", styles.banner)}>
       <div className="container">
         <h2 className={styles.title} style={{ color: "var(--ifm-color-primary)" }}>
-          Mutation, Validation, Abstraction
+          Mutation, &nbsp;Validation, &nbsp;Abstraction
         </h2>
         <h2 className={styles.title} style={{ color: "var(--ifm-color-primary)" }}>
           Production-Ready
