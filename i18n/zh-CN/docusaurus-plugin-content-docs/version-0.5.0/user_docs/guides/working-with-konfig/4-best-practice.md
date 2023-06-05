@@ -36,15 +36,17 @@ sidecars = [
 
 ### 使用一个属性代替配置模板
 
-对于一些后端模型所需要填写的配置字段往往是大而全的设计，需要用户主动输入较为复杂的配置模版，并且不同用户对于该字段的填写内容基本一致，比如在图 1 示出的超卖逻辑的配置就需要用户填写大量的模板数据，心智成本较高，一个简单的最佳实践是对于此类常用复杂的模板在前端模型中抽象为一个简单的 bool 类型的变量 overQuota，让用户做选择题而不是填空题，比如当 overQuota 变量为 True 时，后端模型才会渲染这个复杂逻辑。
+对于一些后端模型所需要填写的配置字段往往是大而全的设计，需要用户主动输入较为复杂的配置模版，并且不同用户对于该字段的填写内容基本一致，比如在下面示出的超卖逻辑的配置就需要用户填写大量的模板数据，心智成本较高。
 
-+ The front-end attribute `overQuota`
+对于此类常用复杂的模板一个简单的最佳实践是在前端模型中抽象为一个简单的 bool 类型的变量 overQuota，让用户做选择题而不是填空题，比如当 overQuota 变量为 True 时，后端模型才会渲染这个复杂逻辑。
+
++ 前端模型属性 `overQuota`
 
 ```python
 overQuota: bool
 ```
 
-+ The back-end YAML output:
++ 后端模型 YAML 输出
 
 ```yaml
 spec:
@@ -61,7 +63,7 @@ spec:
                 - 'true'
 ```
 
-对于不是 True/False 属性可以选择的模版，也可以根据具体的业务场景设计不同的模版名称来填空，比如如图 2 所示的代码设计一个属性 template 来辅助用户做模版的选择而不是直接填入模板内容。合法的 template 值可以为 "success_ratio" 或者 "service_cost", 当后端模型扩展更多的模版时，前端代码无需作出任何修改，仅需在后端模型中适配相应模板逻辑即可。
+此外也可以根据具体的业务场景设计不同的模版名称来填空，比如如下所示的代码设计一个属性 template 来辅助用户做模版的选择而不是直接填入模板内容。合法的 template 值可以为 "success_ratio" 或者 "service_cost", 当后端模型扩展更多的模版时，前端代码无需作出任何修改，仅需在后端模型中适配相应模板逻辑即可。
 
 ```python
 schema SLI:
@@ -70,7 +72,7 @@ schema SLI:
 
 此外，尽量不采用复杂的结构直接作为前端模型属性，避免用户使用该模型时需要借助过多的 KCL 语法特性（比如解包、循环等特性）或者书写很多临时变量完成该结构的实例化。
 
-### 使用字面值类型
+### 使用字面值类型和联合类型
 
 在上述小节提到了可以使用一个字符串属性表示不同的模板名称，更进一步地是可以使用字面值类型表述 template 可选的内容，比如可以进行如下改进。
 
@@ -80,8 +82,6 @@ schema SLI:
 ```
 
 其中 template 的类型为两个字符串类型的联合，表示 template 只能为 "success_ratio" 或者 "service_cost"，当用户填写了其他字符串的值时，KCL 编译器会进行报错。
-
-### 使用联合类型
 
 除了对字面值类型使用联合类型外，KCL 还支持对复杂类型如 schema 类型的联合。对于这种后端 oneof 配置的支持，KCL 内置了复合结构的联合类型进行支持。比如我们可以针对多种种场景定义自己的 SLI 前端类型：CustomSliDataSource，PQLSLIDataSource 和 StackSLIDataSource。
 
@@ -136,7 +136,7 @@ dataB = _dataFactory["DataB"]()
 schema DataA:
     id?: int = 1
     value?: str = "value"
-    
+
 schema DataB:
     name?: str = "DataB"
 
@@ -153,10 +153,10 @@ dataB: DataA | DataB = DataB()
 schema Person:
     name: str
     age: int
-    
+
 schema House:
     persons: [Person]
-    
+
 house = House {
     persons = [
         Person {
@@ -230,7 +230,7 @@ x1: NumberMultiplier = x0  # Ok
 x2 = x0 + x1  # Error: unsupported operand type(s) for +: 'number_multiplier(1M)' and 'number_multiplier(1M)'
 ```
 
-可以使用 int()/float() 函数和 str() 函数将数字单位类型转换为整数类型或者字符串类型，产生的字符串保留原有数字单位类型的单位。
+可以使用 `int()/float()` 函数和 `str()` 函数将数字单位类型转换为整数类型或者字符串类型，产生的字符串保留原有数字单位类型的单位。
 
 ```python
 a: int = int(1Ki)  # 1024
@@ -268,22 +268,3 @@ kcl -Y kcl.yaml ci-test/settings.yaml -o ci-test/stdout.golden.yaml -d -O :appCo
 ## 后端模型
 
 后端模型是「模型实现」，主要包括将前端模型映射为后端模型的逻辑代码。当编写完成前端模型后，我们可以使用前端模型 Schema 新建前端模型的实例 instance 并编写相应的后端映射/渲染代码将这些前端 instance 转换为后端模型，并且利用 KCL 多文件编译和 `Schema.instances()` 函数可以做到前端代码和后端代码的高度解耦，用户仅需关心前端的配置而不感知模型复杂的校验、逻辑判断等代码。
-
-### kcl.yaml
-
-在 Konfig 各个 project 各 stack 中往往存放了一个 kcl.yaml 文件，kcl.yaml 文件是 KCL 进行编译所需要的配置文件，其中主要放置了编译该 stack 所需要的 KCL 文件，以 [https://github.com/KusionStack/konfig/blob/main/appops/nginx-example/dev/kcl.yaml](https://github.com/KusionStack/konfig/blob/main/appops/nginx-example/dev/kcl.yaml) 文件为例:
-
-```yaml
-kcl_cli_configs:
-  files:
-    - ${KCL_MOD}/base/pkg/kusion_models/kube/metadata/metadata.k
-    - ../base/base.k
-    - ./main.k
-    - ${KCL_MOD}/base/pkg/kusion_models/kube/render/render.k
-```
-
-+ `${KCL_MOD}` 表示 Konfig 根目录 kcl.mod 文件所在的路径
-+ metadata_render.k 预先定义一些常量用户使用，针对不同的场景可以不同，非必须
-+ base.k 应用的基线配置，使用前端模型生成相应 instance，非必须
-+ main.k 应用的环境配置，使用前端模型生成相应 instance
-+ render.k 后端代码，负责拿到用户前端 instance 作模型渲染
