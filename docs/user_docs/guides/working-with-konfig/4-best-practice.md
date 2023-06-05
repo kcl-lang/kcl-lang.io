@@ -441,7 +441,7 @@ bob:
 
 ### Add Comments for Models
 
-To facilitate user understanding and automatic model documentation generation, it is necessary to write comments for the defined model. The comment content usually includes an explanation of the model, an explanation of model fields, types, default values, usage examples, and more. For detailed KCL schema code commenting guidelines and automatic model documentation generation, please refer to the [KCL Documentation Specification]((/docs/tools/cli/kcl/docgen)). Additionally, we can use the `kcl-doc generate` command to extract documentation from the user-specified file or directory and output it to the specified directory.
+To facilitate user understanding and automatic model documentation generation, it is necessary to write comments for the defined model. The comment content usually includes an explanation of the model, an explanation of model fields, types, default values, usage examples, and more. For detailed KCL schema code commenting guidelines and automatic model documentation generation, please refer to the [KCL Documentation Specification](/docs/tools/cli/kcl/docgen). Additionally, we can use the `kcl-doc generate` command to extract documentation from the user-specified file or directory and output it to the specified directory.
 
 ## 后端模型
 
