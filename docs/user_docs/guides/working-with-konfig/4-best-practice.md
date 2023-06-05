@@ -443,6 +443,6 @@ bob:
 
 To facilitate user understanding and automatic model documentation generation, it is necessary to write comments for the defined model. The comment content usually includes an explanation of the model, an explanation of model fields, types, default values, usage examples, and more. For detailed KCL schema code commenting guidelines and automatic model documentation generation, please refer to the [KCL Documentation Specification](/docs/tools/cli/kcl/docgen). Additionally, we can use the `kcl-doc generate` command to extract documentation from the user-specified file or directory and output it to the specified directory.
 
-## 后端模型
+## Backend Model
 
 The backend model is an "implementation model," which mainly includes the logical code to map the frontend model to the backend model. After the frontend model is written, we can use the frontend model schema to create frontend model instances, and write the corresponding backend mapping/rendering code to convert these frontend instances into the backend model. By using KCL's multi-file compilation and `Schema.instances()` function, the frontend and backend code can be highly decoupled, so that users only need to focus on frontend configuration without being aware of the complex validation and logical code of the model.
