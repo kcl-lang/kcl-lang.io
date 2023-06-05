@@ -26,7 +26,7 @@ KCL（Kusion Configuration Language）是一种简单易用的配置语言，用
 
 ## 2. 编写Key-Value键值对
 
-Generate a simple config by creating a `my_config.k`, we can fill in the following code without strict format which describes the configuration of deploy.
+通过创建 `my_config.k` 来生成一个简单的配置，我们可以填充下面的代码，并且不需要严格的格式描述部署的配置。
 
 ```python
 cpu = 256
@@ -106,9 +106,6 @@ memory: 512
 image: nginx:1.14.2
 service: my-service
 ```
-
-.. note::
-KCL has rich support of operators and string member functions, please read manual and specification for more details.
 
 .. 注意::
 KCL 对运算符和字符串成员函数有丰富的支持，请阅读手册和规范以了解更多细节。
