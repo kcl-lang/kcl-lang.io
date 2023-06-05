@@ -87,8 +87,8 @@ spec:
   
   # SideCar Container
   - image: busybox
-    command: ["/bin/sh"
-    args: ["-c", "while true; do echo $(date -u) 'Hi I am from Sidecar container' > /var/log/index.html; sleep 5;done"
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do echo $(date -u) 'Hi I am from Sidecar container' > /var/log/index.html; sleep 5;done"]
     name: sidecar-container
     volumeMounts:
   var-logs
