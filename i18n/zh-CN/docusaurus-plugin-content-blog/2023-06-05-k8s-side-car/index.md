@@ -48,7 +48,7 @@ Forwarding from [::1]:3999 -> 80
 
 端口转发是一个阻塞程序，保持命令行窗口打开。然后在浏览器打开测试页面：
 
-![](/Users/zongz/Workspace/kusionstack/kcl-lang.io/blog/2023-06-05-k8s-side-car/port-forward.png)
+![](/img/blog/2023-06-05-k8s-side-car/port-forward.png)
 
 ## 通过 SideCar 定扩展页面内容
 
@@ -119,17 +119,17 @@ Forwarding from [::1]:3999 -> 80
 
 重新打开浏览器后将看到以下页面：
 
-![](/Users/zongz/Workspace/kusionstack/kcl-lang.io/blog/2023-06-05-k8s-side-car/port-forward-1.png)
+![](/img/blog/2023-06-05-k8s-side-car/port-forward-1.png)
 
 ## SideCar 模式的工作原理
 
 简单来说，`Busybox` 是 `SideCar` 容器角色，负责生产首页数据；而 `Nginx` 是主容器，负责消费 `Busybox` 生产的主页数据；两个容器通过 `var-logs` 磁盘卷共享空间。如果以 Go 语言的术语类比，`Nginx` 是主 `Goroutine`，`Busybox` 是后台干脏活的 `Goroutine`，而共享的磁盘卷类似 `Channel` 的作用。
 
-![](/Users/zongz/Workspace/kusionstack/kcl-lang.io/blog/2023-06-05-k8s-side-car/how-sidecar-work.png)
+![](/img/blog/2023-06-05-k8s-side-car/how-sidecar-work.png)
 
 在这个例子中 `Nginx` 依然是主容器，`SideCar` 容器是 `BusyBox`。我们还可以挂更多 `SideCar` 容器，比如网络、监控、日志等等。
 
-![](/Users/zongz/Workspace/kusionstack/kcl-lang.io/blog/2023-06-05-k8s-side-car/how-sidecar-work-1.png)
+![](/img/blog/2023-06-05-k8s-side-car/how-sidecar-work-1.png)
 
 这样就通过 `SideCar` 模式，在不修改 `Nginx` 主容器的前提下，扩展出了网络、监控、日志等能力。
 
