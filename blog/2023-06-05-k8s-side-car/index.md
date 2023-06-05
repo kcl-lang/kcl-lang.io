@@ -85,7 +85,7 @@ spec:
     - name: var-logs
       mountPath: /usr/share/nginx/html
   
-  SideCar
+  # SideCar Container
   - image: busybox
     command: ["/bin/sh"
     args: ["-c", "while true; do echo $(date -u) 'Hi I am from Sidecar container' > /var/log/index.html; sleep 5;done"
