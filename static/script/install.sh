@@ -26,7 +26,7 @@ KCL_HTTP_REQUEST_CLI=curl
 
 # GitHub Organization and repo name to download release
 GITHUB_ORG=KusionStack
-GITHUB_REPO=KCLVM
+GITHUB_REPO=kcl
 
 # KCL filename
 KCL_CLI_FILENAME=kcl
