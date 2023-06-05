@@ -1,3 +1,21 @@
+# Copyright 2023 The KCL Authors. All rights reserved.
+
+PROJECT_NAME = kcl-lang
+
+PWD:=$(shell pwd)
+
+BUILD_IMAGE:=kusionstack/kclvm-builder
+
+# export DOCKER_DEFAULT_PLATFORM=linux/amd64
+# or
+# --platform linux/amd64
+
+RUN_IN_DOCKER:=docker run -it --rm
+RUN_IN_DOCKER+=-v ~/.ssh:/root/.ssh
+RUN_IN_DOCKER+=-v ~/.gitconfig:/root/.gitconfig
+RUN_IN_DOCKER+=-v ${PWD}:/root/kcl
+RUN_IN_DOCKER+=-w /root/kcl ${BUILD_IMAGE}
+
 .PHONY: run
 run:
 	npm run start
@@ -30,3 +48,10 @@ translations:
 # Edit your API_KEY in .env before run `make algolia` for the `kcl-lang` index.
 algolia:
 	docker run -it --env-file=.env -e "CONFIG=$(cat ./config.json | jq -r tostring)" algolia/docsearch-scraper
+
+# ----------------
+# Docker
+# ----------------
+
+sh-in-docker:
+	${RUN_IN_DOCKER} bash
