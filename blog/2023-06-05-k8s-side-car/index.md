@@ -53,7 +53,7 @@ Forwarding from [::1]:3999 -> 80
 
 Port forwarding is a blocking procedure, keep the command line open. Then open the test page in your browser at
 
-![](/img/blog/2023-06-05-k8s-side-car/port_forward.png)
+![](/img/blog/2023-06-05-k8s-side-car/port-forward.png)
 
 ## Expand the page content by SideCar
 
@@ -124,17 +124,17 @@ Forwarding from [::1]:3999 -> 80
 
 Upon reopening your browser you will see the following page:
 
-![](/img/blog/2023-06-05-k8s-side-car/port_forward_1.png)
+![](/img/blog/2023-06-05-k8s-side-car/port-forward-1.png)
 
 ## How SideCar mode works
 
 `Busybox` is a `SideCar` container that produces the home page data, while `Nginx` is the main container that consumes the home page data produced by `Busybox`; the two containers share space through the var-logs disk volume.
 
-![](/img/blog/2023-06-05-k8s-side-car/how_sidecar_work.png)
+![](/img/blog/2023-06-05-k8s-side-car/how-sidecar-work.png)
 
 In the example, `Nginx` is still the main container, and the `SideCar` container is BusyBox. we can also add more `SideCar` containers for network, monitoring, logging, etc.
 
-![](/img/blog/2023-06-05-k8s-side-car/how_sidecar_work_1.png)
+![](/img/blog/2023-06-05-k8s-side-car/how-sidecar-work-1.png)
 
 ## Advantages of SideCar
 
