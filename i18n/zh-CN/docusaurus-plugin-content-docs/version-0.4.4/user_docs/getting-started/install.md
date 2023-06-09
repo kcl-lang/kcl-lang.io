@@ -104,7 +104,7 @@ KCL 为 VS Code 本地版本和在线版本提供了插件支持。
 
 ### IntelliJ IDEA
 
-从[这里](https://github.com/KusionStack/intellij-kcl)下载发行版，在 IntelliJ IDEA 中，点击 Preference -> plugins -> install Plugin from Disk... -> 选择 kcl-idea-plugin zip -> 重启 IDE。此插件需要 IntelliJ IDEA 2020.2+
+从[这里](https://github.com/KusionStack/intellij-kcl/releases)下载发行版，在 IntelliJ IDEA 中，点击 Preference -> plugins -> install Plugin from Disk... -> 选择 kcl-idea-plugin zip -> 重启 IDE。此插件需要 IntelliJ IDEA 2020.2+
 
 ## 下一步
 

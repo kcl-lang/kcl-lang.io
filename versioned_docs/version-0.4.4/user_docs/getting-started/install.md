@@ -116,7 +116,7 @@ The [VS Code Web IDE](https://vscode.dev) can be reached through the browser, an
 
 ### IntelliJ IDEA
 
-Download the distribution from [here](https://github.com/KusionStack/intellij-kcl) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
+Download the distribution from [here](https://github.com/KusionStack/intellij-kcl/releases) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
 
 ## Next Step
 
