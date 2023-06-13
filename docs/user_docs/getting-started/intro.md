@@ -160,6 +160,18 @@ On the other hand, KCL conducts modeling through the schema and achieves high mo
 
 Dhall is a functional, programmable configuration language that incorporates JSON, functions, types and imports. If you have experience with languages like Haskell, you may find Dhall familiar. KCL also offers similar functionality for programmability and abstraction, but has made greater advancements in areas such as modeling, constraint checking, automation and package management for sharing models. KCL's syntax and semantics are more aligned with object-oriented languages, making it more approachable than pure functional styles in some cases.
 
+### vs. Nickel
+
+Nickel is the cheap configuration language. Its purpose is to automate the generation of static configuration files and it is in essence JSON with functions and types.
+
+KCL and Nickel both have a similar gradual type system (static + dynamic), merge strategy, function and constraint definition. The difference is that KCL is a Python-like language, while Nickel is a JSON-like language. In addition, KCL provides the schema keyword to distinguish between configuration definitions and configuration data to avoid mixed use.
+
+### vs. Starlark
+
+Starlark is the language of Bazel, which is a dialect of Python. It does not have types and recursion is forbidden.
+
+KCL can also be regarded as a variant of Python to some extent, but it greatly enhances the design related to static typing and configuration extensibility, and is a compiled language, which is essentially different from Starlark.
+
 ### vs. Kustomize
 
 The key feature of Kustomize is its ability to overlay files at a granular level. However, it faces challenges with multiple overlay chains as a specific attribute value may not be the final value, as it can be overridden by another value elsewhere. Retrieving the inheritance chain of Kustomize files can be less convenient than retrieving the inheritance chain of KCL code, particularly for complex scenarios where careful consideration of the specified configuration file overwrite order is necessary. Additionally, Kustomize does not address issues related to YAML configuration writing, constraint verification, model abstraction, and development, making it more suited for simpler configuration scenarios.
