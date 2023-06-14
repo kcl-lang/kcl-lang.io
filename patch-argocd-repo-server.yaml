@@ -1,29 +1,30 @@
 spec:
   template:
     spec:
-      # 1. Define an emptyDir volume which will hold the custom binaries
-      volumes:
-      - name: custom-tools
-        emptyDir: {}
-      # 2. Use an init container to download/copy custom binaries
-      initContainers:
-      - name: download-kusion
-        image: kusionstack/kusion:latest 
-        command: [sh, -c]
-        args:
-        - cp -rf /usr/local/bin/kusion /custom-tools/
-        - chown -R argocd:argocd /custom-tools/kusion
-        volumeMounts:
-        - mountPath: /custom-tools
-          name: custom-tools
-      # 3. Volume mount the custom binary to the bin directory
+      # KCL Sidecar
       containers:
-      - name: argocd-repo-server
-        env:
-        - name: PATH
-          value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/custom-tools
-        volumeMounts:
-        - mountPath: /custom-tools
-          name: custom-tools
+      - name: my-plugin
+        command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
+        image: busybox # This can be off-the-shelf or custom-built image
         securityContext:
-          readOnlyRootFilesystem: false
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: plugin.yaml
+            name: my-plugin-config
+          # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps 
+          # mitigate path traversal attacks.
+          - mountPath: /tmp
+            name: cmp-tmp
+      volumes:
+      - configMap:
+          name: my-plugin-config
+        name: my-plugin-config
+      - emptyDir: {}
+        name: cmp-tmp

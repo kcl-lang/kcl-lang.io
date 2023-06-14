@@ -50,23 +50,36 @@ k3d cluster delete mycluster && k3d cluster create mycluster
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.7.4/manifests/install.yaml
+kubectl apply -n argocd -f install.yaml
 ```
-
 
 + Enable ArgoCD KCL Plugin
 
 Write the patch YAML configuration file and update the ArgoCD configuration:
 
 ```bash
-cat <<EOF > patch-argocd-cm.yaml
+cat <<EOF > kcl-cmp.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kcl-cmp
+  namespace: argocd
 data:
-  configManagementPlugins: |
-    - name: kcl1
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: kcl
+    spec:
+      version: v1.0
       generate:
-        command: ["kcl"]
-      lockRepo: true
+        command: ["sh"]
+        args:
+          - -c
+          - kcl
 EOF
-kubectl -n argocd patch cm/argocd-cm -p "$(cat patch-argocd-cm.yaml)"
+kubectl apply -f kcl-cmp.yaml
+kubectl apply -f temp-cmp.yaml
 ```
 
 After completing the first step, ArgoCD will recognize the KCL plugin, but the KCL plugin has not been loaded into the ArgoCD image. To implement configuration drift detection, we have to tune the Deployment of argocd-repo-server.
@@ -83,10 +96,17 @@ Update configuration
 kubectl -n argocd patch deploy/argocd-repo-server -p "$(cat patch-argocd-repo-server.yaml)"
 ```
 
-Wait container to update complete
+Wait for the init container to complete execution (Running).
 
 ```bash
 kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-repo-server
+```
+
+```bash
+
+```
+
+```bash
 ```
 
 + To access the ArgoCD web UI
@@ -114,12 +134,12 @@ argocd login localhost:8080
 Create ArgoCD Application
 
 ```bash
-argocd app create guestbook-test \
+argocd app create guestbook \
 --repo https://github.com/KusionStack/kcl-lang.io \
---path appops/guestbook/prod \
+--path examples/gitops/config \
 --dest-namespace default \
 --dest-server https://kubernetes.default.svc \
---config-management-plugin kcl
+--config-management-plugin my-plugin-v1.0
 ```
 
 ### 5. Modify App Code and Update Deployment Automatically
