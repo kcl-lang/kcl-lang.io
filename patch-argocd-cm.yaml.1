@@ -1,0 +1,7 @@
+data:
+  configManagementPlugins: |
+    - name: kusion
+      generate:
+        command: ["sh", "-c"]
+        args: ["kusion compile -Y kcl.yaml -Y ci-test/settings.yaml"]
+      lockRepo: true

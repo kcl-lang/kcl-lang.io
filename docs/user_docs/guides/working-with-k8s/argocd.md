@@ -26,10 +26,9 @@ Write the patch YAML configuration file and update the ArgoCD configuration:
 cat <<EOF > patch-argocd-cm.yaml
 data:
   configManagementPlugins: |
-    - name: kusion
+    - name: kcl
       generate:
-        command: ["sh", "-c"]
-        args: ["kusion compile"]
+        command: ["kcl"]
       lockRepo: true
 EOF
 kubectl -n argocd patch cm/argocd-cm -p "$(cat patch-argocd-cm.yaml)"
@@ -78,10 +77,10 @@ Create ArgoCD Application
 ```bash
 argocd app create guestbook-test \
 --repo https://github.com/KusionStack/konfig.git \
---path appops/guestbook/prod  \
+--path appops/guestbook/prod \
 --dest-namespace default \
 --dest-server https://kubernetes.default.svc \
---config-management-plugin kusion
+--config-management-plugin kcl
 ```
 
 If you are using a private repository, you need to configure the private repository access with private key credentials before executing the create command.

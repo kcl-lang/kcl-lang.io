@@ -1,0 +1,29 @@
+spec:
+  template:
+    spec:
+      # 1. Define an emptyDir volume which will hold the custom binaries
+      volumes:
+      - name: custom-tools
+        emptyDir: {}
+      # 2. Use an init container to download/copy custom binaries
+      initContainers:
+      - name: download-kusion
+        image: kusionstack/kusion:latest 
+        command: [sh, -c]
+        args:
+        - cp -rf /usr/local/bin/kusion /custom-tools/
+        - chown -R argocd:argocd /custom-tools/kusion
+        volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+      # 3. Volume mount the custom binary to the bin directory
+      containers:
+      - name: argocd-repo-server
+        env:
+        - name: PATH
+          value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/custom-tools
+        volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+        securityContext:
+          readOnlyRootFilesystem: false

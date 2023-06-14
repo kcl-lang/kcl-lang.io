@@ -1,0 +1,30 @@
+spec:
+  template:
+    spec:
+      # 1. Define an emptyDir volume which will hold the custom binaries
+      volumes:
+      - name: custom-tools
+        emptyDir: {}
+      # 2. Use an init container to download/copy custom binaries
+      initContainers:
+      - name: download-kclvm
+        image: kusionstack/kclvm
+        command: [sh, -c]
+        args:
+        - cp -rf /kclvm /custom-tools/kclvm
+        - chown -R argocd:argocd /custom-tools/kclvm
+        volumeMounts:
+        - mountPath: /custom-tools
+          name: custom-tools
+      # 3. Volume mount the custom binary to the bin directory
+      containers:
+      - name: argocd-repo-server
+        env:
+        - name: PATH
+          value: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/kclvm/bin:/kclvm/kclvm/bin 
+        volumeMounts:
+        - mountPath: /kclvm
+          name: custom-tools
+          subPath: kclvm
+        securityContext:
+          readOnlyRootFilesystem: false
