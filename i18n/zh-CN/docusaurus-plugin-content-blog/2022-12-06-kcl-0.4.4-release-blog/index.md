@@ -105,7 +105,7 @@ metadata:
 除了已有的 [KCL Go SDK](https://github.com/KusionStack/kclvm-go), 本次发布还新增了 KCL Python SDK，使用 Python SDK 要求您本地具备高于 3.7.3 的 Python 版本和 pip 包管理工具，可以通过如下命令进行安装并获得帮助信息
 
 ```bash
-$ python3 -m pip install kclvm --user && python3 -m kclvm --help
+python3 -m pip install kclvm --user && python3 -m kclvm --help
 ```
 
 #### 命令行工具
@@ -210,6 +210,25 @@ foo = 1
 bar = """
 ${foo}
 """
+```
+
+### 条件配置块格式化错误修复
+
+在之前的 KCL 版本中，对如下代码进行格式化会导致错误的缩进，在 0.4.4 版本中我们进行了修复
+
+```python
+# Before KCL v0.4.4, variable "foo" will be formatted as:
+#
+# foo = [
+#     if True:
+#         {key = "value"}
+#     {key = "value"}
+# ]
+foo = [
+    if True:
+        {key = "value"}
+        {key = "value"}
+]
 ```
 
 更多信息请参阅：[https://github.com/KusionStack/kcl/issues/294](https://github.com/KusionStack/kcl/issues/294)

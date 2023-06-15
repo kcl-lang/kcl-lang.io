@@ -105,7 +105,7 @@ For more information, see [https://github.com/KusionStack/kcl/issues/94](https:/
 In addition to the existing [KCL Go SDK](https://github.com/KusionStack/kclvm-go), this release also adds the KCL Python SDK. Using the Python SDK requires that you have a local Python version higher than 3.7.3 and a local pip package management tool. You can use the following command to install and obtain helpful information.
 
 ```bash
-$ python3 -m pip install kclvm --user && python3 -m kclvm --help
+python3 -m pip install kclvm --user && python3 -m kclvm --help
 ```
 
 #### Command Line Tool
@@ -197,7 +197,7 @@ For more information, see [https://github.com/KusionStack/kcl/issues/299](https:
 
 ### Formatting Error of Interpolated Three Quote String
 
-In previous KCL versions, formatting the following code would incorrectly convert the three quotation marks with string interpolation into single quotation marks and cause compilation errors. In version 0.4.4, we fixed the issue.
+In previous KCL versions, formatting the following code would incorrectly convert the three quotation marks with string interpolation into single quotation marks and cause compilation errors. In version 0.4.4, we have fixed the issue.
 
 ```python
 # Before KCL v0.4.4, variable "bar" will be formatted as:
@@ -213,6 +213,25 @@ ${foo}
 ```
 
 For more information, see [https://github.com/KusionStack/kcl/issues/294](https://github.com/KusionStack/kcl/issues/294)
+
+### Formatting Error of Config If Block
+
+In previous KCL versions, formatting the following code would lead to incorrect indent levels. In version 0.4.4, we have fixed the issue.
+
+```python
+# Before KCL v0.4.4, variable "foo" will be formatted as:
+#
+# foo = [
+#     if True:
+#         {key = "value"}
+#     {key = "value"}
+# ]
+foo = [
+    if True:
+        {key = "value"}
+        {key = "value"}
+]
+```
 
 ### Other Issues
 
