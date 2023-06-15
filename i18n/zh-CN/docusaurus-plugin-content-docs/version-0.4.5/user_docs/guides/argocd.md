@@ -71,7 +71,7 @@ argocd login localhost:8080
 ```bash
 argocd app create guestbook-test \
 --repo https://github.com/KusionStack/konfig.git \
---path appops/guestbook-frontend/prod \
+--path appops/guestbook/prod  \
 --dest-namespace default \
 --dest-server https://kubernetes.default.svc \
 --config-management-plugin kusion
@@ -122,14 +122,14 @@ argocd app set guestbook-test --sync-option ApplyOutOfSyncOnly=true
 2. 更新编译结果
 
 ```bash
-kusion compile -w appops/guestbook-frontend/prod
+kusion compile -w appops/guestbook/prod
 ```
 
 3. Git 提交并推送
 
 ```bash
 git add .
-git commit -m "manual drifted config for appops/guestbook-frontend/prod"
+git commit -m "manual drifted config for appops/guestbook/prod"
 git push origin main
 ```
 

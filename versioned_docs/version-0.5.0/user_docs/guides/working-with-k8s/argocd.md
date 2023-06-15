@@ -78,7 +78,7 @@ Create ArgoCD Application
 ```bash
 argocd app create guestbook-test \
 --repo https://github.com/KusionStack/konfig.git \
---path appops/guestbook-frontend/prod \
+--path appops/guestbook/prod  \
 --dest-namespace default \
 --dest-server https://kubernetes.default.svc \
 --config-management-plugin kusion
@@ -129,14 +129,14 @@ Update image
 Compile Again
 
 ```bash
-kusion compile -w appops/guestbook-frontend/prod
+kusion compile -w appops/guestbook/prod
 ```
 
 Git commit and push
 
 ```bash
 git add .
-git commit -m "manual drifted config for appops/guestbook-frontend/prod"
+git commit -m "manual drifted config for appops/guestbook/prod"
 git push origin main
 ```
 
