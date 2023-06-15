@@ -12,7 +12,7 @@ KCL 可用于创建函数来转换和/或验证 YAML Kubernetes 资源模型 (KR
 ## 先决条件
 
 + 安装 [kpt](https://github.com/GoogleContainerTools/kpt)
-+ 安装 Docker
++ 安装 [Docker](https://www.docker.com/)
 
 ## 快速开始
 
@@ -41,7 +41,13 @@ set-annotation
     └── [resources.yaml]  Service test
 ```
 
-### 3. 更新 `FunctionConfig`
+### 3. 显示和更新 KCL `FunctionConfig`
+
+```bash
+cat ./kcl-fn-config.yaml
+```
+
+输出为
 
 ```yaml
 # kcl-fn-config.yaml
@@ -62,11 +68,20 @@ spec:
 
 ```bash
 # 注意：您需要添加 sudo 和 --as-current-user 标志以确保 KCL 有权在容器文件系统中写入临时文件。
-sudo kpt fn eval ./data -i docker.io/peefyxpf/kpt-kcl:v0.1.0 --as-current-user --fn-config kcl-fn-config.yaml
+sudo kpt fn eval ./data -i docker.io/peefyxpf/kpt-kcl:v0.1.1 --as-current-user --fn-config kcl-fn-config.yaml
 
 # 验证 annotation 是否添加到 `Deployment` 资源并且其他资源 `Service` 没有这个 annotation。
-cat ./data/resources.yaml | grep annotations -A1 -B5
+cat ./data/resources.yaml | grep annotations -A1 -B0
 ```
+
+输出为
+
+```bash
+  annotations:
+    managed-by: kpt
+```
+
+可以看出，我们确实成功添加了 `managed-by=kpt` 标签
 
 ## 更多文档和示例
 

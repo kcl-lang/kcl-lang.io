@@ -12,7 +12,7 @@ KCL can be used to create functions to transform and/or validate the YAML Kubern
 ## Prerequisites
 
 + Install [kpt](https://github.com/GoogleContainerTools/kpt)
-+ Install Docker
++ Install [Docker](https://www.docker.com/)
 
 ## Quick Start
 
@@ -41,7 +41,13 @@ set-annotation
     └── [resources.yaml]  Service test
 ```
 
-### 3. Update the `FunctionConfig`
+### 3. Show and Update the KCL `FunctionConfig`
+
+```bash
+cat ./kcl-fn-config.yaml
+```
+
+The output is
 
 ```yaml
 # kcl-fn-config.yaml
@@ -62,12 +68,21 @@ Run the KCL code via kpt
 
 ```bash
 # Note: you need add sudo and --as-current-user flags to ensure KCL has permission to write temp files in the container filesystem.
-sudo kpt fn eval ./data -i docker.io/peefyxpf/kpt-kcl:v0.1.0 --as-current-user --fn-config kcl-fn-config.yaml
+sudo kpt fn eval ./data -i docker.io/peefyxpf/kpt-kcl:v0.1.1 --as-current-user --fn-config kcl-fn-config.yaml
 
 # Verify that the annotation is added to the `Deployment` resource and the other resource `Service` 
 # does not have this annotation.
-cat ./data/resources.yaml | grep annotations -A1 -B5
+cat ./data/resources.yaml | grep annotations -A1 -B0
 ```
+
+The output is
+
+```bash
+  annotations:
+    managed-by: kpt
+```
+
+It can be seen that we have indeed added the annotation `managed-by=kpt`.
 
 ## Guides for Developing KCL
 
