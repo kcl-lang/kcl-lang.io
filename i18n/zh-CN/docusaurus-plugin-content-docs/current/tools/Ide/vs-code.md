@@ -1,52 +1,52 @@
-# KCL Extension for Visual Studio Code
+# Visual Studio Code KCL 插件
 
-## Quick Start
+## 快速开始
 
-- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to Path:
+- 1. [安装 KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) 并检查 `kcl` 和 `kcl-language-server` 命令在您的 PATH 中:
+
   ```bash
   which kcl
   which kcl-language-server
   ```
 
-- **Step 2.** Install the [KCL extension](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension) for Visual Studio Code. This extension requires the VS Code 1.50+.
-- **Step 3.** Open or create a KCL file and begin your KCL tour!
+- 2. 安装 [VS Code KCL 插件](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension). 需要您的 VS Code 版本大于 1.50+
+- 3. 重新打开 VS Code 并创建一个 KCL 文件验证 IDE 插件功能
 
-## Features
+## 特性
 
-This extension provides some coding assistance, including the following features:
+此扩展提供了一些 KCL 编码帮助，包括以下功能：
 
-- **Syntax Highlight:**
+- **语法高亮**
   ![Highlight](/img/docs/tools/Ide/vs-code/Highlight.png)
-- **Goto Definition:** Goto definition of schema, variable, schema attribute, and import pkg.
+- **跳转**
   ![Goto Definition](/img/docs/tools/Ide/vs-code/GotoDef.gif)
-- **Completion:** Keywords completions and dot(`.`) completion.
+- **补全**
   ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
-- **Outline:** Main definition(schema def) and variables in KCL file.
+- **大纲**
   ![Outline](/img/docs/tools/Ide/vs-code/Outline.gif)
-- **Hover:** Identifier information (type and schema documentation).
+- **悬停**
   ![Hover](/img/docs/tools/Ide/vs-code/Hover.gif)
-- **Diagnostics:** Warnings and errors in KCL file.
+- **诊断**
   ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
 
-Other useful features such as refactoring and testing are in development.
+其他一些有用的功能，如代码重构和智能感知等正在开发中。
 
-## Dependencies
+## 最小依赖
 
-We recommend that you use the latest version of KCL, but the minimum required version for this extension is 0.4.6. If you are using an earlier version, the extension may not work properly.
+我们建议您使用最新版本的 KCL，但此扩展所需的 KCL 最低版本为 v0.4.6。如果您使用的是更早期版本，则此扩展可能无法正常工作。
 
-## Known Issues
+## 已知问题
 
-- **Hover and GotoDefintion:** The current hover and goto definitions are similar to global search, and there may be multiple results for some Identifiers with the same name.
-- **Completion:** Currently, we only support keyword completion and dot-triggered completion (e.g., `schema.attr`, `pkg.schema` and `str.methods` ). Full semantic completion is in development.
+[详见](https://github.com/KusionStack/kcl/issues/524)
 
-## Ask for help
+## 寻求帮助
 
-If the extension isn't working as you expect, please contact us with [community](https://kcl-lang.io/docs/community/intro/support) for help.
+如果扩展没有如您所期望的那样工作，请通过[社区](https://kcl-lang.io/docs/community/intro/support)与我们联系和寻求帮助。
 
-## Contributing
+## 参与贡献
 
-We are working actively on improving the KCL development on VS Code. All kinds of contributions are welcomed. You can refer to our [contribution guide](https://kcl-lang.io/docs/community/contribute). It introduces how to build and run the extension locally, and describes the process of sending a contribution.
+目前 VS Code KCL 插件处于早期版本，我们正在积极改进 VS Code KCL 插件体验，欢迎参考[贡献指南](https://kcl-lang.io/docs/community/contribute) 一起共建！
 
-## License
+## 许可
 
-Apache License Version 2.0
+Apache License 2.0

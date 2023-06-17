@@ -10,6 +10,8 @@ sidebar_position: 2
 
 Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/KusionStack/kcl/releases/) or [Gitee](https://gitee.com/kusionstack/KCLVM/releases) and add `{install-location}/kclvm/bin` to the environment PATH.
 
+> ⚠️ If you cannot successfully access Github, you can also access Gitee to obtain binaries for installation.
+
 #### MacOS & Linux
 
 ```bash
@@ -26,7 +28,7 @@ $env:PATH += ";{install-location}\kclvm\bin;"
 
 #### MacOS
 
-Install the latest darwin KCL to /usr/local/kclvm/bin
+Install or upgrade the latest darwin KCL to /usr/local/kclvm/bin
 
 ```bash
 curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
@@ -34,7 +36,7 @@ curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
 
 #### Linux
 
-Install the latest linux KCL to /usr/local/kclvm/bin
+Install or upgrade the latest linux KCL to /usr/local/kclvm/bin
 
 ```bash
 wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
@@ -42,7 +44,7 @@ wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
 
 #### Windows
 
-Install the latest windows KCL to $Env:SystemDrive\kclvm\bin and add this directory to User PATH environment variable.
+Install or upgrade the latest windows KCL to $Env:SystemDrive\kclvm\bin and add this directory to User PATH environment variable.
 
 ```bash
 powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
@@ -50,8 +52,22 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 
 ### Homebrew (MacOS)
 
++ Install
+
 ```bash
 brew install kcl-lang/tap/kclvm
+```
+
++ Upgrade
+
+```bash
+brew upgrade kcl-lang/tap/kclvm
+```
+
++ Uninstall
+
+```bash
+brew uninstall kcl-lang/tap/kclvm
 ```
 
 ### Scoop (Windows)
@@ -93,13 +109,19 @@ docker pull kusionstack/kclvm
 
 ### Note
 
-> ⚠️ For all the above operating systems and installation methods, if you want to use [KCL Python plug-in](https://kcl-lang.io/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
+We can execute the following command to ensure that KCL has been installed correctly.
+
+```bash
+kcl -h
+```
+
+For all the above operating systems and installation methods, if you want to use [KCL Python Plugin](/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
 
 ## 2. Install the KCL IDE Extension
 
 ### VS Code
 
-The KCL Extension extension provides some coding assistance, e.g., highlight, goto definition, completion, hover, outline, and diagnostics. You can go [here](https://kcl-lang.io/docs/tools/Ide/vs-code) for more information about the installation.
+The KCL Extension extension provides some coding assistance, e.g., highlight, goto definition, completion, hover, outline, and diagnostics. You can go [here](/docs/tools/Ide/vs-code) for more information about the installation.
 
 ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
