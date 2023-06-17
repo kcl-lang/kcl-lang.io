@@ -233,7 +233,7 @@ updateProfile() {
             info $path_str
 			command printf "$path_str" >> "$detected_profile"
 		else
-			warn "Your profile ($detected_profile) already mentions kclvm and has not been changed."
+			warn "Your profile ($detected_profile) already mentions kcl and has not been changed."
 		fi
 	fi
 }
@@ -331,6 +331,7 @@ cleanup() {
 installCompleted() {
     echo -e "\nPlease add ${KCL_INSTALL_DIR}/kclvm/bin into your PATH"
     echo -e "Remeber run the command source ~/.bash_profile or source ~/.bashrc to ensure your PATH is effective"
+    echo -e "Reopen a terminal and execute `kcl -h` to ensure successful installation"
     echo -e "\nTo get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
 }
 

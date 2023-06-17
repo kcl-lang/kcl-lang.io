@@ -2,14 +2,15 @@
 
 ## Quick Start
 
-- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to Path:
+- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to your PATH:
+
   ```bash
   which kcl
   which kcl-language-server
   ```
 
 - **Step 2.** Install the [KCL extension](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension) for Visual Studio Code. This extension requires the VS Code 1.50+.
-- **Step 3.** Open or create a KCL file and begin your KCL tour!
+- **Step 3.** Reopen VS Code and create a KCL file and begin your KCL tour!
 
 ## Features
 
@@ -36,8 +37,7 @@ We recommend that you use the latest version of KCL, but the minimum required ve
 
 ## Known Issues
 
-- **Hover and GotoDefintion:** The current hover and goto definitions are similar to global search, and there may be multiple results for some Identifiers with the same name.
-- **Completion:** Currently, we only support keyword completion and dot-triggered completion (e.g., `schema.attr`, `pkg.schema` and `str.methods` ). Full semantic completion is in development.
+See [here](https://github.com/KusionStack/kcl/issues/524).
 
 ## Ask for help
 
@@ -49,4 +49,4 @@ We are working actively on improving the KCL development on VS Code. All kinds o
 
 ## License
 
-Apache License Version 2.0
+Apache License 2.0
