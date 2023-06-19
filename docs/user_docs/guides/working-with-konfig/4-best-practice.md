@@ -35,7 +35,7 @@ sidecars = [
 ]
 ```
 
-## Best Practices for Model Abstraction
+## Best Practices for Konfig Modeling
 
 ### Use Single Attribute Instead of Configuration Templates
 
