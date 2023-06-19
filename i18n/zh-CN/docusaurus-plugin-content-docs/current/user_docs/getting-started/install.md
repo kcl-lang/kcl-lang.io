@@ -112,7 +112,9 @@ docker pull kusionstack/kclvm
 可以执行运行如下命令确保 KCL 已经正确安装
 
 ```bash
-kcl -h
+Version: {kcl version}
+Platform: {your platform}
+GitCommit: {git commit}
 ```
 
 如果安装成功，输出可能为如下形式 (不同版本结果可能稍微不同):

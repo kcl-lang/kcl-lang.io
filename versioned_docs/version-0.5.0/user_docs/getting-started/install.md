@@ -112,42 +112,15 @@ docker pull kusionstack/kclvm
 We can execute the following command to ensure that KCL has been installed correctly.
 
 ```bash
-kcl -h
+kcl -V
 ```
 
 The output may looks like this:
 
 ```bash
-Arguments:
-  [input]...  Specify the input files to run
-
-Options:
-  -o, --output <output>
-          Specify the YAML output file path
-  -Y, --setting <setting>...
-          Specify the input setting file
-  -v, --verbose...
-          Print test information verbosely
-  -n, --disable_none
-          Disable dumping None values
-  -r, --strict_range_check
-          Do perform strict numeric range checks
-  -d, --debug
-          Run in debug mode (for developers only)
-  -k, --sort_keys
-          Sort result keys
-  -D, --argument <arguments>...
-          Specify the top-level argument
-  -S, --path_selector <path_selector>...
-          Specify the path selector
-  -O, --overrides <overrides>...
-          Specify the configuration override path and value
-      --target <target>
-          Specify the target type
-  -E, --external <package_map>...
-          Mapping of package name and path where the package is located
-  -h, --help
-          Print help
+Version: {kcl version}
+Platform: {your platform}
+GitCommit: {git commit}
 ```
 
 For all the above operating systems and installation methods, if you want to use [KCL Python Plugin](/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
