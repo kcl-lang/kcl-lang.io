@@ -1,0 +1,6 @@
+data:
+  configManagementPlugins: |
+    - name: my-plugin-v1.0
+      generate:
+        command: ["kcl"]
+      lockRepo: true
