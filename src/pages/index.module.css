@@ -161,3 +161,17 @@
     height: 100px;
   }
 }
+
+.cncfLogo {
+  height: 96px;
+}
+
+[data-theme='dark'] .cncfLogo {
+  height: 75px;
+}
+
+@media screen and (max-width: 768px) {
+  .cncfLogo {
+    height: 64px;
+  }
+}

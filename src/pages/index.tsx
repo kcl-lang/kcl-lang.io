@@ -6,6 +6,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl'
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
 import { ExampleScroller } from "../components/ExampleScroller";
+import ThemedImage from '@theme/ThemedImage';
 
 import { HiLightningBolt } from "react-icons/hi";
 import { IoColorPaletteSharp, IoAccessibility, IoInvertModeSharp, IoStatsChart, IoBowlingBallOutline } from "react-icons/io5";
@@ -204,6 +205,31 @@ function BreakSection() {
   return <section><br /><br /></section>
 }
 
+function CNCFSection() {
+  return <section>
+            <div className="container">
+          <div className="container text--center">
+            <h2 className={clsx(
+              "hero__subtitle", styles.poppinsFont,
+            )} >
+              KCL is in <Link to="https://cncf.io/">Cloud Native Computing Foundation</Link> landscape
+            </h2>
+            <br />
+            <div>
+              <ThemedImage
+                className={styles.cncfLogo}
+                alt="CNCF themed image"
+                sources={{
+                  light: useBaseUrl('/img/cncf-color.png'),
+                  dark: useBaseUrl('/img/cncf-white.png'),
+                }}
+              />
+            </div>
+          </div>
+        </div>
+  </section>
+}
+
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -218,6 +244,8 @@ export default function Home(): JSX.Element {
       <ExampleSection />
       <BreakSection />
       <PartnerSection />
+      <BreakSection />
+      <CNCFSection />
       <BreakSection />
     </Layout>
   );
