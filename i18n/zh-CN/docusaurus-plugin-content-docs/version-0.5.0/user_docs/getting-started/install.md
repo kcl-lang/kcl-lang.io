@@ -112,44 +112,15 @@ docker pull kusionstack/kclvm
 可以执行运行如下命令确保 KCL 已经正确安装
 
 ```bash
-Version: {kcl version}
-Platform: {your platform}
-GitCommit: {git commit}
+kcl -V
 ```
 
 如果安装成功，输出可能为如下形式 (不同版本结果可能稍微不同):
 
 ```bash
-Arguments:
-  [input]...  Specify the input files to run
-
-Options:
-  -o, --output <output>
-          Specify the YAML output file path
-  -Y, --setting <setting>...
-          Specify the input setting file
-  -v, --verbose...
-          Print test information verbosely
-  -n, --disable_none
-          Disable dumping None values
-  -r, --strict_range_check
-          Do perform strict numeric range checks
-  -d, --debug
-          Run in debug mode (for developers only)
-  -k, --sort_keys
-          Sort result keys
-  -D, --argument <arguments>...
-          Specify the top-level argument
-  -S, --path_selector <path_selector>...
-          Specify the path selector
-  -O, --overrides <overrides>...
-          Specify the configuration override path and value
-      --target <target>
-          Specify the target type
-  -E, --external <package_map>...
-          Mapping of package name and path where the package is located
-  -h, --help
-          Print help
+Version: {kcl version}
+Platform: {your platform}
+GitCommit: {git commit}
 ```
 
 对于上述所有安装方式, 如果您想使用 [KCL Python 插件](/docs/reference/plugin/overview), 需要确保您已经安装了 Python 3.7+ 并将 python3 命令添加到您的 PATH 中。
