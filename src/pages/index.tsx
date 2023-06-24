@@ -165,11 +165,6 @@ function PartnerSection() {
       href: 'https://www.huawei.com/',
     },
     {
-      name: 'SafetyCulture',
-      img: '/img/logos/safetyculture.png',
-      href: 'https://safetyculture.com/',
-    },
-    {
       name: 'TuSimple',
       img: '/img/logos/tusimple.jpg',
       href: 'https://www.tusimple.com/',
