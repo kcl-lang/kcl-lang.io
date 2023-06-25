@@ -27,6 +27,8 @@ This extension provides some coding assistance, including the following features
 - **Hover:** Identifier information (type and schema documentation).
   ![Hover](/img/docs/tools/Ide/vs-code/Hover.gif)
 - **Diagnostics:** Warnings and errors in KCL file.
+  > Tips: You can enhance the effect of diagnostics by installing another plugin: [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens).
+  
   ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
 
 Other useful features such as refactoring and testing are in development.
