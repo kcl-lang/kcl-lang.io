@@ -660,7 +660,7 @@ output "r10" {
 
 | 环境 | KCL v0.4.3 运行时间 (包含编译+运行时间) | CUE v0.4.3 运行时间 (包含编译+运行时间) | Jsonnet v0.18.0 运行时间 (包含编译+运行时间) | HCL in Terraform v1.3.0 运行时间 (包含编译+运行时间) |
 | --- | --- | --- | --- | --- |
-| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; 不开启 NUMA | 440 ms (kclvm_cli run test.k) | 6290 ms (cue export test.cue) | 3340 ms (jsonnet test.jsonnet) | 1774 ms (terraform plan -parallelism=1)|
+| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; 不开启 NUMA | 440 ms (kcl test.k) | 6290 ms (cue export test.cue) | 3340 ms (jsonnet test.jsonnet) | 1774 ms (terraform plan -parallelism=1)|
 
 综上可以看出：CUE 和 KCL 均可以覆盖到绝大多数配置校验场景，并且均支持属性类型定义、配置默认值、约束校验等编写，但是 CUE 对于不同的约束条件场景无统一的写法，且不能很好地透出校验错误，KCL 使用 check 关键字作统一处理，支持用户自定义错误输出。
 
@@ -702,7 +702,7 @@ deployment = v1.Deployment {
 
 | 环境 | KCL v0.4.3 运行时间 (包含编译+运行时间) | CUE v0.4.3 运行时间 (包含编译+运行时间) |
 | --- | --- | --- |
-| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kclvm_cli run test.k) | 350 ms (cue export test.cue) |
+| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kcl test.k) | 350 ms (cue export test.cue) |
 
 ## 四、小结
 

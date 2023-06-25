@@ -659,7 +659,7 @@ output "r10" {
 
 | Environment | KCL v0.4.3 Running time (including compilation+runtime) | CUE v0.4.3 Running time (including compilation+runtime) | Jsonnet v0.18.0 Running time (including compilation+runtime)  | HCL in Terraform v1.3.0 Running time (including compilation+runtime) |
 | --- | --- | --- | --- | --- |
-| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 440 ms (kclvm_cli run test.k) | 6290 ms (cue export test.cue) | 3340 ms (jsonnet test.jsonnet) | 1774 ms (terraform plan -parallelism=1) |
+| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 440 ms (kcl test.k) | 6290 ms (cue export test.cue) | 3340 ms (jsonnet test.jsonnet) | 1774 ms (terraform plan -parallelism=1) |
 
 #### Another Complex Case
 
@@ -699,7 +699,7 @@ deployment = v1.Deployment {
 
 | Environment | KCL v0.4.3 Running time (including compilation+runtime) | CUE v0.4.3 Running time (including compilation+runtime) |
 | --- | --- | --- |
-| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kclvm_cli run test.k) | 350 ms (cue export test.cue) |
+| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kcl test.k) | 350 ms (cue export test.cue) |
 
 ## 4. Summary
 
