@@ -28,7 +28,7 @@ jobs:
         run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
 
       - name: Check Go Installation
-        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run ./static/stack/main.k
+        run: go install kusionstack.io/kclvm-go/cmds/kcl-go@main && sudo $HOME/go/bin/kcl-go run ./static/stack/main.k
 
   check-linux:
     strategy:
