@@ -39,10 +39,22 @@ With GitOps, developer and operation teams can manage application deployment and
 
 ### 4. Install Kubernetes and GitOps Tool
 
+#### Setup Kubernetes Cluster and ArgoCD Controllers
+
 + Install [K3d](https://github.com/k3d-io/k3d) to create a default cluster.
 
 ```bash
 k3d cluster delete mycluster && k3d cluster create mycluster
+```
+
++ Install [Kwok](https://kwok.sigs.k8s.io/docs/user/installation/)
+
+```bash
+go install sigs.k8s.io/kwok/cmd/{kwok,kwokctl}@v0.2.0
+```
+
+```bash
+kwokctl create cluster --name=mycluster
 ```
 
 + Install [ArgoCD](https://github.com/argoproj/argo-cd/releases/).
@@ -50,6 +62,7 @@ k3d cluster delete mycluster && k3d cluster create mycluster
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/v2.7.4/manifests/install.yaml
+# Local install
 kubectl apply -n argocd -f install.yaml
 ```
 
@@ -102,13 +115,6 @@ Wait for the init container to complete execution (Running).
 kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-repo-server
 ```
 
-```bash
-
-```
-
-```bash
-```
-
 + To access the ArgoCD web UI
 
 ```bash
@@ -122,6 +128,8 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```bash
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
+
+#### Setup ArgoCD CLI
 
 + Install [ArgoCD CLI](https://github.com/argoproj/argo-cd/releases/download)
 
