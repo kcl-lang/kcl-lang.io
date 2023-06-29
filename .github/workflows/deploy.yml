@@ -19,20 +19,10 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      - name: Deploy KusionStack/kcl-lang.github.io
-        uses: peaceiris/actions-gh-pages@v3.7.3
-        with:
-          personal_token: ${{ secrets.KUSIONSTACK_BOT_TOKEN }}
-          external_repository: KusionStack/kcl-lang.github.io
-          publish_dir: ./build
-          publish_branch: main
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-
       - name: Deploy kcl-lang/kcl-lang.github.io
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
-          personal_token: ${{ secrets.KUSIONSTACK_BOT_TOKEN }}
+          personal_token: ${{ secrets.KCL_LANG_BOT_TOKEN }}
           external_repository: kcl-lang/kcl-lang.github.io
           publish_dir: ./build
           publish_branch: main
