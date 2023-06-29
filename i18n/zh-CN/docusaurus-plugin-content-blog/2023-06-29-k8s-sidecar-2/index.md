@@ -1,5 +1,5 @@
 ---
-slug: 2023-06-05-k8s-side-car
+slug: 2023-06-29-k8s-sidecar-2
 title: 聊聊 K8S 中的 Sidecar 设计模式·第 2 篇
 authors:
   name: KCL Team
@@ -9,7 +9,7 @@ tags: [KCL, k8s, Sidecar]
 
 ## 介绍
 
-在前一篇文章 [聊聊 K8S 中的Sidecar设计模式·第 1 篇](/blog/2023-06-05-k8s-side-car-1/)中，我们介绍了土话说的三蹦子的 Sidecar 设计模式。本文尝试用 KCL 这种现代化的类型安全的配置语言，来展示 Pod 资源的描述，在后续的文章中，我们将以 KCL 来介绍 Sidecar 这种模式的实际应用。
+在前一篇文章 [聊聊 K8S 中的Sidecar设计模式·第 1 篇](/blog/2023-06-05-k8s-sidecar-1/)中，我们介绍了土话说的三蹦子的 Sidecar 设计模式。本文尝试用 KCL 这种现代化的类型安全的配置语言，来展示 Pod 资源的描述，在后续的文章中，我们将以 KCL 来介绍 Sidecar 这种模式的实际应用。
 
 ## 1. Pod 的 OpenAPI 定义
 

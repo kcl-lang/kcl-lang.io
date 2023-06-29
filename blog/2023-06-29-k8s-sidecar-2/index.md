@@ -1,5 +1,5 @@
 ---
-slug: 2023-06-05-k8s-side-car
+slug: 2023-06-29-k8s-sidecar-2
 title: Talking about the SideCar design pattern in K8S - Part 2
 authors:
   name: KCL Team
@@ -9,7 +9,7 @@ tags: [KCL, k8s, SideCar]
 
 ## Introduction
 
-In the previous blog [Exploring the Sidecar Design Pattern in K8s - Part 1](/blog/2023-06-05-k8s-side-car-1/), we introduced the Sidecar design pattern using layman's terms. In this blog, we'll use KCL, a modern, type-safe configuration language, to showcase the description of Pod resources. In the subsequent blogs, we'll use KCL to explore the practical applications of the Sidecar pattern.
+In the previous blog [Exploring the Sidecar Design Pattern in K8s - Part 1](/blog/2023-06-05-k8s-sidecar-1/), we introduced the Sidecar design pattern using layman's terms. In this blog, we'll use KCL, a modern, type-safe configuration language, to showcase the description of Pod resources. In the subsequent blogs, we'll use KCL to explore the practical applications of the Sidecar pattern.
 
 ### 1. OpenAPI Definition for Pods
 

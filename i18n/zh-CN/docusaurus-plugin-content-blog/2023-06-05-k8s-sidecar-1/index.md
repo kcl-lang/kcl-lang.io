@@ -1,5 +1,5 @@
 ---
-slug: 2023-06-05-k8s-side-car
+slug: 2023-06-05-k8s-sidecar-1
 title: 聊聊 K8S 中的 Sidecar 设计模式·第 1 篇
 authors:
   name: KCL Team
@@ -123,11 +123,11 @@ Forwarding from [::1]:3999 -> 80
 
 简单来说，`Busybox` 是 `Sidecar` 容器角色，负责生产首页数据；而 `Nginx` 是主容器，负责消费 `Busybox` 生产的主页数据；两个容器通过 `var-logs` 磁盘卷共享空间。如果以 Go 语言的术语类比，`Nginx` 是主 `Goroutine`，`Busybox` 是后台干脏活的 `Goroutine`，而共享的磁盘卷类似 `Channel` 的作用。
 
-![](/img/blog/2023-06-05-k8s-side-car/how-Sidecar-work.png)
+![](/img/blog/2023-06-05-k8s-side-car/how-sidecar-work.png)
 
 在这个例子中 `Nginx` 依然是主容器，`Sidecar` 容器是 `BusyBox`。我们还可以挂更多 `Sidecar` 容器，比如网络、监控、日志等等。
 
-![](/img/blog/2023-06-05-k8s-side-car/how-Sidecar-work-1.png)
+![](/img/blog/2023-06-05-k8s-side-car/how-sidecar-work-1.png)
 
 这样就通过 `Sidecar` 模式，在不修改 `Nginx` 主容器的前提下，扩展出了网络、监控、日志等能力。
 

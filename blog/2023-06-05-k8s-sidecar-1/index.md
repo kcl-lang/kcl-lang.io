@@ -1,5 +1,5 @@
 ---
-slug: 2023-06-05-k8s-side-car
+slug: 2023-06-05-k8s-sidecar-1
 title: Talking about the Sidecar design pattern in K8S - Part 1
 authors:
   name: KCL Team
@@ -129,11 +129,11 @@ Upon reopening your browser you will see the following page:
 
 `Busybox` is a `Sidecar` container that produces the home page data, while `Nginx` is the main container that consumes the home page data produced by `Busybox`; the two containers share space through the var-logs disk volume.
 
-![](/img/blog/2023-06-05-k8s-side-car/how-Sidecar-work.png)
+![](/img/blog/2023-06-05-k8s-side-car/how-sidecar-work.png)
 
 In the example, `Nginx` is still the main container, and the `Sidecar` container is BusyBox. we can also add more `Sidecar` containers for network, monitoring, logging, etc.
 
-![](/img/blog/2023-06-05-k8s-side-car/how-Sidecar-work-1.png)
+![](/img/blog/2023-06-05-k8s-side-car/how-sidecar-work-1.png)
 
 ## Advantages of Sidecar
 
