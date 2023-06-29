@@ -1,7 +1,7 @@
-[![Contributors](https://img.shields.io/github/contributors/KusionStack/kcl-lang.io.svg?style=for-the-badge)](https://github.com/KusionStack/kcl-lang.io/graphs/contributors)
-[![Forks](https://img.shields.io/github/forks/KusionStack/kcl-lang.io.svg?style=for-the-badge)](https://github.com/KusionStack/kcl-lang.io/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/KusionStack/kcl-lang.io.svg?style=for-the-badge&label=Stars)](https://github.com/KusionStack/kcl-lang.io/)
-[![license](https://img.shields.io/github/license/KusionStack/kcl-lang.io.svg?style=for-the-badge)](https://github.com/KusionStack/kcl-lang.io)
+[![Contributors](https://img.shields.io/github/contributors/kcl-lang/kcl-lang.io.svg?style=for-the-badge)](https://github.com/kcl-lang/kcl-lang.io/graphs/contributors)
+[![Forks](https://img.shields.io/github/forks/kcl-lang/kcl-lang.io.svg?style=for-the-badge)](https://github.com/kcl-lang/kcl-lang.io/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/kcl-lang/kcl-lang.io.svg?style=for-the-badge&label=Stars)](https://github.com/kcl-lang/kcl-lang.io/)
+[![license](https://img.shields.io/github/license/kcl-lang/kcl-lang.io.svg?style=for-the-badge)](https://github.com/kcl-lang/kcl-lang.io)
 
 # kcl-lang.io
 
@@ -21,7 +21,7 @@ npm install
 npm run start
 ```
 
-Open http://localhost:3000 in the browser.
+Open [http://localhost:3000](http://localhost:3000) in the browser.
 
 ## Build with i18n
 
@@ -30,7 +30,7 @@ npm run build
 npx http-server ./build
 ```
 
-Open http://localhost:8080 in the browser.
+Open [http://localhost:8080](http://localhost:8080) in the browser.
 
 ## Guide for Documents
 
