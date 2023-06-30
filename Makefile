@@ -24,8 +24,8 @@ run:
 install:
 	npm install
 
-.PHONY: run-i18n
-run-i18n:
+.PHONY: build
+build:
 	npm run build && npx http-server ./build
 
 .PHONY: check-link
