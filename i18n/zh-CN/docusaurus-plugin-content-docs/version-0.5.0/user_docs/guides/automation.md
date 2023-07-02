@@ -18,7 +18,7 @@ sidebar_position: 6
 ### 1. 获得示例
 
 ```bash
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/data-integration
 ```
 

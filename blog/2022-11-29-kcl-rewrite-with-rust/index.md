@@ -139,7 +139,7 @@ Overall, although our team encountered obstacles while using Rust to rewrite the
 
 I personally think that the most important thing after using Rust to rewrite the project is whether I have learned a new programming language or whether Rust is very popular and we have written many fancy codes using Rust. The stability, startup-time, and automation-efficiency of the KCL compiler and language is significantly improved. Furthermore, with Rust's non-GC, high-performance, improved error handling, memory management, and lack of abstraction, the performance of KCL improves substantially as compared to other languages in similar fields. In short, the users of KCL are the biggest beneficiaries of the improvements made possible by Rust.
 
-If you are interested in the KCL project, wish to use KCL for your personal use cases, or want to use Rust to participate in an open-source project, welcome to visit [https://github.com/KusionStack/community](https://github.com/KusionStack/community) to join our community to participate in discussion and co construction 👏👏👏。
+If you are interested in the KCL project, wish to use KCL for your personal use cases, or want to use Rust to participate in an open-source project, welcome to visit [https://github.com/kcl-lang/community](https://github.com/kcl-lang/community) to join our community to participate in discussion and co construction 👏👏👏。
 
 ## Reference
 

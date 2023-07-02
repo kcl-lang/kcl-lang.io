@@ -20,7 +20,7 @@ In addition, the automation capability of KCL can be realized and integrated int
 Firstly, let's get the example.
 
 ```bash
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/automation
 ```
 

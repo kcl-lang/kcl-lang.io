@@ -37,7 +37,7 @@ Kubernetes 清单是定义 Kubernete 对象（如 Pods、Deployments 和 Service
 首先，我们执行 git 命令获得用例
 
 ```bash
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/abstraction
 ```
 
@@ -124,7 +124,7 @@ spec:
       protocol: TCP
 ```
 
-如果您想了解有关应用程序模型的更多信息，可以参考[此处](https://github.com/KusionStack/kcl-lang.io/tree/main/examples/abstraction).
+如果您想了解有关应用程序模型的更多信息，可以参考[此处](https://github.com/kcl-lang/kcl-lang.io/tree/main/examples/abstraction).
 
 ## 小结
 

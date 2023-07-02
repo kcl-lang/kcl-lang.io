@@ -18,7 +18,7 @@ In KCL, a structure definition can be used to validate configuration data. At th
 ### 1. Get the Example
 
 ```shell
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/validation
 ```
 

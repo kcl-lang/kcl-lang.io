@@ -44,4 +44,4 @@ KCL 团队很高兴地宣布 KCL v0.4.6-alpha.1 版本现在已经可用！
 + [Kusion Github 仓库](https://github.com/KusionStack/kusion)
 + [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 
-欢迎加入我们的[社区](https://github.com/KusionStack/community)进行交流 👏👏👏
+欢迎加入我们的[社区](https://github.com/kcl-lang/community)进行交流 👏👏👏

@@ -116,7 +116,7 @@ const config = {
           // lastVersion: 'current',
 
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/KusionStack/kcl-lang.io/tree/main',
+          editUrl: 'https://github.com/kcl-lang/kcl-lang.io/tree/main',
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
           remarkPlugins: [math],
@@ -126,7 +126,7 @@ const config = {
           blogSidebarCount: "ALL",
           postsPerPage: 2,
           showReadingTime: true,
-          editUrl: 'https://github.com/KusionStack/kcl-lang.io/tree/main',
+          editUrl: 'https://github.com/kcl-lang/kcl-lang.io/tree/main',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -193,7 +193,7 @@ const config = {
             label: 'Playground',
           },
           {
-            href: 'https://github.com/KusionStack/kcl-lang.io/tree/main/examples',
+            href: 'https://github.com/kcl-lang/kcl-lang.io/tree/main/examples',
             position: 'left',
             sidebarId: 'examples',
             label: 'Examples',
@@ -216,7 +216,7 @@ const config = {
             position: 'right',
             dropdownItemsAfter: [
               {
-                href: 'https://github.com/KusionStack/kcl-lang.io/issues/',
+                href: 'https://github.com/kcl-lang/kcl-lang.io/issues/',
                 label: 'Help Us Translate',
               },
             ],

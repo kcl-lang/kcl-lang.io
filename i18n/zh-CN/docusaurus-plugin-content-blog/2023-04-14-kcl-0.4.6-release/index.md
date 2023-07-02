@@ -373,4 +373,4 @@ spec:
 + [Kusion Github 仓库](https://github.com/KusionStack/kusion)
 + [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 
-欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/KusionStack/community](https://github.com/KusionStack/community)
+欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/kcl-lang/community](https://github.com/kcl-lang/community)

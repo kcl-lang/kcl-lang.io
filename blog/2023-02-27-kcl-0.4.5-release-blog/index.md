@@ -398,4 +398,4 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 
-See the [community](https://github.com/KusionStack/community) for ways to join us. 👏👏👏
+See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏

@@ -39,7 +39,7 @@ The application model aims to reduce developer toil and cognitive load by only h
 Firstly, let's get the example.
 
 ```bash
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/abstraction
 ```
 
@@ -126,7 +126,7 @@ spec:
       protocol: TCP
 ```
 
-Look, it's so simple. If you want to learn more information about the application model, you can refer to [here](https://github.com/KusionStack/kcl-lang.io/tree/main/examples/abstraction).
+Look, it's so simple. If you want to learn more information about the application model, you can refer to [here](https://github.com/kcl-lang/kcl-lang.io/tree/main/examples/abstraction).
 
 ## Summary
 

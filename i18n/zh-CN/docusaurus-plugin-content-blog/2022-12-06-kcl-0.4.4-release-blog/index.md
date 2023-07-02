@@ -265,10 +265,10 @@ KCL 社区新增三名外部贡献者 @my-vegetable-has-exploded, @possible-fqz,
 
 ## 其他资源
 
-+ [KCL 网站](https://kcl-lang.github.io/)
++ [KCL 网站](https://kcl-lang.io/)
 + [Kusion 网站](https://kusionstack.io/)
 + [KCL 仓库](https://github.com/KusionStack/kcl)
 + [Kusion 仓库](https://github.com/KusionStack/kusion)
 + [Konfig 仓库](https://github.com/KusionStack/konfig)
 
-欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/KusionStack/community](https://github.com/KusionStack/community)
+欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/kcl-lang/community](https://github.com/kcl-lang/community)

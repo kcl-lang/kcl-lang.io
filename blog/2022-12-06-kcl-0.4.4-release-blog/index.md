@@ -265,10 +265,10 @@ For more information, see [https://kcl-lang.github.io/docs/user_docs/support/](h
 
 ## Additional Resources
 
-+ [KCL Website](https://kcl-lang.github.io/)
++ [KCL Website](https://kcl-lang.io/)
 + [Kusion Website](https://kusionstack.io/)
 + [KCL Repo](https://github.com/KusionStack/kcl)
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 
-See the [community](https://github.com/KusionStack/community) for ways to join us. 👏👏👏
+See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏
