@@ -7,7 +7,7 @@ authors:
 tags: [KCL, Configuration]
 ---
 
-The blog is only used to clarify the landscape of declarative configuration, [KCL](https://github.com/KusionStack/kcl) core concept and features, as well as the comparison with other configuration languages.
+The blog is only used to clarify the landscape of declarative configuration, [KCL](https://github.com/kcl-lang/kcl) core concept and features, as well as the comparison with other configuration languages.
 
 ## 1. The Landscape of Declarative Configuration
 
@@ -138,7 +138,7 @@ Representative technologies of typed KV include:
 
 Representative technologies of modeled KV include:
 
-- [KCL](https://github.com/KusionStack/kcl): A declarative configuration and policy programming language implemented by Rust, which improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionally. Fig. 4 shows a typical scenario of KCL writing application delivery configuration code.
+- [KCL](https://github.com/kcl-lang/kcl): A declarative configuration and policy programming language implemented by Rust, which improves the writing of a large number of complex configurations through mature programming language technology and practice, and is committed to building better modularity, scalability and stability around configuration, simpler logic writing, fast automation and good ecological extensionally. Fig. 4 shows a typical scenario of KCL writing application delivery configuration code.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/04-kcl-app-code.png)
 
@@ -182,9 +182,9 @@ Fig. 5: KCL core features.
 - **Rich capabilities**: Configuration with type, logic and policy based on [Config](https://kcl-lang.io/docs/reference/lang/tour#config-operations), [Schema](https://kcl-lang.io/docs/reference/lang/tour#schema), [Lambda](https://kcl-lang.io/docs/reference/lang/tour#function), [Rule](https://kcl-lang.io/docs/reference/lang/tour#rule).
 - **Stability**: Configuration stability built on [static type system](https://kcl-lang.io/docs/reference/lang/tour/#type-system), [constraints](https://kcl-lang.io/docs/reference/lang/tour/#validation), and [rules](https://kcl-lang.io/docs/reference/lang/tour#rule).
 - **Scalability**: High scalability through [automatic merge mechanism](https://kcl-lang.io/docs/reference/lang/tour/#-operators-1) of isolated config blocks.
-- **Fast automation**: Gradient automation scheme of [CRUD APIs](https://kcl-lang.io/docs/reference/lang/tour/#kcl-cli-variable-override), [multilingual SDKs](https://kcl-lang.io/docs/reference/xlang-api/overview), [language plugin](https://github.com/KusionStack/kcl-plugin)
+- **Fast automation**: Gradient automation scheme of [CRUD APIs](https://kcl-lang.io/docs/reference/lang/tour/#kcl-cli-variable-override), [multilingual SDKs](https://kcl-lang.io/docs/reference/xlang-api/overview), [language plugin](https://github.com/kcl-lang/kcl-plugin)
 - **High performance**: High compile time and runtime performance using Rust & C and [LLVM](https://llvm.org/), and support compilation to native code and [WASM](https://webassembly.org/).
-- **API affinity**: Native support API ecological specifications such as [OpenAPI](https://github.com/KusionStack/kcl-openapi), Kubernetes CRD, Kubernetes YAML spec.
+- **API affinity**: Native support API ecological specifications such as [OpenAPI](https://github.com/kcl-lang/kcl-openapi), Kubernetes CRD, Kubernetes YAML spec.
 - **Development friendly**: Friendly development experiences with rich [language tools](https://kcl-lang.io/docs/tools/cli/kcl/) (Format, Lint, Test, Vet, Doc, etc.) and [IDE plugins](https://github.com/KusionStack/vscode-kcl).
 - **Safety & maintainable**: Domain-oriented, no system-level functions such as native threads and IO, low noise and security risk, easy maintenance and governance.
 - **Rich multi-language API**: Rich multilingual API: [Go](https://kcl-lang.io/docs/reference/xlang-api/go-api), [Python](https://kcl-lang.io/docs/reference/xlang-api/python-api) and [REST APIs](https://kcl-lang.io/docs/reference/xlang-api/rest-api) meet different scenarios and application use prelude.

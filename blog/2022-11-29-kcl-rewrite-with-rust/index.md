@@ -11,7 +11,7 @@ tags: [KCL, Rust, Performance, Programming Language, Compiler]
 
 Rust has quietly become one of the most popular programming languages. As an popular emerging system language, Rust has many great characteristics, such as its memory security mechanism, performance close to that of C/C++, an excellent development community and helpful documentation, tool chains and IDEs. In this blog, we will introduce the process of using Rust for a rewrite and gradually implementing the production environment, as well as the reasons for choosing Rust, any issues we have encountered, and the results of the rewrite.
 
-The project we are using Rust to develop is called [KCL](https://github.com/KusionStack/kcl). KCL is an open-source, constraint-based record and functional programming language. It leverages mature programming language technology and practice to facilitate the writing of many complex configurations. KCL is designed to improve modularity, scalability, and stability around configuration, simplify logic writing, speed up automation and create a thriving extension ecosystem. To learn more about specific KCL usage scenarios, please refer to the [KCL website](https://kcl-lang.github.io/). This blog will not go into too much detail about that.
+The project we are using Rust to develop is called [KCL](https://github.com/kcl-lang/kcl). KCL is an open-source, constraint-based record and functional programming language. It leverages mature programming language technology and practice to facilitate the writing of many complex configurations. KCL is designed to improve modularity, scalability, and stability around configuration, simplify logic writing, speed up automation and create a thriving extension ecosystem. To learn more about specific KCL usage scenarios, please refer to the [KCL website](https://kcl-lang.github.io/). This blog will not go into too much detail about that.
 
 KCL was written in Python before. After carefully evaluating the user experience, performance and stability, we decided to rewrite KCL in Rust, and the following benefits were obtained:
 
@@ -143,7 +143,7 @@ If you are interested in the KCL project, wish to use KCL for your personal use 
 
 ## Reference
 
-+ https://github.com/KusionStack/kcl
++ https://github.com/kcl-lang/kcl
 + https://github.com/Peefy/StackMachine
 + https://doc.rust-lang.org/book/
 + https://github.com/sunface/rust-course

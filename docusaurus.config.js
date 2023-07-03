@@ -149,7 +149,7 @@ const config = {
       // hideableSidebar: true,
       announcementBar: {
         id: 'announcementBar-1', // Increment on change
-        content: `Give us a star ⭐️ - If you are using KCL or think it is an interesting project, we would love a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/KusionStack/kcl">Github</a>`,
+        content: `Give us a star ⭐️ - If you are using KCL or think it is an interesting project, we would love a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/kcl-lang/kcl">Github</a>`,
       },
 
       algolia: {
@@ -222,7 +222,7 @@ const config = {
             ],
           },
           {
-            href: 'https://github.com/KusionStack/kcl',
+            href: 'https://github.com/kcl-lang/kcl',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
             position: 'right',
@@ -258,7 +258,7 @@ const config = {
             items: [
               {
                 label: 'Github',
-                href: 'https://github.com/KusionStack/kcl',
+                href: 'https://github.com/kcl-lang/kcl',
               },
               {
                 label: 'Gitee',
