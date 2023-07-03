@@ -31,7 +31,7 @@ $KCLCliFileBinPath = "${KCLRoot}\bin"
 $KCLCliFilePath = "${KCLCliFileBinPath}\${KCLCliFileName}"
 
 # GitHub Org and repo hosting KCL CLI
-$GitHubOrg = "KusionStack"
+$GitHubOrg = "kcl-lang"
 $GitHubRepo = "kcl"
 
 # Set Github request authentication for basic authentication.
@@ -78,7 +78,7 @@ if (!$releaseJsonUrl) {
 
 $releases = Invoke-RestMethod -Headers $githubHeader -Uri $releaseJsonUrl -Method Get
 if ($releases.Count -eq 0) {
-    throw "No releases from github.com/KusionStack/kcl repo"
+    throw "No releases from github.com/kcl-lang/kcl repo"
 }
 
 # get latest or specified version info from releases
