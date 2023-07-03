@@ -51,9 +51,9 @@
     "message": "Errors and Warnings",
     "description": "The label for category Errors and Warnings in sidebar docs"
   },
-  "sidebar.docs.category.System Module": {
-    "message": "System Module",
-    "description": "The label for category System Module in sidebar docs"
+  "sidebar.docs.category.System Package": {
+    "message": "System Package",
+    "description": "The label for category System Package in sidebar docs"
   },
   "sidebar.docs.category.Plugin System": {
     "message": "Plugin System",
@@ -139,9 +139,9 @@
     "message": "Errors and Warnings",
     "description": "The label for category Errors and Warnings in sidebar reference"
   },
-  "sidebar.reference.category.System Module": {
-    "message": "System Module",
-    "description": "The label for category System Module in sidebar reference"
+  "sidebar.reference.category.System Package": {
+    "message": "System Package",
+    "description": "The label for category System Package in sidebar reference"
   },
   "sidebar.reference.category.Plugin System": {
     "message": "Plugin System",
