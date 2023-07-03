@@ -49,7 +49,7 @@
   },
   "link.item.label.Gitee": {
     "message": "Gitee",
-    "description": "The label of footer link with label=Gitee linking to https://gitee.com/kusionstack/KCLVM"
+    "description": "The label of footer link with label=Gitee linking to https://gitee.com/kusionstack/kcl"
   },
   "link.item.label.Community": {
     "message": "Community",
@@ -58,5 +58,9 @@
   "logo.alt": {
     "message": "AntGroup Open Source Logo",
     "description": "The alt text of footer logo"
+  },
+  "link.item.label.KusionStack": {
+    "message": "KusionStack",
+    "description": "The label of footer link with label=KusionStack linking to https://kusionstack.io"
   }
 }

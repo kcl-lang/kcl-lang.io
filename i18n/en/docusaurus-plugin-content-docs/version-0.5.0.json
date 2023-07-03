@@ -186,5 +186,17 @@
   "sidebar.community.category.Contribution Guide": {
     "message": "Contribution Guide",
     "description": "The label for category Contribution Guide in sidebar community"
+  },
+  "sidebar.docs.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar docs"
+  },
+  "sidebar.reference.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar reference"
+  },
+  "sidebar.reference.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar reference"
   }
 }

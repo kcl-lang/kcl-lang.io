@@ -718,5 +718,17 @@
   "sidebar.user_docs.category.Konfig": {
     "message": "Konfig",
     "description": "The label for category Konfig in sidebar user_docs"
+  },
+  "sidebar.docs.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar docs"
+  },
+  "sidebar.reference.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar reference"
+  },
+  "sidebar.reference.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar reference"
   }
 }
