@@ -59,6 +59,12 @@
     "sidebar.reference.category.Cheat Sheet": {
       "message": "备忘表"
     },
+    "sidebar.reference.category.Package Management": {
+      "message": "包管理工具"
+    },
+    "sidebar.reference.category.Command Reference": {
+      "message": "命令参考"
+    },
     "sidebar.reference.category.Advanced-Concepts": {
       "message": "进阶概念"
     },
