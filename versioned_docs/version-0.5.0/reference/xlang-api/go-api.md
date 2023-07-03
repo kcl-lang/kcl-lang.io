@@ -5,7 +5,7 @@ sidebar_position: 3
 # Go API
 
 ```go
-import "kusionstack.io/kclvm-go"
+import "kcl-lang.io/kcl-go"
 ```
 
 ## KCLVM binding for Go

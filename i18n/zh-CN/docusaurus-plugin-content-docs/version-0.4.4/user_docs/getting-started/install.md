@@ -67,7 +67,7 @@ python3 -m pip install kclvm --user && alias kcl='python3 -m kclvm'
 通过 `Go` 命令安装 (Go 要求 1.18+)
 
 ```bash
-go install kusionstack.io/kclvm-go/cmds/kcl-go@main && alias kcl='kcl-go run'
+go install kcl-lang.io/kcl-go/cmds/kcl-go@main && alias kcl='kcl-go run'
 ```
 
 ### 使用 Docker 镜像安装

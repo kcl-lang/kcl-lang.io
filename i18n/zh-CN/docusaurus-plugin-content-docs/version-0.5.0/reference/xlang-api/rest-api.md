@@ -15,7 +15,7 @@ python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4
 或者
 
 ```shell
-go install kusionstack.io/kclvm-go/cmds/kcl-go@main
+go install kcl-lang.io/kcl-go/cmds/kcl-go@main
 kcl-go rest-server
 ```
 

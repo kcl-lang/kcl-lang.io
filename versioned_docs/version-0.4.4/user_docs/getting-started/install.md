@@ -73,7 +73,7 @@ alias kcl='python3 -m kclvm'
 Install `kcl` through the `Go` command (`Go` requires 1.18+).
 
 ```bash
-go install kusionstack.io/kclvm-go/cmds/kcl-go@main
+go install kcl-lang.io/kcl-go/cmds/kcl-go@main
 ```
 
 Add an alias for the kcl command (optional).

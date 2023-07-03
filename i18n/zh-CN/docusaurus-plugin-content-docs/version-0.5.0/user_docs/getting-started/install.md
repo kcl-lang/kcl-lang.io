@@ -84,7 +84,7 @@ scoop install kcl-lang/kclvm
 通过 `Go` 命令安装 (Go 要求 1.18+)
 
 ```bash
-go install kusionstack.io/kclvm-go/cmds/kcl-go@main
+go install kcl-lang.io/kcl-go/cmds/kcl-go@main
 ```
 
 添加一个 kcl 命令的别名 (可选)
