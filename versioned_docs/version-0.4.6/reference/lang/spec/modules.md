@@ -81,7 +81,7 @@ Each module has a unique location path in its scope, so that a module or package
 
 Searching by location path should be supported by the kcl compiler, which needs to provide corresponding searching features through the command line and api form.
 
-## Standard System Modules
+## Standard System Packages
 
 KCL supports a few standard system modules. The following is the full list of these standard system modules:
 
@@ -356,7 +356,7 @@ KCL supports a few standard system modules. The following is the full list of th
 - manifests
   - `yaml_stream(values: [any], opts: {str:} = {sort_keys = False, ignore_private = True, ignore_none = False, sep = "---"}`. This function is used to serialize the KCL object list into YAML output with the `---` separator
 
-### The Built-in System Module
+### The Built-in System Package
 
 KCL provides a list of built-in system modules, which are loaded automatically and can be directly used without providing any module name. For example, `print` is a widely used built-in module.
 
@@ -411,7 +411,7 @@ Searching extended plugin module is performed after the standard system module. 
 
 Importing and using the extended plugin module should be consistent with the standard or built-in system module.
 
-### Replacing Standard System Modules
+### Replacing Standard System Packages
 
 Replacing standard system modules is not allowed.
 
@@ -437,7 +437,7 @@ Suppose we have the following directories and files:
 
 From the structure we can see that `pkg1` and `pkg2` are two packages, `subpkg3` is a subpackage of `pkg2`, and `mod1.k` and `mod2.k` are regular modules.
 
-### Importing a Standard System Module
+### Importing a Standard System Package
 
 The following statement can import the standard system module `math`
 
