@@ -14,7 +14,7 @@ sidebar_position: 4
 ## Prerequisites
 
 + Install [Helm](https://github.com/helm/helm)
-+ Install [Helm KCL Plugin](https://github.com/KusionStack/helm-kcl)
++ Install [Helm KCL Plugin](https://github.com/kcl-lang/helm-kcl)
 
 ## Quick Start
 
@@ -23,7 +23,7 @@ Let’s write a KCL function which add annotation `managed-by=helm-kcl-plugin` o
 ### 1. Get the Example
 
 ```bash
-git clone https://github.com/KusionStack/helm-kcl.git/
+git clone https://github.com/kcl-lang/helm-kcl.git/
 cd ./helm-kcl/examples/workload-charts-with-kcl
 ```
 
@@ -97,4 +97,4 @@ Here's what you can do in the KCL code:
 
 ## More Documents and Examples
 
-+ [Helm KCL Plugin](https://github.com/KusionStack/helm-kcl)
++ [Helm KCL Plugin](https://github.com/kcl-lang/helm-kcl)

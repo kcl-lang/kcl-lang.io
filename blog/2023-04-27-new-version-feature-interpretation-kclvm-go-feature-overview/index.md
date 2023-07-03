@@ -9,7 +9,7 @@ tags: [KCL, kclvm-go]
 
 ## What is KCL
 
-[KCL](https://github.com/KusionStack/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
+[KCL](https://github.com/kcl-lang/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
 ## What is KCL Go SDK?
 
@@ -153,8 +153,8 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 
 - [KCL Website](https://kcl-lang.io/)
 - [Kusion Website](https://kusionstack.io/)
-- [KCL Repo](https://github.com/KusionStack/kcl)
-- [kclvm-go Repo](https://github.com/KusionStack/kclvm-go)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [kclvm-go Repo](https://github.com/kcl-lang/kcl-go)
 - [Kusion Repo](https://github.com/KusionStack/kusion)
 - [Konfig Repo](https://github.com/KusionStack/konfig)
 

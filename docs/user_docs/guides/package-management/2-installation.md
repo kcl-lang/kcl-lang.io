@@ -16,7 +16,7 @@ go install kusionstack.io/kpm@latest
 
 ### Download from GITHUB release page
 
-You can get `kpm` from the [kpm github release](https://github.com/KusionStack/kpm/releases) and set the `kpm` binary path to the environment variable PATH.
+You can get `kpm` from the [kpm github release](https://github.com/kcl-lang/kpm/releases) and set the `kpm` binary path to the environment variable PATH.
 
 ```shell
 # KPM_INSTALLATION_PATH is the path of the `kpm` binary.

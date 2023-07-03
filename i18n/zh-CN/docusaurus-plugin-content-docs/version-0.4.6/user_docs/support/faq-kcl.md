@@ -2256,7 +2256,7 @@ data_type_list:
 
 ## 49. 如何通过编写 KCL 插件进行扩展?
 
-KCL 插件在 KCLVM 的 plugins 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。对于插件开发人员，插件都在 [Git 仓库](https://github.com/KusionStack/kcl-plugin)管理，可以将插件仓库克隆到该目录进行开发。
+KCL 插件在 KCLVM 的 plugins 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。对于插件开发人员，插件都在 [Git 仓库](https://github.com/kcl-lang/kcl-plugin)管理，可以将插件仓库克隆到该目录进行开发。
 
 KCL 内置了 kcl-plugin 脚手架命令用于辅助用户使用 Python 语言编写 KCL 插件，以便在 KCL 文件当中调用相应的插件对 KCL 语言本身进行增强，比如访问网络，读写 IO，CMDB 查询和加密解密等功能。
 

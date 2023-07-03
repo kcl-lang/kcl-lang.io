@@ -9,7 +9,7 @@ tags: [KCL, kclvm-go]
 
 ## KCL 是什么？
 
-[KCL](https://github.com/KusionStack/kcl) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
+[KCL](https://github.com/kcl-lang/kcl) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
 
 ## `KCL Go SDK` 是什么？
 
@@ -144,8 +144,8 @@ x1:
 
 - [KCL 网站](https://kcl-lang.io/)
 - [Kusion 网站](https://kusionstack.io/)
-- [KCL Github 仓库](https://github.com/KusionStack/kcl)
-- [kclvm-go Github 仓库](https://github.com/KusionStack/kclvm-go)
+- [KCL Github 仓库](https://github.com/kcl-lang/kcl)
+- [kclvm-go Github 仓库](https://github.com/kcl-lang/kcl-go)
 - [Kusion Github 仓库](https://github.com/KusionStack/kusion)
 - [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 

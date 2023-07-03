@@ -20,7 +20,7 @@ KCL 可用于创建函数，以改变和/或验证 Kubernetes 资源模型（KRM
 ### 1. 获取示例
 
 ```bash
-git clone https://github.com/KusionStack/kustomize-kcl.git
+git clone https://github.com/kcl-lang/kustomize-kcl.git
 cd ./kustomize-kcl/examples/set-annotation/
 ```
 
@@ -102,4 +102,4 @@ spec:
 
 ## 更多文档和示例
 
-+ [Kustomize KCL 插件](https://github.com/KusionStack/kustomize-kcl)
++ [Kustomize KCL 插件](https://github.com/kcl-lang/kustomize-kcl)

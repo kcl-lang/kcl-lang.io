@@ -110,7 +110,7 @@ $ curl -X POST \
 
 ## 4. Complete Protobuf Service Definition
 
-Cross-language APIs defined via Protobuf([https://github.com/KusionStack/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/KusionStack/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto)):
+Cross-language APIs defined via Protobuf([https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto)):
 
 ```protobuf
 // Copyright 2021 The KCL Authors. All rights reserved.

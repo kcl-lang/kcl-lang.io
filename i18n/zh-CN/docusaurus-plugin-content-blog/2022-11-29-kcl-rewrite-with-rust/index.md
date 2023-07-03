@@ -11,7 +11,7 @@ tags: [KCL, Rust, Performance, Programming Language, Compiler]
 
 Rust 已经悄然成为了最受欢迎的编程语言之一。作为一门新兴底层系统语言，Rust 拥有着内存安全性机制、接近于 C/C++ 语言的性能优势、出色的开发者社区和体验出色的文档、工具链和IDE 等诸多特点。本文将介绍笔者使用 Rust 重写项目并逐步落地生产环境的过程，以及在重写过程选择 Rust 的原因、遇到的问题以及使用 Rust 重写带来的成果。
 
-我们目前正在使用 Rust 开发的项目叫做 [KCL](https://github.com/KusionStack/kcl)，目前全部实现代码已经在 Github 上开源。KCL 是一个基于约束的记录及函数领域编程语言，致力于通过成熟的编程语言技术和实践来改进特领域如云原生 kubernetes 领域的大量繁杂配置编写和安全策略校验等，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。更具体的 KCL 使用场景请访问 [KCL 网站](https://kcl-lang.github.io/)，本文中不再过多赘述。
+我们目前正在使用 Rust 开发的项目叫做 [KCL](https://github.com/kcl-lang/kcl)，目前全部实现代码已经在 Github 上开源。KCL 是一个基于约束的记录及函数领域编程语言，致力于通过成熟的编程语言技术和实践来改进特领域如云原生 kubernetes 领域的大量繁杂配置编写和安全策略校验等，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。更具体的 KCL 使用场景请访问 [KCL 网站](https://kcl-lang.github.io/)，本文中不再过多赘述。
 
 KCL 之前是使用 Python 编写的，出于用户使用体验、性能和稳定性的考虑，决定用 Rust 语言进行重写，并获得了以下好处：
 
@@ -131,7 +131,7 @@ impl<'a> Data<'a> {
 
 ## 参考
 
-+ https://github.com/KusionStack/kcl
++ https://github.com/kcl-lang/kcl
 + https://github.com/Peefy/StackMachine
 + https://doc.rust-lang.org/book/
 + https://github.com/sunface/rust-course

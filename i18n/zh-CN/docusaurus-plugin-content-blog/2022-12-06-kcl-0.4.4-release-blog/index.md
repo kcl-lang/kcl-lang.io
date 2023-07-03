@@ -7,7 +7,7 @@ authors:
 tags: [Release Blog, KCL, KusionStack, Kusion]
 ---
 
-KCL 团队很高兴地宣布 0.4.4 版本现在已经可用！本次发布主要为 KCL 语言增加了自定义 YAML Manifests 输出的能力，用户可以通过编写代码并调用系统函数来自定义 YAML 输出的样式而无需理解复杂的 schema settings 语义；此外本次发布提供了最新的 [KCL Python SDK](https://github.com/KusionStack/kclvm-py) 可用于 Python 用户对 KCL 直接集成；同时我们大大降低了 KCL 安装包的体积，平均安装包体积降低为之前版本的五分之一，并包含多项编译器报错信息优化和 bug 修复。您可以在 [KCL 发布页面](https://github.com/KusionStack/kcl/releases/tag/v0.4.4-alpha.2) 获得更多详细发布信息和 KCL 二进制下载链接。
+KCL 团队很高兴地宣布 0.4.4 版本现在已经可用！本次发布主要为 KCL 语言增加了自定义 YAML Manifests 输出的能力，用户可以通过编写代码并调用系统函数来自定义 YAML 输出的样式而无需理解复杂的 schema settings 语义；此外本次发布提供了最新的 [KCL Python SDK](https://github.com/kcl-lang/kcl-py) 可用于 Python 用户对 KCL 直接集成；同时我们大大降低了 KCL 安装包的体积，平均安装包体积降低为之前版本的五分之一，并包含多项编译器报错信息优化和 bug 修复。您可以在 [KCL 发布页面](https://github.com/kcl-lang/kcl/releases/tag/v0.4.4-alpha.2) 获得更多详细发布信息和 KCL 二进制下载链接。
 
 ## 背景
 
@@ -98,11 +98,11 @@ metadata:
 
 > 注：schema 的 `__settings__` 元属性设置 YAML 输出样式的特性仍然可以在 v0.4.4 版本中使用，大约后续两个小版本发布后在 KCL v0.4.6 版本中，我们会移除这个特性
 
-更多信息请参阅：[https://github.com/KusionStack/kcl/issues/94](https://github.com/KusionStack/kcl/issues/94)
+更多信息请参阅：[https://github.com/kcl-lang/kcl/issues/94](https://github.com/kcl-lang/kcl/issues/94)
 
 ### Python SDK
 
-除了已有的 [KCL Go SDK](https://github.com/KusionStack/kclvm-go), 本次发布还新增了 KCL Python SDK，使用 Python SDK 要求您本地具备高于 3.7.3 的 Python 版本和 pip 包管理工具，可以通过如下命令进行安装并获得帮助信息
+除了已有的 [KCL Go SDK](https://github.com/kcl-lang/kcl-go), 本次发布还新增了 KCL Python SDK，使用 Python SDK 要求您本地具备高于 3.7.3 的 Python 版本和 pip 包管理工具，可以通过如下命令进行安装并获得帮助信息
 
 ```bash
 python3 -m pip install kclvm --user && python3 -m kclvm --help
@@ -169,11 +169,11 @@ x1:
 
 可以看出通过命令行工具和 API 可以获得同样的输出。
 
-目前 KCL Python SDK 还处于早期预览版本，后续 KCL 团队会持续更新并提供更丰富的功能，更多信息请参阅：[https://github.com/KusionStack/kclvm-py](https://github.com/KusionStack/kclvm-py)
+目前 KCL Python SDK 还处于早期预览版本，后续 KCL 团队会持续更新并提供更丰富的功能，更多信息请参阅：[https://github.com/kcl-lang/kcl-py](https://github.com/kcl-lang/kcl-py)
 
 ## 安装体积优化
 
-在新的 KCL 版本中，我们将 KCL 内置的 Python3 剥离，使得 KCL 二进制压缩包的体积从平均 200M 降低为 35M，用户可以更快地下载并使用 KCL，并且 Python Plugin 成为一个可选项，如果您想启用 KCL Python 插件，一个额外要求是需要您本地具备高于 3.7.3 版本的 Python 以及 pip 包管理工具，更多详情请参考 [https://github.com/KusionStack/kcl-plugin](https://github.com/KusionStack/kcl-plugin)
+在新的 KCL 版本中，我们将 KCL 内置的 Python3 剥离，使得 KCL 二进制压缩包的体积从平均 200M 降低为 35M，用户可以更快地下载并使用 KCL，并且 Python Plugin 成为一个可选项，如果您想启用 KCL Python 插件，一个额外要求是需要您本地具备高于 3.7.3 版本的 Python 以及 pip 包管理工具，更多详情请参考 [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin)
 
 ## 错误修复
 
@@ -193,7 +193,7 @@ foo = Foo(1,2,3)  # Error: "Foo" takes 1 positional argument but 3 were given
 f(1,2)  # Error: "f" takes 1 positional argument but 2 were given
 ```
 
-更多信息请参阅：[https://github.com/KusionStack/kcl/issues/299](https://github.com/KusionStack/kcl/issues/299)
+更多信息请参阅：[https://github.com/kcl-lang/kcl/issues/299](https://github.com/kcl-lang/kcl/issues/299)
 
 ### 插值三引号字符串格式化错误修复
 
@@ -231,11 +231,11 @@ foo = [
 ]
 ```
 
-更多信息请参阅：[https://github.com/KusionStack/kcl/issues/294](https://github.com/KusionStack/kcl/issues/294)
+更多信息请参阅：[https://github.com/kcl-lang/kcl/issues/294](https://github.com/kcl-lang/kcl/issues/294)
 
 ### 其他错误修复
 
-更多错误修复详见：[https://github.com/KusionStack/kcl/milestone/2?closed=1](https://github.com/KusionStack/kcl/milestone/2?closed=1)
+更多错误修复详见：[https://github.com/kcl-lang/kcl/milestone/2?closed=1](https://github.com/kcl-lang/kcl/milestone/2?closed=1)
 
 ## 文档
 
@@ -257,7 +257,7 @@ KCL 社区新增三名外部贡献者 @my-vegetable-has-exploded, @possible-fqz,
 + KCL 包管理工具 kpm 发布
 + KCL 新版 playground 支持
 
-更多详情请参考 [KCL v0.4.5 Milestone](https://github.com/KusionStack/kcl/milestone/3)
+更多详情请参考 [KCL v0.4.5 Milestone](https://github.com/kcl-lang/kcl/milestone/3)
 
 ## 常见问题及解答
 
@@ -267,7 +267,7 @@ KCL 社区新增三名外部贡献者 @my-vegetable-has-exploded, @possible-fqz,
 
 + [KCL 网站](https://kcl-lang.io/)
 + [Kusion 网站](https://kusionstack.io/)
-+ [KCL 仓库](https://github.com/KusionStack/kcl)
++ [KCL 仓库](https://github.com/kcl-lang/kcl)
 + [Kusion 仓库](https://github.com/KusionStack/kusion)
 + [Konfig 仓库](https://github.com/KusionStack/konfig)
 

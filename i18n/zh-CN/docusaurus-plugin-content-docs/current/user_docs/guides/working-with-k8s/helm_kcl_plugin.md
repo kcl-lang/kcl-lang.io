@@ -14,7 +14,7 @@ sidebar_position: 4
 ## 先决条件
 
 + 安装 [Helm](https://github.com/helm/helm)
-+ 安装 [Helm KCL 插件](https://github.com/KusionStack/helm-kcl)
++ 安装 [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl)
 
 ## 快速开始
 
@@ -23,7 +23,7 @@ sidebar_position: 4
 ### 1. 获取示例
 
 ```bash
-git clone https://github.com/KusionStack/helm-kcl.git/
+git clone https://github.com/kcl-lang/helm-kcl.git/
 cd ./helm-kcl/examples/workload-charts-with-kcl
 ```
 
@@ -97,4 +97,4 @@ spec:
 
 ## 更多文档和示例
 
-+ [Helm KCL 插件](https://github.com/KusionStack/helm-kcl)
++ [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl)

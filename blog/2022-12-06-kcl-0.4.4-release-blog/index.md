@@ -7,7 +7,7 @@ authors:
 tags: [Release Blog, KCL, KusionStack, Kusion]
 ---
 
-The KCL team is pleased to announce that v0.4.4 is now available! This release mainly adds the ability to customize YAML manifests output for KCL. Users can customize the style of YAML output by writing code and calling system functions without understanding the complex schema settings semantics. In addition, this release provides the latest [KCL Python SDK](https://github.com/KusionStack/kclvm-py), which can be used for Python users to directly integrate KCL. At the same time, we have greatly reduced the size of the KCL installation package. The average installation package size has been reduced to one-fifth of that of the previous version. It also includes a number of compiler error message optimization and bug fix. You can visit the [KCL release page](https://github.com/KusionStack/kcl/releases/tag/v0.4.4-alpha.2) to get more detailed release information and KCL binary download link.
+The KCL team is pleased to announce that v0.4.4 is now available! This release mainly adds the ability to customize YAML manifests output for KCL. Users can customize the style of YAML output by writing code and calling system functions without understanding the complex schema settings semantics. In addition, this release provides the latest [KCL Python SDK](https://github.com/kcl-lang/kclvm-py), which can be used for Python users to directly integrate KCL. At the same time, we have greatly reduced the size of the KCL installation package. The average installation package size has been reduced to one-fifth of that of the previous version. It also includes a number of compiler error message optimization and bug fix. You can visit the [KCL release page](https://github.com/kcl-lang/kcl/releases/tag/v0.4.4-alpha.2) to get more detailed release information and KCL binary download link.
 
 ## Background
 
@@ -98,11 +98,11 @@ metadata:
 
 > Note: The feature of schema `__settings__` meta attribute setting YAML output style can still be used in v0.4.4. We will remove this feature in KCL v0.4.6 after the next two minor versions are released.
 
-For more information, see [https://github.com/KusionStack/kcl/issues/94](https://github.com/KusionStack/kcl/issues/94).
+For more information, see [https://github.com/kcl-lang/kcl/issues/94](https://github.com/kcl-lang/kcl/issues/94).
 
 ### Python SDK
 
-In addition to the existing [KCL Go SDK](https://github.com/KusionStack/kclvm-go), this release also adds the KCL Python SDK. Using the Python SDK requires that you have a local Python version higher than 3.7.3 and a local pip package management tool. You can use the following command to install and obtain helpful information.
+In addition to the existing [KCL Go SDK](https://github.com/kcl-lang/kcl-go), this release also adds the KCL Python SDK. Using the Python SDK requires that you have a local Python version higher than 3.7.3 and a local pip package management tool. You can use the following command to install and obtain helpful information.
 
 ```bash
 python3 -m pip install kclvm --user && python3 -m kclvm --help
@@ -169,11 +169,11 @@ x1:
 
 You can see that the same output can be obtained through command line tools and APIs.
 
-At present, the KCL Python SDK is still in the early preview version. The KCL team will continue to update and provide more functions in the future. For more information, see [https://github.com/KusionStack/kclvm-py](https://github.com/KusionStack/kclvm-py)
+At present, the KCL Python SDK is still in the early preview version. The KCL team will continue to update and provide more functions in the future. For more information, see [https://github.com/kcl-lang/kclvm-py](https://github.com/kcl-lang/kclvm-py)
 
 ## Installation Size Optimization
 
-In the new KCL version, we split the built-in Python 3 of KCL, reducing the average size of the KCL binary compression package from 200M to 35M. Users can download and use KCL faster, and the Python plugin becomes an option. If you want to enable the KCL Python plugin, an additional requirement is that you have Python and pip package management tools that are higher than 3.7.3. For more details, please see [https://github.com/KusionStack/kcl-plugin](https://github.com/KusionStack/kcl-plugin)
+In the new KCL version, we split the built-in Python 3 of KCL, reducing the average size of the KCL binary compression package from 200M to 35M. Users can download and use KCL faster, and the Python plugin becomes an option. If you want to enable the KCL Python plugin, an additional requirement is that you have Python and pip package management tools that are higher than 3.7.3. For more details, please see [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin)
 
 ## Bugfix
 
@@ -193,7 +193,7 @@ foo = Foo(1,2,3)  # Error: "Foo" takes 1 positional argument but 3 were given
 f(1,2)  # Error: "f" takes 1 positional argument but 2 were given
 ```
 
-For more information, see [https://github.com/KusionStack/kcl/issues/299](https://github.com/KusionStack/kcl/issues/299)
+For more information, see [https://github.com/kcl-lang/kcl/issues/299](https://github.com/kcl-lang/kcl/issues/299)
 
 ### Formatting Error of Interpolated Three Quote String
 
@@ -212,7 +212,7 @@ ${foo}
 """
 ```
 
-For more information, see [https://github.com/KusionStack/kcl/issues/294](https://github.com/KusionStack/kcl/issues/294)
+For more information, see [https://github.com/kcl-lang/kcl/issues/294](https://github.com/kcl-lang/kcl/issues/294)
 
 ### Formatting Error of Config If Block
 
@@ -235,7 +235,7 @@ foo = [
 
 ### Other Issues
 
-For more issues, see [https://github.com/KusionStack/kcl/milestone/2?closed=1](https://github.com/KusionStack/kcl/milestone/2?closed=1)
+For more issues, see [https://github.com/kcl-lang/kcl/milestone/2?closed=1](https://github.com/kcl-lang/kcl/milestone/2?closed=1)
 
 ## Documents
 
@@ -257,7 +257,7 @@ It is estimated that by the end of January 2023, we will release KCL v0.4.5, and
 + KCL package management tool `kpm` release.
 + The new version of KCL playground.
 
-For more information, see [KCL v0.4.5 Milestone](https://github.com/KusionStack/kcl/milestone/3).
+For more information, see [KCL v0.4.5 Milestone](https://github.com/kcl-lang/kcl/milestone/3).
 
 ## FAQ
 
@@ -267,7 +267,7 @@ For more information, see [https://kcl-lang.github.io/docs/user_docs/support/](h
 
 + [KCL Website](https://kcl-lang.io/)
 + [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/KusionStack/kcl)
++ [KCL Repo](https://github.com/kcl-lang/kcl)
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 

@@ -17,9 +17,9 @@ The KCL team is pleased to announce that KCL v0.4.6 is now available! This relea
 + *Helm/Kustomize/KPT cloud-native community tool integrations*
 + *Improve the KCL multilingual SDK for easy application integration*
 
-You can visit the [KCL release page](https://github.com/KusionStack/kcl/releases/tag/v0.4.6) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
+You can visit the [KCL release page](https://github.com/kcl-lang/kcl/releases/tag/v0.4.6) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
-[KCL](https://github.com/KusionStack/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
+[KCL](https://github.com/kcl-lang/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
 This blog will introduce the content of KCL v0.4.6 and recent developments in the KCL community to readers.
 
@@ -178,9 +178,7 @@ In this version, we have released a new KCL VS Code extension and a language ser
 
 See [here](https://kcl-lang.io/docs/tools/Ide/vs-code) for more.
 
-### Kusion VS Code Extension
 
-On the basis of the KCL VS Code extension, we also provide a Kusion VS Code extension that is more closely integrated with cloud-native scenarios, supporting one-click application configuration preview and deploying. See [here](https://github.com/KusionStack/vscode-kusion) for more.
 
 ### Package Management Tools
 
@@ -255,7 +253,7 @@ Below is a detailed explanation of the integration of KCL using the Kustomize to
 Firstly, execute the following command to obtain a Kustomize YAML configuration example:
 
 ```shell
-git clone https://github.com/KusionStack/kustomize-kcl.git &&cd ./kustomize-kcl/examples/set-annotation/
+git clone https://github.com/kcl-lang/kustomize-kcl.git &&cd ./kustomize-kcl/examples/set-annotation/
 ```
 
 Then execute the following command using KCL code to add only one `managed-by=kustomize-kcl` annotation for all `Deployment` resources
@@ -328,16 +326,16 @@ In this new version, we have released a new kclvm-go SDK that integrates KCL int
 
 + Thank @jakezhu9 for fixing unexpected KCL formatting API unit testing errors in CI Pipeline for kclvm-go.
 + Thank @Ekko for contributing to the bidirectional conversion support of Go struct and KCL schema. Please refer to:
-  + [Go struct -> KCL schema](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genkcl.go#L23)
-  + [KCL schema -> Go struct](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/gengo.go#L23)
-+ Support for conversion from KCL schema to protobuf message, see [here](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genpb.go#L25) for more.
+  + [Go struct -> KCL schema](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genkcl.go#L23)
+  + [KCL schema -> Go struct](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/gengo.go#L23)
++ Support for conversion from KCL schema to protobuf message, see [here](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genpb.go#L25) for more.
 + Support APIs for obtaining schema types and instances from the KCL code, see [here](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype) for more.
 
 ## Other updates and bug fixes
 
 + The KCL Python plugin function is not enabled by default. If you need to enable it, please refer to the [plugin document](https://kcl-lang.io/docs/reference/plugin/overview).
 + KCL playground supports code-sharing capabilities, which can be accessed by visiting the [KCL website](https://kcl-lang.io/) and clicking on the playground button to experience.
-+ See [here](https://github.com/KusionStack/kcl/milestone/3?closed=1) for more updates and bug fixes.
++ See [here](https://github.com/kcl-lang/kcl/milestone/3?closed=1) for more updates and bug fixes.
 
 ## Documents
 
@@ -354,7 +352,7 @@ It is expected that in the middle of 2023, we will release **KCL v0.5.0**. The e
 + Support for mutating and validating YAML by running KCL code through the admission controller at the Kubernetes runtime.
 + More support for non-Kubernetes scenarios, such as data cleaning of AI models through the KCL schema and database schema integration support.
 
-For more details, please refer to [KCL v0.5.0 Milestone](https://github.com/KusionStack/kcl/milestone/5)
+For more details, please refer to [KCL v0.5.0 Milestone](https://github.com/kcl-lang/kcl/milestone/5)
 
 ## FAQ
 
@@ -366,7 +364,7 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 
 + [KCL Website](https://kcl-lang.io/)
 + [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/KusionStack/kcl)
++ [KCL Repo](https://github.com/kcl-lang/kcl)
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 

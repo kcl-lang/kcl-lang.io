@@ -37,7 +37,7 @@
 
 ## 已知问题
 
-[详见](https://github.com/KusionStack/kcl/issues/524)
+[详见](https://github.com/kcl-lang/kcl/issues/524)
 
 ## 寻求帮助
 

@@ -12,7 +12,7 @@ const config = {
   tagline: 'Mutation  Validation  Abstraction  Production-Ready',
 
   url: 'https://kcl-lang.github.io',
-  organizationName: 'KusionStack', // Usually your GitHub org/user name.
+  organizationName: 'kcl-lang', // Usually your GitHub org/user name.
   projectName: 'kcl', // Usually your repo name.
 
   baseUrl: '/',

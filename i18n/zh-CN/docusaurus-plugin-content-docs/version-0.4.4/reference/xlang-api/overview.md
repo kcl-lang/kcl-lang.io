@@ -292,7 +292,7 @@ x1:
 
 可以看出通过命令行工具和 API 可以获得同样的输出。
 
-目前 KCL Python SDK 还处于早期预览版本，后续 KCL 团队会持续更新并提供更丰富的功能，更多信息请参阅：[https://github.com/KusionStack/kclvm-py](https://github.com/KusionStack/kclvm-py)
+目前 KCL Python SDK 还处于早期预览版本，后续 KCL 团队会持续更新并提供更丰富的功能，更多信息请参阅：[https://github.com/kcl-lang/kcl-py](https://github.com/kcl-lang/kcl-py)
 
 ## 其它语言
 

@@ -16,7 +16,7 @@ Let’s write a KCL function which add annotation `managed-by=kpt` only to Deplo
 ### Get the Example
 
 ```bash
-git clone https://github.com/KusionStack/kpt-kcl-sdk.git/
+git clone https://github.com/kcl-lang/kpt-kcl-sdk.git/
 cd ./kpt-kcl-sdk/get-started/set-annotation
 ```
 
@@ -74,4 +74,4 @@ Here's what you can do in the KCL code:
 
 ## More Documents and Examples
 
-+ [KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk)
++ [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk)

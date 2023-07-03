@@ -8,7 +8,7 @@ sidebar_position: 2
 
 ### 二进制下载
 
-KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/KusionStack/kcl/releases/) 或者 [Gitee](https://gitee.com/kusionstack/KCLVM/releases) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
+KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/kcl-lang/kcl/releases/) 或者 [Gitee](https://gitee.com/kusionstack/KCLVM/releases) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
 
 #### MacOS & Linux
 
@@ -105,4 +105,4 @@ KCL 为 VS Code 本地版本提供了插件支持，并提供了高亮、自动�
 
 ### IntelliJ IDEA
 
-从[这里](https://github.com/KusionStack/intellij-kcl/releases)下载发行版，在 IntelliJ IDEA 中，点击 Preference -> plugins -> install Plugin from Disk... -> 选择 kcl-idea-plugin zip -> 重启 IDE。此插件需要 IntelliJ IDEA 2020.2+
+从[这里](https://github.com/kcl-lang/intellij-kcl/releases)下载发行版，在 IntelliJ IDEA 中，点击 Preference -> plugins -> install Plugin from Disk... -> 选择 kcl-idea-plugin zip -> 重启 IDE。此插件需要 IntelliJ IDEA 2020.2+

@@ -16,7 +16,7 @@ KCL 可用于创建函数来转换和/或验证 YAML Kubernetes 资源模型 (KR
 ## 获取示例
 
 ```bash
-git clone https://github.com/KusionStack/kpt-kcl-sdk.git/
+git clone https://github.com/kcl-lang/kpt-kcl-sdk.git/
 cd ./kpt-kcl-sdk/get-started/set-annotation
 ```
 
@@ -65,4 +65,4 @@ cat ./data/resources.yaml | grep annotations -A1 -B5
 
 ## 更多文档和示例
 
-+ [KPT KCL SDK](https://github.com/KusionStack/kpt-kcl-sdk)
++ [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk)

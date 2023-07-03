@@ -37,7 +37,7 @@ We recommend that you use the latest version of KCL, but the minimum required ve
 
 ## Known Issues
 
-See [here](https://github.com/KusionStack/kcl/issues/524).
+See [here](https://github.com/kcl-lang/kcl/issues/524).
 
 ## Ask for help
 

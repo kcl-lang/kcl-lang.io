@@ -20,7 +20,7 @@ Let’s write a KCL function which add annotation `managed-by=kustomize-kcl` onl
 ### 1. Get the Example
 
 ```bash
-git clone https://github.com/KusionStack/kustomize-kcl.git
+git clone https://github.com/kcl-lang/kustomize-kcl.git
 cd ./kustomize-kcl/examples/set-annotation/
 ```
 
@@ -102,4 +102,4 @@ Here's what you can do in the KCL code:
 
 ## More Documents and Examples
 
-+ [Kustomize KCL Plugin](https://github.com/KusionStack/kustomize-kcl)
++ [Kustomize KCL Plugin](https://github.com/kcl-lang/kustomize-kcl)

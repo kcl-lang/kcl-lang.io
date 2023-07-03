@@ -8,7 +8,7 @@ sidebar_position: 2
 
 ### From the Binary Releases
 
-Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/KusionStack/kcl/releases/) or [Gitee](https://gitee.com/kusionstack/KCLVM/releases) and add `{install-location}/kclvm/bin` to the environment PATH.
+Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/kcl-lang/kcl/releases/) or [Gitee](https://gitee.com/kusionstack/KCLVM/releases) and add `{install-location}/kclvm/bin` to the environment PATH.
 
 #### MacOS & Linux
 
@@ -105,4 +105,4 @@ The KCL Extension extension provides some coding assistance, e.g., highlight, go
 
 ### IntelliJ IDEA
 
-Download the distribution from [here](https://github.com/KusionStack/intellij-kcl/releases) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
+Download the distribution from [here](https://github.com/kcl-lang/intellij-kcl/releases) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+

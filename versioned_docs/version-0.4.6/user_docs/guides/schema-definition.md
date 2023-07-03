@@ -14,7 +14,7 @@ The core scenario of KCL is write configurations and constraints. and a core fea
 Firstly, let's get the example.
 
 ```bash
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/definition
 ```
 

@@ -181,7 +181,7 @@ x1:
 
 You can see that the same output can be obtained through command line tools and APIs.
 
-At present, the KCL Python SDK is still in the early preview version. The KCL team will continue to update and provide more functions in the future. For more information, see [https://github.com/KusionStack/kclvm-py](https://github.com/KusionStack/kclvm-py)
+At present, the KCL Python SDK is still in the early preview version. The KCL team will continue to update and provide more functions in the future. For more information, see [https://github.com/kcl-lang/kcl-py](https://github.com/kcl-lang/kcl-py)
 
 ## REST-API
 

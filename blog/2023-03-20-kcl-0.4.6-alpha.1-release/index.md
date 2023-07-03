@@ -11,9 +11,9 @@ tags: [Release Blog, KCL, KusionStack, Kusion]
 
 The KCL team is pleased to announce that KCL v0.4.6-alpha.1 is now available!
 
-You can visit the [KCL release page](https://github.com/KusionStack/kcl/releases/tag/v0.4.6-alpha.1) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
+You can visit the [KCL release page](https://github.com/kcl-lang/kcl/releases/tag/v0.4.6-alpha.1) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
-[KCL](https://github.com/KusionStack/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
+[KCL](https://github.com/kcl-lang/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
 ## Release Content
 
@@ -21,8 +21,8 @@ You can visit the [KCL release page](https://github.com/KusionStack/kcl/releases
 + KCL IDE plug-in supports error and warning display, go-to-definition, and other capabilities.
 + Some compiler error reporting improvements
 + KCL Playground supports code sharing capabilities
-+ [KPT Tool KCL SDK](https://github.com/KusionStack/kcl/issues/434)
-+ [Helm KCL Plugin](https://github.com/KusionStack/kcl/issues/426)
++ [KPT Tool KCL SDK](https://github.com/kcl-lang/kcl/issues/434)
++ [Helm KCL Plugin](https://github.com/kcl-lang/kcl/issues/426)
 
 ## Next​
 
@@ -40,7 +40,7 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 
 + [KCL Website](https://kcl-lang.io/)
 + [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/KusionStack/kcl)
++ [KCL Repo](https://github.com/kcl-lang/kcl)
 + [Kusion Repo](https://github.com/KusionStack/kusion)
 + [Konfig Repo](https://github.com/KusionStack/konfig)
 

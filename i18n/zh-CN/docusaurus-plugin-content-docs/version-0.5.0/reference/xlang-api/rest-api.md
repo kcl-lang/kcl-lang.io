@@ -120,7 +120,7 @@ $ curl -X POST \
 
 ## 4. 完整的 Protobuf 服务定义
 
-跨语言的 API 通过 Protobuf 定义([https://github.com/KusionStack/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/KusionStack/kclvm-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto))：
+跨语言的 API 通过 Protobuf 定义([https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto))：
 
 ```protobuf
 // Copyright 2023 The KCL Authors. All rights reserved.

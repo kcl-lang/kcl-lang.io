@@ -6,11 +6,11 @@ sidebar_position: 1
 
 KCL provides plugin support through a plugin agent and auxiliary command line tools, and the KCL plugin framework supports different general-purpose languages to develop plugins. Here we take Python as an example to briefly explain the use of plugins.
 
-KCL plugin Git repository: [https://github.com/KusionStack/kcl-plugin](https://github.com/KusionStack/kcl-plugin)
+KCL plugin Git repository: [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin)
 
 ## 1. Hello Plugin
 
-KCL plugins are installed in the `plugins` subdirectory of KCL (usually installed in the `$HOME/.kusion/kclvm/plugins` directory), or set through the `$KCL_PLUGINS_ROOT` environment variable. KCL plugins are managed in the Git repository: [https://github.com/KusionStack/kcl-plugin](https://github.com/KusionStack/kcl-plugin), we can clone the repository for development.
+KCL plugins are installed in the `plugins` subdirectory of KCL (usually installed in the `$HOME/.kusion/kclvm/plugins` directory), or set through the `$KCL_PLUGINS_ROOT` environment variable. KCL plugins are managed in the Git repository: [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin), we can clone the repository for development.
 
 Enter the `kcl-plugin info` command to view the plugin directory (replace `/Users/kcl_user` with the local `$HOME` path):
 

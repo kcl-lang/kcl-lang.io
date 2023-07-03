@@ -12,7 +12,7 @@ KCL 的核心场景是写配置和校验，因此 KCL 被设计之初的一个�
 ### 1. 获得示例
 
 ```shell
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/definition
 ```
 

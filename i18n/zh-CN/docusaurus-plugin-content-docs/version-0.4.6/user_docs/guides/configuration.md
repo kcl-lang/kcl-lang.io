@@ -20,7 +20,7 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 首先，执行如下命令获取示例
 
 ```shell
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/configuration
 ```
 

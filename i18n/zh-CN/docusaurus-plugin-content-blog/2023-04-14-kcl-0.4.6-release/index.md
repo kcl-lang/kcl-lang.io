@@ -17,9 +17,9 @@ KCL 团队很高兴地宣布 KCL v0.4.6 新版本现在已经可用！本次发�
 + *Helm/Kustomize/KPT 云原生社区工具集成*
 + *完善 KCL 多语言 SDK，方便应用程序集成*
 
-进一步您可以在 [KCL v0.4.6 发布页面](https://github.com/KusionStack/kcl/releases/tag/v0.4.6) 或者 [KCL 官方网站](https://kcl-lang.io) 获得下载安装指南和详细发布信息。
+进一步您可以在 [KCL v0.4.6 发布页面](https://github.com/kcl-lang/kcl/releases/tag/v0.4.6) 或者 [KCL 官方网站](https://kcl-lang.io) 获得下载安装指南和详细发布信息。
 
-[KCL](https://github.com/KusionStack/kcl) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
+[KCL](https://github.com/kcl-lang/kcl) 是一个开源的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置和策略的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更快的自动化集成和良好的生态延展性。
 
 本文重点介绍 KCL v0.4.6 版本的更新内容以及 KCL 社区的近期动态。
 
@@ -178,10 +178,6 @@ app = App {
 
 更多 KCL VS Code 插件安装方式及详细更新内容[详见](https://kcl-lang.io/docs/tools/Ide/vs-code)
 
-### Kusion VS Code 插件
-
-在 KCL VS Code 插件的基础上，我们还提供了与云原生运维发布场景结合更紧密的 Kusion VS Code 插件，支持一键应用配置预览与发布，[详见](https://github.com/KusionStack/vscode-kusion)
-
 ### 包管理工具
 
 在 KCL v0.4.6 新版本中，我们提供了全新的 KCL 包管理工具 alpha 版本，用户可以通过几个命令即可获得社区中已经编写好的 KCL 模型。比如可以通过包管理工具一键导入 KCL Kubernetes 模型并使用
@@ -253,7 +249,7 @@ spec:
 首先执行如下命令获取一个 Kustomize YAML 配置示例:
 
 ```shell
-git clone https://github.com/KusionStack/kustomize-kcl.git &&cd ./kustomize-kcl/examples/set-annotation/
+git clone https://github.com/kcl-lang/kustomize-kcl.git &&cd ./kustomize-kcl/examples/set-annotation/
 ```
 
 然后执行如下命令使用 KCL 代码仅为所有的 `Deployment` 资源添加一个 `managed-by=kustomize-kcl` 注解
@@ -326,16 +322,16 @@ spec:
 
 + 感谢 @jakezhu9 修复了 kclvm-go 未预期的 KCL 格式化 API 在 CI Pipeline 中单元测试错误
 + 感谢 @Ekko 贡献 Go struct 和 KCL schema 双向转换支持，详见:
-  + [Go struct -> KCL schema](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genkcl.go#L23)
-  + [KCL schema -> Go struct](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/gengo.go#L23)
-+ KCL schema 到 protobuf message 的转换支持，[详见](https://github.com/KusionStack/kclvm-go/blob/main/pkg/tools/gen/genpb.go#L25)
+  + [Go struct -> KCL schema](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genkcl.go#L23)
+  + [KCL schema -> Go struct](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/gengo.go#L23)
++ KCL schema 到 protobuf message 的转换支持，[详见](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genpb.go#L25)
 + KCL 新增获取 schema 类型和实例 API，[详见](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype)
 
 ## 其他更新与错误修复
 
 + KCL python plugin 功能默认不开启，如需开启可参考 [KCL Plugin 文档](https://kcl-lang.io/docs/reference/plugin/overview)
 + KCL playground 支持代码分享能力，您可以通过访问 [KCL 官网](https://kcl-lang.io/) 并点击 Playground 按钮进行体验
-+ 更多更新与错误修复，[详见](https://github.com/KusionStack/kcl/milestone/3?closed=1)
++ 更多更新与错误修复，[详见](https://github.com/kcl-lang/kcl/milestone/3?closed=1)
 
 ## 文档更新
 
@@ -353,9 +349,9 @@ spec:
 + 支持在 Kubernetes 运行时通过 Admission Controller 运行 KCL 代码对 YAML 进行编辑和校验
 + 更多非 Kubernetes 场景支持，如通过 KCL Schema 对 AI 模型进行数据清理和数据库 Schema 集成支持
 
-更多详情请参考 [KCL v0.5.0 Milestone](https://github.com/KusionStack/kcl/milestone/5)
+更多详情请参考 [KCL v0.5.0 Milestone](https://github.com/kcl-lang/kcl/milestone/5)
 
-如果您有更多的想法和需求，欢迎在 KCL Github 仓库发起 [Issues](https://github.com/KusionStack/kcl/issues)，也欢迎加入我们的社区进行交流 🙌 🙌 🙌
+如果您有更多的想法和需求，欢迎在 KCL Github 仓库发起 [Issues](https://github.com/kcl-lang/kcl/issues)，也欢迎加入我们的社区进行交流 🙌 🙌 🙌
 
 ## 常见问题及解答
 
@@ -369,7 +365,7 @@ spec:
 
 + [KCL 网站](https://kcl-lang.io/)
 + [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/KusionStack/kcl)
++ [KCL Github 仓库](https://github.com/kcl-lang/kcl)
 + [Kusion Github 仓库](https://github.com/KusionStack/kusion)
 + [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 

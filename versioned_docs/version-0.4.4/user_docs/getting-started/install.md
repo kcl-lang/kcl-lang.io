@@ -8,7 +8,7 @@ sidebar_position: 2
 
 ### From the Binary Releases
 
-Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/KusionStack/kcl/releases/) and add `{install-location}/kclvm/bin` to the environment PATH.
+Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/kcl-lang/kcl/releases/) and add `{install-location}/kclvm/bin` to the environment PATH.
 
 #### MacOS & Linux
 
@@ -100,7 +100,7 @@ docker pull kusionstack/kclvm
 
 > ⚠️ For all the above operating systems and installation methods, if you want to use [KCL Python plug-in](https://kcl-lang.io/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
 
-> To avoid the GLIBC version being too low, for lower versions of Linux such as Centos7, you can visit [Github](https://github.com/KusionStack/kcl/releases/) to find the release of kclvm-centos and download and install it.
+> To avoid the GLIBC version being too low, for lower versions of Linux such as Centos7, you can visit [Github](https://github.com/kcl-lang/kcl/releases/) to find the release of kclvm-centos and download and install it.
 
 ## 2. Install the KCL IDE Extension
 
@@ -116,7 +116,7 @@ The [VS Code Web IDE](https://vscode.dev) can be reached through the browser, an
 
 ### IntelliJ IDEA
 
-Download the distribution from [here](https://github.com/KusionStack/intellij-kcl/releases) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
+Download the distribution from [here](https://github.com/kcl-lang/intellij-kcl/releases) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
 
 ## Next Step
 

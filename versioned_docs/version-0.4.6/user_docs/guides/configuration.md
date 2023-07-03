@@ -20,7 +20,7 @@ Now that we have an understanding of KCL's capabilities, let's explore how to us
 Firstly, let's get the example.
 
 ```shell
-git clone https://github.com/KusionStack/kcl-lang.io.git/
+git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/configuration
 ```
 
