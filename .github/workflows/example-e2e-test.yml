@@ -22,7 +22,7 @@ jobs:
           go-version: "1.19"
 
       - name: kpm Installation
-        run: go install kusionstack.io/kpm@main
+        run: go install kcl-lang.io/kpm@main
 
       - name: Example tests
         shell: bash -ieo pipefail {0}

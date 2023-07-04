@@ -87,7 +87,7 @@ KCL supports a few standard system modules. The following is the full list of th
 
 <table>
     <tr>
-        <td><b>Module</b></td>
+        <td><b>Package</b></td>
         <td><b>Member</b></td>
     </tr>
     <tr>
