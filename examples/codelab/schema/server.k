@@ -1,5 +1,5 @@
 import regex
-import kusion_kubernetes.api.core.v1
+import k8spkg.api.core.v1
 
 protocol PVCProtocol:
     pvc?: {str:}
