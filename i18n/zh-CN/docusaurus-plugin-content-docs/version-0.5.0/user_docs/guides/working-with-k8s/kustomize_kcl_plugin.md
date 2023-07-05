@@ -41,7 +41,7 @@ metadata:
   annotations:
     config.kubernetes.io/function: |
       container:
-        image: docker.io/peefyxpf/kustomize-kcl:v0.1.0
+        image: docker.io/kcllang/kustomize-kcl:v0.1.1
     config.kubernetes.io/path: example-use.yaml
     internal.config.kubernetes.io/path: example-use.yaml
   # 编辑此源代码
