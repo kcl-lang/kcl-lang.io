@@ -6,11 +6,11 @@
 import "github.com/kcl-lang/kcl-go"
 ```
 
-### KCLVM binding for Go
+### KCL Go SDK
 
 ```
 ┌─────────────────┐         ┌─────────────────┐           ┌─────────────────┐
-│     kcl files   │         │   KCLVM-Go-API  │           │  KCLResultList  │
+│     kcl files   │         │    KCL-Go-API   │           │  KCLResultList  │
 │  ┌───────────┐  │         │                 │           │                 │
 │  │    1.k    │  │         │                 │           │                 │
 │  └───────────┘  │         │                 │           │  ┌───────────┐  │         ┌───────────────┐

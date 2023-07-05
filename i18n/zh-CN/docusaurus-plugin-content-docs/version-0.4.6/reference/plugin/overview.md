@@ -14,7 +14,7 @@ KCL 是声明式配置策略语言，对于不方便通过配置直接描述的�
 
 ## 1. 你好插件
 
-KCL 插件在 KCLVM 的 `plugins` 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。此外，`plugins` 插件目录还可以放在执行 KCL 命令的 `pwd` 路径或者父路径中。对于插件开发人员，插件都在 Git 仓库管理： [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin) ，可以将插件仓库克隆到该目录进行开发。
+KCL 插件在 KCL 的 `plugins` 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。此外，`plugins` 插件目录还可以放在执行 KCL 命令的 `pwd` 路径或者父路径中。对于插件开发人员，插件都在 Git 仓库管理： [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin) ，可以将插件仓库克隆到该目录进行开发。
 
 输入 `kcl-plugin info` 命令查看查看插件目录（将其中的 `/Users/kcl_user` 替换成本地的 `$HOME` 路径）：
 
@@ -146,7 +146,7 @@ hi: hi doc - 0.0.1
 
 ## 6. 插件的删除
 
-KCL 插件在 KCLVM 的 `plugins` 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录）。
+KCL 插件在 KCL 的 `plugins` 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录）。
 可以通过命令 `kcl-plugin info` 查询插件安装目录。
 
 ```shell

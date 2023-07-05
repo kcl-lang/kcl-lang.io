@@ -8,11 +8,11 @@ sidebar_position: 3
 import "kcl-lang.io/kcl-go"
 ```
 
-## KCLVM binding for Go
+## KCL Go SDK
 
 ```
 ┌─────────────────┐         ┌─────────────────┐           ┌─────────────────┐
-│     kcl files   │         │   KCLVM-Go-API  │           │  KCLResultList  │
+│     kcl files   │         │    KCL-Go-API   │           │  KCLResultList  │
 │  ┌───────────┐  │         │                 │           │                 │
 │  │    1.k    │  │         │                 │           │                 │
 │  └───────────┘  │         │                 │           │  ┌───────────┐  │         ┌───────────────┐
@@ -85,7 +85,7 @@ x1 = Person {
 ## Index
 
 - [Go API](#go-api)
-		- [KCLVM binding for Go](#kclvm-binding-for-go)
+		- [KCL Go SDK](#kcl-go-sdk)
 	- [Index](#index)
 	- [Constants](#constants)
 	- [func FormatCode](#func-formatcode)

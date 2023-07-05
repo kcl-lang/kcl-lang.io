@@ -54,7 +54,7 @@ message ListMethod_Result {
 
 ## 3. `KclvmService` 服务
 
-`KclvmService` 服务是和 KCLVM 功能相关的服务。用法和 `BuiltinService` 服务一样。
+`KclvmService` 服务是和 KCL 功能相关的服务。用法和 `BuiltinService` 服务一样。
 
 比如有以下的 `Person` 结构定义：
 

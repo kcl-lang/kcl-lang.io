@@ -20,7 +20,7 @@ Go 语言 API 的抽象模型如下图：
 
 ```
 ┌─────────────────┐         ┌─────────────────┐           ┌─────────────────┐
-│     kcl files   │         │   KCLVM-Go-API  │           │  KCLResultList  │
+│     kcl files   │         │    KCL-Go-API   │           │  KCLResultList  │
 │  ┌───────────┐  │         │                 │           │                 │
 │  │    1.k    │  │         │                 │           │                 │
 │  └───────────┘  │         │                 │           │  ┌───────────┐  │         ┌───────────────┐
@@ -44,7 +44,7 @@ Go 语言 API 的抽象模型如下图：
 └─────────────────┘         └─────────────────┘           └─────────────────┘
 ```
 
-其中输入的文件包含 KCL 文件和 `setting.yml` 配置文件，`Options` 可以用于指定额外的参数和工作目录等信息。“KCLVM-Go-API”部分是提供的 KCLVM 执行函数，执行函数根据输入文件和额外的参数执行 KCL 程序，最终输出 `KCLResultList` 结果。`KCLResultList` 是一个 `KCLResult` 构成的列表，每个 `KCLResult` 对应一个生成的配置文件或 `map[string]interface{}`。
+其中输入的文件包含 KCL 文件和 `setting.yml` 配置文件，`Options` 可以用于指定额外的参数和工作目录等信息。“KCL-Go-API”部分是提供的 KCL 执行函数，执行函数根据输入文件和额外的参数执行 KCL 程序，最终输出 `KCLResultList` 结果。`KCLResultList` 是一个 `KCLResult` 构成的列表，每个 `KCLResult` 对应一个生成的配置文件或 `map[string]interface{}`。
 
 ### 例子
 
@@ -168,7 +168,7 @@ message ListMethod_Result {
 
 ### `KclvmService` 服务
 
-`KclvmService` 服务是和 KCLVM 功能相关的服务。用法和 `BuiltinService` 服务一样。
+`KclvmService` 服务是和 KCL 功能相关的服务。用法和 `BuiltinService` 服务一样。
 
 比如有以下的 `Person` 结构定义：
 

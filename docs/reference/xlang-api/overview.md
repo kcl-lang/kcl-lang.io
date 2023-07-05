@@ -20,7 +20,7 @@ The abstract model of the KCL Go API is as follows:
 
 ```
 ┌─────────────────┐         ┌─────────────────┐           ┌─────────────────┐
-│     kcl files   │         │   KCLVM-Go-API  │           │  KCLResultList  │
+│     kcl files   │         │   KCL-Go-API    │           │  KCLResultList  │
 │  ┌───────────┐  │         │                 │           │                 │
 │  │    1.k    │  │         │                 │           │                 │
 │  └───────────┘  │         │                 │           │  ┌───────────┐  │         ┌───────────────┐
@@ -44,7 +44,7 @@ The abstract model of the KCL Go API is as follows:
 └─────────────────┘         └─────────────────┘           └─────────────────┘
 ```
 
-The input file contains the KCL file and the `setting.yml` configuration file, and `Options` can be used to specify additional parameters and information such as working directory. The "KCLVM-Go-API" part is the provided KCLVM execution function. The execution function executes the KCL program according to the input file and additional parameters, and finally outputs the result of `KCLResultList`. `KCLResultList` is a list of `KCLResult`, each `KCLResult` corresponding to a generated configuration file or `map[string]interface{}`.
+The input file contains the KCL file and the `setting.yml` configuration file, and `Options` can be used to specify additional parameters and information such as working directory. The "KCL-Go-API" part is the provided KCL execution function. The execution function executes the KCL program according to the input file and additional parameters, and finally outputs the result of `KCLResultList`. `KCLResultList` is a list of `KCLResult`, each `KCLResult` corresponding to a generated configuration file or `map[string]interface{}`.
 
 ### Example
 
@@ -54,18 +54,14 @@ package main
 import (
 	"fmt"
 
-	"kcl-lang.io/kclvm-go/api/kcl"
+	kcl "kcl-lang.io/kcl-go"
 )
 
 
 func main() {
 	const k_code = `
-import kcl_plugin.hello
-
 name = "kcl"
 age = 1
-
-two = hello.add(1, 1)
 
 schema Person:
     name: str = "kcl"
@@ -97,7 +93,6 @@ Output result:
 ```yaml
 age: 1
 name: kcl
-two: 2
 x0:
     age: 1
     name: kcl
