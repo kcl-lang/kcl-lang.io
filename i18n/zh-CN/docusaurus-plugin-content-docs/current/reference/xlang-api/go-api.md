@@ -85,31 +85,23 @@ x1 = Person {
 ## Index
 
 - [Go API](#go-api)
-		- [KCL Go SDK](#kcl-go-sdk)
+	- [KCL binding for Go](#kcl-binding-for-go)
 	- [Index](#index)
 	- [Constants](#constants)
 	- [func FormatCode](#func-formatcode)
-			- [Output](#output)
 	- [func FormatPath](#func-formatpath)
 	- [func InitKclvmPath](#func-initkclvmpath)
 	- [func InitKclvmRuntime](#func-initkclvmruntime)
 	- [func LintPath](#func-lintpath)
-			- [Output](#output-1)
 	- [func ListDepFiles](#func-listdepfiles)
 	- [func ListDownStreamFiles](#func-listdownstreamfiles)
 	- [func ListUpStreamFiles](#func-listupstreamfiles)
 	- [func OverrideFile](#func-overridefile)
 	- [func ValidateCode](#func-validatecode)
 	- [type KCLResult](#type-kclresult)
-			- [Output](#output-2)
-			- [Output](#output-3)
 	- [type KCLResultList](#type-kclresultlist)
 		- [func MustRun](#func-mustrun)
-			- [Output](#output-4)
-			- [Output](#output-5)
-			- [Output](#output-6)
 		- [func Run](#func-run)
-			- [Output](#output-7)
 		- [func RunFiles](#func-runfiles)
 	- [type KclType](#type-kcltype)
 		- [func GetSchemaType](#func-getschematype)
@@ -120,7 +112,6 @@ x1 = Person {
 		- [func WithDisableNone](#func-withdisablenone)
 		- [func WithKFilenames](#func-withkfilenames)
 		- [func WithOptions](#func-withoptions)
-			- [Output](#output-8)
 		- [func WithOverrides](#func-withoverrides)
 		- [func WithPrintOverridesAST](#func-withprintoverridesast)
 		- [func WithSettings](#func-withsettings)
@@ -159,7 +150,7 @@ FormatCode returns the formatted code.
 }
 ```
 
-#### Output
+
 
 ```
 a = 1 + 2
@@ -235,7 +226,7 @@ LintPath lint files from the given path
 }
 ```
 
-#### Output
+
 
 ```
 Module 'a' is reimported multiple times
@@ -325,7 +316,7 @@ x1 = Person {age = 101}
 }
 ```
 
-#### Output
+
 
 ```
 x0.name: kcl-go
@@ -364,7 +355,7 @@ x = {
 }
 ```
 
-#### Output
+
 
 ```
 person: &{Name:kcl Age:101}
@@ -399,7 +390,7 @@ MustRun is like Run but panics if return any error.
 }
 ```
 
-#### Output
+
 
 ```
 name: kcl
@@ -426,7 +417,7 @@ a = 2
 }
 ```
 
-#### Output
+
 
 ```
 b: 1
@@ -455,7 +446,7 @@ x = Person()
 }
 ```
 
-#### Output
+
 
 ```
 {
@@ -503,7 +494,7 @@ Run evaluates the KCL program with path and opts, then returns the object list.
 }
 ```
 
-#### Output
+
 
 ```
 R000A
@@ -636,7 +627,7 @@ age = option("age")
 }
 ```
 
-#### Output
+
 
 ```
 age: 1
