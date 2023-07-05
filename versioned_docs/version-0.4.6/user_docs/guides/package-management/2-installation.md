@@ -11,7 +11,7 @@ Before installing and using kpm, ensure that KCL compiler has been installed suc
 You can download kpm via go install.
 
 ```shell
-go install kusionstack.io/kpm@latest
+go install kcl-lang.io/kpm@latest
 ```
 
 ### Download from GITHUB release page

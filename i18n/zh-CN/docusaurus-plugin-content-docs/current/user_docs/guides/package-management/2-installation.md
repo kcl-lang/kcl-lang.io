@@ -9,7 +9,7 @@ kpm 将调用 `KCL`编译器来编译 KCL 程序。在使用 `kpm` 之前，您�
 您可以使用 go install 命令安装 kpm。
 
 ```shell
-go install kusionstack.io/kpm@latest
+go install kcl-lang.io/kpm@latest
 ```
 
 ### 从 Github release 页面手动安装 `kpm`
