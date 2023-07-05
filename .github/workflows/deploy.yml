@@ -24,7 +24,7 @@ jobs:
       - name: Deploy kcl-lang/kcl-lang.github.io
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.KCL_LANG_BOT_TOKEN }}
+          personal_token: ${{ secrets.DEPLOY_ACCESS_TOKEN }}
           external_repository: kcl-lang/kcl-lang.github.io
           publish_dir: ./build
           publish_branch: main
