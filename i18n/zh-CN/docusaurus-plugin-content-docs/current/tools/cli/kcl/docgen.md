@@ -152,7 +152,7 @@ KCL文件的文档主要包含如下两个部分：
   3.2 从 server.k 得到初始化的 i18n 配置文件，例如希望为其增加中文文档，指定生成的配置文件格式为 YAML
 
     ```text
-    kcl init-i18n server.k --format YAML --i18n-locale zh_cn
+    kcl-doc init-i18n server.k --format YAML --i18n-locale zh_cn
     ```
 
     该命令将在当前目录下创建 kcl_doc 目录，并生成 i18n 配置文件 kcl_doc/i18n_server_zh_cn.yaml，其内容如下：

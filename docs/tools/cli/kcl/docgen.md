@@ -152,7 +152,7 @@ As shown before, by default, the documentation extracted by the documentation ge
   3.2 Get the initialized i18n configuration file from the `server.k`. For example, if you want to add Chinese documents to it, specify the format of the generated configuration file as YAML
 
     ```text
-    kcl init-i18n server.k --format YAML --i18n-locale zh_cn
+    kcl-doc init-i18n server.k --format YAML --i18n-locale zh_cn
     ```
 
     This command will create the directory `kcl_doc` under the current directory and generate the i18n configuration file `kcl_doc/i18n_server_zh_cn.yaml`. Its contents are as follows:
