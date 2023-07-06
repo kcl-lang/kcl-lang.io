@@ -37,17 +37,17 @@ KCLVM_HOME_DIR=${KCL_INSTALL_DIR}/kclvm
 
 # --- helper functions for logs ---
 info() {
-  local action="$1"
-  local details="$2"
-  command printf '\033[1;32m%12s\033[0m %s\n' "$action" "$details" 1>&2
+    local action="$1"
+    local details="$2"
+    command printf '\033[1;32m%12s\033[0m %s\n' "$action" "$details" 1>&2
 }
 
 warn() {
-	command printf '\033[1;33mWarn\033[0m: %s\n' "$1" 1>&2
+    command printf '\033[1;33mWarn\033[0m: %s\n' "$1" 1>&2
 }
 
 error() {
-	command printf '\033[1;31mError\033[0m: %s\n' "$1" 1>&2
+    command printf '\033[1;31mError\033[0m: %s\n' "$1" 1>&2
 }
 
 request() {
@@ -64,7 +64,7 @@ bold() {
 
 # If file exists, echo it
 echo_fexists() {
-  [ -f "$1" ] && echo "$1"
+    [ -f "$1" ] && echo "$1"
 }
 
 getSystemInfo() {
@@ -214,102 +214,102 @@ installFile() {
 }
 
 updateProfile() {
-	install_dir="$1"
-	profile_install_dir=$(echo "$install_dir" | sed "s:^$HOME:\$HOME:")
-	detected_profile=$(detectProfile "$(basename $SHELL)" "$(uname -s)")
-	path_str="$(buildPathStr "$detected_profile" "$profile_install_dir")"
+    install_dir="$1"
+    profile_install_dir=$(echo "$install_dir" | sed "s:^$HOME:\$HOME:")
+    detected_profile=$(detectProfile "$(basename $SHELL)" "$(uname -s)")
+    path_str="$(buildPathStr "$detected_profile" "$profile_install_dir")"
 
-	info "Editing user profile ($detected_profile) with the profile install dir $profile_install_dir"
+    info "Editing user profile ($detected_profile) with the profile install dir $profile_install_dir"
 
-	if [ -z "${detected_profile-}" ]; then
+    if [ -z "${detected_profile-}" ]; then
         error "No user profile found."
         eprintf "Tried \$PROFILE ($PROFILE), ~/.bashrc, ~/.bash_profile, ~/.zshrc, ~/.profile, and ~/.config/fish/config.fish."
         eprintf "You can either create one of these and try again or add this to the appropriate file:"
         eprintf "$path_str"
-		return 1
-	else
-		if ! command grep -qc 'KCLVM_HOME' "$detected_profile"; then
+        return 1
+    else
+        if ! command grep -qc 'KCLVM_HOME' "$detected_profile"; then
             info "The KCLVM PATH string is"
             info $path_str
-			command printf "$path_str" >> "$detected_profile"
-		else
-			warn "Your profile ($detected_profile) already mentions kcl and has not been changed."
-		fi
-	fi
+            command printf "$path_str" >> "$detected_profile"
+        else
+            warn "Your profile ($detected_profile) already mentions kcl and has not been changed."
+        fi
+    fi
 }
 
 detectProfile() {
-	local shell_name="$1"
-	local uname="$2"
+    local shell_name="$1"
+    local uname="$2"
 
-	if [ -f "$PROFILE" ]; then
-		info "Current profile: $PROFILE"
-		return
-	fi
+    if [ -f "$PROFILE" ]; then
+        info "Current profile: $PROFILE"
+        return
+    fi
 
-	# try to detect the current shell
-	case "$shell_name" in
-	bash)
-		# Shells on macOS default to opening with a login shell, while Linuxes
-		# default to a *non*-login shell, so if this is macOS we look for
-		# `.bash_profile` first; if it's Linux, we look for `.bashrc` first. The
-		# `*` fallthrough covers more than just Linux: it's everything that is not
-		# macOS (Darwin). It can be made narrower later if need be.
-		case $uname in
-		Darwin)
-			echo_fexists "$HOME/.bash_profile" || echo_fexists "$HOME/.bashrc"
-			;;
-		*)
-			echo_fexists "$HOME/.bashrc" || echo_fexists "$HOME/.bash_profile"
-			;;
-		esac
-		;;
-	zsh)
-		echo "$HOME/.zshrc"
-		;;
-	fish)
-		echo "$HOME/.config/fish/config.fish"
-		;;
-	*)
-		# Fall back to checking for profile file existence. Once again, the order
-		# differs between macOS and everything else.
-		local profiles
-		case $uname in
-		Darwin)
-			profiles=(.profile .bash_profile .bashrc .zshrc .config/fish/config.fish)
-			;;
-		*)
-			profiles=(.profile .bashrc .bash_profile .zshrc .config/fish/config.fish)
-			;;
-		esac
+    # try to detect the current shell
+    case "$shell_name" in
+    bash)
+        # Shells on macOS default to opening with a login shell, while Linuxes
+        # default to a *non*-login shell, so if this is macOS we look for
+        # `.bash_profile` first; if it's Linux, we look for `.bashrc` first. The
+        # `*` fallthrough covers more than just Linux: it's everything that is not
+        # macOS (Darwin). It can be made narrower later if need be.
+        case $uname in
+        Darwin)
+            echo_fexists "$HOME/.bash_profile" || echo_fexists "$HOME/.bashrc"
+            ;;
+        *)
+            echo_fexists "$HOME/.bashrc" || echo_fexists "$HOME/.bash_profile"
+            ;;
+        esac
+        ;;
+    zsh)
+        echo "$HOME/.zshrc"
+        ;;
+    fish)
+        echo "$HOME/.config/fish/config.fish"
+        ;;
+    *)
+        # Fall back to checking for profile file existence. Once again, the order
+        # differs between macOS and everything else.
+        local profiles
+        case $uname in
+        Darwin)
+            profiles=(.profile .bash_profile .bashrc .zshrc .config/fish/config.fish)
+            ;;
+        *)
+            profiles=(.profile .bashrc .bash_profile .zshrc .config/fish/config.fish)
+            ;;
+        esac
 
-		for profile in "${profiles[@]}"; do
-			echo_fexists "$HOME/$profile" && break
-		done
-		;;
-	esac
+        for profile in "${profiles[@]}"; do
+            echo_fexists "$HOME/$profile" && break
+        done
+        ;;
+    esac
 }
 
 # generate shell code to source the loading script and modify the path for the input profile
 buildPathStr() {
-	local profile="$1"
-	local profile_install_dir="$2"
+    local profile="$1"
+    local profile_install_dir="$2"
 
-	if [[ $profile =~ \.fish$ ]]; then
-		# fish uses a little different syntax to modify the PATH
-		cat <<END_FISH_SCRIPT
+    if [[ $profile =~ \.fish$ ]]; then
+        # fish uses a little different syntax to modify the PATH
+        cat <<END_FISH_SCRIPT
 
 string match -r "kclvm" "\$PATH" > /dev/null; or set -gx PATH "\$profile_install_dir/bin" \$PATH
 
 END_FISH_SCRIPT
-	else
-		# bash and zsh
-		cat <<END_BASH_SCRIPT
+    else
+        # bash and zsh
+        cat <<END_BASH_SCRIPT
 
 export PATH="$profile_install_dir/bin:\$PATH"
 
 END_BASH_SCRIPT
-	fi
+    fi
 }
 
 fail_trap() {
