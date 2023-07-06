@@ -34,7 +34,7 @@ kubectl -n argocd patch cm/argocd-cm -p "$(cat patch-argocd-cm.yaml)"
 
 ### 2. 更新 ArgoCD 部署
 
-完成第一步，ArgoCD 就可以识别 Kusion 插件，但 KCL 插件还没有载入到 ArgoCD 的镜像中。要实现配置漂移检查，需要修改 argocd-repo-server 的 Deployment。
+完成第一步，ArgoCD 就可以识别 KCL 插件，但 KCL 插件还没有载入到 ArgoCD 的镜像中。要实现配置漂移检查，需要修改 argocd-repo-server 的 Deployment。
 
 下载 [patch](https://github.com/KusionStack/examples/blob/main/kusion/argo-cd/patch-argocd-repo-server.yaml) 文件
 

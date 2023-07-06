@@ -12,6 +12,4 @@ KusionStack 是一个可编程、高灵活性的应用交付及运维技术栈�
 
 ![](/img/docs/user_docs/intro/kusion-stack-1.png)
 
-KusionStack 源于蚂蚁集团内部的规模化工程化运维实践，已广泛应用在蚂蚁多云应用交付运维，计算及数据基础设施交付，建站运维，数据库运维等多个业务领域，助力蚂蚁完成从传统运维管理模式到可编程 DevOps 运维模式的转型。
-
 更多文档请参考: [https://kusionstack.io/](https://kusionstack.io/)

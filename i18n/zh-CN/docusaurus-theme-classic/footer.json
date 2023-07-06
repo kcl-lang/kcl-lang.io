@@ -17,7 +17,7 @@
   },
   "link.item.label.Slack": {
     "message": "Slack",
-    "description": "The label of footer link with label=Slack linking to https://KusionStack.slack.com"
+    "description": "The label of footer link with label=Slack linking to https://kcl-lang.slack.com"
   },
   "link.item.label.Changelog": {
     "message": "更新日志",

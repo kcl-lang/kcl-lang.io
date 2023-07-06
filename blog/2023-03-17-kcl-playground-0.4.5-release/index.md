@@ -4,7 +4,7 @@ title: The new playground of the KCL programming language is coming!
 authors:
   name: KCL Team
   title: KCL Team
-tags: [Release Blog, KCL, KusionStack, Kusion, Playground]
+tags: [Release Blog, KCL, Playground]
 ---
 
 ## Introduction

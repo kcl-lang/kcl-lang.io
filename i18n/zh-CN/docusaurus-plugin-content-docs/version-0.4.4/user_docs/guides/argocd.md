@@ -12,9 +12,9 @@ kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
-## 配置 Kusion 插件
+## 配置 KCL 插件
 
-目前，ArgoCD 内置了一些常见的配置插件，包括 helm、jsonnet、kustomize。而对于 KCL 来说，作为一门全新的配置语言，想要使用 ArgoCD 实现漂移检查的能力，需要遵循它的插件化的机制，配置 Kusion 插件。具体操作如下：
+目前，ArgoCD 内置了一些常见的配置插件，包括 helm、jsonnet、kustomize。而对于 KCL 来说，作为一门全新的配置语言，想要使用 ArgoCD 实现漂移检查的能力，需要遵循它的插件化的机制，配置 KCL 插件。具体操作如下：
 
 1. 下载 [patch](https://github.com/KusionStack/examples/blob/main/kusion/argo-cd/patch-argocd-cm.yaml) 文件
 
@@ -30,7 +30,7 @@ kubectl -n argocd patch cm/argocd-cm -p "$(cat patch-argocd-cm.yaml)"
 
 ## 更新 ArgoCD 部署
 
-完成第一步，ArgoCD 就可以识别 Kusion 插件，但 KCL 插件还没有载入到 ArgoCD 的镜像中。要实现配置漂移检查，需要修改 argocd-repo-server 的 Deployment。
+完成第一步，ArgoCD 就可以识别 KCL 插件，但 KCL 插件还没有载入到 ArgoCD 的镜像中。要实现配置漂移检查，需要修改 argocd-repo-server 的 Deployment。
 
 1. 下载 [patch](https://github.com/KusionStack/examples/blob/main/kusion/argo-cd/patch-argocd-repo-server.yaml) 文件
 

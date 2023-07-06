@@ -4,7 +4,7 @@ title: KCL v0.4.6 发布日志
 authors:
   name: KCL Team
   title: KCL Team
-tags: [Release Blog, KCL, KusionStack, Kusion]
+tags: [Release Blog, KCL]
 ---
 
 <!-- KCL v0.4.6 重磅发布 - 全新的 IDE 插件，Helm/Kustomize/KPT 工具集成 -->

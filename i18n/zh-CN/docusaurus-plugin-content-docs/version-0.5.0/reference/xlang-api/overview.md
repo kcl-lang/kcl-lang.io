@@ -12,7 +12,7 @@ KCL 核心采用 Rust 语言开发，对外导出 C 语言 API 供 Go/Python/Jav
 
 ## Go 语言
 
-Go 语言是通过 CGO 包装 KCL 提供的 C-API，同时提供更深度的定制特性以满足 KusionCtl 等上层工具的需求。
+Go 语言是通过 CGO 包装 KCL 提供的 C-API，同时提供更深度的定制特性以满足上层工具的需求。
 
 ### API 抽象模型
 

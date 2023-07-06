@@ -27,7 +27,7 @@ kcl-openapi generate model -f ${your_open_api_spec.yaml} -t ${the_kcl_files_outp
         type: TestInt
   swagger: "2.0"
   info:
-    title: Kusion
+    title: KCL
     version: v0.0.2
   paths: {}
   ```

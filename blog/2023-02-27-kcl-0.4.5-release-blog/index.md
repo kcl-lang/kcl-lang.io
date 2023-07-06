@@ -4,7 +4,7 @@ title: KCL v0.4.5 Release Blog
 authors:
   name: KCL Team
   title: KCL Team
-tags: [Release Blog, KCL, KusionStack, Kusion]
+tags: [Release Blog, KCL]
 ---
 
 ## Introduction

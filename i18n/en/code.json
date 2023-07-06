@@ -279,9 +279,6 @@
   "homepage.feature.konfig": {
     "message": "Konfig"
   },
-  "homepage.feature.kusion": {
-    "message": "Kusion Engine"
-  },
   "homepage.feature.kcl.description": {
     "message": "A constraint-based record & functional language mainly used in configuration and policy scenarios."
   },

@@ -4,7 +4,7 @@ title: 全新的 KCL Playground 来了!
 authors:
   name: KCL Team
   title: KCL Team
-tags: [Release Blog, KCL, KusionStack, Kusion, Playground]
+tags: [Release Blog, KCL, Playground]
 ---
 
 ## 简介

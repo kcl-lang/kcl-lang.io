@@ -93,7 +93,7 @@ Before submitting a PR, priority may be given to the following issues:
 - After submitting the PR to us, please sign [Contributor License Agreement (CLA)] (# cla). If you refuse to sign, we will not accept the PR.
 - Make sure that each change creates a new branch and names the branch according to the specifications mentioned above.
 - PR should not exceed two commit at a time. Please compress the extra commit with squash and write a commit message according to the specifications mentioned above.
-- We provide [PR template](https://github.com/KusionStack/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md). You only need to add the content required in the template. If you find no template or the template content is empty when creating a PR, you can feed back this problem to us through WeChat group, nail group or email.
+- We provide [PR template](https://github.com/kcl-lang/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md). You only need to add the content required in the template. If you find no template or the template content is empty when creating a PR, you can feed back this problem to us through WeChat group, nail group or email.
 
 We suggest that the PR title be consistent with the branch name and the commit message style:
 

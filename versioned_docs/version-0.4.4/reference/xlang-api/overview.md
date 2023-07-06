@@ -12,7 +12,7 @@ The core of KCL is developed in Rust, and the C language API is exported externa
 
 ## Go API
 
-Go API is a C-API provided by CGO wrapping KCL, while providing deeper customization features to meet the needs of upper-level tools such as Kusion Engine.
+Go API is a C-API provided by CGO wrapping KCL, while providing deeper customization features to meet the needs of upper-level tools.
 
 ### Abstract Model
 

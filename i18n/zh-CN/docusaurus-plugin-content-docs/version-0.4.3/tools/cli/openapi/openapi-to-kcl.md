@@ -27,7 +27,7 @@ definitions:
       type: TestInt
 swagger: "2.0"
 info:
-  title: Kusion
+  title: KCL
   version: v0.0.2
 paths: {}
 ```

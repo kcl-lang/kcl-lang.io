@@ -12,6 +12,4 @@ Based on the concept of Platform as Code, developers can quickly unify the full 
 
 ![](/img/docs/user_docs/intro/kusion-stack-1.png)
 
-KusionStack originated from the large-scale platform engineering practice within Ant Group and has been widely used in Ant Group's SaaS application delivery, computing and data infrastructure delivery, site construction, database operation and other operation scenarios, helping Ant Group to complete upgrades from the traditional operation model to the programmable and collaborative DevOps model.
-
 More documents and use cases at [https://kusionstack.io/](https://kusionstack.io/)

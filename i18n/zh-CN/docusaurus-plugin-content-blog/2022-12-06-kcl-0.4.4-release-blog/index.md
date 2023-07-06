@@ -4,7 +4,7 @@ title: KCL v0.4.4 发布日志
 authors:
   name: KCL Team
   title: KCL Team
-tags: [Release Blog, KCL, KusionStack, Kusion]
+tags: [Release Blog, KCL]
 ---
 
 KCL 团队很高兴地宣布 0.4.4 版本现在已经可用！本次发布主要为 KCL 语言增加了自定义 YAML Manifests 输出的能力，用户可以通过编写代码并调用系统函数来自定义 YAML 输出的样式而无需理解复杂的 schema settings 语义；此外本次发布提供了最新的 [KCL Python SDK](https://github.com/kcl-lang/kcl-py) 可用于 Python 用户对 KCL 直接集成；同时我们大大降低了 KCL 安装包的体积，平均安装包体积降低为之前版本的五分之一，并包含多项编译器报错信息优化和 bug 修复。您可以在 [KCL 发布页面](https://github.com/kcl-lang/kcl/releases/tag/v0.4.4-alpha.2) 获得更多详细发布信息和 KCL 二进制下载链接。

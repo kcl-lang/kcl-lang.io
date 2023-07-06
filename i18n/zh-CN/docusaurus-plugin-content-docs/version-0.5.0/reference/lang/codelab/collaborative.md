@@ -8,7 +8,7 @@ sidebar_position: 3
 ---
 ## 1. Introduction
 
-KCL（Kusion Configuration Language）是一种简单易用的配置语言，用户可以简单地编写可重复使用的配置代码。
+KCL 是一种简单易用的配置语言，用户可以简单地编写可重复使用的配置代码。
 
 在这个教程中，我们将学习如何使用 KCL 配置操作（config operation）功能以协同的方式编写配置。
 

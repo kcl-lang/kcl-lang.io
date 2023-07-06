@@ -154,7 +154,7 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 - [KCL Website](https://kcl-lang.io/)
 - [Kusion Website](https://kusionstack.io/)
 - [KCL Repo](https://github.com/kcl-lang/kcl)
-- [kclvm-go Repo](https://github.com/kcl-lang/kcl-go)
+- [kcl-go Repo](https://github.com/kcl-lang/kcl-go)
 - [Kusion Repo](https://github.com/KusionStack/kusion)
 - [Konfig Repo](https://github.com/KusionStack/konfig)
 

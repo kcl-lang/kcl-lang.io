@@ -4,7 +4,7 @@ title: KCL v0.4.6-alpha.1 发布日志
 authors:
   name: KCL Team
   title: KCL Team
-tags: [Release Blog, KCL, KusionStack, Kusion]
+tags: [Release Blog, KCL]
 ---
 
 ## 简介

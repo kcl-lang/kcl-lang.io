@@ -8,8 +8,7 @@ sidebar_position: 1
 ---
 ## 1. Introduction
 
-Kusion Configuration Language (KCL) is a simple and easy-to-use configuration language, where users can simply
-write the reusable configuration code.
+KCL is a simple and easy-to-use configuration language, where users can simply write the reusable configuration code.
 
 In this first codelab, we will learn how to write a simple config with KCL.
 
