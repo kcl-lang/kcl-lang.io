@@ -9,7 +9,7 @@ sidebar_position: 1
 You can install the kcl-openapi tool with go install:
 
 ```shell
-go install kusionstack.io/kcl-openapi@latest
+go install kcl-lang.io/kcl-openapi@latest
 ```
 
 To verify the installation, you can run the command: `kcl-openapi generate model -h` and the following information indicates your successful installation:
