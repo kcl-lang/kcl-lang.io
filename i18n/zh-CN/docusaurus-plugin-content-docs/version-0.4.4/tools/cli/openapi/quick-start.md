@@ -9,7 +9,7 @@ sidebar_position: 1
 您可通过 go install 快速安装 kcl-openapi：
 
 ```shell
-go install kusionstack.io/kcl-openapi@latest
+go install kcl-lang.io/kcl-openapi@latest
 ```
 
 ## 1.2 验证安装结果

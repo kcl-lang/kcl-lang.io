@@ -6,13 +6,39 @@ sidebar_position: 1
 
 ## 1. Install KCLOpenAPI Tool
 
-You can install the kcl-openapi tool with go install:
+The kcl-openapi tool can be installed in following ways:
+
+- [go install](#11-go-install)
+- [curl|sh install (MacOS & Linux)](#12-curlsh-install-macos--linux)
+- [download from release](#13-dowload-from-release)
+
+## 1.1 go install
 
 ```shell
-go install kusionstack.io/kcl-openapi@latest
+go install kcl-lang.io/kcl-openapi@latest
 ```
 
-To verify the installation, you can run the command: `kcl-openapi generate model -h` and the following information indicates your successful installation:
+## 1.2 Curl|sh install (MacOS & Linux)
+
+If you don't have go, you can install the CLI with this one-liner:
+
+```shell
+curl https://kcl-lang.io/scripts/install-kcl-openapi.sh | sh
+```
+
+## 1.3 Dowload from release
+
+```shell
+# 1. download the released binary from:
+# https://github.com/kcl-lang/kcl-openapi/releases
+
+# 2. Unzip the package and add the binary location to PATH
+export PATH="<Your directory to store KCLOpenapi binary>:$PATH"
+```
+
+## 1.4 Verify your installation
+
+- To verify the installation, you can run the command: `kcl-openapi generate model -h` and the following information indicates your successful installation:
 
 ```shell
 kcl-openapi command helps you to generate KCL schema structure from K8s CRD YAML/JSON file.
