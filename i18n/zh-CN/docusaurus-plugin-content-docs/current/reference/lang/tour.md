@@ -25,12 +25,12 @@ sidebar_position: 1
 下表列出了 KCL 语言的关键字。
 
 ```txt
-    True       False      None        Undefined   import
-    and        or         in          is          not
-    as         if         else        elif        for
-    schema     mixin      protocol    check       assert
-    all        any        map         filter      lambda
-    rule
+True       False      None        Undefined   import
+and        or         in          is          not
+as         if         else        elif        for
+schema     mixin      protocol    check       assert
+all        any        map         filter      lambda
+rule
 ```
 
 ### 标识符
@@ -803,10 +803,10 @@ f = str(Undefined)  # Undefined
 
 以下字符表示运算符：
 
-```txt
-    +       -       *       **      /       //      %
-    <<      >>      &       |       ^       <       >
-    ~       <=      >=      ==      !=      @       \
+```python
++       -       *       **      /       //      %
+<<      >>      &       |       ^       <       >
+~       <=      >=      ==      !=      @       \
 ```
 
 #### 算数运算符

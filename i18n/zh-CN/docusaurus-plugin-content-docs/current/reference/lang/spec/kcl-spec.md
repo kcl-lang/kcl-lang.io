@@ -12,21 +12,21 @@ description: KCL Spec
 The following are the keywords of the KCL:
 
 ```python
-    True       False      None        Undefined   import
-    and        or         in          is          not
-    as         if         else        elif        for
-    schema     mixin      protocol    check       assert
-    all        any        map         filter      lambda
-    rule
+True       False      None        Undefined   import
+and        or         in          is          not
+as         if         else        elif        for
+schema     mixin      protocol    check       assert
+all        any        map         filter      lambda
+rule
 ```
 
 The following are reserved words for the KCL:
 
 ```python
-    pass       return     validate   rule        flow
-    def        del        raise      except      try
-    finally    while      from       with        yield
-    global     nonlocal   struct     class       final
+pass       return     validate   rule        flow
+def        del        raise      except      try
+finally    while      from       with        yield
+global     nonlocal   struct     class       final
 ```
 
 ### Line comment
@@ -38,18 +38,18 @@ The following are reserved words for the KCL:
 ### Operators
 
 ```python
-    +       -       *       **      /       //      %
-    <<      >>      &       |       ^       <       >
-    ~       <=      >=      ==      !=      =
-    +=      -=      *=      **=     /=      //=     %=
-    <<=     >>=     &=      ^=
++       -       *       **      /       //      %
+<<      >>      &       |       ^       <       >
+~       <=      >=      ==      !=      =
++=      -=      *=      **=     /=      //=     %=
+<<=     >>=     &=      ^=
 ```
 
 ### Delimiters
 
 ```python
-    (       )       [       ]       {       }
-    ,       :       .       ;       @
+(       )       [       ]       {       }
+,       :       .       ;       @
 ```
 
 ### Operator precedence

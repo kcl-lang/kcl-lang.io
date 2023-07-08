@@ -99,21 +99,21 @@ Identifiers are unlimited in length. The case is significant.
 The following identifiers are used as reserved words, or keywords of the language, and cannot be used as ordinary identifiers. They must be spelled exactly as written here:
 
 ```
-    True       False      None        Undefined   import
-    and        or         in          is          not
-    as         if         else        elif        for
-    schema     mixin      protocol    check       assert
-    all        any        map         filter      lambda
-    rule
+True       False      None        Undefined   import
+and        or         in          is          not
+as         if         else        elif        for
+schema     mixin      protocol    check       assert
+all        any        map         filter      lambda
+rule
 ```
 
 The following tokens are not used, but they are reserved as possible future keywords:
 
 ```
-    pass       return     validate   rule        flow
-    def        del        raise      except      try
-    finally    while      from       with        yield
-    global     nonlocal   struct     class       final
+pass       return     validate   rule        flow
+def        del        raise      except      try
+finally    while      from       with        yield
+global     nonlocal   struct     class       final
 ```
 
 ### Literals
@@ -174,7 +174,7 @@ exponent      ::=  ("e" | "E") ["+" | "-"] digitpart
 
 The following tokens are operators:
 
-```
+```python
 +       -       *       **      /       //      %
 <<      >>      &       |       ^       <       >
 ~       <=      >=      ==      !=      @
@@ -184,7 +184,7 @@ The following tokens are operators:
 
 The following tokens serve as delimiters in the grammar:
 
-```
+```python
 (       )       [       ]       {       }
 ,       :       .       ;       =       +=
 -=      *=      **=     /=      //=     %=      

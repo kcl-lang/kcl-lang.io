@@ -25,12 +25,12 @@ As we learn about the KCL language, keep these facts and concepts in mind:
 The following table lists the words that the KCL language treats specially.
 
 ```txt
-    True       False      None        Undefined   import
-    and        or         in          is          not
-    as         if         else        elif        for
-    schema     mixin      protocol    check       assert
-    all        any        map         filter      lambda
-    rule
+True       False      None        Undefined   import
+and        or         in          is          not
+as         if         else        elif        for
+schema     mixin      protocol    check       assert
+all        any        map         filter      lambda
+rule
 ```
 
 ### Identifiers
@@ -806,9 +806,9 @@ f = str(Undefined)  # Undefined
 The following character sequences represent operators:
 
 ```txt
-    +       -       *       **      /       //      %
-    <<      >>      &       |       ^       <       >
-    ~       <=      >=      ==      !=      @       \
++       -       *       **      /       //      %
+<<      >>      &       |       ^       <       >
+~       <=      >=      ==      !=      @       \
 ```
 
 #### Arithmetic Operators
