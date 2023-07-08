@@ -2,7 +2,7 @@ import .app
 
 config = app.App {
     name = "kcl-guestbook-ui"
-    containers.ngnix = {
+    containers.guestbook = {
         image = "gcr.io/heptio-images/ks-guestbook-demo:0.2"
         ports = [{containerPort = 80}]
     }
