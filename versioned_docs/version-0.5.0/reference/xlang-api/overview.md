@@ -20,7 +20,7 @@ The abstract model of the KCL Go API is as follows:
 
 ```
 ┌─────────────────┐         ┌─────────────────┐           ┌─────────────────┐
-│     kcl files   │         │    KCL-Go-API   │           │  KCLResultList  │
+│     kcl files   │         │   KCL-Go-API    │           │  KCLResultList  │
 │  ┌───────────┐  │         │                 │           │                 │
 │  │    1.k    │  │         │                 │           │                 │
 │  └───────────┘  │         │                 │           │  ┌───────────┐  │         ┌───────────────┐
@@ -54,18 +54,14 @@ package main
 import (
 	"fmt"
 
-	"kcl-lang.io/kclvm-go/api/kcl"
+	kcl "kcl-lang.io/kcl-go"
 )
 
 
 func main() {
 	const k_code = `
-import kcl_plugin.hello
-
 name = "kcl"
 age = 1
-
-two = hello.add(1, 1)
 
 schema Person:
     name: str = "kcl"
@@ -97,7 +93,6 @@ Output result:
 ```yaml
 age: 1
 name: kcl
-two: 2
 x0:
     age: 1
     name: kcl

@@ -20,7 +20,7 @@ Go 语言 API 的抽象模型如下图：
 
 ```
 ┌─────────────────┐         ┌─────────────────┐           ┌─────────────────┐
-│     kcl files   │         │    KCL-Go-API   │           │  KCLResultList  │
+│     kcl files   │         │   KCL-Go-API    │           │  KCLResultList  │
 │  ┌───────────┐  │         │                 │           │                 │
 │  │    1.k    │  │         │                 │           │                 │
 │  └───────────┘  │         │                 │           │  ┌───────────┐  │         ┌───────────────┐
@@ -54,18 +54,14 @@ package main
 import (
 	"fmt"
 
-	"kusionstack.io/kclvm-go/api/kcl"
+	kcl "kcl-lang.io/kcl-go"
 )
 
 
 func main() {
 	const k_code = `
-import kcl_plugin.hello
-
 name = "kcl"
 age = 1
-
-two = hello.add(1, 1)
 
 schema Person:
     name: str = "kcl"
@@ -97,7 +93,6 @@ x1 = Person{age:101}
 ```yaml
 age: 1
 name: kcl
-two: 2
 x0:
     age: 1
     name: kcl

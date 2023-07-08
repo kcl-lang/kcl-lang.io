@@ -8,7 +8,7 @@ sidebar_position: 3
 import "kcl-lang.io/kcl-go"
 ```
 
-## KCL binding for Go
+## KCL Go SDK
 
 ```
 ┌─────────────────┐         ┌─────────────────┐           ┌─────────────────┐
@@ -85,7 +85,7 @@ x1 = Person {
 ## Index
 
 - [Go API](#go-api)
-	- [KCL binding for Go](#kcl-binding-for-go)
+	- [KCL Go SDK](#kcl-go-sdk)
 	- [Index](#index)
 	- [Constants](#constants)
 	- [func FormatCode](#func-formatcode)
