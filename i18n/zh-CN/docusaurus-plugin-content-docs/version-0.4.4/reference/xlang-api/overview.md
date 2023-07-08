@@ -228,7 +228,7 @@ $ curl -X POST \
 使用 Python SDK 要求您本地具备高于 3.7.3 的 Python 版本和 pip 包管理工具，可以通过如下命令进行安装并获得帮助信息
 
 ```bash
-$ python3 -m pip install kclvm --user && python3 -m kclvm --help
+python3 -m pip install kclvm --user && python3 -m kclvm --help
 ```
 
 ### 命令行工具
