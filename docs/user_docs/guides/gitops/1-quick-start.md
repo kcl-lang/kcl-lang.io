@@ -117,7 +117,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 #### Setup ArgoCD CLI
 
-+ Install [ArgoCD CLI](https://github.com/argoproj/argo-cd/releases/download)
++ Install [ArgoCD CLI](https://github.com/argoproj/argo-cd/releases)
 
 Use "admin" and password to login to ArgoCD
 
