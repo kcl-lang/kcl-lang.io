@@ -29,6 +29,8 @@
 - **诊断**
   ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
 
+> 提示：您可以通过安装 [Error Lens 插件](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens) 来增强诊断效果
+
 其他一些有用的功能，如代码重构和智能感知等正在开发中。
 
 ## 最小依赖
