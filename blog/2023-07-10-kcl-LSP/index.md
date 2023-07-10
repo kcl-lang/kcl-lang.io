@@ -19,6 +19,7 @@ In this update, we have released a new KCL VSCode extension and rewritten the LS
 - **Diagnostics:** Warnings and errors in KCL file.
   ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
 
+Welcome to [KCL VSCode extension](https://kcl-lang.io/docs/tools/Ide/vs-code/) to learn more. 👏👏👏
 
 ## What is LSP?
 
@@ -107,9 +108,9 @@ To this end, we have implemented a variety of syntactic and semantic error recov
 
 KCL's IDE extension has already implemented capabilities such as highlighting, goto definition, completion, outline, hovering, and diagnostics. These features improve the development efficiency of KCL users. However, as an IDE extension, its functionality is not complete enough. In the future, we will continue to improve its capabilities. Future work has the following aspects:
 
-● More capabilities: Provide more capabilities, such as code refactoring, error quick fix, code fmt, etc., to further improve capabilities and improve development efficiency
-● More IDE Integration: At present, although KCL provides LSP, it only integrates with VS Code. In the future, KCL users will be provided with more choices based on the capabilities of LSP.
-● Integration of AI: At present, ChatGPT is popular all over the Internet. We are also exploring the combination of AI×KCL to provide a more intelligent R&D experience.
+- More capabilities: Provide more capabilities, such as code refactoring, error quick fix, code fmt, etc., to further improve capabilities and improve development efficiency
+- More IDE Integration: At present, although KCL provides LSP, it only integrates with VS Code. In the future, KCL users will be provided with more choices based on the capabilities of LSP.
+- Integration of AI: At present, ChatGPT is popular all over the Internet. We are also exploring the combination of AI×KCL to provide a more intelligent R&D experience.
 
 In summary, we will continue to improve and optimize KCL's IDE extension to make it more powerful and practical. Bring more convenient and efficient development experience to KCL users.
 If you have more ideas or needs, welcome to issue or discuss them in the KCL Github repo, and welcome to join our community for communication 🙌 🙌 🙌
