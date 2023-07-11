@@ -55,19 +55,19 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 + Install
 
 ```bash
-brew install kcl-lang/tap/kclvm
+brew install kcl-lang/tap/kcl
 ```
 
 + Upgrade
 
 ```bash
-brew upgrade kcl-lang/tap/kclvm
+brew upgrade kcl-lang/tap/kcl
 ```
 
 + Uninstall
 
 ```bash
-brew uninstall kcl-lang/tap/kclvm
+brew uninstall kcl-lang/tap/kcl
 ```
 
 ### Scoop (Windows)
@@ -76,7 +76,7 @@ Install [Scoop](https://scoop.sh/) first, then add this bucket and install `kcl`
 
 ```bash
 scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
-scoop install kcl-lang/kclvm
+scoop install kcl-lang/kcl
 ```
 
 ### From Go
@@ -98,13 +98,13 @@ alias kcl='kcl-go run'
 + Command
 
 ```bash
-docker run --rm -it kusionstack/kclvm
+docker run --rm -it kcllang/kcl
 ```
 
 + Update image
 
 ```bash
-docker pull kusionstack/kclvm
+docker pull kcllang/kcl
 ```
 
 ### Note

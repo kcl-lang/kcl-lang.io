@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## 1. Install KCLOpenAPI Tool
 
-The kcl-openapi tool can be installed in following ways: 
+The kcl-openapi tool can be installed in following ways:
 
 - [go install](#11-go-install)
 - [curl|sh install (MacOS & Linux)](#12-curlsh-install-macos--linux)
