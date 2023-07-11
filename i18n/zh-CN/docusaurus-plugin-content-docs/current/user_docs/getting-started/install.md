@@ -55,19 +55,19 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 + 安装
 
 ```bash
-brew install kcl-lang/tap/kclvm
+brew install kcl-lang/tap/kcl
 ```
 
 + 升级
 
 ```bash
-brew upgrade kcl-lang/tap/kclvm
+brew upgrade kcl-lang/tap/kcl
 ```
 
 + 卸载
 
 ```bash
-brew uninstall kcl-lang/tap/kclvm
+brew uninstall kcl-lang/tap/kcl
 ```
 
 ### Scoop (Windows)
@@ -76,7 +76,7 @@ brew uninstall kcl-lang/tap/kclvm
 
 ```bash
 scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
-scoop install kcl-lang/kclvm
+scoop install kcl-lang/kcl
 ```
 
 ### 使用 Go 安装
@@ -98,13 +98,13 @@ alias kcl='kcl-go run'
 + 基本命令
 
 ```bash
-docker run --rm -it kusionstack/kclvm
+docker run --rm -it kcllang/kcl
 ```
 
 + 更新镜像
 
 ```bash
-docker pull kusionstack/kclvm
+docker pull kcllang/kcl
 ```
 
 ### 注意

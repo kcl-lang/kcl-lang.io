@@ -96,7 +96,7 @@ jobs:
           iwr -useb get.scoop.sh -outfile 'install.ps1'
           .\install.ps1 -RunAsAdmin
           scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
-          scoop install kcl-lang/kclvm
+          scoop install kcl-lang/kcl
           kcl.exe ./static/stack/main.k
 
   check-kcl-brew-install-macos:
@@ -110,7 +110,7 @@ jobs:
       - name: Check Brew Installation
         working-directory: .
         run: |
-          brew install kcl-lang/tap/kclvm
+          brew install kcl-lang/tap/kcl
           echo "brew installed successfully"
           kcl ./static/stack/main.k
           kclvm_cli run ./static/stack/main.k
@@ -124,6 +124,6 @@ jobs:
       - name: Check Brew Installation
         working-directory: .
         run: |
-          brew install kcl-lang/tap/kclvm
+          brew install kcl-lang/tap/kcl
           echo "brew installed successfully"
           kcl ./static/stack/main.k

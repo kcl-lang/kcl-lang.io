@@ -18,7 +18,7 @@ hello = "KCL"
 
 Set the `hello` attribute to the `"KCL"` string. Then save the code to the `hello.k` file.
 
-How to execute this program depends on the specific development environment, we first assume that the local macOS or Linux system has installed the `kcl` command (or enter the **Docker** environment test by `docker run --rm -it kusionstack/kclvm`) and then run the following command:
+How to execute this program depends on the specific development environment, we first assume that the local macOS or Linux system has installed the `kcl` command (or enter the **Docker** environment test by `docker run --rm -it kcllang/kcl`) and then run the following command:
 
 ```shell
 $ kcl hello.k

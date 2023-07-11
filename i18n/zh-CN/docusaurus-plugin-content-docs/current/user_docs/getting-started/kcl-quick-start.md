@@ -18,7 +18,7 @@ hello = "KCL"
 
 将 `hello` 属性设置为 `"KCL"` 字符串。然后将代码保存到 `hello.k` 文件中。
 
-如何执行这个程序取决于具体的开发环境，我们先假设本地的 macOS 或者是 Linux 系统已经安装了 `kcl` 命令（或者通过 `docker run --rm -it kusionstack/kusion bash` 进入 Docker 环境测试）。然后在文件所在的目录命令行输入以下命令执行：
+如何执行这个程序取决于具体的开发环境，我们先假设本地的 macOS 或者是 Linux 系统已经安装了 `kcl` 命令（或者通过 `docker run --rm -it kcllang/kcl` 进入 Docker 环境测试）。然后在文件所在的目录命令行输入以下命令执行：
 
 ```shell
 $ kcl hello.k
