@@ -2,9 +2,9 @@
 id: github-actions
 sidebar_label: Github Actions
 ---
-# Github Actions 集成
+# Github Actions Integraion
 
-## 简介
+## Introduction
 
 在 [GitOps](/docs/user_docs/guides/gitops/1-quick-start.md) 章节，我们介绍了如何将 KCL 与 GitOps 进行集成。在本文中，我们将继续提供 KCL 和 CI 集成的示例方案，希望通过使用容器、用于生成的持续集成 (CI) 和用于持续部署 (CD) 的 GitOps 来实现端到端应用程序开发流程。在此方案中，我们使用一个 Flask 应用和 Github Actions 将用作示例。
 

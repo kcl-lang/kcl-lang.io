@@ -706,5 +706,21 @@
   "sidebar.reference.category.Command Reference": {
     "message": "Command Reference",
     "description": "The label for category Command Reference in sidebar reference"
+  },
+  "sidebar.docs.category.GitOps": {
+    "message": "GitOps",
+    "description": "The label for category GitOps in sidebar docs"
+  },
+  "sidebar.docs.category.CI Integration": {
+    "message": "CI Integration",
+    "description": "The label for category CI Integration in sidebar docs"
+  },
+  "sidebar.user_docs.category.GitOps": {
+    "message": "GitOps",
+    "description": "The label for category GitOps in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.CI Integration": {
+    "message": "CI Integration",
+    "description": "The label for category CI Integration in sidebar user_docs"
   }
 }

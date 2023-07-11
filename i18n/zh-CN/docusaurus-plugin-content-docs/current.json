@@ -88,5 +88,21 @@
     },
     "sidebar.community.category.Release Policy": {
       "message": "发布策略"
+    },
+    "sidebar.docs.category.GitOps": {
+      "message": "GitOps",
+      "description": "The label for category GitOps in sidebar docs"
+    },
+    "sidebar.docs.category.CI Integration": {
+      "message": "CI 集成",
+      "description": "The label for category CI Integration in sidebar docs"
+    },
+    "sidebar.user_docs.category.GitOps": {
+      "message": "GitOps",
+      "description": "The label for category GitOps in sidebar user_docs"
+    },
+    "sidebar.user_docs.category.CI Integration": {
+      "message": "CI 集成",
+      "description": "The label for category CI Integration in sidebar user_docs"
     }
 }
