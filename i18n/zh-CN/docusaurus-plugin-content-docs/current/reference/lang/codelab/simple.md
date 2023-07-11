@@ -419,7 +419,7 @@ service = "my-service"
 使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
 ```bash
-kcl -D priority=2 -D env=pre-prod my_config.k
+kcl my_config.k -D priority=2 -D env=pre-prod
 ```
 
 标准输出:
@@ -468,7 +468,7 @@ service = "my-service"
 KCL 命令:
 
 ```bash
-kcl -D priority=2 -D env=pre-prod my_config.k
+kcl my_config.k -D priority=2 -D env=pre-prod
 ```
 
 标准输出：

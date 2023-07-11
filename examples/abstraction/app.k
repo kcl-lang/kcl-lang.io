@@ -24,7 +24,7 @@ schema Container:
     args?: [str]
     env?: [Env]
     volumes?: [Volume]
-    resources: Resource
+    resources?: Resource
     ports: [ContainerPort]
 
 schema ContainerPort:

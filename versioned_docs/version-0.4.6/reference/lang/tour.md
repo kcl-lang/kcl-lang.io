@@ -2888,7 +2888,7 @@ bankCard = option("bankCard")  # Get bankCard through the option function.
 Then we can use the module as below:
 
 ```bash
-kcl -DbankCard=123 employee.k
+kcl employee.k -D bankCard=123
 ```
 
 Currently, supported types of top-level argument are number, string, bool, list and dict.

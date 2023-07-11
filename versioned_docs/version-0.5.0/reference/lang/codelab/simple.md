@@ -419,7 +419,7 @@ service = "my-service"
 Run with KCL, we will see the generated data in yaml format as below:
 
 ```bash
-kcl -D priority=2 -D env=pre-prod my_config.k
+kcl my_config.k -D priority=2 -D env=pre-prod
 ```
 
 Stdout:
@@ -468,7 +468,7 @@ Run with KCL, we will see the generated data in yaml format as below:
 KCL command:
 
 ```bash
-kcl -D priority=2 -D env=pre-prod my_config.k
+kcl my_config.k -D priority=2 -D env=pre-prod
 ```
 
 Stdout:

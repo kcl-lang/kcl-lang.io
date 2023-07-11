@@ -1,5 +1,5 @@
 default:
-	kcl -D priority=1 -D env=pre-prod my_config.k
+	kcl my_config.k -D priority=1 -D env='pre-prod'
 
 test:
-	kcl -D priority=1 -D env=pre-prod my_config_test.k
+	kcl my_config_test.k -D priority=1 -D env='pre-prod' 

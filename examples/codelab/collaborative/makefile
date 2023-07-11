@@ -6,3 +6,8 @@ dev:
 
 prod:
 	cd appops/test_app/prod && kcl -Y ./kcl.yaml
+
+default:
+	make base
+	make dev
+	make prod

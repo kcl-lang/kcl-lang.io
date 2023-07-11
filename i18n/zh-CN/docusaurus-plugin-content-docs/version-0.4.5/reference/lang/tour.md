@@ -2803,7 +2803,7 @@ bankCard = option("bankCard")  # Get bankCard through the option function.
 我们可以如下使用 module：
 
 ```
-kcl -DbankCard=123 employee.k
+kcl employee.k -D bankCard=123
 ```
 
 目前，支持顶级参数的类型有数字、字符串、布尔、列表和字典。

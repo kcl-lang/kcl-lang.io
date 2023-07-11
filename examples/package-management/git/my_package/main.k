@@ -1,4 +1,4 @@
-import konfig.base.pkg.k8spkg.api.apps.v1 as apps
+import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
 apps.Deployment {
     metadata.name = "nginx-deployment"
