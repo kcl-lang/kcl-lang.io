@@ -5,7 +5,7 @@ sidebar_position: 3
 # Go API
 
 ```go
-import "kcl-lang.io/kcl-go"
+import kcl "kcl-lang.io/kcl-go"
 ```
 
 ## KCL Go SDK
@@ -57,12 +57,12 @@ x1 = Person {
 }
 `
 
-	yaml := kclvm.MustRun("testdata/main.k", kclvm.WithCode(k_code)).First().YAMLString()
+	yaml := kcl.MustRun("testdata/main.k", kcl.WithCode(k_code)).First().YAMLString()
 	fmt.Println(yaml)
 
 	fmt.Println("----")
 
-	result := kclvm.MustRun("./testdata/main.k").First()
+	result := kcl.MustRun("./testdata/main.k").First()
 	fmt.Println(result.JSONString())
 
 	fmt.Println("----")
@@ -141,7 +141,7 @@ FormatCode returns the formatted code.
 
 ```go
 {
-	out, err := kclvm.FormatCode(`a  =  1+2`)
+	out, err := kcl.FormatCode(`a  =  1+2`)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -174,7 +174,7 @@ the returned changedPaths are the changed file paths \(relative path\)
 
 ```go
 {
-	changedPaths, err := kclvm.FormatPath("testdata/fmt")
+	changedPaths, err := kcl.FormatPath("testdata/fmt")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -215,7 +215,7 @@ LintPath lint files from the given path
 ```go
 {
 
-	results, err := kclvm.LintPath([]string{"testdata/lint/import.k"})
+	results, err := kcl.LintPath([]string{"testdata/lint/import.k"})
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -308,7 +308,7 @@ x0 = Person {name = "kcl-go"}
 x1 = Person {age = 101}
 `
 
-	result := kclvm.MustRun("testdata/main.k", kclvm.WithCode(k_code)).First()
+	result := kcl.MustRun("testdata/main.k", kcl.WithCode(k_code)).First()
 
 	fmt.Println("x0.name:", result.Get("x0.name"))
 	fmt.Println("x1.age:", result.Get("x1.age"))
@@ -343,7 +343,7 @@ x = {
 }
 `
 
-	result := kclvm.MustRun("testdata/main.k", kclvm.WithCode(k_code)).First()
+	result := kcl.MustRun("testdata/main.k", kcl.WithCode(k_code)).First()
 
 	var person struct {
 		Name string
@@ -384,7 +384,7 @@ MustRun is like Run but panics if return any error.
 
 ```go
 {
-	yaml := kclvm.MustRun("testdata/main.k", kclvm.WithCode(`name = "kcl"`)).First().YAMLString()
+	yaml := kcl.MustRun("testdata/main.k", kcl.WithCode(`name = "kcl"`)).First().YAMLString()
 	fmt.Println(yaml)
 
 }
@@ -408,10 +408,10 @@ name: kcl
 b = 1
 a = 2
 `
-	yaml := kclvm.MustRun("testdata/main.k", kclvm.WithCode(code)).GetRawYamlResult()
+	yaml := kcl.MustRun("testdata/main.k", kcl.WithCode(code)).GetRawYamlResult()
 	fmt.Println(yaml)
 
-	yaml_sorted := kclvm.MustRun("testdata/main.k", kclvm.WithCode(code), kclvm.WithSortKeys(true)).GetRawYamlResult()
+	yaml_sorted := kcl.MustRun("testdata/main.k", kcl.WithCode(code), kcl.WithSortKeys(true)).GetRawYamlResult()
 	fmt.Println(yaml_sorted)
 
 }
@@ -440,7 +440,7 @@ schema Person:
 
 x = Person()
 `
-	json := kclvm.MustRun("testdata/main.k", kclvm.WithCode(code)).First().JSONString()
+	json := kcl.MustRun("testdata/main.k", kcl.WithCode(code)).First().JSONString()
 	fmt.Println(json)
 
 }
@@ -464,7 +464,7 @@ x = Person()
 
 ```go
 {
-	yaml := kclvm.MustRun("./testdata/app0/kcl.yaml").First().YAMLString()
+	yaml := kcl.MustRun("./testdata/app0/kcl.yaml").First().YAMLString()
 	fmt.Println(yaml)
 }
 ```
@@ -486,7 +486,7 @@ Run evaluates the KCL program with path and opts, then returns the object list.
 ```go
 {
 
-	x, err := kclvm.Run("./testdata/app0/kcl.yaml")
+	x, err := kcl.Run("./testdata/app0/kcl.yaml")
 	assert(err == nil, err)
 
 	fmt.Println(x.First().Get("deploy_topology.1.zone"))
@@ -516,7 +516,7 @@ RunFiles evaluates the KCL program with multi file path and opts, then returns t
 
 ```go
 {
-	result, _ := kclvm.RunFiles([]string{"./testdata/app0/kcl.yaml"})
+	result, _ := kcl.RunFiles([]string{"./testdata/app0/kcl.yaml"})
 	fmt.Println(result.First().YAMLString())
 }
 ```
@@ -615,8 +615,8 @@ WithOptions returns a Option which hold a key=value pair list for option functio
 name = option("name")
 age = option("age")
 `
-	x, err := kclvm.Run("hello.k", kclvm.WithCode(code),
-		kclvm.WithOptions("name=kcl", "age=1"),
+	x, err := kcl.Run("hello.k", kcl.WithCode(code),
+		kcl.WithOptions("name=kcl", "age=1"),
 	)
 	if err != nil {
 		log.Fatal(err)

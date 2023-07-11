@@ -2852,7 +2852,7 @@ kcl_cli_configs:
   output: ./stdout.golden
 kcl_options:
   - key: image
-    value: docker.io/kusion:latest
+    value: docker.io/kcllang/kcl:latest
 ```
 
 KCL CLI -Y 参数还支持多文件配置，并支持编译参数和顶级参数的单独写入与合并。
@@ -2880,7 +2880,7 @@ kcl_cli_configs:
 ```yaml
 kcl_options:
   - key: image
-    value: docker.io/kusion:latest
+    value: docker.io/kcllang/kcl:latest
 ```
 
 我们可以使用以下指令获取每个参数的含义

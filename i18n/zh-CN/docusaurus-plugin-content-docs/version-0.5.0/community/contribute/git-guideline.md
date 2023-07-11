@@ -70,9 +70,9 @@ node_modules/*
   e.g. 张三在分支 `zhangsan:fix-output-fmt-bug` 中创建的 commit。
   ```
 
-    fix(kclvm-printer): fix an output format bug in kclvm-printer
+    fix(kcl-printer): fix an output format bug in kcl-printer
     
-    There is an output format bug in kclvm-printer because ...,
+    There is an output format bug in kcl-printer because ...,
     So, The calling of method "XXX" is replaced by "HHHH"...,
     ...
     
@@ -102,7 +102,7 @@ node_modules/*
 
 e.g. 张三为分支`fix/zhangsan/fix_output_fmt_bug`创建的PR名称。
 ```
-fix(kclvm-printer): fix an output format bug in kclvm-printer.
+fix(kcl-printer): fix an output format bug in kcl-printer.
 ```
 
 ## 5. 目前 type 支持的类型

@@ -2937,7 +2937,7 @@ kcl_cli_configs:
   output: ./stdout.golden
 kcl_options:
   - key: image
-    value: docker.io/kusion:latest
+    value: docker.io/kcllang/kcl:latest
 ```
 
 KCL CLI -Y parameters also support multi-file configuration, and support separate writing and merging of compilation parameters and option top level arguments parameter configuration.
@@ -2965,7 +2965,7 @@ kcl_cli_configs:
 ```yaml
 kcl_options:
   - key: image
-    value: docker.io/kusion:latest
+    value: docker.io/kcllang/kcl:latest
 ```
 
 We can use the following command line to get the meaning of each configuration parameter or see KCL Quick Start

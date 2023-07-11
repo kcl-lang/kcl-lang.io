@@ -4,7 +4,7 @@ title: KCL 新版本功能解读系列 - Go SDK 功能速览！
 authors:
   name: KCL Team
   title: KCL Team
-tags: [KCL, kclvm-go]
+tags: [KCL, kcl-go]
 ---
 
 ## KCL 是什么？

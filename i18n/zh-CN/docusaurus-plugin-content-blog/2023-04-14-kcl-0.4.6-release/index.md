@@ -318,9 +318,9 @@ spec:
 
 ### 多语言 SDK
 
-在此次更新中，我们发布了全新的 kclvm-go SDK 将 KCL 集成到您的 Go 应用程序中，并提供丰富的 API 与 KCL 进行交互。您可以在 [这里](https://kcl-lang.io/docs/next/reference/xlang-api/go-api) 查询详细的 API 文档。此外我们还更新了如下特性和错误修复：
+在此次更新中，我们发布了全新的 KCL Go SDK 将 KCL 集成到您的 Go 应用程序中，并提供丰富的 API 与 KCL 进行交互。您可以在 [这里](https://kcl-lang.io/docs/next/reference/xlang-api/go-api) 查询详细的 API 文档。此外我们还更新了如下特性和错误修复：
 
-+ 感谢 @jakezhu9 修复了 kclvm-go 未预期的 KCL 格式化 API 在 CI Pipeline 中单元测试错误
++ 感谢 @jakezhu9 修复了 kcl-go 未预期的 KCL 格式化 API 在 CI Pipeline 中单元测试错误
 + 感谢 @Ekko 贡献 Go struct 和 KCL schema 双向转换支持，详见:
   + [Go struct -> KCL schema](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genkcl.go#L23)
   + [KCL schema -> Go struct](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/gengo.go#L23)

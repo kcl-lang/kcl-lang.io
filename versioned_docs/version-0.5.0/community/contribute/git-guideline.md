@@ -72,9 +72,9 @@ Where `{breaking_change_description}` and `{linked issue}` can be omitted if the
 For example, the commit created by Alice in branch 'alice: fix output fmt bug'.
 
 ```
-fix(kclvm-printer): fix an output format bug in kclvm-printer
+fix(kcl-printer): fix an output format bug in kcl-printer
 
-There is an output format bug in kclvm-printer because ...,
+There is an output format bug in kcl-printer because ...,
 So, The calling of method "XXX" is replaced by "HHHH"...,
 ...
 
@@ -106,7 +106,7 @@ We suggest that the PR title be consistent with the branch name and the commit m
 For example, Alice creates the PR name `fix/alice/fix_output_fmt_bug` for one branch.
 
 ```
-fix(kclvm-printer): fix an output format bug in kclvm-printer.
+fix(kcl-printer): fix an output format bug in kcl-printer.
 ```
 
 ## 5. Supported PR Types
