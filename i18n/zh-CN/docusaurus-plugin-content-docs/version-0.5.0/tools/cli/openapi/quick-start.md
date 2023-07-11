@@ -42,6 +42,7 @@ export PATH="<Your directory to store KCLOpenapi binary>:$PATH"
 kcl-openapi 0.5.0
 ```
 
+
 ## 2. 生成 KCL 文件
 
 - [将 OpenAPI 描述文件转换为 KCL](../openapi/openapi-to-kcl.md)
