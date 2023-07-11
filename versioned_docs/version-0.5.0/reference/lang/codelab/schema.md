@@ -574,7 +574,7 @@ However, usually, the actual situation is more complicated, and the deployment m
 For example, we want to support a persistent volume claim based on an existing schema, as a reusable Kubernetes schema. In this case, we can just wrapper it with a `mixin` and a `protocol` as follows:
 
 ```python
-import kusion_kubernetes.api.core.v1
+import k8spkg.api.core.v1
 
 protocol PVCProtocol:
     pvc?: {str:}

@@ -10,13 +10,13 @@ KCL plugin Git repository: [https://github.com/kcl-lang/kcl-plugin](https://gith
 
 ## 1. Hello Plugin
 
-KCL plugins are installed in the `plugins` subdirectory of KCL (usually installed in the `$HOME/.kusion/kclvm/plugins` directory), or set through the `$KCL_PLUGINS_ROOT` environment variable. KCL plugins are managed in the Git repository: [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin), we can clone the repository for development.
+KCL plugins are installed in the `plugins` subdirectory of KCL (usually installed in the `$HOME/.kcl/plugins` directory), or set through the `$KCL_PLUGINS_ROOT` environment variable. KCL plugins are managed in the Git repository: [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin), we can clone the repository for development.
 
 Enter the `kcl-plugin info` command to view the plugin directory (replace `/Users/kcl_user` with the local `$HOME` path):
 
 ```shell
 $ kcl-plugin info
-# plugin_root: /Users/kcl_user/.kusion/kclvm/plugins
+# plugin_root: /Users/kcl_user/.kcl/plugins
 ```
 
 View the list of plugins with the `kcl-plugin list` subcommand:
@@ -99,8 +99,8 @@ The information of the plugin mainly includes the name and version information o
 The directory structure of the plugin is as follows (replace `/Users/kcl_user` with the local `$HOME` path):
 
 ```shell
-$ tree /Users/kcl_user/.kusion/kclvm/plugins/
-/Users/kcl_user/.kusion/kclvm/plugins/
+$ tree /Users/kcl_user/.kcl/plugins/
+/Users/kcl_user/.kcl/plugins/
 ├── _examples
 ├── _test
 └── hello
@@ -146,14 +146,14 @@ The `kcl-plugin init` command will construct a new plugin from the built-in temp
 
 ## 6. Remove Plugin
 
-KCL plugins are located in the `plugins` subdirectory of KCL (usually installed in the `$HOME/.kusion/kclvm/plugins` directory).
+KCL plugins are located in the `plugins` subdirectory of KCL (usually installed in the `$HOME/.kcl/plugins` directory).
 We can query the plugin installation directory with the command `kcl-plugin info`.
 
 ```shell
 $ kcl-plugin info
-/Users/kcl_user/.kusion/kclvm/plugins/
-$ tree /Users/kcl_user/.kusion/kclvm/plugins/
-/Users/kcl_user/.kusion/kclvm/plugins/
+/Users/kcl_user/.kcl/plugins/
+$ tree /Users/kcl_user/.kcl/plugins/
+/Users/kcl_user/.kcl/plugins/
 ├── _examples
 ├── _test
 └── hello      -- Delete this directory to delete the hello plugin
@@ -175,7 +175,7 @@ $ kcl-plugin test hello
 platform darwin -- Python 3.7.6+, pytest-5.3.5, py-1.9.0, pluggy-0.13.1
 rootdir: /Users/kcl_user
 collected 5 items
-.kusion/kclvm/plugins/hello/plugin_test.py .....      [100%]
+.kcl/plugins/hello/plugin_test.py .....      [100%]
 ============================== 5 passed in 0.03s ===============================
 $
 ```

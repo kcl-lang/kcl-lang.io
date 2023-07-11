@@ -571,7 +571,7 @@ nginx:
 例如，我们想要在现有 schema 中支持声明持久卷，作为可重用的 Kubernetes schema。在这种情况下，我们可以通过以下 `mixin` 和 `protocal` 进行包装：
 
 ```python
-import kusion_kubernetes.api.core.v1
+import k8spkg.api.core.v1
 
 protocol PVCProtocol:
     pvc?: {str:}

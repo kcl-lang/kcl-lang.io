@@ -1878,15 +1878,15 @@ schema Server:
     workloadType : str, default is Deployment
         Use this attribute to specify which kind of long-running service you want.
         Valid values: Deployment, CafeDeployment.
-        See also: kusion_models/core/v1/workload_metadata.k.
+        See also: k8s/core/v1/workload_metadata.k.
     name : str, default is None
         A Server-level attribute.
         The name of the long-running service.
-        See also: kusion_models/core/v1/metadata.k.
+        See also: k8s/core/v1/metadata.k.
     labels : {str:str}, optional, default is None
         A Server-level attribute.
         The labels of the long-running service.
-        See also: kusion_models/core/v1/metadata.k.
+        See also: k8s/core/v1/metadata.k.
 
     Examples
     ----------------------
@@ -2937,7 +2937,7 @@ kcl_cli_configs:
   output: ./stdout.golden
 kcl_options:
   - key: image
-    value: docker.io/kusion:latest
+    value: docker.io/kcllang/kcl:latest
 ```
 
 KCL CLI -Y parameters also support multi-file configuration, and support separate writing and merging of compilation parameters and option top level arguments parameter configuration.
@@ -2965,7 +2965,7 @@ kcl_cli_configs:
 ```yaml
 kcl_options:
   - key: image
-    value: docker.io/kusion:latest
+    value: docker.io/kcllang/kcl:latest
 ```
 
 We can use the following command line to get the meaning of each configuration parameter or see KCL Quick Start

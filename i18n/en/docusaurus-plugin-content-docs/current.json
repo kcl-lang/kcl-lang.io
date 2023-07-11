@@ -23,10 +23,6 @@
     "message": "Core Model",
     "description": "The label for category 核心模型库 in sidebar docs"
   },
-  "sidebar.docs.category.kusion_kubernetes": {
-    "message": "kusion_kubernetes",
-    "description": "The label for category kusion_kubernetes in sidebar docs"
-  },
   "sidebar.docs.category.api": {
     "message": "api",
     "description": "The label for category api in sidebar docs"
@@ -74,10 +70,6 @@
   "sidebar.docs.category.apis": {
     "message": "apis",
     "description": "The label for category apis in sidebar docs"
-  },
-  "sidebar.docs.category.kusion_models": {
-    "message": "kusion_models",
-    "description": "The label for category kusion_models in sidebar docs"
   },
   "sidebar.docs.category.kube": {
     "message": "kube",
@@ -259,10 +251,6 @@
     "message": "Code Model",
     "description": "The label for category 核心模型库 in sidebar reference"
   },
-  "sidebar.reference.category.kusion_kubernetes": {
-    "message": "kusion_kubernetes",
-    "description": "The label for category kusion_kubernetes in sidebar reference"
-  },
   "sidebar.reference.category.api": {
     "message": "api",
     "description": "The label for category api in sidebar reference"
@@ -310,10 +298,6 @@
   "sidebar.reference.category.apis": {
     "message": "apis",
     "description": "The label for category apis in sidebar reference"
-  },
-  "sidebar.reference.category.kusion_models": {
-    "message": "kusion_models",
-    "description": "The label for category kusion_models in sidebar reference"
   },
   "sidebar.reference.category.kube": {
     "message": "kube",

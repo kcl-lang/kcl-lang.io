@@ -127,15 +127,15 @@ KCL文件的文档主要包含如下两个部分：
         workloadType : str, default is "Deployment", required
             Use this attribute to specify which kind of long-running service you want.
             Valid values: Deployment, CafeDeployment.
-            See also: kusion_models/core/v1/workload_metadata.k.
+            See also: k8s/core/v1/workload_metadata.k.
         name : str, required
             A Server-level attribute.
             The name of the long-running service.
-            See also: kusion_models/core/v1/metadata.k.
+            See also: k8s/core/v1/metadata.k.
         labels : {str:str}, optional
             A Server-level attribute.
             The labels of the long-running service.
-            See also: kusion_models/core/v1/metadata.k.
+            See also: k8s/core/v1/metadata.k.
 
         Examples
         ----------------------
@@ -170,7 +170,7 @@ KCL文件的文档主要包含如下两个部分：
         doc: |
           Use this attribute to specify which kind of long-running service you want.
           Valid values: Deployment, CafeDeployment.
-          See also: kusion_models/core/v1/workload_metadata.k.
+          See also: k8s/core/v1/workload_metadata.k.
         type:
           type_str: str
           type_category: BUILTIN
@@ -181,7 +181,7 @@ KCL文件的文档主要包含如下两个部分：
         doc: |
           A Server-level attribute.
           The name of the long-running service.
-          See also: kusion_models/core/v1/metadata.k.
+          See also: k8s/core/v1/metadata.k.
         type:
           type_str: str
           type_category: BUILTIN
@@ -192,7 +192,7 @@ KCL文件的文档主要包含如下两个部分：
         doc: |
           A Server-level attribute.
           The labels of the long-running service.
-          See also: kusion_models/core/v1/metadata.k.
+          See also: k8s/core/v1/metadata.k.
         type:
           type_str: '{str: str}'
           type_category: DICT
@@ -228,7 +228,7 @@ KCL文件的文档主要包含如下两个部分：
       - name: workloadType
         doc: |
           workloadType 属性定义了服务的类型，是服务级别的属性。合法的取值有：Deployment, CafeDeployment.
-          另请查看：kusion_models/core/v1/workload_metadata.k.
+          另请查看：k8s/core/v1/workload_metadata.k.
         type:
           type_str: str
           type_category: BUILTIN
@@ -238,7 +238,7 @@ KCL文件的文档主要包含如下两个部分：
       - name: name
         doc: |
           name 为服务的名称，是服务级别的属性。
-          另请查看：kusion_models/core/v1/metadata.k.
+          另请查看：k8s/core/v1/metadata.k.
         type:
           type_str: str
           type_category: BUILTIN
@@ -248,7 +248,7 @@ KCL文件的文档主要包含如下两个部分：
       - name: labels
         doc: |
           labels 为服务的标签，是服务级别的属性。
-          另请查看：kusion_models/core/v1/metadata.k.
+          另请查看：k8s/core/v1/metadata.k.
         type:
           type_str: '{str: str}'
           type_category: DICT
@@ -285,9 +285,9 @@ KCL文件的文档主要包含如下两个部分：
     ### Attributes
     |Name and Description|Type|Default Value|Required|
     |--------------------|----|-------------|--------|
-    |**workloadType**<br />workloadType 属性定义了服务的类型，是服务级别的属性。合法的取值有：Deployment, CafeDeployment.<br />另请查看：kusion_models/core/v1/workload_metadata.k.|str|"Deployment"|**required**|
-    |**name**<br />name 为服务的名称，是服务级别的属性。<br />另请查看：kusion_models/core/v1/metadata.k.|str|Undefined|**required**|
-    |**labels**<br />labels 为服务的标签，是服务级别的属性。<br />另请查看：kusion_models/core/v1/metadata.k.|{str: str}|Undefined|optional|
+    |**workloadType**<br />workloadType 属性定义了服务的类型，是服务级别的属性。合法的取值有：Deployment, CafeDeployment.<br />另请查看：k8s/core/v1/workload_metadata.k.|str|"Deployment"|**required**|
+    |**name**<br />name 为服务的名称，是服务级别的属性。<br />另请查看：k8s/core/v1/metadata.k.|str|Undefined|**required**|
+    |**labels**<br />labels 为服务的标签，是服务级别的属性。<br />另请查看：k8s/core/v1/metadata.k.|{str: str}|Undefined|optional|
     ### Examples
     ```
     myCustomApp = AppConfiguration {

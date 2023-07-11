@@ -2242,7 +2242,7 @@ data_type_list:
 
 ## 49. How to develop a KCL plugin?
 
-KCL plugins are installed in the plugins subdirectory of KCL (usually installed in the `$HOME/.kusion/kclvm/plugins` directory), or set through the `$KCL_PLUGINS_ROOT` environment variable. Besides, the `plugins` directory could also be placed at the `pwd` path. For plugin developers, plugins are managed in the [Git repository](https://github.com/kcl-lang/kcl-plugin), and the plugin repository can be cloned to this directory for development.
+KCL plugins are installed in the plugins subdirectory of KCL (usually installed in the `$HOME/.kcl/plugins` directory), or set through the `$KCL_PLUGINS_ROOT` environment variable. Besides, the `plugins` directory could also be placed at the `pwd` path. For plugin developers, plugins are managed in the [Git repository](https://github.com/kcl-lang/kcl-plugin), and the plugin repository can be cloned to this directory for development.
 
 KCL has built-in kcl-plugin scaffolding command to assist users to write KCL plug-ins in Python language, so that the corresponding plug-ins can be called in the KCL file to enhance the KCL language itself, such as accessing the network, reading and writing IO, CMDB query and encryption and decryption functions.
 

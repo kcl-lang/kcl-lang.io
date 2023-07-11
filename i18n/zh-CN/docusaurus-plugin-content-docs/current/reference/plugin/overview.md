@@ -14,13 +14,13 @@ KCL 是声明式配置策略语言，对于不方便通过配置直接描述的�
 
 ## 1. 你好插件
 
-KCL 插件在 KCL 的 `plugins` 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。此外，`plugins` 插件目录还可以放在执行 KCL 命令的 `pwd` 路径或者父路径中。对于插件开发人员，插件都在 Git 仓库管理： [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin) ，可以将插件仓库克隆到该目录进行开发。
+KCL 插件在 KCL 的 `plugins` 子目录（通常安装在 `$HOME/.kcl/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。此外，`plugins` 插件目录还可以放在执行 KCL 命令的 `pwd` 路径或者父路径中。对于插件开发人员，插件都在 Git 仓库管理： [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin) ，可以将插件仓库克隆到该目录进行开发。
 
 输入 `kcl-plugin info` 命令查看查看插件目录（将其中的 `/Users/kcl_user` 替换成本地的 `$HOME` 路径）：
 
 ```shell
 $ kcl-plugin info
-# plugin_root: /Users/kcl_user/.kusion/kclvm/plugins
+# plugin_root: /Users/kcl_user/.kcl/plugins
 ```
 
 通过 `kcl-plugin list` 子命令查看插件列表：
@@ -99,8 +99,8 @@ $ kcl-plugin info hello
 插件的目录结构如下（将其中的 `/Users/kcl_user` 替换成本地的 `$HOME` 路径）：
 
 ```shell
-$ tree /Users/kcl_user/.kusion/kclvm/plugins/
-/Users/kcl_user/.kusion/kclvm/plugins/
+$ tree /Users/kcl_user/.kcl/plugins/
+/Users/kcl_user/.kcl/plugins/
 ├── _examples
 ├── _test
 └── hello
@@ -146,14 +146,14 @@ hi: hi doc - 0.0.1
 
 ## 6. 插件的删除
 
-KCL 插件在 KCL 的 `plugins` 子目录（通常安装在 `$HOME/.kusion/kclvm/plugins` 目录）。
+KCL 插件在 KCL 的 `plugins` 子目录（通常安装在 `$HOME/.kcl/plugins` 目录）。
 可以通过命令 `kcl-plugin info` 查询插件安装目录。
 
 ```shell
 $ kcl-plugin info
-/Users/kcl_user/.kusion/kclvm/plugins/
-$ tree /Users/kcl_user/.kusion/kclvm/plugins/
-/Users/kcl_user/.kusion/kclvm/plugins/
+/Users/kcl_user/.kcl/plugins/
+$ tree /Users/kcl_user/.kcl/plugins/
+/Users/kcl_user/.kcl/plugins/
 ├── _examples
 ├── _test
 └── hello      -- 删除这个目录就可以删除 hello plugin
@@ -175,7 +175,7 @@ $ kcl-plugin test hello
 platform darwin -- Python 3.7.6+, pytest-5.3.5, py-1.9.0, pluggy-0.13.1
 rootdir: /Users/kcl_user
 collected 5 items
-.kusion/kclvm/plugins/hello/plugin_test.py .....      [100%]
+.kcl/plugins/hello/plugin_test.py .....      [100%]
 ============================== 5 passed in 0.03s ===============================
 $
 ```

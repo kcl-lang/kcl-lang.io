@@ -1899,15 +1899,15 @@ schema Server:
     workloadType : str, default is Deployment
         Use this attribute to specify which kind of long-running service you want.
         Valid values: Deployment, CafeDeployment.
-        See also: kusion_models/core/v1/workload_metadata.k.
+        See also: k8s/core/v1/workload_metadata.k.
     name : str, default is None
         A Server-level attribute.
         The name of the long-running service.
-        See also: kusion_models/core/v1/metadata.k.
+        See also: k8s/core/v1/metadata.k.
     labels : {str:str}, optional, default is None
         A Server-level attribute.
         The labels of the long-running service.
-        See also: kusion_models/core/v1/metadata.k.
+        See also: k8s/core/v1/metadata.k.
 
     Examples
     ----------------------
