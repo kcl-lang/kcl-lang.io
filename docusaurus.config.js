@@ -149,7 +149,7 @@ const config = {
       // hideableSidebar: true,
       announcementBar: {
         id: 'announcementBar-1', // Increment on change
-        content: `Give us a star ⭐️ - If you are using KCL or think it is an interesting project, we would love a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/kcl-lang/kcl">Github</a>`,
+        content: `Give us a star ⭐️ - If you are using KCL or think it is an interesting project, we would love a star and record on <a target="_blank" rel="noopener noreferrer" href="https://github.com/kcl-lang/kcl">Github</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.com/kcl-lang/kcl/issues/578">Record Issue</a>`,
       },
 
       algolia: {
