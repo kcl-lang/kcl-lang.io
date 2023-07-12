@@ -79,14 +79,14 @@ const config = {
             imageUrl: 'img/microsite/reasons/user-experience.svg',
             description: `
                 High compile time and runtime performance.
-                Gradient automation scheme of CRUD APIs, multilingual SDKs, language plugin.
+                Gradient automation scheme of CRUD APIs, multilingual SDKs, language plugins for GitOps.
             `,
           },
           {
             title: 'API Affinity',
             imageUrl: 'img/microsite/reasons/file.svg',
             description: `
-                Native support API ecological specifications such as OpenAPI, Kubernetes CRD, Kubernetes YAML and KRM spec.
+                Native support API ecological specifications such as OpenAPI, Kubernetes CRD and KRM spec.
             `,
           },
         ],

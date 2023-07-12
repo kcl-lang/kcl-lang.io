@@ -89,7 +89,7 @@ function FeaturesSection() {
       description:
         `
       High performance and
-      gradient automation scheme of CRUD APIs, multilingual SDKs, language plugin.
+      gradient automation scheme of CRUD APIs, multilingual SDKs, language plugins for GitOps.
   `,
       icon: <HiLightningBolt fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
@@ -97,7 +97,7 @@ function FeaturesSection() {
       title: "API Affinity",
       description:
         `
-      Native support API ecological specifications such as OpenAPI, Kubernetes CRD, Kubernetes YAML spec.
+      Native support API ecological specifications such as OpenAPI, Kubernetes CRD and KRM spec.
   `,
       icon: <IoColorPaletteSharp fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
