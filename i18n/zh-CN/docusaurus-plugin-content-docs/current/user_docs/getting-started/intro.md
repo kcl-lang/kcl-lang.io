@@ -52,7 +52,7 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 + **API 亲和**：原生支持 [OpenAPI](https://github.com/kcl-lang/kcl-openapi)、 Kubernetes CRD， Kubernetes YAML 等 API 生态规范
 + **开发友好**：[语言工具](https://kcl-lang.io/docs/tools/cli/kcl/) (Format，Lint，Test，Vet，Doc 等)、 [IDE 插件](https://github.com/kcl-lang/vscode-kcl) 构建良好的研发体验
 + **安全可控**：面向领域，不原生提供线程、IO 等系统级功能，低噪音，低安全风险，易维护，易治理
-+ **多语言API**：[Go](https://kcl-lang.io/docs/reference/xlang-api/go-api)，[Python](https://kcl-lang.io/docs/reference/xlang-api/python-api)，[Java](https://kcl-lang.io/docs/reference/xlang-api/java-api) 和 [REST API](https://kcl-lang.io/docs/reference/xlang-api/rest-api) 满足不同场景和应用使用需求
++ **多语言 SDK**：[Go](https://kcl-lang.io/docs/reference/xlang-api/go-api)，[Python](https://kcl-lang.io/docs/reference/xlang-api/python-api)，[Java](https://kcl-lang.io/docs/reference/xlang-api/java-api) 和 [REST API](https://kcl-lang.io/docs/reference/xlang-api/rest-api) 满足不同场景和应用使用需求
 + **生态集成**：通过 [Kustomize KCL 插件](https://github.com/kcl-lang/kustomize-kcl), [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl) 或者 [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk) 直接编辑或校验资源
 + **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
