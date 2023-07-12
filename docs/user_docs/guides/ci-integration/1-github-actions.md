@@ -6,7 +6,7 @@ sidebar_label: Github Actions
 
 ## Introduction
 
-在 [GitOps](/docs/user_docs/guides/gitops/1-quick-start.md) 章节，我们介绍了如何将 KCL 与 GitOps 进行集成。在本文中，我们将继续提供 KCL 和 CI 集成的示例方案，希望通过使用容器、用于生成的持续集成 (CI) 和用于持续部署 (CD) 的 GitOps 来实现端到端应用程序开发流程。在此方案中，我们使用一个 Flask 应用和 Github Actions 将用作示例。
+在 GitOps 章节，我们介绍了如何将 KCL 与 GitOps 进行集成。在本文中，我们将继续提供 KCL 和 CI 集成的示例方案，希望通过使用容器、用于生成的持续集成 (CI) 和用于持续部署 (CD) 的 GitOps 来实现端到端应用程序开发流程。在此方案中，我们使用一个 Flask 应用和 Github Actions 将用作示例。
 
 > 注意：你可以在此方案中使用任何容器化应用以及不同的 CI 系统如 Gitlab CI，Jenkins CI 等。
 
@@ -154,7 +154,7 @@ spec:
       targetPort: 5000
 ```
 
-从上述配置可以看出资源的镜像确实自动更新为了新构建的镜像内容。此外，我们还可以使用 [Argo CD KCL 插件](/docs/user_docs/guides/gitops/1-quick-start.md) 自动从 Git 存储库同步或从中拉取数据并将应用部署到 Kubernetes 集群。
+从上述配置可以看出资源的镜像确实自动更新为了新构建的镜像内容。此外，我们还可以使用 Argo CD KCL 插件 自动从 Git 存储库同步或从中拉取数据并将应用部署到 Kubernetes 集群。
 
 ## 小结
 
