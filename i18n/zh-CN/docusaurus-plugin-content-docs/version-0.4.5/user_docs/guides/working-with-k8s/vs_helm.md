@@ -1,6 +1,6 @@
 # KCL 与其他 Kubernetes 配置管理工具的异同 - Helm 篇
 
-在[上一节](/docs/user_docs/guides/working-with-k8s/generate_k8s_manifests)中，我们介绍了如何使用 KCL 编写并管理 Kubernetes 配置并将配置下发到集群，这一节我们通过与其他 Kubernetes 配置管理工具的对比如 Helm 介绍 KCL 在 Kubernetes 配置管理场景更丰富的内容。
+这一节我们通过与其他 Kubernetes 配置管理工具的对比如 Helm 介绍 KCL 在 Kubernetes 配置管理场景更丰富的内容。
 
 [Helm](https://helm.sh/) 是一个为 Kubernetes 对象生成可部署清单的工具，它承担了以两种不同形式生成最终清单的任务。Helm 是一个管理 Kubernetes 包（称为 charts）的必备模板工具。图表是 YAML 清单的模板化版本，其中混合了 Go template 的子集，它也是 Kubernetes 的包管理器，可以打包、配置和部署/应用 Helm 图表到 Kubernetes 集群。
 

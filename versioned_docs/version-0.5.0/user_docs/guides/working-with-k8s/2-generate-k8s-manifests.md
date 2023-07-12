@@ -1,5 +1,5 @@
 ---
-title: "Generate and Manage Kubernetes Resource"
+title: "Generate Kubernetes Manifests"
 sidebar_position: 2
 ---
 

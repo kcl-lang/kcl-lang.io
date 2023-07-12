@@ -1,6 +1,6 @@
 # Differences between KCL and Helm
 
-In the [previous section](/docs/user_docs/guides/working-with-k8s/generate_k8s_manifests), we introduced how to use KCL to write and manage Kubernetes configurations and apply them to the cluster. In this section, we introduced KCL's Kubernetes configuration management scenarios more richly by comparing it with other Kubernetes configuration management tools, such as Helm.
+In this section, we introduced KCL's Kubernetes configuration management scenarios more richly by comparing it with other Kubernetes configuration management tools, such as Helm.
 
 [Helm](https://helm.sh/) is a tool for generating deployable manifests for Kubernetes objects, which philosophically takes the task of generating the final manifests in two distinct forms. Helm is an imperative templating tool for managing Kubernetes packages called charts. Charts are a templated version of your yaml manifests with a subset of Go Templating mixed throughout, as well it is a package manager for kubernetes that can package, configure, and deploy/apply the helm charts onto kubernetes clusters.
 
