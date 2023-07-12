@@ -1,6 +1,6 @@
 ---
 title: "Helm KCL Plugin"
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 ## Introduction

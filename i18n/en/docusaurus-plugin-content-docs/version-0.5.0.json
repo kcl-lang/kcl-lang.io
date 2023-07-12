@@ -214,5 +214,13 @@
   "sidebar.user_docs.category.CI Integration": {
     "message": "CI Integration",
     "description": "The label for category CI Integration in sidebar user_docs"
+  },
+  "sidebar.docs.category.Mutate or Validate Kubernetes Manifests": {
+    "message": "Mutate or Validate Kubernetes Manifests",
+    "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar docs"
+  },
+  "sidebar.user_docs.category.Mutate or Validate Kubernetes Manifests": {
+    "message": "Mutate or Validate Kubernetes Manifests",
+    "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar user_docs"
   }
 }

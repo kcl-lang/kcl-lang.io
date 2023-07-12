@@ -1,6 +1,6 @@
 ---
 title: "Helm KCL 插件"
-sidebar_position: 4
+sidebar_position: 2
 ---
 
 ## 简介

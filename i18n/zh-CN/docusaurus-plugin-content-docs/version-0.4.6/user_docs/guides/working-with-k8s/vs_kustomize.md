@@ -1,6 +1,6 @@
 # KCL 与其他 Kubernetes 配置管理工具的异同 - Kustomize 篇
 
-在[上一节](/docs/user_docs/guides/working-with-k8s/generate_k8s_manifests)中，我们介绍了如何使用 KCL 编写并管理 Kubernetes 配置并将配置下发到集群，这一节我们通过与其他 Kubernetes 配置管理工具的对比如 Kustomize 介绍 KCL 在 Kubernetes 配置管理场景更丰富的内容。
+这一节我们通过与其他 Kubernetes 配置管理工具的对比如 Kustomize 介绍 KCL 在 Kubernetes 配置管理场景更丰富的内容。
 
 ## KCL 和 Kustomize 的区别
 
