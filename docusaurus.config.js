@@ -155,7 +155,7 @@ const config = {
       algolia: {
         appId: 'I3BKOKGSD5',
         apiKey: '20af56a3665effe7fa744b4b6cf78d60',
-        indexName: 'kcl-lang',
+        indexName: 'kcl-lang_tmp',
         contextualSearch: true,
       },
       navbar: {
