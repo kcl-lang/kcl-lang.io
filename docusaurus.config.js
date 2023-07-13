@@ -185,8 +185,7 @@ const config = {
             label: 'Tools',
           },
           {
-            // href: 'http://play.kcl-lang.io/', // Fixme: change the playground website listening port.
-            href: 'http://39.106.40.108/-/play/index.html',
+            href: 'http://play.kcl-lang.io/',
             // type: 'docSidebar',
             position: 'left',
             sidebarId: 'playground',
