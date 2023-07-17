@@ -73,11 +73,11 @@ tags: [KCL, Configuration]
 
 模版化代表技术有:
 
-- [Helm](https://helm.sh/)：Kubernetes 资源的包管理工具，通过配置模版管理 Kubernetes 资源配置。图 3 示出了一个 Helm Jekins Package ConfigMap 配置模版，可以看出这些模版本身都十分短小，可以书写简单的逻辑，适合 Kubernetes 基础组件固定的一系列资源配置通过包管理+额外的配置参数进行安装。相比于单纯的模版化的 KV，Helm 一定程度上提供了模版存储/引用和语义化版本管理的能力相比于 Kustomize 更适合管理外部 Charts, 但是在多环境、多租户的配置管理上不太擅长。
+- [Helm](https://helm.sh/)：Kubernetes 资源的包管理工具，通过配置模版管理 Kubernetes 资源配置。图 3 示出了一个 Helm Jenkins Package ConfigMap 配置模版，可以看出这些模版本身都十分短小，可以书写简单的逻辑，适合 Kubernetes 基础组件固定的一系列资源配置通过包管理+额外的配置参数进行安装。相比于单纯的模版化的 KV，Helm 一定程度上提供了模版存储/引用和语义化版本管理的能力相比于 Kustomize 更适合管理外部 Charts, 但是在多环境、多租户的配置管理上不太擅长。
 
 ![](/img/blog/2022-09-15-declarative-config-overview/03-helm.png)
 
-图 3 Helm Jekins Package ConfigMap 配置模版
+图 3 Helm Jenkins Package ConfigMap 配置模版
 
 - 其他各种配置模版：Java Velocity, Go Template 等文本模板引擎非常适合 HTML 编写模板。但是在配置场景中使用时，存在所有配置字段即模版参数的风险，开发者和工具都难以维护和分析它们。
 
