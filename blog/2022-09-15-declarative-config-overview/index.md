@@ -70,12 +70,12 @@ The Templated KV has the capability of static configuration data and dynamic par
 
 Representative technologies of templated KV include:
 
-- [Helm](https://helm.sh/): The package management tool of Kubernetesresources, which manages the configuration of Kubernetes resources through the configuration template. Fig. 3 shows a Helm Jekins Package ConfigMap configuration template. It can be seen that these templates are very short with simple logic. A series of resource configurations suitable forKubernetes basic components are installed through package management and additional configuration parameters. Compared with the simply templatedK-V, Helm provides template storage, reference and semantic version management capabilities. Compared with Kustomize, Helm is more suitable for managing external Charts but is not good at multi-environment and multi-tenant configuration management.
+- [Helm](https://helm.sh/): The package management tool of Kubernetesresources, which manages the configuration of Kubernetes resources through the configuration template. Fig. 3 shows a Helm Jenkins Package ConfigMap configuration template. It can be seen that these templates are very short with simple logic. A series of resource configurations suitable forKubernetes basic components are installed through package management and additional configuration parameters. Compared with the simply templatedK-V, Helm provides template storage, reference and semantic version management capabilities. Compared with Kustomize, Helm is more suitable for managing external Charts but is not good at multi-environment and multi-tenant configuration management.
 - Other configuration templates: Java Velocity, Go Template and other text template engines are very suitable for HTML writing templates. However,when used in configuration scenarios, they are difficult for developers and tools to maintain and analyze.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/03-helm.png)
 
-Fig. 3: Helm Jekins Package ConfigMap configuration template.
+Fig. 3: Helm Jenkins Package ConfigMap configuration template.
 
 #### 1.2.3 Programmable K-V
 
