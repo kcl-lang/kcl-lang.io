@@ -18,7 +18,7 @@ const config = {
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/kcl-logo.png',
+  favicon: 'img/favicon.ico',
 
   i18n: {
     defaultLocale: 'en',
