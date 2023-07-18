@@ -94,14 +94,11 @@ We need the workflow in the source code repository to automatically trigger the 
 
 ### 2. Commit the Application Code
 
-flask-demo 仓库提交代码后，Github 会自动构建容器镜像，并将制品推送到 Docker hub 中，会再触发 flask-demo-kcl-manifests 仓库的 Action，[通过 KCL 自动化 API](/docs/user_docs/guides/automation) 修改部署清单仓库中的镜像地址。现在让我们为 flask-demo 仓库创建一个提交，我们可以看到代码提交后触发业务仓库 Github CI 流程
 After submiting in the `flask-demo` repository, Github will automatically build a container image and push it to the Docker hub. It will also then trigger the Action of the `flask-demo-kcl-manifest` repository and modify the image value in the deployment manifest repository through [KCL Automation API](/docs/user_docs/guides/automation). Now let's create a submission in the `flask-demo` repository, and we can see that the code submission triggers the Github CI process for the application repository.
 
 ![](/img/docs/user_docs/guides/ci-integration/app-ci.png)
 
 ### 3. Configuration Automatic Update
-
-当业务仓库 Github CI 流程执行完成后，会自动在存放 KCL 资源配置的仓库触发一个 CI 自动更新配置并提交到 flask-demo-kcl-manifests main 分支，commit 信息如下
 
 After the Github CI process in the application repository is completed, a automatic update configuration CI will be triggered in the repository where the KCL configuration is stored and submitted to the main branch of the `flask demo kcl manifests` repository. The commit information is as follows
 
