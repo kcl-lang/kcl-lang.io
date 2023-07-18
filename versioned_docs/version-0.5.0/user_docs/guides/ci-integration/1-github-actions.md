@@ -2,7 +2,7 @@
 id: github-actions
 sidebar_label: Github Actions
 ---
-# Github Actions Integraion
+# Github Actions Integration
 
 ## Introduction
 
