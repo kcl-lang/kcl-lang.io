@@ -6,30 +6,30 @@ sidebar_label: Github Actions
 
 ## Introduction
 
-在 GitOps 章节，我们介绍了如何将 KCL 与 GitOps 进行集成。在本文中，我们将继续提供 KCL 和 CI 集成的示例方案，希望通过使用容器、用于生成的持续集成 (CI) 和用于持续部署 (CD) 的 GitOps 来实现端到端应用程序开发流程。在此方案中，我们使用一个 Flask 应用和 Github Actions 将用作示例。
+In the GitOps section, we have introduced how to integrate KCL with GitOps. In this section, we will continue to provide sample solutions for KCL and CI integrations. We hope to implement the end-to-end application development process by using containers, Continuous Integration (CI) for generation, and GitOps for Continuous Deployment (CD). In this scheme, we use a **Flask application** and **Github Actions** as examples.
 
-> 注意：你可以在此方案中使用任何容器化应用以及不同的 CI 系统如 Gitlab CI，Jenkins CI 等。
+> Note: You can use any containerized application and different CI systems such as **Gitlab CI**, **Jenkins CI**, etc. in this solution.
 
-整体工作流程如下：
+The overall workflow is as follows:
 
-+ 应用代码开发并提交到提交到 GitHub 存储库
-+ GitHub Actions 从应用代码生成容器镜像，并将容器镜像推送到 docker.io 容器注册表
-+ GitHub Actions 根据 docker.io 容器注册表中容器镜像的版本号并同步更新 KCL 清单部署文件
++ Develop application code and submit it to the GitHub repository to trigger CI.
++ GitHub Actions generate container images from application code and push them to the `docker.io` container registry.
++ GitHub Actions automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
 
-## 具体步骤
+## How to
 
-### 1. 获得示例
+### 1. Get the Example
 
-我们将业务源码和部署清单放在不同仓库，可以分不同角色进行分别维护，实现关注点分离。
+We put the application source code and infrature deployment code in different repos, which can be maintained by different roles to achieve the separation of concerns.
 
-+ 获得业务源码
++ Get the application code
 
 ```shell
 git clone https://github.com/kcl-lang/flask-demo.io.git/
 cd flask-demo
 ```
 
-这是一个使用 Python 编写的 Web 应用，我们可以使用应用目录的 `Dockerfile` 来生成这个应用的容器镜像，同时可以通过 Github CI 自动构建 `flask_demo` 镜像，CI 配置如下
+This is a web application written in Python. We can use the `Dockerfile` in the application directory to generate a container image of this application, and also use Github CI to automatically build a image named `flask_demo`, the CI configuration is as follows
 
 ```yaml
 # This is a basic workflow to help you get started with Actions
@@ -88,23 +88,26 @@ jobs:
             sha-tag=${{ github.sha }}
 ```
 
-我们需要源码仓库的工作流自动触发部署清单仓库中的工作流，此时需要创建具有 Github CI 操作权限的 `secrets.DEPLOY_ACCESS_TOKEN` 以及 Docker Hub 镜像推送的账号信息 `secrets.DOCKER_USERNAME` 和 `secrets.DOCKER_PASSWORD`, 这些可以在 Github 仓库的 `Secrets and variables` 设置中进行配置，如下图所示
+We need the workflow in the source code repository to automatically trigger the workflow in the deployment manifest repository. At this point, we need to create a `secrets.DEPLOY_ACCESS_TOKEN` with Github CI operation permissions and **Docker Hub** image push account information `secrets.DOCKER_USERNAME` and `secrets.DOCKER_PASSWORD`  can be configured in the `Secrets and variables` settings of the Github, as shown in the following figure
 
 ![](/img/docs/user_docs/guides/ci-integration/github-secrets.png)
 
-### 2. 提交应用代码
+### 2. Commit the Application Code
 
 flask-demo 仓库提交代码后，Github 会自动构建容器镜像，并将制品推送到 Docker hub 中，会再触发 flask-demo-kcl-manifests 仓库的 Action，[通过 KCL 自动化 API](/docs/user_docs/guides/automation) 修改部署清单仓库中的镜像地址。现在让我们为 flask-demo 仓库创建一个提交，我们可以看到代码提交后触发业务仓库 Github CI 流程
+After submiting in the `flask-demo` repository, Github will automatically build a container image and push it to the Docker hub. It will also then trigger the Action of the `flask-demo-kcl-manifest` repository and modify the image value in the deployment manifest repository through [KCL Automation API](/docs/user_docs/guides/automation). Now let's create a submission in the `flask-demo` repository, and we can see that the code submission triggers the Github CI process for the application repository.
 
 ![](/img/docs/user_docs/guides/ci-integration/app-ci.png)
 
-### 3. 配置自动更新
+### 3. Configuration Automatic Update
 
 当业务仓库 Github CI 流程执行完成后，会自动在存放 KCL 资源配置的仓库触发一个 CI 自动更新配置并提交到 flask-demo-kcl-manifests main 分支，commit 信息如下
 
+After the Github CI process in the application repository is completed, a automatic update configuration CI will be triggered in the repository where the KCL configuration is stored and submitted to the main branch of the `flask demo kcl manifests` repository. The commit information is as follows
+
 ![](/img/docs/user_docs/guides/ci-integration/image-auto-update.png)
 
-+ 我们可以获得部署清单源码进行编译验证
++ We can obtain the deployment manifest source code for compilation and validation
 
 ```shell
 git clone https://github.com/kcl-lang/flask-demo-kcl-manifests.git/
@@ -112,7 +115,7 @@ cd flask-demo-kcl-manifests
 git checkout main && git pull && kcl
 ```
 
-输出 YAML 为
+The output YAML is
 
 ```yaml
 apiVersion: apps/v1
@@ -154,8 +157,8 @@ spec:
       targetPort: 5000
 ```
 
-从上述配置可以看出资源的镜像确实自动更新为了新构建的镜像内容。此外，我们还可以使用 Argo CD KCL 插件 自动从 Git 存储库同步或从中拉取数据并将应用部署到 Kubernetes 集群。
+From the above configuration, it can be seen that the image of the resource is indeed automatically updated to the newly constructed image value. In addition, we can also use the **Argo CD KCL plugin** to automatically synchronize data from the Git repository and deploy the application to the Kubernetes cluster.
 
-## 小结
+## Summary
 
-通过将 KCL 和 Github CI 集成，我们能够将任意的业务代码的产出容器化镜像进行自动化修改并部署配置，以实现端到端应用程序开发流程并提升研发部署效率。
+By integrating KCL and Github CI, we can automate the modification and deployment configuration of any application output container image, in order to achieve end-to-end application development process and improve R&D deployment efficiency.
