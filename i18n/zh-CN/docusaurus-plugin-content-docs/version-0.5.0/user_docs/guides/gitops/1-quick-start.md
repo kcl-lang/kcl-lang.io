@@ -9,38 +9,34 @@ sidebar_label: 快速开始
 
 ### 什么是 GitOps
 
-GitOps is a modern way to do continuous delivery. Its core idea is to have a Git repository which contains environmental and application configurations. An automated process is also needed for sync the config to cluster.
+GitOps 是一种实现持续交付的现代方式。它的核心思想是拥有一个包含环境和应用程序配置的 Git 存储库。通过更改应用存储库中的文件，可以自动部署应用程序。应用 GitOps 的好处包括：
 
-By changing the files in repository, developers can apply the applications automatically. The benefits of applying GitOps include:
++ 提高生产力，持续交付可以加快部署时间。
++ 降低开发人员部署的障碍。通过推送代码而不是容器配置，开发人员可以在不知道其内部实现的情况下轻松部署 Kubernetes 集群和应用。
++ 追踪变更记录。使用 Git 管理配置使每一项更改都具有可跟踪性，从而增强审计跟踪。
 
-+ Increased productivity. Continuous delivery can speed up the time of deployment.
-+ Lower the barrier for developer to deploy. By pushing code instead of container configuration, developers can easily deploy Kubernetes without knowing its internal implementation.
-+ Trace the change records. Managing the cluster with Git makes every change traceable, enhancing the audit trail.
-+ Recover the cluster with Git's rollback and branch.
+### 将 KCL 与 ArgoCD 一起使用
 
-### GitOps with KCL
+将 [KCL](https://github.com/kcl-lang/kcl) 与 [ArgoCD](https://github.com/argoproj/argo-cd) 等 GitOps 工具一起使用具有如下好处:
 
-Benefits of Using KCL and ArgoCD Together:
++ 通过 KCL 语言的[抽象能力](/docs/user_docs/guides/abstraction)和可编程能力可以帮助我们**简化复杂的 Kubernetes 部署配置文件**，降低手动编写 YAML 文件的错误率，消除多余的配置模版，提升多环境多租户的配置扩展能力，同时提高配置的可读性和可维护性。
++ KCL 允许开发人员以声明式的方式定义应用程序所需的资源，通过将 KCL 和 ArgoCD 相结合可以帮助我们更好地实现**基础设施即代码（IaC）**，提高部署效率，简化应用程序的配置管理。
++ ArgoCD 可以**自动化**地实现应用程序的连续部署，并提供友好的可视化界面全面。
 
-+ KCL can help us **simplify complex Kubernetes deployment configuration files**, reduce the error rate of manually writing YAML files, and improve code readability and maintainability.
-+ ArgoCD can **automate** the deployment of Kubernetes applications, achieve continuous deployment, and provide comprehensive monitoring and control functions.
-+ By combining KCL and ArgoCD, deployment efficiency can be improved, errors reduced, and management and monitoring of Kubernetes applications strengthened.
-+ The combination of KCL and ArgoCD can also help us achieve **Infrastructure as Code (IaC)**, simplify application deployment and management, and better implement DevOps principles.
+使用 GitOps，开发人员和运维团队可以通过分别修改应用和配置代码来管理应用程序的部署，GitOps 工具链将自动同步对配置的更改，从而实现持续部署并确保一致性。如果出现问题，可以使用 GitOps 工具链快速回滚。
 
-With GitOps, developer and operation teams can manage application deployment and configuration by modifying KCL code and generating YAML files. The GitOps toolchain will automatically synchronize the changes to the Kubernetes cluster, enabling continuous deployment and ensuring consistency. If there are issues, the GitOps toolchain can be used to quickly rollback.
+## 快速开始
 
-## How to
+### 1. 获取示例
 
-### 1. Get the Example
-
-Firstly, let's get the example.
+首先，我们执行 git 命令获得用例
 
 ```bash
 git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/gitops
 ```
 
-We can run the following command to show the config.
+我们可以运行以下命令来显示配置
 
 ```bash
 cat config/main.k
@@ -62,70 +58,62 @@ config = app.App {
 }
 ```
 
-In the above code, we defined a configuration using the `App` schema, where we configured an `gcr.io/heptio-images/ks-guestbook-demo:0.2` container and configured it with an `80` service port.
+在上述代码中，我们定义使用 `App` schema 定义了应用的配置，其中我们配置了一个镜像为 `gcr.io/heptio images/ks guestbook demo:0.2` 容器，并启用了 `80` 端口。
+ 
+### 2. 安装 Kubernetes 和 GitOps 工具
 
-### 2. Install Kubernetes and GitOps Tool
+#### 配置 Kubernetes 集群和 ArgoCD 控制器
 
-#### Setup Kubernetes Cluster and ArgoCD Controllers
-
-+ Install [K3d](https://github.com/k3d-io/k3d) to create a default cluster.
++ 安装 [K3d](https://github.com/k3d-io/k3d) 并创建一个集群
 
 ```bash
 k3d cluster delete mycluster && k3d cluster create mycluster
 ```
 
-+ Install [ArgoCD](https://github.com/argoproj/argo-cd/releases/).
+> 注意：你可以在此方案中使用其他方式创建您自己的 Kubernetes 集群，如 kind, minikube 等。
+
++ 安装 [ArgoCD](https://github.com/argoproj/argo-cd/releases/).
 
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
-+ Enable ArgoCD KCL Plugin
-
-Write the patch YAML configuration file and update the ArgoCD configuration:
++ 安装 ArgoCD KCL 插件
 
 ```bash
-kubectl apply -f ./install/kcl-cmp.yaml
+kubectl apply -f ./install/kcl-cmp.yaml && kubectl -n argocd patch deploy/argocd-repo-server -p "$(cat ./install/patch-argocd-repo-server.yaml)"
 ```
 
-After completing the first step, ArgoCD will recognize the KCL plugin, but the KCL plugin has not been loaded into the ArgoCD image. To implement configuration drift detection, we have to tune the Deployment of argocd-repo-server.
-
-```bash
-kubectl -n argocd patch deploy/argocd-repo-server -p "$(cat ./install/patch-argocd-repo-server.yaml)"
-```
-
-Wait for the init container to complete execution (Running).
++ 通过 `kubectl get` 命令查看 argocd 控制器容器是否初始化完成进入运行（Running）状态。
 
 ```bash
 kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-repo-server
 ```
 
-+ To access the ArgoCD web UI
++ 通过如下命令打开 ArgoCD UI
 
 ```bash
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 
-+ Open a browser and go to: `https://localhost:8080`
-
-+ The username is "admin" and password get be obtained from the following command:
++ 打开浏览器 `https://localhost:8080` 输入用户名 "admin" 和密码登陆 ArgoCD UI，密码可以通过如下命令得到:
 
 ```bash
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 
-#### Setup ArgoCD CLI
+#### 安装 ArgoCD 客户端工具
 
-+ Install [ArgoCD CLI](https://github.com/argoproj/argo-cd/releases)
++ 安装 [ArgoCD 客户端工具](https://github.com/argoproj/argo-cd/releases)
 
-Use "admin" and password to login to ArgoCD
++ 使用用户名 "admin" 和刚才得到的密码登陆
 
 ```bash
 argocd login localhost:8080
 ```
 
-Create ArgoCD Application
+通过如下命令创建一个 ArgoCD KCL 应用
 
 ```bash
 argocd app create guestbook \
@@ -136,9 +124,7 @@ argocd app create guestbook \
 --config-management-plugin kcl-v1.0
 ```
 
-If you are using a private repository, you need to configure the private repository access with private key credentials before executing the create command.
-
-Please refer [Private Repositories](https://argo-cd.readthedocs.io/en/stable/user-guide/private-repositories/#ssh-private-key-credential) for more details.
+如果创建成功，您可以看到如下输出:
 
 After successfully creating, you can see the following output:
 
@@ -146,14 +132,12 @@ After successfully creating, you can see the following output:
 application 'guestbook' created
 ```
 
-Through the ArgoCD UI, you can see that the created applications have not been synchronized yet. Here, you can manually synchronize or set automatic synchronization.
+> 如果您使用的是私有存储库，则在执行 create 命令之前，需要使用私钥凭据配置专用私有存储库访问权限。请参阅[这里](https://argo-cd.readthedocs.io/en/stable/user-guide/private-repositories/)以获取更多详细信息。
+
+通过 ArgoCD UI，您可以看到创建的应用程序尚未同步，您可以手动进行配置同步或设置为自动同步。
 
 ![](/img/docs/user_docs/guides/gitops/argocd-kcl-app.jpg)
 
-For more information on synchronization strategies, see [Sync Options](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/)
+有关同步策略的更多信息，可以请参阅[这里](https://argo-cd.readthedocs.io/en/stable/user-guide/sync-options/)
 
 ![](/img/docs/user_docs/guides/gitops/argocd-kcl-app-dashboard.jpg)
-
-## Summary
-
-With GitOps, you can easily manage your applications and configuration in your Kubernetes cluster with KCL, ensuring that your applications are always in the desired state.
