@@ -100,7 +100,7 @@ After submitting in the `flask-demo` repository, Github will automatically build
 
 ### 3. Configuration Automatic Update
 
-After the Github CI process in the application repository is completed, a automatic update configuration CI will be triggered in the repository where the KCL configuration is stored and submitted to the main branch of the `flask-demo-kcl-manifests` repository. The commit information is as follows
+After the Github CI process in the application repository is completed, an automatic update configuration CI will be triggered in the repository where the KCL configuration is stored and submitted to the main branch of the `flask-demo-kcl-manifests` repository. The commit information is as follows
 
 ![](/img/docs/user_docs/guides/ci-integration/image-auto-update.png)
 
@@ -158,4 +158,4 @@ From the above configuration, it can be seen that the image of the resource is i
 
 ## Summary
 
-By integrating KCL and Github CI, we can automate the modification and deployment configuration of any application output container image, in order to achieve end-to-end application development process and improve R&D deployment efficiency.
+By integrating KCL and Github CI, we can integrate the container build and delivery workflow by automatically updating the image values in the configuration, in order to achieve end-to-end application development process and improve R&D deployment efficiency.
