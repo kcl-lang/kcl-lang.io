@@ -97,8 +97,8 @@ schema Person:
 We can use the union operator `|` or the dict unpacking operator `**` to add elements into a dict, and we can use `in` and `not in` operators to determine whether the dict variable contains a certain key.
 
 ```python
-_left = {key = {key1 = "value1"}, intKey = 1}  # Note: `=` denotes override the value.
-_right = {key = {key2 = "value2"}, intKey = 2}
+_left = {key: {key1 = "value1"}, intKey = 1}  # Note: `=` denotes override the value.
+_right = {key: {key2 = "value2"}, intKey = 2}
 dataUnion = _left | _right  # {"key": {"key1": "value1", "key2": "value2"}, "intKey": 2}
 dataUnpack = {**_left, **_right}  # {"key": {"key1": "value1", "key2": "value2"}, "intKey": 2}
 ```
@@ -110,9 +110,12 @@ dataUnion:
   key:
     key1: value1
     key2: value2
+  intKey: 2
 dataUnpack:
   key:
+    key1: value1
     key2: value2
+  intKey: 2
 ```
 
 It is also possible to add key-value pair to a dict using the `string interpolation` or the string `format` method.
