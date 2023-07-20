@@ -99,8 +99,8 @@ schema Person:
 可以使用 union 运算符 `|`, 或者 dict 解包运算符 `**` 来向 dict 中添加一个元素，并且可以使用 `in`,`not in` 等关键字判断 dict 变量当中是否包含某一个键值
 
 ```python
-_left = {key = {key1 = "value1"}, intKey = 1}  # 注意使用 = 表示覆盖
-_right = {key = {key2 = "value2"}, intKey = 2}
+_left = {key: {key1 = "value1"}, intKey = 1}  # 注意使用 = 表示覆盖
+_right = {key: {key2 = "value2"}, intKey = 2}
 dataUnion = _left | _right  # {"key": {"key1": "value1", "key2": "value2"}, "intKey": 2}
 dataUnpack = {**_left, **_right}  # {"key": {"key1": "value1", "key2": "value2"}, "intKey": 2}
 ```
@@ -112,9 +112,12 @@ dataUnion:
   key:
     key1: value1
     key2: value2
+  intKey: 2
 dataUnpack:
   key:
+    key1: value1
     key2: value2
+  intKey: 2
 ```
 
 此外还可以使用 `字符串插值` 或者字符串 `format` 成员函数特性向 kcl dict 添加变量键值对
