@@ -19,7 +19,7 @@ The overall workflow is as follows:
 
 ## How to
 
-We put the application source code and infrature deployment code in different repos, which can be maintained by different roles to achieve the separation of concerns.
+We put the application source code and infrastructure deployment code in different repos, which can be maintained by different roles to achieve the separation of concerns.
 
 + Get the application code
 
