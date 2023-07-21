@@ -58,7 +58,7 @@ config = app.App {
 }
 ```
 
-在上述代码中，我们定义使用 `App` schema 定义了应用的配置，其中我们配置了一个镜像为 `gcr.io/heptio images/ks guestbook demo:0.2` 容器，并启用了 `80` 端口。
+在上述代码中，我们定义使用 `App` schema 定义了应用的配置，其中我们配置了一个镜像为 `gcr.io/heptio-images/ks-guestbook-demo:0.2` 容器，并启用了 `80` 端口。
  
 ### 2. 安装 Kubernetes 和 GitOps 工具
 
@@ -125,8 +125,6 @@ argocd app create guestbook \
 ```
 
 如果创建成功，您可以看到如下输出:
-
-After successfully creating, you can see the following output:
 
 ```bash
 application 'guestbook' created
