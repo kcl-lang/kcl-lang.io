@@ -192,7 +192,7 @@ const config = {
             label: 'Playground',
           },
           {
-            href: 'https://github.com/kcl-lang/kcl-lang.io/tree/main/examples',
+            href: 'https://github.com/kcl-lang/examples',
             position: 'left',
             sidebarId: 'examples',
             label: 'Examples',
