@@ -357,7 +357,7 @@ We can get the `Deployment` and `Service` resources throw the following command:
 
 + `Deployment`
 
-```bash
+```shell
 $ kcl workload-kcl/deployment.k -Y workload-kcl/kcl.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -394,7 +394,7 @@ spec:
 
 + `Service`
 
-```bash
+```shell
 $ kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml
 apiVersion: v1
 kind: Service
@@ -418,7 +418,7 @@ spec:
 
 In addition, we can overwrite the value in the `kcl.yaml` file with the `-D` parameter, such as executing the following command.
 
-```bash
+```shell
 $ kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml -D service=None
 apiVersion: v1
 kind: Service

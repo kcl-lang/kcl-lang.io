@@ -21,7 +21,13 @@ Set the `hello` attribute to the `"KCL"` string. Then save the code to the `hell
 How to execute this program depends on the specific development environment, we first assume that the local macOS or Linux system has installed the `kcl` command (or enter the **Docker** environment test by `docker run --rm -it kcllang/kcl`) and then run the following command:
 
 ```shell
-$ kcl hello.k
+kcl hello.k
+```
+
+The output is
+
+
+```yaml
 hello: KCL
 ```
 
@@ -123,7 +129,12 @@ database = DatabaseConfig {
 When executed, an error similar to the following will be generated (the displayed file path depends on the local environment):
 
 ```shell
-$ kcl server.k 
+kcl server.k 
+```
+
+The output is
+
+```shell
 error[E2G22]: TypeError
  --> /path/to/server.k:8:5
   |

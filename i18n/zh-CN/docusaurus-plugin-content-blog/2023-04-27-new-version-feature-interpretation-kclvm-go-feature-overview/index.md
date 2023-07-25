@@ -60,7 +60,7 @@ spec = {
 
 之后可以直接在命令行中执行 KCL
 
-```bash
+```shell
 $ kcl-go run ./hello.k 
 apiVersion: apps/v1
 kind: Deployment
@@ -114,7 +114,7 @@ go get kusionstack.io/kclvm-go@main
 
 执行 Go 程序，结果为：
 
-```bash
+```shell
 $ go run main.go
 name: kcl
 age: 1

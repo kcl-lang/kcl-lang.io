@@ -71,7 +71,12 @@ app.App {
 如果我们想将应用程序配置转换为 Docker Compose 配置，我们可以简单地运行如下命令：
 
 ```shell
-$ kcl main.k docker_compose_render.k
+kcl main.k docker_compose_render.k
+```
+
+输出为
+
+```yaml
 services:
   app:
     image: ngnix
@@ -86,7 +91,12 @@ services:
 如果我们想将应用程序配置转换为 Kubernetes 清单，我们可以简单地运行如下命令：
 
 ```shell
-$ kcl main.k kubernetes_render.k
+kcl main.k kubernetes_render.k
+```
+
+输出为
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

@@ -364,8 +364,13 @@ We can get the `Deployment` and `Service` resources throw the following command:
 
 + `Deployment`
 
-```bash
-$ kcl workload-kcl/deployment.k -Y workload-kcl/kcl.yaml
+```shell
+kcl workload-kcl/deployment.k -Y workload-kcl/kcl.yaml
+```
+
+The output is
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -401,8 +406,13 @@ spec:
 
 + `Service`
 
-```bash
-$ kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml
+```shell
+kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml
+```
+
+The output is
+
+```yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -425,8 +435,13 @@ spec:
 
 In addition, we can overwrite the value in the `kcl.yaml` file with the `-D` parameter, such as executing the following command.
 
-```bash
-$ kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml -D service=None
+```shell
+kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml -D service=None
+```
+
+The output is
+
+```yaml
 apiVersion: v1
 kind: Service
 metadata:

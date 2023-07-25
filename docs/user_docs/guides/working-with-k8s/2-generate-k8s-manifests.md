@@ -120,9 +120,13 @@ spec:
 
 Of course, we can use KCL together with kubectl and other tools. Let's execute the following commands and see the result:
 
-```bash
-$ kcl main.k | kubectl apply -f -
+```shell
+kcl main.k | kubectl apply -f -
+```
 
+The output is
+
+```shell
 deployment.apps/nginx-deployment configured
 ```
 
@@ -130,9 +134,13 @@ It can be seen from the command line that it is completely consistent with the d
 
 Check the deployment status through kubectl
 
-```bash
-$ kubectl get deploy
+```shell
+kubectl get deploy
+```
 
+The output is
+
+```shell
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           15s
 ```

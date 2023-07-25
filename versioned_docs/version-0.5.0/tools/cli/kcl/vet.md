@@ -49,21 +49,21 @@ schema Data:
 
 Execute the following command:
 
-```bash
-$ kcl-vet data.json schema.k
+```shell
+kcl-vet data.json schema.k
 ```
 
 ## Specify the schema for validation
 
 When multiple schema definitions exist in the KCL file, by default, the KCL Validation tool will use the first schema to check. If you need to specify a schema for verification, you can use the `-d|--schema` parameter
 
-```bash
-$ kcl-vet data.json schema.k -d User
+```shell
+kcl-vet data.json schema.k -d User
 ```
 
 ## Args
 
-```bash
+```shell
 $ kcl-vet -h
 USAGE:
     kcl-vet [OPTIONS] [ARGS]

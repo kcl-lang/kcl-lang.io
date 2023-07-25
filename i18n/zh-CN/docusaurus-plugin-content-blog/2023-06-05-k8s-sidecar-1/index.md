@@ -31,7 +31,7 @@ spec:
 
 然后通过 `kubectl create` 命令行工具创建 `Pod`，然后通过 `kubectl get po` 查看 `Pod` 执行状态：
 
-```bash
+```shell
 $ kubectl create -f pod.yaml
 $ kubectl get po
 NAME READY STATUS RESTARTS AGE
@@ -40,7 +40,7 @@ web-app 1/1 Running 0 45m
 
 可以看到一个名为 `web-app` 的 `Pod` 已经正常启动并运行，其中包含 `Nginx` 服务。为了便于外部访问配置端口转发，将宿主的 3999 端口对应到主容器的 80 端口：
 
-```bash
+```shell
 $ kubectl port-forward web-app 3999:80
 Forwarding from 127.0.0.1:3999 ->80
 Forwarding from [::1]:3999 -> 80
@@ -54,7 +54,7 @@ Forwarding from [::1]:3999 -> 80
 
 现在我们尝试在不修改原始 `Nginx` 容器镜像的前提下，通过 `Sidecar` 模式为 `Nginx` 服务增加定制 `Web` 页面的能力。在开始前先删除之前启动的 `Pod`：
 
-```bash
+```shell
 $ kubectl delete po web-app
 pod "web-app" deleted
 ```
@@ -107,7 +107,7 @@ done
 
 然后重新启动 `Pod`，并重新映射本地宿主机端口到容器端口：
 
-```bash
+```shell
 $ kubectl create -f pod.yaml 
 pod/web-app created
 $ kubectl port-forward web-app 3999:80

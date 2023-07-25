@@ -230,7 +230,7 @@ kcl-openapi generate model -f processed-${spec_path}
 
 脚本预期的执行输出为对应版本的 KCL Kubernetes 模型，生成的路径为 `<工作空间路径>/models/k8s`
 
-```bash
+```shell
 $ tree models/k8s
 models/k8s
 ├── api
@@ -292,7 +292,7 @@ apps.Deployment {
 
 通过 `kpm run` 和 `kubectl` 命令行结合使用，我们可以直接将资源配置下发到集群
 
-```bash
+```shell
 $ kpm run | kubectl apply -f -
 
 deployment.apps/nginx-deployment configured
@@ -422,7 +422,7 @@ spec:
 
 在上述配置中，我们使用了在 OCI 上已经预定好的一个 Kubernetes Web 服务应用抽象模型 `oci://ghcr.io/kcl-lang/web-service`, 并通过 `params` 字段配置了该模型所需的配置字段。通过执行如下命令可以获得原始的 Kubernetes YAML 输出并下发到集群:
 
-```bash
+```shell
 $ kubectl kcl apply -f krm-kcl-abstration.yaml
 
 deployment.apps/app created

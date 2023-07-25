@@ -154,7 +154,7 @@ spec:
 
 当然我们可以将 KCL 工具与 kubectl 等工具结合使用，让我们执行如下命令并看看效果
 
-```bash
+```shell
 $ kcl main.k | kubectl apply -f -
 
 deployment.apps/nginx-deployment configured
@@ -164,7 +164,7 @@ deployment.apps/nginx-deployment configured
 
 通过 kubectl 检查部署状态
 
-```bash
+```shell
 $ kubectl get deploy
 
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE

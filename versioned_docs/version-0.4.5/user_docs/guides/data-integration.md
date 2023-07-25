@@ -20,7 +20,7 @@ ports:
 
 In the above code, we use the built-in `yaml` module of KCL and its `yaml.decode` function directly integrates YAML data, and uses the `Server` schema to directly verify the integrated YAML data. We can obtain the configuration output through the following command:
 
-```bash
+```shell
 $ kcl main.k
 server:
   ports:
@@ -40,7 +40,7 @@ server = yaml.encode({
 
 The output of the execution command is:
 
-```bash
+```shell
 $ kcl main.k
 server: |
   ports:
@@ -61,7 +61,7 @@ server_json_decode = json.decode('{"ports": [80, 8080]}')
 
 The output of the execution command is:
 
-```bash
+```shell
 $ kcl main.k
 server_json_encode: '{"ports": [80, 8080]}'
 server_json_decode:

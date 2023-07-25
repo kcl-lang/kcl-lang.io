@@ -128,8 +128,13 @@ x1 = Person {
 
 Execute the following command and get the output:
 
-```bash
-$ python3 -m kclvm hello.k
+```shell
+python3 -m kclvm hello.k
+```
+
+The expect output is
+
+```yaml
 name: kcl
 age: 1
 x0:
@@ -155,8 +160,13 @@ print(planner.plan(kclvm_exec.Run(["hello.k"]).filter_by_path_selector()))
 
 Execute the following command and get the output:
 
-```bash
-$ python3 main.py
+```shell
+python3 main.py
+```
+
+The expect output is
+
+```yaml
 name: kcl
 age: 1
 x0:

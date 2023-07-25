@@ -93,7 +93,7 @@ schema Data:
 
 执行如下命令获得校验结果
 
-```bash
+```shell
 $ kcl-vet data.json schema.k
 Validate succuss!
 ```

@@ -104,7 +104,7 @@ The base directory stores the basic deployment configuration, and the prod envir
 
 We can display the real deployment configuration of the prod environment through the following command.
 
-```bash
+```shell
 $ kubectl kustomize ./prod
 apiVersion: apps/v1
 kind: Deployment
@@ -142,7 +142,7 @@ spec:
 
 We can also directly apply the configuration to the cluster through the following command.
 
-```bash
+```shell
 $ kubectl apply -k ./prod
 
 deployment.apps/ldap created
@@ -237,7 +237,7 @@ diff prod-deployment.yaml deployment.yaml
 
 Of course, we can also use KCL tools together with kubectl and other tools to apply the configuration of the production environment to the cluster
 
-```bash
+```shell
 $ kcl main.k -D env=prod | kubectl apply -f -
 
 deployment.apps/ldap created
@@ -245,7 +245,7 @@ deployment.apps/ldap created
 
 Finally, check the deployment status through kubectl
 
-```bash
+```shell
 $ kubectl get deploy
 
 NAME   READY   UP-TO-DATE   AVAILABLE   AGE

@@ -22,7 +22,12 @@ kcl-go rest-server
 然后可以通过 POST 协议请求服务：
 
 ```shell
-$ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
+curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
+```
+
+期望输出为
+
+```shell
 {
 	"error": "",
 	"result": {}
@@ -104,10 +109,15 @@ message ValidateCode_Args {
 将该 JSON 数据保存到 `vet-hello.json` 文件，然后通过以下命令进行校验：
 
 ```shell
-$ curl -X POST \
+curl -X POST \
     http://127.0.0.1:2021/api:protorpc/KclvmService.ValidateCode \
     -H  "accept: application/json" \
     --data @./vet-hello.json
+```
+
+如果看到输出
+
+```json
 {
     "error": "",
     "result": {

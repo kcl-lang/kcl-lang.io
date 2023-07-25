@@ -49,7 +49,7 @@ schema Data:
 
 在目录下执行如下命令
 
-```bash
+```shell
 $ kcl-vet data.json schema.k
 ```
 
@@ -57,13 +57,13 @@ $ kcl-vet data.json schema.k
 
 当校验的 KCL 文件中存在多个 schema 定义时，kcl-vet 工具会默认取第一个 schema 定义进行校验，如果需要指定校验的 schema，可以使用 `-d|--schema` 参数
 
-```bash
+```shell
 $ kcl-vet data.json schema.k -d User
 ```
 
 ## 命令行参数
 
-```bash
+```shell
 $ kcl-vet -h
 USAGE:
     kcl-vet [OPTIONS] [ARGS]

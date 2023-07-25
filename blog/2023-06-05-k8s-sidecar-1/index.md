@@ -36,7 +36,7 @@ spec:
 
 The `Pod` is then created via the kubectl, and then the `Pod` execution status is viewed via `kubectl get po`.
 
-```bash
+```shell
 $ kubectl create -f pod.yaml
 $ kubectl get po
 NAME READY STATUS RESTARTS AGE
@@ -45,7 +45,7 @@ web-app 1/1 Running 0 45m
 
 You can see that a `Pod` named `web-app` is up and running properly, containing the `Nginx` service. To configure port forwarding for external access, the port 3999 of the host corresponds to port 80 of the master container:
 
-```bash
+```shell
 $ kubectl port-forward web-app 3999:80
 Forwarding from 127.0.0.1:3999 ->80
 Forwarding from [::1]:3999 -> 80
@@ -59,7 +59,7 @@ Port forwarding is a blocking procedure, keep the command line open. Then open t
 
 In this section, we try to add the ability to customize web pages to the `Nginx` service via Sidecar without modifying the original `Nginx` container image. Before we start, remove the previously started `Pod`:
 
-```bash
+```shell
 $ kubectl delete po web-app
 pod "web-app" deleted
 ```
@@ -113,7 +113,7 @@ The `Busybox` has only one function: it overwrites the `/var/log/index.html` fil
 
 Then restart the Pod and remap the local host port to the container port.
 
-```bash
+```shell
 $ kubectl create -f pod.yaml 
 pod/web-app created
 $ kubectl port-forward web-app 3999:80
