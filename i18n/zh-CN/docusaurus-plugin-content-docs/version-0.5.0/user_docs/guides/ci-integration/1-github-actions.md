@@ -25,7 +25,7 @@ sidebar_label: Github Actions
 + 获得业务源码
 
 ```shell
-git clone https://github.com/kcl-lang/flask-demo.io.git/
+git clone https://github.com/kcl-lang/flask-demo.git/
 cd flask-demo
 ```
 

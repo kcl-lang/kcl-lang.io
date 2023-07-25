@@ -25,7 +25,7 @@ We put the application source code and infrastructure deployment code in differe
 + Get the application code
 
 ```shell
-git clone https://github.com/kcl-lang/flask-demo.io.git/
+git clone https://github.com/kcl-lang/flask-demo.git/
 cd flask-demo
 ```
 
