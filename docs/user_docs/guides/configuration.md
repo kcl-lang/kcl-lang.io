@@ -101,7 +101,12 @@ dbConfig = {
 
 ```bash
 # Use the `-D` flag to input external parameters.
-$ kcl db.k -D database="foo"
+kcl db.k -D database="foo"
+```
+
+The output is
+
+```yaml
 env: dev
 database: foo
 hosts:
