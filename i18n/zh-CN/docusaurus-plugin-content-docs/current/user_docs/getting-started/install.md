@@ -93,6 +93,8 @@ go install kcl-lang.io/kcl-go/cmds/kcl-go@main
 alias kcl='kcl-go run'
 ```
 
+> 注意：`kcl-go` 并不依赖是否安装了 `kcl`，但如果 PATH 中存在 `kcl`，`kcl-go` 将优先使用 `PATH` 中的 `kcl`。
+
 ### 使用 Docker 镜像安装
 
 + 基本命令

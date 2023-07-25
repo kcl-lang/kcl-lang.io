@@ -93,6 +93,8 @@ Add an alias for the kcl command (optional).
 alias kcl='kcl-go run'
 ```
 
+> Note: `kcl-go` does not rely on the installation of `kcl`, but if `kcl` exists in PATH, it will be used by `kcl-go` first.
+
 ### From Docker
 
 + Command
