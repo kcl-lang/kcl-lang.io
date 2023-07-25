@@ -120,9 +120,13 @@ spec:
 
 当然我们可以将 KCL 工具与 kubectl 等工具结合使用，让我们执行如下命令并看看效果
 
-```bash
-$ kcl main.k | kubectl apply -f -
+```shell
+kcl main.k | kubectl apply -f -
+```
 
+输出为
+
+```shell
 deployment.apps/nginx-deployment configured
 ```
 
@@ -130,9 +134,13 @@ deployment.apps/nginx-deployment configured
 
 通过 kubectl 检查部署状态
 
-```bash
-$ kubectl get deploy
+```shell
+kubectl get deploy
+```
 
+输出为
+
+```shell
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE
 nginx-deployment   3/3     3            3           15s
 ```

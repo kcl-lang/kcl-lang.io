@@ -90,8 +90,13 @@ schema Volume:
 
 我们可以使用如下命令行可以获得 `app` 实例的 YAML 输出
 
-```bash
-$ kcl main.k
+```shell
+kcl main.k
+```
+
+输出为
+
+```yaml
 app:
   domainType: Standard
   containerPort: 80

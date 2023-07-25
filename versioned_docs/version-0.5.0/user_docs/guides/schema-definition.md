@@ -90,8 +90,13 @@ In the above file, we use the `schema` keyword to define three models `App`, `Se
 
 We can get the YAML output of the `app` instance by using the following command line
 
-```bash
-$ kcl main.k
+```shell
+kcl main.k
+```
+
+The output is
+
+```yaml
 app:
   domainType: Standard
   containerPort: 80
@@ -107,8 +112,13 @@ app:
 
 We can still get the YAML output of the `app` instance by using the following command line
 
-```bash
-$ kcl main.k
+```shell
+kcl main.k
+```
+
+The output is
+
+```yaml
 app:
   domainType: Standard
   containerPort: 80

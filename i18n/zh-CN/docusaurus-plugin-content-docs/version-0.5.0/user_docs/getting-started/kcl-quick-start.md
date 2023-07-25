@@ -21,7 +21,12 @@ hello = "KCL"
 如何执行这个程序取决于具体的开发环境，我们先假设本地的 macOS 或者是 Linux 系统已经安装了 `kcl` 命令（或者通过 `docker run --rm -it kcllang/kcl` 进入 Docker 环境测试）。然后在文件所在的目录命令行输入以下命令执行：
 
 ```shell
-$ kcl hello.k
+kcl hello.k
+```
+
+输出为
+
+```yaml
 hello: KCL
 ```
 
@@ -123,7 +128,12 @@ database = DatabaseConfig {
 执行时将产生类似以下的错误（显示的文件路径和本地环境有关）：
 
 ```shell
-$ kcl server.k 
+kcl server.k 
+```
+
+输出为
+
+```shell
 error[E2G22]: TypeError
  --> /path/to/server.k:8:5
   |

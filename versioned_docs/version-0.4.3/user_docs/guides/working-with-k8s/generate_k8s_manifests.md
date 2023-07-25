@@ -154,7 +154,7 @@ spec:
 
 Of course, we can use KCL together with kubectl and other tools. Let's execute the following commands and see the result:
 
-```bash
+```shell
 $ kcl main.k | kubectl apply -f -
 
 deployment.apps/nginx-deployment configured
@@ -164,7 +164,7 @@ It can be seen from the command line that it is completely consistent with the d
 
 Check the deployment status through kubectl
 
-```bash
+```shell
 $ kubectl get deploy
 
 NAME               READY   UP-TO-DATE   AVAILABLE   AGE

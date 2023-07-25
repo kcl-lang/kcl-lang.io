@@ -58,8 +58,13 @@ spec = {
 
 And then execute the KCL directly from the command line with:
 
-```bash
-$ kcl-go run ./hello.k
+```shell
+kcl-go run ./hello.k
+```
+
+The output is
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -112,8 +117,13 @@ go get kusionstack.io/kclvm-go@main
 
 The following command runs the Go program:
 
-```bash
-$ go run main.go      
+```shell
+go run main.go
+```
+
+The output is
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

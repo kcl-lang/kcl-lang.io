@@ -90,7 +90,7 @@ In the above file, we use the `schema` keyword to define three models `App`, `Se
 
 We can get the YAML output of the `app` instance by using the following command line
 
-```bash
+```shell
 $ kcl main.k
 app:
   domainType: Standard
@@ -107,7 +107,7 @@ app:
 
 We can still get the YAML output of the `app` instance by using the following command line
 
-```bash
+```shell
 $ kcl main.k
 app:
   domainType: Standard

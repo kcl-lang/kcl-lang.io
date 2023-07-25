@@ -73,7 +73,12 @@ Besides, KCL allows developers to define the resources required for their applic
 If we want to transform the application config into the docker compose config, we can run the command simply:
 
 ```shell
-$ kcl main.k docker_compose_render.k
+kcl main.k docker_compose_render.k
+```
+
+The output is
+
+```yaml
 services:
   app:
     image: ngnix
@@ -88,7 +93,12 @@ services:
 If we want to transform the application config into the Kubernetes manifests, we can run the command simply:
 
 ```shell
-$ kcl main.k kubernetes_render.k
+kcl main.k kubernetes_render.k
+```
+
+The output is
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:

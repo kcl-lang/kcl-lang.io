@@ -44,7 +44,7 @@ server_yaml = yaml.encode({
 
 我们通过如下命令可以获得配置输出:
 
-```bash
+```shell
 $ kcl yaml.k
 server:
   ports:
@@ -77,7 +77,7 @@ server_json = json.encode({
 
 执行命令输出为:
 
-```bash
+```shell
 $ kcl json.k
 server:
   ports:

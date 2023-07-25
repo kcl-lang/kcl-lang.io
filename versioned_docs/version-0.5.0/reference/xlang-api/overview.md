@@ -135,7 +135,7 @@ x1 = Person {
 
 Execute the following command and get the output:
 
-```bash
+```shell
 $ python3 -m kclvm hello.k
 name: kcl
 age: 1
@@ -162,7 +162,7 @@ print(planner.plan(kclvm_exec.Run(["hello.k"]).filter_by_path_selector()))
 
 Execute the following command and get the output:
 
-```bash
+```shell
 $ python3 main.py
 name: kcl
 age: 1

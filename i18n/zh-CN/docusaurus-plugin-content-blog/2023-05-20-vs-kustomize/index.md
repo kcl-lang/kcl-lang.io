@@ -111,7 +111,7 @@ EOF
 
 我们可以通过如下命令行显示 prod 环境的真实 deployment 配置
 
-```bash
+```shell
 $ kubectl kustomize ./prod
 apiVersion: apps/v1
 kind: Deployment
@@ -149,7 +149,7 @@ spec:
 
 也可以通过如下命令行直接将配置下发到集群当中
 
-```bash
+```shell
 $ kubectl apply -k ./prod
 
 deployment.apps/ldap created
@@ -244,7 +244,7 @@ diff prod-deployment.yaml deployment.yaml
 
 当然我们也可以将 KCL 工具与 kubectl 等工具结合使用，将生产环境的配置下发到集群当中
 
-```bash
+```shell
 $ kcl main.k -D env=prod | kubectl apply -f -
 
 deployment.apps/ldap created
@@ -254,7 +254,7 @@ deployment.apps/ldap created
 
 最后，通过 kubectl 检查部署状态
 
-```bash
+```shell
 $ kubectl get deploy
 
 NAME   READY   UP-TO-DATE   AVAILABLE   AGE

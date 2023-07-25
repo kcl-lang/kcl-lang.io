@@ -21,14 +21,14 @@ The overall workflow is as follows:
 
 We put the application source code and infrastructure deployment code in different repos, which can be maintained by different roles to achieve the separation of concerns.
 
+### 1. Get the Example
+
 + Get the application code
 
 ```shell
 git clone https://gitlab.com/kcl-lang/flask-demo.git/
 cd flask-demo
 ```
-
-## Summary
 
 This is a web application written in Python. We can use the `Dockerfile` in the application directory to generate a container image of this application, and also use Gitlab CI to automatically build a image named `flask_demo`, the CI configuration is as follows
 

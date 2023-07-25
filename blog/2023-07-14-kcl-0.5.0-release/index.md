@@ -229,7 +229,7 @@ kcl-openapi generate model -f processed-${spec_path}
 
 The expected execution output of the script is the corresponding version of the KCL Kubernetes model, and the generated path is `<workspace path>/models/k8s`.
 
-```bash
+```shell
 $ tree models/k8s
 models/k8s
 ├── api
@@ -290,7 +290,7 @@ apps.Deployment {
 
 By combining the `kpm run` and `kubectl` command lines, we can directly distribute resource configurations to the cluster.
 
-```bash
+```shell
 $ kpm run | kubectl apply -f -
 
 deployment.apps/nginx-deployment configured
@@ -420,7 +420,7 @@ spec:
 
 In the above configuration, we used a Kubernetes web service application abstract model that has been predetermined on OCI `oci://ghcr.io/kcl-lang/web-service` and configured the required configuration fields for the model through the `params` field. The original Kubernetes YAML output can be obtained and applied by executing the following command:
 
-```bash
+```shell
 $ kubectl kcl apply -f krm-kcl-abstration.yaml
 
 deployment.apps/app created

@@ -49,7 +49,12 @@ metadata = {
 Execute the following KCL command, then you can see the syntax errors including the unterminated string and the brace mismatch errors.
 
 ```shell
-$ kcl main.k
+kcl main.k
+```
+
+The output is
+
+```shell
 error[E1001]: InvalidSyntax
  --> main.k:2:21
   |
@@ -121,7 +126,12 @@ person = Person {
 We run the following command:
 
 ```shell
-$ kcl main.k -S person
+kcl main.k -S person
+```
+
+The output is
+
+```yaml
 name: Alice
 age: 18
 ```
@@ -215,7 +225,12 @@ apps.Deployment {
 Execute the following command to run the KCL code to obtain an nginx deployment YAML output.
 
 ```shell
-$ kpm run
+kpm run
+```
+
+The output is
+
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
