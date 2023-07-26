@@ -5,7 +5,7 @@
 Create a new kcl package named `my_package`. And after we have created the package `my_package`, we need to go inside the package by `cd my_package` to complete the following operations.
 
 ```shell
-kpm init my_package
+kpm init my_package && cd my_package
 ```
 
 ![kpm_init](/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif)

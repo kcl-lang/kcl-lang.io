@@ -5,7 +5,7 @@
 使用 `kpm init` 命令创建一个名为 `my_package` 的 kcl 程序包, 并且在我们创建完成一个名为 `my_package` 的包后，我们需要通过命令 `cd my_package` 进入这个包来进行后续的操作。
 
 ```shell
-kpm init my_package
+kpm init my_package && cd my_package
 ```
 
 ![kpm_init](/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif)
