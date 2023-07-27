@@ -63,3 +63,16 @@ jobs:
           $HOME/go/bin/kusion version
           $HOME/go/bin/kusion compile -w static/stack -o stdout
           cd static/stack && $HOME/go/bin/kusion compile
+
+  check-kusion-scoop-install:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Scoop Install
+        shell: powershell
+        run: |
+          iwr -useb get.scoop.sh -outfile 'install.ps1'
+          .\install.ps1 -RunAsAdmin
+          scoop bucket add KusionStack https://github.com/KusionStack/scoop-bucket.git
+          scoop install KusionStack/kusion
+          kusion compile -w static/stack -o stdout
