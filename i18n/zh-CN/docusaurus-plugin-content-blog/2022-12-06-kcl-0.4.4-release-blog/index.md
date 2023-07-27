@@ -231,6 +231,15 @@ foo = [
 ]
 ```
 
+### 字符串字面值类型检查错误
+
+在之前的 KCL 版本中，执行如下代码会得到一个非预期的类型检查错误，在 0.4.4 版本中我们进行了修复
+
+```python
+# Before KCL v0.4.4, we will get a unexpected type mismatch error.
+foo: {"A"|"B": int} = {A = 1}
+```
+
 更多信息请参阅：[https://github.com/kcl-lang/kcl/issues/294](https://github.com/kcl-lang/kcl/issues/294)
 
 ### 其他错误修复

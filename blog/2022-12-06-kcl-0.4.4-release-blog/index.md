@@ -243,6 +243,15 @@ foo = [
 ]
 ```
 
+### String Literal Type Check Error
+
+In previous KCL versions, formatting the following code would lead to incorrect indent levels. In version 0.4.4, we have fixed the issue.
+
+```python
+# Before KCL v0.4.4, we will get a unexpected type mismatch error.
+foo: {"A"|"B": int} = {A = 1}
+```
+
 ### Other Issues
 
 For more issues, see [https://github.com/kcl-lang/kcl/milestone/2?closed=1](https://github.com/kcl-lang/kcl/milestone/2?closed=1)
