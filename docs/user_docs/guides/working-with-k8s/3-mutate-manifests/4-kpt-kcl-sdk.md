@@ -67,8 +67,7 @@ spec:
 Run the KCL code via kpt
 
 ```bash
-# Note: you need add sudo and --as-current-user flags to ensure KCL has permission to write temp files in the container filesystem.
-sudo kpt fn eval ./data -i docker.io/kcllang/kpt-kcl:v0.1.2 --as-current-user --fn-config kcl-fn-config.yaml
+kpt fn eval ./data -i docker.io/kcllang/kpt-kcl:v0.2.0 --fn-config kcl-fn-config.yaml
 
 # Verify that the annotation is added to the `Deployment` resource and the other resource `Service` 
 # does not have this annotation.

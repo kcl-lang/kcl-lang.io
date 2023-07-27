@@ -27,21 +27,20 @@ cd ./kustomize-kcl/examples/set-annotation/
 ### 2. Test and Run
 
 ```bash
-# Note: you need add sudo and --as-current-user flags to ensure KCL has permission to write temp files in the container filesystem.
-sudo kustomize fn run ./local-resource/ --as-current-user --dry-run
+kustomize fn run ./local-resource/ --dry-run
 ```
 
 The output YAML is
 
 ```yaml
-# kcl-fn-config.yaml
 apiVersion: krm.kcl.dev/v1alpha1
 kind: KCLRun
 metadata:
+  name: set-annotation
   annotations:
     config.kubernetes.io/function: |
       container:
-        image: docker.io/kcllang/kustomize-kcl:v0.1.1
+        image: docker.io/kcllang/kustomize-kcl:v0.2.0
     config.kubernetes.io/path: example-use.yaml
     internal.config.kubernetes.io/path: example-use.yaml
 # EDIT THE SOURCE!

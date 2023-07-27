@@ -36,7 +36,7 @@ metadata:
   annotations:
     config.kubernetes.io/function: |
       container:
-        image: docker.io/kcllang/kustomize-kcl:v0.1.1
+        image: docker.io/kcllang/kustomize-kcl:v0.2.0
     config.kubernetes.io/path: example-use.yaml
     internal.config.kubernetes.io/path: example-use.yaml
 # EDIT THE SOURCE!

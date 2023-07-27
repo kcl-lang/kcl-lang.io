@@ -27,25 +27,24 @@ cd ./kustomize-kcl/examples/set-annotation/
 ### 2. 测试和运行
 
 ```bash
-# 注意：您需要添加 sudo 和 --as-current-user 以确保 KCL 有权在容器文件系统中写入临时文件。
-sudo kustomize fn run ./local-resource/ --as-current-user --dry-run
+kustomize fn run ./local-resource/ --dry-run
 ```
 
 输出的YAML为
 
 ```yaml
-# kcl-fn-config.yaml
 apiVersion: krm.kcl.dev/v1alpha1
 kind: KCLRun
 metadata:
+  name: set-annotation
   annotations:
     config.kubernetes.io/function: |
       container:
-        image: docker.io/kcllang/kustomize-kcl:v0.1.1
+        image: docker.io/kcllang/kustomize-kcl:v0.2.0
     config.kubernetes.io/path: example-use.yaml
     internal.config.kubernetes.io/path: example-use.yaml
-  # 编辑此源代码
-  # 您在此的 KCL 代码将 `ResourceList` 预加载到 `option("resource_list")`
+# EDIT THE SOURCE!
+# This should be your KCL code which preloads the `ResourceList` to `option("resource_list")
 spec:
   source: |
     [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kustomize-kcl"}} for resource in option("resource_list").items]

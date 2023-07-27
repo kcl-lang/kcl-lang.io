@@ -57,7 +57,7 @@ spec:
 
 ```bash
 # 注意：您需要添加 sudo 和 --as-current-user 标志以确保 KCL 有权在容器文件系统中写入临时文件。
-sudo kpt fn eval ./data -i docker.io/kcllang/kpt-kcl:v0.1.2 --as-current-user --fn-config kcl-fn-config.yaml
+sudo kpt fn eval ./data -i docker.io/kcllang/kpt-kcl:v0.2.0 --as-current-user --fn-config kcl-fn-config.yaml
 
 # 验证 annotation 是否添加到 `Deployment` 资源并且其他资源 `Service` 没有这个 annotation。
 cat ./data/resources.yaml | grep annotations -A1 -B5
