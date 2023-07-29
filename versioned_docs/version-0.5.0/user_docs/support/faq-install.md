@@ -19,3 +19,11 @@ xattr -rd com.apple.quarantine /path/to/kcl
 ```
 
 Where `/path/to/kcl` is the complete path of the kcl application. After running the command, the application will be added to the whitelist and Gatekeeper will no longer prevent it from running.
+
+## program not found or run linker failed error on Windows/Linux/MacOS
+
+Please ensure that the following dependencies are in your PATH:
+
++ `clang` for MacOS
++ `gcc` for Linux
++ `cl.exe` for Windows, which can be obtained by installing MSVC
