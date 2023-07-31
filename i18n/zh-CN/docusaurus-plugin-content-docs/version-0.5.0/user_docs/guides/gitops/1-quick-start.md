@@ -67,7 +67,7 @@ config = app.App {
 + 安装 [K3d](https://github.com/k3d-io/k3d) 并创建一个集群
 
 ```bash
-k3d cluster delete mycluster && k3d cluster create mycluster
+k3d cluster create mycluster
 ```
 
 > 注意：你可以在此方案中使用其他方式创建您自己的 Kubernetes 集群，如 kind, minikube 等。
