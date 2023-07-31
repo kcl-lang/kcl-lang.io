@@ -71,7 +71,7 @@ In the above code, we defined a configuration using the `App` schema, where we c
 + Install [K3d](https://github.com/k3d-io/k3d) to create a default cluster.
 
 ```bash
-k3d cluster delete mycluster && k3d cluster create mycluster
+k3d cluster create mycluster
 ```
 
 + Install [ArgoCD](https://github.com/argoproj/argo-cd/releases/).
