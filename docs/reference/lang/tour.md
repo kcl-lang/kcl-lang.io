@@ -2934,7 +2934,14 @@ kcl_cli_configs:
   strict_range_check: true
   debug: 1
   verbose: 1
+  sort_keys: true
   output: ./stdout.golden
+  overrides:
+    - app.image=new_image
+  path_selector:
+    - config
+  package_maps:
+    k8s: /Users/.kcl/kpm/k8s_1.24
 kcl_options:
   - key: image
     value: docker.io/kcllang/kcl:latest
