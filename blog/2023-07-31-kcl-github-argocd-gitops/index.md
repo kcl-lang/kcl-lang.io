@@ -33,7 +33,7 @@ Benefits of Using KCL and ArgoCD Together:
 
 With GitOps, developer and operation teams can manage application deployment and configuration by modifying KCL code and generating YAML files. The GitOps toolchain will automatically synchronize the changes to the Kubernetes cluster, enabling continuous deployment and ensuring consistency. If there are issues, the GitOps toolchain can be used to quickly rollback.
 
-## Wokrflow
+## Workflow
 
 We hope to implement the end-to-end application development process by using containers, Continuous Integration (CI) for generation, and GitOps for Continuous Deployment (CD). In this scheme, we use a **Flask application** and **Github Actions** as examples.
 
