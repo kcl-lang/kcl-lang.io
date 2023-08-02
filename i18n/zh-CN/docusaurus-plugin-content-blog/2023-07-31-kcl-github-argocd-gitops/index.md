@@ -86,6 +86,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 + 安装 ArgoCD KCL 插件
 
 ```bash
+git clone https://github.com/kcl-lang/kcl-lang.io.git/ && cd ./kcl-lang.io/examples/gitops
 kubectl apply -f ./install/kcl-cmp.yaml && kubectl -n argocd patch deploy/argocd-repo-server -p "$(cat ./install/patch-argocd-repo-server.yaml)"
 ```
 

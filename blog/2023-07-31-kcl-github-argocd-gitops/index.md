@@ -90,6 +90,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 Write the patch YAML configuration file and update the ArgoCD configuration:
 
 ```bash
+git clone https://github.com/kcl-lang/kcl-lang.io.git/ && cd ./kcl-lang.io/examples/gitops
 kubectl apply -f ./install/kcl-cmp.yaml
 ```
 
