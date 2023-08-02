@@ -1821,7 +1821,7 @@ value = option("key") or "default_value"  # 当 key 的值存在时，取 option
 value = option("key", default="default_value")  # 当 key 的值存在时，取 option("key") 的值，否则取 "default_value"
 ```
 
-## 40. KCL 中 schema 怎么检查多个属性不能同时为空
+## 40. KCL 中 schema 怎么检查多个属性不能同时为空或同时设置
 
 在 KCL 中，对于 schema 的单个属性不能为空可以使用属性非空标记
 

@@ -1809,7 +1809,7 @@ Or use the default parameter of the option function.
 value = option("key", default="default_value")  # When the value of key exists, take the value of option("key"), otherwise take "default_value"
 ```
 
-## 40. How to check that multiple attributes cannot be empty at the same time in schema in KCL?
+## 40. How to check that multiple attributes cannot be empty or set values at the same time in schema in KCL?
 
 In KCL, a single attribute of schema cannot be empty by default, unless we use the attribute optional operator `?`.
 
