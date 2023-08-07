@@ -730,5 +730,13 @@
   "sidebar.user_docs.category.Mutate or Validate Kubernetes Manifests": {
     "message": "Mutate or Validate Kubernetes Manifests",
     "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar user_docs"
+  },
+  "sidebar.docs.category.Secret Management": {
+    "message": "Secret Management",
+    "description": "The label for category Secret Management in sidebar docs"
+  },
+  "sidebar.user_docs.category.Secret Management": {
+    "message": "Secret Management",
+    "description": "The label for category Secret Management in sidebar user_docs"
   }
 }
