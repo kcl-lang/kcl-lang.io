@@ -302,6 +302,15 @@ const config = {
         }
       }
     }),
+    plugins: [
+      [
+        '@docusaurus/plugin-google-gtag',
+        {
+          trackingID: 'G-MZD1X1PB2Q',
+          anonymizeIP: true,
+        },
+      ],
+    ],
 };
 
 module.exports = config;
