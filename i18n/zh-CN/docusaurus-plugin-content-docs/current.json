@@ -112,5 +112,13 @@
   "sidebar.user_docs.category.Mutate or Validate Kubernetes Manifests": {
     "message": "编辑或验证 Kubernetes 资源",
     "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar user_docs"
+  },
+  "sidebar.docs.category.Secret Management": {
+    "message": "敏感信息管理",
+    "description": "The label for category Secret Management in sidebar docs"
+  },
+  "sidebar.user_docs.category.Secret Management": {
+    "message": "敏感信息管理",
+    "description": "The label for category Secret Management in sidebar user_docs"
   }
 }
