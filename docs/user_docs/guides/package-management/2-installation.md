@@ -2,9 +2,9 @@
 
 ## Install `kpm`
 
-Before installing and using kpm, ensure that KCL compiler has been installed successfully.
+Before installing and using kpm, ensure that KCL has been installed successfully.
 
-[How to install KCL compiler.](https://kcl-lang.io/docs/user_docs/getting-started/install)
+[How to install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### Go install
 

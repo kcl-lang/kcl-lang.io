@@ -17,6 +17,10 @@ The overall workflow is as follows:
 + Gitlab generate container images from application code and push them to the `docker.io` container registry.
 + Gitlab CI automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
 
+## Prerequisite
+
++ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ## How to
 
 We put the application source code and infrastructure deployment code in different repos, which can be maintained by different roles to achieve the separation of concerns.

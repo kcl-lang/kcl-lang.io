@@ -1,5 +1,9 @@
 # Quick Start
 
+## 0. Prerequisite
+
++ Install [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
+
 ## 1. Init an Empty KCL Package
 
 Create a new kcl package named `my_package`. And after we have created the package `my_package`, we need to go inside the package by `cd my_package` to complete the following operations.

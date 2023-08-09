@@ -9,6 +9,10 @@ The core scenario of KCL is write configurations and constraints. and a core fea
 
 ## Use KCL for Defining Structures and Constraints
 
+### 0. Prerequisite
+
++ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ### 1. Get the Example
 
 Firstly, let's get the example.

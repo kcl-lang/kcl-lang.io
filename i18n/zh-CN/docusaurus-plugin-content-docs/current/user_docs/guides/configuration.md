@@ -15,6 +15,10 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 
 现在我们已经了解了 KCL 的基本功能，让我们探索如何使用它来生成配置。
 
+### 0. 先决条件
+
++ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ### 1. 获取示例
 
 首先，执行如下命令获取示例

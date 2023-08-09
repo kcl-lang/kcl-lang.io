@@ -9,6 +9,10 @@ In KCL, we can not only compile and output the configuration code written by KCL
 
 ## Use KCL for Data Integration
 
+### 0. Prerequisite
+
++ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ### 1. Get the Example
 
 Firstly, let's get the example.

@@ -25,6 +25,10 @@ GitOps 是一种实现持续交付的现代方式。它的核心思想是拥有�
 
 使用 GitOps，开发人员和运维团队可以通过分别修改应用和配置代码来管理应用程序的部署，GitOps 工具链将自动同步对配置的更改，从而实现持续部署并确保一致性。如果出现问题，可以使用 GitOps 工具链快速回滚。
 
+## 先决条件
+
++ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ## 快速开始
 
 ### 1. 获取示例
