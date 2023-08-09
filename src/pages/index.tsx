@@ -7,6 +7,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
 import { ExampleScroller } from "../components/ExampleScroller";
 import ThemedImage from '@theme/ThemedImage';
+import Translate from '@docusaurus/Translate';
 
 import { HiLightningBolt } from "react-icons/hi";
 import { IoColorPaletteSharp, IoAccessibility, IoInvertModeSharp, IoStatsChart, IoBowlingBallOutline } from "react-icons/io5";
@@ -16,14 +17,17 @@ function HomepageHeader() {
     <header className={clsx("container", styles.banner)}>
       <div className="container">
         <h2 className={styles.title} style={{ color: "var(--ifm-color-primary)" }}>
-          Mutation, &nbsp;Validation, &nbsp;Abstraction
+          <Translate>Mutation</Translate>, &nbsp;<Translate>Validation</Translate>, &nbsp;<Translate>Abstraction</Translate>
         </h2>
         <h2 className={styles.title} style={{ color: "var(--ifm-color-primary)" }}>
-          Production-Ready
+          <Translate>Production-Ready</Translate>
         </h2>
         <p className={styles.description}>
-          KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.
+          <Translate>
+            KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.
+          </Translate>
         </p>
+
         <Link
           className={clsx(
             "button button--primary button--lg",
@@ -32,7 +36,7 @@ function HomepageHeader() {
           to="/docs/user_docs/getting-started/intro"
           style={{ marginRight: 10 }}
         >
-          Learn More
+          <Translate>Learn More</Translate>
         </Link>
 
         <Link
@@ -42,7 +46,7 @@ function HomepageHeader() {
           )}
           to="/docs/user_docs/getting-started/install"
         >
-          Download
+          <Translate>Download</Translate>
         </Link>
 
         <br />
@@ -55,50 +59,33 @@ function HomepageHeader() {
 function FeaturesSection() {
   const features = [
     {
-      title: "Easy-to-Use",
-      description:
-        `Originated from languages ​​such as Python and Golang, rich language features, IDEs and tools.`,
+      title: <Translate>Easy-to-Use</Translate>,
+      description: <Translate>Originated from languages ​​such as Python and Golang, rich language features, IDEs and tools.</Translate>,
       icon: <IoAccessibility fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
-      title: "Quick Modeling",
-      description:
-        `
-      Schema-centric configuration types and modular abstraction with logic and policy based on Config, Schema, Lambda, Rule.
-  `,
+      title: <Translate>Quick Modeling</Translate>,
+      description: <Translate>Schema-centric configuration types and modular abstraction with logic and policy based on Config, Schema, Lambda, Rule.</Translate>,
       icon: <IoInvertModeSharp fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
-      title: "Stability",
-      description:
-        `
-      Configuration stability built on static type system, strong immutablity , and constraints.
-  `,
+      title: <Translate>Stability</Translate>,
+      description: <Translate>Configuration stability built on static type system, strong immutablity , and constraints.</Translate>,
       icon: <IoBowlingBallOutline fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
-      title: "Scalability",
-      description:
-        `
-      High scalability through automatic merge mechanism of isolated config blocks with multiple strategies.
-  `,
+      title: <Translate>Scalability</Translate>,
+      description: <Translate>High scalability through automatic merge mechanism of isolated config blocks with multiple strategies.</Translate>,
       icon: <IoStatsChart fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
-      title: "Fast Automation",
-      description:
-        `
-      High performance and
-      gradient automation scheme of CRUD APIs, multilingual SDKs, language plugins for GitOps.
-  `,
+      title: <Translate>Fast Automation</Translate>,
+      description: <Translate>High performance and gradient automation scheme of CRUD APIs, multilingual SDKs, language plugins for GitOps.</Translate>,
       icon: <HiLightningBolt fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
     {
-      title: "API Affinity",
-      description:
-        `
-      Native support API ecological specifications such as OpenAPI, Kubernetes CRD and KRM spec.
-  `,
+      title: <Translate>API Affinity</Translate>,
+      description: <Translate>Native support API ecological specifications such as OpenAPI, Kubernetes CRD and KRM spec.</Translate>,
       icon: <IoColorPaletteSharp fontSize={30} color="var(--ifm-color-primary-dark)" />,
     },
   ];
@@ -112,7 +99,7 @@ function FeaturesSection() {
             <h3 style={{ color: "var(--ifm-color-primary)" }}>{feature.title}</h3>
           </div>
           <div className={clsx("card__body", styles.featureCardBody)}>
-            <p dangerouslySetInnerHTML={{ __html: feature.description }}></p>
+            <p>{feature.description}</p>
           </div>
         </div>
       </div>
@@ -136,12 +123,12 @@ function ExampleSection() {
       )}
       style={{ color: "var(--ifm-color-primary)" }}
     >
-      Codify and Manage Your Modern Configuration and Policy
+      <Translate>Codify and Manage Your Modern Configuration and Policy</Translate>
     </h2>
     <p className={clsx(
       "text--center", styles.description
     )}>
-      With configs, models, functions and rules
+      <Translate>With configs, models, functions and rules</Translate>
     </p>
     <ExampleScroller />
   </div></section>
@@ -184,7 +171,7 @@ function PartnerSection() {
         )}
         style={{ color: "var(--ifm-color-primary)" }}
       >
-        Trusted By
+        <Translate>Trusted By</Translate>
       </h2>
       <div className={styles.whiteboard}>
         <div className="row">
@@ -207,26 +194,26 @@ function BreakSection() {
 
 function CNCFSection() {
   return <section>
-            <div className="container">
-          <div className="container text--center">
-            <h2 className={clsx(
-              "hero__subtitle", styles.poppinsFont,
-            )} >
-              KCL is in <Link to="https://cncf.io/">Cloud Native Computing Foundation</Link> landscape
-            </h2>
-            <br />
-            <div>
-              <ThemedImage
-                className={styles.cncfLogo}
-                alt="CNCF themed image"
-                sources={{
-                  light: useBaseUrl('/img/cncf-color.png'),
-                  dark: useBaseUrl('/img/cncf-white.png'),
-                }}
-              />
-            </div>
-          </div>
+    <div className="container">
+      <div className="container text--center">
+        <h2 className={clsx(
+          "hero__subtitle", styles.poppinsFont,
+        )} >
+          <Translate>KCL is in</Translate> <Link to="https://cncf.io/"><Translate>Cloud Native Computing Foundation</Translate></Link> <Translate>landscape</Translate>
+        </h2>
+        <br />
+        <div>
+          <ThemedImage
+            className={styles.cncfLogo}
+            alt="CNCF themed image"
+            sources={{
+              light: useBaseUrl('/img/cncf-color.png'),
+              dark: useBaseUrl('/img/cncf-white.png'),
+            }}
+          />
         </div>
+      </div>
+    </div>
   </section>
 }
 

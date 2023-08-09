@@ -5,6 +5,7 @@ import Highlight from "../Highlight"
 import Chevron from "@theme/Chevron"
 import seCss from "../../css/section.module.css"
 import shCss from "../../css/index/showcase.module.css"
+import Translate from '@docusaurus/Translate';
 
 const S = [3, 5, 19, 31]
 const M = [3, 5, 19, 31]
@@ -159,7 +160,7 @@ export const ExampleScroller = () => {
                 Config
               </h3>
               <p className={shCss.showcase__description}>
-                Start your cloud-native journey with scalable config
+                <Translate>Start your cloud-native journey with scalable config</Translate>
               </p>
             </div>
 
@@ -173,7 +174,7 @@ export const ExampleScroller = () => {
                 Schema
               </h3>
               <p className={shCss.showcase__description}>
-                Abstract your schema-centric model with static typing
+                <Translate>Abstract your schema-centric model with static typing</Translate>
               </p>
             </div>
 
@@ -187,7 +188,7 @@ export const ExampleScroller = () => {
                 Lambda
               </h3>
               <p className={shCss.showcase__description}>
-                Define and reuse your config and logic through small function fragments
+                <Translate>Define and reuse your config and logic through small function fragments</Translate>
               </p>
             </div>
             <div
@@ -200,7 +201,7 @@ export const ExampleScroller = () => {
                 Rule
               </h3>
               <p className={shCss.showcase__description}>
-                Define your environmental rules to ensure consistency and stability
+                <Translate>Define your environmental rules to ensure consistency and stability</Translate>
               </p>
             </div>
           </div>
