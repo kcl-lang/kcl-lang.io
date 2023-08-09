@@ -7,6 +7,10 @@ sidebar_position: 1
 
 KCL provides many out of the box support for Kubernetes configuration. Through KCL tools, we can integrate Kubernetes Schema and configuration into KCL. This section will introduce how to use KCL to integrate Kubernetes.
 
+## Prerequisite
+
++ Install [kcl-openapi](https://kcl-lang.io/docs/tools/cli/openapi/quick-start)
+
 ## Quick Start
 
 ### 1. Kubernetes OpenAPI Spec
@@ -22,12 +26,14 @@ The `kcl-openapi` tool supports extracting and generating KCL schemas from Kuber
 ### 3. Migrate From Kubernetes To KCL
 
 #### 3.1 Write configurations based on the Kusion_Models package
+
 ``
 We provide an out-of-the-box `kusion_models` package for you to quickly start. It contains a well-designed frontend model called [`Server schema`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k). You can declare the configurations by initializing the `Server schema`. For the description and usage of the schema and its attributes, please refer to the [Server schema documentation](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server).
 ``
+
 #### 3.2 Build Your Custom Frontend Models
 
-The existing KCL Models may not meet your specific business requirements, then you can also design your custom frontend model package. You can design your custom models based on the pre-generated Kubernetes KCL models among all versions. And you can also develop your custom scripts to migrate your configuration data as what `kube2kcl` tool does. 
+The existing KCL Models may not meet your specific business requirements, then you can also design your custom frontend model package. You can design your custom models based on the pre-generated Kubernetes KCL models among all versions.
 
 ##### 3.2.1 Get the k8s package
 

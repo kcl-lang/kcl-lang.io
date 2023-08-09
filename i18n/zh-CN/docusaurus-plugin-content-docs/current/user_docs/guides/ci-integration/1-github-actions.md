@@ -16,6 +16,10 @@ sidebar_label: Github Actions
 + GitHub Actions 从应用代码生成容器镜像，并将容器镜像推送到 docker.io 容器注册表
 + GitHub Actions 根据 docker.io 容器注册表中容器镜像的版本号并同步更新 KCL 清单部署文件
 
+## 先决条件
+
++ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ## 具体步骤
 
 ### 1. 获得示例

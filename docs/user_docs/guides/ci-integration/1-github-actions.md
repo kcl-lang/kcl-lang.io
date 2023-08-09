@@ -16,6 +16,10 @@ The overall workflow is as follows:
 + GitHub Actions generate container images from application code and push them to the `docker.io` container registry.
 + GitHub Actions automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
 
+## Prerequisite
+
++ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ## How to
 
 ### 1. Get the Example

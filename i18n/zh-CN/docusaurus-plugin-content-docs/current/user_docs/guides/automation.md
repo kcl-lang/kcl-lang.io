@@ -15,6 +15,10 @@ sidebar_position: 6
 
 ## 使用 KCL 进行自动化
 
+### 0. 先决条件
+
++ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ### 1. 获得示例
 
 ```bash

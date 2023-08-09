@@ -15,6 +15,10 @@ KCL's core features are its modeling and constraint capabilities, and its basic 
 
 Now that we have an understanding of KCL's capabilities, let's explore how to use it to generate configurations.
 
+### 0. Prerequisite
+
++ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ### 1. Get the Example
 
 Firstly, let's get the example.

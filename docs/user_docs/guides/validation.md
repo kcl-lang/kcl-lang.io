@@ -15,6 +15,10 @@ In addition to using KCL code to generate configuration formats such as JSON/YAM
 
 In KCL, a structure definition can be used to validate configuration data. At the same time, it supports user-defined constraint rules through the check block, and writes validation expressions in the schema to check and validate the attributes defined by the schema. It is very clear and simple to check whether the input JSON/YAML satisfies the corresponding schema structure definition and constraints.
 
+### 0. Prerequisite
+
++ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ### 1. Get the Example
 
 ```shell

@@ -12,6 +12,7 @@ KCL can be used to create functions to mutate and/or validate the YAML Kubernete
 ## Prerequisites
 
 + Install [kustomize](https://github.com/kubernetes-sigs/kustomize)
++ Install [Docker](https://www.docker.com/)
 
 ## Quick Start
 

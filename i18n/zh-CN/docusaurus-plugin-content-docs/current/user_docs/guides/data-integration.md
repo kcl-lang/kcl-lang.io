@@ -9,6 +9,10 @@ sidebar_position: 4
 
 ## 使用 KCL 进行数据集成
 
+### 0. 先决条件
+
++ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ### 1. 获得示例
 
 ```bash

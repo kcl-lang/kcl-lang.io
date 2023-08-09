@@ -9,6 +9,10 @@ KCL 的核心场景是写配置和校验，因此 KCL 被设计之初的一个�
 
 ## 使用 KCL 定义结构和约束
 
+### 0. 先决条件
+
++ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+
 ### 1. 获得示例
 
 ```shell

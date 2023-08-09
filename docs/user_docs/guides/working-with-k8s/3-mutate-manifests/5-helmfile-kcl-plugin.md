@@ -68,6 +68,25 @@ In the above config, we use a `KCLRun` plugin to assign the `transfomer` field. 
 
 ### 2. Test and Run
 
+Firstly, init the helmfile tool.
+
+```bash
+helmfile init
+```
+
+The output may looks like this:
+
+```bash
+The helm plugin helm-git is not installed, do you need to install it [y/n]: y
+Install helm plugin helm-git
+Installed plugin: helm-git
+
+helmfile initialization completed!
+...
+```
+
+Then apply the configuration.
+
 ```bash
 helmfile apply
 ```
