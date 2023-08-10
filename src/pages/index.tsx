@@ -217,6 +217,56 @@ function CNCFSection() {
   </section>
 }
 
+function SubscribeSection() {
+  return <section>
+    <div className="container text--center">
+      <h2
+        className={clsx(
+          "text--center",
+        )}
+        style={{ color: "var(--ifm-color-primary)" }}
+      >
+        <Translate>Subscribe to Newsletter</Translate>
+      </h2>
+      <div className="container text--center">
+        <form action="https://kcl-lang.us21.list-manage.com/subscribe/post?u=058fb980b248a836995b4c09a&amp;id=05b7eecfe9&amp;f_id=007e2fe7f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" className="validate" target="_self">
+          <div aria-hidden="true" style={{ position: "absolute", left: "-5000px" }}>
+            <input type="email" name="b_058fb980b248a836995b4c09a_05b7eecfe9" value="" />
+          </div>
+            <input
+              className={clsx(
+                'remove-autocomplete-styles flex-grow rounded-l-full px-7 py-6 text-16 leading-none tracking-tight placeholder-gray-40 outline-none transition-colors duration-200 disabled:bg-white xl:px-5 xl:py-4 sm:px-5 text-gray-15',
+              )}
+              type="email"
+              name="EMAIL"
+              autoComplete="email"
+              placeholder="Your email address..."
+              style={{width: 300}}
+            />
+            <button
+              aria-label="Subscribe"
+              className={clsx(
+                'trans flex-shrink-0 rounded-r-full bg-center bg-no-repeat px-11 py-6 text-16 font-bold uppercase leading-none transition-colors duration-200 xl:py-4 md:px-5 md:py-3 sm:px-5 sm:py-3',
+                {
+                  'pointer-events-none': false,
+                },
+              )}
+              type="submit"
+            >
+              <span
+                className={clsx({
+                  'opacity-0': false,
+                })}
+              >
+                <Translate>Subscribe</Translate>
+              </span>
+            </button>
+        </form>
+      </div>
+    </div>
+  </section>
+}
+
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -233,6 +283,9 @@ export default function Home(): JSX.Element {
       <PartnerSection />
       <BreakSection />
       <CNCFSection />
+      <BreakSection />
+      <BreakSection />
+      <SubscribeSection />
       <BreakSection />
     </Layout>
   );

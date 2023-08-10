@@ -343,5 +343,11 @@
   },
   "Define your environmental rules to ensure consistency and stability": {
     "message": "定义环境规则以确保配置的一致性和稳定性"
+  },
+  "Subscribe to Newsletter": {
+    "message": "邮件订阅"
+  },
+  "Subscribe": {
+    "message": "确认"
   }
 }
