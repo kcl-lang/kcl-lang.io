@@ -19,10 +19,10 @@ If you are using the default OCI Registry of kpm, to push a kcl package to ghcr.
 After installing kpm and creating a ghcr.io token, you need to log in to ghcr.io using kpm. You can do this using the following command:
 
 ```shell
-kpm login ghcr.io -u <USERNAME> -p <TOKEN> <OCI_REGISTRY>
+kpm login ghcr.io -u <USERNAME> -p <TOKEN>
 ```
 
-Where `<USERNAME>` is your GitHub username, `<TOKEN>` is the token you created in step 2, and `<OCI_REGISTRY>` is ghcr.io.
+Where `<USERNAME>` is your GitHub username, `<TOKEN>` is the token you created in step 2
 
 For more information on how to log in to ghcr.io using kpm, see [kpm login](https://kcl-lang.io/docs/reference/package-management/command-reference/login).
 
