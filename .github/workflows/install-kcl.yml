@@ -60,7 +60,7 @@ jobs:
   check-windows:
     strategy:
       matrix:
-        goversion: [1.17, 1.18]
+        goversion: [1.19, 1.20]
         pyversion: ['3.9', '3.10']
     runs-on: windows-latest
     steps:
