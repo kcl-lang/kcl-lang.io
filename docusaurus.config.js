@@ -49,7 +49,7 @@ const config = {
             title: 'Easy-to-Use',
             imageUrl: 'img/microsite/reasons/extensible.svg',
             description: `
-                Originated from languages ​​such as Python and Golang, rich language features, IDEs and tools.
+                Originated from programming languages ​​such as Python and Golang, rich language features, power IDEs and tools.
             `,
           },
           {
