@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v2
 
       - run: npm install
+      # Fix FATAL ERROR - JavaScript heap out of memory
+      - run: npm install -g increase-memory-limit && increase-memory-limit
       - run: npm run build
 
       - name: Deploy kcl-lang/kcl-lang.github.io
