@@ -34,8 +34,8 @@ kpm login -u <USERNAME> -p <PASSWORD> docker.io
 
 如果您不知道如何得到一个合法的 `kcl.mod` 和 `kcl.mod.lock`。您可以使用 `kpm init` 命令。
 
+例如：创建一个名为 my_package 的 kcl 包
 ```shell
-# 创建一个名为 my_package 的 kcl 包
 kpm init my_package
 ```
 
@@ -43,13 +43,9 @@ kpm init my_package
 
 如果您已经有了一个包含 kcl 文件的目录 `exist_kcl_package`，您可以使用以下命令将其转换为一个 kcl 包，并为其创建合法的 `kcl.mod` 和 `kcl.mod.lock`。
 
+在 `exist_kcl_package` 目录下执行:
 ```shell
-# 在 exist_kcl_package 目录下
-$ pwd 
-/home/user/exist_kcl_package
-
-# 执行 kpm init 命令来创建 kcl.mod 和 kcl.mod.lock
-$ kpm init 
+kpm init 
 ```
 
 关于如何使用 kpm init 的更多信息，请参阅 [kpm init](https://kcl-lang.io/docs/reference/package-management/command-reference/init)。
@@ -58,13 +54,9 @@ $ kpm init
 
 您可以在 `kcl` 包的根目录下使用以下命令进行操作：
 
+在 `exist_kcl_package` 包的根目录下, 执行
 ```shell
-# 在 exist_kcl_package 包的根目录下
-$ pwd 
-/home/user/exist_kcl_package
-
-# 推送 kcl 包到默认的 OCI Registry
-$ kpm push oci://docker.io/<USERNAME>/exist_kcl_package
+kpm push oci://docker.io/<USERNAME>/exist_kcl_package
 ```
 
 完成上述步骤后，您就成功地将您的 kcl 包 `exist_kcl_package` 推送到了 docker.io 中。

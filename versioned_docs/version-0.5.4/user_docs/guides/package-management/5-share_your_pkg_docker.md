@@ -1,4 +1,4 @@
-# Share your package to docker.io
+# Share Your Package to docker.io
 
 [kpm](https://github.com/KusionStack/kpm) is a tool for managing kcl packages. This article will show you how to use kpm to push your kcl packages to docker.io.
 
@@ -34,8 +34,8 @@ First, you need to make sure that what you are pushing conforms to the specifica
 
 If you don't know how to get a valid kcl.mod and kcl.mod.lock, you can use the `kpm init` command.
 
+Create a new kcl package named `my_package`.
 ```shell
-# Create a new kcl package named my_package
 kpm init my_package
 ```
 
@@ -43,12 +43,8 @@ The `kpm init my_package` command will create a new kcl package `my_package` for
 
 If you already have a directory containing kcl files `exist_kcl_package`, you can use the following command to convert it into a kcl package and create valid `kcl.mod` and `kcl.mod.lock` files for it.
 
+Run the `kpm init` command under the `exist_kcl_package` directory.
 ```shell
-# In the exist_kcl_package directory
-$ pwd 
-/home/user/exist_kcl_package
-
-# Run the `kpm init` command to create the `kcl.mod` and `kcl.mod.lock` files
 $ kpm init 
 ```
 
@@ -58,12 +54,8 @@ For more information on how to use `kpm init`, see [kpm init](https://kcl-lang.i
 
 You can use the following command in the root directory of your `kcl` package:
 
+Run the `kpm push` command under the `exist_kcl_package` directory.
 ```shell
-# In the root directory of the exist_kcl_package package
-$ pwd 
-/home/user/exist_kcl_package
-
-# Pushing the KCL Package to Default OCI Registry
 $ kpm push oci://docker.io/<USERNAME>/exist_kcl_package
 ```
 
