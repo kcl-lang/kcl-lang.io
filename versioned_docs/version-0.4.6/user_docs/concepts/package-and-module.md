@@ -1,4 +1,4 @@
-# KCL Module and Package
+# Module and Package
 
 This section mainly describes how to organize files in KCL.
 
