@@ -1,6 +1,6 @@
 ---
 slug: 2023-08-09-biweekly-newsletter
-title: KCL Biweekly Newsletter | KCL v0.5.1 and v0.5.2 is out!
+title: KCL Biweekly Newsletter (2023 07.26 - 08.09) | KCL v0.5.1 and v0.5.2 is out!
 authors:
   name: KCL Team
   title: KCL Team

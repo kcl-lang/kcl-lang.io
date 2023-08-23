@@ -1,5 +1,5 @@
 ---
-slug: 2023-08-09-biweekly-newsletter
+slug: 2023-08-23-biweekly-newsletter
 title: KCL 社区开源双周报 (2023 08.10 - 08.23) | KCL v0.5.3, v0.5.4 和 v0.5.5 版本发布
 authors:
   name: KCL 团队
