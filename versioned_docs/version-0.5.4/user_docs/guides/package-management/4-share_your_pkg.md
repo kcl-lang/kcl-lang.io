@@ -1,4 +1,4 @@
-# Share Your Package
+# Share Your Package to ghcr.io
 
 [kpm](https://github.com/kcl-lang/kpm) is a tool for managing kcl packages. This article will guide you on how to use kpm to push your kcl package to an OCI Registry for publication. kpm uses [ghcr.io](https://ghcr.io) as the default OCI Registry, and you can change the default OCI Registry by modifying the kpm configuration file. For information on how to modify the kpm configuration file, see [kpm oci registry](https://github.com/kcl-lang/kpm/blob/main/docs/kpm_oci.md#kpm-registry)
 
