@@ -110,4 +110,4 @@ Here's what you can do in the KCL code:
 
 ## More Documents and Examples
 
-+ [Kustomize KCL Plugin](https://github.com/kcl-lang/kustomize-kcl)
++ [KRM KCL Spec](https://github.com/kcl-lang/krm-kcl)
