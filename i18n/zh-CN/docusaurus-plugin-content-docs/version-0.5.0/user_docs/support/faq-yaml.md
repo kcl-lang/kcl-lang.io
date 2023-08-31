@@ -60,7 +60,7 @@ var: 1
 比如对于如下 KCL 代码:
 
 ```python
-longStringStartWithEndline = """
+longStringStartWithNewline = """
 This is the second line
 This is the third line
 """
@@ -68,7 +68,7 @@ This is the third line
 ```
 
 ```yaml
-longStringStartWithEndline: |2
+longStringStartWithNewline: |2
 
   This is the second line
   This is the third line

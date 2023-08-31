@@ -3,7 +3,7 @@ id: github-ci
 sidebar_label: Github CI
 ---
 
-Comming Soon
+Coming Soon
 
 ## Introduction
 

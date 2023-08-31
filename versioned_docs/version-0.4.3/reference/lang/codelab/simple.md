@@ -182,8 +182,8 @@ else:
 cpu = _cpu
 memory = _cpu * 2
 _command = ["nginx"] # a list
-_command = _command + ["-f", "file"]  # Append itemsinto command using + operator to contact two lists
-command = [c.lower() for c in _command]  # Take eachelement in the list to lowercase
+_command = _command + ["-f", "file"]  # Append items into command using + operator to contact two lists
+command = [c.lower() for c in _command]  # Take each element in the list to lowercase
 _labels = {
     run = "my-nginx"
     if _env:
@@ -375,7 +375,7 @@ import my_config
 print(my_config.labels) # debugging by print
 
 # test
-assert len(my_config.labels) > 0, "labels can't beempty" # use len() to get list length
+assert len(my_config.labels) > 0, "labels can't be empty" # use len() to get list length
 assert "env" in my_config.labels, "env label is a must"
 assert my_config.cpu >= 256, "cpu cannot be less than256"
 ```

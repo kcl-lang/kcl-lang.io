@@ -60,7 +60,7 @@ Numbers represent **explicit indentation indicators** in YAML. For long strings 
 For example, for the following KCL code:
 
 ```python
-longStringStartWithEndline = """
+longStringStartWithNewline = """
 This is the second line
 This is the third line
 """
@@ -68,7 +68,7 @@ This is the third line
 ```
 
 ```yaml
-longStringStartWithEndline: |2
+longStringStartWithNewline: |2
 
   This is the second line
   This is the third line

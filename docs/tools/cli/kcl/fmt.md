@@ -25,7 +25,7 @@ kcl-fmt your_config_path -R
 ```
 
 * Args
-  * `-R|--recursive` Whether to recursively traverse subfolders
+  * `-R|--recursive` Whether to recursively traverse subfolder
   * `-w|--fmt-output` Whether to output to STDOUT, without `-w` indicates in-place modification.
 
 ## Display of formatting files

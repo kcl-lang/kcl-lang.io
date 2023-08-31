@@ -100,7 +100,7 @@ The mapping between them and the OpenAPI spec is as follows:
 | attribute annotation                        | Not supported. We are planning to add an extension `deprecate` field to the KCL-OpenAPI  |
 | attribute name                              | The key of the property under the `property` object               |
 | attribute optional modifiers(`?`)           | In each element in the `definition` object, here's an optional `required` field which lists the all the required attributes of that model, and the attributes not listed are optional  |
-| attribute type                              | The basic types can be declared by a combination of `type` and `format`, and the schema type is declared by a `$ref` to the schema definition. KCL-OpenAPI spec adds a `x-kcl-types` extension to indicate a type union. `enum` indicates a union of several literal types. For the type declartion in KCL-OpenAPI, see the chapter - [basic data types](#basic-data-types)|
+| attribute type                              | The basic types can be declared by a combination of `type` and `format`, and the schema type is declared by a `$ref` to the schema definition. KCL-OpenAPI spec adds a `x-kcl-types` extension to indicate a type union. `enum` indicates a union of several literal types. For the type declaration in KCL-OpenAPI, see the chapter - [basic data types](#basic-data-types)|
 | attribute default value                     | The value of the `default` field is used to set the default value for the attribute   |
 
 Example:
@@ -144,7 +144,7 @@ schema Pet:
 
 ### Schema Index Signature
 
-In the KCL schema, the index signatures can be used to define attributes with unfined attribute names. The KCL schema index signature contains the following elements:
+In the KCL schema, the index signatures can be used to define attributes with undefined attribute names. The KCL schema index signature contains the following elements:
 
 - Type of the key in the index signature: Declared in square brackets. It must be the basic type
 - Type of value in the index signature: Declared after the colon in the square brackets. It can be any valid KCL type

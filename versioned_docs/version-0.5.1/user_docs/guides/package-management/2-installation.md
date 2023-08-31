@@ -40,7 +40,7 @@ USAGE:
 
 COMMANDS:
    init      initialize new module in current directory
-   add       add new dependancy
+   add       add new dependency
    pkg       package a kcl package into tar
    metadata  output the resolved dependencies of a package
    run       compile kcl package.
