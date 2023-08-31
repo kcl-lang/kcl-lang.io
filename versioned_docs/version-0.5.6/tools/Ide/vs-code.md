@@ -1,4 +1,8 @@
-# KCL Extension for Visual Studio Code
+---
+sidebar_position: 1
+---
+
+# Visual Studio Code
 
 ## Quick Start
 

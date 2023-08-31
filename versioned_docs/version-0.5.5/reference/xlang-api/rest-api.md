@@ -176,7 +176,7 @@ message KclErrorInfo {
 }
 
 // ----------------------------------------------------------------------------
-// service requset/response
+// service request/response
 // ----------------------------------------------------------------------------
 
 // gpyrpc.BuiltinService

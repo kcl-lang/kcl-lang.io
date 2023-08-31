@@ -127,7 +127,7 @@ GitCommit: {git commit}
 
 For all the above operating systems and installation methods, if you want to use [KCL Python Plugin](/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
 
-## 2. Install the KCL IDE Extension
+## 2. Install KCL IDE Extension
 
 ### VS Code
 
