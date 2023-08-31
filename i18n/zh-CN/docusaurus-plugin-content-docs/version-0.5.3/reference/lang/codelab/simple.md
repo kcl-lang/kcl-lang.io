@@ -375,7 +375,7 @@ import my_config
 print(my_config.labels) # 通过打印调试 
 
 # test
-assert len(my_config.labels) > 0, "labels can't beempty" # 使用 len() 得到列表长度
+assert len(my_config.labels) > 0, "labels can't be empty" # 使用 len() 得到列表长度
 assert "env" in my_config.labels, "env label is a must"
 assert my_config.cpu >= 256, "cpu cannot be less than256"
 ```

@@ -8,9 +8,13 @@ sidebar_position: 1
 
 The kcl-openapi tool can be installed in following ways:
 
-- [go install](#11-go-install)
-- [curl|sh install (MacOS & Linux)](#12-curlsh-install-macos--linux)
-- [download from release](#13-dowload-from-release)
+- [Quick Start](#quick-start)
+  - [1. Install KCLOpenAPI Tool](#1-install-kclopenapi-tool)
+  - [1.1 go install](#11-go-install)
+  - [1.2 Curl|sh install (MacOS \& Linux)](#12-curlsh-install-macos--linux)
+  - [1.3 Download from release](#13-download-from-release)
+  - [1.4 Verify your installation](#14-verify-your-installation)
+  - [2. Generate KCL Files](#2-generate-kcl-files)
 
 ## 1.1 go install
 
@@ -26,7 +30,7 @@ If you don't have go, you can install the CLI with this one-liner:
 curl -fsSL https://kcl-lang.io/script/install-kcl-openapi.sh | /bin/bash
 ```
 
-## 1.3 Dowload from release
+## 1.3 Download from release
 
 ```shell
 # 1. download the released binary from:

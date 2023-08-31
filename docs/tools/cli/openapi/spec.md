@@ -95,13 +95,13 @@ Zero or more attributes can be defined in the KCL schema. The declaration of att
 
 The mapping between them and the OpenAPI spec is as follows:
 
-| Elements of KCL Schema Attribute            | Corresponding Elements in OpenAPI     |
-| ------------------------------------------- | ------------------------------------- |
-| attribute annotation                        | Not supported. We are planning to add an extension `deprecate` field to the KCL-OpenAPI  |
-| attribute name                              | The key of the property under the `property` object               |
-| attribute optional modifiers(`?`)           | In each element in the `definition` object, here's an optional `required` field which lists the all the required attributes of that model, and the attributes not listed are optional  |
-| attribute type                              | The basic types can be declared by a combination of `type` and `format`, and the schema type is declared by a `$ref` to the schema definition. KCL-OpenAPI spec adds a `x-kcl-types` extension to indicate a type union. `enum` indicates a union of several literal types. For the type declartion in KCL-OpenAPI, see the chapter - [basic data types](#basic-data-types)|
-| attribute default value                     | The value of the `default` field is used to set the default value for the attribute   |
+| Elements of KCL Schema Attribute  | Corresponding Elements in OpenAPI                                                                                                                                                                                                                                                                                                                                            |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| attribute annotation              | Not supported. We are planning to add an extension `deprecate` field to the KCL-OpenAPI                                                                                                                                                                                                                                                                                      |
+| attribute name                    | The key of the property under the `property` object                                                                                                                                                                                                                                                                                                                          |
+| attribute optional modifiers(`?`) | In each element in the `definition` object, here's an optional `required` field which lists the all the required attributes of that model, and the attributes not listed are optional                                                                                                                                                                                        |
+| attribute type                    | The basic types can be declared by a combination of `type` and `format`, and the schema type is declared by a `$ref` to the schema definition. KCL-OpenAPI spec adds a `x-kcl-types` extension to indicate a type union. `enum` indicates a union of several literal types. For the type declaration in KCL-OpenAPI, see the chapter - [basic data types](#basic-data-types) |
+| attribute default value           | The value of the `default` field is used to set the default value for the attribute                                                                                                                                                                                                                                                                                          |
 
 Example:
 
@@ -144,11 +144,11 @@ schema Pet:
 
 ### Schema Index Signature
 
-In the KCL schema, the index signatures can be used to define attributes with unfined attribute names. The KCL schema index signature contains the following elements:
+In the KCL schema, the index signatures can be used to define attributes with undefined attribute names. The KCL schema index signature contains the following elements:
 
 - Type of the key in the index signature: Declared in square brackets. It must be the basic type
 - Type of value in the index signature: Declared after the colon in the square brackets. It can be any valid KCL type
-- Ellipses(`...`) in the index signature: In the square brackets, before the type declaration of the key. It indicates that the index signature is only used to constrain attributes not defined in the schema. The absentation of the symbol indicates that all defined and undefined attributes in the schema are constrained by the index signature.
+- Ellipses(`...`) in the index signature: In the square brackets, before the type declaration of the key. It indicates that the index signature is only used to constrain attributes not defined in the schema. The assentation of the symbol indicates that all defined and undefined attributes in the schema are constrained by the index signature.
 - Alias for key in index signature: Declared in square brackets, immediately after the left square bracket and takes the form of `<name>:`. The alias can then be used to reference the index signature by name
 - The default value of the index signature: Assign a value to the index signature as the default value
 
@@ -156,7 +156,7 @@ The index signature with its key in `string` type can be described based on the 
 
 The mapping between them and the OpenAPI spec is as follows:
 
-|       Elements of KCL Index Signature        |                               Corresponding Elements in OpenAPI                                 |
+| Elements of KCL Index Signature              | Corresponding Elements in OpenAPI                                                               |
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | Type of the key in the KCL index signature   | Only string type is allowed in OpenAPI                                                          |
 | Type of the value in the KCL index signature | Declared by the `type` in the `additionalProperties` field                                      |
@@ -214,7 +214,7 @@ working in progress
 
 OpenAPI supports models to be declared inline. But KCL currently does not support that. The model defined inline in OpenAPI will be converted to a schema with a name in KCL. And the naming convention will be: 
 
-| element to define an inline schema in OpenAPI |           the name of the corresponding KCL schema             |
+| element to define an inline schema in OpenAPI | the name of the corresponding KCL schema                       |
 | --------------------------------------------- | -------------------------------------------------------------- |
 | inline Property                               | add the Property name at the end of the outer schema Name      |
 | AdditionalProperties                          | add "AdditionalProperties" at the end of the outer schema Name |
@@ -334,7 +334,7 @@ KCL documents consist of module documents and schema documents. And only the sch
 
 The mapping between them and the OpenAPI spec is as follows:
 
-|     Elements of KCL Schema Document     |            Corresponding Elements in OpenAPI            |
+| Elements of KCL Schema Document         | Corresponding Elements in OpenAPI                       |
 | --------------------------------------- | ------------------------------------------------------- |
 | Schema Description                      | The value of the `description` field of the data model  |
 | Schema Attribute Doc                    | The value of the `description` field of the property    |
@@ -411,23 +411,23 @@ schema Pet:
 ```
 ## Basic Data Types
 
-| JSON Schema type | swagger type                | KCL type        | comment     |
-| ---------------- | --------------------------- | --------------- | ----------- |
-| boolean          | boolean                     | bool            |             |
-| number           | number                      | float           |             |
-|                  | number format double        | **unsupported** |             |
-|                  | number format float         | float           |             |
-| integer          | integer                     | int (32)        |             |
-|                  | integer format int64        | **unsupported** |             |
-|                  | integer format int32        | int (32)        |             |
-| string           | string                      | str             |             |
-|                  | string format byte          | str             |             |
-|                  | string format int-or-string | int \| str            |          |
-|                  | string format binay         | str             |             |
+| JSON Schema type | swagger type                | KCL type        | comment                                                                     |
+| ---------------- | --------------------------- | --------------- | --------------------------------------------------------------------------- |
+| boolean          | boolean                     | bool            |                                                                             |
+| number           | number                      | float           |                                                                             |
+|                  | number format double        | **unsupported** |                                                                             |
+|                  | number format float         | float           |                                                                             |
+| integer          | integer                     | int (32)        |                                                                             |
+|                  | integer format int64        | **unsupported** |                                                                             |
+|                  | integer format int32        | int (32)        |                                                                             |
+| string           | string                      | str             |                                                                             |
+|                  | string format byte          | str             |                                                                             |
+|                  | string format int-or-string | int \| str      |                                                                             |
+|                  | string format binary        | str             |                                                                             |
 |                  | string format date          | unsupported     | As defined by full-date - [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) |
 |                  | string format date-time     | unsupported     | As defined by date-time - [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) |
-|                  | string format password      | unsupported     | for swagger: A hint to UIs to obscure input |
-|                  | datetime                    | datetime        |             |
+|                  | string format password      | unsupported     | for swagger: A hint to UIs to obscure input                                 |
+|                  | datetime                    | datetime        |                                                                             |
 
 ## Reference
 

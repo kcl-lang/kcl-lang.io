@@ -804,9 +804,9 @@ An index expression appearing on the left side of an assignment causes the speci
 
 ```python
 a = range(3)            # a == [0, 1, 2]
-a[2] = 7                # a == [0, 1, 7]
+b = a[2]  # 2
 
-coins["suzie b"] = 100
+
 ```
 
 It is a dynamic error to attempt to update an element of an immutable type, such as a list or string, or a frozen value of a mutable type.

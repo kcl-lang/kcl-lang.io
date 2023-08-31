@@ -26,7 +26,7 @@ If you don't have go, you can install the CLI with this one-liner:
 curl -fsSL https://kcl-lang.io/script/install-kcl-openapi.sh | /bin/bash
 ```
 
-## 1.3 Dowload from release
+## 1.3 Download from release
 
 ```shell
 # 1. download the released binary from:

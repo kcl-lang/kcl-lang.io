@@ -3,7 +3,7 @@ id: gitlab-ci
 sidebar_label: Gitlab CI
 ---
 
-Comming Soon
+Coming Soon
 
 ## Introduction
 
