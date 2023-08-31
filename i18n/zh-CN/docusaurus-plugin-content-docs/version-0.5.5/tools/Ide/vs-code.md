@@ -1,4 +1,8 @@
-# Visual Studio Code KCL 插件
+---
+sidebar_position: 1
+---
+
+# Visual Studio Code
 
 ## 快速开始
 

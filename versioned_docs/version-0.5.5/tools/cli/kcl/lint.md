@@ -8,7 +8,7 @@ The KCL Lint tool supports checking some warning-level defects in KCL code and s
 
 ## Example
 
-### Project Struct
+### Project Structure
 
 ```text
 .

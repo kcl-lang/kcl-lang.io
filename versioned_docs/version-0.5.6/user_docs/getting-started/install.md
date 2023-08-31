@@ -127,7 +127,7 @@ GitCommit: {git commit}
 
 For all the above operating systems and installation methods, if you want to use [KCL Python Plugin](/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
 
-## 2. Install the KCL IDE Extension
+## 2. Install KCL IDE Extension
 
 ### VS Code
 
@@ -135,6 +135,14 @@ The KCL Extension extension provides some coding assistance, e.g., highlight, go
 
 ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
+### NeoVim
+
+See [here](https://github.com/kcl-lang/kcl.nvim) to config the KCL language server and enable it.
+
+![kcl.nvim](/img/docs/tools/Ide/neovim/overview.png)
+
 ### IntelliJ IDEA
 
 Download the distribution from [here](https://github.com/kcl-lang/intellij-kcl/releases) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
+
+![intellij](/img/docs/tools/Ide/intellij/overview.png)

@@ -102,7 +102,7 @@ docker pull kusionstack/kclvm
 
 > To avoid the GLIBC version being too low, for lower versions of Linux such as Centos7, you can visit [Github](https://github.com/kcl-lang/kcl/releases/) to find the release of kclvm-centos and download and install it.
 
-## 2. Install the KCL IDE Extension
+## 2. Install KCL IDE Extension
 
 ### VS Code
 
