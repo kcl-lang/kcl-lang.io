@@ -185,8 +185,13 @@ const config = {
             label: 'Tools',
           },
           {
+            href: 'https://github.com/orgs/kcl-lang/packages',
+            position: 'left',
+            sidebarId: 'packages',
+            label: 'Packages',
+          },
+          {
             href: 'http://play.kcl-lang.io/',
-            // type: 'docSidebar',
             position: 'left',
             sidebarId: 'playground',
             label: 'Playground',
