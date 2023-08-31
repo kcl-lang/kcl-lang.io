@@ -35,6 +35,10 @@
     "message": "Playground",
     "description": "Navbar item with label Playground"
   },
+  "item.label.Packages": {
+    "message": "Packages",
+    "description": "Navbar item with label Packages"
+  },
   "item.label.Examples": {
     "message": "Examples",
     "description": "Navbar item with label Examples"
