@@ -19,6 +19,10 @@
     "message": "游乐场",
     "description": "Navbar item with label Playground"
   },
+  "item.label.Packages": {
+    "message": "软件包",
+    "description": "Navbar item with label Packages"
+  },
   "item.label.Examples": {
     "message": "样例",
     "description": "Navbar item with label Examples"
