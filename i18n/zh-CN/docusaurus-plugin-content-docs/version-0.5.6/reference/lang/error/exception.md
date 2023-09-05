@@ -33,7 +33,7 @@ KCL 会出现的语法错误信息如下表所示:
 | E1003  | [KCLIndentationError](#113-kclindentationerror-e1003)               | Indentation Error       |
 | E1I37  | [IllegalArgumentSyntaxError](#114-illegalargumentsyntaxerror-e1i37) | Illegal argument syntax |
 
-### 1.1.1 InvalidSyntaxError [E1001]
+### InvalidSyntaxError [E1001]
 
 如果在运行 KCL 时遇到错误:
 
@@ -60,7 +60,7 @@ error[E1001]: InvalidSyntax
   |
 ```
 
-### 1.1.2 KCLTabError
+### TabError
 
 如果在运行 KCL 时遇到错误: `KCLTabError`
 
@@ -92,7 +92,7 @@ error[E1001]: InvalidSyntax
 
 - 在 KCL 程序中全部使用 Tab 或者全部使用四个空格，不要混用。
 
-### 1.1.3 KCLIndentationError
+### IndentationError
 
 如果在运行 KCL 时遇到错误: `KCLIndentationError`
 
@@ -124,7 +124,7 @@ error[E1001]: InvalidSyntax
 
 - 在 KCL 程序中全部使用 Tab 或者全部使用四个空格来表示缩进。
 
-### 1.1.4 IllegalArgumentSyntaxError
+### IllegalArgumentSyntaxError
 
 如果在运行 KCL 时遇到错误: `IllegalArgumentSyntaxError`
 
@@ -169,7 +169,6 @@ KCL 会出现的编译错误信息如下表所示:
 | E2F04  | [CannotFindModule](#121-cannotfindmodule-e2f04)                         | Cannot find the module                              |
 | E2F05  | [FailedLoadModule](#122-failedloadmodule-e2f05)                         | Failed to load module                               |
 | E2H13  | [UnKnownDecoratorError](#123-unknowndecoratorerror-e2h13)               | UnKnown decorator                                   |
-| E2H14  | [InvalidDecoratorTargetError](#124-invaliddecoratortargeterror-e2h14)   | Invalid Decorator Target                            |
 | E2C15  | [MixinNamingError](#125-mixinnamingerror-e2c15)                         | Illegal mixin naming                                |
 | E2C16  | [MixinStructureIllegal](#126-mixinstructureillegal-e2c16)               | Illegal mixin structure                             |
 | E2B17  | [CannotAddMembersComplieError](#127-cannotaddmemberscomplieerror-e2b17) | Cannot add members to a schema                      |
@@ -186,7 +185,7 @@ KCL 会出现的编译错误信息如下表所示:
 | E2I36  | [IllegalArgumentComplieError](#1218-illegalargumentcomplieerror-e2i36)  | Illegal argument during compiling                   |
 | E3L41  | [ImmutableCompileError](#1219-immutablecompileerror-e3l41)              | Immutable variable is modified                      |
 
-### 1.2.1 CannotFindModule [E2F04]
+### CannotFindModule [E2F04]
 
 如果在运行 KCL 时遇到错误:
 
@@ -219,7 +218,7 @@ error[E2F04]: CannotFindModule
 
 - 在 import 路径下添加导入模块文件。
 
-### 1.2.2 FailedLoadModule [E2F05]
+### FailedLoadModule [E2F05]
 
 如果在运行 KCL 时遇到错误:
 
@@ -234,7 +233,7 @@ error[E2F04]: CannotFindModule
 - 查看文件是否可读
 - 查看文件是否为 kcl 文件
 
-### 1.2.3 UnKnownDecoratorError
+### UnKnownDecoratorError
 
 如果在运行 KCL 时遇到错误:
 
@@ -273,21 +272,7 @@ error[E2L23]: CompileError
 
 - 检查装饰器是否存在。
 
-### 1.2.4 InvalidDecoratorTargetError [E2H14]
-
-如果在运行 KCL 时遇到错误:
-
-- `InvalidDecoratorTargetError`, 对应的 encode 为 `E2H14`
-
-那么此时 KCL 程序中出现了
-
-- 无效的装饰器目标错误。
-
-可以尝试以下步骤来修复这个错误：
-
-- 检查使用装饰器的 KCL 代码是否出现异常。
-
-### 1.2.5 MixinNamingError [E2C15]
+### MixinNamingError [E2C15]
 
 如果在运行 KCL 时遇到错误:
 
@@ -334,7 +319,7 @@ error[E2D34]: IllegalInheritError
 
 - 如果 schema 是一个 mixin，那么这个 schema 的名称应该以 Mixin 结尾。
 
-### 1.2.6 MixinStructureIllegal [E2C16]
+### MixinStructureIllegal [E2C16]
 
 如果在运行 KCL 时遇到错误:
 
@@ -348,7 +333,7 @@ error[E2D34]: IllegalInheritError
 
 - 检查作为 Mixin 的 Schema 的结构。
 
-### 1.2.7 CannotAddMembersComplieError [E2B17]
+### CannotAddMembersComplieError [E2B17]
 
 如果在运行 KCL 时遇到错误:
 
@@ -401,7 +386,7 @@ error[E2L23]: CompileError
 - 为 Schema 添加缺少的成员。
 - 不要使用 Schema 中不存在的成员。
 
-### 1.2.8 IndexSignatureError [E2B20]
+### IndexSignatureError [E2B20]
 
 如果在运行 KCL 时遇到错误:
 
@@ -524,7 +509,7 @@ error[E1001]: IndexSignatureError
 
 - 调整 Schema 属性或者调整索引签名。
 
-### 1.2.9 TypeComplieError [E2G22]
+### TypeComplieError [E2G22]
 
 如果在运行 KCL 时遇到错误:
 
@@ -568,7 +553,7 @@ error[E2G22]: TypeError
 
 - 检查赋给某个变量的值的类型与这个变量的类型是否一致。
 
-### 1.2.10 CompileError [E2L23]
+###0 CompileError [E2L23]
 
 如果在运行 KCL 时遇到错误:
 
@@ -718,7 +703,7 @@ error[E2L23]: CompileError
   |
 ```
 
-### 1.2.11 KCLNameError [E2L25]
+### NameError [E2L25]
 
 如果在运行 KCL 时遇到错误:
 
@@ -732,7 +717,7 @@ error[E2L23]: CompileError
 
 - 检查报错信息中出现的变量是否存在。
 
-### 1.2.12 KCLValueError [E2L26]
+### ValueError [E2L26]
 
 如果在运行 KCL 时遇到错误:
 
@@ -746,7 +731,7 @@ error[E2L23]: CompileError
 
 - 检查参数的具体类型。
 
-### 1.2.13 KCLKeyError [E2L27]
+### KeyError [E2L27]
 
 如果在运行 KCL 时遇到错误:
 
@@ -760,7 +745,7 @@ error[E2L23]: CompileError
 
 - 检查字典中是否存在 key。
 
-### 1.2.14 UniqueKeyError [E2L28]
+### UniqueKeyError [E2L28]
 
 如果在运行 KCL 时遇到错误:
 
@@ -805,7 +790,7 @@ error[E2L28]: UniqueKeyError
 
 - 检查出现错误的名称是否已经被使用。
 
-### 1.2.15 KCLAttributeComplieError [E2A29]
+### AttributeComplieError [E2A29]
 
 如果在运行 KCL 时遇到错误:
 
@@ -843,7 +828,7 @@ error[E2G22]: TypeError
 
 - 在使用 Schema 属性时检查这个属性是否存在。
 
-### 1.2.16 MultiInheritError [E2D32]
+### MultiInheritError [E2D32]
 
 如果在运行 KCL 时遇到错误:
 
@@ -883,7 +868,7 @@ error[E1001]: InvalidSyntax
 
 - 检查程序的继承结构，KCL 中不支持多继承。
 
-### 1.2.17 IllegalInheritError [E2D34]
+### IllegalInheritError [E2D34]
 
 如果在运行 KCL 时遇到错误:
 
@@ -914,7 +899,7 @@ Invalid value for top level arguments
 
 - KCL 中 Schema 支持单继承 Schema。
 
-### 1.2.18 IllegalArgumentComplieError [E2I36]
+### IllegalArgumentComplieError [E2I36]
 
 如果在运行 KCL 时遇到错误:
 
@@ -944,7 +929,7 @@ Invalid value for top level arguments
 
 - 检查通过命令设置的 KCL option 参数是否为合法参数。
 
-### 1.2.19 ImmutableCompileError [E3L41]
+### ImmutableCompileError [E3L41]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1004,7 +989,7 @@ KCL 会出现的运行时错误信息如下表所示:
 | E2D33  | [CycleInheritError](#1313-cycleinheriterror-e2d33)                      | Cycle Inheritance is illegal                        |
 | E3M42  | [KCLRecursionError](#1314-kclrecursionerror-e3m42)                      | Recursively reference                               |
 
-### 1.3.1 RecursiveLoad [E3F06]
+### RecursiveLoad [E3F06]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1043,7 +1028,7 @@ error[E2L23]: CompileError
 
 - 检查包的导入部分是否存在循环导入的问题。
 
-### 1.3.2 FloatOverflow [E3K04]
+### FloatOverflow [E3K04]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1078,7 +1063,7 @@ error[E3M38]: EvaluationError
 
 - 检查浮点数的值是否在 KCL 支持的数字范围内。
 
-### 1.3.3 IntOverflow [E3K09]
+### IntOverflow [E3K09]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1112,7 +1097,7 @@ error[E3M38]: EvaluationError
 
 - 检查整数的值是否在 KCL 支持的数字范围内。
 
-### 1.3.4 DeprecatedError [E3N11]
+### DeprecatedError [E3N11]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1152,7 +1137,7 @@ error[E3M38]: EvaluationError
 - strict 设置为 True 时无法使用过时的代码，可以将 strict 设置为 False，将不会出现错误，而是输出一个警告。
 - 调整代码，不使用已经过时的代码。
 
-### 1.3.5 KCLAttributeRuntimeError [E3A30]
+### AttributeRuntimeError [E3A30]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1185,7 +1170,7 @@ error[E3M38]: EvaluationError
 
 - 检查属性调用是否正确。
 
-### 1.3.6 TypeRuntimeError [E3G21]
+### TypeRuntimeError [E3G21]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1221,7 +1206,7 @@ error[E3M38]: EvaluationError
 
 - 停止错误的类型合并或者将类型调整为 KCL 支持的类型合并。
 
-### 1.3.7 SchemaCheckFailure [E3B17]
+### SchemaCheckFailure [E3B17]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1267,7 +1252,7 @@ error[E3M38]: EvaluationError
 
 - 检查 Schema 的属性与 check 中的条件是否符合
 
-### 1.3.8 CannotAddMembersRuntimeError [E3B19]
+### CannotAddMembersRuntimeError [E3B19]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1307,7 +1292,7 @@ error[E2L23]: CompileError
 - 为 Schema 添加不存在的成员。
 - 访问 Schema 中存在的成员。
 
-### 1.3.9 EvaluationError [E3M38]
+### EvaluationError [E3M38]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1341,7 +1326,7 @@ error[E3M38]: EvaluationError
 
 - 检查表达式中是否存在变量为 None，或者非法的计算过程。
 
-### 1.3.10 InvalidFormatSpec [E3M39]
+###0 InvalidFormatSpec [E3M39]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1374,7 +1359,7 @@ error[E2L23]: CompileError
 
 - 将非法 String 调整为 KCL 标准支持的 String。
 
-### 1.3.11 KCLAssertionError [E3M40]
+### AssertionError [E3M40]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1405,7 +1390,7 @@ error[E3M38]: EvaluationError
 
 - 检查 Assert 的条件，Assert 条件为 False 时，就会出现此类错误，去掉 Assert 语句或改变条件为 True。
 
-### 1.3.12 ImmutableRuntimeError [E3M44]
+### ImmutableRuntimeError [E3M44]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1447,7 +1432,7 @@ error[E3M38]: EvaluationError
 
 - 检查 final 修饰的不可变量是否出现了赋值等改变值的操作。
 
-### 1.3.13 CycleInheritError [E2D33]
+### CycleInheritError [E2D33]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1489,7 +1474,7 @@ error[E2L23]: CompileError
 
 - 检查 Schema 的继承关系，避免出现 A 继承 B，B 继承 A 的情况。
 
-### 1.3.14 KCLRecursionError [E3M42]
+### RecursionError [E3M42]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1544,7 +1529,7 @@ KCL 中的编译警告如下表所示：
 | W2P10  | [InvalidDocstring](#142-invaliddocstring-w2p10)   | Invalid docstring  |
 | W2N12  | [DeprecatedWarning](#143-deprecatedwarning-w2n12) | Deprecated warning |
 
-### 1.4.1 FloatUnderflow [W2K08]
+### FloatUnderflow [W2K08]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1554,7 +1539,7 @@ KCL 中的编译警告如下表所示：
 
 - 检查浮点数的值是否在 KCL 支持的数字范围内。
 
-### 1.4.2 InvalidDocstring [W2P10]
+### InvalidDocstring [W2P10]
 
 如果在运行 KCL 时遇到错误:
 
@@ -1568,7 +1553,7 @@ KCL 中的编译警告如下表所示：
 
 - 请按照 KCL 标准编写 doc。
 
-### 1.4.3 DeprecatedWarning [W2N12]
+### DeprecatedWarning [W2N12]
 
 如果在运行 KCL 时遇到错误:
 
