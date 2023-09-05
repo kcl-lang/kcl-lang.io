@@ -67,7 +67,7 @@ Return `exp(x) - 1`. This function avoids the loss of precision involved in the 
 
 ## log
 
-`log(x) -> float`
+`log(x, base=2.71828182845904523536028747135266250) -> float`
 
 Return the logarithm of `x` to the base `e`.
 
