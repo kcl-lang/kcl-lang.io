@@ -5,7 +5,7 @@ type: "docs"
 description: datetime 包 - 时间处理
 weight: 100
 ---
-## time
+## ticks
 
 `ticks() -> float`
 

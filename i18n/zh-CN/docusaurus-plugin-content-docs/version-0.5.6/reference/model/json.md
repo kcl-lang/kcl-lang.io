@@ -31,6 +31,8 @@ encode(
 dump_to_file(
     data: any,
     filename: str,
+    sort_keys: bool = False,
+    indent: int = None,
     ignore_private: bool = False,
     ignore_none: bool = False
 ) -> None

@@ -30,6 +30,7 @@ encode(
 dump_to_file(
     data: any,
     filename: str,
+    sort_keys: bool = False,
     ignore_private: bool = False,
     ignore_none: bool = False
 ) -> None
