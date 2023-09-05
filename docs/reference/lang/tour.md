@@ -377,6 +377,7 @@ myDict = {
     "key1" = "value1"
     "key2" = "value2"
 }
+myList = [1, 2, 3]
 
 d = "here is myDict in json: ${myDict: #json}"
 # d: 'here is myDict in json: {"key1": "value1", "key2": "value2"}'
@@ -386,6 +387,14 @@ e = "here is myDict in yaml:\n${myDict: #yaml}"
 #  here is myDict in yaml:
 #  key1: value1
 #  key2: value2
+
+f = "here is myList in json: ${myList: #json}"
+# f: 'here is myList in json: [1, 2, 3]'
+g = "here is myList in yaml: ${myList: #yaml}"
+# g: |
+#  here is myList in yaml: - 1
+#  - 2
+#  - 3
 ```
 
 Besides, we can see some symbols in the example code output **YAML string** above such as `|`, `>`, `+`, `-`.
