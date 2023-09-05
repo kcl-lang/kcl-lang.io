@@ -80,6 +80,7 @@ Return the natural logarithm of `1+x` (base `e`). The result is computed in a wa
 ## log2
 
 `log2(x) -> float`
+
 Return the base 2 logarithm of `x`.
 
 ## log10
