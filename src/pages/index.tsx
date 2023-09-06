@@ -153,11 +153,6 @@ function PartnerSection() {
       href: 'https://www.huawei.com/',
     },
     {
-      name: 'TuSimple',
-      img: '/img/logos/tusimple.jpg',
-      href: 'https://www.tusimple.com/',
-    },
-    {
       name: 'Kyligence',
       img: '/img/logos/kyligence.png',
       href: 'https://www.kyligence.io/',
