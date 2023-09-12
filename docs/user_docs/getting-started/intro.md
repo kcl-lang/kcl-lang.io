@@ -10,26 +10,31 @@ sidebar_position: 1
 
 ## Why Use KCL?
 
-KCL expects to solve the following problems:
+KCL aims to fill the gap in configuration languages and tools in the lightweight client-side cloud-native dynamic configuration domain through a more modern declarative configuration language and tools. It aims to address the following problems:
+
++ **Dimension explosion**: Most static configurations, such as Kubernetes YAML configurations in the cloud-native domain, require separate configurations for each environment. In the worst case, this can introduce difficult-to-debug errors involving cross-environment links, resulting in poor stability and scalability.
++ **Configuration drift**: There is often no standardized way to manage the dynamic configurations of applications and infrastructure for different environments, leading to configuration drift. Using non-standardized methods, such as scripting and piecing together glue code, can exponentially increase complexity and lead to configuration drift.
++ **Cognitive loading**: Platform technologies such as Kubernetes excel in unifying infrastructure details at the lower level, but lack higher-level application software delivery abstractions. This creates a higher cognitive loading for regular developers and affects the software delivery experience for developers at higher levels.
+
+To address these problems, KCL aims to provide the following capabilities:
 
 + Hide infrastructure and platform details by defining more appropriate **API abstractions** to reduce the burden of developers.
 + **Mutate** and **validate** existing config files or manifests.
-+ Manage large-scale configuration data across teams without side effects through configuration language.
-  + Use **production level high-performance programming language** to **write code** to improve the flexibility of configuration, such as conditional statements, loops, functions, package management and other features to improve the ability of configuration reuse.
-  + Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
-  + Provide the **ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
++ **Manage large-scale configuration data** across teams without side effects through configuration language.
 
-You can use KCL to
+Specifically, KCL can
 
-+ **Generate** low-level static configuration data like JSON, YAML, etc.
-+ Reduce boilerplate in configuration data with the **schema modeling**.
-+ Define transformers and constraints for configuration data and templates and **mutate/validate** them automatically.
-+ Organize, simplify, unify and manage large configurations scalably without side effects.
-+ Used as a platform engineering language to deliver modern app with [KusionStack](https://kusionstack.io/).
-
-In addition to the language itself, KCL also provides many additional tools, such as formatting, testing, document, package management, to help users use, understand and check the configuration or policy they write. We can reduce the cost of configuration writing and sharing through IDE extensions such as VS Code, playground and package manage tools. In addition, through KCL Rust, Go, and Python multilingual SDKs, the configuration can be automatically managed and executed.
++ Improve the ability to **semantically validate configurations** at the code level, such as schema definitions, required/optional attribute requirements, types, range constraints, and etc.
++ Provide capabilities for **writing, combining, and abstracting configuration chunks**, such as structure definitions, structure inheritance, constraint definitions, and configuration policy merging.
++ Enhance configuration flexibility by adopting **modern programming language** features, such as conditional statements, loops, functions, and package management, to improve configuration reusability.
++ Provide **comprehensive toolchain support**, including rich IDE extensions and toolchains support to reduce the learning curve and enhance the user experience.
++ Enable easier sharing, propagation, and delivery of configurations between different teams/roles through **package management tools** and **OCI registries**.
++ Offer a **high-performance** compiler to meet the demands of scalable configuration scenarios, such as rendering performance for generating configurations for different environments and topologies based on a baseline configuration and configuration automation modification performance requirements.
++ Improve **automation integration** capabilities through **multi-language SDKs**, **KCL language plugins**, and other means, significantly reducing the learning curve while leveraging the value of configuration and policy writing with KCL.
 
 ![](/img/docs/user_docs/intro/kcl-overview.png)
+
+In addition to the language itself, KCL also provides many additional tools, such as formatting, testing, document, package management, to help users use, understand and check the configuration or policy they write. We can reduce the cost of configuration writing and sharing through IDE extensions such as VS Code, playground and package manage tools. In addition, through KCL Rust, Go, and Python multilingual SDKs, the configuration can be automatically managed and executed.
 
 Besides, KCL is a modern high-level domain language, which is a compiled, static and strongly typed language. It provides developers with the ability to write **configuration (config)**, **modeling abstraction (schema)**, **logic (lambda)**, and **policies (rule)** as the core elements through recording and functional language design.
 
@@ -194,6 +199,6 @@ Furthermore, general-purpose languages come in a variety of styles, which can cr
 
 While not originally intended as a data definition language, Rego, the language used for Open Policy Agent (OPA), can also address the issue of adding constraints from multiple sources.
 
-Rego has its roots in logic programming and is based on Datalog, a restricted form of Prolog. In contrast, KCL is based on a static type structure. Typed-feature structures were developed to address the limitations of Prolog in encoding human languages. Using a Datalog variant for a constraint validation task may seem unusual. Datalog excels as a query language, but it can be cumbersome for constraint enforcement, in that values must be queried before applying constraints.
+Rego has its roots in logic programming and is based on Datalog, a restricted form of Prolog. Rego excels as a query language, but it can be cumbersome for constraint enforcement, in that values must be queried before applying constraints. Besides, Rego itself does not have the ability to define a schema. You can introduce JsonSchema definitions in Rego's comments when needed.
 
 KCL's approach to constraint validation is more conducive to finding normalized and simplified representations of constraints, making it well-suited for creating structures generated from OpenAPI.
