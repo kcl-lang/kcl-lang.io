@@ -20,6 +20,9 @@
   "sidebar.user_docs.category.Package Management": {
     "message": "包管理工具"
   },
+  "sidebar.user_docs.category.How to": {
+    "message": "如何使用"
+  },
   "sidebar.user_docs.category.Schema Definition": {
     "message": "模型定义"
   },
