@@ -1,4 +1,4 @@
-# 分享您的 kcl 包
+# 发布 KCL 包到 ghcr.io
 
 [kpm](https://github.com/kcl-lang/kpm) 是一个用于管理 kcl 包的工具。本文将指导您如何使用 kpm 将您的 kcl 包推送到发布到 OCI Registry 中。kpm 默认使用 [ghcr.io](https://ghcr.io) 作为 OCI Registry, 您可以通过修改 kpm 配置文件来更改默认的 OCI Registry。关于如何修改 kpm 配置文件的信息，请参阅 [kpm oci registry](https://github.com/kcl-lang/kpm/blob/main/docs/kpm_oci-zh.md#kpm-registry)
 
