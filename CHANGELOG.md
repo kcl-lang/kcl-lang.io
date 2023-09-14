@@ -1,5 +1,7 @@
 # KCL Changelog
 
++ KCL v0.6.0 - https://github.com/kcl-lang/kcl/releases/tag/v0.6.0
++ KCL v0.5.6 - https://github.com/kcl-lang/kcl/releases/tag/v0.5.6
 + KCL v0.5.5 - https://github.com/kcl-lang/kcl/releases/tag/v0.5.5
 + KCL v0.5.4 - https://github.com/kcl-lang/kcl/releases/tag/v0.5.4
 + KCL v0.5.3 - https://github.com/kcl-lang/kcl/releases/tag/v0.5.3
