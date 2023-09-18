@@ -449,7 +449,7 @@ service/app created
 + 恭喜来自华中科技大学朱俊星同学成功入选 GitLink编程夏令营（GLCC）"Terraform/JsonSchema 转 KCL Schema" 课题 🎉
 + 恭喜来自东南大学的任一鸣同学成功入选 开源之夏 "IDE 插件增强和 Language Server 集成" 课题 🎉
 + 为便于 KCL 及其子项目的仓库检索和管理，我们将 KCL 30+ 仓库整体搬迁到了新的 Github **kcl-lang** 组织，牢记项目地址，防止迷路 [https://github.com/kcl-lang](https://github.com/kcl-lang) ❤️
-+ KCL 加入 CNCF Landscape，算是云原生社区对我们小小的鼓励和认可，下一步计划是努力加入 CNCF Sadbox，为云原生社区作出更多的贡献 💪
++ KCL 加入 CNCF Landscape，算是云原生社区对我们小小的鼓励和认可，下一步计划是努力加入 CNCF Sandbox，为云原生社区作出更多的贡献 💪
 
 ## 下一步计划
 

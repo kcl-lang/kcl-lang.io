@@ -447,7 +447,7 @@ The versioning semantic option is added to the [KCL website](https://kcl-lang.io
 + Congratulations to Junxing Zhu his successful selection into the GitLink Programming Summer Camp (GLCC) "Terraform/JsonSchema to KCL Schema" project 🎉
 + Congratulations to Yiming Ren on her successful selection of the topic "IDE plug-in enhancement and language server integration" in the summer of open source 🎉
 + We have relocated KCL 30+ repos as a whole to the new Github **kcl-lang** organization, keeping the project address in mind [https://github.com/kcl-lang](https://github.com/kcl-lang) ❤️
-+ KCL's joining CNCF Landscape is a small encouragement and recognition from the cloud native community. The next step is to strive to join CNCF Sadbox and make more contributions to the cloud native community 💪
++ KCL's joining CNCF Landscape is a small encouragement and recognition from the cloud native community. The next step is to strive to join CNCF Sandbox and make more contributions to the cloud native community 💪
 
 ## Next
 
