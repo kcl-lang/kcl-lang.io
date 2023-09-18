@@ -26,4 +26,8 @@ Please ensure that the following dependencies are in your PATH:
 
 + `clang` for MacOS
 + `gcc` for Linux
-+ `cl.exe` for Windows, which can be obtained by installing MSVC
++ `cl.exe` for Windows, which can be obtained by installing `MSVC`
+
+## Encountering exit status 0xc0000135 error on Windows platform
+
+Please ensure that .NET Framework and MSVC are installed on your Windows. If not installed, you can install them and try again.
