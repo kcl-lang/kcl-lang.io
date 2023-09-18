@@ -9,7 +9,7 @@ tags: [Release Blog, KCL]
 
 <!-- KCL v0.6.0 重磅发布 - 面向云原生场景更易用的语言、工具链，社区集成和扩展支持 -->
 
-## 简介
+## Introduction
 
 The KCL team is pleased to announce that KCL v0.6.0 is now available! This release has brought three key updates to everyone: **Language**, **Tools**, and **Integrations**.
 
