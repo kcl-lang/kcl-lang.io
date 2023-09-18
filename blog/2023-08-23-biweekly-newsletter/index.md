@@ -52,7 +52,7 @@ The following are listed in no particular order:
 
 ## Featured Updates
 
-### KCL Import Tool Update
+### KCL Import Tool Updates
 
 The KCL Import Tool now adds support for converting Terraform Provider Schema to KCL Schema based on Protobuf, JsonSchema OpenAPI models, and Go Structures, such as the following Terraform Provider Json (obtained through the command `terraform providers schema -json > provider.json` , For more details, please refer to [https://developer.hashicorp.com/terraform/cli/commands/providers/schema](https://developer.hashicorp.com/terraform/cli/commands/providers/schema))
 
