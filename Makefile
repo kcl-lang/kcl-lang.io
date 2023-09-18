@@ -12,7 +12,6 @@ BUILD_IMAGE:=kcllang/kcl-builder
 
 RUN_IN_DOCKER:=docker run -it --rm
 RUN_IN_DOCKER+=-v ~/.ssh:/root/.ssh
-RUN_IN_DOCKER+=-v ~/.gitconfig:/root/.gitconfig
 RUN_IN_DOCKER+=-v ${PWD}:/root/kcl
 RUN_IN_DOCKER+=-w /root/kcl ${BUILD_IMAGE}
 
@@ -53,5 +52,6 @@ algolia:
 # Docker
 # ----------------
 
+.PHONY: sh-in-docker
 sh-in-docker:
 	${RUN_IN_DOCKER} bash
