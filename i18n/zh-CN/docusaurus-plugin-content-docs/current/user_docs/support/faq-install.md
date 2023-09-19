@@ -20,10 +20,14 @@ xattr -rd com.apple.quarantine /path/to/kcl
 
 其中，/path/to/kcl 是 kcl 应用程序的完整路径。运行命令后，应用程序将被添加到白名单中，Gatekeeper 将不再阻止其运行。
 
-## 在 Windows/Linux/MacOS 平台上抱 program not found 或者 run linker failed 错误
+## 在 Windows/Linux/MacOS 平台上报 program not found 或者 run linker failed 错误
 
 请确保如下依赖在您的 PATH 中
 
 + MacOS: `clang`
 + Linux: `gcc`
-+ Windows: `cl.exe` (可以通过安装 MSVC 获得)
++ Windows: `cl.exe` (可以通过安装 `MSVC` 获得)
+
+## 在 Windows 平台上遇到 exit status 0xc0000135 错误
+
+请确保您的 Windows 上安装了 .NET Framework 和 MSVC，如没有安装，可以安装并重试

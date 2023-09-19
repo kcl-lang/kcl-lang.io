@@ -127,6 +127,8 @@ GitCommit: {git commit}
 
 对于上述所有安装方式, 如果您想使用 [KCL Python 插件](/docs/reference/plugin/overview), 需要确保您已经安装了 Python 3.7+ 并将 python3 命令添加到您的 PATH 中。
 
+如果您无法成功安装并运行 KCL，可以参考[这里](/docs/user_docs/support/faq-install)
+
 ## 2. 安装 KCL IDE 插件
 
 ### VS Code
