@@ -32,8 +32,6 @@ CNCF, short for Cloud Native Computing Foundation, is a sub-foundation under the
 
 The CNCF community classifies projects into Sandbox, Incubating, and Graduated. Well-known graduated projects include Kubernetes, Prometheus, Istio, ETCD, Containerd, ArgoCD, and Helm. For a complete list of graduated and incubating projects, you can visit [https://www.cncf.io/projects/](https://www.cncf.io/projects/).
 
-[https://www.cncf.io/projects/](https://www.cncf.io/projects/)
-
 Sandbox is a category created by CNCF to provide a beneficial and neutral home for open source projects to promote collaboration and development. Projects selected for the Sandbox are recognized by the CNCF Technical Oversight Committee (TOC) and have the potential for experimentation and development. You can find the list of Sandbox projects at https://www.cncf.io/sandbox-projects/. To enter the Sandbox, at least 66% of the TOC members (all 11 people listed at https://github.com/cncf/toc#members) need to vote in favor, which means at least 8 people.
 
 ## What is KCL?
