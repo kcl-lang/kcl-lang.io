@@ -25,10 +25,10 @@ Before we start, we need to complete the following steps:
 
 1. Install KCL - See [Download and Install](/docs/user_docs/getting-started/install) for more details.
 
-2. Clone the [Konfig repo](https://github.com/KusionStack/konfig.git)
+2. Clone the [Konfig repo](https://github.com/kcl-lang/konfig.git)
 
 ```shell
-git clone https://github.com/KusionStack/konfig.git && cd konfig
+git clone https://github.com/kcl-lang/konfig.git && cd konfig
 ```
 
 ## Quick Start

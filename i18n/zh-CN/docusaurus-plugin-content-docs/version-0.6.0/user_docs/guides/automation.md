@@ -148,20 +148,6 @@ app:
     app: app
 ```
 
-执行如下命令
-
-```bash
-kcl main.k -O config.x-
-```
-
-输出结果为：
-
-```yaml
-config:
-  x: 1
-  y: s
-```
-
 ### 3. 使用 KCL API 进行自动化
 
 此外，我们还可以通过[多语言 API](/docs/reference/xlang-api/overview) 自动修改配置属性

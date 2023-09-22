@@ -25,10 +25,10 @@ sidebar_label: 快速开始
 
 1. 安装 KCL, 详情信息请参阅[下载和安装](/docs/user_docs/getting-started/install)。
 
-2. 下载开源 Konfig 大库，仓库地址: [https://github.com/KusionStack/konfig.git](https://github.com/KusionStack/konfig.git)
+2. 下载开源 Konfig 大库，仓库地址: [https://github.com/kcl-lang/konfig.git](https://github.com/kcl-lang/konfig.git)
 
 ```shell
-git clone https://github.com/KusionStack/konfig.git && cd konfig
+git clone https://github.com/kcl-lang/konfig.git && cd konfig
 ```
 
 ## 快速开始
