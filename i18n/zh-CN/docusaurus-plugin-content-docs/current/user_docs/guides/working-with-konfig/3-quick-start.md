@@ -40,7 +40,7 @@ Konfig 的编程语言是 KCL，不是 Kubernetes 认识的 JSON/YAML，因此�
 进入到项目的 Stack 目录（`appops/nginx-example/dev`）并执行编译：
 
 ```bash
-cd appops/nginx-example/dev && kcl -Y kcl.yaml -D __konfig_output_format__=raw
+cd appops/nginx-example/dev && kcl
 ```
 
 可以获得如下 YAML 输出:
@@ -128,7 +128,7 @@ Server 模型中的 image 属性用于声明应用的业务容器镜像，我们
 重新编译配置代码可以获得修改后的 YAML 输出：
 
 ```shell
-kcl -Y kcl.yaml -D __konfig_output_format__=raw
+kcl
 ```
 
 ```yaml

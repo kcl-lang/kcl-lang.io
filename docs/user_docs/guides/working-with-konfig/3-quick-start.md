@@ -40,7 +40,7 @@ The programming language of the project is KCL, not JSON/YAML which Kubernetes r
 Enter stack dir `appops/nginx-example/dev` and compile:
 
 ```bash
-cd appops/nginx-example/dev && kcl -Y kcl.yaml -D __konfig_output_format__=raw
+cd appops/nginx-example/dev && kcl
 ```
 
 The output YAML is:
@@ -128,7 +128,7 @@ The `image` attribute in the `Server` model is used to declare the application's
 Recompile the configuration code to obtain the modified YAML output:
 
 ```shell
-kcl -Y kcl.yaml -D __konfig_output_format__=raw
+kcl
 ```
 
 ```yaml
