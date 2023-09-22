@@ -21,21 +21,21 @@ KCLOpenAPI 工具支持从 OpenAPI/CRD 定义提取并生成 KCL schema. 在[KCL
 
 #### 3.1 基于 kusion_models 编写配置
 
-我们为你提供了一个开箱即用的 `kusion_models` 包，让你可以快速开始。其中包含一个精心设计的前端模型，称为[服务器模型](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k)(Server schema)。你可以通过初始化 `Server schema` 来声明其配置。有关模式及其属性的说明和用法，请参阅 [Server schema 文档](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server)。
+我们为你提供了一个开箱即用的 `kusion_models` 包，让你可以快速开始。其中包含一个精心设计的前端模型，称为[服务器模型](https://github.com/kcl-lang/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k)(Server schema)。你可以通过初始化 `Server schema` 来声明其配置。
 
 #### 3.2 创建自定义的 models 前端模型
 
-现有的 `kusion_models` 模型可能无法满足你的特定业务需求，那么你也可以设计自定义前端模型包。 您可基于预先生成的 Kubernetes KCL 包自定义您的前端模型。您还可以仿照`kube2kcl` 工具的模式，开发自定义脚本，完成配置数据的迁移。
+现有的 `konfig` 模型可能无法满足你的特定业务需求，那么你也可以设计自定义前端模型包。您可基于预先生成的 Kubernetes KCL 包自定义您的前端模型。
 
 ##### 3.2.1 获取 Kubernetes KCL 模型
 
-我们提供了预生成的各版本[Kubernetes KCL模型](https://github.com/orgs/KusionStack/packages/container/package/k8s)，您可以在项目下执行 `kpm add k8s:<version>` 来获得它。有关 kpm 使用的详细信息，请参考 [kpm快速入门指南](https://github.com/kcl-lang/kpm#quick-start)。
+我们提供了预生成的各版本[Kubernetes KCL模型](https://github.com/orgs/kcl-lang/packages/container/package/k8s)，您可以在项目下执行 `kpm add k8s:<version>` 来获得它。有关 kpm 使用的详细信息，请参考 [kpm快速入门指南](https://github.com/kcl-lang/kpm#quick-start)。
 
 或者，如果您需要自己生成这些包，请参考[从 Kubernetes OpenAPI 文件生成 KCL 包](https://github.com/kcl-lang/kcl-openapi/blob/main/docs/generate_from_k8s_spec.md)。
 
 ##### 3.2.2 编写自定义前端模型
 
-由于 Kubernetes 内置模型较为原子化和复杂，我们推荐以 Kubernetes 原生模型作为后端输出的模型，对其进一步抽象，而向用户暴露一份更为友好和简单的前端模型界面，具体您可参照 Konfig 仓库中 [kusion_models Server](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k) 模型的设计方式进行。
+由于 Kubernetes 内置模型较为原子化和复杂，我们推荐以 Kubernetes 原生模型作为后端输出的模型，对其进一步抽象，而向用户暴露一份更为友好和简单的前端模型界面，具体您可参照 Konfig 仓库中 [kusion_models Server](https://github.com/kcl-lang/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k) 模型的设计方式进行。
 
 ##### 3.2.3 迁移配置数据
 
@@ -47,7 +47,7 @@ KCLOpenAPI 工具支持从 OpenAPI/CRD 定义提取并生成 KCL schema. 在[KCL
 
 * 从 CRD 生成 KCL Schema
 
-    ```
+    ```sh
     kcl-openapi generate model --crd --skip-validation -f your_crd.yaml
     ```
 

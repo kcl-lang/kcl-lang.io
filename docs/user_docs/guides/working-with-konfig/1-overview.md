@@ -4,7 +4,7 @@ sidebar_label: Overview
 ---
 # Konfig Overview
 
-In KCL, it is recommended to uniformly manage all configurations and model libraries in the way of **configuration library**, that is, to store not only KCL definitions of the abstract model itself, but also various types of configurations, such as application operation and maintenance configuration, policy, etc. The configuration is recommended to be hosted in various VCS systems to facilitate configuration rollback and drift check. The best practice code of the configuration repository is Konfig, and the repository is hosted in [Github](https://github.com/KusionStack/konfig)。
+In KCL, it is recommended to uniformly manage all configurations and model libraries in the way of **configuration library**, that is, to store not only KCL definitions of the abstract model itself, but also various types of configurations, such as application operation and maintenance configuration, policy, etc. The configuration is recommended to be hosted in various VCS systems to facilitate configuration rollback and drift check. The best practice code of the configuration repository is Konfig, and the repository is hosted in [Github](https://github.com/kcl-lang/konfig)。
 
 ⚡ The Konfig repository mainly includes:
 
