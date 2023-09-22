@@ -497,6 +497,15 @@
   "KCL is in": {
     "message": "KCL is in"
   },
+  "KCL is a": {
+    "message": "KCL is a"
+  },
+  "We are a": {
+    "message": "We are a"
+  },
+  "sandbox project": {
+    "message": "sandbox project"
+  },
   "Cloud Native Computing Foundation": {
     "message": "Cloud Native Computing Foundation"
   },

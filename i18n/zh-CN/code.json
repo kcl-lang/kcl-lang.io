@@ -326,6 +326,15 @@
   "KCL is in": {
     "message": "KCL 已经加入"
   },
+  "KCL is a": {
+    "message": "KCL 是一个"
+  },
+  "We are a": {
+    "message": "KCL 是一个"
+  },
+  "sandbox project": {
+    "message": "沙箱项目"
+  },
   "Cloud Native Computing Foundation": {
     "message": "云原生计算基金会"
   },
