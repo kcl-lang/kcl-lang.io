@@ -27,9 +27,7 @@ The `kcl-openapi` tool supports extracting and generating KCL schemas from Kuber
 
 #### 3.1 Write configurations based on the Kusion_Models package
 
-``
 We provide an out-of-the-box `kusion_models` package for you to quickly start. It contains a well-designed frontend model called [`Server schema`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k). You can declare the configurations by initializing the `Server schema`. For the description and usage of the schema and its attributes, please refer to the [Server schema documentation](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server).
-``
 
 #### 3.2 Build Your Custom Frontend Models
 
@@ -55,7 +53,7 @@ If you developed CRDs, you can generate the KCL version of the CRD schemas and d
 
 * Generate KCL Schema from CRD
 
-    ```
+    ```sh
     kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
     ```
 
