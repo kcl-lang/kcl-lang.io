@@ -195,7 +195,7 @@ function CNCFSection() {
         <h2 className={clsx(
           "hero__subtitle", styles.poppinsFont,
         )} >
-          <Translate>KCL is in</Translate> <Link to="https://cncf.io/"><Translate>Cloud Native Computing Foundation</Translate></Link> <Translate>landscape</Translate>
+          <Translate>We are a </Translate> <Link to="https://cncf.io/"><Translate>Cloud Native Computing Foundation</Translate></Link> <Translate>sandbox project</Translate>
         </h2>
         <br />
         <div>

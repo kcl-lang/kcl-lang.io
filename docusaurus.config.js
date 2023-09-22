@@ -23,6 +23,14 @@ const config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'zh-CN'],
+    localeConfigs: {
+      en: {
+        label: 'English',
+      },
+      "zh-CN": {
+        label: '简体中文',
+      },
+    },
   },
   scripts: [],
 
@@ -234,7 +242,6 @@ const config = {
         ].filter(item => true),
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Document',
@@ -288,14 +295,14 @@ const config = {
             ],
           },
         ],
-        logo: {
-          alt: 'AntGroup Open Source Logo',
-          src: 'img/oss_logo.svg',
-          width: 160,
-          height: 51,
-          href: 'https://opensource.antgroup.com/',
-        },
-        copyright: `Copyright © ${new Date().getFullYear()} KCL Authors`,
+        copyright: `
+          <br />
+          <br />
+          <strong>© KCL Authors ${new Date().getFullYear()} | Documentation Distributed under <a href="https://creativecommons.org/licenses/by/4.0">CC-BY-4.0</a> </strong> 
+          <br />
+          <br />
+          © ${new Date().getFullYear()} The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/"> Trademark Usage</a> page.
+        `,
       },
       prism: {
         theme: lightCodeTheme,
@@ -307,26 +314,26 @@ const config = {
         }
       }
     }),
-    plugins: [
-      [
-        '@docusaurus/plugin-google-gtag',
-        {
-          trackingID: 'G-MZD1X1PB2Q',
-          anonymizeIP: true,
-        },
-      ],
-      async function myPlugin(context, options) {
-        return {
-          name: "docusaurus-tailwindcss",
-          configurePostCss(postcssOptions) {
-            // Appends TailwindCSS and AutoPrefixer.
-            postcssOptions.plugins.push(require("tailwindcss"));
-            postcssOptions.plugins.push(require("autoprefixer"));
-            return postcssOptions;
-          },
-        };
+  plugins: [
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-MZD1X1PB2Q',
+        anonymizeIP: true,
       },
     ],
+    async function myPlugin(context, options) {
+      return {
+        name: "docusaurus-tailwindcss",
+        configurePostCss(postcssOptions) {
+          // Appends TailwindCSS and AutoPrefixer.
+          postcssOptions.plugins.push(require("tailwindcss"));
+          postcssOptions.plugins.push(require("autoprefixer"));
+          return postcssOptions;
+        },
+      };
+    },
+  ],
 };
 
 module.exports = config;

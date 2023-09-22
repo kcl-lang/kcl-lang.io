@@ -35,10 +35,6 @@
     "message": "Changelog",
     "description": "The label of footer link with label=Changelog linking to /changelog"
   },
-  "copyright": {
-    "message": "Copyright © 2023 KCL Authors",
-    "description": "The footer copyright"
-  },
   "link.item.label.User Guide": {
     "message": "User Guide",
     "description": "The label of footer link with label=User Guide linking to /docs/user_docs/guides"
