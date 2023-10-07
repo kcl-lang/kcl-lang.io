@@ -4,3 +4,4 @@
 
 + IntelliJ 插件: https://github.com/kcl-lang/intellij-kcl
 + VSCode 插件: https://github.com/kcl-lang/vscode-kcl
++ NeoVim 插件: https://github.com/kcl-lang/kcl.nvim
