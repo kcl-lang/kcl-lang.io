@@ -8,9 +8,16 @@ sidebar_position: 1
 
 - **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to your PATH:
 
+In MacOs and Linux:
   ```bash
   which kcl
   which kcl-language-server
+  ```
+
+In Windows:
+  ```bash
+  where kcl
+  where kcl-language-server
   ```
 
 - **Step 2.** Install the [KCL extension](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension) for Visual Studio Code. This extension requires the VS Code 1.50+.
@@ -22,18 +29,23 @@ This extension provides some coding assistance, including the following features
 
 - **Syntax Highlight:**
   ![Highlight](/img/docs/tools/Ide/vs-code/Highlight.png)
-- **Goto Definition:** Goto definition of schema, variable, schema attribute, and import pkg.
+- **Goto Definition:** Goto definition of schema, variable, schema attribute, map key and import pkg.
   ![Goto Definition](/img/docs/tools/Ide/vs-code/GotoDef.gif)
-- **Completion:** Keywords completions and dot(`.`) completion.
+- **Completion:** Completion for keywords, dot(`.`), variables and schema attribute.
   ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 - **Outline:** Main definition(schema def) and variables in KCL file.
   ![Outline](/img/docs/tools/Ide/vs-code/Outline.gif)
-- **Hover:** Identifier information (type and schema documentation).
+- **Hover:** Identifier information (type, function signature and documents).
   ![Hover](/img/docs/tools/Ide/vs-code/Hover.gif)
 - **Diagnostics:** Warnings and errors in KCL file.
-  > Tips: You can enhance the effect of diagnostics by installing another plugin: [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens).
-  
   ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
+
+> Tips: You can enhance the effect of diagnostics by installing another extension: [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens).
+
+- **Format:** Format a KCL file or snippet code
+  ![Format](/img/docs/tools/Ide/vs-code/Format.gif)
+- **Quick fix:** Quick fix some diagnostics
+  ![Qucik Fix](/img/docs/tools/Ide/vs-code/QuickFix.gif)
 
 Other useful features such as refactoring and testing are in development.
 
