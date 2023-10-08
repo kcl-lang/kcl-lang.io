@@ -23,9 +23,9 @@ sidebar_label: 快速开始
 
 在开始之前，我们需要做以下准备工作：
 
-1. 安装 KCL, 详情信息请参阅[下载和安装](/docs/user_docs/getting-started/install)。
+1. 安装 [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
 
-2. 下载开源 Konfig 大库，仓库地址: [https://github.com/kcl-lang/konfig.git](https://github.com/kcl-lang/konfig.git)
+2. 下载开源 Konfig 库，仓库地址: [https://github.com/kcl-lang/konfig.git](https://github.com/kcl-lang/konfig.git)
 
 ```shell
 git clone https://github.com/kcl-lang/konfig.git && cd konfig
@@ -37,10 +37,10 @@ git clone https://github.com/kcl-lang/konfig.git && cd konfig
 
 Konfig 的编程语言是 KCL，不是 Kubernetes 认识的 JSON/YAML，因此还需要编译得到最终输出。
 
-进入到项目的 Stack 目录（`appops/nginx-example/dev`）并执行编译：
+进入到项目的 Stack 目录（`examples/appops/nginx-example/dev`）并执行编译：
 
 ```bash
-cd appops/nginx-example/dev && kcl
+cd examples/appops/nginx-example/dev && kpm run
 ```
 
 可以获得如下 YAML 输出:
@@ -49,23 +49,23 @@ cd appops/nginx-example/dev && kcl
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-exampledev
-  namespace: nginx-example
+  name: sampleappprod
+  namespace: sampleapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: nginx-example
-      app.kubernetes.io/env: dev
-      app.kubernetes.io/instance: nginx-example-dev
-      app.kubernetes.io/component: nginx-exampledev
+      app.kubernetes.io/name: sampleapp
+      app.kubernetes.io/env: prod
+      app.kubernetes.io/instance: sampleapp-prod
+      app.k8s.io/component: sampleappprod
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: nginx-example
-        app.kubernetes.io/env: dev
-        app.kubernetes.io/instance: nginx-example-dev
-        app.kubernetes.io/component: nginx-exampledev
+        app.kubernetes.io/name: sampleapp
+        app.kubernetes.io/env: prod
+        app.kubernetes.io/instance: sampleapp-prod
+        app.k8s.io/component: sampleappprod
     spec:
       containers:
       - image: nginx:1.7.8
@@ -86,23 +86,23 @@ spec:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nginx-example
+  name: sampleapp
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-example
-  namespace: nginx-example
+  name: nginx
+  namespace: sampleapp
 spec:
   ports:
   - nodePort: 30201
     port: 80
     targetPort: 80
   selector:
-    app.kubernetes.io/name: nginx-example
-    app.kubernetes.io/env: dev
-    app.kubernetes.io/instance: nginx-example-dev
-    app.kubernetes.io/component: nginx-exampledev
+    app.kubernetes.io/name: sampleapp
+    app.kubernetes.io/env: prod
+    app.kubernetes.io/instance: sampleapp-prod
+    app.k8s.io/component: sampleappprod
   type: NodePort
 ```
 
@@ -111,8 +111,6 @@ spec:
 - 一个 name 为 nginx-exampledev 的 Deployment
 - 一个 name 为 nginx-example 的 Namespace
 - 一个 name 为 nginx-example 的 Service
-
-以上就完成了配置生效，后续可以使用 `kubectl apply` 等命令下发并检查资源的实际状态，本文不在赘述。
 
 ### 2. 配置修改
 
@@ -194,4 +192,4 @@ spec:
 
 ## 小结
 
-本文主要介绍了如何使用 KCL 语言与其相对应的 Konfig 库，完成一个运行在 Kubernetes 中的 Long-Running 应用的部署。
+本文主要介绍了如何使用 KCL 语言与其相对应的 Konfig 库，完成一个运行在 Kubernetes 中的 Long-Running 服务应用的部署。
