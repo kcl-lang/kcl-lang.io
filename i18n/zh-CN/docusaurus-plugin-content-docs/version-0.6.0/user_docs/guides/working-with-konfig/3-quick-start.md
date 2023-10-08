@@ -126,7 +126,7 @@ Server 模型中的 image 属性用于声明应用的业务容器镜像，我们
 重新编译配置代码可以获得修改后的 YAML 输出：
 
 ```shell
-kcl
+kpm run
 ```
 
 ```yaml
