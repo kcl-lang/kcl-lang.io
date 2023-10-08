@@ -23,7 +23,7 @@ This guide requires you to have a basic understanding of Kubernetes. If you are 
 
 Before we start, we need to complete the following steps:
 
-1. Install KCL - See [Download and Install](/docs/user_docs/getting-started/install) for more details.
+1. Install [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
 
 2. Clone the [Konfig repo](https://github.com/kcl-lang/konfig.git)
 
@@ -37,10 +37,10 @@ git clone https://github.com/kcl-lang/konfig.git && cd konfig
 
 The programming language of the project is KCL, not JSON/YAML which Kubernetes recognizes, so it needs to be compiled to get the final output.
 
-Enter stack dir `appops/nginx-example/dev` and compile:
+Enter stack dir `examples/appops/nginx-example/dev` and compile:
 
 ```bash
-cd appops/nginx-example/dev && kcl
+cd appops/nginx-example/dev && kpm run
 ```
 
 The output YAML is:
@@ -49,23 +49,23 @@ The output YAML is:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-exampledev
-  namespace: nginx-example
+  name: sampleappprod
+  namespace: sampleapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: nginx-example
-      app.kubernetes.io/env: dev
-      app.kubernetes.io/instance: nginx-example-dev
-      app.kubernetes.io/component: nginx-exampledev
+      app.kubernetes.io/name: sampleapp
+      app.kubernetes.io/env: prod
+      app.kubernetes.io/instance: sampleapp-prod
+      app.k8s.io/component: sampleappprod
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: nginx-example
-        app.kubernetes.io/env: dev
-        app.kubernetes.io/instance: nginx-example-dev
-        app.kubernetes.io/component: nginx-exampledev
+        app.kubernetes.io/name: sampleapp
+        app.kubernetes.io/env: prod
+        app.kubernetes.io/instance: sampleapp-prod
+        app.k8s.io/component: sampleappprod
     spec:
       containers:
       - image: nginx:1.7.8
@@ -86,23 +86,23 @@ spec:
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nginx-example
+  name: sampleapp
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-example
-  namespace: nginx-example
+  name: nginx
+  namespace: sampleapp
 spec:
   ports:
   - nodePort: 30201
     port: 80
     targetPort: 80
   selector:
-    app.kubernetes.io/name: nginx-example
-    app.kubernetes.io/env: dev
-    app.kubernetes.io/instance: nginx-example-dev
-    app.kubernetes.io/component: nginx-exampledev
+    app.kubernetes.io/name: sampleapp
+    app.kubernetes.io/env: prod
+    app.kubernetes.io/instance: sampleapp-prod
+    app.k8s.io/component: sampleappprod
   type: NodePort
 ```
 
@@ -111,8 +111,6 @@ After compiling, we can see three resources:
 - A `Deployment` with the name `nginx-exampledev`
 - A `Namespace` with the name `nginx-example`
 - A `Service` with the name `nginx-example`
-
-The above completes the configuration and takes effect. Later, we can use the command `kubectl apply` to apply and check the actual status of resources. This guide will not elaborate.
 
 ### 2. Modification
 
