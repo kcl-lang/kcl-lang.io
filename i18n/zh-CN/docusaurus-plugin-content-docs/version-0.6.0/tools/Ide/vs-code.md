@@ -6,21 +6,20 @@ sidebar_position: 1
 
 ## 快速开始
 
-- 1. [安装 KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) 并检查 `kcl` 和 `kcl-language-server` 命令在您的 PATH 中:
-在 MacOs 和 Linux中：
+- **1.** [安装 KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) 并检查 `kcl` 和 `kcl-language-server` 命令在您的 PATH 中:
+  在 MacOs 和 Linux中：
   ```bash
   which kcl
   which kcl-language-server
   ```
-
-在 Windows 中:
+  在 Windows 中:
   ```bash
   where kcl
   where kcl-language-server
   ```
 
-- 2. 安装 [VS Code KCL 插件](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension). 需要您的 VS Code 版本大于 1.50+
-- 3. 重新打开 VS Code 并创建一个 KCL 文件验证 IDE 插件功能
+- **2.** 安装 [VS Code KCL 插件](https://marketplace.visualstudio.com/items?itemName=kcl.kcl-vscode-extension). 需要您的 VS Code 版本大于 1.50+
+- **3.** 重新打开 VS Code 并创建一个 KCL 文件验证 IDE 插件功能
 
 ## 特性
 
