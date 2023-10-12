@@ -37,7 +37,8 @@ tags: [KCL, Biweekly-Newsletter]
 
 - 感谢 @jakezhu9 对 KCL Import 工具 Terraform Schema 到 KCL Schema 转换的贡献 🙌 *[https://github.com/kcl-lang/kcl-go/pull/152](https://github.com/kcl-lang/kcl-go/pull/152)*
 - 感谢 @jakezhu9 对 kpm 集成 Import 工具的贡献 🙌 *[https://github.com/kcl-lang/kpm/pull/194](https://github.com/kcl-lang/kpm/pull/194)*
-- 此外感谢 @prahaladramji 在过去两周使用 KCL IDEA 插件过程中提出的宝贵反馈和讨论 🙌
+- 感谢 @zwpaper 对 KCL 文档和 Tree Sitter Grammar 做出的贡献 🙌 *[https://github.com/kcl-lang/tree-sitter-kcl/pull/1](https://github.com/kcl-lang/tree-sitter-kcl/pull/1)* 等
+- 感谢 @mrgleeco, @ghpu, @steeling, @prahaladramji, @zwpaper 等在使用 KCL 及工具链过程中提出的宝贵反馈和讨论 🙌
 
 ## 精选更新
 
@@ -64,9 +65,9 @@ kpm run 支持编译 KCL 文件，并集成了导入工具，同时增加了 —
 在尚未发布的版本中，KCL 的编译命令优化了一些错误信息的输出，部分的错误信息中增加了修复建议：
 ![](/img/blog/2023-10-11-kcl-biweekly-newsletter/error-suggestion.png)
 
-### KCL Operator
+### KCL 模型更新
 
-KCL Operator 提供了 Kubernetes 集群集成，允许您在将资源应用到集群时使用 Access Webhook 根据 KCL 配置生成、变异或验证资源。Webhook 将捕获创建、应用和编辑操作，并在与每个操作关联的配置上执行 `KCLRun`。近几周内，我们提供了更多针对容器、服务和 Pod Security Policy (PSP) 配置编辑及校验的使用案例：
+近几周内，我们提供了更多针对容器、服务和 Pod Security Policy (PSP) 配置编辑及校验的使用案例：
 
 + readonly-root-fs
 + allowed-image-repos
@@ -90,8 +91,6 @@ KCL Operator 提供了 Kubernetes 集群集成，允许您在将资源应用到�
 + k8s_manifests_containers
 
 您可参照对应的示例引入以上配置和校验： [https://github.com/kcl-lang/krm-kcl/tree/main/examples](https://github.com/kcl-lang/krm-kcl/tree/main/examples)
-
-更多 KCL Operator 使用指南，请查看 [https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator)
 
 ### 社区动态
 
