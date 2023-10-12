@@ -121,10 +121,15 @@ You can refer to the corresponding examples to incorporate the above configurati
   ```
 Using the Kubectl KCL tool for resource validation on the client-side, we will get the following result:
 
-  ```shell
-  $ kubectl kcl check -f manifests.yaml
-  - A validation that prevents the creation of Service resources of type `LoadBalancer`, for Service: my-service
-  ```
+```shell
+kubectl kcl apply -f manifests.yaml
+```
+
+The output is
+
+```
+A validation that prevents the creation of Service resources of type `LoadBalancer`, for Service: my-service
+```
 
 ## Resources
 
