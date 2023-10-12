@@ -67,30 +67,48 @@ kpm run 支持编译 KCL 文件，并集成了导入工具，同时增加了 —
 
 ### KCL 模型更新
 
-近几周内，我们提供了更多针对容器、服务和 Pod Security Policy (PSP) 配置编辑及校验的使用案例：
+近几周内，我们提供了更多针对容器、服务和 Pod Security Policy (PSP) 配置编辑及校验的使用案例。您可参照对应的示例引入以上配置和校验： [https://github.com/kcl-lang/krm-kcl/tree/main/examples](https://github.com/kcl-lang/krm-kcl/tree/main/examples)
 
-+ readonly-root-fs
-+ allowed-image-repos
-+ deny-all
-+ deny-endpoint-edit-default-role
-+ disallow-ingress-wildcard
-+ disallow-svc-lb
-+ disallow-svc-node-port
-+ disallowed-image-repos
-+ horizontal-pod-auto-scaler
-+ psp-allow-privilege-escalation
-+ psp-app-armor
-+ psp-capabilities
-+ psp-flexvolume-drivers
-+ required-image-digests
-+ required-probes
-+ validate-auto-mount-service-account-token
-+ validate-container-limits
-+ validate-container-requests
-+ validate-deprecated-api
-+ k8s_manifests_containers
+下面我们以 Kubectl KCL 插件和 disallow-svc-lb 模型进行说明，disallow-svc-lb 的作用是对 Service 资源进行校验，不允许 Service 资源的类型设置为 `LoadBalancer`，编写如下 YAML 文件 (manifests.yaml)：
+  
+  ```yaml
+  apiVersion: krm.kcl.dev/v1alpha1
+  kind: KCLRun
+  metadata:
+    name: disallow-svc-lb
+    annotations: 
+      krm.kcl.dev/version: 0.0.1
+      krm.kcl.dev/type: validation
+      documentation: >-
+        A validation that prevents the creation of Service resources of type `LoadBalancer`
+  spec:
+    source: oci://ghcr.io/kcl-lang/disallow-svc-lb
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: my-service
+  spec:
+    selector:
+      app.kubernetes.io/name: MyApp
+    ports:
+      - name: http
+        protocol: TCP
+        port: 80
+    type: LoadBalancer # 错误地设置了 LoadBalancer
+  ```
 
-您可参照对应的示例引入以上配置和校验： [https://github.com/kcl-lang/krm-kcl/tree/main/examples](https://github.com/kcl-lang/krm-kcl/tree/main/examples)
+通过 Kubectl KCL 工具在客户端进行资源验证：
+
+  ```shell
+  kubectl kcl apply -f manifests.yaml
+  ```
+
+我们会得到如下结果：
+
+  ```shell
+  A validation that prevents the creation of Service resources of type `LoadBalancer`, for Service: my-service
+  ```
 
 ### 社区动态
 

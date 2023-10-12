@@ -91,8 +91,40 @@ In the past few weeks, we have provided more usage examples for configuring and 
 + validate-deprecated-api
 + k8s_manifests_containers
 
-You can refer to the corresponding examples to incorporate the above configurations and validations: [https://github.com/kcl-lang/krm-kcl/tree/main/examples](https://github.com/kcl-lang/krm-kcl/tree/main/examples).
+You can refer to the corresponding examples to incorporate the above configurations and validations: [https://github.com/kcl-lang/krm-kcl/tree/main/examples](https://github.com/kcl-lang/krm-kcl/tree/main/examples). Now, let's explain using the Kubectl KCL plugin and the disallow-svc-lb model. The purpose of disallow-svc-lb is to validate Service resources and disallow the use of LoadBalancer as the Service type. Write the following YAML file (manifests.yaml): 
 
+  ```yaml
+  apiVersion: krm.kcl.dev/v1alpha1
+  kind: KCLRun
+  metadata:
+    name: disallow-svc-lb
+    annotations: 
+      krm.kcl.dev/version: 0.0.1
+      krm.kcl.dev/type: validation
+      documentation: >-
+        A validation that prevents the creation of Service resources of type `LoadBalancer`
+  spec:
+    source: oci://ghcr.io/kcl-lang/disallow-svc-lb
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: my-service
+  spec:
+    selector:
+      app.kubernetes.io/name: MyApp
+    ports:
+      - name: http
+        protocol: TCP
+        port: 80
+    type: LoadBalancer # The service type is incorrectly set to LoadBalancer.
+  ```
+Using the Kubectl KCL tool for resource validation on the client-side, we will get the following result:
+
+  ```shell
+  $ kubectl kcl check -f manifests.yaml
+  - A validation that prevents the creation of Service resources of type `LoadBalancer`, for Service: my-service
+  ```
 
 ## Resources
 
