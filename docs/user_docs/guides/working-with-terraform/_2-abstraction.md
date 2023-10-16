@@ -2,6 +2,7 @@
 id: abstraction
 sidebar_label: Abstraction
 ---
-# Abstract Your Terraform Modules
+
+# Abstract Terraform Modules
 
 Coming Soon
