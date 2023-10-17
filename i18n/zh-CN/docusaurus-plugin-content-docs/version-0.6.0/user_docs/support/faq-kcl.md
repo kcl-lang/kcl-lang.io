@@ -766,7 +766,7 @@ KCL 中使用 `?` 运算符定义一个 schema 的"可选"约束，schema 属性
 schema Person:
     firstName?: str  # firstName是一个可选属性，可以赋值为None/Undefined
     lastName?: str  # age是一个可选属性，可以赋值为None/Undefined
-    # age属性的默认值为0
+    # age属性的默认值为 18
     age: int = 18  # age是一个必选属性，不能赋值为None/Undefined，并且是一个不可变属性
     age = 10  # Error, age是一个不可变的属性
 ```
@@ -1518,8 +1518,8 @@ print({k1 = 1, k2 = 2, k3 = 3} == {k2 = 2, k1 = 1})  # False
 ```python
 data = {  # 定义一个字典类型的变量 data
     a = 1  # 使用 = 在 data 中声明一个值为 1 的属性 a
-    b = 2  # 使用 = 在 data 中声明一个值为 1 的属性 b
-}  # 最终 data 的值为 {"a": 1, "b": 1}
+    b = 2  # 使用 = 在 data 中声明一个值为 2 的属性 b
+}  # 最终 data 的值为 {"a": 1, "b": 2}
 ```
 
 在 schema 实例化处也可以使用覆盖属性运算符实现对 schema 默认值的覆盖效果，一般在创建新的 schema 实例时如无特殊的需求，一般使用 `=` 即可
