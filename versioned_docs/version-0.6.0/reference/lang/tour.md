@@ -2550,7 +2550,7 @@ schema Data:
 
 data = Data {
     # insert [2] after the index 1 of the attribute labels.key1 of the schema Data.
-    labels: {key1 += [2]}
+    labels: {key1[1] += [2]}
 }
 ```
 

@@ -2485,7 +2485,7 @@ schema Data:
     labels: {str:} = {key1 = [0, 1, 3]}
 
 data = Data {
-    # insert [2] after the index 1 of the attribute labels.key1 of the schema Data.
+    # insert [3] after the index 1 of the attribute labels.key1 of the schema Data.
     labels: {key1[1] += [2]}
 }
 ```
@@ -2710,7 +2710,7 @@ allow = Allow() or False
 
 ### 模块
 
-KCL 配置文件以 **模块（module）** 形式组织。 单个 KCL 文件被认为是一个模块，一个目录被认为是一个包。
+KCL 配置文件以 **模块 (module)** 形式组织。 单个 KCL 文件被认为是一个模块，一个目录被认为是一个包。
 
 同一个包内的模块是可见的，跨包引用需要通过导入可见。
 
