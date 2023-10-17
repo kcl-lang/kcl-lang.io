@@ -3212,7 +3212,6 @@ kcl main.k -O config.x-
 
 ```yaml
 config:
-  x: 1
   y: s
 ```
 

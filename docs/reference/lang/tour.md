@@ -3322,7 +3322,6 @@ The output is
 
 ```yaml
 config:
-  x: 1
   y: s
 ```
 
