@@ -1,6 +1,5 @@
 ---
-id: validate-terraform-configuration
-sidebar_label: Validate Terraform Configuration
+title: "Validate Terraform Configuration"
 ---
 
 ## Introduction
