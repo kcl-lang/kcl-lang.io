@@ -1506,8 +1506,8 @@ The most commonly used attribute operator is `=`, which indicates the assignment
 ```python
 data = { # define a dictionary type variable data
     a = 1 # use = to declare a attribute a in data with a value of 1
-    b = 2 # use = to declare a attribute b in data with a value of 1
-} # The final data value is {"a": 1, "b": 1}
+    b = 2 # use = to declare a attribute b in data with a value of 2
+} # The final data value is {"a": 1, "b": 2}
 ```
 
 we can also use the override attribute operator at the schema instantiation to achieve the effect of overriding the default value of the schema. Generally, when creating a new schema instance, if there is no special requirement, we can generally use `=`
