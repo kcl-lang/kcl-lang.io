@@ -1704,10 +1704,10 @@ schema Data2:
 
 data: Data1 | Data2 = Data1 {}
 
-if typeof(a) == "Data1":
-    data1 = data as Data1  # The type of `data1` is `Data1`
-elif typeof(a) == "Data2":
-    data2 = data as Data2  # The type of `data2` is `Data2`
+if typeof(data) == "Data1":
+    data1 = data as Data1  # The type of `data` is `Data1`
+elif typeof(data) == "Data2":
+    data2 = data as Data2  # The type of `data` is `Data2`
 ```
 
 When a runtime error occurs in the `as` type conversion, a runtime error is thrown.
@@ -2546,11 +2546,11 @@ Examples:
 
 ```python
 schema Data:
-    labels: {str:} = {key1 = [0]}
+    labels: {str:} = {key1 = [0, 1, 3]}
 
 data = Data {
-    # insert [1] into the attribute labels.key1 of the schema Data.
-    labels: {key1 += [1]}
+    # insert [2] after the index 1 of the attribute labels.key1 of the schema Data.
+    labels: {key1 += [2]}
 }
 ```
 
@@ -2562,6 +2562,8 @@ data:
     key1:
     - 0
     - 1
+    - 2
+    - 3
 ```
 
 If no index is specified, the last index will be used.
@@ -2650,12 +2652,12 @@ rule2 = SomeRule {}  # Rule call
 We can use protocol to implement type checking of rule structure:
 
 ```python
-# Schema definition
+# Protocol definition
 protocol Service:
     clusterIp: str
     $type: str
 
-# Schema definition
+# Protocol definition
 protocol Volume:
     mountPath: [str]
 
@@ -3003,7 +3005,7 @@ Parameters
 - **key**: The argument key.
 - **type**: The argument type to be converted.
 - **default**: The argument default value when the key-value argument is not provided
-- **required**: Report an error when the key-value argument is not provided and required is True.
+- **required**: Report an error when the key-value argument is not provided and required is True, but don't provide the default value.
 - **help**: The help message.
 
 ### Multi-file Compilation

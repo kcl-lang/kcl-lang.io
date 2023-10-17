@@ -1702,10 +1702,10 @@ schema Data2:
 
 data: Data1 | Data2 = Data1 {}
 
-if typeof(a) == "Data1":
-    data1 = data as Data1  # The type of `data1` is `Data1`
-elif typeof(a) == "Data2":
-    data2 = data as Data2  # The type of `data2` is `Data2`
+if typeof(data) == "Data1":
+    data1 = data as Data1  # The type of `data` is `Data1`
+elif typeof(data) == "Data2":
+    data2 = data as Data2  # The type of `data` is `Data2`
 ```
 
 当类型转换失败时，一个运行时错误将被抛出。
@@ -2482,11 +2482,11 @@ data:
 
 ```python
 schema Data:
-    labels: {str:} = {key1 = [0]}
+    labels: {str:} = {key1 = [0, 1, 3]}
 
 data = Data {
-    # insert [1] into the attribute labels.key1 of the schema Data.
-    labels: {key1 += [1]}
+    # insert [2] after the index 1 of the attribute labels.key1 of the schema Data.
+    labels: {key1[1] += [2]}
 }
 ```
 
@@ -2498,6 +2498,8 @@ data:
     key1:
     - 0
     - 1
+    - 2
+    - 3
 ```
 
 如果没有定义索引，将使用最后一个索引。
@@ -2569,12 +2571,12 @@ rule2 = SomeRule {}
 可以使用 protocol 和 for 绑定语句为 rule 增加类型约束:
 
 ```python
-# Schema definition
+# Protocol definition
 protocol Service:
     clusterIp: str
     $type: str
 
-# Schema definition
+# Protocol definition
 protocol Volume:
     mountPath: [str]
 
@@ -2708,7 +2710,7 @@ allow = Allow() or False
 
 ### 模块
 
-KCL 配置文件以 **模块** 形式组织。 单个 KCL 文件被认为是一个 module，一个目录被认为是一个包。
+KCL 配置文件以 **模块（module）** 形式组织。 单个 KCL 文件被认为是一个模块，一个目录被认为是一个包。
 
 同一个包内的模块是可见的，跨包引用需要通过导入可见。
 
@@ -2918,7 +2920,7 @@ value = option(key="key", type='str', default="default_value", required=True, he
 - **key**: 参数的键。
 - **type**: 要转换的参数类型。
 - **default**: 参数默认值。
-- **required**: 当未提供参数且参数的 required 为 True 是报告错误。
+- **required**: 当未提供参数和缺省值，且参数的 required 为 True 时报告错误。
 - **help**: 帮助信息。
 
 ### 多文件编译
