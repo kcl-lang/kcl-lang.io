@@ -20,6 +20,9 @@
   "sidebar.user_docs.category.Package Management": {
     "message": "包管理工具"
   },
+  "sidebar.user_docs.category.Package Management Tools": {
+    "message": "包管理工具"
+  },
   "sidebar.user_docs.category.How to": {
     "message": "如何使用"
   },

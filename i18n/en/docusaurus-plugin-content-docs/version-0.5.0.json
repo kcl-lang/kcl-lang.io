@@ -222,5 +222,25 @@
   "sidebar.user_docs.category.Mutate or Validate Kubernetes Manifests": {
     "message": "Mutate or Validate Kubernetes Manifests",
     "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar user_docs"
+  },
+  "sidebar.docs.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar docs"
+  },
+  "sidebar.docs.category.How to": {
+    "message": "How to",
+    "description": "The label for category How to in sidebar docs"
+  },
+  "sidebar.user_docs.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.How to": {
+    "message": "How to",
+    "description": "The label for category How to in sidebar user_docs"
+  },
+  "sidebar.reference.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar reference"
   }
 }
