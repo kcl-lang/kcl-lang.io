@@ -58,5 +58,9 @@
   "link.item.label.KusionStack": {
     "message": "KusionStack",
     "description": "The label of footer link with label=KusionStack linking to https://kusionstack.io"
+  },
+  "copyright": {
+    "message": "\n          <br />\n          <br />\n          <strong>© KCL Authors 2023 | Documentation Distributed under <a href=\"https://creativecommons.org/licenses/by/4.0\">CC-BY-4.0</a> </strong> \n          <br />\n          <br />\n          © 2023 The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href=\"https://www.linuxfoundation.org/trademark-usage/\"> Trademark Usage</a> page.\n        ",
+    "description": "The footer copyright"
   }
 }
