@@ -9,4 +9,4 @@ tags: [KCL, Meeting]
 
 [PDF 下载](https://kcl-lang.io/talks/kcl-cncf-kcd-hangzhou2023.pdf)
 
-![Talk Cover](/img/blog/2023-09-01-kcl-platform-engineering-tech-summit/talk-cover.png)
+![Talk Cover](/img/blog/2023-10-21-kcl-kcd-hangzhou-meeting/talk-cover.png)
