@@ -29,7 +29,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 以下排名不分先后
 
-- 感谢 @jakezhu9 对 KCL 语法解析单元测试的改进，将部分测试用例统一迁移到使用 snaptest 框架 🙌 *[https://github.com/kcl-lang/kcl-go/pull/794](https://github.com/kcl-lang/kcl-go/pull/794)* 等
+- 感谢 @jakezhu9 对 KCL 语法解析单元测试的改进，将部分测试用例统一迁移到使用 snaptest 框架 🙌 *[https://github.com/kcl-lang/kcl/pull/794](https://github.com/kcl-lang/kcl/pull/794)* 等
 - 感谢 @opsnull 对 KCL 官网文档中代码示例的纠错和贡献 🙌 *[https://github.com/kcl-lang/kcl-lang.io/pull/182](https://github.com/kcl-lang/kcl-lang.io/pull/182)*
 - 感谢 @prahaladramji 对 KCL IntelliJ 插件格式化功能的纠错和优化 🙌 *[https://github.com/kcl-lang/intellij-kcl/pull/15](https://github.com/kcl-lang/intellij-kcl/pull/15)*
 - 感谢 @steeling, @prahaladramji, @liangyuanpen, @Kory Taborn 等在使用 KCL 及工具链过程中提出的宝贵反馈和讨论 🙌

@@ -1,6 +1,6 @@
 ---
 slug: 2023-10-11-biweekly-newsletter
-title: KCL Biweekly Newsletter (2023 09.07 - 10.11)) | v0.6.0 Is Out - Enhancement on IDE Extensions and Package Management!
+title: KCL Biweekly Newsletter (2023 09.07 - 10.11) | v0.6.0 Is Out - Enhancement on IDE Extensions and Package Management!
 authors:
   name: KCL Team
   title: KCL Team
