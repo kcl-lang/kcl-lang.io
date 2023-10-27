@@ -193,7 +193,7 @@ const config = {
             label: 'Tools',
           },
           {
-            href: 'https://github.com/orgs/kcl-lang/packages',
+            href: 'https://artifacthub.io/packages/search?kind=20&sort=relevance&page=1',
             position: 'left',
             sidebarId: 'packages',
             label: 'Packages',
