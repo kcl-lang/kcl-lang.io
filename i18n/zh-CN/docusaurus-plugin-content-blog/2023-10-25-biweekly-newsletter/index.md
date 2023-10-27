@@ -9,7 +9,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 ![](/img/biweekly-newsletter-zh.png)
 
-[KCL](https://github.com/kcl-lang) 是一个开源的基于约束的记录及函数语言并通过成熟的编程语言技术和实践来改进对大量繁杂配置比如云原生 Kubernetes 配置场景的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更简单的自动化和生态工具集成。
+[KCL](https://github.com/kcl-lang) 是一个 CNCF 基金会托管的基于约束的记录及函数语言并通过成熟的编程语言技术和实践来改进对大量繁杂配置比如云原生 Kubernetes 配置场景的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更简单的自动化和生态工具集成。
 
 本栏目将会双周更新 KCL 语言社区最新动态，包括功能、官网更新和最新的社区动态等，帮助大家更好地了解 KCL 社区！
 
@@ -29,7 +29,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 以下排名不分先后
 
-- 感谢 @jakezhu9 对 KCL 语法解析单元测试的改进，将部分测试用例统一迁移到使用 snaptest 框架 🙌 *[https://github.com/kcl-lang/kcl-go/pull/794](https://github.com/kcl-lang/kcl-go/pull/794)* 等
+- 感谢 @jakezhu9 对 KCL 语法解析单元测试的改进，将部分测试用例统一迁移到使用 snaptest 框架 🙌 *[https://github.com/kcl-lang/kcl/pull/794](https://github.com/kcl-lang/kcl/pull/794)* 等
 - 感谢 @opsnull 对 KCL 官网文档中代码示例的纠错和贡献 🙌 *[https://github.com/kcl-lang/kcl-lang.io/pull/182](https://github.com/kcl-lang/kcl-lang.io/pull/182)*
 - 感谢 @prahaladramji 对 KCL IntelliJ 插件格式化功能的纠错和优化 🙌 *[https://github.com/kcl-lang/intellij-kcl/pull/15](https://github.com/kcl-lang/intellij-kcl/pull/15)*
 - 感谢 @steeling, @prahaladramji, @liangyuanpen, @Kory Taborn 等在使用 KCL 及工具链过程中提出的宝贵反馈和讨论 🙌
@@ -47,7 +47,7 @@ tags: [KCL, Biweekly-Newsletter]
 ![](/img/docs/tools/Ide/vs-code/Rename.gif)
 
 对引用语句和 union 类型的格式化：优化了引用语句与其他代码块之间的空行行为（格式化为一个空行）、union 类型的空格行为（多个类型之间格式化为以 ` | ` 间隔）：
-![](/img/docs/tools/Ide/vs-code/Format.gif)
+![](/img/blog/2023-10-25-kcl-biweekly-newsletter/Format.gif)
 
 ### KCL 包管理工具
 
