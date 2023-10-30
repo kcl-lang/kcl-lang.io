@@ -69,9 +69,9 @@ In summary, the KRM KCL specification presents a new paradigm for dynamic config
 
 In the KRM KCL specification, we categorize the behaviors of the KCL configuration model into three main types:
 
-+ **Mutation**: Takes input KCL parameters params and outputs a KRM list.
-+ **Validation**: Takes input KCL parameters params and a KRM list, and outputs a modified KRM list.
-+ **Abstraction**: Takes input KCL parameters params and a KRM list, and outputs a KRM list and resource validation results.
++ **Mutation**: Takes input KCL parameters params and a KRM list, and outputs a modified KRM list.
++ **Validation**: Takes input KCL parameters params and a KRM list, and outputs a KRM list and resource validation results.
++ **Abstraction**: Takes input KCL parameters params and outputs a KRM list.
 
 Using KCL, we can programmatically achieve the following capabilities:
 

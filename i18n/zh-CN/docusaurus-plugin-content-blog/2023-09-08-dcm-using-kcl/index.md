@@ -69,9 +69,9 @@ KRM KCL 规范的另一个重要特性是其对动态配置管理的支持。传
 
 在 KRM KCL 规范，我们将 KCL 配置模型的行为主要分成三类
 
-+ **Mutation**: 输入 KCL 参数 `params` 并输出 KRM 列表
-+ **Validation**: 输入 KCL 参数 `params` 和 KRM 列表并输出修改后 KRM 列表。
-+ **Abstraction**: 输入 KCL 参数 `params` 和 KRM 列表并输出 KRM 列表和资源验证结果。
++ **Mutation**: 输入 KCL 参数 `params` 和 KRM 列表并输出修改后 KRM 列表。
++ **Validation**: 输入 KCL 参数 `params` 和 KRM 列表并输出 KRM 列表和资源验证结果。
++ **Abstraction**: 输入 KCL 参数 `params` 并输出 KRM 列表
 
 我们可以使用 KCL 以可编程的方式实现如下能力:
 
