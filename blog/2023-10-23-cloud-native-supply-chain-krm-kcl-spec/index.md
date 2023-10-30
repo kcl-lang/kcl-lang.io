@@ -36,13 +36,15 @@ Therefore, we propose the KCL project and the KRM KCL specification, hoping to f
 
 ## Concepts
 
+### KCL
+
 ![kcl-intro](/img/blog/2023-10-23-cloud-native-supply-chain-krm-kcl-spec/kcl-intro-en.jpg)
 
 KCL is a specialized configuration policy language for the cloud-native domain. It was open-sourced in June 2022 and became a CNCF Sandbox project hosted by the CNCF foundation in September 2023. KCL aims to improve the user experience of writing cloud-native configuration policies and programmability at the Kubernetes API layer. The KCL project is currently included in the CNCF foundation's Automation & Configuration Landscape. The "C" in KCL stands for Configuration, the "L" stands for Language, and the "K" is derived from the first letter of Kubernetes<sup>[6]</sup>.
 
 Unlike general-purpose programming languages, KCL is a domain-specific programming language that solves nearly infinite variations of business scenarios and complexities with a convergent set of syntax and semantics. For example, within the Kubernetes domain alone, there are thousands of resources and a fragmented Operator ecosystem in the community. KCL encapsulates the thought process and approach of writing complex configurations and policies into its language features, avoiding the security risks and side effects associated with using general-purpose languages for configuration.
 
-As a configuration language, KCL provides the most important functionality for application and platform developers/SREs, which is dynamic configuration management. Through code abstraction, we can build an application-centric model that shields developers from the complexities of infrastructure and platform concepts and provides them with an interface that is centered around the application and easy to understand. Additionally, KCL allows platform engineers to quickly extend and define their own models, and it provides rich manageability capabilities, including out-of-the-box KCL code libraries, semantic versioning, OCI Registry, language toolchains, and automation support.
+As a configuration language, KCL provides the most important functionality for application and platform developers/SREs, which is **dynamic configuration management**. Through code abstraction, we can build an application-centric model that shields developers from the complexities of infrastructure and platform concepts and provides them with an interface that is centered around the application and easy to understand. Additionally, KCL allows platform engineers to quickly extend and define their own models, and it provides rich manageability capabilities, including out-of-the-box KCL code libraries, semantic versioning, OCI Registry, language toolchains, and automation support.
 
 Furthermore, KCL operates within a completely open cloud-native ecosystem and is not tightly coupled to any orchestration/engineering tools or Kubernetes controllers. In cloud-native supply chain scenarios and large-scale operational scenarios, KCL can provide API abstraction, composition, and validation capabilities for both the client and runtime. Users can choose suitable engines such as Kubectl<sup>[7]</sup>, KusionStack<sup>[8]</sup>, KubeVela<sup>[9]</sup>, or Helmfile<sup>[10]</sup> to combine with KCL and apply configurations to the cluster.
 
@@ -51,6 +53,8 @@ Furthermore, KCL operates within a completely open cloud-native ecosystem and is
 In addition, KCL itself is a modern, high-level domain-specific programming language, which is a compiled static and strongly-typed language. KCL provides developers with the core capabilities of **configuration (config)**, **model abstraction (schema)**, **logic (lambda)**, and **policies (rules)** through a record and function-oriented language design.
 
 KCL aims to provide programmability independent of the runtime, without providing system functionalities such as threads and IO locally. It strives to offer programming support that is stable, secure, low-noise, low side-effect, high-performance, easy to automate, and easy to manage in order to solve domain-specific problems.
+
+### KRM KCL Specification
 
 ![krm-kcl](/img/blog/2023-10-23-cloud-native-supply-chain-krm-kcl-spec/krm-kcl-en.jpg)
 
