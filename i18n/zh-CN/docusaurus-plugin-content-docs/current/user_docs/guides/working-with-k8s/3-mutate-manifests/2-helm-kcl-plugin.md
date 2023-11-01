@@ -92,7 +92,7 @@ spec:
 以下是您可以在 KCL 代码中执行的操作：
 
 + 从 `option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
-+ 返回输出资源的 KPM 列表。
++ 返回输出资源的 KRM 列表。
 + 使用 `assert {condition}，{error_message}` 返回错误消息。
 
 ## 更多文档和示例

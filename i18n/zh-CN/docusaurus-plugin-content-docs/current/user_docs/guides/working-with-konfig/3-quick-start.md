@@ -23,7 +23,7 @@ sidebar_label: 快速开始
 
 在开始之前，我们需要做以下准备工作：
 
-1. 安装 [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
+1. 安装 [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
 
 2. 下载开源 Konfig 库，仓库地址: [https://github.com/kcl-lang/konfig.git](https://github.com/kcl-lang/konfig.git)
 
@@ -40,7 +40,7 @@ Konfig 的编程语言是 KCL，不是 Kubernetes 认识的 JSON/YAML，因此�
 进入到项目的 Stack 目录（`examples/appops/nginx-example/dev`）并执行编译：
 
 ```bash
-cd examples/appops/nginx-example/dev && kpm run
+cd examples/appops/nginx-example/dev && kcl run
 ```
 
 可以获得如下 YAML 输出:

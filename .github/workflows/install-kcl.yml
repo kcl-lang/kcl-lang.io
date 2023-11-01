@@ -1,5 +1,8 @@
 name: script-kcl
 on:
+  pull_request:
+    branches: 
+     - main
   push:
     branches: 
      - main
@@ -11,11 +14,17 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - name: Check Install Script
+      - name: Check Install Script Core
         run: static/script/install.sh
       - name: Check KCL run
         shell: bash -leo pipefail {0}
         run: sudo kcl ./static/stack/main.k
+
+      - name: Check Install Script CLI
+        run: static/script/install-cli.sh
+      - name: Check KCL run
+        shell: bash -leo pipefail {0}
+        run: sudo kcl version && sudo kcl run ./static/stack/main.k
 
       - uses: actions/setup-python@v4
         with:
@@ -28,7 +37,7 @@ jobs:
         run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
 
       - name: Check Go Installation
-        run: go install kcl-lang.io/kcl-go/cmds/kcl-go@main && sudo $HOME/go/bin/kcl-go run ./static/stack/main.k
+        run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./static/stack/main.k
 
   check-linux:
     strategy:
@@ -37,12 +46,20 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
-      - name: Check Install Script
+      - name: Check Install Script Core
         run: static/script/install.sh
       - name: Check KCL run
         shell: bash -ieo pipefail {0}
         run: |
           kcl ./static/stack/main.k
+
+      - name: Check Install Script CLI
+        run: static/script/install-cli.sh
+      - name: Check KCL run
+        shell: bash -ieo pipefail {0}
+        run: |
+          kcl version
+          kcl run ./static/stack/main.k
 
       - uses: actions/setup-python@v4
         with:
@@ -55,7 +72,7 @@ jobs:
         run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
 
       - name: Check Go Installation
-        run: go install kcl-lang.io/kcl-go/cmds/kcl-go@main && $HOME/go/bin/kcl-go run ./static/stack/main.k
+        run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./static/stack/main.k
 
   check-windows:
     strategy:
@@ -65,10 +82,15 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check Install Script
+      - name: Check Install Script Core
         run: static/script/install.ps1
       - name: Check KCL run
         run: C:\kclvm\bin\kcl.exe ./static/stack/main.k
+
+      - name: Check Install Script CLI
+        run: static/script/install-cli.ps1
+      - name: Check KCL run
+        run: C:\kclvm\bin\kcl.exe run ./static/stack/main.k
 
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -84,7 +106,7 @@ jobs:
         run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
 
       - name: Check Go Installation
-        run: go install kcl-lang.io/kcl-go/cmds/kcl-go@main && C:\Users\runneradmin\go\bin\kcl-go.exe run ./static/stack/main.k
+        run: go install kcl-lang.io/cli/cmd/kcl@main && C:\Users\runneradmin\go\bin\kcl.exe run ./static/stack/main.k
 
   check-kcl-scoop-install:
     runs-on: windows-latest

@@ -85,7 +85,7 @@ There is a JSON format file `data.json`:
 Execute the following command:
 
 ```bash
-kcl-vet data.json schema.k
+kcl vet data.json schema.k
 ```
 
 ## Summary

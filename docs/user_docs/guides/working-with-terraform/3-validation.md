@@ -446,10 +446,10 @@ This policy file checks that no AWS Auto Scaling groups are being deleted - even
 ### 3. Evaluate the Terraform Plan File Against the KCL Policy
 
 ```shell
-kcl-vet tfplan.json main.k
+kcl vet tfplan.json main.k
 ```
 
-Because the plan was acceptable to the 1 policies contained in the policy file, `kcl-vet` printed nothing, and its exit code was zero.
+Because the plan was acceptable to the 1 policies contained in the policy file, `kcl vet` printed nothing, and its exit code was zero.
 
 ### 4. Mock a Policy Failure
 
@@ -474,7 +474,7 @@ schema AcceptableChange:
 Run the command
 
 ```shell
-kcl-vet tfplan.json main.policy.failure.k
+kcl vet tfplan.json main.policy.failure.k
 ```
 
 We can see the error message
