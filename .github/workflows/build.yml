@@ -13,5 +13,11 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@v2
 
-      - run: npm install
-      - run: npm run build
+      - name: NPM install
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
+        run: npm install
+      - name: NPM build
+        env:
+          NODE_OPTIONS: "--max_old_space_size=4096"
+        run: npm run build

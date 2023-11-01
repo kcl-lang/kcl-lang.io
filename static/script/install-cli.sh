@@ -15,8 +15,6 @@
 # Reference: https://github.com/dapr/cli/tree/master/install
 # ------------------------------------------------------------
 
-# @Warning: This script will be deprecated in KCL v0.8.0.
-
 # KCL location
 : ${KCL_INSTALL_DIR:="/usr/local"}
 
@@ -28,14 +26,14 @@ KCL_HTTP_REQUEST_CLI=curl
 
 # GitHub Organization and repo name to download release
 GITHUB_ORG=kcl-lang
-GITHUB_REPO=kcl
+GITHUB_REPO=cli
 
 # KCL filename
 KCL_CLI_FILENAME=kcl
 # KCL file path
 KCL_CLI_FILE=${KCL_INSTALL_DIR}/kclvm/bin/${KCL_CLI_FILENAME}
 # KCL Home dir
-KCLVM_HOME_DIR=${KCL_INSTALL_DIR}/kclvm
+KCL_HOME_DIR=${KCL_INSTALL_DIR}/kclvm
 
 # --- helper functions for logs ---
 info() {
@@ -147,7 +145,7 @@ getLatestRelease() {
 downloadFile() {
     LATEST_RELEASE_TAG=$1
 
-    KCL_CLI_ARTIFACT="kclvm-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
+    KCL_CLI_ARTIFACT="kcl-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
     DOWNLOAD_BASE="https://github.com/${GITHUB_ORG}/${GITHUB_REPO}/releases/download"
     DOWNLOAD_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/${KCL_CLI_ARTIFACT}"
 
@@ -173,7 +171,7 @@ downloadFile() {
 isReleaseAvailable() {
     LATEST_RELEASE_TAG=$1
 
-    KCL_CLI_ARTIFACT="kclvm-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
+    KCL_CLI_ARTIFACT="kcl-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
     DOWNLOAD_BASE="https://github.com/${GITHUB_ORG}/${GITHUB_REPO}/releases/download"
     DOWNLOAD_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/${KCL_CLI_ARTIFACT}"
 
@@ -194,9 +192,9 @@ isReleaseAvailable() {
 
 installFile() {
     tar xf $ARTIFACT_TMP_FILE -C $KCL_TMP_ROOT
-    local tmp_kclvm_folder=$KCL_TMP_ROOT/kclvm
+    local tmp_kclvm_folder=$KCL_TMP_ROOT
 
-    if [ ! -f "$tmp_kclvm_folder/bin/kcl" ]; then
+    if [ ! -f "$tmp_kclvm_folder/kcl" ]; then
         error "Failed to unpack KCL executable."
         exit 1
     fi
@@ -206,7 +204,7 @@ installFile() {
     runAsRoot cp -rf $tmp_kclvm_folder $KCL_INSTALL_DIR
 
     if [ -f "$KCL_CLI_FILE" ]; then
-        updateProfile "$KCLVM_HOME_DIR" && info "Finished" "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/kclvm/bin successfully."
+        updateProfile "$KCL_HOME_DIR" && info "Finished" "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/kclvm/bin successfully."
         # Check the KCL CLI version
         runAsRoot $KCL_CLI_FILE -V
     else 
@@ -333,7 +331,7 @@ cleanup() {
 installCompleted() {
     echo -e "\nPlease add ${KCL_INSTALL_DIR}/kclvm/bin into your PATH"
     echo -e "Remeber run the command source ~/.bash_profile or source ~/.bashrc to ensure your PATH is effective"
-    echo -e "Reopen a terminal and execute `kcl -h` to ensure successful installation"
+    echo -e "Reopen a terminal and execute the kcl --help command to ensure successful installation"
     echo -e "\nTo get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
 }
 

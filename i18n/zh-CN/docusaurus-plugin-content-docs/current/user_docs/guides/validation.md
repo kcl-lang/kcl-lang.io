@@ -85,7 +85,7 @@ schema Data:
 执行如下命令获得校验结果
 
 ```bash
-kcl-vet data.json schema.k
+kcl vet data.json schema.k
 ```
 
 ## 小结

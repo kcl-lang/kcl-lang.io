@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# @Warning: This script will be deprecated in KCL v0.8.0.
 
 # ------------------------------------------------------------
 # Copyright 2023 The KCL Authors

@@ -8,20 +8,20 @@ sidebar_position: 2
 
 ### From the Binary Releases
 
-Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/kcl-lang/kcl/releases/) or [Gitee](https://gitee.com/kusionstack/kcl/releases) and add `{install-location}/kclvm/bin` to the environment PATH.
+Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/kcl-lang/cli/releases/) or [Gitee](https://gitee.com/kusionstack/kcl/releases) and add `{install-location}` to the environment PATH.
 
 > ⚠️ If you cannot successfully access Github, you can also access Gitee to obtain binaries for installation.
 
 #### MacOS & Linux
 
 ```bash
-export PATH=$PATH:{install-location}/kclvm/bin
+export PATH=$PATH:{install-location}
 ```
 
 #### Windows
 
 ```powershell
-$env:PATH += ";{install-location}\kclvm\bin;"
+$env:PATH += ";{install-location};"
 ```
 
 ### Using script to install the latest release
@@ -31,7 +31,7 @@ $env:PATH += ";{install-location}\kclvm\bin;"
 Install or upgrade the latest darwin KCL to /usr/local/kclvm/bin
 
 ```bash
-curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
+curl -fsSL https://kcl-lang.io/script/install-cli.sh | /bin/bash
 ```
 
 #### Linux
@@ -39,7 +39,7 @@ curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
 Install or upgrade the latest linux KCL to /usr/local/kclvm/bin
 
 ```bash
-wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
+wget -q https://kcl-lang.io/script/install-cli.sh -O - | /bin/bash
 ```
 
 #### Windows
@@ -47,7 +47,7 @@ wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
 Install or upgrade the latest windows KCL to $Env:SystemDrive\kclvm\bin and add this directory to User PATH environment variable.
 
 ```bash
-powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
+powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
 ```
 
 ### Homebrew (MacOS)
@@ -55,7 +55,11 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 + Install
 
 ```bash
+# Install the latest version
 brew install kcl-lang/tap/kcl
+
+# Specify a version
+brew install kbcli@x.y.z
 ```
 
 + Upgrade
@@ -81,19 +85,11 @@ scoop install kcl-lang/kcl
 
 ### From Go
 
-Install `kcl` through the `Go` command (`Go` requires 1.18+).
+Install `kcl` through the `Go` command (`Go` requires 1.19+).
 
 ```bash
-go install kcl-lang.io/kcl-go/cmds/kcl-go@main
+go install kcl-lang.io/cli/cmd/kcl@latest
 ```
-
-Add an alias for the kcl command (optional).
-
-```bash
-alias kcl='kcl-go run'
-```
-
-> Note: `kcl-go` does not rely on the installation of `kcl`, but if `kcl` exists in PATH, it will be used by `kcl-go` first.
 
 ### From Docker
 
@@ -114,15 +110,7 @@ docker pull kcllang/kcl
 We can execute the following command to ensure that KCL has been installed correctly.
 
 ```bash
-kcl -V
-```
-
-The output may looks like this:
-
-```bash
-Version: {kcl version}
-Platform: {your platform}
-GitCommit: {git commit}
+kcl --help
 ```
 
 For all the above operating systems and installation methods, if you want to use [KCL Python Plugin](/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.

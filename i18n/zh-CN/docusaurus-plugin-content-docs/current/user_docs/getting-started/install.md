@@ -15,13 +15,13 @@ KCL 的每个版本都包含各种操作系统和体系结构。这些二进制�
 #### MacOS & Linux
 
 ```bash
-export PATH=$PATH:{install-location}/kclvm/bin
+export PATH=$PATH:{install-location}
 ```
 
 #### Windows
 
 ```powershell
-$env:PATH += ";{install-location}\kclvm\bin;"
+$env:PATH += ";{install-location};"
 ```
 
 ### 使用脚本安装最新版本
@@ -31,7 +31,7 @@ $env:PATH += ";{install-location}\kclvm\bin;"
 将 KCL darwin 最新版本安装到 /usr/local/kclvm/bin
 
 ```bash
-curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
+curl -fsSL https://kcl-lang.io/script/install-cli.sh | /bin/bash
 ```
 
 #### Linux
@@ -39,7 +39,7 @@ curl -fsSL https://kcl-lang.io/script/install.sh | /bin/bash
 将 KCL linux 最新版本安装到 /usr/local/kclvm/bin
 
 ```bash
-wget -q https://kcl-lang.io/script/install.sh -O - | /bin/bash
+wget -q https://kcl-lang.io/script/install-cli.sh -O - | /bin/bash
 ```
 
 #### Windows
@@ -52,10 +52,14 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 
 ### Homebrew (MacOS)
 
-+ 安装
++ 安装最新版本
 
 ```bash
+# 安装最新版本
 brew install kcl-lang/tap/kcl
+
+# 安装固定版本
+brew install kcl-lang/tap/kcl@x.y.z
 ```
 
 + 升级
@@ -81,19 +85,11 @@ scoop install kcl-lang/kcl
 
 ### 使用 Go 安装
 
-通过 `Go` 命令安装 (Go 要求 1.18+)
+通过 `Go` 命令安装 (Go 要求 1.19+)
 
 ```bash
-go install kcl-lang.io/kcl-go/cmds/kcl-go@main
+go install kcl-lang.io/cli/cmd/kcl@latest
 ```
-
-添加一个 kcl 命令的别名 (可选)
-
-```bash
-alias kcl='kcl-go run'
-```
-
-> 注意：`kcl-go` 并不依赖是否安装了 `kcl`，但如果 PATH 中存在 `kcl`，`kcl-go` 将优先使用 `PATH` 中的 `kcl`。
 
 ### 使用 Docker 镜像安装
 
@@ -114,15 +110,7 @@ docker pull kcllang/kcl
 可以执行运行如下命令确保 KCL 已经正确安装
 
 ```bash
-kcl -V
-```
-
-如果安装成功，输出可能为如下形式 (不同版本结果可能稍微不同):
-
-```bash
-Version: {kcl version}
-Platform: {your platform}
-GitCommit: {git commit}
+kcl --help
 ```
 
 对于上述所有安装方式, 如果您想使用 [KCL Python 插件](/docs/reference/plugin/overview), 需要确保您已经安装了 Python 3.7+ 并将 python3 命令添加到您的 PATH 中。

@@ -23,7 +23,7 @@ This guide requires you to have a basic understanding of Kubernetes. If you are 
 
 Before we start, we need to complete the following steps:
 
-1. Install [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
+1. Install [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
 
 2. Clone the [Konfig repo](https://github.com/kcl-lang/konfig.git)
 
@@ -40,7 +40,7 @@ The programming language of the project is KCL, not JSON/YAML which Kubernetes r
 Enter stack dir `examples/appops/nginx-example/dev` and compile:
 
 ```bash
-cd examples/appops/nginx-example/dev && kpm run
+cd examples/appops/nginx-example/dev && kcl run
 ```
 
 The output YAML is:
@@ -126,7 +126,7 @@ The `image` attribute in the `Server` model is used to declare the application's
 Recompile the configuration code to obtain the modified YAML output:
 
 ```shell
-kpm run
+kcl run
 ```
 
 ```yaml

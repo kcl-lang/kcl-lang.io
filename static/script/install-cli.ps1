@@ -12,9 +12,6 @@
 #
 # Reference: https://github.com/dapr/cli/tree/master/install
 # ------------------------------------------------------------
-
-# @Warning: This script will be deprecated in KCL v0.8.0.
-
 param (
     [string]$Version,
     [string]$KCLRoot = "$Env:SystemDrive\kclvm",
@@ -35,7 +32,7 @@ $KCLCliFilePath = "${KCLCliFileBinPath}\${KCLCliFileName}"
 
 # GitHub Org and repo hosting KCL CLI
 $GitHubOrg = "kcl-lang"
-$GitHubRepo = "kcl"
+$GitHubRepo = "cli"
 
 # Set Github request authentication for basic authentication.
 if ($Env:GITHUB_USER) {
@@ -81,7 +78,7 @@ if (!$releaseJsonUrl) {
 
 $releases = Invoke-RestMethod -Headers $githubHeader -Uri $releaseJsonUrl -Method Get
 if ($releases.Count -eq 0) {
-    throw "No releases from github.com/kcl-lang/kcl repo"
+    throw "No releases from github.com/kcl-lang/cli repo"
 }
 
 # get latest or specified version info from releases
@@ -111,7 +108,7 @@ function GetWindowsAsset {
         return $CustomAssetFactory.Invoke($Release)
     }
     else {
-        $windowsAsset = $Release | Select-Object -ExpandProperty assets | Where-Object { $_.name -Like "*windows.zip" }
+        $windowsAsset = $Release | Select-Object -ExpandProperty assets | Where-Object { $_.name -Like "*windows-amd64.zip" }
         if (!$windowsAsset) {
             throw "Cannot find the windows KCL CLI binary"
         }
