@@ -134,8 +134,8 @@ jobs:
         run: |
           brew install kcl-lang/tap/kcl
           echo "brew installed successfully"
-          kcl ./static/stack/main.k
-          kclvm_cli run ./static/stack/main.k
+          kcl version
+          kcl run ./static/stack/main.k
 
   check-kcl-brew-install-linux:
     runs-on: ubuntu-latest
@@ -148,4 +148,5 @@ jobs:
         run: |
           brew install kcl-lang/tap/kcl
           echo "brew installed successfully"
-          kcl ./static/stack/main.k
+          kcl version
+          kcl run ./static/stack/main.k
