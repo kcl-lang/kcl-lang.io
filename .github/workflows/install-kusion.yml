@@ -14,7 +14,7 @@ jobs:
       - name: Check Install Script
         run: |
           static/script/install.sh
-          curl -fsSL https://kusionstack.io/scripts/install-kusion.sh | /bin/bash
+          curl https://kusionstack.io/scripts/install.sh | sh
       - name: Check Kusion run
         shell: bash -leo pipefail {0}
         run: |
