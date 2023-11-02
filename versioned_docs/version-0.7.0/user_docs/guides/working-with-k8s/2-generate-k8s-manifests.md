@@ -244,6 +244,73 @@ spec:
         - containerPort: 80
 ```
 
+### 3. Get the Kubernetes Modules from Registry
+
+The Kubernetes KCL modules among all versions (v1.14-v1.28) are pre-generated, you get it by executing `kcl mod add k8s:<version>` under your project. More modules can be seen [here](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1)
+
+```shell
+kcl mod init my-module && cd my-module
+kcl mod add k8s
+```
+
+Write the KCL code in `main.k`
+
+```python
+# Import and use the contents of the external dependency 'k8s'.
+import k8s.api.apps.v1 as apps
+
+apps.Deployment {
+    metadata.name = "nginx-deployment"
+    metadata.labels.app = "nginx"
+    spec: {
+        replicas = 3
+        selector.matchLabels = metadata.labels
+        template: {
+            metadata.labels = metadata.labels
+            spec.containers = [{
+                name = metadata.labels.app
+                image = "nginx:1.14.2"
+                ports: [{
+                    containerPort = 80
+                }]
+            }]
+        }
+    }
+}
+```
+
+Run the following code
+
+```shell
+kcl run
+```
+
+The output is
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx:1.14.2
+        name: nginx
+        ports:
+        - containerPort: 80
+```
+
 ## Summary
 
 KCL can be used to generate and manage Kubernetes resources, addressing the limitations of managing YAML configurations, such as a lack of validation methods and poor programming capabilities. It can also dynamically receive external parameters through conditional statements and option functions, allowing configuration parameters to be adjusted according to different environments. In addition, KCL can be used in conjunction with other tools such as kubectl to apply configuration to the cluster.

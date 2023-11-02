@@ -12,8 +12,6 @@ Create a new kcl package named `my_package` using the `kcl mod init` command. An
 kcl mod init my_package && cd my_package
 ```
 
-![kcl_mod_init](/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif)
-
 `kcl` will create two kcl package configuration files: `kcl.mod` and `kcl.mod.lock` in the directory where you executed the command.
 
 ```shell
@@ -43,8 +41,6 @@ As shown below, taking the example of adding a package dependency named `k8s`, t
 ```shell
 kcl mod add k8s:1.28
 ```
-
-![kcl_mod_add_k8s](/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif)
 
 You can see that `kcl` adds the dependency you just added to kcl.mod.
 
@@ -108,5 +104,3 @@ spec:
       ports:
         - containerPort: 80
 ```
-
-![kcl_run](/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif)

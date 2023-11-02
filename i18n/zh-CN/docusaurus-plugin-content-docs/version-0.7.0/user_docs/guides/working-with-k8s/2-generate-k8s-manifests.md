@@ -244,6 +244,73 @@ spec:
         - containerPort: 80
 ```
 
+### 3. 从 Registry 直接获取 Kubernetes 模块
+
+KCL 开箱提供了所有版本（v1.14-v1.28）的 Kubernetes 模块，您可以通过在项目中执行`kcl mod add k8s:<version>`来获取它。更多 Kubernetes 生态模块可以在[这里](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1)找到。
+
+```shell
+kcl mod init my-module && cd my-module
+kcl mod add k8s:1.28
+```
+
+在 main.k 文件中编写 KCL 代码
+
+```python
+# Import and use the contents of the external dependency 'k8s'.
+import k8s.api.apps.v1 as apps
+
+apps.Deployment {
+    metadata.name = "nginx-deployment"
+    metadata.labels.app = "nginx"
+    spec: {
+        replicas = 3
+        selector.matchLabels = metadata.labels
+        template: {
+            metadata.labels = metadata.labels
+            spec.containers = [{
+                name = metadata.labels.app
+                image = "nginx:1.14.2"
+                ports: [{
+                    containerPort = 80
+                }]
+            }]
+        }
+    }
+}
+```
+
+运行如下命令
+
+```shell
+kcl run
+```
+
+输出结果为
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx:1.14.2
+        name: nginx
+        ports:
+        - containerPort: 80
+```
+
 ## 小结
 
 KCL 可以用于生成和管理 Kubernetes 资源，解决管理 YAML 配置的局限性，例如缺乏验证方法和较弱的编程能力等，并可以通过条件语句和 option 函数动态接收外部参数，从而能够根据不同的环境调整配置参数。此外，KCL 可以与 kubectl 等其他工具一起使用将配置一键生效到集群。
