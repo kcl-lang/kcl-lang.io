@@ -2090,7 +2090,46 @@ schema Person:
 
 ###### 定义索引签名别名
 
-可以为索引签名定义类型注解的属性别名，并将其与检查块一起使用。
+- 可以为索引签名定义类型注解的属性别名，并将其与索引签名的默认值一起使用。
+
+```python
+schema Environment:
+    [id: str]: EnvironmentSpec = {
+        fullName = id
+    }
+
+schema EnvironmentSpec:
+    fullName: str
+    shortName: str = fullName
+    accountID: int
+
+environment = Environment {
+    development: {
+    	shortName:    "dev"
+    	accountID: 123456
+    }
+    production: {
+    	shortName:    "prod"
+    	accountID: 456789
+    }
+}
+```
+
+YAML 输出为:
+
+```yaml
+environment:
+  production:
+    fullName: production
+    shortName: prod
+    accountID: 456789
+  development:
+    fullName: development
+    shortName: dev
+    accountID: 123456
+```
+
+- 可以为索引签名定义类型注解的属性别名，并将其与检查块一起使用。
 
 ```python
 schema Data:
