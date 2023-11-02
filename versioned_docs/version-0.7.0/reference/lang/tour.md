@@ -2146,6 +2146,45 @@ schema Person:
     [...str]: str  # Except for the `name` and `age` attributes, the key type of all other attributes of the schema must be `str`, and the value type must also be `str`.
 ```
 
+- Define the index signature attribute alias and use it in its default value.
+
+```python
+schema Environment:
+    [id: str]: EnvironmentSpec = {
+        fullName = id
+    }
+
+schema EnvironmentSpec:
+    fullName: str
+    shortName: str = fullName
+    accountID: int
+
+environment = Environment {
+    development: {
+    	shortName:    "dev"
+    	accountID: 123456
+    }
+    production: {
+    	shortName:    "prod"
+    	accountID: 456789
+    }
+}
+```
+
+The output is
+
+```yaml
+environment:
+  production:
+    fullName: production
+    shortName: prod
+    accountID: 456789
+  development:
+    fullName: development
+    shortName: dev
+    accountID: 123456
+```
+
 - Define the index signature attribute alias and use it with the check block.
 
 ```python
