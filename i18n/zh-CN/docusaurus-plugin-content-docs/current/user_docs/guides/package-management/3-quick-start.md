@@ -12,8 +12,6 @@
 kcl mod init my_package && cd my_package
 ```
 
-![kcl_mod_init](/img/docs/user_docs/guides/package-management/gifs/kpm_init.gif)
-
 `kcl` 将会在执行`kcl mod init my_package`命令的目录下创建两个默认的配置文件 `kcl.mod` 和 `kcl.mod.lock`。
 
 ```shell
@@ -43,8 +41,6 @@ version = "0.0.1"
 ```shell
 kcl mod add k8s:1.28
 ```
-
-![kcl_mod_add_k8s](/img/docs/user_docs/guides/package-management/gifs/kpm_add_k8s.gif)
 
 `kcl` 会为您将依赖添加到 kcl.mod 文件中.
 
@@ -108,5 +104,3 @@ spec:
       ports:
         - containerPort: 80
 ```
-
-![kcl_run](/img/docs/user_docs/guides/package-management/gifs/kpm_run.gif)
