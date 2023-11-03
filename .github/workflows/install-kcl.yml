@@ -132,7 +132,21 @@ jobs:
           brew install kcl-lang/tap/kcl
           echo "brew installed successfully"
           kcl version
-          kcl run ./static/stack/main.k
+          kcl ./static/stack/main.k
+
+          brew install kcl-lang/tap/kcl@0.6.0
+          echo "brew installed successfully"
+          kcl version
+          kcl ./static/stack/main.k
+
+          brew install kcl-lang/tap/kcl@0.7.0
+          echo "brew installed successfully"
+          kcl version
+          kcl ./static/stack/main.k
+
+          brew install kcl-lang/tap/kcl-lsp
+          brew install kcl-lang/tap/kcl-lsp@0.6.0
+          brew install kcl-lang/tap/kcl-lsp@0.7.0
 
   check-kcl-brew-install-linux:
     runs-on: ubuntu-latest
@@ -146,4 +160,18 @@ jobs:
           brew install kcl-lang/tap/kcl
           echo "brew installed successfully"
           kcl version
-          kcl run ./static/stack/main.k
+          kcl ./static/stack/main.k
+
+          brew install kcl-lang/tap/kcl@0.6.0
+          echo "brew installed successfully"
+          kcl version
+          kcl ./static/stack/main.k
+
+          brew install kcl-lang/tap/kcl@0.7.0
+          echo "brew installed successfully"
+          kcl version
+          kcl ./static/stack/main.k
+
+          brew install kcl-lang/tap/kcl-lsp
+          brew install kcl-lang/tap/kcl-lsp@0.6.0
+          brew install kcl-lang/tap/kcl-lsp@0.7.0
