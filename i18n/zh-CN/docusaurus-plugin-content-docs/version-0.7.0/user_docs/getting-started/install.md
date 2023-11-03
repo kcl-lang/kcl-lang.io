@@ -56,7 +56,7 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 
 ```bash
 # 安装最新版本
-brew install kcl-lang/tap/kcl
+brew install kcl-lang/tap/kcl@0.7.0
 
 # 安装固定版本
 brew install kcl-lang/tap/kcl@x.y.z

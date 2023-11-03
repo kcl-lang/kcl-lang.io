@@ -56,10 +56,10 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
 
 ```bash
 # Install the latest version
-brew install kcl-lang/tap/kcl
+brew install kcl-lang/tap/kcl@0.7.0
 
 # Specify a version
-brew install kbcli@x.y.z
+brew install kcl-lang/tap/kcl@x.y.z
 ```
 
 + Upgrade
