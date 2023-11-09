@@ -73,23 +73,6 @@ KCL 的编译命令正在持续地优化错误信息的输出，致力于提供�
 1. 加入 CNCF 工作空间，填写个人邮箱即可: https://communityinviter.com/apps/cloud-native/cncf
 2. 加入 CNCF KCL 频道: https://cloud-native.slack.com/archives/C05TC96NWN8
 
-### 近期活动
-
-#### KCD 杭州站活动顺利举行
-
-Kubernetes Community Days（KCD）杭州站活动已于 10.21 顺利举行，现场收到了 KCL 用户交流互动和热情反馈。KCL 项目的徐鹏飞发表了《基于云原生供应链的配置策略管理新范式》议题的演讲，相关资料已上传 KCL 官网：https://kcl-lang.io/talks/kcl-cncf-kcd-hangzhou2023.pdf
-
-#### KCL 开源双周会
-
-近期 KCL 开源双周会将于 10.26 进行，欢迎社区小伙伴踊跃参与、交流：[https://github.com/kcl-lang/community/discussions/9](https://github.com/kcl-lang/community/discussions/9)
-
-点击链接入会，或添加至会议列表：
-https://meeting.tencent.com/dm/Hc6sNpqTWnPb
-
-#腾讯会议：778-2381-6338
-
-复制该信息，打开手机腾讯会议即可参与
-
 ## 其他资源
 
 ❤️ 感谢所有 KCL 用户和社区小伙伴在社区中提出的宝贵反馈与建议。预计 11 月底我们会正式发布 KCL v0.7 新版本，敬请期待!
