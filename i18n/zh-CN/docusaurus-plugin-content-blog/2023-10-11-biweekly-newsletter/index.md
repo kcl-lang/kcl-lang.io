@@ -114,23 +114,6 @@ kpm run 支持编译 KCL 文件，并集成了导入工具，同时增加了 —
 
 集成了 KCL 0.6 的 KusionStack 发布 0.9 版本，详细更新内容请查看：[https://mp.weixin.qq.com/s/nZOHdmgcfOMRf0XUXfSJ-g](https://mp.weixin.qq.com/s/nZOHdmgcfOMRf0XUXfSJ-g)
 
-### 活动预告
-
-#### KCD 杭州站 10.21 日线下活动
-
-Kubernetes Community Days（KCD）杭州站将于 10.21 举行线下活动，活动详情及报名：https://mp.weixin.qq.com/s/rnNhmT4yoO66bGYNtFtG6g
-
-#### KCL 开源双周会
-
-近期 KCL 开源双周会将于 10.12 进行，欢迎社区小伙伴踊跃参与、交流：[https://github.com/kcl-lang/community/discussions/8](https://github.com/kcl-lang/community/discussions/8)
-
-点击链接入会，或添加至会议列表：
-https://meeting.tencent.com/dm/Hc6sNpqTWnPb
-
-#腾讯会议：778-2381-6338
-
-复制该信息，打开手机腾讯会议即可参与
-
 ## 其他资源
 
 ❤️ 感谢所有 KCL 用户和社区小伙伴在社区中提出的宝贵反馈与建议。预计 11 月底我们会正式发布 KCL v0.7 新版本，敬请期待!
