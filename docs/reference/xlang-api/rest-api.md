@@ -5,18 +5,10 @@ sidebar_position: 2
 
 ## 1. Start REST Service
 
-The RestAPI service can be started in the following ways:
+The RestAPI service can be started in the following way:
 
 ```shell
-python3 -m pip install kclvm -U
-python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
-```
-
-or
-
-```shell
-go install kcl-lang.io/kcl-go/cmds/kcl-go@main
-kcl-go rest-server
+kcl server
 ```
 
 The service can then be requested via the POST protocol:

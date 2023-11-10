@@ -8,15 +8,7 @@ sidebar_position: 2
 通过以下方式可以启动 RestAPI 服务：
 
 ```shell
-python3 -m pip install kclvm -U
-python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
-```
-
-或者
-
-```shell
-go install kcl-lang.io/kcl-go/cmds/kcl-go@main
-kcl-go rest-server
+kcl server
 ```
 
 然后可以通过 POST 协议请求服务：
