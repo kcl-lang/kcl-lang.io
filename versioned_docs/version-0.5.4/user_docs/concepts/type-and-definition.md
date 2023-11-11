@@ -17,7 +17,7 @@ where $k$ is the attribute name, $v$ is the attributes value, and $T$ is the typ
 By default, KCL does not require type annotations and performs type checks at runtime.
 
 ```python
-name = "ngnix"  # The type of `name` is `str`
+name = "nginx"  # The type of `name` is `str`
 port = 80  # The type of `port` is `int`
 ```
 

@@ -54,15 +54,15 @@ import .app
 
 app.App {
     name = "app"
-    containers.ngnix = {
-        image = "ngnix"
+    containers.nginx = {
+        image = "nginx"
         ports = [{containerPort = 80}]
     }
     service.ports = [{ port = 80 }]
 }
 ```
 
-在上面的代码中，我们使用 `App` schema 定义了一个配置，其中我们配置了一个 `ngnix` 容器，并开启 `80` 端口配置。
+在上面的代码中，我们使用 `App` schema 定义了一个配置，其中我们配置了一个 `nginx` 容器，并开启 `80` 端口配置。
 
 此外，KCL 允许开发人员以声明式的方式定义应用程序所需的资源，并允许生成特定于平台的配置文件，如 `docker_compose.yaml` 或 Kubernetes `manifests.yaml` 文件。接下来，让我们生成相应的配置。
 
@@ -79,7 +79,7 @@ kcl main.k docker_compose_render.k
 ```yaml
 services:
   app:
-    image: ngnix
+    image: nginx
     ports:
       - published: 80
         target: 80
@@ -114,8 +114,8 @@ spec:
         app: app
     spec:
       containers:
-        - name: ngnix
-          image: ngnix
+        - name: nginx
+          image: nginx
           ports:
             - protocol: TCP
               containerPort: 80
