@@ -18,7 +18,6 @@ jobs:
       - name: Check Kusion run
         shell: bash -leo pipefail {0}
         run: |
-          sudo kcl -Y static/stack/kcl.yaml
           sudo kusion version
           sudo kusion compile -w static/stack -o stdout
           cd static/stack && sudo kusion compile
