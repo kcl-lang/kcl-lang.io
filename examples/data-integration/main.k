@@ -4,6 +4,7 @@ schema App:
     replicas: int
     labels?: {str:str} = {app = name}
 
+
 app: App {
     name = "app"
     replicas = 1
