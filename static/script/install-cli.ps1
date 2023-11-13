@@ -141,7 +141,7 @@ if (!(Test-Path $zipFilePath -PathType Leaf)) {
 
 # Extract KCL CLI to $KCLRoot
 Write-Output "Extracting $zipFilePath..."
-Microsoft.Powershell.Archive\Expand-Archive -Force -Path $zipFilePath -DestinationPath $KCLRoot
+Microsoft.Powershell.Archive\Expand-Archive -Force -Path $zipFilePath -DestinationPath $KCLCliFileBinPath
 if (!(Test-Path $KCLCliFilePath -PathType Leaf)) {
     throw "Failed to download KCL archieve - $zipFilePath"
 }
