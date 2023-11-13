@@ -63,7 +63,7 @@ where `#` begins with a line comment. The value of `owner` is a dictionary. The 
 The YAML output of this configuration is as follows:
 
 ```yaml
-$ kcl server.k 
+$ kcl server.k
 title: KCL Example
 owner:
   name: The KCL Authors
@@ -123,7 +123,7 @@ database = DatabaseConfig {
 When executed, an error similar to the following will be generated (the displayed file path depends on the local environment):
 
 ```shell
-$ kcl server.k 
+$ kcl server.k
 error[E2G22]: TypeError
  --> /path/to/server.k:8:5
   |

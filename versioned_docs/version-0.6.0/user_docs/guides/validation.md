@@ -17,7 +17,7 @@ In KCL, a structure definition can be used to validate configuration data. At th
 
 ### 0. Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### 1. Get the Example
 
@@ -40,7 +40,7 @@ schema User:
     data: Data
     labels: {str:}
     hc: [int]
-        
+
     check:
         age > 10, "age must > 10"
 
@@ -59,7 +59,7 @@ To sum up, the validation kinds supported in KCL schema are:
 | Regex             | Using methods such as `match` from the `regex` system module                              |
 | Length            | Using the `len` built-in function to get the length of a variable of type `list/dict/str` |
 | Enum              | Using literal union types                                                                 |
-| Optional/Required | Using optional/required attributes of schema                                                |
+| Optional/Required | Using optional/required attributes of schema                                              |
 | Condition         | Using the check if conditional expression                                                 |
 
 ### 2. Validate the Data
@@ -68,17 +68,17 @@ There is a JSON format file `data.json`:
 
 ```json
 {
-    "name": "Alice",
-    "age": 18,
-    "message": "This is Alice",
-    "data": {
-        "id": 1,
-        "value": "value1"
-    },
-    "labels": {
-        "key": "value"
-    },
-    "hc": [1, 2, 3]
+  "name": "Alice",
+  "age": 18,
+  "message": "This is Alice",
+  "data": {
+    "id": 1,
+    "value": "value1"
+  },
+  "labels": {
+    "key": "value"
+  },
+  "hc": [1, 2, 3]
 }
 ```
 

@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: KCL Spec
 ---
+
 ## 词法规则
 
 ### 关键字和保留字
@@ -57,7 +58,7 @@ description: KCL Spec
 以下的运算符列表根据优先级从 **高到底** 排列：
 
 | Operator                                                         | Description                                              |
-| ---------------------------------------------------------------- | -------------------------------------------------------- |
+| ---------------------------------------------------------------- | -------------------------------------------------------- | ---------- |
 | `**`                                                             | Exponentiation (highest priority)                        |
 | `+x` `-x` `~x`                                                   | Positive, negative, bitwise NOT                          |
 | `*` `/` `%` `//`                                                 | Multiplication, division, floor division and remainder   |
@@ -65,13 +66,13 @@ description: KCL Spec
 | `<<` `>>`                                                        | Left and right shifts                                    |
 | `&`                                                              | Bitwise AND                                              |
 | `^`                                                              | Bitwise XOR                                              |
-| `|`                                                              | Bitwise OR                                               |
+| `                                                                | `                                                        | Bitwise OR |
 | `in`, `not in`, `is`, `is not`, `<`, `<=`, `>`, `>=`, `!=`, `==` | Comparisons, including membership and identity operators |
 | `not`                                                            | Boolean NOT                                              |
 | `and`                                                            | Boolean AND                                              |
 | `or`                                                             | Boolean OR                                               |
-| `if – else`                                                     | Conditional expression =                                  |
-| `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `**=`, `//=`, `<<=`, `>>=`                     | Assign |
+| `if – else`                                                      | Conditional expression =                                 |
+| `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `                       | =`, `^=`, `\*\*=`, `//=`, `<<=`, `>>=`                   | Assign     |
 
 ## EBNF 语法
 
@@ -146,7 +147,7 @@ unary_expr: (PLUS | MINUS | NOT) primary_expr | L_NOT test
 binary_expr: test bin_op test
 bin_op: L_OR
       | L_AND
-      | EQUAL_TO | NOT_EQUAL_TO | LESS_THAN | GREATER_THAN | LESS_THAN_OR_EQUAL_TO | GREATER_THAN_OR_EQUAL_TO 
+      | EQUAL_TO | NOT_EQUAL_TO | LESS_THAN | GREATER_THAN | LESS_THAN_OR_EQUAL_TO | GREATER_THAN_OR_EQUAL_TO
       | IN | L_NOT IN | IS | IS L_NOT
       | OR
       | XOR

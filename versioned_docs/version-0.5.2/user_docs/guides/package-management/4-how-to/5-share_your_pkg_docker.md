@@ -35,6 +35,7 @@ First, you need to make sure that what you are pushing conforms to the specifica
 If you don't know how to get a valid kcl.mod and kcl.mod.lock, you can use the `kpm init` command.
 
 Create a new kcl package named `my_package`.
+
 ```shell
 kpm init my_package
 ```
@@ -44,8 +45,9 @@ The `kpm init my_package` command will create a new kcl package `my_package` for
 If you already have a directory containing kcl files `exist_kcl_package`, you can use the following command to convert it into a kcl package and create valid `kcl.mod` and `kcl.mod.lock` files for it.
 
 Run the `kpm init` command under the `exist_kcl_package` directory.
+
 ```shell
-kpm init 
+kpm init
 ```
 
 For more information on how to use `kpm init`, see [kpm init](https://kcl-lang.io/docs/reference/package-management/command-reference/init).
@@ -55,6 +57,7 @@ For more information on how to use `kpm init`, see [kpm init](https://kcl-lang.i
 You can use the following command in the root directory of your `kcl` package:
 
 Run the `kpm push` command under the `exist_kcl_package` directory.
+
 ```shell
 kpm push oci://docker.io/<USERNAME>/exist_kcl_package
 ```

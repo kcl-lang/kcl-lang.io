@@ -44,13 +44,13 @@ alias kcl='python3 -m kclvm'
 
 ### 使用 Docker 镜像安装
 
-+ 基本命令
+- 基本命令
 
 ```bash
 docker run --rm -p 8080:8080 -it kusionstack/kclvm
 ```
 
-+ 更新镜像
+- 更新镜像
 
 ```bash
 docker pull kusionstack/kclvm
@@ -80,4 +80,4 @@ KCL 为 VS Code 本地版本和在线版本提供了插件支持。
 
 ## 下一步
 
-+ [KCL 快速开始](/docs/user_docs/getting-started/kcl-quick-start)
+- [KCL 快速开始](/docs/user_docs/getting-started/kcl-quick-start)

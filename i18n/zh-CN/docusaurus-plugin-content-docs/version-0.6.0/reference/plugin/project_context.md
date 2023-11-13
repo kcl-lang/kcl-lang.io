@@ -2,7 +2,7 @@
 
 project_context extract base info from project.yaml&stack.yaml
 
-*version: 0.0.1*
+_version: 0.0.1_
 
 ## `get_project_current_path`
 

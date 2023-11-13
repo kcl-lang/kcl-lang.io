@@ -11,7 +11,7 @@ In KCL, we can not only compile and output the configuration code written by KCL
 
 ### 0. Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### 1. Get the Example
 
@@ -95,7 +95,7 @@ server:
   ports:
     - 80
     - 8080
-server_json: "{\"ports\": [80, 8080]}"
+server_json: '{"ports": [80, 8080]}'
 ```
 
 ## Summary

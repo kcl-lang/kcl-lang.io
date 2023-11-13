@@ -13,13 +13,14 @@ tags: [KCL, Biweekly-Newsletter]
 
 本栏目将会双周更新 KCL 语言社区最新动态，包括功能、官网更新和最新的社区动态等，帮助大家更好地了解 KCL 社区！
 
-***KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## 内容概述
 
 感谢所有贡献者过去两周 (2023 10.12 - 10.25) 的杰出工作，以下是重点合并内容概述
 
 **🔧 语言及工具链更新**
+
 - KCL IDE 更新 - 支持对符号的引用跳转和重命名；优化了引用语句和 union 类型的格式化输出；修复了文件变更引发语言服务崩溃的问题
 - KCL 包管理工具 KPM 更新 - kpm 正在集成 AritifactHub，支持将 KCL 包发布到 ArtifactHub
 - KCL 语言更新 - 优化了方法的参数类型不匹配等报错信息，明确指出了不匹配的类型
@@ -29,9 +30,9 @@ tags: [KCL, Biweekly-Newsletter]
 
 以下排名不分先后
 
-- 感谢 @jakezhu9 对 KCL 语法解析单元测试的改进，将部分测试用例统一迁移到使用 snaptest 框架 🙌 *[https://github.com/kcl-lang/kcl/pull/794](https://github.com/kcl-lang/kcl/pull/794)* 等
-- 感谢 @opsnull 对 KCL 官网文档中代码示例的纠错和贡献 🙌 *[https://github.com/kcl-lang/kcl-lang.io/pull/182](https://github.com/kcl-lang/kcl-lang.io/pull/182)*
-- 感谢 @prahaladramji 对 KCL IntelliJ 插件格式化功能的纠错和优化 🙌 *[https://github.com/kcl-lang/intellij-kcl/pull/15](https://github.com/kcl-lang/intellij-kcl/pull/15)*
+- 感谢 @jakezhu9 对 KCL 语法解析单元测试的改进，将部分测试用例统一迁移到使用 snaptest 框架 🙌 _[https://github.com/kcl-lang/kcl/pull/794](https://github.com/kcl-lang/kcl/pull/794)_ 等
+- 感谢 @opsnull 对 KCL 官网文档中代码示例的纠错和贡献 🙌 _[https://github.com/kcl-lang/kcl-lang.io/pull/182](https://github.com/kcl-lang/kcl-lang.io/pull/182)_
+- 感谢 @prahaladramji 对 KCL IntelliJ 插件格式化功能的纠错和优化 🙌 _[https://github.com/kcl-lang/intellij-kcl/pull/15](https://github.com/kcl-lang/intellij-kcl/pull/15)_
 - 感谢 @steeling, @prahaladramji, @liangyuanpen, @Kory Taborn 等在使用 KCL 及工具链过程中提出的宝贵反馈和讨论 🙌
 
 ## 精选更新
@@ -46,7 +47,7 @@ tags: [KCL, Biweekly-Newsletter]
 对符号进行`重命名`：
 ![](/img/docs/tools/Ide/vs-code/Rename.gif)
 
-对引用语句和 union 类型的格式化：优化了引用语句与其他代码块之间的空行行为（格式化为一个空行）、union 类型的空格行为（多个类型之间格式化为以 ` | ` 间隔）：
+对引用语句和 union 类型的格式化：优化了引用语句与其他代码块之间的空行行为（格式化为一个空行）、union 类型的空格行为（多个类型之间格式化为以 `|` 间隔）：
 ![](/img/blog/2023-10-25-kcl-biweekly-newsletter/Format.gif)
 
 ### KCL 包管理工具
@@ -70,6 +71,7 @@ KCL 的编译命令正在持续地优化错误信息的输出，致力于提供�
 ### 社区动态
 
 随着加入 CNCF sandbox，CNCF KCL Slack 频道已经开通，与 KCL 语言相关的交流将逐步迁移到新的频道，欢迎大家加入交流：
+
 1. 加入 CNCF 工作空间，填写个人邮箱即可: https://communityinviter.com/apps/cloud-native/cncf
 2. 加入 CNCF KCL 频道: https://cloud-native.slack.com/archives/C05TC96NWN8
 

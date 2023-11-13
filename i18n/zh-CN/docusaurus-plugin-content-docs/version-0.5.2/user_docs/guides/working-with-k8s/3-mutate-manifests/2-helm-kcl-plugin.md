@@ -7,14 +7,14 @@ sidebar_position: 2
 
 [Helm](https://github.com/helm/helm) 是一个管理 Charts 的工具。Charts 是预配置的 Kubernetes 资源的包。您可以使用 `Helm-KCL-Plugin` 来完成以下操作：
 
-+ 以 hook 的方式编辑 Helm charts，将数据和逻辑分离以便更好地管理 Kubernetes manifests
-+ 对于多环境和多租户方案，可以优雅地维护这些配置，而不仅仅是简单地复制和粘贴
-+ 使用 KCL 模式验证所有 KRM 资源
+- 以 hook 的方式编辑 Helm charts，将数据和逻辑分离以便更好地管理 Kubernetes manifests
+- 对于多环境和多租户方案，可以优雅地维护这些配置，而不仅仅是简单地复制和粘贴
+- 使用 KCL 模式验证所有 KRM 资源
 
 ## 先决条件
 
-+ 安装 [Helm](https://github.com/helm/helm)
-+ 安装 [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl)
+- 安装 [Helm](https://github.com/helm/helm)
+- 安装 [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl)
 
 ## 快速开始
 
@@ -50,10 +50,10 @@ metadata:
   name: workload
 spec:
   ports:
-  - name: www
-    port: 80
-    protocol: TCP
-    targetPort: 80
+    - name: www
+      port: 80
+      protocol: TCP
+      targetPort: 80
   selector:
     app.kubernetes.io/instance: workload
     app.kubernetes.io/name: workload
@@ -83,18 +83,18 @@ spec:
         app.kubernetes.io/name: workload
     spec:
       containers:
-      - image: nginx:alpine
-        name: frontend
+        - image: nginx:alpine
+          name: frontend
 ```
 
 ## KCL 开发指南
 
 以下是您可以在 KCL 代码中执行的操作：
 
-+ 从 `option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
-+ 返回输出资源的 KPM 列表。
-+ 使用 `assert {condition}，{error_message}` 返回错误消息。
+- 从 `option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
+- 返回输出资源的 KPM 列表。
+- 使用 `assert {condition}，{error_message}` 返回错误消息。
 
 ## 更多文档和示例
 
-+ [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl)
+- [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl)

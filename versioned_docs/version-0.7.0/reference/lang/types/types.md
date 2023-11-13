@@ -2,10 +2,10 @@
 
 This document describes the type system of KCL, including:
 
-+ Type rules
-+ Type checking
-+ Type conversion
-+ Type inference
+- Type rules
+- Type checking
+- Type conversion
+- Type inference
 
 ## Type Rules
 
@@ -281,7 +281,7 @@ $$
 
 ### Binary Expr
 
-Expr op, op $\in$ {-, /, %, **, //}
+Expr op, op $\in$ {-, /, %, \*\*, //}
 
 $$
 \frac{\Gamma \vdash E_1: T \ \ \ \Gamma \vdash E_2: T \ \ \ T \in \{integer, float\}}{\Gamma \vdash E_1 \ op \ E_2: T}
@@ -293,7 +293,7 @@ $$
 \frac{\Gamma \vdash E_1: T \ \ \ \Gamma \vdash E_2: T \ \ \ T \in \{integer, float, string, listof(T_1)\}}{\Gamma \vdash E_1 \ + \ E_2: T}
 $$
 
-Expr *
+Expr \*
 
 $$
 \frac{\Gamma \vdash E_1: T_1 \ \ \ \Gamma \vdash E_2: T_2 \ \ \ \ (T_1==T_2 \in \{integer, float\}) \ or \ (T_1 == interger \ and \ T_2 \ \in \ \{string, listof(T_3)\}) \ or \ (T_2 == interger \ and \ T_1 \ \in \ \{string, listof(T_3)\})} {\Gamma \vdash E_1 \ * \ E_2: T}
@@ -443,18 +443,18 @@ $$
 
 where $union\_op(T_1, T_2)$ denotes different types of judgment operations for the same $K_i$.
 
-+ When $T_1$ and $T_2$ have the partial order relation. If $T_1 \sqsubseteq T_2$, return $T_2$, otherwise return $T_1$, which is the minimum upper bound
-+ When $T_1$ and $T_2$ have no partial order relationship, there are three optional processing logic:
-  + Structure union failed, return a type error.
-  + Return the type of the latter $T_2$.
-  + Return the type $unionof (T_1, T_2)$.
+- When $T_1$ and $T_2$ have the partial order relation. If $T_1 \sqsubseteq T_2$, return $T_2$, otherwise return $T_1$, which is the minimum upper bound
+- When $T_1$ and $T_2$ have no partial order relationship, there are three optional processing logic:
+  - Structure union failed, return a type error.
+  - Return the type of the latter $T_2$.
+  - Return the type $unionof (T_1, T_2)$.
 
 Here, we need to choose the appropriate processing method according to the actual needs.
 
 Structure inheritance can be regarded as a special union. The overall logic is similar to that of union, but in $union\_op(T_1, T_2)$ for the same $K_i$, the different types of judgment operations are as follows:
 
-+ When $T_1$ and $T_2$ have the partial order relation and $T_1 \sqsubseteq T_2$, return $T_1$, that is, only if $T_1$ is the lower bound of $T_2$, the lower bound of $T_1$ shall prevail.
-+ Otherwise, a type error is returned.
+- When $T_1$ and $T_2$ have the partial order relation and $T_1 \sqsubseteq T_2$, return $T_1$, that is, only if $T_1$ is the lower bound of $T_2$, the lower bound of $T_1$ shall prevail.
+- Otherwise, a type error is returned.
 
 Through such inheritance design, we can achieve hierarchical, bottom-up and layer-by-layer contraction of type definition.
 
@@ -478,8 +478,8 @@ $$
 
 Note:
 
-+ The type $T_1$ of the expression $e$ have the same type with the original attribute of the same name $K_1$. It can be relaxed appropriately according to the actual situation, such as the type of $e$ $\sqsubseteq T_1$ is enough.
-+ For the operation of nested multi-layer structures, the above rules can be used recursively.
+- The type $T_1$ of the expression $e$ have the same type with the original attribute of the same name $K_1$. It can be relaxed appropriately according to the actual situation, such as the type of $e$ $\sqsubseteq T_1$ is enough.
+- For the operation of nested multi-layer structures, the above rules can be used recursively.
 
 ## Type Partial Order
 
@@ -653,7 +653,7 @@ $$
 
 ## Equality
 
-+ Commutative law
+- Commutative law
 
 $$
 Type \ Union(X, Y) == Type \ Union(Y, X)
@@ -665,7 +665,7 @@ $$
 Type \ Union(Int, Bool) == Type \ Union(Bool, Int)
 $$
 
-+ Associative law
+- Associative law
 
 $$
 Type \ Union(Union(X, Y), Z) == Type \ Union(X, Union(Y, Z))
@@ -677,7 +677,7 @@ $$
 Type \ Union(Union(Int, String), Bool) == Type \ Union(Int, Union(String, Bool))
 $$
 
-+ Idempotent
+- Idempotent
 
 $$
 Type \ Union(X, X) == Type \ X
@@ -731,16 +731,16 @@ $$
 
 ## Basic Methods
 
-+ `sup(t1: T, t2: T) -> T`: Calculate the minimum upper bound of two types `t1` and `t2` according to the type partial order. The union type needs to be created dynamically.
-+ `typeEqual(t1: T, t2: T) -> bool`: Compare whether the two types `t1` and `t2` are equal.
-+ `typeToString(t: T) -> string`: Resolve and convert the type to the corresponding string type recursively from top to bottom.
+- `sup(t1: T, t2: T) -> T`: Calculate the minimum upper bound of two types `t1` and `t2` according to the type partial order. The union type needs to be created dynamically.
+- `typeEqual(t1: T, t2: T) -> bool`: Compare whether the two types `t1` and `t2` are equal.
+- `typeToString(t: T) -> string`: Resolve and convert the type to the corresponding string type recursively from top to bottom.
 
 ### Sup Function
 
-+ Type parameters, condition types and other characteristics are not considered temporarily.
-+ Use an ordered collection to store all types of `UnionType`.
-+ Use a global map to store all generated union types according to the name of `UnionType`.
-+ Calculate the inclusion relationship between types according to the partial order relationship.
+- Type parameters, condition types and other characteristics are not considered temporarily.
+- Use an ordered collection to store all types of `UnionType`.
+- Use a global map to store all generated union types according to the name of `UnionType`.
+- Calculate the inclusion relationship between types according to the partial order relationship.
 
 ```go
 // The Sup function returns the minimum supremum of all types in an array of types
@@ -752,7 +752,7 @@ func Sup(types: T[]) -> T {
 func typeOf(types: T[], removeSubTypes: bool = false) -> T {
     assert isNotNullOrEmpty(types)
     // 1. Initialize an ordered set to store the type array
-    typeSet: Set[T] = {}  
+    typeSet: Set[T] = {}
     // 2. Add the type array to the ordered set for sorting by the type id and de-duplication
     addTypesToTypeSet(typeSet, types)
     // 3. Remove sub types according to partial order relation rules e.g. sub schema types
@@ -805,7 +805,7 @@ func removeSubTypes(types: Set[T]) -> void {
     }
 }
 
-// isPartialOrderRelatedTo function Determine whether two types have a partial order relationship `source \sqsubseteq target` 
+// isPartialOrderRelatedTo function Determine whether two types have a partial order relationship `source \sqsubseteq target`
 // according to the partial order relationship table and rules
 func isPartialOrderRelatedTo(source: T, target: T) -> bool {
     assert isNotNullOrEmpty(source)
@@ -823,7 +823,7 @@ func isPartialOrderRelatedTo(source: T, target: T) -> bool {
         return true
     }
     // Literal Type
-    if (isStringLiteral(source) and isString(target)) or \ 
+    if (isStringLiteral(source) and isString(target)) or \
     (isBooleanLiteral(source) and isBool(target)) or \
     (isIntLiteral(source) and isInt(target)) or \
     (isFloatLiteral(source) and isFloat(target)) {
@@ -874,9 +874,9 @@ The type checker depends on type rules, and the information of type environment 
 1. `isUpperBound(t1, t2): supUnify(t1, t2) == t2`
 2. `supUnify(t1, t2):`
 
-+ For the foundation type, `sup(t1, t2)` is calculated according to the partial order relationship
-+ For list, dict, Struct, recursively `supUnify` the types of elements
-+ When there is no partial order relationship, return `Nothing`
+- For the foundation type, `sup(t1, t2)` is calculated according to the partial order relationship
+- For list, dict, Struct, recursively `supUnify` the types of elements
+- When there is no partial order relationship, return `Nothing`
 
 ### Checking Logic
 
@@ -1166,8 +1166,8 @@ func binOp(E) {
 
 ### Basic Definition
 
-+ Type rule derivation and type reconstruction in case of incomplete type information
-+ Derive and reconstruct the data structure types in the program from the bottom up, such as basic type, e.g., list, dict and struct types.
+- Type rule derivation and type reconstruction in case of incomplete type information
+- Derive and reconstruct the data structure types in the program from the bottom up, such as basic type, e.g., list, dict and struct types.
 
 ### Basic Methods
 
@@ -1203,7 +1203,7 @@ func unifier(t1, t2, subst, expr) {
             raise occurrence_violation_error(t1, t2, expr)
         }
     }
-    
+
     if isTypeVar(t2) {
         if isNoOccur(t2, t1) {
             addTypeEquationToSubst(subst, t2, t1)
@@ -1275,7 +1275,7 @@ func addTypeEquationToSubst(subst, tvar, t) {
         for tvar in t.vars {
             tmp := applyOneSubst(tsvar, tvar, t)
             *tvar = tmp
-        } 
+        }
     }
     subst.add(tvar, t)
 }
@@ -1374,8 +1374,8 @@ T : {
 
 ## Reference
 
-+ [https://en.wikipedia.org/wiki/Type_system](https://en.wikipedia.org/wiki/Type_system)
-+ Pierce, Benjamin C. (2002). Types and Programming Languages. MIT Press.
-+ [https://www.cs.cornell.edu/courses/cs4110/2010fa/](https://www.cs.cornell.edu/courses/cs4110/2010fa/)
-+ [https://www.typescriptlang.org/docs/handbook/basic-types.html](https://www.typescriptlang.org/docs/handbook/basic-types.html)
-+ [https://www.typescriptlang.org/docs/handbook/advanced-types.html](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
+- [https://en.wikipedia.org/wiki/Type_system](https://en.wikipedia.org/wiki/Type_system)
+- Pierce, Benjamin C. (2002). Types and Programming Languages. MIT Press.
+- [https://www.cs.cornell.edu/courses/cs4110/2010fa/](https://www.cs.cornell.edu/courses/cs4110/2010fa/)
+- [https://www.typescriptlang.org/docs/handbook/basic-types.html](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+- [https://www.typescriptlang.org/docs/handbook/advanced-types.html](https://www.typescriptlang.org/docs/handbook/advanced-types.html)

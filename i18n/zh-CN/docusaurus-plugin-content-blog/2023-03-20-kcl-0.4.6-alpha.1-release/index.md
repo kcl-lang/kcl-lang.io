@@ -17,18 +17,18 @@ KCL 团队很高兴地宣布 KCL v0.4.6-alpha.1 版本现在已经可用！
 
 ## 发布内容
 
-+ 包含数字、字面值、括号等词法错误恢复
-+ KCL IDE 插件支持错误和告警显示，跳转等能力
-+ 部分编译器报错改善
-+ KCL Playground 支持代码分享能力
-+ [Kubernetes KPT 工具集成方案设计](https://github.com/kcl-lang/kcl/issues/434)
-+ [Kubernetes Helm KCL 工具插件方案](https://github.com/kcl-lang/kcl/issues/426)
+- 包含数字、字面值、括号等词法错误恢复
+- KCL IDE 插件支持错误和告警显示，跳转等能力
+- 部分编译器报错改善
+- KCL Playground 支持代码分享能力
+- [Kubernetes KPT 工具集成方案设计](https://github.com/kcl-lang/kcl/issues/434)
+- [Kubernetes Helm KCL 工具插件方案](https://github.com/kcl-lang/kcl/issues/426)
 
 ## 下一步计划
 
-+ KPM 包管理工具正式发布
-+ 更多 KCL 编译器语法错误恢复支持新版 IDE 插件发布，性能预计提升 20 倍
-+ Helm，KPT 等 Kubernetes 工具 KCL 集成正式发布
+- KPM 包管理工具正式发布
+- 更多 KCL 编译器语法错误恢复支持新版 IDE 插件发布，性能预计提升 20 倍
+- Helm，KPT 等 Kubernetes 工具 KCL 集成正式发布
 
 ## 常见问题及解答
 
@@ -38,10 +38,10 @@ KCL 团队很高兴地宣布 KCL v0.4.6-alpha.1 版本现在已经可用！
 
 感谢所有 KCL 用户在此次版本更新过程中提出的宝贵的反馈与建议。更多其他资源请参考：
 
-+ [KCL 网站](https://kcl-lang.io/)
-+ [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/kcl-lang/kcl)
-+ [Kusion Github 仓库](https://github.com/KusionStack/kusion)
-+ [Konfig Github 仓库](https://github.com/KusionStack/konfig)
+- [KCL 网站](https://kcl-lang.io/)
+- [Kusion 网站](https://kusionstack.io/)
+- [KCL Github 仓库](https://github.com/kcl-lang/kcl)
+- [Kusion Github 仓库](https://github.com/KusionStack/kusion)
+- [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 
 欢迎加入我们的[社区](https://github.com/kcl-lang/community)进行交流 👏👏👏

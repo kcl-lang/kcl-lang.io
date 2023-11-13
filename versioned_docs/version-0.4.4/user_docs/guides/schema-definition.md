@@ -9,10 +9,10 @@ The core scenario of KCL is write configurations and constraints. and a core fea
 
 For example, we have the KCL file (main.k) defined below. In it, we use the `schema` keyword to define three models `App`, `Service` and `Volume`. The `App` model has four attributes `domainType`, `containerPort`, `volumes` and `services`, where
 
-+ The type of `domainType` is a string literal union type, similar to an "enumeration", which means that the value of `domainType` can only take one of `"Standard"`, `"Customized"` and `"Global"`.
-+ The type of `containerPort` is an integer (`int`). In addition, we use the `check` keyword to define its value range from 1 to 65535.
-+ The type of `services` is `Service` schema list type, and we use `?` to mark it as an optional attribute.
-+ The type of `volumes` is a `Volume` schema list type, and we use `?` to mark it as an optional attribute.
+- The type of `domainType` is a string literal union type, similar to an "enumeration", which means that the value of `domainType` can only take one of `"Standard"`, `"Customized"` and `"Global"`.
+- The type of `containerPort` is an integer (`int`). In addition, we use the `check` keyword to define its value range from 1 to 65535.
+- The type of `services` is `Service` schema list type, and we use `?` to mark it as an optional attribute.
+- The type of `volumes` is a `Volume` schema list type, and we use `?` to mark it as an optional attribute.
 
 ```python
 schema App:

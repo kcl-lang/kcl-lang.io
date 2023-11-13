@@ -1,6 +1,7 @@
 ---
 sidebar_position: 5
 ---
+
 # 文档生成工具
 
 KCL 命令行工具支持从 KCL 源码中一键提取模型文档，并支持丰富的输出格式：JSON，YAML 和 Markdown 等。本文介绍 KCL 语言的文档规范，举例说明如何使用 KCL 文档生成工具提取文档，并展示新增本地化语言文档的流程。
@@ -9,91 +10,91 @@ KCL 命令行工具支持从 KCL 源码中一键提取模型文档，并支持�
 
 KCL文件的文档主要包含如下两个部分：
 
-* 当前 KCL Moudle 的文档：对当前 KCL 文件的说明
-* KCL 文件内包含的所有 Schema 的文档：对当前 Schema 的说明，其中包含 Schema 描述、Schema 各属性的描述、Examples 三部分，具体格式如下：
+- 当前 KCL Moudle 的文档：对当前 KCL 文件的说明
+- KCL 文件内包含的所有 Schema 的文档：对当前 Schema 的说明，其中包含 Schema 描述、Schema 各属性的描述、Examples 三部分，具体格式如下：
 
 1. Schema 描述
 
-  ```python
-  """这是Schema一个简短的描述信息
-  """
-  ```
+```python
+"""这是Schema一个简短的描述信息
+"""
+```
 
 2. Schema 各属性的描述：包含属性描述、属性类型、默认值、是否可选
 
-  ```python
-  """
-  Attributes
-  ----------
-  x : type, default is a, optional.
-      Description of parameter `x`.
-  y : type, default is b, required.
-      Description of parameter `y`.
-  """
-  ```
+```python
+"""
+Attributes
+----------
+x : type, default is a, optional.
+    Description of parameter `x`.
+y : type, default is b, required.
+    Description of parameter `y`.
+"""
+```
 
-  其中，使用 `----------` 表示 `Attributes` 为一个标题(`-` 符号长度与标题长度保持一致)，属性名称与属性类型用冒号 `:` 分隔，属性的说明另起一行并增加缩进进行书写。属性的默认值说明跟在属性类型之后使用逗号 `,` 分隔，书写为 `default is {默认值}` 形式，此外需要说明属性是否为可选/必选，对于可选属性在默认值之后书写 `optional`，对于必选属性在默认值之后书写 `required`。
-
+其中，使用 `----------` 表示 `Attributes` 为一个标题(`-` 符号长度与标题长度保持一致)，属性名称与属性类型用冒号 `:` 分隔，属性的说明另起一行并增加缩进进行书写。属性的默认值说明跟在属性类型之后使用逗号 `,` 分隔，书写为 `default is {默认值}` 形式，此外需要说明属性是否为可选/必选，对于可选属性在默认值之后书写 `optional`，对于必选属性在默认值之后书写 `required`。
 
 3. Examples
 
-  ```python
-  """
-  Examples
-  --------
-  val = Schema {
-      name = "Alice"
-      age = 18
-  }
-  """
-  ```
+```python
+"""
+Examples
+--------
+val = Schema {
+    name = "Alice"
+    age = 18
+}
+"""
+```
 
-  此外，KCL 文档字符串语法应采用 [re-structured text (reST)](https://docutils.sourceforge.io/rst.html) 语法子集，并使用 [Sphinx](https://www.sphinx-doc.org/en/master/) 渲染呈现。
+此外，KCL 文档字符串语法应采用 [re-structured text (reST)](https://docutils.sourceforge.io/rst.html) 语法子集，并使用 [Sphinx](https://www.sphinx-doc.org/en/master/) 渲染呈现。
 
 ## 2. 从 KCL 源码生成文档
 
 使用 kcl-doc generate 命令，从用户指定的文件或目录中提取文档，并输出到指定目录。
 
 1. 参数说明
-  ```
-  usage: kcl-doc generate [-h] [--format YAML] [-o OUTPUT] [--r]
-                          [--i18n-locale LOCALE] [--repo-url REPO_URL]
-                          [files [files ...]]
 
-  positional arguments:
-    files                 KCL file paths. If there's more than one files to
-                          generate, separate them by space
+```
+usage: kcl-doc generate [-h] [--format YAML] [-o OUTPUT] [--r]
+                        [--i18n-locale LOCALE] [--repo-url REPO_URL]
+                        [files [files ...]]
 
-  optional arguments:
-    -h, --help            show this help message and exit
-    --format YAML         Doc file format, support YAML, JSON and MARKDOWN.
-                          Defaults to MARKDOWN
-    -o OUTPUT, --output-path OUTPUT
-                          Specify the output directory. Defaults to ./kcl_doc
-    --r, -R, --recursive  Search directory recursively
-    --i18n-locale LOCALE  I18n locale, e.g.: zh, zh_cn, en, en_AS. Defaults to
-                          en
-    --repo-url REPO_URL   The source code repository url. It will be displayed in
-                          the generated doc to link to the source code.
-  ```
+positional arguments:
+  files                 KCL file paths. If there's more than one files to
+                        generate, separate them by space
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --format YAML         Doc file format, support YAML, JSON and MARKDOWN.
+                        Defaults to MARKDOWN
+  -o OUTPUT, --output-path OUTPUT
+                        Specify the output directory. Defaults to ./kcl_doc
+  --r, -R, --recursive  Search directory recursively
+  --i18n-locale LOCALE  I18n locale, e.g.: zh, zh_cn, en, en_AS. Defaults to
+                        en
+  --repo-url REPO_URL   The source code repository url. It will be displayed in
+                        the generated doc to link to the source code.
+```
 
 2. 从指定的一个或多个文件中提取文档，并输出到指定目录
 
-  ```text
-  kcl-doc generate your_config.k your_another_config.k -o your_docs_output_dir
-  ```
+```text
+kcl-doc generate your_config.k your_another_config.k -o your_docs_output_dir
+```
 
 3. 从指定目录内，递归地查找 KCL 源码文件，并提取文档
 
-  ```text
-  kcl-doc generate your_config_dir -r -o your_docs_output_dir
-  ```
+```text
+kcl-doc generate your_config_dir -r -o your_docs_output_dir
+```
 
 4. 在生成文档时，指定源码仓库地址。一经指定，生成的文档中将包含指向源码文件的链接
 
-  ```text
-  kcl-doc generate your_config.k -o your_docs_output_dir --repo-url https://url/to/source_code
-  ```
+```text
+kcl-doc generate your_config.k -o your_docs_output_dir --repo-url https://url/to/source_code
+```
 
 ## 3. 新增本地化语言的文档
 
@@ -101,21 +102,21 @@ KCL文件的文档主要包含如下两个部分：
 
 1. 初始化 i18n 配置文件。该步骤基于指定的 KCL 源码文件，生成相应的 i18n 配置文件，文件格式可选 JSON/YAML，默认为 YAML. 输出的配置文件名称将以指定的目标本地化方言结尾
 
-  ```text
-  kcl-doc init-i18n your_config.k --format JSON --i18n-locale your_target_locale
-  ```
+```text
+kcl-doc init-i18n your_config.k --format JSON --i18n-locale your_target_locale
+```
 
 2. 手动修改上述生成的 i18n 配置文件，使用目标语言修改配置中的 doc 字段
 
 3. 基于修改后的 i18n 配置，生成本地化语言的文档。工具将查找指定目标语言的 i18n 配置文件，并转化为最终的文档
 
-  ```text
-  kcl-doc generate your_config_dir --i18n-locale your_target_locale --format Markdown
-  ```
+```text
+kcl-doc generate your_config_dir --i18n-locale your_target_locale --format Markdown
+```
 
-  接下来，通过一个小例子演示新增本地化语言文档的过程。
+接下来，通过一个小例子演示新增本地化语言文档的过程。
 
-  3.1 准备 KCL 源码文件，例如 server.k：
+3.1 准备 KCL 源码文件，例如 server.k：
 
     ```python
     schema Server:
@@ -149,7 +150,7 @@ KCL文件的文档主要包含如下两个部分：
         labels?: {str: str}
     ```
 
-  3.2 从 server.k 得到初始化的 i18n 配置文件，例如希望为其增加中文文档，指定生成的配置文件格式为 YAML
+3.2 从 server.k 得到初始化的 i18n 配置文件，例如希望为其增加中文文档，指定生成的配置文件格式为 YAML
 
     ```text
     kcl-doc init-i18n server.k --format YAML --i18n-locale zh_cn
@@ -215,7 +216,7 @@ KCL文件的文档主要包含如下两个部分：
     source_code_url: ''
     ```
 
-  3.3 修改初始化得到的 i18n 配置，将其中的 doc 字段修改为中文的描述，修改后的配置如下：
+3.3 修改初始化得到的 i18n 配置，将其中的 doc 字段修改为中文的描述，修改后的配置如下：
 
     ```yaml
     name: server
@@ -271,7 +272,7 @@ KCL文件的文档主要包含如下两个部分：
     source_code_url: ''
     ```
 
-  3.4 基于修改后的 i18n 配置，生成本地化语言的文档，执行如下命令，将输出中文的文档 kcl_doc/doc_server_zh_cn.md，命令及生成的文档内容如下：
+3.4 基于修改后的 i18n 配置，生成本地化语言的文档，执行如下命令，将输出中文的文档 kcl_doc/doc_server_zh_cn.md，命令及生成的文档内容如下：
 
     ```text
     kcl-doc generate server.k --i18n-locale zh_cn --format Markdown
@@ -305,8 +306,8 @@ KCL文件的文档主要包含如下两个部分：
 
 对于 reST 格式的文档，段落和缩进很重要，新段落用空白行标记，缩进即为表示输出中的缩进。可以使用如下方式表示字体样式：
 
-* \*斜体\*
-* \*\*粗体\*\*
-* \`\`等宽字体\`\`
+- \*斜体\*
+- \*\*粗体\*\*
+- \`\`等宽字体\`\`
 
 参考 [reST 文档](https://docutils.sourceforge.io/rst.html)获得更多帮助。

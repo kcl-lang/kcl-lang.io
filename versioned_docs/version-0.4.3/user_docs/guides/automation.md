@@ -112,8 +112,8 @@ person:
   name: Alice
   age: 10
   ids:
-  - 1
-  - 2
+    - 1
+    - 2
 ```
 
 ### Override Delete Sample
@@ -124,7 +124,7 @@ KCL code:
 schema Config:
     x?: int = 1
     y?: str = "s"
-    
+
 config = Config {
     x = 2
 }

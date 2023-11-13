@@ -2,6 +2,7 @@
 id: structure
 sidebar_label: Structure
 ---
+
 # Konfig Structure
 
 This article mainly explains the directory and code structure of the Konfig repository.
@@ -83,13 +84,13 @@ A Project contains one or more Stacks, and a Stack must belong to and can only b
 appops/nginx-example
 ├── README.md       # Project readme
 ├── base            # common configurations for all stacks
-│   └── base.k      
-├── dev             # dev stack 
+│   └── base.k
+├── dev             # dev stack
 │   ├── ci-test     # CI test configs
-│   │   ├── settings.yaml       # test data 
+│   │   ├── settings.yaml       # test data
 │   │   └── stdout.golden.yaml  # expected test result
 │   ├── kcl.yaml    # kcl config
-│   ├── main.k      
+│   ├── main.k
 │   └── stack.yaml  # Stack metadata
 └── project.yaml    # Project metadata
 ```

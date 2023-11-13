@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 This section will update the KCL language community's latest developments every two weeks, including features, website updates, and the latest community news, helping everyone better understand the KCL community!
 
-***KCL Website: [https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## Overview
 
@@ -36,10 +36,10 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 The following are listed in no particular order:
 
-+ Thanks to @jakezhu9 for contributing the KCL Import tool to convert Terraform Schema to KCL Schema 🙌 [https://github.com/kcl-lang/kcl-go/pull/152](https://github.com/kcl-lang/kcl-go/pull/152)
-+ Thanks to @jakezhu9 for contributing the integration of the Import tool to kpm 🙌 [https://github.com/kcl-lang/kpm/pull/194](https://github.com/kcl-lang/kpm/pull/194)
-+ Thanks to @zwpaper for contributions to KCL documentation and Tree Sitter Grammar 🙌 [https://github.com/kcl-lang/tree-sitter-kcl/pull/1](https://github.com/kcl-lang/tree-sitter-kcl/pull/1), etc.
-+ Thanks to @mrgleeco, @ghpu, @steeling, @prahaladramji, @zwpaper, and others for valuable feedback and discussions while using KCL and the toolchain 🙌
+- Thanks to @jakezhu9 for contributing the KCL Import tool to convert Terraform Schema to KCL Schema 🙌 [https://github.com/kcl-lang/kcl-go/pull/152](https://github.com/kcl-lang/kcl-go/pull/152)
+- Thanks to @jakezhu9 for contributing the integration of the Import tool to kpm 🙌 [https://github.com/kcl-lang/kpm/pull/194](https://github.com/kcl-lang/kpm/pull/194)
+- Thanks to @zwpaper for contributions to KCL documentation and Tree Sitter Grammar 🙌 [https://github.com/kcl-lang/tree-sitter-kcl/pull/1](https://github.com/kcl-lang/tree-sitter-kcl/pull/1), etc.
+- Thanks to @mrgleeco, @ghpu, @steeling, @prahaladramji, @zwpaper, and others for valuable feedback and discussions while using KCL and the toolchain 🙌
 
 ## Featured Updates
 
@@ -52,7 +52,6 @@ In the recent v0.6.0 release, the KCL IDE plugin has enhanced on hover tooltips 
 #### IntelliJ Plugin
 
 Besides, the IntelliJ plugin is now compatible with version 2023.2+ and can be downloaded from the following link: [https://github.com/kcl-lang/intellij-kcl/releases](https://github.com/kcl-lang/intellij-kcl/releases)
-
 
 ### KCL Package Manager Updates
 
@@ -68,57 +67,58 @@ In the upcoming release, the KCL compilation command has optimized error message
 
 ### KCL Models Updates
 
-In the past few weeks, we have provided more usage examples for configuring and validating containers, services, and Pod Security Policy (PSP). 
+In the past few weeks, we have provided more usage examples for configuring and validating containers, services, and Pod Security Policy (PSP).
 
-+ readonly-root-fs
-+ allowed-image-repos
-+ deny-all
-+ deny-endpoint-edit-default-role
-+ disallow-ingress-wildcard
-+ disallow-svc-lb
-+ disallow-svc-node-port
-+ disallowed-image-repos
-+ horizontal-pod-auto-scaler
-+ psp-allow-privilege-escalation
-+ psp-app-armor
-+ psp-capabilities
-+ psp-flexvolume-drivers
-+ required-image-digests
-+ required-probes
-+ validate-auto-mount-service-account-token
-+ validate-container-limits
-+ validate-container-requests
-+ validate-deprecated-api
-+ k8s_manifests_containers
+- readonly-root-fs
+- allowed-image-repos
+- deny-all
+- deny-endpoint-edit-default-role
+- disallow-ingress-wildcard
+- disallow-svc-lb
+- disallow-svc-node-port
+- disallowed-image-repos
+- horizontal-pod-auto-scaler
+- psp-allow-privilege-escalation
+- psp-app-armor
+- psp-capabilities
+- psp-flexvolume-drivers
+- required-image-digests
+- required-probes
+- validate-auto-mount-service-account-token
+- validate-container-limits
+- validate-container-requests
+- validate-deprecated-api
+- k8s_manifests_containers
 
-You can refer to the corresponding examples to incorporate the above configurations and validations: [https://github.com/kcl-lang/krm-kcl/tree/main/examples](https://github.com/kcl-lang/krm-kcl/tree/main/examples). Now, let's explain using the Kubectl KCL plugin and the disallow-svc-lb model. The purpose of disallow-svc-lb is to validate Service resources and disallow the use of LoadBalancer as the Service type. Write the following YAML file (manifests.yaml): 
+You can refer to the corresponding examples to incorporate the above configurations and validations: [https://github.com/kcl-lang/krm-kcl/tree/main/examples](https://github.com/kcl-lang/krm-kcl/tree/main/examples). Now, let's explain using the Kubectl KCL plugin and the disallow-svc-lb model. The purpose of disallow-svc-lb is to validate Service resources and disallow the use of LoadBalancer as the Service type. Write the following YAML file (manifests.yaml):
 
-  ```yaml
-  apiVersion: krm.kcl.dev/v1alpha1
-  kind: KCLRun
-  metadata:
-    name: disallow-svc-lb
-    annotations: 
-      krm.kcl.dev/version: 0.0.1
-      krm.kcl.dev/type: validation
-      documentation: >-
-        A validation that prevents the creation of Service resources of type `LoadBalancer`
-  spec:
-    source: oci://ghcr.io/kcl-lang/disallow-svc-lb
-  ---
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: my-service
-  spec:
-    selector:
-      app.kubernetes.io/name: MyApp
-    ports:
-      - name: http
-        protocol: TCP
-        port: 80
-    type: LoadBalancer # The service type is incorrectly set to LoadBalancer.
-  ```
+```yaml
+apiVersion: krm.kcl.dev/v1alpha1
+kind: KCLRun
+metadata:
+  name: disallow-svc-lb
+  annotations:
+    krm.kcl.dev/version: 0.0.1
+    krm.kcl.dev/type: validation
+    documentation: >-
+      A validation that prevents the creation of Service resources of type `LoadBalancer`
+spec:
+  source: oci://ghcr.io/kcl-lang/disallow-svc-lb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app.kubernetes.io/name: MyApp
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+  type: LoadBalancer # The service type is incorrectly set to LoadBalancer.
+```
+
 Using the Kubectl KCL tool for resource validation on the client-side, we will get the following result:
 
 ```shell

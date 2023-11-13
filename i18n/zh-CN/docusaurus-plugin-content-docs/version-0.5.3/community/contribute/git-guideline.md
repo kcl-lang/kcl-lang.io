@@ -25,8 +25,9 @@
 ```
 
 分支名称主要包括两个字段，并通过 “-” 分割。其中：
- - {type} : 当前分支内容的类型。
- - {a_short_description}: 一个简短的描述，介绍这个分支的主要内容。
+
+- {type} : 当前分支内容的类型。
+- {a_short_description}: 一个简短的描述，介绍这个分支的主要内容。
 
 e.g. 张三首先 Fork 仓库到自己账户下，然后创建对应名称 `zhangsan:fix-output-fmt-bug` 的分支（冒号之前是张三的账号），用于修复输出格式化 bug。
 
@@ -35,16 +36,16 @@ e.g. 张三首先 Fork 仓库到自己账户下，然后创建对应名称 `zhan
 我们参考 [Commitizen](https://github.com/commitizen/cz-cli) 书写 Commit Message。
 
 ```
-注: 如果直接使用 Commitizen 生成 Commit Message，需要注意因为 Commitizen 
+注: 如果直接使用 Commitizen 生成 Commit Message，需要注意因为 Commitizen
 是开发人员管理 commit 的工具，与项目本身无关联，因此由 Commitizen 生成的中间产物
 (如: node_modules 文件目录)可能没有在项目 .gitignore 文件中。
 
 您可以 git add {filename} 选择要提交的文件而忽视中间产物。
 或者您可以向 .gitignore 文件中添加如下内容而自动忽视中间产物：
-# commitizen 
-package.json 
-package-lock.json 
-node_modules/* 
+# commitizen
+package.json
+package-lock.json
+node_modules/*
 ```
 
 如果手动编写 Commit Message，我们也建议采用 [Commitizen](https://github.com/commitizen/cz-cli) 的 commit message 格式。
@@ -58,31 +59,32 @@ node_modules/*
 
 其中主要包括6个字段：
 
- - {type} : 当前 commit 对应的分支的类型。
- - {component_or_file}: 当前 commit 改动的模块或者文件的名称。
- - {a_short_description}: 简短的描述介绍 commit 中的内容。
- - {a_longer_description}: 详细的描述用来介绍 commit 中的内容。
- - {breaking_change_description}: 如果 commit 中包含破环兼容性的改动，需要对兼容性改动产生的影响进行介绍。
- - {linked issue}: 与当前这个 commit 关联的 issue。 
+- {type} : 当前 commit 对应的分支的类型。
+- {component_or_file}: 当前 commit 改动的模块或者文件的名称。
+- {a_short_description}: 简短的描述介绍 commit 中的内容。
+- {a_longer_description}: 详细的描述用来介绍 commit 中的内容。
+- {breaking_change_description}: 如果 commit 中包含破环兼容性的改动，需要对兼容性改动产生的影响进行介绍。
+- {linked issue}: 与当前这个 commit 关联的 issue。
 
-  其中 {breaking_change_description} 和 {linked issue} 如果 commit 中不包含破坏兼容性的改动和关联的 issue，可以省略。
+其中 {breaking_change_description} 和 {linked issue} 如果 commit 中不包含破坏兼容性的改动和关联的 issue，可以省略。
 
-  e.g. 张三在分支 `zhangsan:fix-output-fmt-bug` 中创建的 commit。
-  ```
+e.g. 张三在分支 `zhangsan:fix-output-fmt-bug` 中创建的 commit。
 
-    fix(kcl-printer): fix an output format bug in kcl-printer
-    
-    There is an output format bug in kcl-printer because ...,
-    So, The calling of method "XXX" is replaced by "HHHH"...,
-    ...
-    
-    -- 如果没有破坏兼容性的改动和关联的 issue 可以省略下面内容。
+```
 
-    BREAKING CHANGE: This change maybe cause .......
-    
-    fix #123
+  fix(kcl-printer): fix an output format bug in kcl-printer
 
-  ```
+  There is an output format bug in kcl-printer because ...,
+  So, The calling of method "XXX" is replaced by "HHHH"...,
+  ...
+
+  -- 如果没有破坏兼容性的改动和关联的 issue 可以省略下面内容。
+
+  BREAKING CHANGE: This change maybe cause .......
+
+  fix #123
+
+```
 
 ## 4. 关于 pull request
 
@@ -96,11 +98,13 @@ node_modules/*
 - 我们提供了 [PR 模版](https://github.com/kcl-lang/.github/blob/main/.github/PULL_REQUEST_TEMPLATE.md)，只需要添加模版中要求的内容即可，如果在创建PR时发现没有模版或者模版内容为空，可以通过微信群，钉钉群或者邮件向我们反馈这个问题。
 
 我们建议PR的标题与分支名、commit message 风格保持一致：
+
 ```
 {type} ( {component_name_or_file_name} ) :{a_short_description}
 ```
 
 e.g. 张三为分支`fix/zhangsan/fix_output_fmt_bug`创建的PR名称。
+
 ```
 fix(kcl-printer): fix an output format bug in kcl-printer.
 ```

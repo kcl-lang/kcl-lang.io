@@ -5,6 +5,7 @@ type: "docs"
 description: base64 system module - base64 encode and decode function
 weight: 100
 ---
+
 ## encode
 
 `encode(value: str, encoding: str = "utf-8") -> str`

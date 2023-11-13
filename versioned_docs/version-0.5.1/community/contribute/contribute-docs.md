@@ -36,7 +36,7 @@ When contributing different types of documents, it is better to combine the abov
 - The file name and directory name can only use numbers, English letters and underscores`_` And minus sign '-'
 - Pictures of the current document are placed in the images directory of the current directory
 - Vector pictures can be viewed through [drawio offline version](https://github.com/jgraph/drawio-desktop/releases) (and submit source files at the same time), and export png format pictures at 200% resolution
-  
+
 ## 2. Basic mode of using document content
 
 Each usage document can be regarded as a relatively complete sharing or blog post (the reference manual is no longer such). Using documents to organize content follows the following pattern:

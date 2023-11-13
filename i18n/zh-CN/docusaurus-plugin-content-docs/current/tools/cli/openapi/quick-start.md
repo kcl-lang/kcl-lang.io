@@ -36,12 +36,10 @@ export PATH="<Your directory to store KCLOpenapi binary>:$PATH"
 
 ## 1.4 验证安装结果
 
-
 ```shell
 ➜  kcl-openapi -v
 kcl-openapi 0.5.0
 ```
-
 
 ## 2. 生成 KCL 文件
 

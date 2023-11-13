@@ -14,7 +14,7 @@ Kustomize has the concepts of `base` and `overlay`. In general, base and overlay
 
 We can execute the following command line to obtain a typical Kustomize project
 
-+ Create a base directory and create a deployment resource
+- Create a base directory and create a deployment resource
 
 ```bash
 # Create a directory to hold the base
@@ -58,7 +58,7 @@ resources:
 EOF
 ```
 
-+ Create a directory to hold the prod overlay configuration.
+- Create a directory to hold the prod overlay configuration.
 
 ```bash
 # Create a directory to hold the prod overlay

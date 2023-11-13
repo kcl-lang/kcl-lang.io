@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: Statements
 ---
+
 ## Syntax
 
 In KCL, statements consist of small statements and compound statements. The syntax is the following:
@@ -51,7 +52,7 @@ To keep it simple, the compound target is not supported as **target_primary**.
 
 The right value of an assignment statement is a conditional expression, which is discussed separately.
 
-An augmented assignment, which has the form `lhs op= rhs` updates the variable `lhs` by applying a binary arithmetic operator op (one of +, -, *, /, //, %, &, |, ^, <<, >>) to the previous value of `lhs` and the value of `rhs`.
+An augmented assignment, which has the form `lhs op= rhs` updates the variable `lhs` by applying a binary arithmetic operator op (one of +, -, \*, /, //, %, &, |, ^, <<, >>) to the previous value of `lhs` and the value of `rhs`.
 
 The **target_primary** on the left-hand side is the same as assignment statement. Examples:
 

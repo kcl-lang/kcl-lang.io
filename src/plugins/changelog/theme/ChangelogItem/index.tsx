@@ -5,21 +5,21 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import clsx from 'clsx';
+import React from "react";
+import clsx from "clsx";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import {MDXProvider} from '@mdx-js/react';
-import Link from '@docusaurus/Link';
-import {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
-import {blogPostContainerID} from '@docusaurus/utils-common';
-import MDXComponents from '@theme/MDXComponents';
-import type {Props} from '@theme/BlogPostItem';
+import { MDXProvider } from "@mdx-js/react";
+import Link from "@docusaurus/Link";
+import { useBaseUrlUtils } from "@docusaurus/useBaseUrl";
+import { blogPostContainerID } from "@docusaurus/utils-common";
+import MDXComponents from "@theme/MDXComponents";
+import type { Props } from "@theme/BlogPostItem";
 
-import styles from './styles.module.css';
-import ChangelogAuthors from '@theme/ChangelogAuthors';
+import styles from "./styles.module.css";
+import ChangelogAuthors from "@theme/ChangelogAuthors";
 
 export default function ChangelogItem(props: Props): JSX.Element {
-  const {withBaseUrl} = useBaseUrlUtils();
+  const { withBaseUrl } = useBaseUrlUtils();
   const {
     children,
     frontMatter,
@@ -27,24 +27,26 @@ export default function ChangelogItem(props: Props): JSX.Element {
     metadata,
     isBlogPostPage = false,
   } = props;
-  const {date, formattedDate, permalink, title, authors} = metadata;
+  const { date, formattedDate, permalink, title, authors } = metadata;
 
   const image = assets.image ?? frontMatter.image;
 
-  const TitleHeading = isBlogPostPage ? 'h1' : 'h2';
+  const TitleHeading = isBlogPostPage ? "h1" : "h2";
 
   return (
     <article
-      className={!isBlogPostPage ? 'margin-bottom--md' : undefined}
+      className={!isBlogPostPage ? "margin-bottom--md" : undefined}
       itemProp="blogPost"
       itemScope
-      itemType="http://schema.org/BlogPosting">
+      itemType="http://schema.org/BlogPosting"
+    >
       <header>
         <TitleHeading
           className={clsx(
             isBlogPostPage ? styles.blogPostPageTitle : styles.blogPostTitle,
           )}
-          itemProp="headline">
+          itemProp="headline"
+        >
           {isBlogPostPage ? (
             title
           ) : (
@@ -53,7 +55,7 @@ export default function ChangelogItem(props: Props): JSX.Element {
             </Link>
           )}
         </TitleHeading>
-        <div className={clsx(styles.blogPostData, 'margin-vert--md')}>
+        <div className={clsx(styles.blogPostData, "margin-vert--md")}>
           <time dateTime={date} itemProp="datePublished">
             {formattedDate}
           </time>
@@ -62,14 +64,18 @@ export default function ChangelogItem(props: Props): JSX.Element {
       </header>
 
       {image && (
-        <meta itemProp="image" content={withBaseUrl(image, {absolute: true})} />
+        <meta
+          itemProp="image"
+          content={withBaseUrl(image, { absolute: true })}
+        />
       )}
 
       <div
         // This ID is used for the feed generation to locate the main content
         id={isBlogPostPage ? blogPostContainerID : undefined}
         className="markdown"
-        itemProp="articleBody">
+        itemProp="articleBody"
+      >
         <MDXProvider components={MDXComponents}>{children}</MDXProvider>
       </div>
     </article>

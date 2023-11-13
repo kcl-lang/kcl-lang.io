@@ -13,25 +13,25 @@ GitOps is a modern way to do continuous delivery. Its core idea is to have a Git
 
 By changing the files in repository, developers can apply the applications automatically. The benefits of applying GitOps include:
 
-+ Increased productivity. Continuous delivery can speed up the time of deployment.
-+ Lower the barrier for developer to deploy. By pushing code instead of container configuration, developers can easily deploy Kubernetes without knowing its internal implementation.
-+ Trace the change records. Managing the cluster with Git makes every change traceable, enhancing the audit trail.
-+ Recover the cluster with Git's rollback and branch.
+- Increased productivity. Continuous delivery can speed up the time of deployment.
+- Lower the barrier for developer to deploy. By pushing code instead of container configuration, developers can easily deploy Kubernetes without knowing its internal implementation.
+- Trace the change records. Managing the cluster with Git makes every change traceable, enhancing the audit trail.
+- Recover the cluster with Git's rollback and branch.
 
 ### GitOps with KCL
 
 Benefits of Using KCL and ArgoCD Together:
 
-+ KCL can help us **simplify complex Kubernetes deployment configuration files**, reduce the error rate of manually writing YAML files, and improve code readability and maintainability.
-+ ArgoCD can **automate** the deployment of Kubernetes applications, achieve continuous deployment, and provide comprehensive monitoring and control functions.
-+ By combining KCL and ArgoCD, deployment efficiency can be improved, errors reduced, and management and monitoring of Kubernetes applications strengthened.
-+ The combination of KCL and ArgoCD can also help us achieve **Infrastructure as Code (IaC)**, simplify application deployment and management, and better implement DevOps principles.
+- KCL can help us **simplify complex Kubernetes deployment configuration files**, reduce the error rate of manually writing YAML files, and improve code readability and maintainability.
+- ArgoCD can **automate** the deployment of Kubernetes applications, achieve continuous deployment, and provide comprehensive monitoring and control functions.
+- By combining KCL and ArgoCD, deployment efficiency can be improved, errors reduced, and management and monitoring of Kubernetes applications strengthened.
+- The combination of KCL and ArgoCD can also help us achieve **Infrastructure as Code (IaC)**, simplify application deployment and management, and better implement DevOps principles.
 
 With GitOps, developer and operation teams can manage application deployment and configuration by modifying KCL code and generating YAML files. The GitOps toolchain will automatically synchronize the changes to the Kubernetes cluster, enabling continuous deployment and ensuring consistency. If there are issues, the GitOps toolchain can be used to quickly rollback.
 
 ## Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ## How to
 
@@ -62,7 +62,7 @@ config = app.App {
         ports = [{containerPort = 80}]
     }
     service.ports = [{ port = 80 }]
-    service.type = "LoadBalancer" 
+    service.type = "LoadBalancer"
 }
 ```
 
@@ -72,20 +72,20 @@ In the above code, we defined a configuration using the `App` schema, where we c
 
 #### Setup Kubernetes Cluster and ArgoCD Controllers
 
-+ Install [K3d](https://github.com/k3d-io/k3d) to create a default cluster.
+- Install [K3d](https://github.com/k3d-io/k3d) to create a default cluster.
 
 ```bash
 k3d cluster create mycluster
 ```
 
-+ Install [ArgoCD](https://github.com/argoproj/argo-cd/releases/).
+- Install [ArgoCD](https://github.com/argoproj/argo-cd/releases/).
 
 ```bash
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 ```
 
-+ Enable ArgoCD KCL Plugin
+- Enable ArgoCD KCL Plugin
 
 Write the patch YAML configuration file and update the ArgoCD configuration:
 
@@ -105,15 +105,15 @@ Wait for the init container to complete execution (Running).
 kubectl get pod -n argocd -l app.kubernetes.io/name=argocd-repo-server
 ```
 
-+ To access the ArgoCD web UI
+- To access the ArgoCD web UI
 
 ```bash
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 ```
 
-+ Open a browser and go to: `https://localhost:8080`
+- Open a browser and go to: `https://localhost:8080`
 
-+ The username is "admin" and password get be obtained from the following command:
+- The username is "admin" and password get be obtained from the following command:
 
 ```bash
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
@@ -121,7 +121,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 
 #### Setup ArgoCD CLI
 
-+ Install [ArgoCD CLI](https://github.com/argoproj/argo-cd/releases)
+- Install [ArgoCD CLI](https://github.com/argoproj/argo-cd/releases)
 
 Use "admin" and password to login to ArgoCD
 

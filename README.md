@@ -34,6 +34,6 @@ Open [http://localhost:8080](http://localhost:8080) in the browser.
 
 ## Guide for Documents
 
-+ The English documents are located at [./docs](./docs)
-+ The i18n documents are located at [./i18n](./i18n)
-  + The Chinese documents are located at [./i18n/zh-CN/docusaurus-plugin-content-docs/current](./i18n/zh-CN/docusaurus-plugin-content-docs/current)
+- The English documents are located at [./docs](./docs)
+- The i18n documents are located at [./i18n](./i18n)
+  - The Chinese documents are located at [./i18n/zh-CN/docusaurus-plugin-content-docs/current](./i18n/zh-CN/docusaurus-plugin-content-docs/current)

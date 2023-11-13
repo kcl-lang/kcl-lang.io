@@ -21,7 +21,7 @@ Kustomize has the concepts of `base` and `overlay`. In general, base and overlay
 
 We can execute the following command line to obtain a typical Kustomize project
 
-+ Create a base directory and create a deployment resource
+- Create a base directory and create a deployment resource
 
 ```bash
 # Create a directory to hold the base
@@ -65,7 +65,7 @@ resources:
 EOF
 ```
 
-+ Create a directory to hold the prod overlay configuration.
+- Create a directory to hold the prod overlay configuration.
 
 ```bash
 # Create a directory to hold the prod overlay
@@ -135,21 +135,21 @@ spec:
         app: ldap
     spec:
       containers:
-      - args:
-        - --copy-service
-        image: osixia/openldap:1.1.11
-        name: ldap
-        ports:
-        - containerPort: 389
-          name: openldap
-        volumeMounts:
-        - mountPath: /var/lib/ldap
-          name: ldap-data
+        - args:
+            - --copy-service
+          image: osixia/openldap:1.1.11
+          name: ldap
+          ports:
+            - containerPort: 389
+              name: openldap
+          volumeMounts:
+            - mountPath: /var/lib/ldap
+              name: ldap-data
       volumes:
-      - gcePersistentDisk:
-          pdName: ldap-persistent-storage
-          readOnly: true
-        name: ldap-data
+        - gcePersistentDisk:
+            pdName: ldap-persistent-storage
+            readOnly: true
+          name: ldap-data
 ```
 
 We can also directly apply the configuration to the cluster through the following command.

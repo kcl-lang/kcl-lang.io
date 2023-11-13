@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: Expressions
 ---
+
 ## Syntax
 
 In KCL, an expression specifies the computation of a value.
@@ -230,7 +231,7 @@ A list expression is a comma-separated immutable list of element expressions, en
 
 ```
 list_expr: '[' [list_item [',']] ']'
-list_item: test | "*" primary_expr 
+list_item: test | "*" primary_expr
 ```
 
 Element expressions are evaluated in left-to-right order.

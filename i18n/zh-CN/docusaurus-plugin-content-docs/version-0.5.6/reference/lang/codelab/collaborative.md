@@ -6,6 +6,7 @@ weight: 2
 description: 使用配置操作分块编写配置
 sidebar_position: 3
 ---
+
 ## 1. Introduction
 
 KCL 是一种简单易用的配置语言，用户可以简单地编写可重复使用的配置代码。
@@ -142,9 +143,9 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
   labels:
     app: test_app
 ```
@@ -183,9 +184,9 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
   labels:
     app: test_app
 ```
@@ -220,9 +221,9 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
   labels:
     app: test_app
     env: dev
@@ -268,12 +269,12 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
-    - protocol: TCP
-      port: 443
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
+      - protocol: TCP
+        port: 443
+        targetPort: 1100
   labels:
     app: test_app
     env: dev
@@ -309,9 +310,9 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
   labels:
     app: test_app
     env: prod

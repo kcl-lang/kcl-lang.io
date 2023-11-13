@@ -9,7 +9,7 @@ KCL provides many out of the box support for Kubernetes configuration. Through K
 
 ## Prerequisite
 
-+ Install [kcl-openapi](https://kcl-lang.io/docs/tools/cli/openapi/quick-start)
+- Install [kcl-openapi](https://kcl-lang.io/docs/tools/cli/openapi/quick-start)
 
 ## Quick Start
 
@@ -51,15 +51,15 @@ You can develop your custom scripts to migrate your configuration data automatic
 
 If you developed CRDs, you can generate the KCL version of the CRD schemas and declare CRs based on that.
 
-* Generate KCL Schema from CRD
+- Generate KCL Schema from CRD
 
-    ```
-    kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
-    ```
+  ```
+  kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
+  ```
 
-* Define CR based on CRDs in KCL
+- Define CR based on CRDs in KCL
 
-    You can initialize the CRD schema to define a CR, or further, you can use the generated schema as a backend model and design a frontend interface for users to initialize. The practice is similar to what `KCL Models` does on Kubernetes built-in models.
+  You can initialize the CRD schema to define a CR, or further, you can use the generated schema as a backend model and design a frontend interface for users to initialize. The practice is similar to what `KCL Models` does on Kubernetes built-in models.
 
 ## Summary
 

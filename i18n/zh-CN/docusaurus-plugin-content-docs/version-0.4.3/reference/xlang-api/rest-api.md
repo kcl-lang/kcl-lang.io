@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 ---
+
 # Rest API
 
 ## 1. 启动 REST 服务
@@ -69,7 +70,7 @@ schema Person:
 然后希望通过 `Person` 来校验以下的 JSON 数据：
 
 ```json
-{"key": "value"}
+{ "key": "value" }
 ```
 
 可以通过 `KclvmService` 服务的 `ValidateCode` 方法完成。参考 `ValidateCode` 方法的 `ValidateCode_Args` 参数结构：
@@ -88,8 +89,8 @@ message ValidateCode_Args {
 
 ```json
 {
-    "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
-    "data": "{\"attr_name\": {\"key\": \"value\"}}"
+  "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
+  "data": "{\"attr_name\": {\"key\": \"value\"}}"
 }
 ```
 
@@ -114,7 +115,7 @@ $ curl -X POST \
 
 跨语言的 API 通过 Protobuf 定义([https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto))：
 
-```protobuf
+````protobuf
 // Copyright 2021 The KCL Authors. All rights reserved.
 //
 // This file defines the request parameters and return structure of the KCL RPC server.
@@ -270,7 +271,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-	
+
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 
@@ -504,4 +505,4 @@ message Decorator {
 // ----------------------------------------------------------------------------
 // END
 // ----------------------------------------------------------------------------
-```
+````

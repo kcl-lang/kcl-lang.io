@@ -27,7 +27,7 @@ KCL 的 v0.4.6 版本在语言、工具链、社区集成&扩展支持等方面�
 
 ![LSP](/img/blog/2023-07-10-kcl-LSP/lsp.png)
 
-通过 LSP ，编辑器和 IDE 可以通过 JSON-RPC 通信协议与后端运行的语言服务器(Server 端)进行通信。语言服务器可以提供代码分析、自动补全、语法高亮、定义跳转等功能。基于 LSP，开发者可以在不同的编辑器和 IDE 之间迁移，使得语言工具的开发从 M(语言数量) * N(编辑器/IDE数量) 降低为 M + N。
+通过 LSP ，编辑器和 IDE 可以通过 JSON-RPC 通信协议与后端运行的语言服务器(Server 端)进行通信。语言服务器可以提供代码分析、自动补全、语法高亮、定义跳转等功能。基于 LSP，开发者可以在不同的编辑器和 IDE 之间迁移，使得语言工具的开发从 M(语言数量) \* N(编辑器/IDE数量) 降低为 M + N。
 
 ## 为什么用 Rust 重写
 
@@ -43,7 +43,7 @@ KCL LSP Server 的设计如下图所示：
 
 主要流程可以分为几个阶段：
 
-1. 建立连接，初始化 LSP 能力。在 IDE 的 Client 端，打开特定文件（KCL的 *.k）时，IDE 会启动本地的 kcl_language_server 二进制文件，启动 Server 端。这个文件与 KCL 一起发布，并安装在 KCL 的 bin 目录下。Server 启动后会建立 standard IO 的 Connection，并等待 Client 发送的初始化请求。Server 端接收初始化请求后会定义 Server 端信息和能力，并返回给 Client，以此完成 LSP 的初始化连接。
+1. 建立连接，初始化 LSP 能力。在 IDE 的 Client 端，打开特定文件（KCL的 \*.k）时，IDE 会启动本地的 kcl_language_server 二进制文件，启动 Server 端。这个文件与 KCL 一起发布，并安装在 KCL 的 bin 目录下。Server 启动后会建立 standard IO 的 Connection，并等待 Client 发送的初始化请求。Server 端接收初始化请求后会定义 Server 端信息和能力，并返回给 Client，以此完成 LSP 的初始化连接。
 2. 建立连接后，Server 端会启动一个轮询函数，不断接收来自 Client 的 LSP Message，例如 Notification（打开/关闭/变更/删除文件等）和 Request（跳转、悬停等），以及来自 Server 端自身的 Task。并统一封装成事件（Event）交给下一步处理。
 3. 对于各种事件，按照以下步骤处理：
 
@@ -111,4 +111,4 @@ KCL 的 IDE 插件目前已经实现高亮、跳转、补全、Outline、悬停�
 - 更多的语言能力：提供更多的功能，如代码重构，错误的quick fix，代码 fmt等，进一步完善功能，提升开发效率
 - 更多的 IDE 接入：目前，KCL 虽然提供了 LSP，只接入了 VS Code，未来会基于 LSP 的能力为 KCL 用户提供更多选择。
 - AI 能力的集成：目前，ChatGPT 风靡全网，各行各业都在关注。我们也在探索 AI×KCL 的结合，提供更智能的研发体验。总之，我们会继续完善和优化 KCL 的 IDE 插件，让它更加成熟和实用。为KCL用户带来更加方便和高效的开发体验。
-如果您有更多的想法和需求，欢迎在 KCL Github 仓库发起 Issue 或讨论，也欢迎加入我们的社区进行交流 🙌 🙌 🙌
+  如果您有更多的想法和需求，欢迎在 KCL Github 仓库发起 Issue 或讨论，也欢迎加入我们的社区进行交流 🙌 🙌 🙌

@@ -15,9 +15,9 @@ tags: [KCL, Meeting]
 
 We would like to express our gratitude for his numerous contributions to the KCL Go SDK and the series of enhanced features he has brought to the KCL Import Tool, providing users with a more convenient and efficient experience in importing data and schemas. Here is a list of his recent significant contributions:
 
-+ 🔧 Support for converting JSON/YAML data to KCL configuration: [https://github.com/kcl-lang/kcl-go/pull/145](https://github.com/kcl-lang/kcl-go/pull/145)
-+ 🔧 Support for converting Terraform Provider Schema to KCL Schema: [https://github.com/kcl-lang/kcl-go/pull/141](https://github.com/kcl-lang/kcl-go/pull/141)
-+ 🔧 Support for converting JsonSchema to KCL Schema: [https://github.com/kcl-lang/kcl-go/pull/127](https://github.com/kcl-lang/kcl-go/pull/127)
+- 🔧 Support for converting JSON/YAML data to KCL configuration: [https://github.com/kcl-lang/kcl-go/pull/145](https://github.com/kcl-lang/kcl-go/pull/145)
+- 🔧 Support for converting Terraform Provider Schema to KCL Schema: [https://github.com/kcl-lang/kcl-go/pull/141](https://github.com/kcl-lang/kcl-go/pull/141)
+- 🔧 Support for converting JsonSchema to KCL Schema: [https://github.com/kcl-lang/kcl-go/pull/127](https://github.com/kcl-lang/kcl-go/pull/127)
 
 The addition of the new Maintainer not only signifies jakezhu9's outstanding technical performance but also reflects the community's high recognition and trust in him.
 

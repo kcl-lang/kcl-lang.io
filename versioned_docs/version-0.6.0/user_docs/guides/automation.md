@@ -17,7 +17,7 @@ In addition, the automation capability of KCL can be realized and integrated int
 
 ### 0. Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### 1. Get the Example
 

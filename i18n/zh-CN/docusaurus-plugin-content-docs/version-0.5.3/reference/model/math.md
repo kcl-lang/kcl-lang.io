@@ -5,6 +5,7 @@ type: "docs"
 description: math 包 - 数学函数
 weight: 100
 ---
+
 ## ceil
 
 `ceil(x) -> int`

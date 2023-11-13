@@ -12,9 +12,9 @@ We can use KCL and its vet tools to manually or automatically perform terraform 
 
 ### 0. Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
-+ Install [Terraform](https://developer.hashicorp.com/terraform/downloads?product_intent=terraform)
-+ Set up your [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) correctly for your terminal to use.
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [Terraform](https://developer.hashicorp.com/terraform/downloads?product_intent=terraform)
+- Set up your [AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html) correctly for your terminal to use.
 
 ### 1. Get the Example
 
@@ -87,9 +87,7 @@ The output json is
           "provider_name": "aws",
           "schema_version": 0,
           "values": {
-            "availability_zones": [
-              "us-west-1a"
-            ],
+            "availability_zones": ["us-west-1a"],
             "desired_capacity": 4,
             "enabled_metrics": null,
             "force_delete": true,
@@ -176,14 +174,10 @@ The output json is
       "name": "my_asg",
       "provider_name": "aws",
       "change": {
-        "actions": [
-          "create"
-        ],
+        "actions": ["create"],
         "before": null,
         "after": {
-          "availability_zones": [
-            "us-west-1a"
-          ],
+          "availability_zones": ["us-west-1a"],
           "desired_capacity": 4,
           "enabled_metrics": null,
           "force_delete": true,
@@ -211,9 +205,7 @@ The output json is
         },
         "after_unknown": {
           "arn": true,
-          "availability_zones": [
-            false
-          ],
+          "availability_zones": [false],
           "default_cooldown": true,
           "id": true,
           "initial_lifecycle_hook": [],
@@ -234,9 +226,7 @@ The output json is
       "name": "web",
       "provider_name": "aws",
       "change": {
-        "actions": [
-          "create"
-        ],
+        "actions": ["create"],
         "before": null,
         "after": {
           "ami": "ami-09b4b74c",
@@ -294,9 +284,7 @@ The output json is
       "name": "my_web_config",
       "provider_name": "aws",
       "change": {
-        "actions": [
-          "create"
-        ],
+        "actions": ["create"],
         "before": null,
         "after": {
           "associate_public_ip_address": false,
@@ -347,9 +335,7 @@ The output json is
           "provider_config_key": "aws",
           "expressions": {
             "availability_zones": {
-              "constant_value": [
-                "us-west-1a"
-              ]
+              "constant_value": ["us-west-1a"]
             },
             "desired_capacity": {
               "constant_value": 4

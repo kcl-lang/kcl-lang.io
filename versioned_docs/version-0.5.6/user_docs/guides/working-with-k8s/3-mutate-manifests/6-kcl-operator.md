@@ -7,15 +7,15 @@ sidebar_position: 6
 
 [KCL Operator](https://github.com/kcl-lang/kcl-operator) provides cluster integration, allowing you to use Access Webhook to generate, mutate, or validate resources based on KCL configuration when apply resources to the cluster. Webhook will capture creation, application, and editing operations, and execute `KCLRun` resource on the configuration associated with each operation, and the KCL programming language can be used to
 
-+ **Add** labels or annotations based on a condition.
-+ **Inject** a sidecar container in all KRM resources that contain a PodTemplate.
-+ **Validate** all KRM resources using KCL schema.
-+ Use an abstract model to **generate** KRM resources.
+- **Add** labels or annotations based on a condition.
+- **Inject** a sidecar container in all KRM resources that contain a PodTemplate.
+- **Validate** all KRM resources using KCL schema.
+- Use an abstract model to **generate** KRM resources.
 
 ## Prerequisites
 
-+ Install Kubectl
-+ Prepare a Kubernetes cluster
+- Install Kubectl
+- Prepare a Kubernetes cluster
 
 ## Quick Start
 
@@ -83,10 +83,10 @@ The output is
 
 Here's what you can do in the KCL code:
 
-+ Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("items")` and the params from `option("params")`.
-+ Return a KPM list for output resources.
-+ Return an error using `assert {condition}, {error_message}`.
+- Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("items")` and the params from `option("params")`.
+- Return a KPM list for output resources.
+- Return an error using `assert {condition}, {error_message}`.
 
 ## More Documents and Examples
 
-+ [KRM KCL Spec](https://github.com/kcl-lang/krm-kcl)
+- [KRM KCL Spec](https://github.com/kcl-lang/krm-kcl)

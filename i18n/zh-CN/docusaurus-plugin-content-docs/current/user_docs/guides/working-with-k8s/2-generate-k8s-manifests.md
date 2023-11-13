@@ -43,15 +43,15 @@ spec:
                 - 'true'
 ```
 
-+ YAML 中的结构化数据是无类型的，缺乏验证方法，无法立即检查所有数据的有效性
-+ YAML 编程能力欠佳，容易写出不正确的缩进，也没有逻辑判断等常见代码组织方式，容易写出大量重复配置，难以维护
-+ Kubernetes 设计是复杂的，用户很难理解所有细节，比如上面配置中的 `toleration` 和 `affinity` 字段，如果用户不理解调度逻辑，它可能被错误地省略掉或者多余的添加
+- YAML 中的结构化数据是无类型的，缺乏验证方法，无法立即检查所有数据的有效性
+- YAML 编程能力欠佳，容易写出不正确的缩进，也没有逻辑判断等常见代码组织方式，容易写出大量重复配置，难以维护
+- Kubernetes 设计是复杂的，用户很难理解所有细节，比如上面配置中的 `toleration` 和 `affinity` 字段，如果用户不理解调度逻辑，它可能被错误地省略掉或者多余的添加
 
 因此，KCL 期望在 Kubernetes YAML 资源管理解决如下问题：
 
-+ 用**生产级高性能编程语言**以**编写代码**的方式提升配置的灵活度，比如条件语句、循环、函数、包管理等特性提升配置重用的能力
-+ 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
-+ 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
+- 用**生产级高性能编程语言**以**编写代码**的方式提升配置的灵活度，比如条件语句、循环、函数、包管理等特性提升配置重用的能力
+- 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
+- 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
 
 ## 先决条件
 
@@ -112,10 +112,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 当然我们可以将 KCL 工具与 kubectl 等工具结合使用，让我们执行如下命令并看看效果
@@ -196,10 +196,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 上述代码片段中的 `image = metadata.name + ":1.14.2" if option("env") == "prod" else  metadata.name + ":latest"` 意思为：当动态参数 `env` 的值被设置为 `prod` 时，image 字段值为 `nginx:1.14.2`, 否则为 `nginx:latest`，因此我们可以根据需要为 env 设置为不同的值获得不同内容的 Kubernetes 资源。
@@ -238,10 +238,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 ### 3. 从 Registry 直接获取 Kubernetes 模块
@@ -305,10 +305,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: nginx:1.14.2
-        name: nginx
-        ports:
-        - containerPort: 80
+        - image: nginx:1.14.2
+          name: nginx
+          ports:
+            - containerPort: 80
 ```
 
 ## 小结

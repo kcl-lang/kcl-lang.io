@@ -21,7 +21,7 @@ Kustomize 有 base 和 overlay 的概念，bases 和 overlays 一般是一个包
 
 我们可以执行如下命令行获得一个典型的 Kustomize 工程
 
-+ 创建 base 目录并新建一个 deployment 资源
+- 创建 base 目录并新建一个 deployment 资源
 
 ```bash
 # Create a directory to hold the base
@@ -65,7 +65,7 @@ resources:
 EOF
 ```
 
-+ 创建一个 prod 目录并放置生产环境的配置
+- 创建一个 prod 目录并放置生产环境的配置
 
 ```bash
 # Create a directory to hold the prod overlay

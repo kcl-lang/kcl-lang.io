@@ -7,14 +7,14 @@ sidebar_position: 1
 
 [Kubectl](https://kubernetes.io/docs/reference/kubectl/) is a command line tool for communicating with a Kubernetes cluster's control plane, using the Kubernetes API. You can use the `Kubectl-KCL-Plugin` to
 
-+ Edit the YAML configuration in a hook way to separate data and logic for the Kubernetes manifests management.
-+ For multi-environment and multi-tenant scenarios, you can maintain these configurations gracefully rather than simply copy and paste.
-+ Validate all KRM resources using the KCL schema.
+- Edit the YAML configuration in a hook way to separate data and logic for the Kubernetes manifests management.
+- For multi-environment and multi-tenant scenarios, you can maintain these configurations gracefully rather than simply copy and paste.
+- Validate all KRM resources using the KCL schema.
 
 ## Prerequisites
 
-+ Install [Kubectl](https://github.com/kubernetes/kubectl)
-+ Install [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl)
+- Install [Kubectl](https://github.com/kubernetes/kubectl)
+- Install [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl)
 
 ## Quick Start
 
@@ -41,40 +41,40 @@ The output yaml is
 apiVersion: config.kubernetes.io/v1
 kind: ResourceList
 items:
-- apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    annotations:
-      managed-by: krm-kcl
-    labels:
-      app: nginx
-    name: nginx-deployment
-  spec:
-    replicas: 3
-    selector:
-      matchLabels:
+  - apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      annotations:
+        managed-by: krm-kcl
+      labels:
         app: nginx
-    template:
-      metadata:
-        labels:
+      name: nginx-deployment
+    spec:
+      replicas: 3
+      selector:
+        matchLabels:
           app: nginx
-      spec:
-        containers:
-        - image: "nginx:1.14.2"
-          name: nginx
-          ports:
-          - containerPort: 80
-- apiVersion: v1
-  kind: Service
-  metadata:
-    name: test
-  spec:
-    ports:
-    - port: 80
-      protocol: TCP
-      targetPort: 9376
-    selector:
-      app: MyApp
+      template:
+        metadata:
+          labels:
+            app: nginx
+        spec:
+          containers:
+            - image: "nginx:1.14.2"
+              name: nginx
+              ports:
+                - containerPort: 80
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: test
+    spec:
+      ports:
+        - port: 80
+          protocol: TCP
+          targetPort: 9376
+      selector:
+        app: MyApp
 functionConfig:
   # kcl-fn-config.yaml
   apiVersion: krm.kcl.dev/v1alpha1
@@ -91,10 +91,10 @@ functionConfig:
 
 Here's what you can do in the KCL code:
 
-+ Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
-+ Return a KPM list for output resources.
-+ Return an error using `assert {condition}, {error_message}`.
+- Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
+- Return a KPM list for output resources.
+- Return an error using `assert {condition}, {error_message}`.
 
 ## More Documents and Examples
 
-+ [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl)
+- [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl)

@@ -22,10 +22,10 @@ metadata:
   name: web-app
 spec:
   containers:
-  - image: nginx
-    name: main-container
-    ports:
-      - containerPort: 80
+    - image: nginx
+      name: main-container
+      ports:
+        - containerPort: 80
 ```
 
 这里的 Pod 数据满足 Kubernetes 规范 中 `io.k8s.api.core.v1.Pod` 模型的定义。完整的 OpenAPI 定义请 [参考](https://github.com/kubernetes/kubernetes/tree/master/api/openapi-spec)。仔细分析可以发现，apiVersion 和 kind 信息都是比较常见的默认配置，我们需要更现代的配置语言来简化。

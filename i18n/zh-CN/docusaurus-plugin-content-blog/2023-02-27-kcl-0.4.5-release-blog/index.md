@@ -136,8 +136,8 @@ data:
 
 在 KCL v0.4.5 版本更新后，KCL 支持了类似 Python 字符串 format 成员函数在 `{}` 格式化块中使用 `<format_ele_index>[<index_or_key>]` 索引标记样式对列表和字典类型的 KCL 变量进行格式化。其中
 
-+ `<format_ele_index>` 表示需要需要序列化列表和字典类型元素的索引
-+ `<index_or_key>` 表示对应列表和字典类型元素的列表子元素索引或者字典子元素键值
+- `<format_ele_index>` 表示需要需要序列化列表和字典类型元素的索引
+- `<index_or_key>` 表示对应列表和字典类型元素的列表子元素索引或者字典子元素键值
 
 比如对于如下的 KCL 代码
 
@@ -367,20 +367,20 @@ data = math?.log(10)  # v0.4.5 版本之前，此处会得到一个非预期的 
 
 ## 社区动态
 
-+ KCL 社区新增两名外部贡献者 @thinkrapido, @Rishav1707, 感谢他们热情并积极地参与贡献。
-+ 感谢 @Rishav1707 基于 KCL 建立了 Rust 语言版本的 [kcl-loader-rs](https://github.com/i-think-rapido/kcl-loader-rs) 子项目，当前版本支持根据 KCL 文件中的 Schema 和配置定义自动生成 Rust 结构体并支持 KCL 值到 Rust 结构体值的反序列化函数。
+- KCL 社区新增两名外部贡献者 @thinkrapido, @Rishav1707, 感谢他们热情并积极地参与贡献。
+- 感谢 @Rishav1707 基于 KCL 建立了 Rust 语言版本的 [kcl-loader-rs](https://github.com/i-think-rapido/kcl-loader-rs) 子项目，当前版本支持根据 KCL 文件中的 Schema 和配置定义自动生成 Rust 结构体并支持 KCL 值到 Rust 结构体值的反序列化函数。
 
 ## 下一步计划
 
 预计 2023 年 4 月中旬，我们将发布 **KCL v0.4.6 版本**，预期重点演进包括：
 
-+ KCL 语言进一步编写便利性改进，用户界面持续优化与体验提升，用户支持和痛点解决
-+ 全新版本的 KCL Language Server 和 [VSCode 语言插件](https://github.com/kcl-lang/vscode-kcl)，性能预计**提升 20 倍**，并预期支持代码警告和错误波浪线提示，跳转，引用查找等核心基础能力
-+ 针对 Kubernetes Manifests 配置管理场景痛点持续进行语言能力提升：如设计提供 [Helm](https://github.com/helm/helm) KCL Schema 插件以及为 [kpt](https://github.com/GoogleContainerTools/kpt) 工具提供 KCL SDK 等
-+ [KCL 包管理工具 KPM](https://github.com/kcl-lang/kpm) 发布，预期支持 Git 仓库代码依赖配置与更新，代码下载等基础能力
-+ [KCL Playground](https://github.com/kcl-lang/kcl-playground) 支持代码分享能力和 KCL 版本选择能力
-+ [KCL Go SDK](https://github.com/kcl-lang/kcl-go) 更多能力支持：如支持 KCL Schema 和 Go 结构体的双向转换等
-+ [KCL Python SDK](https://github.com/kcl-lang/kcl-py) 更多能力支持
+- KCL 语言进一步编写便利性改进，用户界面持续优化与体验提升，用户支持和痛点解决
+- 全新版本的 KCL Language Server 和 [VSCode 语言插件](https://github.com/kcl-lang/vscode-kcl)，性能预计**提升 20 倍**，并预期支持代码警告和错误波浪线提示，跳转，引用查找等核心基础能力
+- 针对 Kubernetes Manifests 配置管理场景痛点持续进行语言能力提升：如设计提供 [Helm](https://github.com/helm/helm) KCL Schema 插件以及为 [kpt](https://github.com/GoogleContainerTools/kpt) 工具提供 KCL SDK 等
+- [KCL 包管理工具 KPM](https://github.com/kcl-lang/kpm) 发布，预期支持 Git 仓库代码依赖配置与更新，代码下载等基础能力
+- [KCL Playground](https://github.com/kcl-lang/kcl-playground) 支持代码分享能力和 KCL 版本选择能力
+- [KCL Go SDK](https://github.com/kcl-lang/kcl-go) 更多能力支持：如支持 KCL Schema 和 Go 结构体的双向转换等
+- [KCL Python SDK](https://github.com/kcl-lang/kcl-py) 更多能力支持
 
 更多详情请参考 [KCL v0.4.6 Milestone](https://github.com/kcl-lang/kcl/milestone/4)
 
@@ -392,10 +392,10 @@ data = math?.log(10)  # v0.4.5 版本之前，此处会得到一个非预期的 
 
 感谢所有 KCL 用户在此次版本更新过程中提出的宝贵的反馈与建议。更多其他资源请参考：
 
-+ [KCL 网站](https://kcl-lang.io/)
-+ [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/kcl-lang/kcl)
-+ [Kusion Github 仓库](https://github.com/KusionStack/kusion)
-+ [Konfig Github 仓库](https://github.com/KusionStack/konfig)
+- [KCL 网站](https://kcl-lang.io/)
+- [Kusion 网站](https://kusionstack.io/)
+- [KCL Github 仓库](https://github.com/kcl-lang/kcl)
+- [Kusion Github 仓库](https://github.com/KusionStack/kusion)
+- [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 
 欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/kcl-lang/community](https://github.com/kcl-lang/community)

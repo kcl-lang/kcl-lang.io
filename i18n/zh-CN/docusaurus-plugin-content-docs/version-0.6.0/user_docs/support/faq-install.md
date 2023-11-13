@@ -24,9 +24,9 @@ xattr -rd com.apple.quarantine /path/to/kcl
 
 请确保如下依赖在您的 PATH 中
 
-+ MacOS: `clang`
-+ Linux: `gcc`
-+ Windows: `cl.exe` (可以通过安装 `MSVC` 获得)
+- MacOS: `clang`
+- Linux: `gcc`
+- Windows: `cl.exe` (可以通过安装 `MSVC` 获得)
 
 ## 在 Windows 平台上遇到 exit status 0xc0000135 错误
 

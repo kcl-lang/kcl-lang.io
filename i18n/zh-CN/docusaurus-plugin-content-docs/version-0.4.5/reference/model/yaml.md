@@ -5,6 +5,7 @@ type: "docs"
 description: yaml 编码解码
 weight: 300
 ---
+
 ## encode
 
 ```

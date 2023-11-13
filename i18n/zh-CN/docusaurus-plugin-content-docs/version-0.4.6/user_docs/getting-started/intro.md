@@ -12,22 +12,22 @@ sidebar_position: 1
 
 KCL 期望通过更现代化的声明式配置语言在 Kubernetes 资源管理解决如下问题：
 
-+ 通过**代码抽象**等手段屏蔽基础设施和平台的细节，降低研发者负担
-+ **编辑**和**校验**已有的存量配置或模版
-+ 通过配置语言无副作用地管理跨团队的大规模配置数据，提升团队协作效率
-  + 用**生产级高性能编程语言**以**编写代码**的方式提升配置的灵活度，比如条件语句、循环、函数、包管理等特性提升配置重用的能力
-  + 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
-  + 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
-  + 通过**多语言 SDK**，**KCL 语言插件**等手段提升其**自动化**集成能力
+- 通过**代码抽象**等手段屏蔽基础设施和平台的细节，降低研发者负担
+- **编辑**和**校验**已有的存量配置或模版
+- 通过配置语言无副作用地管理跨团队的大规模配置数据，提升团队协作效率
+  - 用**生产级高性能编程语言**以**编写代码**的方式提升配置的灵活度，比如条件语句、循环、函数、包管理等特性提升配置重用的能力
+  - 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
+  - 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
+  - 通过**多语言 SDK**，**KCL 语言插件**等手段提升其**自动化**集成能力
 
 您可以将 KCL 用于
 
-+ 生成静态配置数据如 JSON, YAML 等
-+ 使用 schema 对配置数据进行建模并减少配置数据中的样板文件
-+ 为配置数据定义带有规则约束的 schema 并对数据进行自动验证
-+ 无副作用地组织、简化、统一和管理庞大的配置
-+ 通过分块编写配置数据可扩展地管理庞大的配置
-+ 与 [KusionStack](https://kusionstack.io) 一起，用作平台工程语言来交付现代应用程序
+- 生成静态配置数据如 JSON, YAML 等
+- 使用 schema 对配置数据进行建模并减少配置数据中的样板文件
+- 为配置数据定义带有规则约束的 schema 并对数据进行自动验证
+- 无副作用地组织、简化、统一和管理庞大的配置
+- 通过分块编写配置数据可扩展地管理庞大的配置
+- 与 [KusionStack](https://kusionstack.io) 一起，用作平台工程语言来交付现代应用程序
 
 除了语言自身，KCL 还提供了许多额外的工具如格式化，测试、文档、包管理等工具帮助您使用、理解和检查编写的配置或策略；通过 VS Code 等 IDE 插件和 Playground 降低配置编写、分享的成本；通过 Rust, Go, 和 Python 多语言 SDK 自动化地管理和执行配置。
 
@@ -41,20 +41,20 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 
 总之，KCL 具备如下特点:
 
-+ **简单易用**：源于 Python、Golang 等高级语言，采纳函数式编程语言特性，低副作用
-+ **设计良好**：独立的 Spec 驱动的语法、语义、运行时和系统库设计
-+ **快速建模**：以 [Schema](https://kcl-lang.io/docs/reference/lang/tour#schema) 为中心的配置类型及模块化抽象
-+ **功能完备**：基于 [Config](https://kcl-lang.io/docs/reference/lang/tour#config-operations)、[Schema](https://kcl-lang.io/docs/reference/lang/tour#schema)、[Lambda](https://kcl-lang.io/docs/reference/lang/tour#function)、[Rule](https://kcl-lang.io/docs/reference/lang/tour#rule) 的配置及其模型、逻辑和策略编写
-+ **可靠稳定**：依赖[静态类型系统](https://kcl-lang.io/docs/reference/lang/tour/#type-system)、[约束](https://kcl-lang.io/docs/reference/lang/tour/#validation)和[自定义规则](https://kcl-lang.io/docs/reference/lang/tour#rule)的配置稳定性
-+ **强可扩展**：通过独立配置块[自动合并机制](https://kcl-lang.io/docs/reference/lang/tour/#-operators-1)保证配置编写的高可扩展性
-+ **易自动化**：[CRUD APIs](https://kcl-lang.io/docs/reference/lang/tour/#kcl-cli-variable-override)，[多语言 SDK](https://kcl-lang.io/docs/reference/xlang-api/overview)，[语言插件](https://github.com/kcl-lang/kcl-plugin) 构成的梯度自动化方案
-+ **极致性能**：使用 Rust & C，[LLVM](https://llvm.org/) 实现，支持编译到本地代码和 [WASM](https://webassembly.org/) 的高性能编译时和运行时
-+ **API 亲和**：原生支持 [OpenAPI](https://github.com/kcl-lang/kcl-openapi)、 Kubernetes CRD， Kubernetes YAML 等 API 生态规范
-+ **开发友好**：[语言工具](https://kcl-lang.io/docs/tools/cli/kcl/) (Format，Lint，Test，Vet，Doc 等)、 [IDE 插件](https://github.com/kcl-lang/vscode-kcl) 构建良好的研发体验
-+ **安全可控**：面向领域，不原生提供线程、IO 等系统级功能，低噪音，低安全风险，易维护，易治理
-+ **多语言 SDK**：[Go](https://kcl-lang.io/docs/reference/xlang-api/go-api)，[Python](https://kcl-lang.io/docs/reference/xlang-api/python-api)，[Java](https://kcl-lang.io/docs/reference/xlang-api/java-api) 和 [REST API](https://kcl-lang.io/docs/reference/xlang-api/rest-api) 满足不同场景和应用使用需求
-+ **生态集成**：通过 [Kustomize KCL 插件](https://github.com/kcl-lang/kustomize-kcl), [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl) 或者 [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk) 直接编辑或校验资源
-+ **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
+- **简单易用**：源于 Python、Golang 等高级语言，采纳函数式编程语言特性，低副作用
+- **设计良好**：独立的 Spec 驱动的语法、语义、运行时和系统库设计
+- **快速建模**：以 [Schema](https://kcl-lang.io/docs/reference/lang/tour#schema) 为中心的配置类型及模块化抽象
+- **功能完备**：基于 [Config](https://kcl-lang.io/docs/reference/lang/tour#config-operations)、[Schema](https://kcl-lang.io/docs/reference/lang/tour#schema)、[Lambda](https://kcl-lang.io/docs/reference/lang/tour#function)、[Rule](https://kcl-lang.io/docs/reference/lang/tour#rule) 的配置及其模型、逻辑和策略编写
+- **可靠稳定**：依赖[静态类型系统](https://kcl-lang.io/docs/reference/lang/tour/#type-system)、[约束](https://kcl-lang.io/docs/reference/lang/tour/#validation)和[自定义规则](https://kcl-lang.io/docs/reference/lang/tour#rule)的配置稳定性
+- **强可扩展**：通过独立配置块[自动合并机制](https://kcl-lang.io/docs/reference/lang/tour/#-operators-1)保证配置编写的高可扩展性
+- **易自动化**：[CRUD APIs](https://kcl-lang.io/docs/reference/lang/tour/#kcl-cli-variable-override)，[多语言 SDK](https://kcl-lang.io/docs/reference/xlang-api/overview)，[语言插件](https://github.com/kcl-lang/kcl-plugin) 构成的梯度自动化方案
+- **极致性能**：使用 Rust & C，[LLVM](https://llvm.org/) 实现，支持编译到本地代码和 [WASM](https://webassembly.org/) 的高性能编译时和运行时
+- **API 亲和**：原生支持 [OpenAPI](https://github.com/kcl-lang/kcl-openapi)、 Kubernetes CRD， Kubernetes YAML 等 API 生态规范
+- **开发友好**：[语言工具](https://kcl-lang.io/docs/tools/cli/kcl/) (Format，Lint，Test，Vet，Doc 等)、 [IDE 插件](https://github.com/kcl-lang/vscode-kcl) 构建良好的研发体验
+- **安全可控**：面向领域，不原生提供线程、IO 等系统级功能，低噪音，低安全风险，易维护，易治理
+- **多语言 SDK**：[Go](https://kcl-lang.io/docs/reference/xlang-api/go-api)，[Python](https://kcl-lang.io/docs/reference/xlang-api/python-api)，[Java](https://kcl-lang.io/docs/reference/xlang-api/java-api) 和 [REST API](https://kcl-lang.io/docs/reference/xlang-api/rest-api) 满足不同场景和应用使用需求
+- **生态集成**：通过 [Kustomize KCL 插件](https://github.com/kcl-lang/kustomize-kcl), [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl) 或者 [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk) 直接编辑或校验资源
+- **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
 虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
 
@@ -101,26 +101,26 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 ## 如何选择
 
 目前社区已经进行了大量的尝试来改进其配置技术，主要可分为三类：
 
-+ 用于模板、修补和验证的基于低级数据格式的工具，使用外部工具来增强重用和验证。
-+ 领域特定语言（DSL）和配置语言（CL），以增强语言能力。
-+ 基于通用语言（GPL）的解决方案，使用 GPL 的云开发工具包（CDK）或框架来定义配置。
+- 用于模板、修补和验证的基于低级数据格式的工具，使用外部工具来增强重用和验证。
+- 领域特定语言（DSL）和配置语言（CL），以增强语言能力。
+- 基于通用语言（GPL）的解决方案，使用 GPL 的云开发工具包（CDK）或框架来定义配置。
 
 简单的选择答案：
 
-+ 如果您需要编写结构化的静态的 K-V，或使用 Kubernetes 原生的技术工具，建议选择 YAML。
-+ 如果您希望引入编程语言便利性以消除文本(如 YAML、JSON) 模板，有良好的可读性，或者你已是 Terraform 的用户，建议选择 HCL。
-+ 如果您希望引入类型功能提升稳定性，维护可扩展的配置文件，建议选择 CUE。
-+ 如果您希望以现代语言方式编写复杂类型和建模，维护可扩展的配置文件，原生的纯函数和策略，和生产级的性能和自动化，建议直接选择 KCL 或将 KCL 用于对已有配置手段或工具进行增强。
+- 如果您需要编写结构化的静态的 K-V，或使用 Kubernetes 原生的技术工具，建议选择 YAML。
+- 如果您希望引入编程语言便利性以消除文本(如 YAML、JSON) 模板，有良好的可读性，或者你已是 Terraform 的用户，建议选择 HCL。
+- 如果您希望引入类型功能提升稳定性，维护可扩展的配置文件，建议选择 CUE。
+- 如果您希望以现代语言方式编写复杂类型和建模，维护可扩展的配置文件，原生的纯函数和策略，和生产级的性能和自动化，建议直接选择 KCL 或将 KCL 用于对已有配置手段或工具进行增强。
 
 ### vs. YAML/JSON
 

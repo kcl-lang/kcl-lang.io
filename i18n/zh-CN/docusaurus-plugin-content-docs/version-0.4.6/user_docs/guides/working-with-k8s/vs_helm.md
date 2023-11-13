@@ -12,7 +12,7 @@
 
 Helm 具备 `values.yaml` 和 `template` 的概念, 通常一个 Helm Chart 由一个包含 `Chart.yaml` 的路径组成。我们可以执行如下命令获得一个典型的 Helm Chart 工程
 
-+ 创建 `workload-helm` 目录来保存 chart 工程
+- 创建 `workload-helm` 目录来保存 chart 工程
 
 ```bash
 # Create a directory to hold the chart project
@@ -41,7 +41,7 @@ containers:
     image:
       name: busybox:latest
     command: ["/bin/echo"]
-    args: 
+    args:
       - "-c"
       - "Hello World!"
     resources:
@@ -54,7 +54,7 @@ containers:
 EOF
 ```
 
-+ 创建模版文件夹
+- 创建模版文件夹
 
 ```bash
 # Create a directory to hold templates
@@ -262,7 +262,7 @@ spec:
 
 在 KCL 中，我们提供了与 Helm `values.yaml` 相似的动态配置参数 `kcl.yaml` 文件，我们可以执行如下的命令获得一个典型的 KCL 工程。
 
-+ 创建 `workload-kcl` 目录来保存 KCL 工程
+- 创建 `workload-kcl` 目录来保存 KCL 工程
 
 ```bash
 # Create a directory to hold the KCL project
@@ -276,7 +276,7 @@ kcl_options:
         image:
           name: busybox:latest
         command: ["/bin/echo"]
-        args: 
+        args:
           - "-c"
           - "Hello World!"
         resources:
@@ -298,7 +298,7 @@ kcl_options:
 EOF
 ```
 
-+ 创建如下 KCL 文件来保存 kubernetes 资源
+- 创建如下 KCL 文件来保存 kubernetes 资源
 
 ```bash
 # Create a workload-kcl/deployment.k
@@ -351,7 +351,7 @@ EOF
 
 可以通过如下的命令得到 `Deployment` 和 `Service` YAML 输出:
 
-+ `Deployment`
+- `Deployment`
 
 ```yaml
 $ kcl workload-kcl/deployment.k -Y workload-kcl/kcl.yaml
@@ -388,7 +388,7 @@ spec:
             memory: 128Mi
 ```
 
-+ `Service`
+- `Service`
 
 ```yaml
 $ kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml

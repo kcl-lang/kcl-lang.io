@@ -32,12 +32,12 @@ manifests.yaml_stream(values: [any], opts: {str:} = {
 
 这个函数的功能是将 KCL 对象列表序列化为带 `---` 分隔符的样式 YAML 输出，它具有两个参数:
 
-+ `values` - 一个 KCL 对象列表
-+ `opts` - YAML 序列化选项
-  + `sort_keys`：是否按属性名称的字典序对序列化结果进行排序（默认为 `False`）。
-  + `ignore_private`：是否忽略名称以 `_` 开头的属性序列化输出（默认为 `True`）。
-  + `ignore_none`：是否忽略值为 `None` 的属性（默认为 `False`）。
-  + `sep`：在多个 YAML 文档之间选择怎样的分隔符（默认为 `"---"`）。
+- `values` - 一个 KCL 对象列表
+- `opts` - YAML 序列化选项
+  - `sort_keys`：是否按属性名称的字典序对序列化结果进行排序（默认为 `False`）。
+  - `ignore_private`：是否忽略名称以 `_` 开头的属性序列化输出（默认为 `True`）。
+  - `ignore_none`：是否忽略值为 `None` 的属性（默认为 `False`）。
+  - `sep`：在多个 YAML 文档之间选择怎样的分隔符（默认为 `"---"`）。
 
 下面我们通过一个例子来说明:
 
@@ -60,8 +60,8 @@ schema Service:
     metadata: {str:} = {
          name = "svc"
     }
-    spec: {str:} = {}    
-        
+    spec: {str:} = {}
+
 deployments = [Deployment {}, Deployment {}]
 services = [Service {}, Service {}]
 
@@ -249,7 +249,7 @@ foo: {"A"|"B": int} = {A = 1}
 ## 文档
 
 [KCL 网站](https://kcl-lang.github.io/) 初步建立，并完善 Kubernetes 场景[相关文档](https://kcl-lang.github.io/docs/user_docs/guides/working-with-k8s/).
-  
+
 更多网站信息详见 [https://kcl-lang.github.io/](https://kcl-lang.github.io/)
 
 ## 社区动态
@@ -260,11 +260,11 @@ KCL 社区新增三名外部贡献者 @my-vegetable-has-exploded, @possible-fqz,
 
 预计 2023 年 1 月底，我们将发布 KCL v0.4.5 版本，预期重点演进包括
 
-+ 语言用户界面持续优化，体验持续提升和用户痛点解决
-+ 更多场景和生态如 Kubernetes 和 CI/CD Pipeline 场景 KCL 支持和文档更新
-+ KCL Windows 版本支持
-+ KCL 包管理工具 kpm 发布
-+ KCL 新版 playground 支持
+- 语言用户界面持续优化，体验持续提升和用户痛点解决
+- 更多场景和生态如 Kubernetes 和 CI/CD Pipeline 场景 KCL 支持和文档更新
+- KCL Windows 版本支持
+- KCL 包管理工具 kpm 发布
+- KCL 新版 playground 支持
 
 更多详情请参考 [KCL v0.4.5 Milestone](https://github.com/kcl-lang/kcl/milestone/3)
 
@@ -274,10 +274,10 @@ KCL 社区新增三名外部贡献者 @my-vegetable-has-exploded, @possible-fqz,
 
 ## 其他资源
 
-+ [KCL 网站](https://kcl-lang.io/)
-+ [Kusion 网站](https://kusionstack.io/)
-+ [KCL 仓库](https://github.com/kcl-lang/kcl)
-+ [Kusion 仓库](https://github.com/KusionStack/kusion)
-+ [Konfig 仓库](https://github.com/KusionStack/konfig)
+- [KCL 网站](https://kcl-lang.io/)
+- [Kusion 网站](https://kusionstack.io/)
+- [KCL 仓库](https://github.com/kcl-lang/kcl)
+- [Kusion 仓库](https://github.com/KusionStack/kusion)
+- [Konfig 仓库](https://github.com/KusionStack/konfig)
 
 欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/kcl-lang/community](https://github.com/kcl-lang/community)

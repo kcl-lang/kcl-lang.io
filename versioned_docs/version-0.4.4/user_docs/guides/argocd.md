@@ -93,7 +93,7 @@ After successfully creating, you can see the following output:
 application 'guestbook-test' created
 ```
 
-Through the ArgoCD UI, you can see that the created applications have not been synchronized yet. 
+Through the ArgoCD UI, you can see that the created applications have not been synchronized yet.
 Here, you can manually synchronize or set automatic synchronization.
 
 ![](/img/docs/user_docs/guides/argocd/out-of-sync.jpg)

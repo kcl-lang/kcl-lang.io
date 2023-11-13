@@ -13,9 +13,9 @@ tags: [Release Blog, KCL]
 
 The KCL team is pleased to announce that KCL v0.4.6 is now available! This release has brought three key updates to everyone: **Language**, **Tools**, and **Integrations**.
 
-+ *Use KCL IDE extensions to improve KCL code writing experience and efficiency*
-+ *Helm/Kustomize/KPT cloud-native community tool integrations*
-+ *Improve the KCL multilingual SDK for easy application integration*
+- _Use KCL IDE extensions to improve KCL code writing experience and efficiency_
+- _Helm/Kustomize/KPT cloud-native community tool integrations_
+- _Improve the KCL multilingual SDK for easy application integration_
 
 You can visit the [KCL release page](https://github.com/kcl-lang/kcl/releases/tag/v0.4.6) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
@@ -30,7 +30,7 @@ This blog will introduce the content of KCL v0.4.6 and recent developments in th
 Added KCL string `removeprefix` and `removesuffix` member functions to remove prefix and suffix substrings from strings
 
 ```python
-data1 = "prefix-string".removeprefix("prefix-") # "string" 
+data1 = "prefix-string".removeprefix("prefix-") # "string"
 data2 = "string-suffix".removesuffix("-suffix") # "string"
 ```
 
@@ -74,7 +74,7 @@ error[E1001]: InvalidSyntax
 
 In previous versions of KCL, when writing the following KCL code, the two schema configurations with the same name were merged and output. In KCL v0.4.6, it was required to explicitly use the attribute merge operator instead of the attribute overlay operator.
 
-+ Before
+- Before
 
 ```python
 schema Config:
@@ -89,7 +89,7 @@ config = Config {
 }
 ```
 
-+ After
+- After
 
 ```python
 schema Config:
@@ -170,25 +170,23 @@ app = App {
 
 In this version, we have released a new KCL VS Code extension and a language service server rewritten using the Rust language, which has improved performance by about 20 times compared to previous KCL IDE versions. We also support real-time display of KCL errors and warnings in the IDE, as well as new features such as KCL code completion.
 
-+ **Real-time display of KCL errors and warnings**
+- **Real-time display of KCL errors and warnings**
 
 ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
 
-+ **Go to Definition**
+- **Go to Definition**
 
 ![Goto Definition](/img/docs/tools/Ide/vs-code/GotoDef.gif)
 
-+ **Completion**
+- **Completion**
 
 ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
-+ **Hover**
+- **Hover**
 
 ![Hover](/img/docs/tools/Ide/vs-code/Hover.gif)
 
 See [here](https://kcl-lang.io/docs/tools/Ide/vs-code) for more.
-
-
 
 ### Package Management Tools
 
@@ -252,8 +250,8 @@ spec:
             - containerPort: 80
 ```
 
-+ See [here](https://kcl-lang.io/docs/user_docs/guides/package-management/overview) for more information about the **kpm** tool.
-+ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview) for more information about the **konfig** model.
+- See [here](https://kcl-lang.io/docs/user_docs/guides/package-management/overview) for more information about the **kpm** tool.
+- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview) for more information about the **konfig** model.
 
 ## Integrations
 
@@ -291,9 +289,9 @@ spec:
   selector:
     app: MyApp
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 9376
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -317,10 +315,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 In the YAML configuration mentioned above, we only wrote one line of KCL code to add a `managed-by=kustomize-kcl` annotation to all deployment resources.
@@ -331,26 +329,26 @@ In the YAML configuration mentioned above, we only wrote one line of KCL code to
 
 In addition, we have provided commonly used container and service configuration mutation and validation KCL models for Kustomize/Helm/KPT tools and will continue to improve them.
 
-+ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kustomize_kcl_plugin) for more information about the Kustomize KCL plugin.
-+ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin) for more information about the Helm KCL Plugin.
-+ See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk) for more information about the KPT KCL Plugin.
+- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kustomize_kcl_plugin) for more information about the Kustomize KCL plugin.
+- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin) for more information about the Helm KCL Plugin.
+- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk) for more information about the KPT KCL Plugin.
 
 ### Multilingual SDK
 
 In this new version, we have released a new kclvm-go SDK that integrates KCL into your Go application and provides rich APIs for interacting with KCL. You can click [here](https://kcl-lang.io/docs/next/reference/xlang-api/go-api) for detailed API documents. In addition, we have also updated the following features and bug fixes:
 
-+ Thank @jakezhu9 for fixing unexpected KCL formatting API unit testing errors in CI Pipeline for kclvm-go.
-+ Thank @Ekko for contributing to the bidirectional conversion support of Go struct and KCL schema. Please refer to:
-  + [Go struct -> KCL schema](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genkcl.go#L23)
-  + [KCL schema -> Go struct](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/gengo.go#L23)
-+ Support for conversion from KCL schema to protobuf message, see [here](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genpb.go#L25) for more.
-+ Support APIs for obtaining schema types and instances from the KCL code, see [here](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype) for more.
+- Thank @jakezhu9 for fixing unexpected KCL formatting API unit testing errors in CI Pipeline for kclvm-go.
+- Thank @Ekko for contributing to the bidirectional conversion support of Go struct and KCL schema. Please refer to:
+  - [Go struct -> KCL schema](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genkcl.go#L23)
+  - [KCL schema -> Go struct](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/gengo.go#L23)
+- Support for conversion from KCL schema to protobuf message, see [here](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genpb.go#L25) for more.
+- Support APIs for obtaining schema types and instances from the KCL code, see [here](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype) for more.
 
 ## Other updates and bug fixes
 
-+ The KCL Python plugin function is not enabled by default. If you need to enable it, please refer to the [plugin document](https://kcl-lang.io/docs/reference/plugin/overview).
-+ KCL playground supports code-sharing capabilities, which can be accessed by visiting the [KCL website](https://kcl-lang.io/) and clicking on the playground button to experience.
-+ See [here](https://github.com/kcl-lang/kcl/milestone/3?closed=1) for more updates and bug fixes.
+- The KCL Python plugin function is not enabled by default. If you need to enable it, please refer to the [plugin document](https://kcl-lang.io/docs/reference/plugin/overview).
+- KCL playground supports code-sharing capabilities, which can be accessed by visiting the [KCL website](https://kcl-lang.io/) and clicking on the playground button to experience.
+- See [here](https://github.com/kcl-lang/kcl/milestone/3?closed=1) for more updates and bug fixes.
 
 ## Documents
 
@@ -360,12 +358,12 @@ The versioning semantic option is added to the [KCL website](https://kcl-lang.io
 
 It is expected that in the middle of 2023, we will release **KCL v0.5.0**. The expected key evolution includes:
 
-+ More IDE extensions, package management tools, Helm/Kustomize/KPT scenario integration, feature support, and user experience improvement.
-+ Provide more out-of-box KCL model support for cloud-native scenarios, mainly including containers, services, computing, storage, and networks.
-+ Support KCL Schema to directly generate Kubernetes CRD.
-+ Support `kubectl` and `helmfile` KCL plugins, directly generating, mutating, and validating Kubernetes resources through the KCL code.
-+ Support for mutating and validating YAML by running KCL code through the admission controller at the Kubernetes runtime.
-+ More support for non-Kubernetes scenarios, such as data cleaning of AI models through the KCL schema and database schema integration support.
+- More IDE extensions, package management tools, Helm/Kustomize/KPT scenario integration, feature support, and user experience improvement.
+- Provide more out-of-box KCL model support for cloud-native scenarios, mainly including containers, services, computing, storage, and networks.
+- Support KCL Schema to directly generate Kubernetes CRD.
+- Support `kubectl` and `helmfile` KCL plugins, directly generating, mutating, and validating Kubernetes resources through the KCL code.
+- Support for mutating and validating YAML by running KCL code through the admission controller at the Kubernetes runtime.
+- More support for non-Kubernetes scenarios, such as data cleaning of AI models through the KCL schema and database schema integration support.
 
 For more details, please refer to [KCL v0.5.0 Milestone](https://github.com/kcl-lang/kcl/milestone/5)
 
@@ -377,10 +375,10 @@ For more information, see [KCL FAQ](https://kcl-lang.io/docs/user_docs/support/)
 
 Thank all KCL users for their valuable feedback and suggestions during this version release. For more resources, please refer to:
 
-+ [KCL Website](https://kcl-lang.io/)
-+ [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/kcl-lang/kcl)
-+ [Kusion Repo](https://github.com/KusionStack/kusion)
-+ [Konfig Repo](https://github.com/KusionStack/konfig)
+- [KCL Website](https://kcl-lang.io/)
+- [Kusion Website](https://kusionstack.io/)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [Kusion Repo](https://github.com/KusionStack/kusion)
+- [Konfig Repo](https://github.com/KusionStack/konfig)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏

@@ -5,6 +5,7 @@ type: "docs"
 description: regex 包 - 正则表达式
 weight: 100
 ---
+
 ## replace
 
 `replace(string: str, pattern: str, replace: str, count=0) -> str`

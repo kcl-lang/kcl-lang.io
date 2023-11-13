@@ -2,7 +2,7 @@
 
 ## 0. 前置条件
 
-+ 安装 [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
+- 安装 [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
 
 ## 1. 初始化一个空的 KCL 包
 

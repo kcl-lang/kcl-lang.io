@@ -32,12 +32,12 @@ manifests.yaml_stream(values: [any], opts: {str:} = {
 
 This function is used to serialize the KCL object list into YAML output with the `---` separator. It has two parameters:
 
-+ `values` - A list of KCL objects
-+ `opts` - The YAML serialization options
-  + `sort_keys`: Whether to sort the serialized results in the dictionary order of attribute names (the default is `False`).
-  + `ignore_private`: Whether to ignore the attribute output whose name starts with the character `_` (the default value is `True`).
-  + `ignore_none`: Whether to ignore the attribute with the value of' None '(the default value is `False`).
-  + `sep`: Set the separator between multiple YAML documents (the default value is `"---"`).
+- `values` - A list of KCL objects
+- `opts` - The YAML serialization options
+  - `sort_keys`: Whether to sort the serialized results in the dictionary order of attribute names (the default is `False`).
+  - `ignore_private`: Whether to ignore the attribute output whose name starts with the character `_` (the default value is `True`).
+  - `ignore_none`: Whether to ignore the attribute with the value of' None '(the default value is `False`).
+  - `sep`: Set the separator between multiple YAML documents (the default value is `"---"`).
 
 Here's an example:
 
@@ -60,8 +60,8 @@ schema Service:
     metadata: {str:} = {
          name = "svc"
     }
-    spec: {str:} = {}    
-        
+    spec: {str:} = {}
+
 deployments = [Deployment {}, Deployment {}]
 services = [Service {}, Service {}]
 
@@ -270,11 +270,11 @@ Three external contributors @my-vegetable-has-exploded, @possible-fqz, @orangebe
 
 It is estimated that by the end of January 2023, we will release KCL v0.4.5, and the key evolution is expected to include
 
-+ Continuous optimization of the KCL user interface, improvement of experience and user pain points.
-+ More scenarios and ecology integration, such as Kubernetes and CI/CD Pipeline scenarios.
-+ KCL Windows version support.
-+ KCL package management tool `kpm` release.
-+ The new version of KCL playground.
+- Continuous optimization of the KCL user interface, improvement of experience and user pain points.
+- More scenarios and ecology integration, such as Kubernetes and CI/CD Pipeline scenarios.
+- KCL Windows version support.
+- KCL package management tool `kpm` release.
+- The new version of KCL playground.
 
 For more information, see [KCL v0.4.5 Milestone](https://github.com/kcl-lang/kcl/milestone/3).
 
@@ -284,10 +284,10 @@ For more information, see [https://kcl-lang.github.io/docs/user_docs/support/](h
 
 ## Additional Resources
 
-+ [KCL Website](https://kcl-lang.io/)
-+ [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/kcl-lang/kcl)
-+ [Kusion Repo](https://github.com/KusionStack/kusion)
-+ [Konfig Repo](https://github.com/KusionStack/konfig)
+- [KCL Website](https://kcl-lang.io/)
+- [Kusion Website](https://kusionstack.io/)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [Kusion Repo](https://github.com/KusionStack/kusion)
+- [Konfig Repo](https://github.com/KusionStack/konfig)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏

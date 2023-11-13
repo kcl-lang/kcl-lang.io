@@ -31,10 +31,10 @@ KCL 团队很高兴地宣布 KCL Playground v0.4.5 版本现在已经可用！
 
 感谢所有 KCL 用户在此次版本更新过程中提出的宝贵的反馈与建议。更多其他资源请参考：
 
-+ [KCL 网站](https://kcl-lang.io/)
-+ [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/kcl-lang/kcl)
-+ [Kusion Github 仓库](https://github.com/KusionStack/kusion)
-+ [Konfig Github 仓库](https://github.com/KusionStack/konfig)
+- [KCL 网站](https://kcl-lang.io/)
+- [Kusion 网站](https://kusionstack.io/)
+- [KCL Github 仓库](https://github.com/kcl-lang/kcl)
+- [Kusion Github 仓库](https://github.com/KusionStack/kusion)
+- [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 
 欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/kcl-lang/community](https://github.com/kcl-lang/community)

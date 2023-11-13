@@ -52,15 +52,15 @@ kcl main.k -D env-type=TEST -D deploy-topology='[{"cluster":"my-cluster","idc":"
 
 ```yaml
 kcl_options:
-- key: env-type
-  value: TEST
-- key: deploy-topology
-  value:
-  - cluster: my-cluster
-    idc: my-idc
-    replicas: 2
-    workspace: my-workspace
-    zone: my-zone
+  - key: env-type
+    value: TEST
+  - key: deploy-topology
+    value:
+      - cluster: my-cluster
+        idc: my-idc
+        replicas: 2
+        workspace: my-workspace
+        zone: my-zone
 ```
 
 Use the built-in function `option()` to get it:
@@ -75,11 +75,11 @@ Output:
 ```yaml
 env: TEST
 deploy_topology:
-- cluster: my-cluster
-  idc: my-idc
-  replicas: 2
-  workspace: my-workspace
-  zone: my-zone
+  - cluster: my-cluster
+    idc: my-idc
+    replicas: 2
+    workspace: my-workspace
+    zone: my-zone
 ```
 
 ### 3. How to compile multiple files?

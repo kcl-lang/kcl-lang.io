@@ -3,6 +3,7 @@
 ## Quick Start
 
 - **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to Path:
+
   ```bash
   which kcl
   which kcl-language-server

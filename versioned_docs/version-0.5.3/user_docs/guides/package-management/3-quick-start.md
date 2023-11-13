@@ -2,7 +2,7 @@
 
 ## 0. Prerequisite
 
-+ Install [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
+- Install [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
 
 ## 1. Init an Empty KCL Package
 

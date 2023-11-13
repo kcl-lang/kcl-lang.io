@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useState} from 'react';
-import clsx from 'clsx';
-import type {Props} from '@theme/BlogPostAuthors';
-import ChangelogAuthor from '@theme/ChangelogAuthor';
+import React, { useState } from "react";
+import clsx from "clsx";
+import type { Props } from "@theme/BlogPostAuthors";
+import ChangelogAuthor from "@theme/ChangelogAuthor";
 
-import styles from './styles.module.css';
-import IconExpand from '@theme/IconExpand';
+import styles from "./styles.module.css";
+import IconExpand from "@theme/IconExpand";
 
 // Component responsible for the authors layout
 export default function BlogPostAuthors({
@@ -27,9 +27,10 @@ export default function BlogPostAuthors({
   return (
     <div
       className={clsx(
-        'margin-top--md margin-bottom--sm',
+        "margin-top--md margin-bottom--sm",
         styles.imageOnlyAuthorRow,
-      )}>
+      )}
+    >
       {filteredAuthors.map((author, idx) => (
         <div className={styles.imageOnlyAuthorCol} key={idx}>
           <ChangelogAuthor
@@ -43,10 +44,11 @@ export default function BlogPostAuthors({
       ))}
       {authors.length > 10 && (
         <button
-          className={clsx('clean-btn', styles.toggleButton)}
+          className={clsx("clean-btn", styles.toggleButton)}
           type="button"
           onClick={() => setExpanded((v) => !v)}
-          aria-label="expand">
+          aria-label="expand"
+        >
           <IconExpand expanded={expanded} />
         </button>
       )}

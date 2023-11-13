@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: KCL Spec
 ---
+
 ## Lexical rules
 
 ### Keywords and reserved words
@@ -57,7 +58,7 @@ The following are reserved words for the KCL:
 The following list of operators is ordered from **highest to lowest**:
 
 | Operator                                                         | Description                                              |
-| ---------------------------------------------------------------- | -------------------------------------------------------- |
+| ---------------------------------------------------------------- | -------------------------------------------------------- | ---------- |
 | `**`                                                             | Exponentiation (highest priority)                        |
 | `+x` `-x` `~x`                                                   | Positive, negative, bitwise NOT                          |
 | `*` `/` `%` `//`                                                 | Multiplication, division, floor division and remainder   |
@@ -65,13 +66,13 @@ The following list of operators is ordered from **highest to lowest**:
 | `<<` `>>`                                                        | Left and right shifts                                    |
 | `&`                                                              | Bitwise AND                                              |
 | `^`                                                              | Bitwise XOR                                              |
-| `|`                                                              | Bitwise OR                                               |
+| `                                                                | `                                                        | Bitwise OR |
 | `in`, `not in`, `is`, `is not`, `<`, `<=`, `>`, `>=`, `!=`, `==` | Comparisons, including membership and identity operators |
 | `not`                                                            | Boolean NOT                                              |
 | `and`                                                            | Boolean AND                                              |
 | `or`                                                             | Boolean OR                                               |
-| `if – else`                                                     | Conditional expression =                                  |
-| `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `**=`, `//=`, `<<=`, `>>=`                     | Assign |
+| `if – else`                                                      | Conditional expression =                                 |
+| `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `                       | =`, `^=`, `\*\*=`, `//=`, `<<=`, `>>=`                   | Assign     |
 
 ## Grammar
 
@@ -100,13 +101,13 @@ if_simple_stmt: (simple_assign_stmt | unification_stmt | expr_stmt | assert_stmt
 
 //////////// assign_stmt ////////////
 assign_stmt: identifier [COLON type] (ASSIGN identifier)* ASSIGN test
-    | identifier (COMP_PLUS | COMP_MINUS | COMP_MULTIPLY | COMP_DOUBLE_STAR | COMP_DIVIDE 
-    | COMP_DOUBLE_DIVIDE | COMP_MOD | COMP_AND | COMP_OR | COMP_XOR | COMP_SHIFT_LEFT 
+    | identifier (COMP_PLUS | COMP_MINUS | COMP_MULTIPLY | COMP_DOUBLE_STAR | COMP_DIVIDE
+    | COMP_DOUBLE_DIVIDE | COMP_MOD | COMP_AND | COMP_OR | COMP_XOR | COMP_SHIFT_LEFT
     | COMP_SHIFT_RIGHT) test
 
 simple_assign_stmt: identifier ASSIGN test
-    | identifier (COMP_PLUS | COMP_MINUS | COMP_MULTIPLY | COMP_DOUBLE_STAR | COMP_DIVIDE 
-    | COMP_DOUBLE_DIVIDE | COMP_MOD | COMP_AND | COMP_OR | COMP_XOR | COMP_SHIFT_LEFT 
+    | identifier (COMP_PLUS | COMP_MINUS | COMP_MULTIPLY | COMP_DOUBLE_STAR | COMP_DIVIDE
+    | COMP_DOUBLE_DIVIDE | COMP_MOD | COMP_AND | COMP_OR | COMP_XOR | COMP_SHIFT_LEFT
     | COMP_SHIFT_RIGHT) test
 
 //////////// unification_stmt ////////////
@@ -215,7 +216,7 @@ lambda_expr: LAMBDA [schema_arguments] [RIGHT_ARROW type] LEFT_BRACE [expr_stmt 
 
 //////////// misc ////////////
 number: DEC_NUMBER [multiplier] | HEX_NUMBER | BIN_NUMBER | OCT_NUMBER | FLOAT_NUMBER
-multiplier: SI_N_L | SI_U_L | SI_M_L | SI_K_L | SI_K | SI_M | SI_G | SI_T | SI_P 
+multiplier: SI_N_L | SI_U_L | SI_M_L | SI_K_L | SI_K | SI_M | SI_G | SI_T | SI_P
     | SI_K_IEC | SI_M_IEC | SI_G_IEC | SI_T_IEC | SI_P_IEC
 string: STRING | LONG_STRING
 constant : TRUE | FALSE | NONE | UNDEFINED

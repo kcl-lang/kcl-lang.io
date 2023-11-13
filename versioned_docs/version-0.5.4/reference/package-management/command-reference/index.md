@@ -26,7 +26,7 @@ Print the version of kpm
 
 - [kpm init](./1.init.md) - Init a kcl package
 - [kpm add](./2.add.md) - Add a dependency to a kcl package
-- [kpm pkg](./3.pkg.md) - Package a kcl package into `*.tar``
+- [kpm pkg](./3.pkg.md) - Package a kcl package into `\*.tar``
 - [kpm metadata](./4.metadata.md) - Print the metadata of a kcl package
 - [kpm run](./5.run.md) - Compile a kcl package into yaml
 - [kpm login](./6.login.md) - Login to a kcl registry

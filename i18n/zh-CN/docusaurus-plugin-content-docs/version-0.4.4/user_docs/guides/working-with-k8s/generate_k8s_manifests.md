@@ -2,26 +2,22 @@
 
 所谓配置就是当我们部署软件系统时，我们并不认为它们是固定不变的。不断发展的业务需求、基础架构要求和其他因素意味着系统不断变化。当我们需要快速更改系统行为，并且更改过程需要昂贵、冗长的重建和重新部署过程时，业务代码更改往往是不够的。而配置可以为我们提供了一种低开销的方式来改变系统功能，比如我们会经常为系统编写一些如下所示的 JSON 或 YAML 文件作为我们系统的配置。
 
-+ JSON 配置
+- JSON 配置
 
 ```json
 {
-    "server": {
-        "addr": "127.0.0.1",
-        "listen": 4545
-    },
-    "database": {
-        "enabled": true,
-        "ports": [
-            8000,
-            8001,
-            8002
-        ],
-    }
+  "server": {
+    "addr": "127.0.0.1",
+    "listen": 4545
+  },
+  "database": {
+    "enabled": true,
+    "ports": [8000, 8001, 8002]
+  }
 }
 ```
 
-+ YAML 配置
+- YAML 配置
 
 ```yaml
 server:
@@ -30,9 +26,9 @@ server:
 database:
   enabled: true
   ports:
-  - 8000
-  - 8001
-  - 8002
+    - 8000
+    - 8001
+    - 8002
 ```
 
 我们可以根据需要选择在 JSON 和 YAML 文件中存储静态配置。此外，配置还可以存储在允许更灵活配置的高级语言中，通过代码编写、渲染并得到静态配置。KCL 就是这样一种配置语言，我们可以编写 KCL 代码来生成 JSON/YAML 等配置。
@@ -77,15 +73,15 @@ spec:
                 - 'true'
 ```
 
-+ YAML 中的结构化数据是无类型的，缺乏验证方法，无法立即检查所有数据的有效性
-+ YAML 编程能力欠佳，容易写出不正确的缩进，也没有逻辑判断等常见代码组织方式，容易写出大量重复配置，难以维护
-+ Kubernetes 设计是复杂的，用户很难理解所有细节，比如上面配置中的 `toleration` 和 `affinity` 字段，如果用户不理解调度逻辑，它可能被错误地省略掉或者多余的添加
+- YAML 中的结构化数据是无类型的，缺乏验证方法，无法立即检查所有数据的有效性
+- YAML 编程能力欠佳，容易写出不正确的缩进，也没有逻辑判断等常见代码组织方式，容易写出大量重复配置，难以维护
+- Kubernetes 设计是复杂的，用户很难理解所有细节，比如上面配置中的 `toleration` 和 `affinity` 字段，如果用户不理解调度逻辑，它可能被错误地省略掉或者多余的添加
 
 因此，KCL 期望在 Kubernetes YAML 资源管理解决如下问题：
 
-+ 用**生产级高性能编程语言**以**编写代码**的方式提升配置的灵活度，比如条件语句、循环、函数、包管理等特性提升配置重用的能力
-+ 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
-+ 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
+- 用**生产级高性能编程语言**以**编写代码**的方式提升配置的灵活度，比如条件语句、循环、函数、包管理等特性提升配置重用的能力
+- 在代码层面提升**配置语义验证**的能力，比如字段可选/必选、类型、范围等配置检查能力
+- 提供**配置分块编写、组合和抽象的能力**，比如结构定义、结构继承、约束定义等能力
 
 ## 使用 KCL 生成并管理 Kubernetes 资源
 
@@ -146,10 +142,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 当然我们可以将 KCL 工具与 kubectl 等工具结合使用，让我们执行如下命令并看看效果
@@ -222,10 +218,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 上述代码片段中的 `image = metadata.name + ":1.14.2" if option("env") == "prod" else  metadata.name + ":latest"` 意思为：当动态参数 `env` 的值被设置为 `prod` 时，image 字段值为 `nginx:1.14.2`, 否则为 `nginx:latest`，因此我们可以根据需要为 env 设置为不同的值获得不同内容的 Kubernetes 资源。
@@ -264,8 +260,8 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```

@@ -31,10 +31,10 @@ For more information, see [KCL FAQ](https://kcl-lang.io/docs/user_docs/support/)
 
 Thank all KCL users for their valuable feedback and suggestions during this version release. For more resources, please refer to:
 
-+ [KCL Website](https://kcl-lang.io/)
-+ [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/kcl-lang/kcl)
-+ [Kusion Repo](https://github.com/KusionStack/kusion)
-+ [Konfig Repo](https://github.com/KusionStack/konfig)
+- [KCL Website](https://kcl-lang.io/)
+- [Kusion Website](https://kusionstack.io/)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [Kusion Repo](https://github.com/KusionStack/kusion)
+- [Konfig Repo](https://github.com/KusionStack/konfig)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏

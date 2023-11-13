@@ -13,7 +13,7 @@ The community KCL module registry is located at [Artifact Hub](https://artifacth
 
 ## Prerequisite
 
-+ Install [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
+- Install [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
 
 ## Quick Start
 

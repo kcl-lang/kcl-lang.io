@@ -5,6 +5,7 @@ type: "docs"
 description: yaml encode and decode function
 weight: 300
 ---
+
 ## encode
 
 ```

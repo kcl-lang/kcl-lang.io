@@ -10,7 +10,7 @@
 注：除以上列出的节点外，OpenAPI 官方规范还支持 servers、security、tags、externalDocs 四种可选的根节点，但都不是 KCL OpenAPI 所关心的，因此用户无需填写这部分内容，即使填写了也不会产生任何影响。
 ​
 
-| OpenAPI 顶层对象 | 类型              | 含义                                                            | KCL OpenAPI 工具支持情况                                                                        |
+| OpenAPI 顶层对象 | 类型              | 含义                                                            | KCL OpenAPI 工具支持情况                                                                         |
 | ---------------- | ----------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
 | swagger          | string            | openapi 版本信息                                                | 必填项，目前支持 openapi 2.0，即合法取值为 "2.0"                                                 |
 | definitions      | Definition Object | 模型定义                                                        | 必填项                                                                                           |
@@ -94,14 +94,14 @@ KCL schema 中可以定义若干属性，属性的声明一般包含如下几部
 
 它们与 OpenAPI 规范的对应关系如下：
 
-| KCL schema 属性元素                                      | OpenAPI 元素                                                                                                                                                                                      |
-| -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 属性注解                                                 | 暂不支持，计划扩展一个 deprecate 字段用于描述 deprecated 注解                                                                                                                                     |                                                                                                                                 |
-| 属性名称                                                 | properties 节点下，每个属性的 key 即为属性名称                                                                                                                                                    |
-| 属性 optional 修饰符（？）                               | 模型节点下，通过 required 字段列出该模型的所有必填属性的名称，未被列出的属性即为 optional                                                                                                         |
-| 属性类型                                                 | 属性节点下，设置 type + format 可以标识属性的基本类型，如果是 schema 类型则用 $ref 字段表示，类型 union 则由扩展字段 x-kcl-types 来标识，此外，属性节点的 enum、pattern 也可以用于表示 KCL 类型。 |
+| KCL schema 属性元素                                    | OpenAPI 元素                                                                                                                                                                                      |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- |
+| 属性注解                                               | 暂不支持，计划扩展一个 deprecate 字段用于描述 deprecated 注解                                                                                                                                     |     |
+| 属性名称                                               | properties 节点下，每个属性的 key 即为属性名称                                                                                                                                                    |
+| 属性 optional 修饰符（？）                             | 模型节点下，通过 required 字段列出该模型的所有必填属性的名称，未被列出的属性即为 optional                                                                                                         |
+| 属性类型                                               | 属性节点下，设置 type + format 可以标识属性的基本类型，如果是 schema 类型则用 $ref 字段表示，类型 union 则由扩展字段 x-kcl-types 来标识，此外，属性节点的 enum、pattern 也可以用于表示 KCL 类型。 |
 | KCL-OpenAPI 关于类型的对照关系，详见“基本数据类型”小节 |                                                                                                                                                                                                   |
-| 属性默认值                                               | 属性节点下，设置 default 字段即可为属性设置默认值                                                                                                                                                 |
+| 属性默认值                                             | 属性节点下，设置 default 字段即可为属性设置默认值                                                                                                                                                 |
 
 示例：
 下例中 Pet 模型包含了 2 个属性：name（string 类型，必填属性，无注解，无默认值）、id（int64 类型，无注解，非必填，默认值为 -1）
@@ -331,7 +331,7 @@ KCL 文档包含 module 文档、schema 文档两类，其中 schema 文档可�
 # KCL schema Pet，采用规范的 KCL 文档格式
 schema Pet:
     """The schema Pet definition
-    
+
     Attributes
     ----------
     name : str, default is Undefined, required
@@ -352,7 +352,7 @@ schema Pet:
     """
     name: str
     id?:  int = -1
-        
+
 # 对应的 OpenAPI 文档
 {
     "definitions": {
@@ -396,23 +396,23 @@ schema Pet:
 
 ## 基本数据类型
 
-| JSON Schema type | swagger type                | KCL type        | comment                                                                                               |
-| ---------------- | --------------------------- | --------------- | ----------------------------------------------------------------------------------------------------- |
-| boolean          | boolean                     | bool            |                                                                                                       |
-| number           | number                      | float           |                                                                                                       |
-|                  | number format double        | **unsupported** |                                                                                                       |
-|                  | number format float         | float           |                                                                                                       |
-| integer          | integer                     | int (32)        |                                                                                                       |
-|                  | integer format int64        | **unsupported** |                                                                                                       |
-|                  | integer format int32        | int (32)        |                                                                                                       |
-| string           | string                      | str             |                                                                                                       |
-|                  | string format byte          | str             |                                                                                                       |
-|                  | string format int-or-string | int             | str                                                                                                   |
-|                  | string format binay         | str             |                                                                                                       |
+| JSON Schema type | swagger type                | KCL type        | comment                                                                     |
+| ---------------- | --------------------------- | --------------- | --------------------------------------------------------------------------- |
+| boolean          | boolean                     | bool            |                                                                             |
+| number           | number                      | float           |                                                                             |
+|                  | number format double        | **unsupported** |                                                                             |
+|                  | number format float         | float           |                                                                             |
+| integer          | integer                     | int (32)        |                                                                             |
+|                  | integer format int64        | **unsupported** |                                                                             |
+|                  | integer format int32        | int (32)        |                                                                             |
+| string           | string                      | str             |                                                                             |
+|                  | string format byte          | str             |                                                                             |
+|                  | string format int-or-string | int             | str                                                                         |
+|                  | string format binay         | str             |                                                                             |
 |                  | string format date          | unsupported     | As defined by full-date - [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) |
 |                  | string format date-time     | unsupported     | As defined by date-time - [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) |
-|                  | string format password     | unsupported     | for swagger: A hint to UIs to obscure input.                                                         |
-|                  | datetime                    | datetime        |                                                                                                       |
+|                  | string format password      | unsupported     | for swagger: A hint to UIs to obscure input.                                |
+|                  | datetime                    | datetime        |                                                                             |
 
 ## Reference
 

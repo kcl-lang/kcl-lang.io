@@ -2,7 +2,7 @@
 
 ## 0. Prerequisite
 
-+ Install [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
+- Install [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
 
 ## 1. Init an Empty KCL Package
 

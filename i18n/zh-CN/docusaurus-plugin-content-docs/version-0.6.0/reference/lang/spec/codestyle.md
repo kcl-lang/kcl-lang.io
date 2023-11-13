@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: Code Style
 ---
+
 ## Introduction
 
 This document gives the KCL code style conventions. Good code style can play a vital role in the development and maintenance of the project. We can learn the KCL code style by referring to the full text of the description and sample codes, and use KCL format and lint tools to help coding.
@@ -250,7 +251,7 @@ The following naming styles are commonly distinguished:
 - `lower_case_with_underscores`
 - `UPPERCASE`
 - `UPPER_CASE_WITH_UNDERSCORES`
-- `CapitalizedWords` (capitalize all letters of the acronym in ``CapitalizedWords`` e.g., `HTTPServer`.)
+- `CapitalizedWords` (capitalize all letters of the acronym in `CapitalizedWords` e.g., `HTTPServer`.)
 - `mixedCase` (differs from `CapitalizedWords` by initial lowercase character)
 - `Capitalized_Words_With_Underscores` (ugly and non-recommended)
 

@@ -75,8 +75,8 @@ optional arguments:
   --config file  KCL lint config path
 ```
 
-+ --config: path of `.kcllint`
-+ file: the path of a single `*.k` file or directory to be checked. Support the absolute path or relative path of the current directory.
+- --config: path of `.kcllint`
+- file: the path of a single `*.k` file or directory to be checked. Support the absolute path or relative path of the current directory.
 
 ### Lint Configuration
 
@@ -92,16 +92,16 @@ The priority of Lint's configuration is as follows:
 
 The file `.kcllint` is written in YAML. Its contents include:
 
-+ check_list: kinds of checks, including `"import"` and `"misc"`
-+ ignore: ignored check items. See the `Error Code` for optional items.
-+ max_line_length: check parameter, that is, the maximum length of code
-+ output: output streams and formats, including `"stdout"`、`"file"` and `"sarif"`
-+ output_path: The path of the output file. It is optional, but it is required when the `output` is set as `"file"` or `"sarif"`
+- check_list: kinds of checks, including `"import"` and `"misc"`
+- ignore: ignored check items. See the `Error Code` for optional items.
+- max_line_length: check parameter, that is, the maximum length of code
+- output: output streams and formats, including `"stdout"`、`"file"` and `"sarif"`
+- output_path: The path of the output file. It is optional, but it is required when the `output` is set as `"file"` or `"sarif"`
 
 Example:
 
 ```yaml
-check_list: ["import","misc"]
+check_list: ["import", "misc"]
 ignore: ["E0501"]
 max_line_length: 120
 output: ["stdout"]
@@ -119,11 +119,11 @@ output: ["stdout"]
 
 ### Error Code
 
-+ import_checker
-  + E0401: Unable to import.
-  + W0401: Reimport.
-  + E0406: Module import itself.
-  + W0411: Import but unused.
-  + E0413: ImportStmt is not at the top of the file
-+ misc_checker
-  + E0501: Line too long
+- import_checker
+  - E0401: Unable to import.
+  - W0401: Reimport.
+  - E0406: Module import itself.
+  - W0411: Import but unused.
+  - E0413: ImportStmt is not at the top of the file
+- misc_checker
+  - E0501: Line too long

@@ -17,7 +17,7 @@ Now that we have an understanding of KCL's capabilities, let's explore how to us
 
 ### 0. Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### 1. Get the Example
 

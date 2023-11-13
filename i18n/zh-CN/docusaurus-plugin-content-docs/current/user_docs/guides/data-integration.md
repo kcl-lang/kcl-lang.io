@@ -11,7 +11,7 @@ sidebar_position: 4
 
 ### 0. 先决条件
 
-+ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### 1. 获得示例
 
@@ -95,7 +95,7 @@ server:
   ports:
     - 80
     - 8080
-server_json: "{\"ports\": [80, 8080]}"
+server_json: '{"ports": [80, 8080]}'
 ```
 
 ## 小结

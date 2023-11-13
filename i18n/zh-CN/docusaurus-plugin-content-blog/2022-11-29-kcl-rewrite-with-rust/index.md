@@ -15,11 +15,11 @@ Rust 已经悄然成为了最受欢迎的编程语言之一。作为一门新兴
 
 KCL 之前是使用 Python 编写的，出于用户使用体验、性能和稳定性的考虑，决定用 Rust 语言进行重写，并获得了以下好处：
 
-+ 更少的 Bug，源于 Rust 强大的编译检查和错误处理方式
-+ 语言端到端编译执行性能提升了 66%
-+ 语言前端解析器性能提升了 20 倍
-+ 语言中端语义分析器性能提升了 40 倍
-+ 语言编译器编译过程平均内存使用量变为原来 Python 版本的一半
+- 更少的 Bug，源于 Rust 强大的编译检查和错误处理方式
+- 语言端到端编译执行性能提升了 66%
+- 语言前端解析器性能提升了 20 倍
+- 语言中端语义分析器性能提升了 40 倍
+- 语言编译器编译过程平均内存使用量变为原来 Python 版本的一半
 
 ## 我们遇到了什么问题
 
@@ -33,11 +33,11 @@ KCL 之前是使用 Python 编写的，出于用户使用体验、性能和稳�
 
 笔者所在团队基于如下原因选择了 Rust
 
-+ 使用 Go, Python, Rust 三种语言实现了简单的编程语言栈式虚拟机并作了性能对比，Go 和 Rust 在这个场景下性能接近，Python 有较大性能差距，综合考虑下采用了 Rust，具体三种语言实现的栈式虚拟机代码细节在 [https://github.com/Peefy/StackMachine](https://github.com/Peefy/StackMachine)，感兴趣的同学可以前往浏览
-+ 越来越多的编程语言的编译器或运行时特别是前端基础设施项目采用 Rust 编写或重构，此外基础设施层，数据库、搜索引擎、网络设施、云原生、UI 层和嵌入式等领域都有 Rust 的出现，至少在编程语言领域实现方面经过了可行性和稳定性验证
-+ 考虑到后续的项目发展会涉及区块链和智能合约方向，而社区中大量的区块链和智能合约项目采用 Rust 编写
-+ 通过 Rust 获得更好的性能和稳定性，让系统更容易维护、更加健壮的同时，可以通过 FFI 暴露 C API 供多语言使用和扩展，方便生态扩展与集成
-+ Rust 对 WASM 的支持比较友好，社区中大量 WASM 生态是由 Rust 构建，KCL 语言和编译器可以借助 Rust 编译到 WASM 并在浏览器中运行
+- 使用 Go, Python, Rust 三种语言实现了简单的编程语言栈式虚拟机并作了性能对比，Go 和 Rust 在这个场景下性能接近，Python 有较大性能差距，综合考虑下采用了 Rust，具体三种语言实现的栈式虚拟机代码细节在 [https://github.com/Peefy/StackMachine](https://github.com/Peefy/StackMachine)，感兴趣的同学可以前往浏览
+- 越来越多的编程语言的编译器或运行时特别是前端基础设施项目采用 Rust 编写或重构，此外基础设施层，数据库、搜索引擎、网络设施、云原生、UI 层和嵌入式等领域都有 Rust 的出现，至少在编程语言领域实现方面经过了可行性和稳定性验证
+- 考虑到后续的项目发展会涉及区块链和智能合约方向，而社区中大量的区块链和智能合约项目采用 Rust 编写
+- 通过 Rust 获得更好的性能和稳定性，让系统更容易维护、更加健壮的同时，可以通过 FFI 暴露 C API 供多语言使用和扩展，方便生态扩展与集成
+- Rust 对 WASM 的支持比较友好，社区中大量 WASM 生态是由 Rust 构建，KCL 语言和编译器可以借助 Rust 编译到 WASM 并在浏览器中运行
 
 基于以上原因综合考虑选择了 Rust 而不是 Go，整个重写过程下来发现 Rust 综合素质确实过硬（第一梯队的性能，足够的抽象程度），虽然在一些语言特性特别是生命周期等上手成本有一些，生态上还不够丰富，总之编程语言可以做的事情，Rust 均可以做，具体可能还是要根据具体的场景和问题来做选择。同时如果想要使用好 Rust, 还需要深入理解内存、堆栈、引用、变量作用域等这些其它高级语言往往不会深入接触的内容。
 
@@ -51,7 +51,7 @@ KCL 之前是使用 Python 编写的，出于用户使用体验、性能和稳�
 
 首先 Rust 的语法语义很好地吸收和融合了函数式编程中类型系统相关的概念，比如抽象代数类型 ADT 等，并且 Rust 中并无“继承”等相关概念，如果不能很好地理解甚至连其他语言中稀松平常的结构定义在 Rust 中可能都需要花费不少时间，比如如下的 Python 代码可能在 Rust 中的定义是这个样子的。
 
-+ Python
+- Python
 
 ```python
 from dataclasses import dataclass
@@ -68,7 +68,7 @@ class KCLFloatObject(KCLObject):
     value: float
 ```
 
-+ Rust
+- Rust
 
 ```rust
 enum KCLObject {
@@ -131,8 +131,8 @@ impl<'a> Data<'a> {
 
 ## 参考
 
-+ https://github.com/kcl-lang/kcl
-+ https://github.com/Peefy/StackMachine
-+ https://doc.rust-lang.org/book/
-+ https://github.com/sunface/rust-course
-+ https://www.influxdata.com/blog/rust-can-be-difficult-to-learn-and-frustrating-but-its-also-the-most-exciting-thing-in-software-development-in-a-long-time/
+- https://github.com/kcl-lang/kcl
+- https://github.com/Peefy/StackMachine
+- https://doc.rust-lang.org/book/
+- https://github.com/sunface/rust-course
+- https://www.influxdata.com/blog/rust-can-be-difficult-to-learn-and-frustrating-but-its-also-the-most-exciting-thing-in-software-development-in-a-long-time/

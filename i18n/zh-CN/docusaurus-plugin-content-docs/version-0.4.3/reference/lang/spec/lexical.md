@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: Lexical
 ---
+
 ## Lexical Conventions
 
 This chapter covers the KCL lexical conventions including grammar notation, lines, comments and tokens.
@@ -188,7 +189,7 @@ The following tokens serve as delimiters in the grammar:
 ```
 (       )       [       ]       {       }
 ,       :       .       ;       =       +=
--=      *=      **=     /=      //=     %=      
+-=      *=      **=     /=      //=     %=
 <<=     >>=     &=      |=      ^=
 ```
 

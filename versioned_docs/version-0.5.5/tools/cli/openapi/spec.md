@@ -2,7 +2,7 @@
 
 [OpenAPI](https://www.openapis.org/) defines the API Specification for API providers to describe their operations and models in a normative way and provides generating tools to automatically convert to client codes in specific languages.
 
-The KCL OpenAPI Spec describes the rules about how the OpenAPI definitions are translated to the KCL schemas. 
+The KCL OpenAPI Spec describes the rules about how the OpenAPI definitions are translated to the KCL schemas.
 
 ## The File Structure of the KCL OpenAPI
 
@@ -107,7 +107,6 @@ Example:
 
 The following KCL code defines a Pet model which contains two attributes: name (`string` type, `required`, with no attribute annotation and no default value) and id (`int64` type, optional, with no attribute annotation, and the default value is -1).
 
-
 ```python
 # the KCL schema Pet defines two attributes: name, id
 schema Pet:
@@ -168,7 +167,6 @@ Example:
 
 The following KCL code defines a Pet model which contains two pre-declared attributes(`name` and `id`) and allows users to add attributes with `string` type keys and `bool` type values.
 
-
 ```python
 # the KCL schema Pet. Besides the pre-declared attributes name and id, it allows to add attributes with key in string type and value in bool type
 schema Pet:
@@ -212,7 +210,7 @@ working in progress
 
 ### Inline schema
 
-OpenAPI supports models to be declared inline. But KCL currently does not support that. The model defined inline in OpenAPI will be converted to a schema with a name in KCL. And the naming convention will be: 
+OpenAPI supports models to be declared inline. But KCL currently does not support that. The model defined inline in OpenAPI will be converted to a schema with a name in KCL. And the naming convention will be:
 
 | element to define an inline schema in OpenAPI | the name of the corresponding KCL schema                       |
 | --------------------------------------------- | -------------------------------------------------------------- |
@@ -349,7 +347,7 @@ The following KCL code defines a Pet model with a schema description `The schema
 # The KCL schema Pet, with doc following the KCL Document Specification
 schema Pet:
     """The schema Pet definition
-    
+
     Attributes
     ----------
     name : str, default is Undefined, required
@@ -370,7 +368,7 @@ schema Pet:
     """
     name: str
     id?:  int = -1
-        
+
 # The corresponding OpenAPI Spec
 {
     "definitions": {
@@ -409,6 +407,7 @@ schema Pet:
     }
 }
 ```
+
 ## Basic Data Types
 
 | JSON Schema type | swagger type                | KCL type        | comment                                                                     |

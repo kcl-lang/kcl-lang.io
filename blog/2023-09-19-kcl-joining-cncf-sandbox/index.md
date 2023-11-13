@@ -15,8 +15,8 @@ This means that KCL has gained recognition from the cloud native open source com
 
 <!--TODO: CNCF Sandbox Review Figure-->
 
-* *Project Link: https://github.com/kcl-lang/kcl*
-* *Project Website: https://kcl-lang.io*
+- _Project Link: https://github.com/kcl-lang/kcl_
+- _Project Website: https://kcl-lang.io_
 
 By joining CNCF as a sandbox project, the KCL community aims to attract more developers and users to contribute and further promote the mature application of the project in cloud native scenarios. In addition, joining CNCF provides KCL with an enhanced platform for collaboration and innovation. It offers an opportunity to engage with a diverse community of developers, organizations, and industry experts at the forefront of cloud native technology. We look forward to collaborating with other CNCF projects, contributing our technical expertise, and exploring the possibilities of integrating with more CNCF projects.
 
@@ -24,7 +24,7 @@ By joining CNCF as a sandbox project, the KCL community aims to attract more dev
 
 CNCF, short for Cloud Native Computing Foundation, is a sub-foundation under the Linux Foundation. CNCF is dedicated to building a sustainable ecosystem for cloud native software, covering areas such as storage, computing, orchestration, scheduling, CI/CD, DevOps, service governance, and service gateways.
 
-*Kubernetes is one of the most representative projects of CNCF*.
+_Kubernetes is one of the most representative projects of CNCF_.
 
 ## What is CNCF Sandbox Project?
 
@@ -40,9 +40,9 @@ KCL is an open-source, constraint-based record and function language. It aims to
 
 Key milestones of the project include:
 
-+ May 2022: KCL was initiated and officially open-sourced by Ant Group.
-+ June 2023: KCL became an official CNCF Landscape project.
-+ September 2023: KCL was reviewed by the CNCF Application Delivery TAG and approved through TOC voting, officially becoming a CNCF Sandbox project (https://github.com/cncf/sandbox/issues/48).
+- May 2022: KCL was initiated and officially open-sourced by Ant Group.
+- June 2023: KCL became an official CNCF Landscape project.
+- September 2023: KCL was reviewed by the CNCF Application Delivery TAG and approved through TOC voting, officially becoming a CNCF Sandbox project (https://github.com/cncf/sandbox/issues/48).
 
 ## Why do we need KCL?
 
@@ -50,25 +50,25 @@ Just like recording music with a staff and storing time series data in a sequent
 
 In addition, KCL hopes to fill the gap in configuration languages and tools in the field of lightweight client cloud native dynamic configuration through more modern declarative configuration languages and tools, and address the following issues:
 
-+ **Configuration Bloat**: Most static configurations such as Kubernetes YAML in the cloud native domain need to be configured separately for each environment; In the worst-case scenario, it may introduce difficult to debug errors involving environmental cross linking, with poor stability and scalability.
-+ **Configuration Drift**: There is often no standard way to manage the static configuration of applications and infrastructure in different environments. Using non-standard methods such as combining scripts and glue code can lead to exponential complexity growth and configuration drift.
-+ **Cognitive loading**: Kubernetes and others, as platform technology tools for building platforms, excel in the details of the underlying unified infrastructure, but lack higher-level abstraction for application software delivery, which has a high cognitive loading on ordinary developers and affects the software delivery experience of higher-level application developers.
+- **Configuration Bloat**: Most static configurations such as Kubernetes YAML in the cloud native domain need to be configured separately for each environment; In the worst-case scenario, it may introduce difficult to debug errors involving environmental cross linking, with poor stability and scalability.
+- **Configuration Drift**: There is often no standard way to manage the static configuration of applications and infrastructure in different environments. Using non-standard methods such as combining scripts and glue code can lead to exponential complexity growth and configuration drift.
+- **Cognitive loading**: Kubernetes and others, as platform technology tools for building platforms, excel in the details of the underlying unified infrastructure, but lack higher-level abstraction for application software delivery, which has a high cognitive loading on ordinary developers and affects the software delivery experience of higher-level application developers.
 
 In response to the above issues, KCL expects to provide the following capabilities:
 
-+ Shielding the details and complexity of infrastructure and platforms through methods such as code **abstraction**, reducing the cognitive loading on developers.
-+ **Mutate** and **Validate** existing inventory configurations or templates to directly solve cloud generated small configuration scenarios such as Helm Chart configuration hard coding issues, but it goes far beyond that.
-+ Improve team collaboration efficiency by **managing large-scale configuration** data across teams without side effects through language configuration.
+- Shielding the details and complexity of infrastructure and platforms through methods such as code **abstraction**, reducing the cognitive loading on developers.
+- **Mutate** and **Validate** existing inventory configurations or templates to directly solve cloud generated small configuration scenarios such as Helm Chart configuration hard coding issues, but it goes far beyond that.
+- Improve team collaboration efficiency by **managing large-scale configuration** data across teams without side effects through language configuration.
 
 Specifically, KCL can
 
-+ Improve the ability of **configuration semantic verification** at the code level, such as schema definition, field optional/mandatory, type, range, and other configuration check and verification capabilities.
-+ Provide the ability to write, combine, and abstract **configuration blocks, such as structural definition, structural inheritance, constraint definition, and configuration policy merging.
-+ Improve configuration flexibility through **modern programming languages** and **writing code**, such as conditional statements, loops, functions, package management, and other features to enhance configuration reuse capabilities.
-+ Provide **comprehensive tool chain support**, rich IDE plugins, languages, and ecological tool chain support to reduce the threshold of getting started and improve the user experience.
-+ By using **package management tools** and **OCI registry**, configurations can be shared, propagated, and delivered in a simpler way among different teams/roles.
-+ Provide **high-performance** compilers to meet the requirements of large-scale configuration scenarios, such as meeting the rendering performance requirements of generating configurations of different environments and topologies based on deployment context from a baseline configuration, as well as the performance requirements of automatic configuration modification.
-+ By enhancing its automation and integration capabilities through means such as **multilingual SDK and KCL language plugin**, it can significantly reduce the learning cost of KCL while leveraging the value of configuration and policy writing.
+- Improve the ability of **configuration semantic verification** at the code level, such as schema definition, field optional/mandatory, type, range, and other configuration check and verification capabilities.
+- Provide the ability to write, combine, and abstract \*\*configuration blocks, such as structural definition, structural inheritance, constraint definition, and configuration policy merging.
+- Improve configuration flexibility through **modern programming languages** and **writing code**, such as conditional statements, loops, functions, package management, and other features to enhance configuration reuse capabilities.
+- Provide **comprehensive tool chain support**, rich IDE plugins, languages, and ecological tool chain support to reduce the threshold of getting started and improve the user experience.
+- By using **package management tools** and **OCI registry**, configurations can be shared, propagated, and delivered in a simpler way among different teams/roles.
+- Provide **high-performance** compilers to meet the requirements of large-scale configuration scenarios, such as meeting the rendering performance requirements of generating configurations of different environments and topologies based on deployment context from a baseline configuration, as well as the performance requirements of automatic configuration modification.
+- By enhancing its automation and integration capabilities through means such as **multilingual SDK and KCL language plugin**, it can significantly reduce the learning cost of KCL while leveraging the value of configuration and policy writing.
 
 ![](/img/docs/user_docs/intro/kcl-overview.png)
 
@@ -100,9 +100,9 @@ With GitOps, developers and operations teams can manage application deployments 
 
 In addition to integrating with GitOps automation tools like ArgoCD, as a CNCF project, KCL has also integrated with many other CNCF ecosystem projects. For example, it provides KCL plugins for existing CNCF ecosystem configuration management tools such as Helm, Kustomize, and kpt. It also provides a KCL Kubernetes Operator at runtime to meet different configuration management needs. Furthermore, we offer the following integration support:
 
-+ **Multi-language support**: We provide multi-language SDKs to help users operate KCL in different languages and integrate it into their own applications.
-+ **Package management support**: We provide the KPM package management tool to distribute and reuse KCL configurations through Docker Hub, GitHub container registry, etc.
-+ **Schema migration support**: We support one-click migration of schemas from other ecosystems to KCL schemas, such as Go/Rust struct definitions, JsonSchema, Protobuf, OpenAPI, Terraform Provider Schema, etc.
+- **Multi-language support**: We provide multi-language SDKs to help users operate KCL in different languages and integrate it into their own applications.
+- **Package management support**: We provide the KPM package management tool to distribute and reuse KCL configurations through Docker Hub, GitHub container registry, etc.
+- **Schema migration support**: We support one-click migration of schemas from other ecosystems to KCL schemas, such as Go/Rust struct definitions, JsonSchema, Protobuf, OpenAPI, Terraform Provider Schema, etc.
 
 ## Practices
 
@@ -130,9 +130,9 @@ For KCL, joining CNCF does not mean the end, but a new beginning. We will work t
 
 ## Resources
 
-+ KCL Website: https://kcl-lang.io/
-+ KusionStack Website: https://kusionstack.io/
-+ KCL Community: https://github.com/kcl-lang/community
-+ KCL 2023 Roadmap: https://kcl-lang.io/docs/community/release-policy/roadmap
-+ KCL GitHub Issues: https://github.com/kcl-lang/kcl/issues
-+ KCL GitHub Discussion: https://github.com/orgs/kcl-lang/discussions
+- KCL Website: https://kcl-lang.io/
+- KusionStack Website: https://kusionstack.io/
+- KCL Community: https://github.com/kcl-lang/community
+- KCL 2023 Roadmap: https://kcl-lang.io/docs/community/release-policy/roadmap
+- KCL GitHub Issues: https://github.com/kcl-lang/kcl/issues
+- KCL GitHub Discussion: https://github.com/orgs/kcl-lang/discussions

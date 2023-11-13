@@ -13,9 +13,9 @@ tags: [Release Blog, KCL]
 
 The KCL team is pleased to announce that KCL v0.6.0 is now available! This release has brought three key updates to everyone: **Language**, **Tools**, and **Integrations**.
 
-+ *Use KCL language, tools and IDE extensions with more complete features and fewer errors to improve code writing experience and efficiency.*
-+ *Use KPM, OCI Registry and other tools to directly use and share your cloud native domain models, reducing learning and hands-on costs.*
-+ *Use cloud-native integration extensions such as Helmfile KCL plugin and KCL Operator to simultaneously support in-place mutation and validation of Kubernetes resources on both the client and runtime, avoiding hardcoded configurations.*
+- _Use KCL language, tools and IDE extensions with more complete features and fewer errors to improve code writing experience and efficiency._
+- _Use KPM, OCI Registry and other tools to directly use and share your cloud native domain models, reducing learning and hands-on costs._
+- _Use cloud-native integration extensions such as Helmfile KCL plugin and KCL Operator to simultaneously support in-place mutation and validation of Kubernetes resources on both the client and runtime, avoiding hardcoded configurations._
 
 You can visit the [KCL release page](https://github.com/kcl-lang/kcl/releases/tag/v0.6.0) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
@@ -74,18 +74,18 @@ For more information, please see [here](https://github.com/kcl-lang/kcl/pull/672
 
 #### Features
 
-+ Performance improvement for all IDE features
-+ Support variable and schema attribute completion for KCL packages
-+ Support KCL schema attribute document attribute hover
-+ Support for quick fix of useless import statements
+- Performance improvement for all IDE features
+- Support variable and schema attribute completion for KCL packages
+- Support KCL schema attribute document attribute hover
+- Support for quick fix of useless import statements
 
 ![ide-quick-fix](/img/blog/2023-09-15-kcl-0.6.0-release/ide-quick-fix-en.png)
 
-+ Support right-click formatting of files and code fragments in VS Code.
+- Support right-click formatting of files and code fragments in VS Code.
 
 ![ide-format](/img/blog/2023-09-15-kcl-0.6.0-release/ide-format-en.png)
 
-+ Support hover for built-in functions and function information in system libraries
+- Support hover for built-in functions and function information in system libraries
 
 ![ide-func-hover](/img/blog/2023-09-15-kcl-0.6.0-release/ide-func-hover.png)
 
@@ -93,24 +93,24 @@ For more information, please see [here](https://github.com/kcl-lang/kcl/pull/672
 
 We have integrated the KCL language server LSP into NeoVim and Idea, enabling the completion, navigation, and hover features supported by VS Code IDE in NeoVim and IntelliJ IDEA.
 
-+ NeoVim KCL Extension
+- NeoVim KCL Extension
 
 ![kcl.nvim](/img/docs/tools/Ide/neovim/overview.png)
 
-+ IntelliJ Extension
+- IntelliJ Extension
 
 ![intellij](/img/docs/tools/Ide/intellij/overview.png)
 
 For more information on downloading, installation, and features of the IDE plugins, please refer to:
 
-+ [https://kcl-lang.io/docs/user_docs/getting-started/install#neovim](https://kcl-lang.io/docs/user_docs/getting-started/install#neovim)
-+ [https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea](https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea)
+- [https://kcl-lang.io/docs/user_docs/getting-started/install#neovim](https://kcl-lang.io/docs/user_docs/getting-started/install#neovim)
+- [https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea](https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea)
 
 ### KCL Formatting Tool Updates
 
 Support formatting of configuration blocks with incorrect indentation
 
-+ Before formatting
+- Before formatting
 
 ```python
 config = {
@@ -125,7 +125,7 @@ b = {
 }
 ```
 
-+ After formatting
+- After formatting
 
 ```python
 config = {
@@ -142,12 +142,12 @@ config = {
 
 ### KCL Documentation Tool Updates
 
-+ Support for exporting Markdown documents
-+ Support for exporting document index pages
-+ Support for exporting documents with custom style templates
-+ Support for HTML escaping in exported documents
-+ Enhanced document generation to parse and render example code snippets in document comments
-+ By tracking model updates in Github workflow and regenerating the documentation, automatic synchronization of the documentation can be achieved. Please refer to [here](https://github.com/KusionStack/catalog/pull/31/files) for more details.
+- Support for exporting Markdown documents
+- Support for exporting document index pages
+- Support for exporting documents with custom style templates
+- Support for HTML escaping in exported documents
+- Enhanced document generation to parse and render example code snippets in document comments
+- By tracking model updates in Github workflow and regenerating the documentation, automatic synchronization of the documentation can be achieved. Please refer to [here](https://github.com/KusionStack/catalog/pull/31/files) for more details.
 
 #### Generate model document from kpm package
 
@@ -163,7 +163,7 @@ schema Service:
     Service is a kind of workload profile that describes how to run your application code. This
     is typically used for long-running web applications that should "never" go down, and handle
     short-lived latency-sensitive web requests, or events.
-    
+
     Attributes
     ----------
     workloadType : str = "Deployment" | "StatefulSet", default is Deployment, required.
@@ -174,7 +174,7 @@ schema Service:
         More info: https://kubernetes.io/docs/concepts/containers/images
     replicas : int, default is 2, required.
         Number of container replicas based on this configuration that should be ran.
-    
+
     Examples
     --------
     # Instantiate a long-running service and its image is "nginx:v1"
@@ -216,97 +216,85 @@ The KCL Import Tool now adds support for converting Terraform Provider Schema to
 
 ```json
 {
-    "format_version": "0.2",
-    "provider_schemas": {
-        "registry.terraform.io/aliyun/alicloud": {
-            "provider": {
-                "version": 0,
-                "block": {
-                    "attributes": {},
-                    "block_types": {},
-                    "description_kind": "plain"
-                }
-            },
-            "resource_schemas": {
-                "alicloud_db_instance": {
-                    "version": 0,
-                    "block": {
-                        "attributes": {
-                            "db_instance_type": {
-                                "type": "string",
-                                "description_kind": "plain",
-                                "computed": true
-                            },
-                            "engine": {
-                                "type": "string",
-                                "description_kind": "plain",
-                                "required": true
-                            },
-                            "security_group_ids": {
-                                "type": [
-                                    "set",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            },
-                            "security_ips": {
-                                "type": [
-                                    "set",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            },
-                            "tags": {
-                                "type": [
-                                    "map",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true
-                            }
-                        },
-                        "block_types": {},
-                        "description_kind": "plain"
-                    }
-                },
-                "alicloud_config_rule": {
-                    "version": 0,
-                    "block": {
-                        "attributes": {
-                            "compliance": {
-                                "type": [
-                                    "list",
-                                    [
-                                        "object",
-                                        {
-                                            "compliance_type": "string",
-                                            "count": "number"
-                                        }
-                                    ]
-                                ],
-                                "description_kind": "plain",
-                                "computed": true
-                            },
-                            "resource_types_scope": {
-                                "type": [
-                                    "list",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            }
-                        }
-                    }
-                }
-            },
-            "data_source_schemas": {}
+  "format_version": "0.2",
+  "provider_schemas": {
+    "registry.terraform.io/aliyun/alicloud": {
+      "provider": {
+        "version": 0,
+        "block": {
+          "attributes": {},
+          "block_types": {},
+          "description_kind": "plain"
         }
+      },
+      "resource_schemas": {
+        "alicloud_db_instance": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "db_instance_type": {
+                "type": "string",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "engine": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "security_group_ids": {
+                "type": ["set", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "security_ips": {
+                "type": ["set", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "tags": {
+                "type": ["map", "string"],
+                "description_kind": "plain",
+                "optional": true
+              }
+            },
+            "block_types": {},
+            "description_kind": "plain"
+          }
+        },
+        "alicloud_config_rule": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "compliance": {
+                "type": [
+                  "list",
+                  [
+                    "object",
+                    {
+                      "compliance_type": "string",
+                      "count": "number"
+                    }
+                  ]
+                ],
+                "description_kind": "plain",
+                "computed": true
+              },
+              "resource_types_scope": {
+                "type": ["list", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              }
+            }
+          }
+        }
+      },
+      "data_source_schemas": {}
     }
+  }
 }
 ```
 
@@ -462,8 +450,8 @@ kpm: package version '0.1.0' already exists
 
 Modifying the content of a package that has already been pushed to the registry without changing the tag carries a high risk, as the package may already be in use by others. Therefore, if you need to push your package, we recommend:
 
-+ Change your tag and follow semantic versioning conventions.
-+ If you must modify the content of a package without changing the tag, you will need to delete the existing tag from the registry.
+- Change your tag and follow semantic versioning conventions.
+- If you must modify the content of a package without changing the tag, you will need to delete the existing tag from the registry.
 
 ## Integrations
 
@@ -471,11 +459,11 @@ Modifying the content of a package that has already been pushed to the registry 
 
 Helmfile is a declarative specification and tool for deploying Helm Charts. With the Helmfile KCL plugin, you can:
 
-+ Edit or verify Helm Chart through non-invasive hook methods, separating the data and logic parts of Kubernetes configuration management
-  + Modify resource labels/annotations, inject sidecar container configuration
-  + Use KCL schema to validate resources
-  + Define your own abstract application models
-+ Maintain multiple environment and tenant configurations elegantly, rather than simply copying and pasting.
+- Edit or verify Helm Chart through non-invasive hook methods, separating the data and logic parts of Kubernetes configuration management
+  - Modify resource labels/annotations, inject sidecar container configuration
+  - Use KCL schema to validate resources
+  - Define your own abstract application models
+- Maintain multiple environment and tenant configurations elegantly, rather than simply copying and pasting.
 
 Here is a detailed explanation using a simple example. With the Helmfile KCL plugin, you do not need to install any components related to KCL. You only need the latest version of the Helmfile tool on your local device.
 
@@ -520,10 +508,10 @@ For more use cases, please refer to [https://github.com/kcl-lang/krm-kcl](https:
 
 KCL Operator provides cluster integration, allowing you to use Access Webhook to generate, mutate, or validate resources based on KCL configuration when apply resources to the cluster. Webhook will capture creation, application, and editing operations, and execute [KCLRun](https://github.com/kcl-lang/krm-kcl) on the configuration associated with each operation, and the KCL programming language can be used to
 
-+ Add labels or annotations based on a condition.
-+ Inject a sidecar container in all KRM resources that contain a `PodTemplate`.
-+ Validating all KRM resources using KCL Schema, such as constraints on starting containers only in a root mode.
-+ Generating KRM resources using an abstract model or combining and using different KRM APIs. 
+- Add labels or annotations based on a condition.
+- Inject a sidecar container in all KRM resources that contain a `PodTemplate`.
+- Validating all KRM resources using KCL Schema, such as constraints on starting containers only in a root mode.
+- Generating KRM resources using an abstract model or combining and using different KRM APIs.
 
 Here is a simple resource annotation mutation example to introduce the usage of the KCL operator.
 
@@ -613,9 +601,9 @@ We have provided more than 30 built-in models, and you can find more code exampl
 
 For example
 
-+ Use the `web-service` model to directly instantiate the Kubernetes resources required for a web application
-+ Add annotations to existing k8s resources using the `set-annotation` model
-+ Use the `https-only` model to verify that your `Ingress` configuration can only be set to https, otherwise an error will be reported.
+- Use the `web-service` model to directly instantiate the Kubernetes resources required for a web application
+- Add annotations to existing k8s resources using the `set-annotation` model
+- Use the `https-only` model to verify that your `Ingress` configuration can only be set to https, otherwise an error will be reported.
 
 ### Vault Integration
 
@@ -668,7 +656,7 @@ For more details and use cases, please refer to [here](https://kcl-lang.io/docs/
 
 ### GitLab CI Integration
 
-Using KCL, we can not only use Github Action as CI for application publishing through GitOps, but also provide GitLab CI integration in this version. Please refer to: *[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)*
+Using KCL, we can not only use Github Action as CI for application publishing through GitOps, but also provide GitLab CI integration in this version. Please refer to: _[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)_
 
 ## Other Updates and Bug Fixes
 
@@ -680,14 +668,14 @@ The versioning semantic option is added to the [KCL website](https://kcl-lang.io
 
 ## Community
 
-+ Thank @jakezhu9 for his contribution to converting KCL Import tools, including Terraform Provider Schema, JsonSchema, JSON, YAML, and other configuration formats/data to KCL schema/configurations 🙌
-+ Thank @xxmao123 for her contribution to connecting KCL LSP language server to the Idea IDE extension 🙌
-+ Thank @starkers for his contribution to the KCL NeoVim extension 🙌
-+ Thank @starkers for adding KCL installation support to mason.nvim registry 🙌
-+ Thank @Ekko for his contribution to the integration of KCL cloud native tools and KCL Operator 🙌
-+ Thank @prahalaramji for the upgrade, update, and contribution to the KCL Homebrew installation script 🙌
-+ Thank @yyxhero for providing assistance and support in the Helmfile KCL plugin support 🙌
-+ Thank @nkabir, @mihaigalos, @prahalaramji, @yamin-oanda, @dhhopen, @magick93, @MirKml, @kolloch, @steeling, and others for their valuable feedback and discussion during the past two months of using KCL. 🙌
+- Thank @jakezhu9 for his contribution to converting KCL Import tools, including Terraform Provider Schema, JsonSchema, JSON, YAML, and other configuration formats/data to KCL schema/configurations 🙌
+- Thank @xxmao123 for her contribution to connecting KCL LSP language server to the Idea IDE extension 🙌
+- Thank @starkers for his contribution to the KCL NeoVim extension 🙌
+- Thank @starkers for adding KCL installation support to mason.nvim registry 🙌
+- Thank @Ekko for his contribution to the integration of KCL cloud native tools and KCL Operator 🙌
+- Thank @prahalaramji for the upgrade, update, and contribution to the KCL Homebrew installation script 🙌
+- Thank @yyxhero for providing assistance and support in the Helmfile KCL plugin support 🙌
+- Thank @nkabir, @mihaigalos, @prahalaramji, @yamin-oanda, @dhhopen, @magick93, @MirKml, @kolloch, @steeling, and others for their valuable feedback and discussion during the past two months of using KCL. 🙌
 
 ## Additional Resources
 
@@ -697,9 +685,9 @@ For more information, see [KCL FAQ](https://kcl-lang.io/docs/user_docs/support/)
 
 Thank all KCL users for their valuable feedback and suggestions during this version release. For more resources, please refer to:
 
-+ [KCL Website](https://kcl-lang.io/)
-+ [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/kcl-lang/kcl)
-+ [Kusion Repo](https://github.com/KusionStack/kusion)
+- [KCL Website](https://kcl-lang.io/)
+- [Kusion Website](https://kusionstack.io/)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [Kusion Repo](https://github.com/KusionStack/kusion)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏

@@ -47,11 +47,11 @@ kpm init my_package
 
 ```shell
 # 在 exist_kcl_package 目录下
-$ pwd 
+$ pwd
 /home/user/exist_kcl_package
 
 # 执行 kpm init 命令来创建 kcl.mod 和 kcl.mod.lock
-$ kpm init 
+$ kpm init
 ```
 
 关于如何使用 kpm init 的更多信息，请参阅 [kpm init](https://kcl-lang.io/zh-CN/docs/reference/package-management/command-reference/init)。
@@ -62,7 +62,7 @@ $ kpm init
 
 ```shell
 # 在 exist_kcl_package 包的根目录下
-$ pwd 
+$ pwd
 /home/user/exist_kcl_package
 
 # 推送 kcl 包到默认的 OCI Registry

@@ -1,21 +1,21 @@
-import React from "react"
+import React from "react";
 
-import Prism, { defaultProps } from "prism-react-renderer"
+import Prism, { defaultProps } from "prism-react-renderer";
 
-import DarkTheme from "../../internals/prism-dracula"
-import LightTheme from "../../internals/prism-github"
+import DarkTheme from "../../internals/prism-dracula";
+import LightTheme from "../../internals/prism-github";
 
 const themes = {
   light: LightTheme,
   dark: DarkTheme,
-}
+};
 
 const Highlight = ({
   code,
   theme = "dark",
 }: {
-  code: string
-  theme?: "light" | "dark"
+  code: string;
+  theme?: "light" | "dark";
 }) => (
   <div>
     <Prism
@@ -37,6 +37,6 @@ const Highlight = ({
       )}
     </Prism>
   </div>
-)
+);
 
-export default Highlight
+export default Highlight;

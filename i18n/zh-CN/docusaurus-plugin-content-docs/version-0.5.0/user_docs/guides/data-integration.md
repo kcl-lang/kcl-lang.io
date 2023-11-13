@@ -91,7 +91,7 @@ server:
   ports:
     - 80
     - 8080
-server_json: "{\"ports\": [80, 8080]}"
+server_json: '{"ports": [80, 8080]}'
 ```
 
 ## 小结

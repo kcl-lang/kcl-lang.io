@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 This section will update the KCL language community's latest developments every two weeks, including features, website updates, and the latest community news, helping everyone better understand the KCL community!
 
-***KCL Website: [https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## Overview
 
@@ -35,9 +35,9 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 **📰 Official Website and Use Case Updates**
 
-- KCL package docker.io integration example: *[https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md](https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md)*
-- KCL Gitlab CI integration example: *[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)*
-- KCL Vault and Vals Integration example: *[https://kcl-lang.io/docs/user_docs/guides/secret-management/vault](https://kcl-lang.io/docs/user_docs/guides/secret-management/vault)*
+- KCL package docker.io integration example: _[https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md](https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md)_
+- KCL Gitlab CI integration example: _[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)_
+- KCL Vault and Vals Integration example: _[https://kcl-lang.io/docs/user_docs/guides/secret-management/vault](https://kcl-lang.io/docs/user_docs/guides/secret-management/vault)_
 
 ## Special Thanks
 
@@ -58,97 +58,85 @@ The KCL Import Tool now adds support for converting Terraform Provider Schema to
 
 ```json
 {
-    "format_version": "0.2",
-    "provider_schemas": {
-        "registry.terraform.io/aliyun/alicloud": {
-            "provider": {
-                "version": 0,
-                "block": {
-                    "attributes": {},
-                    "block_types": {},
-                    "description_kind": "plain"
-                }
-            },
-            "resource_schemas": {
-                "alicloud_db_instance": {
-                    "version": 0,
-                    "block": {
-                        "attributes": {
-                            "db_instance_type": {
-                                "type": "string",
-                                "description_kind": "plain",
-                                "computed": true
-                            },
-                            "engine": {
-                                "type": "string",
-                                "description_kind": "plain",
-                                "required": true
-                            },
-                            "security_group_ids": {
-                                "type": [
-                                    "set",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            },
-                            "security_ips": {
-                                "type": [
-                                    "set",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            },
-                            "tags": {
-                                "type": [
-                                    "map",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true
-                            }
-                        },
-                        "block_types": {},
-                        "description_kind": "plain"
-                    }
-                },
-                "alicloud_config_rule": {
-                    "version": 0,
-                    "block": {
-                        "attributes": {
-                            "compliance": {
-                                "type": [
-                                    "list",
-                                    [
-                                        "object",
-                                        {
-                                            "compliance_type": "string",
-                                            "count": "number"
-                                        }
-                                    ]
-                                ],
-                                "description_kind": "plain",
-                                "computed": true
-                            },
-                            "resource_types_scope": {
-                                "type": [
-                                    "list",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            }
-                        }
-                    }
-                }
-            },
-            "data_source_schemas": {}
+  "format_version": "0.2",
+  "provider_schemas": {
+    "registry.terraform.io/aliyun/alicloud": {
+      "provider": {
+        "version": 0,
+        "block": {
+          "attributes": {},
+          "block_types": {},
+          "description_kind": "plain"
         }
+      },
+      "resource_schemas": {
+        "alicloud_db_instance": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "db_instance_type": {
+                "type": "string",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "engine": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "security_group_ids": {
+                "type": ["set", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "security_ips": {
+                "type": ["set", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "tags": {
+                "type": ["map", "string"],
+                "description_kind": "plain",
+                "optional": true
+              }
+            },
+            "block_types": {},
+            "description_kind": "plain"
+          }
+        },
+        "alicloud_config_rule": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "compliance": {
+                "type": [
+                  "list",
+                  [
+                    "object",
+                    {
+                      "compliance_type": "string",
+                      "count": "number"
+                    }
+                  ]
+                ],
+                "description_kind": "plain",
+                "computed": true
+              },
+              "resource_types_scope": {
+                "type": ["list", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              }
+            }
+          }
+        }
+      },
+      "data_source_schemas": {}
     }
+  }
 }
 ```
 

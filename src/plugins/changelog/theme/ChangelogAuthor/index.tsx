@@ -5,14 +5,14 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import Link from '@docusaurus/Link';
-import type {Props} from '@theme/BlogPostAuthor';
+import React from "react";
+import Link from "@docusaurus/Link";
+import type { Props } from "@theme/BlogPostAuthor";
 
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
-export default function ChangelogAuthor({author}: Props): JSX.Element {
-  const {name, url, imageURL} = author;
+export default function ChangelogAuthor({ author }: Props): JSX.Element {
+  const { name, url, imageURL } = author;
   return (
     <div className="avatar margin-bottom--sm">
       {imageURL && (

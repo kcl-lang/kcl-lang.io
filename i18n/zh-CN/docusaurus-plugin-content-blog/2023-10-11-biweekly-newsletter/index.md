@@ -13,13 +13,14 @@ tags: [KCL, Biweekly-Newsletter]
 
 本栏目将会双周更新 KCL 语言社区最新动态，包括功能、官网更新和最新的社区动态等，帮助大家更好地了解 KCL 社区！
 
-***KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## 内容概述
 
 感谢所有贡献者过去两周 (2023 09.07 - 10.11) 的杰出工作，以下是重点合并内容概述
 
 **🔧 语言及工具链更新**
+
 - KCL v0.6.0 于 9.15 发布，更新内容包括语言、工具链、社区集成，详细内容请查看 [https://mp.weixin.qq.com/s/f6RCZqxS2iliRGIz0036yA](https://mp.weixin.qq.com/s/f6RCZqxS2iliRGIz0036yA)
 - KCL IDE 更新 - 支持对标准库和内置函数的悬停提示，支持对 KCL 代码错误的快速修复；发布适配 Intellij IDEA 2023.2 的插件版本
 - KCL 包管理工具 KPM 更新 - kpm run 支持编译 KCL 文件，并集成了导入工具
@@ -35,9 +36,9 @@ tags: [KCL, Biweekly-Newsletter]
 
 以下排名不分先后
 
-- 感谢 @jakezhu9 对 KCL Import 工具 Terraform Schema 到 KCL Schema 转换的贡献 🙌 *[https://github.com/kcl-lang/kcl-go/pull/152](https://github.com/kcl-lang/kcl-go/pull/152)*
-- 感谢 @jakezhu9 对 kpm 集成 Import 工具的贡献 🙌 *[https://github.com/kcl-lang/kpm/pull/194](https://github.com/kcl-lang/kpm/pull/194)*
-- 感谢 @zwpaper 对 KCL 文档和 Tree Sitter Grammar 做出的贡献 🙌 *[https://github.com/kcl-lang/tree-sitter-kcl/pull/1](https://github.com/kcl-lang/tree-sitter-kcl/pull/1)* 等
+- 感谢 @jakezhu9 对 KCL Import 工具 Terraform Schema 到 KCL Schema 转换的贡献 🙌 _[https://github.com/kcl-lang/kcl-go/pull/152](https://github.com/kcl-lang/kcl-go/pull/152)_
+- 感谢 @jakezhu9 对 kpm 集成 Import 工具的贡献 🙌 _[https://github.com/kcl-lang/kpm/pull/194](https://github.com/kcl-lang/kpm/pull/194)_
+- 感谢 @zwpaper 对 KCL 文档和 Tree Sitter Grammar 做出的贡献 🙌 _[https://github.com/kcl-lang/tree-sitter-kcl/pull/1](https://github.com/kcl-lang/tree-sitter-kcl/pull/1)_ 等
 - 感谢 @mrgleeco, @ghpu, @steeling, @prahaladramji, @zwpaper 等在使用 KCL 及工具链过程中提出的宝贵反馈和讨论 🙌
 
 ## 精选更新
@@ -50,7 +51,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 #### IntelliJ 插件
 
-+ IntelliJ 插件现已适配 2023.2+ 版本，您可以在下面的链接中下载安装：
+- IntelliJ 插件现已适配 2023.2+ 版本，您可以在下面的链接中下载安装：
 
 https://github.com/kcl-lang/intellij-kcl/releases
 
@@ -70,45 +71,45 @@ kpm run 支持编译 KCL 文件，并集成了导入工具，同时增加了 —
 近几周内，我们提供了更多针对容器、服务和 Pod Security Policy (PSP) 配置编辑及校验的使用案例。您可参照对应的示例引入以上配置和校验： [https://github.com/kcl-lang/krm-kcl/tree/main/examples](https://github.com/kcl-lang/krm-kcl/tree/main/examples)
 
 下面我们以 Kubectl KCL 插件和 disallow-svc-lb 模型进行说明，disallow-svc-lb 的作用是对 Service 资源进行校验，不允许 Service 资源的类型设置为 `LoadBalancer`，编写如下 YAML 文件 (manifests.yaml)：
-  
-  ```yaml
-  apiVersion: krm.kcl.dev/v1alpha1
-  kind: KCLRun
-  metadata:
-    name: disallow-svc-lb
-    annotations: 
-      krm.kcl.dev/version: 0.0.1
-      krm.kcl.dev/type: validation
-      documentation: >-
-        A validation that prevents the creation of Service resources of type `LoadBalancer`
-  spec:
-    source: oci://ghcr.io/kcl-lang/disallow-svc-lb
-  ---
-  apiVersion: v1
-  kind: Service
-  metadata:
-    name: my-service
-  spec:
-    selector:
-      app.kubernetes.io/name: MyApp
-    ports:
-      - name: http
-        protocol: TCP
-        port: 80
-    type: LoadBalancer # 错误地设置了 LoadBalancer
-  ```
+
+```yaml
+apiVersion: krm.kcl.dev/v1alpha1
+kind: KCLRun
+metadata:
+  name: disallow-svc-lb
+  annotations:
+    krm.kcl.dev/version: 0.0.1
+    krm.kcl.dev/type: validation
+    documentation: >-
+      A validation that prevents the creation of Service resources of type `LoadBalancer`
+spec:
+  source: oci://ghcr.io/kcl-lang/disallow-svc-lb
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  selector:
+    app.kubernetes.io/name: MyApp
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+  type: LoadBalancer # 错误地设置了 LoadBalancer
+```
 
 通过 Kubectl KCL 工具在客户端进行资源验证：
 
-  ```shell
-  kubectl kcl apply -f manifests.yaml
-  ```
+```shell
+kubectl kcl apply -f manifests.yaml
+```
 
 我们会得到如下结果：
 
-  ```shell
-  A validation that prevents the creation of Service resources of type `LoadBalancer`, for Service: my-service
-  ```
+```shell
+A validation that prevents the creation of Service resources of type `LoadBalancer`, for Service: my-service
+```
 
 ### 社区动态
 

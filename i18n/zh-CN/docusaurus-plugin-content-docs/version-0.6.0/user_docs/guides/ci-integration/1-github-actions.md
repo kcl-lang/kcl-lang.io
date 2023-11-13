@@ -2,6 +2,7 @@
 id: github-actions
 sidebar_label: Github Actions
 ---
+
 # Github Actions 集成
 
 ## 简介
@@ -12,13 +13,13 @@ sidebar_label: Github Actions
 
 整体工作流程如下：
 
-+ 应用代码开发并提交到提交到 GitHub 存储库
-+ GitHub Actions 从应用代码生成容器镜像，并将容器镜像推送到 docker.io 容器注册表
-+ GitHub Actions 根据 docker.io 容器注册表中容器镜像的版本号并同步更新 KCL 清单部署文件
+- 应用代码开发并提交到提交到 GitHub 存储库
+- GitHub Actions 从应用代码生成容器镜像，并将容器镜像推送到 docker.io 容器注册表
+- GitHub Actions 根据 docker.io 容器注册表中容器镜像的版本号并同步更新 KCL 清单部署文件
 
 ## 先决条件
 
-+ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ## 具体步骤
 
@@ -26,7 +27,7 @@ sidebar_label: Github Actions
 
 我们将业务源码和部署清单放在不同仓库，可以分不同角色进行分别维护，实现关注点分离。
 
-+ 获得业务源码
+- 获得业务源码
 
 ```shell
 git clone https://github.com/kcl-lang/flask-demo.git/
@@ -44,9 +45,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -62,7 +63,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Docker Login
         uses: docker/login-action@v1.10.0
         with:
@@ -108,7 +109,7 @@ flask-demo 仓库提交代码后，Github 会自动构建容器镜像，并将�
 
 ![](/img/docs/user_docs/guides/ci-integration/image-auto-update.png)
 
-+ 我们可以获得部署清单源码进行编译验证
+- 我们可以获得部署清单源码进行编译验证
 
 ```shell
 git clone https://github.com/kcl-lang/flask-demo-kcl-manifests.git/

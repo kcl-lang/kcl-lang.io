@@ -9,7 +9,7 @@ KCL 提供了许多对 Kubernetes 配置开箱即用的支持。通过 KCL 工�
 
 ## 前置依赖
 
-+ 安装 [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
+- 安装 [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
 
 ## 快速开始
 
@@ -48,10 +48,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 将 Kubernetes YAML 代码转换为 KCL
@@ -132,10 +132,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 ### 从 Kubernetes 自定义资源生成 KCL 类型
@@ -144,7 +144,7 @@ KCL 支持从 Kubernetes OpenAPI/自定义资源定义（CRD）中提取和生�
 
 如果您开发了 Kubernetes CRD，可以由 CRD 生成 KCL Schema，并基于此类型声明 CR。这里我们以 Kubernetes 文档中所示 [CronTab CRD](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition) 为例。
 
-* 从 CRD 生成 KCL Schema
+- 从 CRD 生成 KCL Schema
 
 ```shell
 # Add the Kubernetes dependency
@@ -153,7 +153,7 @@ kcl mod add k8s
 kcl import -m crd -s -f crd.yaml
 ```
 
-* 使用生成的 KCL Schema 定义资源
+- 使用生成的 KCL Schema 定义资源
 
 ```python
 import models
@@ -182,7 +182,7 @@ kind: CronTab
 metadata:
   name: my-new-cron-object
 spec:
-  cronSpec: '* * * * */5'
+  cronSpec: "* * * * */5"
   image: my-awesome-cron-image
   replicas: 3
 ```

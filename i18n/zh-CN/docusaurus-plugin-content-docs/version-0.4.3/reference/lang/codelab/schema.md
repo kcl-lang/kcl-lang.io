@@ -6,6 +6,7 @@ weight: 2
 description: 使用 KCL Schema 编写复杂配置
 sidebar_position: 2
 ---
+
 ## 1. Introduction
 
 KCL is a simple and easy-to-use configuration language, where users can simply write the reusable configuration code.
@@ -55,7 +56,7 @@ schema Deployment:
     service: str
     replica: int
     command: [str]
-    labels?: {str:str}  # labels is an optional attribute 
+    labels?: {str:str}  # labels is an optional attribute
 ```
 
 When there is an inheritance relationship:
@@ -76,7 +77,7 @@ schema Deployment:
     service: str = "my-service"  # defaulting
     replica: int = 1  # defaulting
     command: [str]
-    labels?: {str:str}  # labels is an optional attribute 
+    labels?: {str:str}  # labels is an optional attribute
 ```
 
 And then we can set the service type annotation as the string literal type to make it immutable:
@@ -134,7 +135,7 @@ nginx:
   service: my-service
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
@@ -213,7 +214,7 @@ nginx:
   service: my-service
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
@@ -305,20 +306,20 @@ nginx:
   cpu: 512
   memory: 1024
   volumes:
-  - name: mydir
-    mountPath: /test-pd
-    hostPath: /data
+    - name: mydir
+      mountPath: /test-pd
+      hostPath: /data
   image: nginx:1.14.2
   service:
     name: my-service
     ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 9376
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 9376
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
@@ -546,20 +547,20 @@ nginx:
   cpu: 512
   memory: 1024
   volumes:
-  - name: mydir
-    mountPath: /test-pd
-    hostPath: /data
+    - name: mydir
+      mountPath: /test-pd
+      hostPath: /data
   image: nginx:1.14.2
   service:
     name: my-service
     ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 9376
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 9376
   replica: 3
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
@@ -584,7 +585,7 @@ mixin PersistentVolumeClaimMixin for PVCProtocol:
     PersistentVolumeClaim (PVC) sample:
     Link: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims
     """
-    
+
     # Mix in a new attribute `kubernetesPVC`
     kubernetesPVC?: v1.PersistentVolumeClaim
 
@@ -660,27 +661,27 @@ server:
   cpu: 512
   memory: 1024
   volumes:
-  - name: mydir
-    mountPath: /test-pd
-    hostPath: /data
+    - name: mydir
+      mountPath: /test-pd
+      hostPath: /data
   image: nginx:1.14.2
   service:
     name: my-service
     ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 9376
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 9376
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
   pvc:
     name: my_pvc
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     resources:
       requests:
         storage: 8Gi
@@ -692,7 +693,7 @@ metadata:
   name: my_pvc
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   storageClassName: slow
   resources:
     requests:
@@ -790,20 +791,20 @@ server:
   cpu: 512
   memory: 1024
   volumes:
-  - name: mydir
-    mountPath: /test-pd
-    hostPath: /data
+    - name: mydir
+      mountPath: /test-pd
+      hostPath: /data
   image: nginx:1.14.2
   service:
     name: my-service
     ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 9376
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 9376
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod

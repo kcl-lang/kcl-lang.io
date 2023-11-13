@@ -42,7 +42,6 @@ export PATH="<Your directory to store KCLOpenapi binary>:$PATH"
 
 ## 1.4 Verify your installation
 
-
 ```shell
 ➜  kcl-openapi -v
 kcl-openapi 0.5.0

@@ -26,10 +26,10 @@ metadata:
   name: web-app
 spec:
   containers:
-  - image: nginx
-    name: main-container
-    ports:
-      - containerPort: 80
+    - image: nginx
+      name: main-container
+      ports:
+        - containerPort: 80
 ```
 
 `Pod` is a foundational primitive in cloud native. `Pod` wraps multiple containers into a single logical unit, and the kubernetes runtime ensures that the containers in a `Pod` run on a single machine. So all containers in a `Pod` share lifecycles, disk volumes, network, etc. The `Sidecar` pattern is about adding other containers to a `Pod` to extend and augment the capabilities of the main container.
@@ -84,7 +84,7 @@ spec:
     volumeMounts:
     - name: var-logs
       mountPath: /usr/share/nginx/html
-  
+
   # Sidecar Container
   - image: busybox
     command: ["/bin/sh"]
@@ -114,7 +114,7 @@ The `Busybox` has only one function: it overwrites the `/var/log/index.html` fil
 Then restart the Pod and remap the local host port to the container port.
 
 ```shell
-$ kubectl create -f pod.yaml 
+$ kubectl create -f pod.yaml
 pod/web-app created
 $ kubectl port-forward web-app 3999:80
 Forwarding from 127.0.0.1:3999 -> 80

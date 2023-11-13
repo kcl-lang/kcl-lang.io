@@ -45,15 +45,15 @@ KCLOpenAPI 工具支持从 OpenAPI/CRD 定义提取并生成 KCL schema. 在[KCL
 
 如果您的项目中使用了 CRD，也可以采用类似的模式，生成 CRD 对应的 KCL schema，并基于该 schema 声明 CR。
 
-* 从 CRD 生成 KCL Schema
+- 从 CRD 生成 KCL Schema
 
-    ```
-    kcl-openapi generate model --crd --skip-validation -f your_crd.yaml
-    ```
+  ```
+  kcl-openapi generate model --crd --skip-validation -f your_crd.yaml
+  ```
 
-* 使用 KCL 声明 CR
+- 使用 KCL 声明 CR
 
-    使用 KCL 声明 CR 的模式与声明 Kubernetes 内置模型配置的模式相同，在此不做赘述。
+  使用 KCL 声明 CR 的模式与声明 Kubernetes 内置模型配置的模式相同，在此不做赘述。
 
 ## 小结
 

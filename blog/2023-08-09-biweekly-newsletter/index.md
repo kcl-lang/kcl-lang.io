@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 This section will update the KCL language community's latest developments every two weeks, including features, website updates, and the latest community news, helping everyone better understand the KCL community!
 
-***KCL Website: [https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## Overview
 
@@ -34,10 +34,10 @@ In the past two weeks (2023 07.26 to 08.09), a total of 34 PRs were merged in al
 
 ## Special Thanks
 
-+ Thanks to @jakezhu9 for contributing to the conversion of JsonSchema to KCL Schema in the KCL Import tool 🙌
-+ Thanks to @xxmao123 for contributing to Vim and NeoVim KCL plugins 🙌
-+ Thanks to @yyxhero for the help and support provided in Helmfile KCL plugin support 🙌
-+ Thanks to @nkabir, @mihaigalos, @prahaladramji, @dhhopen, etc. for their valuable suggestions and discussions on using KCL 🙌
+- Thanks to @jakezhu9 for contributing to the conversion of JsonSchema to KCL Schema in the KCL Import tool 🙌
+- Thanks to @xxmao123 for contributing to Vim and NeoVim KCL plugins 🙌
+- Thanks to @yyxhero for the help and support provided in Helmfile KCL plugin support 🙌
+- Thanks to @nkabir, @mihaigalos, @prahaladramji, @dhhopen, etc. for their valuable suggestions and discussions on using KCL 🙌
 
 ## Featured Updates
 
@@ -47,38 +47,38 @@ On the basis of converting Protobuf, OpenAPI models, and Go structures into KCL 
 
 ```json
 {
- "$schema": "http://json-schema.org/draft-07/schema#",
- "$id": "https://example.com/schemas/customer.json",
- "type": "object",
- "$defs": {
-  "address": {
-   "type": "object",
-   "properties": {
-    "city": {
-     "type": "string"
-    },
-    "state": {
-     "$ref": "#/$defs/state"
-    }
-   }
-  },
-  "state": {
-   "type": "object",
-   "properties": {
-    "name": {
-     "type": "string"
-    }
-   }
-  }
- },
- "properties": {
-  "name": {
-   "type": "string"
-  },
-  "address": {
-   "$ref": "#/$defs/address"
-  }
- }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/customer.json",
+  "type": "object",
+  "$defs": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/state"
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "#/$defs/address"
+    }
+  }
 }
 ```
 
@@ -127,11 +127,11 @@ schema State:
 
 Helmfile is a declarative specification and tool for deploying Helm Charts. With the Helmfile KCL plugin, you can:
 
-+ Edit or verify Helm Chart through non-invasive hook methods, separating the data and logic parts of Kubernetes configuration management
-  + Modify resource labels/annotations, inject sidecar container configuration
-  + Use KCL schema to validate resources
-  + Define your own abstract application models
-+ Maintain multiple environment and tenant configurations elegantly, rather than simply copying and pasting.
+- Edit or verify Helm Chart through non-invasive hook methods, separating the data and logic parts of Kubernetes configuration management
+  - Modify resource labels/annotations, inject sidecar container configuration
+  - Use KCL schema to validate resources
+  - Define your own abstract application models
+- Maintain multiple environment and tenant configurations elegantly, rather than simply copying and pasting.
 
 Here is a detailed explanation using a simple example. With the Helmfile KCL plugin, you do not need to install any components related to KCL. You only need the latest version of the Helmfile tool on your local device.
 

@@ -22,10 +22,10 @@ metadata:
   name: web-app
 spec:
   containers:
-  - image: nginx
-    name: main-container
-    ports:
-      - containerPort: 80
+    - image: nginx
+      name: main-container
+      ports:
+        - containerPort: 80
 ```
 
 Here, the Pod data follows the definition of the io.k8s.api.core.v1.Pod model in the Kubernetes specification. The complete OpenAPI definition can be found here. By analyzing it carefully, we can see that the apiVersion and kind information are commonly used default configurations. We need a more modern configuration language to simplify it.

@@ -13,6 +13,7 @@ The core of KCL is developed in Rust, and the C language API is exported externa
 ## Go API
 
 Go API is a C-API provided by CGO wrapping KCL, while providing deeper customization features to meet the needs of upper-level tools.
+
 ### Abstract Model
 
 The abstract model of the KCL Go API is as follows:
@@ -253,7 +254,7 @@ schema Person:
 Then we want to use `Person` to verify the following JSON data:
 
 ```json
-{"key": "value"}
+{ "key": "value" }
 ```
 
 This can be done through the `ValidateCode` method of the `KclvmService` service. Refer to the `ValidateCode_Args` structure of the `ValidateCode` method:
@@ -272,8 +273,8 @@ Construct the JSON data required by the POST request according to the `ValidateC
 
 ```json
 {
-    "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
-    "data": "{\"key\": \"value\"}"
+  "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
+  "data": "{\"key\": \"value\"}"
 }
 ```
 

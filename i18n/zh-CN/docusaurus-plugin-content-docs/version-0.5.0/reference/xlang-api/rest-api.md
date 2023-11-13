@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 ---
+
 # Rest API
 
 ## 1. 启动 REST 服务
@@ -82,7 +83,7 @@ schema Person:
 然后希望通过 `Person` 来校验以下的 JSON 数据：
 
 ```json
-{"key": "value"}
+{ "key": "value" }
 ```
 
 可以通过 `KclvmService` 服务的 `ValidateCode` 方法完成。参考 `ValidateCode` 方法的 `ValidateCode_Args` 参数结构：
@@ -101,8 +102,8 @@ message ValidateCode_Args {
 
 ```json
 {
-    "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
-    "data": "{\"key\": \"value\"}"
+  "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
+  "data": "{\"key\": \"value\"}"
 }
 ```
 
@@ -119,10 +120,10 @@ curl -X POST \
 
 ```json
 {
-    "error": "",
-    "result": {
-        "success": true
-    }
+  "error": "",
+  "result": {
+    "success": true
+  }
 }
 ```
 
@@ -207,7 +208,7 @@ service KclvmService {
 	rpc FormatPath(FormatPath_Args) returns(FormatPath_Result);
 	rpc LintPath(LintPath_Args) returns(LintPath_Result);
 	rpc OverrideFile(OverrideFile_Args) returns (OverrideFile_Result);
-	
+
 	rpc GetSchemaType(GetSchemaType_Args) returns(GetSchemaType_Result);
 	rpc GetSchemaTypeMapping(GetSchemaTypeMapping_Args) returns(GetSchemaTypeMapping_Result);
 	rpc ValidateCode(ValidateCode_Args) returns(ValidateCode_Result);
@@ -252,7 +253,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-	
+
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 

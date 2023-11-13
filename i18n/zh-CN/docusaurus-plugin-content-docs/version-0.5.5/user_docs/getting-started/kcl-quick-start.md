@@ -68,7 +68,7 @@ servers = [
 该配置输出的 YAML 结果如下：
 
 ```yaml
-$ kcl server.k 
+$ kcl server.k
 title: KCL Example
 owner:
   name: The KCL Authors
@@ -128,7 +128,7 @@ database = DatabaseConfig {
 执行时将产生类似以下的错误（显示的文件路径和本地环境有关）：
 
 ```shell
-kcl server.k 
+kcl server.k
 ```
 
 输出为

@@ -2,7 +2,6 @@
 
 To convert from models defined in the Kubernetes CRD file to KCL schema, we could run the following script:
 
-
 ```shell
 kcl-openapi generate model --crd -f ${your_CRD.yaml} -t ${the_kcl_files_output_dir} --skip-validation
 ```

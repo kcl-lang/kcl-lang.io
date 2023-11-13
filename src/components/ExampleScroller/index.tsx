@@ -1,15 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react"
-import useWindowWidth from "@theme/useWindowWidth"
-import clsx from "clsx"
-import Highlight from "../Highlight"
-import Chevron from "@theme/Chevron"
-import seCss from "../../css/section.module.css"
-import shCss from "../../css/index/showcase.module.css"
-import Translate from '@docusaurus/Translate';
+import React, { useCallback, useEffect, useState } from "react";
+import useWindowWidth from "@theme/useWindowWidth";
+import clsx from "clsx";
+import Highlight from "../Highlight";
+import Chevron from "@theme/Chevron";
+import seCss from "../../css/section.module.css";
+import shCss from "../../css/index/showcase.module.css";
+import Translate from "@docusaurus/Translate";
 
-const S = [3, 5, 19, 31]
-const M = [3, 5, 19, 31]
-const L = [4, 5, 19, 31]
+const S = [3, 5, 19, 31];
+const M = [3, 5, 19, 31];
+const L = [4, 5, 19, 31];
 
 const getTopByIndex = (m: number[], index: 1 | 2 | 3 | 4): number => {
   const scale = {
@@ -17,16 +17,16 @@ const getTopByIndex = (m: number[], index: 1 | 2 | 3 | 4): number => {
     2: -25 * (m[1] ?? 0),
     3: -25 * (m[2] ?? 0),
     4: -25 * (m[3] ?? 0),
-  }
+  };
 
-  return scale[index] ?? 0
-}
+  return scale[index] ?? 0;
+};
 
 const configExample = `import base.pkg.kusion_models.kube.frontend
 
 server: frontend.Server {
     image = "nginx"
-}`
+}`;
 
 const schemaExample = `schema Server:
     """Server is the abstraction of Deployment and StatefulSet.
@@ -40,7 +40,7 @@ const schemaExample = `schema Server:
     image: str
     replicas: int = option("replicas") or 1
     labels?: {str:str}
-`
+`;
 
 const LambdaExample = `import base.pkg.kusion_models.kube.frontend
 
@@ -53,7 +53,7 @@ genLocalityLabels = lambda cluster: str, app: str -> {str:str} {
 server: frontend.Server {
     labels: genLocalityLabels("my-cluster", "nginx")
 }
-`
+`;
 
 const ruleExample = `import regex
 
@@ -62,46 +62,46 @@ rule ServerRule for Server:
     regex.match(image, r"^([a-z0-9\.\:]+)\.([a-z]+)\:([a-z0-9]+)\/([a-z0-9\.]+)\/([a-z0-9-_.:]+)$"), "image name should satisfy the \`REPOSITORY:TAG\` form"
 
 ServerRule()
-`
+`;
 
-type Index = 1 | 2 | 3 | 4
+type Index = 1 | 2 | 3 | 4;
 
 export const ExampleScroller = () => {
-  const [top, setTop] = useState(S)
-  const [index, setIndex] = useState<Index>(1)
-  const windowWidth = useWindowWidth()
+  const [top, setTop] = useState(S);
+  const [index, setIndex] = useState<Index>(1);
+  const windowWidth = useWindowWidth();
   const handleClick1 = useCallback(() => {
-    setIndex(1)
-  }, [])
+    setIndex(1);
+  }, []);
   const handleClick2 = useCallback(() => {
-    setIndex(2)
-  }, [])
+    setIndex(2);
+  }, []);
   const handleClick3 = useCallback(() => {
-    setIndex(3)
-  }, [])
+    setIndex(3);
+  }, []);
   const handleClick4 = useCallback(() => {
-    setIndex(4)
-  }, [])
+    setIndex(4);
+  }, []);
   const handleUpClick = useCallback(() => {
-    setIndex(Math.max(index - 1, 1) as Index)
-  }, [index])
+    setIndex(Math.max(index - 1, 1) as Index);
+  }, [index]);
   const handleDownClick = useCallback(() => {
-    setIndex(Math.min(index + 1, 4) as Index)
-  }, [index])
+    setIndex(Math.min(index + 1, 4) as Index);
+  }, [index]);
 
   useEffect(() => {
     if (windowWidth != null && windowWidth < 622) {
-      setTop(S)
-      return
+      setTop(S);
+      return;
     }
 
     if (windowWidth != null && windowWidth < 800) {
-      setTop(M)
-      return
+      setTop(M);
+      return;
     }
 
-    setTop(L)
-  }, [windowWidth])
+    setTop(L);
+  }, [windowWidth]);
 
   return (
     <section
@@ -156,11 +156,11 @@ export const ExampleScroller = () => {
               })}
               onClick={handleClick1}
             >
-              <h3 className={shCss.showcase__header}>
-                Config
-              </h3>
+              <h3 className={shCss.showcase__header}>Config</h3>
               <p className={shCss.showcase__description}>
-                <Translate>Start your cloud-native journey with scalable config</Translate>
+                <Translate>
+                  Start your cloud-native journey with scalable config
+                </Translate>
               </p>
             </div>
 
@@ -170,11 +170,11 @@ export const ExampleScroller = () => {
               })}
               onClick={handleClick2}
             >
-              <h3 className={shCss.showcase__header}>
-                Schema
-              </h3>
+              <h3 className={shCss.showcase__header}>Schema</h3>
               <p className={shCss.showcase__description}>
-                <Translate>Abstract your schema-centric model with static typing</Translate>
+                <Translate>
+                  Abstract your schema-centric model with static typing
+                </Translate>
               </p>
             </div>
 
@@ -184,11 +184,12 @@ export const ExampleScroller = () => {
               })}
               onClick={handleClick3}
             >
-              <h3 className={shCss.showcase__header}>
-                Lambda
-              </h3>
+              <h3 className={shCss.showcase__header}>Lambda</h3>
               <p className={shCss.showcase__description}>
-                <Translate>Define and reuse your config and logic through small function fragments</Translate>
+                <Translate>
+                  Define and reuse your config and logic through small function
+                  fragments
+                </Translate>
               </p>
             </div>
             <div
@@ -197,16 +198,17 @@ export const ExampleScroller = () => {
               })}
               onClick={handleClick4}
             >
-              <h3 className={shCss.showcase__header}>
-                Rule
-              </h3>
+              <h3 className={shCss.showcase__header}>Rule</h3>
               <p className={shCss.showcase__description}>
-                <Translate>Define your environmental rules to ensure consistency and stability</Translate>
+                <Translate>
+                  Define your environmental rules to ensure consistency and
+                  stability
+                </Translate>
               </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};

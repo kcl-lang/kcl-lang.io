@@ -17,7 +17,7 @@ KCL 的核心特性是其**建模**和**约束**能力，KCL 核心功能基本�
 
 ### 0. 先决条件
 
-+ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### 1. 获取示例
 

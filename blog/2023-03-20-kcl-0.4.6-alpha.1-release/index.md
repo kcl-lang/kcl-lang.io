@@ -17,18 +17,18 @@ You can visit the [KCL release page](https://github.com/kcl-lang/kcl/releases/ta
 
 ## Release Content
 
-+ Lexical error recovery including numbers, literal values, parentheses, etc
-+ KCL IDE plug-in supports error and warning display, go-to-definition, and other capabilities.
-+ Some compiler error reporting improvements
-+ KCL Playground supports code sharing capabilities
-+ [KPT Tool KCL SDK](https://github.com/kcl-lang/kcl/issues/434)
-+ [Helm KCL Plugin](https://github.com/kcl-lang/kcl/issues/426)
+- Lexical error recovery including numbers, literal values, parentheses, etc
+- KCL IDE plug-in supports error and warning display, go-to-definition, and other capabilities.
+- Some compiler error reporting improvements
+- KCL Playground supports code sharing capabilities
+- [KPT Tool KCL SDK](https://github.com/kcl-lang/kcl/issues/434)
+- [Helm KCL Plugin](https://github.com/kcl-lang/kcl/issues/426)
 
 ## Next​
 
-+ KPM package management tool release
-+ More KCL compiler syntax error recovery supports the release of new IDE plug-ins, with an expected performance improvement of 20 times
-+ KCL integration of Kubernetes tools such as Helm and KPT release
+- KPM package management tool release
+- More KCL compiler syntax error recovery supports the release of new IDE plug-ins, with an expected performance improvement of 20 times
+- KCL integration of Kubernetes tools such as Helm and KPT release
 
 ## FAQ
 
@@ -38,10 +38,10 @@ For more information, see [KCL FAQ](https://kcl-lang.io/docs/user_docs/support/)
 
 Thank all KCL users for their valuable feedback and suggestions during this version release. For more resources, please refer to:
 
-+ [KCL Website](https://kcl-lang.io/)
-+ [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/kcl-lang/kcl)
-+ [Kusion Repo](https://github.com/KusionStack/kusion)
-+ [Konfig Repo](https://github.com/KusionStack/konfig)
+- [KCL Website](https://kcl-lang.io/)
+- [Kusion Website](https://kusionstack.io/)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [Kusion Repo](https://github.com/KusionStack/kusion)
+- [Konfig Repo](https://github.com/KusionStack/konfig)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏

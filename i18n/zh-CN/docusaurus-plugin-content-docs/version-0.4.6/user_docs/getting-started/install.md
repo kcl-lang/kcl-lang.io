@@ -79,13 +79,13 @@ alias kcl='kcl-go run'
 
 ### 使用 Docker 镜像安装
 
-+ 基本命令
+- 基本命令
 
 ```bash
 docker run --rm -it kusionstack/kclvm
 ```
 
-+ 更新镜像
+- 更新镜像
 
 ```bash
 docker pull kusionstack/kclvm

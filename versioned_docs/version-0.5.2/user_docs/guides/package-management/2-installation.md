@@ -20,7 +20,7 @@ You can get `kpm` from the [kpm github release](https://github.com/kcl-lang/kpm/
 
 ```shell
 # KPM_INSTALLATION_PATH is the path of the `kpm` binary.
-export PATH=$KPM_INSTALLATION_PATH:$PATH  
+export PATH=$KPM_INSTALLATION_PATH:$PATH
 ```
 
 Use the following command to ensure that you install `kpm` successfully.

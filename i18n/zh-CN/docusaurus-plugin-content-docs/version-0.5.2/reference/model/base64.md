@@ -5,6 +5,7 @@ type: "docs"
 description: base64 编码解码
 weight: 100
 ---
+
 ## encode
 
 `encode(value: str, encoding: str = "utf-8") -> str`

@@ -7,14 +7,14 @@ sidebar_position: 2
 
 [Helm](https://github.com/helm/helm) is a tool for managing Charts. Charts are packages of pre-configured Kubernetes resources. You can use the `Helm-KCL-Plugin` to
 
-+ Edit the helm charts in a hook way to separate data and logic for the Kubernetes manifests management.
-+ For multi-environment and multi-tenant scenarios, you can maintain these configurations gracefully rather than simply copy and paste.
-+ Validate all KRM resources using the KCL schema.
+- Edit the helm charts in a hook way to separate data and logic for the Kubernetes manifests management.
+- For multi-environment and multi-tenant scenarios, you can maintain these configurations gracefully rather than simply copy and paste.
+- Validate all KRM resources using the KCL schema.
 
 ## Prerequisites
 
-+ Install [Helm](https://github.com/helm/helm)
-+ Install [Helm KCL Plugin](https://github.com/kcl-lang/helm-kcl)
+- Install [Helm](https://github.com/helm/helm)
+- Install [Helm KCL Plugin](https://github.com/kcl-lang/helm-kcl)
 
 ## Quick Start
 
@@ -50,10 +50,10 @@ metadata:
   name: workload
 spec:
   ports:
-  - name: www
-    port: 80
-    protocol: TCP
-    targetPort: 80
+    - name: www
+      port: 80
+      protocol: TCP
+      targetPort: 80
   selector:
     app.kubernetes.io/instance: workload
     app.kubernetes.io/name: workload
@@ -83,18 +83,18 @@ spec:
         app.kubernetes.io/name: workload
     spec:
       containers:
-      - image: nginx:alpine
-        name: frontend
+        - image: nginx:alpine
+          name: frontend
 ```
 
 ## Guides for Developing KCL
 
 Here's what you can do in the KCL code:
 
-+ Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
-+ Return a KPM list for output resources.
-+ Return an error using `assert {condition}, {error_message}`.
+- Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
+- Return a KPM list for output resources.
+- Return an error using `assert {condition}, {error_message}`.
 
 ## More Documents and Examples
 
-+ [Helm KCL Plugin](https://github.com/kcl-lang/helm-kcl)
+- [Helm KCL Plugin](https://github.com/kcl-lang/helm-kcl)

@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: Modules
 ---
+
 ## Modules and the Import System
 
 KCL code is organized in **modules**. For code in one module to access the code defined in another module, a process called **importing** must be used.
@@ -63,7 +64,7 @@ The rule to search with the module name is very simple:
 - **Step 1**: Searches the module name from the **standard system modules**, then **plugins modules**.
   - See **standard system modules** and **plugins modules** for more details. If matched, the module is imported. Otherwise, continue to **Step 2**.
 - **Step 2**. Whether a module name starts with a `.` is checked. If yes, the name is a so-called relative pathname, and we go to **Step 5**. Otherwise, continue to **Step 3**.
-- **Step 3**: If the module name does not start with any `.`, then the compiler searches the nearest `root path` directory from this directory to the parent, and find  the module according to the name just from the `root path`. If no `root path` is found, find the module according to the name from the folder the `.k` file including this `import` statement exists.
+- **Step 3**: If the module name does not start with any `.`, then the compiler searches the nearest `root path` directory from this directory to the parent, and find the module according to the name just from the `root path`. If no `root path` is found, find the module according to the name from the folder the `.k` file including this `import` statement exists.
   - **root path**: the directory contains a `kcl.mod` file. If matched, the module is imported. Otherwise, continue to **Step 4**.
 - **Step 4**: Then the compiler checks if the name is the name of any library module that requires explicit loading. If matched, the library module is imported. Otherwise, continue to **Step 6**.
 - **Step 5**. For relative importing, find the module according to the name from the folder the `.k` file including this `import` statement exists. Interpret leading dots using the following rule:
@@ -241,7 +242,7 @@ KCL supports a few standard system modules. The following is the full list of th
   - log10(x) -> float
     Return the base 10 logarithm of x.
   - pow(x, y) -> float
-    Return x**y (x to the power of y).
+    Return x\*\*y (x to the power of y).
   - sqrt(x) -> float
     Return the square root of x.
 - regex
@@ -398,7 +399,7 @@ The following is the full list of these built-in system modules:
   Equivalent to `x**y` (with two arguments) or `x**y % z` (with three arguments). Some types, such as ints, are able to use a more efficient algorithm when invoked using the three argument form.
 - round(number, ndigits)
   Round a number to a given precision in decimal digits. The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as the number. ndigits may be negative.
-- typeof(x: any, *, full_name: bool = False) -> str
+- typeof(x: any, \*, full_name: bool = False) -> str
   Return the type of the value 'x' at runtime. When the 'full_name' is 'True', return the full package type name such as `pkg.schema`.
 
 ### Plugin Modules

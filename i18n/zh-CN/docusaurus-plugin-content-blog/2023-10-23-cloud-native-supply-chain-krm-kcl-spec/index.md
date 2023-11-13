@@ -25,8 +25,8 @@ tags: [KCL, Meeting]
 
 Kubernetes 和 Terraform 背后所代表的云 API 越来越复杂的原因主要有以下几点<sup>[3]</sup><sup>[4]</sup><sup>[5]</sup>：
 
-+ **不断增加的功能和能力**：Kubernetes 和云 API 都是为了应对不断增长的应用需求和云计算的发展而不断演进。为了满足用户的需求，它们不断引入新的功能和能力，如自动扩展、服务发现、负载均衡、权限管理等。这些新功能的引入增加了系统的复杂性。虽然我们已经有了各式各样的自动化手段，随着时间的推移，因为不同资源类型的数量、这些资源类型的潜在设置数量以及这些资源类型之间的复杂关系呈指数级增长。
-+ **复杂的配置和管理需求**：随着应用规模的增长，配置和管理 Kubernetes 和云 API 变得越来越复杂。例如，需要管理大量的容器实例和资源、配置复杂的网络和存储、实现高可用性和负载均衡，需要针对不同的环境和拓扑重复地进行配置等。这些复杂的配置和管理需求增加了 Kubernetes 和云 API 的复杂性，开玩笑的说甚至在 Kubernetes 领域常常伴随催生了一批 YAML 工程师或标记语言人肉编辑工程师。
+- **不断增加的功能和能力**：Kubernetes 和云 API 都是为了应对不断增长的应用需求和云计算的发展而不断演进。为了满足用户的需求，它们不断引入新的功能和能力，如自动扩展、服务发现、负载均衡、权限管理等。这些新功能的引入增加了系统的复杂性。虽然我们已经有了各式各样的自动化手段，随着时间的推移，因为不同资源类型的数量、这些资源类型的潜在设置数量以及这些资源类型之间的复杂关系呈指数级增长。
+- **复杂的配置和管理需求**：随着应用规模的增长，配置和管理 Kubernetes 和云 API 变得越来越复杂。例如，需要管理大量的容器实例和资源、配置复杂的网络和存储、实现高可用性和负载均衡，需要针对不同的环境和拓扑重复地进行配置等。这些复杂的配置和管理需求增加了 Kubernetes 和云 API 的复杂性，开玩笑的说甚至在 Kubernetes 领域常常伴随催生了一批 YAML 工程师或标记语言人肉编辑工程师。
 
 对于云 API, 我们借助 Terraform 等 IaC 工具可以获得大量的已经编写好的 Module 配置和 Provider 等，但是对于 Kubernetes 仍然缺乏客户端的轻量级的配置组合和抽象解决方案，现有的方案或者规范难以在抽象能力和扩展性获得平衡，甚至对于一些极端场景，开发者往往编写许多胶水代码和脚本对配置进行处理逻辑，稳定性和效率都受到一定桎梏。
 
@@ -34,9 +34,9 @@ Kubernetes 和 Terraform 背后所代表的云 API 越来越复杂的原因主�
 
 因此，我们提出了 KCL 项目以及 KRM KCL 规范期望通过更现代化的声明式配置语言和工具，在轻量级客户端云原生动态配置领域填补配置语言及工具的空白并解决如下问题：
 
-+ **维度爆炸**: 大多数静态配置如云原生领域的 Kubernetes YAML 配置需要为每个环境单独进行配置；在最糟糕的情况下，它可能引入涉及环境交叉链接的难以调试的错误，稳定性和扩展性都较差。
-+ **配置漂移**: 对于不同环境的静态管理应用程序和基础设施配置的方式，往往没有标准的方式去管理这些动态的不同环境的配置，采用非标准化的方法比如脚本和胶水代码的拼盘，会导致复杂度呈指数增长，并导致配置漂移。
-+ **认知负担**: Kubernetes 等作为构建平台的平台技术手段在底层统一基础架构细节方面出色，但是缺乏更上层的应用软件交付抽象，对于普通开发者认知负担较高，影响了更上层应用开发者的软件交付体验。
+- **维度爆炸**: 大多数静态配置如云原生领域的 Kubernetes YAML 配置需要为每个环境单独进行配置；在最糟糕的情况下，它可能引入涉及环境交叉链接的难以调试的错误，稳定性和扩展性都较差。
+- **配置漂移**: 对于不同环境的静态管理应用程序和基础设施配置的方式，往往没有标准的方式去管理这些动态的不同环境的配置，采用非标准化的方法比如脚本和胶水代码的拼盘，会导致复杂度呈指数增长，并导致配置漂移。
+- **认知负担**: Kubernetes 等作为构建平台的平台技术手段在底层统一基础架构细节方面出色，但是缺乏更上层的应用软件交付抽象，对于普通开发者认知负担较高，影响了更上层应用开发者的软件交付体验。
 
 ## 概念
 
@@ -64,15 +64,15 @@ KRM 规范作为 Kubernetes 官方的规范之一，其核心概念是 KRM 函�
 
 在 KRM KCL 规范中，我们将 KCL 配置模型的行为主要分成三类
 
-+ **Mutation**: 输入 KCL 参数 `params` 和 KRM 列表并输出修改后 KRM 列表。
-+ **Validation**: 输入 KCL 参数 `params` 和 KRM 列表并输出 KRM 列表和资源验证结果。
-+ **Abstraction**: 输入 KCL 参数 `params` 并输出 KRM 列表。
+- **Mutation**: 输入 KCL 参数 `params` 和 KRM 列表并输出修改后 KRM 列表。
+- **Validation**: 输入 KCL 参数 `params` 和 KRM 列表并输出 KRM 列表和资源验证结果。
+- **Abstraction**: 输入 KCL 参数 `params` 并输出 KRM 列表。
 
 我们可以使用 KCL 以可编程的方式实现如下能力:
 
-+ 使用 KCL 对资源进行修改，如根据某个条件添加/修改 label 标签或 annotation 注释或在包含 PodTemplate 的所有 Kubernetes Resource Model (KRM) 资源中注入 Sidecar 容器配置等。
-+ 使用 KCL Schema 验证所有 KRM 资源，如约束只能以 Root 方式启动容器等。
-+ 使用抽象模型生成 KRM 资源或者对不同的 Kubernetes API 进行抽象/组合并使用，比如使用 `web-service` 模型实例化一个 Web 应用配置。
+- 使用 KCL 对资源进行修改，如根据某个条件添加/修改 label 标签或 annotation 注释或在包含 PodTemplate 的所有 Kubernetes Resource Model (KRM) 资源中注入 Sidecar 容器配置等。
+- 使用 KCL Schema 验证所有 KRM 资源，如约束只能以 Root 方式启动容器等。
+- 使用抽象模型生成 KRM 资源或者对不同的 Kubernetes API 进行抽象/组合并使用，比如使用 `web-service` 模型实例化一个 Web 应用配置。
 
 我们可以借助 KCL IDE 和 KCL 包管理工具编写模型并上传到 OCI Registry 以实现模型复用，对 KRM KCL 规范进行可编程扩展支持，并且这些模型可以根据场景需求分别用在客户端或者运行时。
 
@@ -92,9 +92,9 @@ KRM 规范作为 Kubernetes 官方的规范之一，其核心概念是 KRM 函�
 
 作为 CNCF 的项目，KCL 还与 CNCF 其他众多生态项目进行了集成，比如为现有的 CNCF 生态配置管理工具项目如 Kubectl, Helm、Kustomize、kpt、helmfile 等提供 KCL 插件，在运行时提供 KCL Kubernetes Operator，以满足不同场景的配置管理需求等。此外我们还提供如下集成支持：
 
-+ **多语言支持**：我们提供了多语言 SDK，帮助用户以不同的语言操作 KCL，并将其集成到自己的应用程序中。
-+ **包管理支持**：我们提供了 KCL 包管理工具可以将配置和策略代码通过 Harbor, Docker Hub, GitHub Packages 等标准的 OCI 供应链方式进行分发和复用。
-+ **Schema 和数据迁移支持**：我们支持其他生态系统的 Schema 和数据一键迁移到 KCL Schema，如 Go/Rust 结构定义、JsonSchema、Protobuf、OpenAPI、Terraform Provider Schema、JSON 和 YAML 等。
+- **多语言支持**：我们提供了多语言 SDK，帮助用户以不同的语言操作 KCL，并将其集成到自己的应用程序中。
+- **包管理支持**：我们提供了 KCL 包管理工具可以将配置和策略代码通过 Harbor, Docker Hub, GitHub Packages 等标准的 OCI 供应链方式进行分发和复用。
+- **Schema 和数据迁移支持**：我们支持其他生态系统的 Schema 和数据一键迁移到 KCL Schema，如 Go/Rust 结构定义、JsonSchema、Protobuf、OpenAPI、Terraform Provider Schema、JSON 和 YAML 等。
 
 ![artifact-hub](/img/blog/2023-10-23-cloud-native-supply-chain-krm-kcl-spec/artifact-hub.png)
 
@@ -168,28 +168,28 @@ KCL 也可以被用于企业内部与各种 CI/CD 和应用配置交付引擎比
 
 ## 其他资源
 
-更多其他资源请参考: 
+更多其他资源请参考:
 
-+ [KCL 网站](https://kcl-lang.io/)
-+ [KCL GitHub 仓库](https://github.com/kcl-lang/)
-+ [KusionStack 网站](https://kusionstack.io/)
-+ [KusionStack GitHub 仓库](https://github.com/KusionStack/)
+- [KCL 网站](https://kcl-lang.io/)
+- [KCL GitHub 仓库](https://github.com/kcl-lang/)
+- [KusionStack 网站](https://kusionstack.io/)
+- [KusionStack GitHub 仓库](https://github.com/KusionStack/)
 
 ## 参考
 
-+ [1] Forecast Analysis: Container Management (Software and Services), Worldwide: https://www.gartner.com/en/documents/3985796
-+ [2] The top programming languages: https://octoverse.github.com/2022/top-programming-languages
-+ [3] Kubernetes 中的声明式应用管理: [https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#](https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#)
-+ [4] CNCF 平台工程白皮书: [https://tag-app-delivery.cncf.io/whitepapers/platforms/](https://tag-app-delivery.cncf.io/whitepapers/platforms/)
-+ [5] Google SRE 工作手册: [https://sre.google/workbook/configuration-specifics/](https://sre.google/workbook/configuration-specifics/)
-+ [6] KCL 官方网站: [https://kcl-lang.io/](https://kcl-lang.io/)
-+ [7] Kubectl: [https://kubernetes.io/docs/reference/kubectl/](https://kubernetes.io/docs/reference/kubectl/)
-+ [8] KusionStack: [https://kusionstack.io](https://kusionstack.io)
-+ [9] KubeVela: [https://kubevela.net](https://kubevela.net)
-+ [10] Helmfile: [https://github.com/helmfile/helmfile](https://github.com/helmfile/helmfile)
-+ [11] KRM KCL 规范: [https://github.com/kcl-lang/krm-kcl](https://github.com/kcl-lang/krm-kcl)
-+ [12] KCL IDE 插件: [https://kcl-lang.io/docs/tools/Ide/](https://kcl-lang.io/docs/tools/Ide/)
-+ [13] ArtifactHub KCL 集成: [https://artifacthub.io/](https://artifacthub.io/)
-+ [14] KCL Operator: [https://github.com/kcl-lang/kcl-operator](https://github.com/kcl-lang/kcl-operator)
-+ [15] Terraform KCL 策略代码化: [https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation](https://kcl-lang.io/docs/user_docs/guides/[]working-with-terraform/validation)
-+ [16] 使用 KCL 进行 GitOps: [https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start](https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start)
+- [1] Forecast Analysis: Container Management (Software and Services), Worldwide: https://www.gartner.com/en/documents/3985796
+- [2] The top programming languages: https://octoverse.github.com/2022/top-programming-languages
+- [3] Kubernetes 中的声明式应用管理: [https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#](https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#)
+- [4] CNCF 平台工程白皮书: [https://tag-app-delivery.cncf.io/whitepapers/platforms/](https://tag-app-delivery.cncf.io/whitepapers/platforms/)
+- [5] Google SRE 工作手册: [https://sre.google/workbook/configuration-specifics/](https://sre.google/workbook/configuration-specifics/)
+- [6] KCL 官方网站: [https://kcl-lang.io/](https://kcl-lang.io/)
+- [7] Kubectl: [https://kubernetes.io/docs/reference/kubectl/](https://kubernetes.io/docs/reference/kubectl/)
+- [8] KusionStack: [https://kusionstack.io](https://kusionstack.io)
+- [9] KubeVela: [https://kubevela.net](https://kubevela.net)
+- [10] Helmfile: [https://github.com/helmfile/helmfile](https://github.com/helmfile/helmfile)
+- [11] KRM KCL 规范: [https://github.com/kcl-lang/krm-kcl](https://github.com/kcl-lang/krm-kcl)
+- [12] KCL IDE 插件: [https://kcl-lang.io/docs/tools/Ide/](https://kcl-lang.io/docs/tools/Ide/)
+- [13] ArtifactHub KCL 集成: [https://artifacthub.io/](https://artifacthub.io/)
+- [14] KCL Operator: [https://github.com/kcl-lang/kcl-operator](https://github.com/kcl-lang/kcl-operator)
+- [15] Terraform KCL 策略代码化: [https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation](https://kcl-lang.io/docs/user_docs/guides/[]working-with-terraform/validation)
+- [16] 使用 KCL 进行 GitOps: [https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start](https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start)

@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: Data Types
 ---
+
 ## Syntax
 
 ### Bool
@@ -17,8 +18,8 @@ Int, or integer, is an arbitrarily sized integer, positive or negative, without 
 
 Besides, integer literals may have an `SI` or `IEC` multiplier.
 
-+ `SI`: General integer or fixed-point number form: `P`, `T`, `G`, `M`, `K`, `k`, `m`, `u`, `n`.
-+ `IEC`: Corresponding power of 2: `Pi`, `Ti`, `Gi`, `Mi`, `Ki`.
+- `SI`: General integer or fixed-point number form: `P`, `T`, `G`, `M`, `K`, `k`, `m`, `u`, `n`.
+- `IEC`: Corresponding power of 2: `Pi`, `Ti`, `Gi`, `Mi`, `Ki`.
 
 ```python
 a = 1  # positive integer: 1
@@ -34,7 +35,7 @@ i = int("10Ki")  # int constructor with multiplier: 10240
 
 Notes:
 
-+ Report an error if unable to represent an integer value precisely.
+- Report an error if unable to represent an integer value precisely.
 
 ### Float
 
@@ -53,8 +54,8 @@ i = float("112")  # float constructor
 
 Notes:
 
-+ Report an error if unable to represent a floating-point value due to overflow
-+ Report a warning if unable to represent a floating-point value due to underflow. Round to the nearest representable value if unable to represent a floating-point value due to limits on precision. These requirements apply to the result of any expression except for built-in functions for which an unusual loss of precision must be explicitly documented.
+- Report an error if unable to represent a floating-point value due to overflow
+- Report a warning if unable to represent a floating-point value due to underflow. Round to the nearest representable value if unable to represent a floating-point value due to limits on precision. These requirements apply to the result of any expression except for built-in functions for which an unusual loss of precision must be explicitly documented.
 
 #### None
 
@@ -102,19 +103,19 @@ f = str(Undefined)  # Undefined
 
 Int and Float support the following operations (see built-in proposal for built-in details):
 
-+ `x + y`: sum of x and y.
-+ `x - y`: difference of x and y.
-+ `x * y`: product of x and y.
-+ `x / y`: quotient of x and y.
-+ `x // y`: floored quotient of x and y.
-+ `x % y`: remainder of x / y.
-+ `x ** y`: x to the power y.
-+ `-x`: x negated.
-+ `+x`: x unchanged.
-+ `~x`: x bitwise negation.
-+ `abs(x)`: absolute value or magnitude of x.
-+ `int(x)`: x converted to integer.
-+ `float(x)`: x converted to floating point.
+- `x + y`: sum of x and y.
+- `x - y`: difference of x and y.
+- `x * y`: product of x and y.
+- `x / y`: quotient of x and y.
+- `x // y`: floored quotient of x and y.
+- `x % y`: remainder of x / y.
+- `x ** y`: x to the power y.
+- `-x`: x negated.
+- `+x`: x unchanged.
+- `~x`: x bitwise negation.
+- `abs(x)`: absolute value or magnitude of x.
+- `int(x)`: x converted to integer.
+- `float(x)`: x converted to floating point.
 
 KCL supports mixed arithmetic: when a binary arithmetic operator has operands of different numeric types, the operand with the "narrower" type is widened to that of the other, where integer is narrower than floating-point.
 
@@ -139,9 +140,9 @@ c = a[-5:-2]  # "orl"
 d = a[::-1]  # "'!dlroW ,olleH'"
 ```
 
-+ `str(x=None) -> str`
+- `str(x=None) -> str`
 
-Return a string. If *x* is not provided, raise a runtime error.
+Return a string. If _x_ is not provided, raise a runtime error.
 
 ```python
 x = str(3.5) # "3.5"
@@ -151,70 +152,73 @@ x = str(3.5) # "3.5"
 
 Built-in function and members of a string
 
-+ `str#len() -> int`
+- `str#len() -> int`
   Return the number of characters in the string.
-+ `capitalize() -> str`
+- `capitalize() -> str`
   Return a copy of the string with its first character (if any) capitalized and the rest lowercased.
-+ `count(sub: str, start: int = 0, end: int = -1) -> int`
+- `count(sub: str, start: int = 0, end: int = -1) -> int`
   Returns the number of (non-overlapping) occurrences of substring sub in string, optionally restricting to `[start:end]`, start being inclusive and end being exclusive.
-+ `endswith(suffix: str, start: int = 0, end: int = -1) -> bool`
+- `endswith(suffix: str, start: int = 0, end: int = -1) -> bool`
   Returns `True` if the string ends with the specified suffix, otherwise return `False`, optionally restricting to `[start:end]`, start being inclusive and end being exclusive.
-+ `find(sub: str, start: int = 0, end: int = -1) -> int`
+- `find(sub: str, start: int = 0, end: int = -1) -> int`
   Returns the lowest index where substring sub is found, or -1 if no such index exists, optionally restricting to `[start:end]`, start being inclusive and end being exclusive.
-+ `format(*args, **kwargs) -> str`
+- `format(*args, **kwargs) -> str`
   Perform string interpolation. Format strings contain replacement fields surrounded by curly braces {}. Anything that is not contained in braces is considered literal text, which is copied unchanged to the output. If you need to include a bracket character in the literal text, it can be escaped by doubling: A replacement field can be either a name, a number or empty. Values are converted to strings using the str function.
-+ `index(sub: str, start: int = 0, end: int = -1) -> int`
+- `index(sub: str, start: int = 0, end: int = -1) -> int`
   Returns the first index where sub is found, or raises an error if no such index exists, optionally restricting to `[start:end]` start being inclusive and end being exclusive.
-+ `isalnum() -> bool`
+- `isalnum() -> bool`
   Returns True if all characters in the string are alphanumeric (`[a-zA-Z0-9]`) and there is at least one character, False otherwise.
-+ `isalpha() -> bool`
+- `isalpha() -> bool`
   Returns True if all characters in the string are alphabetic (`[a-zA-Z]`) and there is at least one character.
-+ `isdigit() -> bool`
+- `isdigit() -> bool`
   Returns True if all characters in the string are digits (`[0-9]`) and there is at least one character.
-+ `islower() -> bool`
+- `islower() -> bool`
   Returns True if all cased characters in the string are lowercase and there is at least one character.
-+ `isspace() -> bool`
+- `isspace() -> bool`
   Returns True if all characters are white space characters and the string contains at least one character.
-+ `istitle() -> bool`
+- `istitle() -> bool`
   Returns True if the string is in title case and it contains at least one character. This means that every uppercase character must follow an uncased one (e.g., whitespace) and every lowercase character must follow a cased one (e.g., uppercase or lowercase).
-+ `isupper() -> bool`
+- `isupper() -> bool`
   Returns True if all cased characters in the string are uppercase and there is at least one character.
-+ `join(iterable: list) -> str`
+- `join(iterable: list) -> str`
   Return a string which is the concatenation of the strings in iterable. A TypeError will be raised if there are any non-string values in iterable. The separator between elements is the string providing this method. Example:
 
   ```python
   >>> "|".join(["a", "b", "c"])
   "a|b|c"
   ```
-+ `lower() -> str`
+
+- `lower() -> str`
   Returns a copy of the string with all the cased characters converted to lowercase.
-+ `lstrip(chars: str) -> str`
+- `lstrip(chars: str) -> str`
   Return a copy of the string with leading characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a prefix; rather, all combinations of its values are stripped:
 
   ```python
-  >>> '   spacious   '.lstrip() 
+  >>> '   spacious   '.lstrip()
   'spacious   '
   >>> 'www.example.com'.lstrip('cmowz.')
   'example.com'
   ```
-+ `replace(old: str, new: str, count: int) -> str`
+
+- `replace(old: str, new: str, count: int) -> str`
   Return a copy of the string with all occurrences of substring old replaced by new. If the optional argument count is given, only the first count occurrences are replaced.
-+ `rfind(sub: str, start: int = 0, end: int = -1) -> int`
+- `rfind(sub: str, start: int = 0, end: int = -1) -> int`
   Return the highest index in the string where substring sub is found, such that sub is contained within s[start:end]. Optional arguments start and end are interpreted as in slice notation. Return -1 on failure.
-+ `rindex(sub: str, start: int = 0, end: int = -1) -> int`
+- `rindex(sub: str, start: int = 0, end: int = -1) -> int`
   Returns the last index where sub is found, or raises an ValueError if no such index exists, optionally restricting to `[start:end]`, start being inclusive and end being exclusive.
-+ `rsplit(sep: str, maxsplit: int = -1) -> list`
+- `rsplit(sep: str, maxsplit: int = -1) -> list`
   Return a list of the words in the string, using sep as the delimiter string. If maxsplit is given, at most maxsplit splits are done, the rightmost ones. If sep is not specified or None, any whitespace string is a separator. Except for splitting from the right, rsplit() behaves like split() which is described in detail below.
-+ `rstrip(chars: str) -> str`
+- `rstrip(chars: str) -> str`
   Return a copy of the string with trailing characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a suffix; rather, all combinations of its values are stripped:
 
   ```python
-  >>> '   spacious   '.rstrip() 
+  >>> '   spacious   '.rstrip()
   '   spacious'
   >>> 'mississippi'.rstrip('ipz')
   'mississ'
   ```
-+ `split(sep: str, maxsplit: int) -> list`
+
+- `split(sep: str, maxsplit: int) -> list`
   Return a list of the words in the string, using sep as the delimiter string. If maxsplit is given, at most maxsplit splits are done (thus, the list will have at most maxsplit+1 elements). If maxsplit is not specified or -1, then there is no limit on the number of splits (all possible splits are made).
 
   If sep is given, consecutive delimiters are not grouped together and are deemed to delimit empty strings (for example, `'1,,2'.split(',')` returns `['1', '', '2']`). The sep argument may consist of multiple characters (for example, `'1<>2<>3'.split('<>')` returns `['1', '2', '3']`). Splitting an empty string with a specified separator returns `['']`.
@@ -242,7 +246,8 @@ Built-in function and members of a string
   >>> '   1   2   3   '.split()
   ['1', '2', '3']
   ```
-+ `splitlines(keepends: str) -> list`
+
+- `splitlines(keepends: str) -> list`
   Return a list of the lines in the string, breaking at line boundaries('\n', '\r\n', '\r'). Line breaks are not included in the resulting list unless keepends is given and true.
 
   This method splits on the following line boundaries. In particular, the boundaries are a superset of universal newlines.
@@ -273,9 +278,10 @@ Built-in function and members of a string
   >>> 'Two lines\n'.split('\n')
   ['Two lines', '']
   ```
-+ `startswith(prefix: str, start: int = 0, end: int = -1) -> bool`
+
+- `startswith(prefix: str, start: int = 0, end: int = -1) -> bool`
   Return `True` if string starts with the prefix, otherwise return False. prefix can also be a list of prefixes to look for. With optional start, test string beginning at that position. With optional end, stop comparing string at that position.
-+ `strip(chars: str) -> str`
+- `strip(chars: str) -> str`
   Return a copy of the string with the leading and trailing characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a prefix or suffix; rather, all combinations of its values are stripped:
 
   ```python
@@ -292,7 +298,8 @@ Built-in function and members of a string
   >>> comment_string.strip('.#! ')
   'Section 3.2.1 Issue #32'
   ```
-+ `title() -> str`
+
+- `title() -> str`
   Return a titlecased version of the string where words start with an uppercase character and the remaining characters are lowercase.
 
   For example:
@@ -308,7 +315,8 @@ Built-in function and members of a string
   >>> "they're bill's friends from the UK".title()
   "They'Re Bill'S Friends From The Uk"
   ```
-+ `upper() -> str`
+
+- `upper() -> str`
   Return a copy of the string with all the cased characters 4 converted to uppercase. Note that `s.upper().isupper()` might be `False` if s contains uncased characters or if the Unicode category of the resulting character(s) is not “Lu” (Letter, uppercase), but e.g., “Lt” (Letter, titlecase).
 
 ### List
@@ -317,10 +325,10 @@ Lists are immutable sequences, typically used to store collections of homogeneou
 
 Lists may be constructed in several ways:
 
-+ Using a pair of square brackets to denote the empty list: `[]`
-+ Using square brackets, separating items with commas: `[a]`, `[a, b, c]`
-+ Using a list comprehension: `[x for x in iterable]`
-+ Using the type constructor: list() or list(iterable)
+- Using a pair of square brackets to denote the empty list: `[]`
+- Using square brackets, separating items with commas: `[a]`, `[a, b, c]`
+- Using a list comprehension: `[x for x in iterable]`
+- Using the type constructor: list() or list(iterable)
 
 The constructor builds a list whose items are the same and in the same order as iterable’s items.Iterable may be either a sequence, a container that supports iteration, or an iterator object. If iterable is already a list, a copy is made and returned, similar to `iterable[:]`. For example, `list('abc')` returns `['a', 'b', 'c']` and `list([1, 2, 3])` returns `[1, 2, 3]`. If no argument is given, the constructor creates a new empty list `[]`.
 
@@ -328,7 +336,7 @@ Lists implement all of the common sequence operations.
 
 #### Members
 
-+ `len()`
+- `len()`
   Return the number of items in the list.
 
 ### Common Sequence Operations
@@ -338,7 +346,7 @@ The operations in the following table are supported by List and Dict.
 This table lists the sequence operations sorted in ascending priority. In the table, s and t are sequences of the same type, n, i, j and k are integers and x is an arbitrary object that meets any type and value restrictions imposed by s.
 
 The `in` and `not in` operations have the same priorities as the comparison operations. The +
-(concatenation) and * (repetition) operations have the same priority as the corresponding numeric operations.
+(concatenation) and \* (repetition) operations have the same priority as the corresponding numeric operations.
 
 | Operation    | Result                                             | Notes |
 | ------------ | -------------------------------------------------- | ----- |
@@ -353,7 +361,7 @@ The `in` and `not in` operations have the same priorities as the comparison oper
 
 Notes:
 
-+ 1. While the in and not in operations are used only for simple containment testing in the
+- 1. While the in and not in operations are used only for simple containment testing in the
      general case, some specialized sequences (str) also use them for subsequence testing:
 
 ```python
@@ -361,15 +369,17 @@ Notes:
 True
 ```
 
-+ 2. If i or j is negative, the index is relative to the end of sequence s: `s.len() + i` or `s.len() + j` is substituted. But note that -0 is still 0.
-+ 3. The slice of s from i to j is defined as the sequence of items with index k such that `i <= k < j`. If i or j is greater than `s.len()`, use `s.len()`. If i is omitted or None, use 0. If j is omitted or None, use `s.len()`. If i is greater than or equal to j, the slice is empty.
-+ 4. The slice of s from i to j with step k is defined as the sequence of items with index `x = i + n*k` such that `0 <= n < (j-i)/k`. In other words, the indices are `i`, `i+k`, `i+2*k`, `i+3*k` and so on, stopping when j is reached (but never including j). When k is positive, i and j are reduced to s.len() if they are greater. When k is negative, i and j are reduced to s.len()
+- 2. If i or j is negative, the index is relative to the end of sequence s: `s.len() + i` or `s.len() + j` is substituted. But note that -0 is still 0.
+- 3. The slice of s from i to j is defined as the sequence of items with index k such that `i <= k < j`. If i or j is greater than `s.len()`, use `s.len()`. If i is omitted or None, use 0. If j is omitted or None, use `s.len()`. If i is greater than or equal to j, the slice is empty.
+- 4. The slice of s from i to j with step k is defined as the sequence of items with index `x = i + n*k` such that `0 <= n < (j-i)/k`. In other words, the indices are `i`, `i+k`, `i+2*k`, `i+3*k` and so on, stopping when j is reached (but never including j). When k is positive, i and j are reduced to s.len() if they are greater. When k is negative, i and j are reduced to s.len()
 
-  + If they are greater. If i or j are omitted or None, they become “end” values (which end depends on the sign of k). Note, k cannot be zero. If k is None, it is treated like 1.
-+ 5. Concatenating immutable sequences always results in a new object. This means that building up a sequence by repeated concatenation will have a quadratic runtime cost in the total sequence length. To get a linear runtime cost, you must switch to one of the alternatives below:
+  - If they are greater. If i or j are omitted or None, they become “end” values (which end depends on the sign of k). Note, k cannot be zero. If k is None, it is treated like 1.
 
-  + if concatenating str objects, you can build a list and use `str.join()` at the end
-+ 6. `index` raises `ValueError` when x is not found in s. Not all implementations support passing the additional arguments i and j. These arguments allow efficient searching of subsections of the sequence. Passing the extra arguments is roughly equivalent to using `s[i:j].index(x)`, only without copying any data and with the returned index being relative to the start of the sequence rather than the start of the slice.
+- 5. Concatenating immutable sequences always results in a new object. This means that building up a sequence by repeated concatenation will have a quadratic runtime cost in the total sequence length. To get a linear runtime cost, you must switch to one of the alternatives below:
+
+  - if concatenating str objects, you can build a list and use `str.join()` at the end
+
+- 6. `index` raises `ValueError` when x is not found in s. Not all implementations support passing the additional arguments i and j. These arguments allow efficient searching of subsections of the sequence. Passing the extra arguments is roughly equivalent to using `s[i:j].index(x)`, only without copying any data and with the returned index being relative to the start of the sequence rather than the start of the slice.
 
 ### Dict
 
@@ -377,7 +387,7 @@ Dict is an immutable mapping object maps hashable values to arbitrary objects. A
 
 Dictionaries can be created by placing a comma-separated list of keys: value pairs within braces, for example: `{'jack': 4098, 'sjoerd': 4127}` or `{4098: 'jack', 4127: 'sjoerd'}`, by the dict constructor, or list/dict comprehension.
 
-+ `dict(obj)`
+- `dict(obj)`
 
 Return a new dictionary initialized from an optional positional argument and a possibly empty set of keyword arguments.If no positional argument is given, an empty dictionary is created. If a positional argument is given and it is a mapping object, a dictionary is created with the same key-value pairs as the mapping object. Otherwise, the positional argument must be an iterable object. Each item in the iterable must itself be an iterable with exactly two objects. The first object of each item becomes a key in the new dictionary, and the second object the corresponding value. If a key occurs more than once, the last value for that key becomes the corresponding value in the new dictionary. If keyword arguments are given, the keyword arguments and their values are added to the dictionary created from the positional argument. If a key being added is already present, the value from the keyword argument replaces the value from the positional argument.To illustrate, the following examples all return a dictionary equal to `{"one": 1, "two": 2, "three": 3}`:
 
@@ -406,17 +416,17 @@ In the dict comprehension, key/value pairs yielded by the generator expression i
 
 These are the operations that dictionaries the support.
 
-+ `list(d)`
+- `list(d)`
   Return a list of all the keys used in the dictionary d.
-+ `len()`
+- `len()`
   Return the number of items in the dictionary d.
-+ `d[key]`
+- `d[key]`
   Return the item of d with key. Return Undefined if key is not in the map.
-+ `key in d`
+- `key in d`
   Return True if d has a key, else False.
-+ `key not in d`
+- `key not in d`
   Equivalent to not key in d.
-+ `d.key`
+- `d.key`
   Return the item of d with key. Return Undefined if key is not in the map.
 
 Dictionaries compare equal if and only if they have the same (key, value) pairs(keys' ordering matters). Order comparisons (‘<’, ‘<=’, ‘>=’, ‘>’) raise TypeError.

@@ -2,6 +2,7 @@
 id: github-actions
 sidebar_label: Github Actions
 ---
+
 # Github Actions Integration
 
 ## Introduction
@@ -12,13 +13,13 @@ In the GitOps section, we have introduced how to integrate KCL with GitOps. In t
 
 The overall workflow is as follows:
 
-+ Develop application code and submit it to the GitHub repository to trigger CI.
-+ GitHub Actions generate container images from application code and push them to the `docker.io` container registry.
-+ GitHub Actions automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
+- Develop application code and submit it to the GitHub repository to trigger CI.
+- GitHub Actions generate container images from application code and push them to the `docker.io` container registry.
+- GitHub Actions automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
 
 ## Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ## How to
 
@@ -26,7 +27,7 @@ The overall workflow is as follows:
 
 We put the application source code and infrastructure deployment code in different repos, which can be maintained by different roles to achieve the separation of concerns.
 
-+ Get the application code
+- Get the application code
 
 ```shell
 git clone https://github.com/kcl-lang/flask-demo.git/
@@ -44,9 +45,9 @@ name: CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -62,7 +63,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
+
       - name: Docker Login
         uses: docker/login-action@v1.10.0
         with:
@@ -92,7 +93,7 @@ jobs:
             sha-tag=${{ github.sha }}
 ```
 
-We need the workflow in the source code repository to automatically trigger the workflow in the deployment manifest repository. At this point, we need to create a `secrets.DEPLOY_ACCESS_TOKEN` with Github CI operation permissions and **Docker Hub** image push account information `secrets.DOCKER_USERNAME` and `secrets.DOCKER_PASSWORD`  can be configured in the `Secrets and variables` settings of the Github, as shown in the following figure
+We need the workflow in the source code repository to automatically trigger the workflow in the deployment manifest repository. At this point, we need to create a `secrets.DEPLOY_ACCESS_TOKEN` with Github CI operation permissions and **Docker Hub** image push account information `secrets.DOCKER_USERNAME` and `secrets.DOCKER_PASSWORD` can be configured in the `Secrets and variables` settings of the Github, as shown in the following figure
 
 ![](/img/docs/user_docs/guides/ci-integration/github-secrets.png)
 
@@ -108,7 +109,7 @@ After the Github CI process in the application repository is completed, an autom
 
 ![](/img/docs/user_docs/guides/ci-integration/image-auto-update.png)
 
-+ We can obtain the deployment manifest source code for compilation and validation
+- We can obtain the deployment manifest source code for compilation and validation
 
 ```shell
 git clone https://github.com/kcl-lang/flask-demo-kcl-manifests.git/

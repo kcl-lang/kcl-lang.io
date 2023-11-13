@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 本栏目将会双周更新 KCL 语言社区最新动态，包括功能、官网更新和最新的社区动态等，帮助大家更好地了解 KCL 社区！
 
-***KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## 内容概述
 
@@ -31,8 +31,8 @@ tags: [KCL, Biweekly-Newsletter]
 
 以下排名不分先后
 
-- 感谢 @jakezhu9 对 KCL benchmark 由单线程 Rc 到 Arc 的改进，对 KCL 导入工具中关于引用路径的 bug修复 🙌 *[https://github.com/kcl-lang/kcl-go/pull/170](https://github.com/kcl-lang/kcl-go/pull/170)* 等
-- 感谢 @liangyuanpeng 为 KCL 模型贡献 karmada 模型包，欢迎！🙌 *[https://github.com/kcl-lang/artifacthub/pull/48/files](https://github.com/kcl-lang/artifacthub/pull/48/files)*
+- 感谢 @jakezhu9 对 KCL benchmark 由单线程 Rc 到 Arc 的改进，对 KCL 导入工具中关于引用路径的 bug修复 🙌 _[https://github.com/kcl-lang/kcl-go/pull/170](https://github.com/kcl-lang/kcl-go/pull/170)_ 等
+- 感谢 @liangyuanpeng 为 KCL 模型贡献 karmada 模型包，欢迎！🙌 _[https://github.com/kcl-lang/artifacthub/pull/48/files](https://github.com/kcl-lang/artifacthub/pull/48/files)_
 - 此外，感谢 @Matt Gowie, @ddh 对 KCL 的关注和宝贵反馈 🙌
 
 ## 精选更新
@@ -58,10 +58,10 @@ KCL IDE 插件基于新增了大量补全提示，重点针对**配置定义**�
 KCL 的编译命令对错误信息的输出优化继续推进，致力于提供清晰易懂的指引，帮助开发者快速定位和修复问题，编写出正确的代码。近期，KCL 优化了 schema 字段类型不匹配的报错信息：
 
 - before:
-![](/img/blog/2023-11-08-biweekly-newsletter/schema-expr-type-error-before.png)
+  ![](/img/blog/2023-11-08-biweekly-newsletter/schema-expr-type-error-before.png)
 
 - after:
-![](/img/blog/2023-11-08-biweekly-newsletter/schema-expr-type-error-after.png)
+  ![](/img/blog/2023-11-08-biweekly-newsletter/schema-expr-type-error-after.png)
 
 此外，还支持了 `-—recursive` 选项允许 kcl 递归编译子目录，支持在 lambda 表达式中添加类型注解，系统库支持了对 JSON/YAML 字符串的验证、序列化和反序列化；修复了带有三方库的 KCL 程序缓存失效的问题；修复了编译入库文件跨 kcl.mod 情况下的路径冲突错误；修复 KCL 函数默认值语义检查错误等。
 

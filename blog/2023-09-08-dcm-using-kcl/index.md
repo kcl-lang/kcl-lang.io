@@ -15,8 +15,8 @@ tags: [KCL, Kubernetes Resource Model, Dynamic Configuration Management]
 
 The increasing complexity of Kubernetes and cloud APIs can be attributed to several factors:
 
-+ **Growing functionality and capabilities**: Kubernetes and cloud APIs continuously evolve to meet the growing demands of applications and the development of cloud computing. To fulfill user requirements, new functionalities and capabilities such as auto-scaling, service discovery, load balancing, and permission management are constantly introduced. The introduction of these new features adds to the complexity of the system. Despite the availability of various automation methods, over time, the exponential growth in the number of different resource types, potential settings for these resource types, and the complex relationships between them pose challenges.
-+ **Complex configuration and management requirements**: As applications scale, configuring and managing Kubernetes and cloud APIs becomes increasingly complex. This includes managing a large number of container instances and resources, configuring intricate networking and storage setups, ensuring high availability and load balancing, and repetitive configurations for different environments and topologies. These complex configuration and management requirements contribute to the overall complexity of Kubernetes and cloud APIs, sometimes leading to the emergence of "YAML engineers" as a joking reference.
+- **Growing functionality and capabilities**: Kubernetes and cloud APIs continuously evolve to meet the growing demands of applications and the development of cloud computing. To fulfill user requirements, new functionalities and capabilities such as auto-scaling, service discovery, load balancing, and permission management are constantly introduced. The introduction of these new features adds to the complexity of the system. Despite the availability of various automation methods, over time, the exponential growth in the number of different resource types, potential settings for these resource types, and the complex relationships between them pose challenges.
+- **Complex configuration and management requirements**: As applications scale, configuring and managing Kubernetes and cloud APIs becomes increasingly complex. This includes managing a large number of container instances and resources, configuring intricate networking and storage setups, ensuring high availability and load balancing, and repetitive configurations for different environments and topologies. These complex configuration and management requirements contribute to the overall complexity of Kubernetes and cloud APIs, sometimes leading to the emergence of "YAML engineers" as a joking reference.
 
 Despite the increasing complexity of Kubernetes and cloud APIs, they provide powerful functionalities and flexibility to help organizations effectively manage and scale their applications. By utilizing appropriate tools, engineering practices, and methods, this complexity can be alleviated, enabling efficient utilization of these technologies to meet business needs. Dynamic configuration management techniques are one of the approaches that can help address the complexity of Kubernetes and cloud APIs to a certain extent.
 
@@ -30,8 +30,8 @@ Dynamic Configuration Management means that developers describe the relationship
 
 In contrast to dynamic configuration management, static configuration management brings about a series of issues:
 
-+ **Configuration Bloat**: Most static configurations require separate configurations for each environment, and in the worst case, it can introduce difficult-to-debug errors involving cross-linking between environments, leading to poor stability and scalability.
-+ **Configuration Drift**: Managing application and infrastructure configurations for different environments with static management approaches often lacks standardized methods for handling dynamic variations in configurations across environments. Employing non-standardized approaches can result in exponential complexity and lead to configuration drift.
+- **Configuration Bloat**: Most static configurations require separate configurations for each environment, and in the worst case, it can introduce difficult-to-debug errors involving cross-linking between environments, leading to poor stability and scalability.
+- **Configuration Drift**: Managing application and infrastructure configurations for different environments with static management approaches often lacks standardized methods for handling dynamic variations in configurations across environments. Employing non-standardized approaches can result in exponential complexity and lead to configuration drift.
 
 ## Why Do We Need a New Paradigm
 
@@ -41,10 +41,10 @@ For cloud APIs, we can leverage Infrastructure as Code (IaC) tools like Terrafor
 
 Therefore, we contemplate the need for a unified specification that can simultaneously support configuration language capabilities and, with minimal side effects, fulfill the requirements of stability, scalability, and efficiency in the context of scalable configuration scenarios. This specification should also address the problems inherent in static configuration management.
 
-+ **Abstraction and Composition Capabilities**: By providing a programmable schema, the platform personnel can shield the underlying infrastructure details and platform, while offering developers a better and more stable API abstraction.
-+ **Stability**: By providing stable features out-of-the-box, such as rule writing and static typing, the specification enables risk mitigation and early error detection in version control systems (VCS), allowing for auditing, traceability, and rollback, and facilitating automation.
-+ **Scalability**: Similar to the application software supply chain, infrastructure configuration should be treated as part of the software supply chain. Users can distribute and reuse configurations in a standardized manner, easily accessing commonly used configurations in the open-source world. For internal platforms, we can easily write and extend configuration code.
-+ **High performance**: Since dynamic configuration management advocates generating configurations for different environments and topologies based on a baseline configuration and deployment context, there is a high demand for the rendering performance of the configuration code itself. Developers typically do not want to spend several minutes waiting for the actual configuration output, as it would hinder software iteration and upgrade efficiency.
+- **Abstraction and Composition Capabilities**: By providing a programmable schema, the platform personnel can shield the underlying infrastructure details and platform, while offering developers a better and more stable API abstraction.
+- **Stability**: By providing stable features out-of-the-box, such as rule writing and static typing, the specification enables risk mitigation and early error detection in version control systems (VCS), allowing for auditing, traceability, and rollback, and facilitating automation.
+- **Scalability**: Similar to the application software supply chain, infrastructure configuration should be treated as part of the software supply chain. Users can distribute and reuse configurations in a standardized manner, easily accessing commonly used configurations in the open-source world. For internal platforms, we can easily write and extend configuration code.
+- **High performance**: Since dynamic configuration management advocates generating configurations for different environments and topologies based on a baseline configuration and deployment context, there is a high demand for the rendering performance of the configuration code itself. Developers typically do not want to spend several minutes waiting for the actual configuration output, as it would hinder software iteration and upgrade efficiency.
 
 ## KRM KCL Specification
 
@@ -56,10 +56,10 @@ Another important feature of the KRM KCL specification is its support for dynami
 
 In addition to dynamic configuration management, the KRM KCL specification offers several other advantages. Firstly, it is based on Kubernetes and seamlessly integrates with the existing Kubernetes ecosystem. Secondly, the KRM KCL specification provides a rich set of tools and libraries that make it easy for developers to create, test, and maintain configurations. Lastly, the KRM KCL specification adopts open standards, allowing for interoperability with other configuration management tools such as Kubectl, Helm, Kustomize, and more. It possesses the following characteristics:
 
-+ **Declarative**: Configurations are abstracted and organized in code form, allowing users to view and edit them using editors or IDEs. The code clearly describes various aspects of resources, services, networks, and more.
-+ **Final-state oriented**: It is abstracted and implementation-agnostic, with highly abstracted and domain-specific underlying capabilities. The concrete business logic is written by users in a declarative manner. Users can avoid manual operations and non-uniform patterns introduced by private scripts through a unified description code and GitOps workflow, reducing security risks.
-+ **Stability**: Any modification to configuration code can potentially result in unexpected outcomes, exceptions, or failures. By combining version control and the stability features of the language itself, different versions of configuration code can be switched as needed through Git, with audibility, to meet the needs of development, testing, and production stages. For example, rolling back to a verified version in case of anomalies. Code-based version control effectively prevents configuration drift.
-+ **Reusable and extensible**: Configuration code often exhibits the characteristic of "write once, reuse multiple times". When combined with dynamically parameterized configuration code, the reuse of configurations in different environments and for different users becomes simple. Through integration with standard software supply chains such as OCI, configuration code is treated equally with business code, better achieving Infrastructure as Code (IaC).
+- **Declarative**: Configurations are abstracted and organized in code form, allowing users to view and edit them using editors or IDEs. The code clearly describes various aspects of resources, services, networks, and more.
+- **Final-state oriented**: It is abstracted and implementation-agnostic, with highly abstracted and domain-specific underlying capabilities. The concrete business logic is written by users in a declarative manner. Users can avoid manual operations and non-uniform patterns introduced by private scripts through a unified description code and GitOps workflow, reducing security risks.
+- **Stability**: Any modification to configuration code can potentially result in unexpected outcomes, exceptions, or failures. By combining version control and the stability features of the language itself, different versions of configuration code can be switched as needed through Git, with audibility, to meet the needs of development, testing, and production stages. For example, rolling back to a verified version in case of anomalies. Code-based version control effectively prevents configuration drift.
+- **Reusable and extensible**: Configuration code often exhibits the characteristic of "write once, reuse multiple times". When combined with dynamically parameterized configuration code, the reuse of configurations in different environments and for different users becomes simple. Through integration with standard software supply chains such as OCI, configuration code is treated equally with business code, better achieving Infrastructure as Code (IaC).
 
 In summary, the KRM KCL specification presents a new paradigm for dynamic configuration management. Built upon KRM and KCL, it offers a more efficient and reliable configuration solution for modern software development. With its dynamic configuration management capabilities, flexible syntax and semantics, and integration with Kubernetes, the KRM KCL specification provides developers with an enhanced configuration management experience in cloud-native application development and microservices architectures.
 
@@ -69,15 +69,15 @@ In summary, the KRM KCL specification presents a new paradigm for dynamic config
 
 In the KRM KCL specification, we categorize the behaviors of the KCL configuration model into three main types:
 
-+ **Mutation**: Takes input KCL parameters params and a KRM list, and outputs a modified KRM list.
-+ **Validation**: Takes input KCL parameters params and a KRM list, and outputs a KRM list and resource validation results.
-+ **Abstraction**: Takes input KCL parameters params and outputs a KRM list.
+- **Mutation**: Takes input KCL parameters params and a KRM list, and outputs a modified KRM list.
+- **Validation**: Takes input KCL parameters params and a KRM list, and outputs a KRM list and resource validation results.
+- **Abstraction**: Takes input KCL parameters params and outputs a KRM list.
 
 Using KCL, we can programmatically achieve the following capabilities:
 
-+ Modify resources using KCL, such as adding/modifying label tags or annotation comments based on certain conditions, or injecting sidecar container configurations into all Kubernetes Resource Model (KRM) resources that contain PodTemplates.
-+ Validate all KRM resources using KCL schemas, such as constraints for launching containers only in a root manner.
-+ Generate KRM resources using an abstraction model or combine and use different KRM APIs.
+- Modify resources using KCL, such as adding/modifying label tags or annotation comments based on certain conditions, or injecting sidecar container configurations into all Kubernetes Resource Model (KRM) resources that contain PodTemplates.
+- Validate all KRM resources using KCL schemas, such as constraints for launching containers only in a root manner.
+- Generate KRM resources using an abstraction model or combine and use different KRM APIs.
 
 Additionally, the configuration model source can reference OCI, Git, filesystem, and the original KCL code. With the help of KCL IDE and KPM package management tool, we can write models and upload them to OCI Registry for model reuse. These models can be used separately on the client-side or at runtime, depending on the specific scenario requirements.
 
@@ -206,11 +206,11 @@ Dynamic configuration management can reduce the complexity of modern cloud-nativ
 
 ## Reference
 
-+ Declarative Application Management in Kubernetes: https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#
-+ CNCF Platforms White Paper: https://tag-app-delivery.cncf.io/whitepapers/platforms/
-+ Google SRE Workbook: https://sre.google/workbook/configuration-specifics/
-+ What is Dynamic Configuration Management: https://humanitec.com/blog/what-is-dynamic-configuration-management
-+ Implementing Dynamic Configuration Management with Score and Humanitec: https://humanitec.com/blog/implementing-dynamic-configuration-management-with-score-and-humanitec
-+ What is Platform Engineering: https://platformengineering.org/blog/what-is-platform-engineering
-+ What is Internal Developer Platform: https://internaldeveloperplatform.org/what-is-an-internal-developer-platform/
-+ What Team Structure is Right for DevOps to Flourish: https://web.devopstopologies.com/#anti-types
+- Declarative Application Management in Kubernetes: https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#
+- CNCF Platforms White Paper: https://tag-app-delivery.cncf.io/whitepapers/platforms/
+- Google SRE Workbook: https://sre.google/workbook/configuration-specifics/
+- What is Dynamic Configuration Management: https://humanitec.com/blog/what-is-dynamic-configuration-management
+- Implementing Dynamic Configuration Management with Score and Humanitec: https://humanitec.com/blog/implementing-dynamic-configuration-management-with-score-and-humanitec
+- What is Platform Engineering: https://platformengineering.org/blog/what-is-platform-engineering
+- What is Internal Developer Platform: https://internaldeveloperplatform.org/what-is-an-internal-developer-platform/
+- What Team Structure is Right for DevOps to Flourish: https://web.devopstopologies.com/#anti-types

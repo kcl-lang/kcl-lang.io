@@ -15,11 +15,11 @@ The project we are using Rust to develop is called [KCL](https://github.com/kcl-
 
 KCL was written in Python before. After carefully evaluating the user experience, performance and stability, we decided to rewrite KCL in Rust, and the following benefits were obtained:
 
-+ Rust's powerful compilation checks and error handling led to fewer bugs.
-+ There was a 66% improvement in end-to-end compilation and execution performance.
-+ The language front-end parser performance improved by up to 20 times.
-+ The language semantic analyzer performance improved by up to 40 times.
-+ The average memory usage of the language compiler during compilation was roughly half of the original Python version.
+- Rust's powerful compilation checks and error handling led to fewer bugs.
+- There was a 66% improvement in end-to-end compilation and execution performance.
+- The language front-end parser performance improved by up to 20 times.
+- The language semantic analyzer performance improved by up to 40 times.
+- The average memory usage of the language compiler during compilation was roughly half of the original Python version.
 
 ## What problems have we encountered
 
@@ -35,11 +35,11 @@ Consequently, we decided to rewrite KCL in Rust to not only improve user experie
 
 We chose Rust for the following reasons:
 
-+ We implemented a simple programming language stack virtual machine in Python, Go, and Rust and conducted a performance comparison, Rust was adopted under comprehensive consideration as Go and Rust had similar performance whereas Python had a large performance gap. The details of the stack virtual machine code implemented by the three languages are here: [https://github.com/Peefy/StackMachine](https://github.com/Peefy/StackMachine).
-+ Rust has been widely utilized for compilers or runtimes of programming languages, especially in front-end infrastructure projects, and is present in various fields such as infrastructure, database, search engine, network, cloud-native, UI, and embedded systems, ensuring its feasibility and stability.
-+ Considering that the subsequent project development will involve the direction of blockchain and smart contract, and a large number of blockchain and smart contract projects in the community are written by Rust.
-+ Rust provides better performance and stability, making the system easier to maintain and more robust, while allowing developers to expose C APIs through FFI for multilingual use and expansion.
-+ Rust's friendly support for Web Assembly (WASM) is extremely beneficial for the development of blockchain and smart contract projects.
+- We implemented a simple programming language stack virtual machine in Python, Go, and Rust and conducted a performance comparison, Rust was adopted under comprehensive consideration as Go and Rust had similar performance whereas Python had a large performance gap. The details of the stack virtual machine code implemented by the three languages are here: [https://github.com/Peefy/StackMachine](https://github.com/Peefy/StackMachine).
+- Rust has been widely utilized for compilers or runtimes of programming languages, especially in front-end infrastructure projects, and is present in various fields such as infrastructure, database, search engine, network, cloud-native, UI, and embedded systems, ensuring its feasibility and stability.
+- Considering that the subsequent project development will involve the direction of blockchain and smart contract, and a large number of blockchain and smart contract projects in the community are written by Rust.
+- Rust provides better performance and stability, making the system easier to maintain and more robust, while allowing developers to expose C APIs through FFI for multilingual use and expansion.
+- Rust's friendly support for Web Assembly (WASM) is extremely beneficial for the development of blockchain and smart contract projects.
 
 Based on the above reasons, we chose Rust instead of Go. In the whole rewriting process, we found that Rust's comprehensive quality is impressive because it not only provides high performance but also a sufficient abstraction, although there is some cost in certain language features such as lifetime. Nevertheless, its ecology is not as rich as other languages.
 
@@ -53,7 +53,7 @@ The risk of utilizing Rust is mainly the expense of learning the language, which
 
 First of all, the syntax and semantics of Rust well absorb and integrate the concepts related to the type system in functional programming, such as the Abstract Algebraic Type (ADT). In addition, there is no concept related to "inheritance" in Rust. If you can't understand it well, even ordinary structure definitions in other languages may take a lot of time in Rust. For example, the following Python code may be defined like this in Rust.
 
-+ Python
+- Python
 
 ```python
 from dataclasses import dataclass
@@ -70,7 +70,7 @@ class KCLFloatObject(KCLObject):
     value: float
 ```
 
-+ Rust
+- Rust
 
 ```rust
 enum KCLObject {
@@ -143,8 +143,8 @@ If you are interested in the KCL project, wish to use KCL for your personal use 
 
 ## Reference
 
-+ https://github.com/kcl-lang/kcl
-+ https://github.com/Peefy/StackMachine
-+ https://doc.rust-lang.org/book/
-+ https://github.com/sunface/rust-course
-+ https://www.influxdata.com/blog/rust-can-be-difficult-to-learn-and-frustrating-but-its-also-the-most-exciting-thing-in-software-development-in-a-long-time/
+- https://github.com/kcl-lang/kcl
+- https://github.com/Peefy/StackMachine
+- https://doc.rust-lang.org/book/
+- https://github.com/sunface/rust-course
+- https://www.influxdata.com/blog/rust-can-be-difficult-to-learn-and-frustrating-but-its-also-the-most-exciting-thing-in-software-development-in-a-long-time/

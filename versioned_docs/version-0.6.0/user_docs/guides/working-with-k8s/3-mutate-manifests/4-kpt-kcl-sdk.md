@@ -11,8 +11,8 @@ KCL can be used to create functions to transform and/or validate the YAML Kubern
 
 ## Prerequisites
 
-+ Install [kpt](https://github.com/GoogleContainerTools/kpt)
-+ Install [Docker](https://www.docker.com/)
+- Install [kpt](https://github.com/GoogleContainerTools/kpt)
+- Install [Docker](https://www.docker.com/)
 
 ## Quick Start
 
@@ -69,7 +69,7 @@ Run the KCL code via kpt
 ```bash
 kpt fn eval ./data -i docker.io/kcllang/kpt-kcl:v0.2.0 --fn-config kcl-fn-config.yaml
 
-# Verify that the annotation is added to the `Deployment` resource and the other resource `Service` 
+# Verify that the annotation is added to the `Deployment` resource and the other resource `Service`
 # does not have this annotation.
 cat ./data/resources.yaml | grep annotations -A1 -B0
 ```
@@ -87,10 +87,10 @@ It can be seen that we have indeed added the annotation `managed-by=kpt`.
 
 Here's what you can do in the KCL code:
 
-+ Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
-+ Return a KPM list for output resources.
-+ Return an error using `assert {condition}, {error_message}`.
+- Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
+- Return a KPM list for output resources.
+- Return an error using `assert {condition}, {error_message}`.
 
 ## More Documents and Examples
 
-+ [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk)
+- [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk)

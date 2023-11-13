@@ -52,19 +52,19 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 
 ### Homebrew (MacOS)
 
-+ 安装
+- 安装
 
 ```bash
 brew install kcl-lang/tap/kcl
 ```
 
-+ 升级
+- 升级
 
 ```bash
 brew upgrade kcl-lang/tap/kcl
 ```
 
-+ 卸载
+- 卸载
 
 ```bash
 brew uninstall kcl-lang/tap/kcl
@@ -97,13 +97,13 @@ alias kcl='kcl-go run'
 
 ### 使用 Docker 镜像安装
 
-+ 基本命令
+- 基本命令
 
 ```bash
 docker run --rm -it kcllang/kcl
 ```
 
-+ 更新镜像
+- 更新镜像
 
 ```bash
 docker pull kcllang/kcl

@@ -12,25 +12,25 @@ The KCL Format tool modifies the files according to the KCL code style: [Style G
 
 ## How to use
 
-* Formatting Single File
+- Formatting Single File
 
 ```text
 kcl-fmt your_config.k
 ```
 
-* Formatting multiple files
+- Formatting multiple files
 
 ```text
 kcl-fmt your_config_path -R
 ```
 
-* Args
-  * `-R|--recursive` Whether to recursively traverse subfolders
-  * `-w|--fmt-output` Whether to output to STDOUT, without `-w` indicates in-place modification.
+- Args
+  - `-R|--recursive` Whether to recursively traverse subfolders
+  - `-w|--fmt-output` Whether to output to STDOUT, without `-w` indicates in-place modification.
 
 ## Display of formatting files
 
-* Before formatting
+- Before formatting
 
 ```py
 import     math
@@ -47,7 +47,7 @@ schema Deployment[replicas] ( DeploymentBase )   :
 deploy = Deployment(replicas = 3){}
 ```
 
-* After formatting
+- After formatting
 
 ```py
 import math

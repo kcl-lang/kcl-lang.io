@@ -13,7 +13,7 @@ For the following example, the contents of the three string variables are the sa
 
 ```yaml
 string1: 'here '' s to "quotes"'
-string2: "here's to \"quotes\""
+string2: 'here''s to "quotes"'
 string3: here's to "quotes"
 ```
 

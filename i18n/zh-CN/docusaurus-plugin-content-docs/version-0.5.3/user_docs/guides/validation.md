@@ -15,7 +15,7 @@ sidebar_position: 2
 
 ### 0. 先决条件
 
-+ 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### 1. 获得示例
 
@@ -40,7 +40,7 @@ schema User:
     data: Data
     labels: {str:}
     hc: [int]
-        
+
     check:
         age > 10, "age must > 10"
 
@@ -53,14 +53,14 @@ schema Data:
 
 综上所述，KCL Schema 中支持的校验类型为:
 
-| 校验类型 | 使用方法                                                |
-| -------- | ------------------------------------------------------- |
-| 范围校验 | 使用 `<`, `>` 等比较运算符                                |
-| 正则校验 | 使用 `regex` 系统库中的 `match` 等方法                      |
+| 校验类型 | 使用方法                                                   |
+| -------- | ---------------------------------------------------------- |
+| 范围校验 | 使用 `<`, `>` 等比较运算符                                 |
+| 正则校验 | 使用 `regex` 系统库中的 `match` 等方法                     |
 | 长度校验 | 使用 `len` 内置函数，可以求 `list/dict/str` 类型的变量长度 |
-| 枚举校验 | 使用字面值联合类型                                      |
-| 非空校验 | 使用 schema 的可选/必选属性                             |
-| 条件校验 | 使用 check if 条件表达式                                |
+| 枚举校验 | 使用字面值联合类型                                         |
+| 非空校验 | 使用 schema 的可选/必选属性                                |
+| 条件校验 | 使用 check if 条件表达式                                   |
 
 ### 2. 验证数据
 
@@ -68,17 +68,17 @@ schema Data:
 
 ```json
 {
-    "name": "Alice",
-    "age": 18,
-    "message": "This is Alice",
-    "data": {
-        "id": 1,
-        "value": "value1"
-    },
-    "labels": {
-        "key": "value"
-    },
-    "hc": [1, 2, 3]
+  "name": "Alice",
+  "age": 18,
+  "message": "This is Alice",
+  "data": {
+    "id": 1,
+    "value": "value1"
+  },
+  "labels": {
+    "key": "value"
+  },
+  "hc": [1, 2, 3]
 }
 ```
 

@@ -5,6 +5,7 @@ type: "docs"
 description: datetime 包 - 时间处理
 weight: 100
 ---
+
 - datetime
   - ticks() -> float
     Return the current time in seconds since the Epoch. Fractions of a second may be present if the system clock provides them.

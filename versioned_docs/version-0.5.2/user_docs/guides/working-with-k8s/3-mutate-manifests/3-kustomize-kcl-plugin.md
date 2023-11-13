@@ -11,8 +11,8 @@ KCL can be used to create functions to mutate and/or validate the YAML Kubernete
 
 ## Prerequisites
 
-+ Install [kustomize](https://github.com/kubernetes-sigs/kustomize)
-+ Install [Docker](https://www.docker.com/)
+- Install [kustomize](https://github.com/kubernetes-sigs/kustomize)
+- Install [Docker](https://www.docker.com/)
 
 ## Quick Start
 
@@ -61,9 +61,9 @@ spec:
   selector:
     app: MyApp
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 9376
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -86,20 +86,20 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 ## Guides for Developing KCL
 
 Here's what you can do in the KCL code:
 
-+ Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
-+ Return a KPM list for output resources.
-+ Return an error using `assert {condition}, {error_message}`.
+- Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
+- Return a KPM list for output resources.
+- Return an error using `assert {condition}, {error_message}`.
 
 ## More Documents and Examples
 
-+ [Kustomize KCL Plugin](https://github.com/kcl-lang/kustomize-kcl)
+- [Kustomize KCL Plugin](https://github.com/kcl-lang/kustomize-kcl)

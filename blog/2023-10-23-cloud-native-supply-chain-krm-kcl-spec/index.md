@@ -23,16 +23,16 @@ From this, it can be seen that Kubernetes and Terraform are becoming indispensab
 
 The increasing complexity of the cloud API represented by Kubernetes and Terraform can be attributed to several factors<sup>[3]</sup><sup>[4]</sup><sup>[5]</sup>:
 
-+ **Increasing capabilities**: Kubernetes and cloud APIs are constantly evolving to meet the growing demands of applications and cloud computing. To meet user demands, they continuously introduce new features and capabilities such as auto-scaling, service discovery, load balancing, and permission management. The introduction of these new features increases the complexity of the system. Although we already have various automation methods, over time, the number of different resource types, potential settings for these resource types, and the complexity of relationships between these resource types grow exponentially.
-+ **Complex configuration management requirements**: As the scale of applications grows, configuring and managing Kubernetes and cloud APIs becomes increasingly complex. For example, managing a large number of container instances and resources, configuring complex networking and storage, implementing high availability and load balancing, and repeatedly performing configurations for different environments and topologies. These complex configuration and management requirements increase the complexity of Kubernetes and cloud APIs, often resulting in the emergence of "YAML engineers" or "markup language human-editing engineers" in the Kubernetes field.
+- **Increasing capabilities**: Kubernetes and cloud APIs are constantly evolving to meet the growing demands of applications and cloud computing. To meet user demands, they continuously introduce new features and capabilities such as auto-scaling, service discovery, load balancing, and permission management. The introduction of these new features increases the complexity of the system. Although we already have various automation methods, over time, the number of different resource types, potential settings for these resource types, and the complexity of relationships between these resource types grow exponentially.
+- **Complex configuration management requirements**: As the scale of applications grows, configuring and managing Kubernetes and cloud APIs becomes increasingly complex. For example, managing a large number of container instances and resources, configuring complex networking and storage, implementing high availability and load balancing, and repeatedly performing configurations for different environments and topologies. These complex configuration and management requirements increase the complexity of Kubernetes and cloud APIs, often resulting in the emergence of "YAML engineers" or "markup language human-editing engineers" in the Kubernetes field.
 
 For cloud APIs, we can leverage IaC tools like Terraform to obtain a large number of pre-written module configurations and providers. However, for Kubernetes, there is still a lack of lightweight client-side configuration composition and abstraction solutions. Existing solutions or specifications struggle to strike a balance between abstraction capabilities and scalability. In extreme scenarios, developers often write a lot of glue code and scripts to handle configurations, which restricts stability and efficiency.
 
 Therefore, we propose the KCL project and the KRM KCL specification, hoping to fill the gap in configuration languages and tools in the lightweight client-side cloud-native dynamic configuration field with more modern declarative configuration languages and tools. We aim to address the following issues:
 
-+ **Dimension explosion**: Most static configurations, such as Kubernetes YAML configurations in the cloud-native field, need to be configured separately for each environment. In the worst case, it may introduce difficult-to-debug errors involving cross-environment dependencies, leading to poor stability and scalability.
-+ **Configuration drift**: There is often no standardized way to manage the dynamic configurations of applications and infrastructure for different environments. Adopting non-standard methods such as scripting and piecing together glue code can result in exponential complexity and configuration drift.
-+ **Cognitive burden**: Kubernetes and other platform technologies that serve as building platforms excel in unifying infrastructure details at the underlying level. However, they lack higher-level software delivery abstractions, which result in a higher cognitive burden for ordinary developers and affect the software delivery experience of higher-level application developers.
+- **Dimension explosion**: Most static configurations, such as Kubernetes YAML configurations in the cloud-native field, need to be configured separately for each environment. In the worst case, it may introduce difficult-to-debug errors involving cross-environment dependencies, leading to poor stability and scalability.
+- **Configuration drift**: There is often no standardized way to manage the dynamic configurations of applications and infrastructure for different environments. Adopting non-standard methods such as scripting and piecing together glue code can result in exponential complexity and configuration drift.
+- **Cognitive burden**: Kubernetes and other platform technologies that serve as building platforms excel in unifying infrastructure details at the underlying level. However, they lack higher-level software delivery abstractions, which result in a higher cognitive burden for ordinary developers and affect the software delivery experience of higher-level application developers.
 
 ## Concepts
 
@@ -64,15 +64,15 @@ As one of the official Kubernetes specifications, the core concept of KRM is KRM
 
 In the KRM KCL specification, the behaviors of the KCL configuration model are mainly divided into three categories:
 
-+ **Mutation**: Takes input KCL parameters `params` and a list of KRM resources and outputs a modified list of KRM resources.
-+ **Validation**: Takes input KCL parameters `params` and a list of KRM resources and outputs the list of KRM resources and resource validation results.
-+ **Abstraction**: Takes input KCL parameters `params` and outputs a list of KRM resources.
+- **Mutation**: Takes input KCL parameters `params` and a list of KRM resources and outputs a modified list of KRM resources.
+- **Validation**: Takes input KCL parameters `params` and a list of KRM resources and outputs the list of KRM resources and resource validation results.
+- **Abstraction**: Takes input KCL parameters `params` and outputs a list of KRM resources.
 
 Using KCL, we can achieve the following capabilities programmatically:
 
-+ Modify resources using KCL, such as adding/modifying label tags or annotation comments based on certain conditions or injecting Sidecar container configurations in all Kubernetes Resource Model (KRM) resources containing PodTemplate.
-+ Validate all KRM resources using KCL schema, such as constraining containers to only be launched in a root manner.
-+ Generate KRM resources or abstract/combine different Kubernetes APIs using the abstraction model, for example, instantiating a web application configuration using the "web-service" model.
+- Modify resources using KCL, such as adding/modifying label tags or annotation comments based on certain conditions or injecting Sidecar container configurations in all Kubernetes Resource Model (KRM) resources containing PodTemplate.
+- Validate all KRM resources using KCL schema, such as constraining containers to only be launched in a root manner.
+- Generate KRM resources or abstract/combine different Kubernetes APIs using the abstraction model, for example, instantiating a web application configuration using the "web-service" model.
 
 With the help of KCL IDE and KCL package management tools, we can write models and upload them to the OCI Registry for model reuse. We can programmatically extend the support for the KRM KCL specification, and these models can be used separately in the client or runtime based on specific scenario requirements.
 
@@ -92,9 +92,9 @@ For IDE plugins, KCL currently mainly supports VS Code, IntelliJ, and NeoVim. Th
 
 As a CNCF project, KCL is integrated with many other CNCF ecosystem projects. For example, KCL provides plugins for existing CNCF ecosystem configuration management tools like Kubectl, Helm, Kustomize, kpt, helmfile, etc. At runtime, KCL offers the KCL Kubernetes Operator to meet various configuration management needs. Additionally, we provide the following integration support:
 
-+ **Multilingual Support**: We offer multilingual SDKs to help users work with KCL in different programming languages and integrate it into their own applications.
-+ **Package Management Support**: We provide KCL package management tools that allow distribution and reuse of configurations and policy code through standard OCI supply chain methods like Harbor, Docker Hub, GitHub Packages, etc.
-+ **Schema and Data Migration Support**: We support one-click migration of schema and data from other ecosystems to KCL Schema, including Go/Rust struct definitions, JsonSchema, Protobuf, OpenAPI, Terraform Provider Schema, JSON, YAML, and more.
+- **Multilingual Support**: We offer multilingual SDKs to help users work with KCL in different programming languages and integrate it into their own applications.
+- **Package Management Support**: We provide KCL package management tools that allow distribution and reuse of configurations and policy code through standard OCI supply chain methods like Harbor, Docker Hub, GitHub Packages, etc.
+- **Schema and Data Migration Support**: We support one-click migration of schema and data from other ecosystems to KCL Schema, including Go/Rust struct definitions, JsonSchema, Protobuf, OpenAPI, Terraform Provider Schema, JSON, YAML, and more.
 
 ![artifact-hub](/img/blog/2023-10-23-cloud-native-supply-chain-krm-kcl-spec/artifact-hub.png)
 
@@ -166,28 +166,28 @@ Of course, the problems that KCL can solve and the scenarios it can be applied t
 
 For more resources, please refer to:
 
-+ [KCL Website](https://kcl-lang.io/)
-+ [KCL Repo](https://github.com/kcl-lang/kcl)
-+ [KusionStack Website](https://kusionstack.io/)
-+ [KusionStack Repo](https://github.com/KusionStack/kusion)
+- [KCL Website](https://kcl-lang.io/)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [KusionStack Website](https://kusionstack.io/)
+- [KusionStack Repo](https://github.com/KusionStack/kusion)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏
 
 ## Reference
 
-+ [1] Forecast Analysis: Container Management (Software and Services), Worldwide: [https://www.gartner.com/en/documents/3985796](https://www.gartner.com/en/documents/3985796)
-+ [2] The top programming languages: [https://octoverse.github.com/2022/top-programming-languages](https://octoverse.github.com/2022/top-programming-languages)
-+ [3] Declarative Application Management in Kubernetes: [https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#](https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#)
-+ [4] CNCF Platform Engineering Whitepaper: [https://tag-app-delivery.cncf.io/whitepapers/platforms/](https://tag-app-delivery.cncf.io/whitepapers/platforms/)
-+ [5] Google SRE Workbook: Configuration Specifics: [https://sre.google/workbook/configuration-specifics/](https://sre.google/workbook/configuration-specifics/)
-+ [6] KCL Website: [https://kcl-lang.io/](https://kcl-lang.io/)
-+ [7] Kubectl: [https://kubernetes.io/docs/reference/kubectl/](https://kubernetes.io/docs/reference/kubectl/)
-+ [8] KusionStack: [https://kusionstack.io](https://kusionstack.io)
-+ [9] KubeVela: [https://kubevela.net](https://kubevela.net)
-+ [10] Helmfile: [https://github.com/helmfile/helmfile](https://github.com/helmfile/helmfile)
-+ [11] KRM KCL Specification: [https://github.com/kcl-lang/krm-kcl](https://github.com/kcl-lang/krm-kcl)
-+ [12] KCL IDE Extension: [https://kcl-lang.io/docs/tools/Ide/](https://kcl-lang.io/docs/tools/Ide/)
-+ [13] ArtifactHub KCL Integration: [https://artifacthub.io/](https://artifacthub.io/)
-+ [14] KCL Operator: [https://github.com/kcl-lang/kcl-operator](https://github.com/kcl-lang/kcl-operator)
-+ [15] Terraform KCL Policy: [https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation](https://kcl-lang.io/docs/user_docs/guides/[]working-with-terraform/validation)
-+ [16] GitOps using KCL: [https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start](https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start)
+- [1] Forecast Analysis: Container Management (Software and Services), Worldwide: [https://www.gartner.com/en/documents/3985796](https://www.gartner.com/en/documents/3985796)
+- [2] The top programming languages: [https://octoverse.github.com/2022/top-programming-languages](https://octoverse.github.com/2022/top-programming-languages)
+- [3] Declarative Application Management in Kubernetes: [https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#](https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#)
+- [4] CNCF Platform Engineering Whitepaper: [https://tag-app-delivery.cncf.io/whitepapers/platforms/](https://tag-app-delivery.cncf.io/whitepapers/platforms/)
+- [5] Google SRE Workbook: Configuration Specifics: [https://sre.google/workbook/configuration-specifics/](https://sre.google/workbook/configuration-specifics/)
+- [6] KCL Website: [https://kcl-lang.io/](https://kcl-lang.io/)
+- [7] Kubectl: [https://kubernetes.io/docs/reference/kubectl/](https://kubernetes.io/docs/reference/kubectl/)
+- [8] KusionStack: [https://kusionstack.io](https://kusionstack.io)
+- [9] KubeVela: [https://kubevela.net](https://kubevela.net)
+- [10] Helmfile: [https://github.com/helmfile/helmfile](https://github.com/helmfile/helmfile)
+- [11] KRM KCL Specification: [https://github.com/kcl-lang/krm-kcl](https://github.com/kcl-lang/krm-kcl)
+- [12] KCL IDE Extension: [https://kcl-lang.io/docs/tools/Ide/](https://kcl-lang.io/docs/tools/Ide/)
+- [13] ArtifactHub KCL Integration: [https://artifacthub.io/](https://artifacthub.io/)
+- [14] KCL Operator: [https://github.com/kcl-lang/kcl-operator](https://github.com/kcl-lang/kcl-operator)
+- [15] Terraform KCL Policy: [https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation](https://kcl-lang.io/docs/user_docs/guides/[]working-with-terraform/validation)
+- [16] GitOps using KCL: [https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start](https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start)

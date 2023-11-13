@@ -182,7 +182,7 @@ schema Person:
 Then we want to use `Person` to verify the following JSON data:
 
 ```json
-{"key": "value"}
+{ "key": "value" }
 ```
 
 This can be done through the `ValidateCode` method of the `KclvmService` service. Refer to the `ValidateCode_Args` structure of the `ValidateCode` method:
@@ -201,8 +201,8 @@ Construct the JSON data required by the POST request according to the `ValidateC
 
 ```json
 {
-    "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
-    "data": "{\"attr_name\": {\"key\": \"value\"}}"
+  "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
+  "data": "{\"attr_name\": {\"key\": \"value\"}}"
 }
 ```
 

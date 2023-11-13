@@ -6,8 +6,8 @@ KCL 可用于创建函数来转换和/或验证 YAML Kubernetes 资源模型 (KR
 
 ## 先决条件
 
-+ 安装 [kpt](https://github.com/GoogleContainerTools/kpt)
-+ 安装 Docker
+- 安装 [kpt](https://github.com/GoogleContainerTools/kpt)
+- 安装 Docker
 
 ## 快速开始
 
@@ -61,11 +61,11 @@ spec:
 # Note: you need add sudo and --as-current-user flags to ensure KCL has permission to write temp files in the container filesystem.
 sudo kpt fn eval ./data -i docker.io/kcllang/kpt-kcl:v0.2.0 --as-current-user --fn-config kcl-fn-config.yaml
 
-# Verify that the annotation is added to the `Deployment` resource and the other resource `Service` 
+# Verify that the annotation is added to the `Deployment` resource and the other resource `Service`
 # does not have this annotation.
 cat ./data/resources.yaml | grep annotations -A1 -B5
 ```
 
 ## 更多文档和示例
 
-+ [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk)
+- [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk)

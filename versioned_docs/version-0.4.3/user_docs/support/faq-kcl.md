@@ -220,17 +220,17 @@ The output YAML is
 
 ```yaml
 originList:
-- 1
-- 2
-- 3
-- 4
-- 5
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
 oneWayDeleteListItem:
-- 1
-- 2
+  - 1
+  - 2
 anotherWayDeleteListItem:
-- 1
-- 2
+  - 1
+  - 2
 ```
 
 ## 8. How to write a for loop in KCL? How to understand and use list comprehension and dict comprehension?
@@ -415,7 +415,7 @@ config = {
 
 ## 10. How to express logical operations such as "and" "or" "not"?
 
-In KCL, use `and` for "logical and", use `or` for "logical or", use `not` for "not", which is similar to  `&&`, `||` and `~` semantic in C language.
+In KCL, use `and` for "logical and", use `or` for "logical or", use `not` for "not", which is similar to `&&`, `||` and `~` semantic in C language.
 
 ```python
 done = True
@@ -424,7 +424,7 @@ if done and (col == 0 or col == 3):
     ok = 1
 ```
 
-For "bitwise AND", "bitwise OR" and "bitwise XOR" of integers, we can use `&`, `|` and `^` operators in KCL, which is similar to  `&`, `|` and `^` semantic in C language.
+For "bitwise AND", "bitwise OR" and "bitwise XOR" of integers, we can use `&`, `|` and `^` operators in KCL, which is similar to `&`, `|` and `^` semantic in C language.
 
 ```python
 value = 0x22
@@ -447,7 +447,7 @@ x1 = value or default  # Use `value or default` instead of `value if value else 
 
 ## 11. How to judge whether a variable is None/Undefined, and whether a string/dict/list is empty?
 
-Please note that `False`, `None`, `Undefined`, number `0`, empty list `[]`, empty dictionary `{}` and empty string `""`, `''`, `""""""`, `''''''` in the conditional expression,  are all treated as `false` expressions.
+Please note that `False`, `None`, `Undefined`, number `0`, empty list `[]`, empty dictionary `{}` and empty string `""`, `''`, `""""""`, `''''''` in the conditional expression, are all treated as `false` expressions.
 
 For example, when judging a string variable `strData` is neither `None/Undefined` nor an empty string (string length is greater than 0), we can simply use the following expression:
 
@@ -578,7 +578,7 @@ x = 'a: {a}, b: {b}, c: {c}'.format(a = 1, b = 'Two', c = 12.3)
 The output YAML is
 
 ```yaml
-x: 'a: 1, b: Two, c: 12.3'
+x: "a: 1, b: Two, c: 12.3"
 ```
 
 ## 13. What is the difference between using single and double quotes in a string?
@@ -590,7 +590,7 @@ singleQuotedString = 'This is my book named "foo"'  # Don’t need to escape dou
 doubleQuotedString = "This is my book named 'foo'"  # Don’t need to escape single quotes in double quoted strings.
 ```
 
-In addition,  a long string consisting of three single quotes or three double quotes does not need to be escaped (except for the beginning and end of the string), such as the following example:
+In addition, a long string consisting of three single quotes or three double quotes does not need to be escaped (except for the beginning and end of the string), such as the following example:
 
 ```python
 longStrWithQuote0 = """Double quotes in long strings "(not at the beginning and end)"""
@@ -672,18 +672,18 @@ The output YAML is
 ```yaml
 regex_source: Apple,Google,Baidu,Xiaomi
 regex_split:
-- Apple
-- Google
-- Baidu
-- Xiaomi
+  - Apple
+  - Google
+  - Baidu
+  - Xiaomi
 regex_replace: Apple|Google|Baidu|Xiaomi
 regex_compile: true
 regex_search: true
 regex_find_all:
-- a
-- a
-- a
-- a
+  - a
+  - a
+  - a
+  - a
 regex_result: true
 regex_result_false: false
 ```
@@ -805,7 +805,7 @@ To sum up, the validation kinds supported in KCL schema are:
 | Regex             | Using methods such as `match` from the `regex` system module                              |
 | Length            | Using the `len` built-in function to get the length of a variable of type `list/dict/str` |
 | Enum              | Using literal union types                                                                 |
-| Optional/Required | Using optional/required attributes of schema                                                |
+| Optional/Required | Using optional/required attributes of schema                                              |
 | Condition         | Using the check if conditional expression                                                 |
 
 ## 20. How to add documentation to schema and its attributes?
@@ -1001,7 +1001,7 @@ Other KCL files can be imported via the `import` keyword, and KCL configuration 
 For example, for the following directory structure:
 
 ```
-. 
+.
 └── root
     ├── kcl.mod
     ├── model
@@ -1037,7 +1037,7 @@ import model  # Error: recursively loading
 KCL files in the same folder the not in the main package can refer to each other without importing each other. For example, for the following directory structure:
 
 ```
-. 
+.
 └── root
     ├── kcl.mod
     ├── model
@@ -1119,12 +1119,12 @@ Note: Use the line continuation character `\` while maintaining indentation, as 
 ```python
 data1 = [
     1, 2,
-    3, 4 \  
+    3, 4 \
 ]  # Error, need to keep the indentation of the closing bracket ]
 
 data2 = [
     1, 2,
-  3, 4 
+  3, 4
 ]  # Error, requires uniform indentation of numbers 1 and 3
 ```
 
@@ -1516,7 +1516,7 @@ we can also use the override attribute operator at the schema instantiation to a
 schema Person:
     name: str = "Alice" # schema Person's name attribute has default value "Alice"
     age: int = 18 # schema Person's age attribute has a default value of 18
-        
+
 bob = Person {
     name = "Bob" # "Bob" -> "Alice", the value of the attribute name "Bob" will override the default value "Alice" of the schema Person name attribute
     age = 10 # 10 -> 18, the value of the attribute age of 10 will override the default value of the schema Person age attribute of 18
@@ -1669,14 +1669,14 @@ configBase:
   intKey: 1
   floatKey: 1.0
   listKey:
-  - 0
+    - 0
   dictKey:
     key1: value1
 configNew:
   intKey: 0
   listKey:
-  - 0
-  - 1
+    - 0
+    - 1
   dictKey:
     key1: value1
     key2: value2
@@ -1706,14 +1706,14 @@ configBase:
   intKey: 1
   floatKey: 1.0
   listKey:
-  - 0
+    - 0
   dictKey:
     key1: value1
 configNew:
   intKey: 0
   listKey:
-  - 0
-  - 1
+    - 0
+    - 1
   dictKey:
     key1: value1
     key2: value2
@@ -1751,23 +1751,23 @@ The output YAML is:
 
 ```yaml
 dimension1:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 dimension2:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 matrix:
-- 2
-- 3
-- 4
-- 3
-- 4
-- 5
-- 4
-- 5
-- 6
+  - 2
+  - 3
+  - 4
+  - 3
+  - 4
+  - 5
+  - 4
+  - 5
+  - 6
 ```
 
 - Example 2: Use for loop and `zip` built-in function to traverse multiple lists one by one by index
@@ -1782,17 +1782,17 @@ The output YAML is:
 
 ```yaml
 dimension1:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 dimension2:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 dimension3:
-- 2
-- 4
-- 6
+  - 2
+  - 4
+  - 6
 ```
 
 ## 39. How to set default value for option function in KCL
@@ -2114,7 +2114,7 @@ schema Data:
 
 data = Data {
     color = "Red"  # Ok, can be assigned as "Red", "Yellow" and "Blue"
-} 
+}
 ```
 
 However the following code is wrong:
@@ -2127,7 +2127,7 @@ _color = "Red"
 
 data = Data {
     color = _color  # Error: expect str(Red)|str(Yellow)|str(Blue), got str
-} 
+}
 ```
 
 This is because there is no type declared for the variable `_color`, it will be deduced by the KCL compiler as a `str` string type, so when a "larger" type `str` is assigned to a "smaller" type `"Red" | "Yellow" | "Blue"` will report an error, one solution is to declare a type for the `_color` variable, the following code is correct:
@@ -2214,9 +2214,9 @@ The output YAML is
 
 ```yaml
 var_list:
-- 1
-- '12'
-- id: 1
+  - 1
+  - "12"
+  - id: 1
 ```
 
 In addition, we can also use the `typeof` function to determine the type of variables during KCL code execution:
@@ -2236,11 +2236,11 @@ The output YAML is
 
 ```yaml
 data_list:
-- id: 1
-- name: name
+  - id: 1
+  - name: name
 data_type_list:
-- Data1
-- Data2
+  - Data1
+  - Data2
 ```
 
 ## 49. How to develop a KCL plugin?

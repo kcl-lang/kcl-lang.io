@@ -27,8 +27,8 @@ Kubernetes 清单是定义 Kubernete 对象（如 Pods、Deployments 和 Service
 
 以下是一些参考资料，可以帮助了解更多关于 Docker Compose 和 Kubernetes 相关的信息：
 
-+ [Docker Compose 文档](https://docs.docker.com/compose/)
-+ [Kubernetes 对象文档](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+- [Docker Compose 文档](https://docs.docker.com/compose/)
+- [Kubernetes 对象文档](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
 
 以应用程序为中心的开发使开发人员能够专注于其工作负载的体系结构，而不是目标环境、基础设施或平台中的技术栈。我们用 `App` 结构定义了应用程序模型，然后使用 KCL CLI 将其翻译到多个平台，例如不同版本的 `Docker Compose` 或 `Kubernetes`。该应用程序模型旨在通过只需定义一个跨多个平台工作的 KCL 文件来减少开发人员的工作量和认知负荷。现在，让我们学习如何做到这一点。
 

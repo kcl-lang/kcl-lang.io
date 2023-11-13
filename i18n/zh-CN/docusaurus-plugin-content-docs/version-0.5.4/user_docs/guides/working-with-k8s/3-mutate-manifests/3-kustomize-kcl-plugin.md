@@ -11,7 +11,7 @@ KCL 可用于创建函数，以改变和/或验证 Kubernetes 资源模型（KRM
 
 ## 先决条件
 
-+ 安装 [kustomize](https://github.com/kubernetes-sigs/kustomize)
+- 安装 [kustomize](https://github.com/kubernetes-sigs/kustomize)
 
 ## 快速开始
 
@@ -60,9 +60,9 @@ spec:
   selector:
     app: MyApp
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 9376
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -85,20 +85,20 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 ## KCL 开发指南
 
 以下是可以使用 KCL 执行的操作：
 
-+ 从 `option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
-+ 返回输出资源的 KPM 列表。
-+ 使用 `assert {condition}，{error_message}` 返回错误消息。
+- 从 `option("resource_list")` 读取资源。`option("resource_list")` 符合 [KRM 函数规范](https://kpt.dev/book/05-developing-functions/01-functions-specification)。 你可以从 `option("resource_list")["items"]` 读取输入资源，并从 `option("resource_list")["functionConfig"]` 读取 `functionConfig`。
+- 返回输出资源的 KPM 列表。
+- 使用 `assert {condition}，{error_message}` 返回错误消息。
 
 ## 更多文档和示例
 
-+ [Kustomize KCL 插件](https://github.com/kcl-lang/kustomize-kcl)
+- [Kustomize KCL 插件](https://github.com/kcl-lang/kustomize-kcl)

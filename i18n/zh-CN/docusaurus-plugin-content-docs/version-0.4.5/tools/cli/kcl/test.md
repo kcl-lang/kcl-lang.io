@@ -45,7 +45,7 @@ schema TestPerson_ok:
 ```
 $ kcl-test
 ok   /pkg/to/app [365.154142ms]
-$ 
+$
 ```
 
 ## 失败的测试
@@ -121,12 +121,12 @@ schema TestOptions:
 option 参数也可以从 settings.yaml 文件读取。假设有 `./settings.yaml` 文件如下：
 
 ```yaml
-  - key: app-name
-    value: app
-  - key: env-type
-    value: prod
-  - key: image
-    value: reg.docker.inc.com/test-image
+- key: app-name
+  value: app
+- key: env-type
+  value: prod
+- key: image
+  value: reg.docker.inc.com/test-image
 ```
 
 然后可以通过 `testing.setting_file("./settings.yaml")` 方式配置参数。同时依然支持 `testing.arguments()` 覆盖配置文件中的参数：

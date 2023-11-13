@@ -5,6 +5,7 @@ type: "docs"
 description: math system module
 weight: 100
 ---
+
 ## ceil
 
 `ceil(x) -> int`
@@ -92,7 +93,7 @@ Return the base 10 logarithm of x.
 
 `pow(x, y) -> float`
 
-Return x**y (x to the power of y).
+Return x\*\*y (x to the power of y).
 
 ## sqrt
 

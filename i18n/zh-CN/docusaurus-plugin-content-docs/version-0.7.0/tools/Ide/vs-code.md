@@ -8,11 +8,14 @@ sidebar_position: 1
 
 - **1.** [安装 KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) 并检查 `kcl` 和 `kcl-language-server` 命令在您的 PATH 中:
   在 MacOs 和 Linux中：
+
   ```bash
   which kcl
   which kcl-language-server
   ```
+
   在 Windows 中:
+
   ```bash
   where kcl
   where kcl-language-server

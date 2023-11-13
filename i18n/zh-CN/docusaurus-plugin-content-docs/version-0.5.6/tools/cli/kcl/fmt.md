@@ -12,25 +12,25 @@ KCL 格式化对文件的修改样式具体见 KCL 编码风格：[Style Guide f
 
 ## 使用方式
 
-* 单文件格式化
+- 单文件格式化
 
 ```text
 kcl-fmt your_config.k
 ```
 
-* 文件夹内多文件格式化
+- 文件夹内多文件格式化
 
 ```text
 kcl-fmt your_config_path -R
 ```
 
-* 命令行参数
-  * `-R|--recursive` 设置是否递归遍历子文件夹
-  * `-w|--fmt-output` 设置是否输出到标准输出流，不加 `-w` 表示原地格式化 KCL 文件
+- 命令行参数
+  - `-R|--recursive` 设置是否递归遍历子文件夹
+  - `-w|--fmt-output` 设置是否输出到标准输出流，不加 `-w` 表示原地格式化 KCL 文件
 
 ## 格式化文件效果展示
 
-* 格式化前
+- 格式化前
 
 ```py
 import     math
@@ -47,7 +47,7 @@ schema Deployment[replicas] ( DeploymentBase )   :
 deploy = Deployment(replicas = 3){}
 ```
 
-* 格式化后
+- 格式化后
 
 ```py
 import math

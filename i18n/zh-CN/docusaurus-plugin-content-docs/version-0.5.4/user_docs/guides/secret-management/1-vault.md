@@ -2,6 +2,7 @@
 id: vault
 sidebar_label: Vault
 ---
+
 # Vault
 
 ## 简介
@@ -10,10 +11,10 @@ This guide will show you that KCL solves the secret management problem by integr
 
 ## 先决条件
 
-+ Install [KCL](/docs/user_docs/getting-started/install)
-+ Prepare a [Kubernetes Cluster](https://kubernetes.io/)
-+ Install [Vault](https://developer.hashicorp.com/vault/downloads)
-+ Install [Vals](https://github.com/helmfile/vals)
+- Install [KCL](/docs/user_docs/getting-started/install)
+- Prepare a [Kubernetes Cluster](https://kubernetes.io/)
+- Install [Vault](https://developer.hashicorp.com/vault/downloads)
+- Install [Vals](https://github.com/helmfile/vals)
 
 ## 具体步骤
 
@@ -21,14 +22,14 @@ This guide will show you that KCL solves the secret management problem by integr
 
 We put the application source code and infrastructure deployment code in different repos, which can be maintained by different roles to achieve the separation of concerns.
 
-+ Get the application code
+- Get the application code
 
 ```shell
 git clone https://github.com/kcl-lang/kcl-lang.io.git/
 cd ./kcl-lang.io/examples/secret-management/vault
 ```
 
-+ Show the config
+- Show the config
 
 ```shell
 cat main.k
@@ -68,9 +69,9 @@ spec = {
 
 The main.k file extends the configuration of the Nginx application and customizes annotations. Among them, the value of annotation `foo` and `bar` follow secret reference format (`ref+vault://PATH/TO/KV_BACKEND#/KEY`):
 
-+ `ref+vault`: indicates that this is a secret reference, and the external storage service is `Vault`.
-+ `PATH/TO/KV_BACKEND`: specifies the path where a secret is stored.
-+ `KEY`: specifies the key to reading secret.
+- `ref+vault`: indicates that this is a secret reference, and the external storage service is `Vault`.
+- `PATH/TO/KV_BACKEND`: specifies the path where a secret is stored.
+- `KEY`: specifies the key to reading secret.
 
 The complete format is concatenated using a style similar to URI expressions, which can retrieve a secret stored externally.
 
@@ -81,7 +82,7 @@ Start the Vault Server
 ```shell
 vault server -dev
 export VAULT_ADDR='http://127.0.0.1:8200'
-# Note: Replace with your token 
+# Note: Replace with your token
 export VAULT_TOKEN=yourtoken
 ```
 
@@ -110,7 +111,7 @@ deployment.apps/nginx created
 
 Next, verify that the secrets have been retrieved from Vault and replace the values of annotations of Nginx:
 
-+ Verify the `foo` annotation
+- Verify the `foo` annotation
 
 ```shell
 kubectl get deploy nginx -o yaml | grep 'foo:'
@@ -119,10 +120,10 @@ kubectl get deploy nginx -o yaml | grep 'foo:'
 The output is
 
 ```yaml
-    foo: foo
+foo: foo
 ```
 
-+ Verify the `bar` annotation
+- Verify the `bar` annotation
 
 ```shell
 kubectl get deploy nginx -o yaml | grep 'bar:'
@@ -131,7 +132,7 @@ kubectl get deploy nginx -o yaml | grep 'bar:'
 The output is
 
 ```yaml
-    bar: bar
+bar: bar
 ```
 
 So far, we have retrieved the secrets hosted in `Vault` and put them into use.

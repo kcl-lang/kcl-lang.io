@@ -2,6 +2,7 @@
 id: practice
 sidebar_label: Best Practice
 ---
+
 # Best Practice
 
 This document aims to explain the best practices for integrating new models into the Konfig library and designing, building and writing KCL code models. New models are generally designed and abstracted using the best practice of separating front-end and back-end models. The direct purpose of distinguishing between front-end and back-end models is to separate `"user interface"` and `"model implementation"`, achieving a user-friendly and simple configuration interface as well as automated configuration query and modification interfaces.
@@ -12,7 +13,7 @@ This document aims to explain the best practices for integrating new models into
 
 1. **Coding**. Use the KCL OpenAPI tool to generate KCL schemas from the Customer Resources Definitions (CRDs) or OpenAPI Swagger models. These schemas define the atomic capabilities of the platform.
 1. **Abstraction**. Based on these atomic capabilities, the platform abstracts user-oriented front-end models and provides a set of templates. These front-
-end models cannot work independently, and corresponding back-end models are required. These back-end models will eventually obtain an instance of the front-end model at runtime; it parses the input front-end model and converts it into Kubernetes resources.
+   end models cannot work independently, and corresponding back-end models are required. These back-end models will eventually obtain an instance of the front-end model at runtime; it parses the input front-end model and converts it into Kubernetes resources.
 1. **Configuration**. Developers or SREs describe the requirements of applications based on front-end models. Users can define the base and different environment configurations for different environments e.g., base, development and production and different localities. In most cases, defining configurations only requires declaring key-value pairs. For some complex scenarios, users can define the logic to generate configurations.
 1. **Automation**. After defining the user's configuration, all components have been defined and are ready to be automated. The platform can compile, execute, output, modify, query, and perform other automatic works through the KCL CLI or GPL-binding APIs. Users can also deploy the KCL configuration to the Kubernetes cluster with tools.
 
@@ -43,13 +44,13 @@ For some backend models, the configuration attributes that need to be filled in 
 
 A simple best practice is to abstract such commonly used and complex templates into a simple attribute `overQuota` with the `bool` type in the front-end model, allowing users to do multiple-choice questions instead of filling in blank questions. For example, when the `overQuota` attribute is `True`, the back-end model will render this complex logic.
 
-+ The front-end attribute `overQuota`
+- The front-end attribute `overQuota`
 
 ```python
 overQuota: bool
 ```
 
-+ The back-end YAML output:
+- The back-end YAML output:
 
 ```yaml
 spec:
@@ -59,11 +60,11 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: k8s/is-over-quota
-                operator: In
-                values:
-                - 'true'
+              - matchExpressions:
+                  - key: k8s/is-over-quota
+                    operator: In
+                    values:
+                      - "true"
 ```
 
 In addition, different template names can be designed according to specific business scenarios to fill in the blanks, such as designing an attribute template in the code shown below to assist users in template selection instead of directly filling in the template content. The legal template value can be `"success_ratio"` or `"service_cost"`. When the backend model extends more templates, the front-end code does not need to make any modifications, only needs to adapt the corresponding template logic in the backend model.
@@ -139,7 +140,7 @@ Replacing the factory pattern with the KCL union type.
 schema DataA:
     id?: int = 1
     value?: str = "value"
-    
+
 schema DataB:
     name?: str = "DataB"
 
@@ -289,7 +290,7 @@ result: 3
 
 Create a package called `utils.k`, define a KCL function called `add` in it, and import it into another file for use.
 
-+ `utils.k`
+- `utils.k`
 
 ```python
 # utils.k
@@ -305,7 +306,7 @@ sub = lambda x, y {
 }
 ```
 
-+ `main.k`
+- `main.k`
 
 ```python
 # main.k

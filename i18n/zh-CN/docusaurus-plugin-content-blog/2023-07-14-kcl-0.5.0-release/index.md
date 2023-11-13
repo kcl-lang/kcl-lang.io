@@ -13,9 +13,9 @@ tags: [Release Blog, KCL]
 
 KCL 团队很高兴地宣布 KCL v0.5.0 新版本现在已经可用！本次发布为大家带来了三方面的重点更新：**语言**、**工具链**、**社区集成 & 扩展支持**。
 
-+ *使用功能更完善错误更少的 KCL 语言和 IDE 提升代码编写体验和效率*
-+ *使用 KPM, KCL OpenAPI 和 OCI Registry 等工具直接使用和共享您的云原生领域模型，降低学习和上手成本*
-+ *使用 Github Action, ArgoCD 和 Kubectl KCL 插件等社区工具集成和扩展支持提升自动化效率*
+- _使用功能更完善错误更少的 KCL 语言和 IDE 提升代码编写体验和效率_
+- _使用 KPM, KCL OpenAPI 和 OCI Registry 等工具直接使用和共享您的云原生领域模型，降低学习和上手成本_
+- _使用 Github Action, ArgoCD 和 Kubectl KCL 插件等社区工具集成和扩展支持提升自动化效率_
 
 进一步您可以在 [KCL v0.5.0 发布页面](https://github.com/kcl-lang/kcl/releases/tag/v0.5.0) 或者 [KCL 官方网站](https://kcl-lang.io) 获得下载安装指南和详细发布信息。
 
@@ -215,8 +215,8 @@ curl -fsSL https://kcl-lang.io/script/install-kcl-openapi.sh | /bin/bash
 
 v0.5.0 版本优化了使用 Kubernetes KCL 包的体验：
 
-+ 免转换获得：KCL 提供了开箱即用的 Kubernetes 1.14-1.27 各个版本的 KCL 包，通过包管理工具 `kpm add k8s:<version>` 即可获得
-+ 如需自行转换其他 Kubernetes 版本的 KCL 模型，可通过如下的预处理脚本一键从 Kubernetes 仓库下载的 swagger.json 文件转换为 KCL 包，将如下命令的 1.27 改为需要的 Kubernetes 版本即可
+- 免转换获得：KCL 提供了开箱即用的 Kubernetes 1.14-1.27 各个版本的 KCL 包，通过包管理工具 `kpm add k8s:<version>` 即可获得
+- 如需自行转换其他 Kubernetes 版本的 KCL 模型，可通过如下的预处理脚本一键从 Kubernetes 仓库下载的 swagger.json 文件转换为 KCL 包，将如下命令的 1.27 改为需要的 Kubernetes 版本即可
 
 ```bash
 version=1.27
@@ -248,10 +248,10 @@ models/k8s
 
 #### 错误修复
 
-+ 将带有-符号的属性名称转义为_符号，以符合 KCL v0.5.0 语法，[详见](https://github.com/kcl-lang/kcl-openapi/pull/43)
-+ 自动识别并设置 import as 引用别名，避免引用冲突，[详见](https://github.com/kcl-lang/kcl-openapi/pull/45)
-+ 修复 docstring 中属性描述缩进问题，对属性描述内部换行进行自动缩进，[详见](https://github.com/kcl-lang/kcl-openapi/pull/46)
-+ 修复生成的引用路径为基于包的根目录的全引用路径，[详见](https://github.com/kcl-lang/kcl-openapi/pull/51)
+- 将带有-符号的属性名称转义为\_符号，以符合 KCL v0.5.0 语法，[详见](https://github.com/kcl-lang/kcl-openapi/pull/43)
+- 自动识别并设置 import as 引用别名，避免引用冲突，[详见](https://github.com/kcl-lang/kcl-openapi/pull/45)
+- 修复 docstring 中属性描述缩进问题，对属性描述内部换行进行自动缩进，[详见](https://github.com/kcl-lang/kcl-openapi/pull/46)
+- 修复生成的引用路径为基于包的根目录的全引用路径，[详见](https://github.com/kcl-lang/kcl-openapi/pull/51)
 
 ### 包管理工具
 
@@ -312,15 +312,15 @@ kpm 支持通过 OCI Registry 保存 KCL 的程序包，kpm 目前提供的默�
 
 在此次更新中我们提供了 **Github Actions 作为 CI 集成**的示例方案，希望通过使用容器、用于生成配置的持续集成 (CI) 和用于持续部署 (CD) 的 GitOps 来实现端到端应用程序开发流程。整体工作流程如下：
 
-+ 应用代码开发并提交到提交到 GitHub 存储库触发 CI (这里使用 Python Flask Web 应用作为示例)
+- 应用代码开发并提交到提交到 GitHub 存储库触发 CI (这里使用 Python Flask Web 应用作为示例)
 
 ![app](/img/blog/2023-07-14-kcl-0.5.0-release/app.png)
 
-+ GitHub Actions 从应用代码生成容器镜像，并将容器镜像推送到 docker.io 容器注册表
+- GitHub Actions 从应用代码生成容器镜像，并将容器镜像推送到 docker.io 容器注册表
 
 ![app-ci](/img/blog/2023-07-14-kcl-0.5.0-release/app-ci.png)
 
-+ GitHub Actions 根据 docker.io 容器注册表中容器镜像的版本号并自动同步更新 KCL 清单部署文件
+- GitHub Actions 根据 docker.io 容器注册表中容器镜像的版本号并自动同步更新 KCL 清单部署文件
 
 ![auto-update](/img/blog/2023-07-14-kcl-0.5.0-release/auto-update.png)
 
@@ -374,11 +374,11 @@ spec:
 
 此外我们还提供了 **ArgoCD 作为 CD 集成**的示例方案，通过 Github Action CI 集成和 ArgoCD KCL 插件，我们可以完成端到端的 GitOps 工作流，提升应用配置自动变更和部署效率。如下示出了使用 ArgoCD 应用 Kubernetes 配置的概览和同步情况，通过使用 ArgoCD 的能力，当业务代码发生变化时，自动同步更新并部署。
 
-+ **应用概览**
+- **应用概览**
 
 ![argocd-app](/img/blog/2023-07-14-kcl-0.5.0-release/argocd-app.png)
 
-+ **配置同步**
+- **配置同步**
 
 ![argocd-sync](/img/blog/2023-07-14-kcl-0.5.0-release/argocd-sync.png)
 
@@ -443,24 +443,24 @@ service/app created
 
 ## 社区动态
 
-+ 感谢 @harri2012 对 KCL IDE 插件的首次贡献 🙌
-+ 感谢 @niconical 对 KCL 命令行基础代码和 CI/CD 脚本的贡献 🙌
-+ 感谢 @Ekko 对 KCL 云原生工具集成的贡献 🙌
-+ 恭喜来自华中科技大学朱俊星同学成功入选 GitLink编程夏令营（GLCC）"Terraform/JsonSchema 转 KCL Schema" 课题 🎉
-+ 恭喜来自东南大学的任一鸣同学成功入选 开源之夏 "IDE 插件增强和 Language Server 集成" 课题 🎉
-+ 为便于 KCL 及其子项目的仓库检索和管理，我们将 KCL 30+ 仓库整体搬迁到了新的 Github **kcl-lang** 组织，牢记项目地址，防止迷路 [https://github.com/kcl-lang](https://github.com/kcl-lang) ❤️
-+ KCL 加入 CNCF Landscape，算是云原生社区对我们小小的鼓励和认可，下一步计划是努力加入 CNCF Sandbox，为云原生社区作出更多的贡献 💪
+- 感谢 @harri2012 对 KCL IDE 插件的首次贡献 🙌
+- 感谢 @niconical 对 KCL 命令行基础代码和 CI/CD 脚本的贡献 🙌
+- 感谢 @Ekko 对 KCL 云原生工具集成的贡献 🙌
+- 恭喜来自华中科技大学朱俊星同学成功入选 GitLink编程夏令营（GLCC）"Terraform/JsonSchema 转 KCL Schema" 课题 🎉
+- 恭喜来自东南大学的任一鸣同学成功入选 开源之夏 "IDE 插件增强和 Language Server 集成" 课题 🎉
+- 为便于 KCL 及其子项目的仓库检索和管理，我们将 KCL 30+ 仓库整体搬迁到了新的 Github **kcl-lang** 组织，牢记项目地址，防止迷路 [https://github.com/kcl-lang](https://github.com/kcl-lang) ❤️
+- KCL 加入 CNCF Landscape，算是云原生社区对我们小小的鼓励和认可，下一步计划是努力加入 CNCF Sandbox，为云原生社区作出更多的贡献 💪
 
 ## 下一步计划
 
 预计 2023 年 9 月，我们将发布 **KCL v0.6.0 版本**，预期重点演进包括：
 
-+ 更多针对场景问题的 KCL 语言编写便利性改进，用户界面持续优化与体验提升，用户支持和痛点解决
-+ 更多 IDE 插件、语言工具链、包管理工具、Registry 功能支持和用户体验提升
-+ 针对云原生场景提供更多开箱即用的 KCL 模型支持，主要包含容器、服务、计算、存储和网络等
-+ 更多的 CI/CD 工具集成：如 Jenkins, Gitlab CI, FluxCD 等。
-+ 支持 Helmfile KCL 插件，通过 KCL 代码直接生成、编辑和校验 Kubernetes 原生资源
-+ 支持在 Kubernetes 运行时通过 KCL Operator 运行代码对 YAML 进行编辑和校验
+- 更多针对场景问题的 KCL 语言编写便利性改进，用户界面持续优化与体验提升，用户支持和痛点解决
+- 更多 IDE 插件、语言工具链、包管理工具、Registry 功能支持和用户体验提升
+- 针对云原生场景提供更多开箱即用的 KCL 模型支持，主要包含容器、服务、计算、存储和网络等
+- 更多的 CI/CD 工具集成：如 Jenkins, Gitlab CI, FluxCD 等。
+- 支持 Helmfile KCL 插件，通过 KCL 代码直接生成、编辑和校验 Kubernetes 原生资源
+- 支持在 Kubernetes 运行时通过 KCL Operator 运行代码对 YAML 进行编辑和校验
 
 更多详情请参考 [KCL 2023 路线规划](https://kcl-lang.io/docs/community/release-policy/roadmap) 和 [KCL v0.6.0 Milestone](https://github.com/kcl-lang/kcl/milestone/6)
 
@@ -476,10 +476,10 @@ service/app created
 
 更多其他资源请参考：
 
-+ [KCL 网站](https://kcl-lang.io/)
-+ [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/kcl-lang/kcl)
-+ [Kusion Github 仓库](https://github.com/KusionStack/kusion)
-+ [Konfig Github 仓库](https://github.com/KusionStack/konfig)
+- [KCL 网站](https://kcl-lang.io/)
+- [Kusion 网站](https://kusionstack.io/)
+- [KCL Github 仓库](https://github.com/kcl-lang/kcl)
+- [Kusion Github 仓库](https://github.com/KusionStack/kusion)
+- [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 
 欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/kcl-lang/community](https://github.com/kcl-lang/community)

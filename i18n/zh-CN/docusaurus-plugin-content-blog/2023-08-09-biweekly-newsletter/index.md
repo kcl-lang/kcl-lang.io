@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 本栏目将会双周更新 KCL 语言社区最新动态，包括功能、官网更新和最新的社区动态等，帮助大家更好地了解 KCL 社区！
 
-***KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## 内容概述
 
@@ -30,7 +30,7 @@ tags: [KCL, Biweekly-Newsletter]
   - Helmfile KCL 插件支持
 - **📰 官网和用例更新**
   - KCL 官网新增 v0.5.x 文档版本选择
-  - 新增 KCL 用例仓库: *[https://github.com/kcl-lang/examples](https://github.com/kcl-lang/examples)*  
+  - 新增 KCL 用例仓库: *[https://github.com/kcl-lang/examples](https://github.com/kcl-lang/examples)*
 
 ## 特别鸣谢
 
@@ -47,38 +47,38 @@ KCL Import 工具在 Protobuf, OpenAPI 模型和 Go 结构体转换为 KCL Schem
 
 ```json
 {
- "$schema": "http://json-schema.org/draft-07/schema#",
- "$id": "https://example.com/schemas/customer.json",
- "type": "object",
- "$defs": {
-  "address": {
-   "type": "object",
-   "properties": {
-    "city": {
-     "type": "string"
-    },
-    "state": {
-     "$ref": "#/$defs/state"
-    }
-   }
-  },
-  "state": {
-   "type": "object",
-   "properties": {
-    "name": {
-     "type": "string"
-    }
-   }
-  }
- },
- "properties": {
-  "name": {
-   "type": "string"
-  },
-  "address": {
-   "$ref": "#/$defs/address"
-  }
- }
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/customer.json",
+  "type": "object",
+  "$defs": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/$defs/state"
+        }
+      }
+    },
+    "state": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "#/$defs/address"
+    }
+  }
 }
 ```
 

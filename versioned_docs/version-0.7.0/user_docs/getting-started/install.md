@@ -52,7 +52,7 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
 
 ### Homebrew (MacOS)
 
-+ Install
+- Install
 
 ```bash
 # Install the latest version
@@ -62,13 +62,13 @@ brew install kcl-lang/tap/kcl@0.7.0
 brew install kcl-lang/tap/kcl@x.y.z
 ```
 
-+ Upgrade
+- Upgrade
 
 ```bash
 brew upgrade kcl-lang/tap/kcl
 ```
 
-+ Uninstall
+- Uninstall
 
 ```bash
 brew uninstall kcl-lang/tap/kcl
@@ -93,13 +93,13 @@ go install kcl-lang.io/cli/cmd/kcl@latest
 
 ### From Docker
 
-+ Command
+- Command
 
 ```bash
 docker run --rm -it kcllang/kcl
 ```
 
-+ Update image
+- Update image
 
 ```bash
 docker pull kcllang/kcl

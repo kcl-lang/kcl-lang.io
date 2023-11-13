@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 本栏目将会双周更新 KCL 语言社区最新动态，包括功能、官网更新和最新的社区动态等，帮助大家更好地了解 KCL 社区！
 
-***KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## 内容概述
 
@@ -41,8 +41,8 @@ tags: [KCL, Biweekly-Newsletter]
 - **🏄 API 更新**
   - KCL Schema 模型解析 GetSchemaType API 获取 KCL 包相关信息和 Schema 属性默认值
 - **📰 官网和用例更新**
-  - 新增通过 docker.io 发布 KCL 包用例: *[https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md](https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md)*
-  - 新增 KCL Gitlab CI 集成用例: *[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)*
+  - 新增通过 docker.io 发布 KCL 包用例: _[https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md](https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md)_
+  - 新增 KCL Gitlab CI 集成用例: _[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)_
   - 新增 KCL 密钥管理 Vault 和 Vals 集成用例: *[https://kcl-lang.io/docs/user_docs/guides/secret-management/vault](https://kcl-lang.io/docs/user_docs/guides/secret-management/vault)*
 
 ## 特别鸣谢
@@ -64,97 +64,85 @@ KCL Import 工具在 Protobuf, JsonSchema OpenAPI 模型和 Go 结构体转换�
 
 ```json
 {
-    "format_version": "0.2",
-    "provider_schemas": {
-        "registry.terraform.io/aliyun/alicloud": {
-            "provider": {
-                "version": 0,
-                "block": {
-                    "attributes": {},
-                    "block_types": {},
-                    "description_kind": "plain"
-                }
-            },
-            "resource_schemas": {
-                "alicloud_db_instance": {
-                    "version": 0,
-                    "block": {
-                        "attributes": {
-                            "db_instance_type": {
-                                "type": "string",
-                                "description_kind": "plain",
-                                "computed": true
-                            },
-                            "engine": {
-                                "type": "string",
-                                "description_kind": "plain",
-                                "required": true
-                            },
-                            "security_group_ids": {
-                                "type": [
-                                    "set",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            },
-                            "security_ips": {
-                                "type": [
-                                    "set",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            },
-                            "tags": {
-                                "type": [
-                                    "map",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true
-                            }
-                        },
-                        "block_types": {},
-                        "description_kind": "plain"
-                    }
-                },
-                "alicloud_config_rule": {
-                    "version": 0,
-                    "block": {
-                        "attributes": {
-                            "compliance": {
-                                "type": [
-                                    "list",
-                                    [
-                                        "object",
-                                        {
-                                            "compliance_type": "string",
-                                            "count": "number"
-                                        }
-                                    ]
-                                ],
-                                "description_kind": "plain",
-                                "computed": true
-                            },
-                            "resource_types_scope": {
-                                "type": [
-                                    "list",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            }
-                        }
-                    }
-                }
-            },
-            "data_source_schemas": {}
+  "format_version": "0.2",
+  "provider_schemas": {
+    "registry.terraform.io/aliyun/alicloud": {
+      "provider": {
+        "version": 0,
+        "block": {
+          "attributes": {},
+          "block_types": {},
+          "description_kind": "plain"
         }
+      },
+      "resource_schemas": {
+        "alicloud_db_instance": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "db_instance_type": {
+                "type": "string",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "engine": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "security_group_ids": {
+                "type": ["set", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "security_ips": {
+                "type": ["set", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "tags": {
+                "type": ["map", "string"],
+                "description_kind": "plain",
+                "optional": true
+              }
+            },
+            "block_types": {},
+            "description_kind": "plain"
+          }
+        },
+        "alicloud_config_rule": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "compliance": {
+                "type": [
+                  "list",
+                  [
+                    "object",
+                    {
+                      "compliance_type": "string",
+                      "count": "number"
+                    }
+                  ]
+                ],
+                "description_kind": "plain",
+                "computed": true
+              },
+              "resource_types_scope": {
+                "type": ["list", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              }
+            }
+          }
+        }
+      },
+      "data_source_schemas": {}
     }
+  }
 }
 ```
 
@@ -267,8 +255,8 @@ kcl main.k | vals eval -f -
 
 ## 社区动态
 
-+ 🎉 恭喜来自华中科技大学的朱俊星同学成功通过 Gitlink 编程夏令营 (GLCC) 中期考核并出色地完成了 KCL Import 工具 Jsonschema 和 Terraform Provider Schema 与 KCL Schema 转换的部分，后续社区将为其授予 KCL 社区 Maintainer 角色
-+ 💻 KCL 参加 CNCF 云原生计算基金会应用交付 TAG 社区会议并作项目汇报
+- 🎉 恭喜来自华中科技大学的朱俊星同学成功通过 Gitlink 编程夏令营 (GLCC) 中期考核并出色地完成了 KCL Import 工具 Jsonschema 和 Terraform Provider Schema 与 KCL Schema 转换的部分，后续社区将为其授予 KCL 社区 Maintainer 角色
+- 💻 KCL 参加 CNCF 云原生计算基金会应用交付 TAG 社区会议并作项目汇报
 
 ## 其他资源
 

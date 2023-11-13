@@ -6,6 +6,7 @@ weight: 2
 description: 使用配置操作分块编写配置
 sidebar_position: 3
 ---
+
 ## 1. Introduction
 
 KCL is a simple and easy-to-use configuration language, where users can simply write the reusable configuration code.
@@ -121,7 +122,7 @@ server: pkg.Server {
 }
 ```
 
-As in the above code, we use the `import` keyword in `base.k` to import the `Server` schema placed under `pkg` and use it to instantiate a configuration named `server`, in which we set `image` attribute  to `"nginx:1.14.2"`, and a label `app` with the value `test_app` is added. In addition, we also added the configuration of the main container `mainContainer` with the value `[{protocol = "HTTP", port = 80, targetPort = 1100}]` for the ports attribute.
+As in the above code, we use the `import` keyword in `base.k` to import the `Server` schema placed under `pkg` and use it to instantiate a configuration named `server`, in which we set `image` attribute to `"nginx:1.14.2"`, and a label `app` with the value `test_app` is added. In addition, we also added the configuration of the main container `mainContainer` with the value `[{protocol = "HTTP", port = 80, targetPort = 1100}]` for the ports attribute.
 
 KCL command:
 
@@ -142,9 +143,9 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
   labels:
     app: test_app
 ```
@@ -183,9 +184,9 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
   labels:
     app: test_app
 ```
@@ -220,9 +221,9 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
   labels:
     app: test_app
     env: dev
@@ -268,12 +269,12 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
-    - protocol: TCP
-      port: 443
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
+      - protocol: TCP
+        port: 443
+        targetPort: 1100
   labels:
     app: test_app
     env: dev
@@ -309,9 +310,9 @@ server:
   mainContainer:
     name: main
     ports:
-    - protocol: HTTP
-      port: 80
-      targetPort: 1100
+      - protocol: HTTP
+        port: 80
+        targetPort: 1100
   labels:
     app: test_app
     env: prod

@@ -13,9 +13,9 @@ tags: [Release Blog, KCL]
 
 The KCL team is pleased to announce that KCL v0.5.0 is now available! This release has brought three key updates to everyone: **Language**, **Tools**, and **Integrations**.
 
-+ *Use KCL language and IDE with more complete features and fewer errors to improve code writing experience and efficiency.*
-+ *Use KPM, KCL OpenAPI, OCI Registry and other tools to directly use and share your cloud native domain models, reducing learning and hands-on costs.*
-+ *Using community tools such as Github Action, ArgoCD, and Kubectl KCL plugins to integrate and extend support to improve automation efficiency.*
+- _Use KCL language and IDE with more complete features and fewer errors to improve code writing experience and efficiency._
+- _Use KPM, KCL OpenAPI, OCI Registry and other tools to directly use and share your cloud native domain models, reducing learning and hands-on costs._
+- _Using community tools such as Github Action, ArgoCD, and Kubectl KCL plugins to integrate and extend support to improve automation efficiency._
 
 You can visit the [KCL release page](https://github.com/kcl-lang/kcl/releases/tag/v0.5.0) or the [KCL website](https://kcl-lang.io/) to get KCL binary download link and more detailed release information.
 
@@ -214,8 +214,9 @@ curl -fsSL https://kcl-lang.io/script/install-kcl-openapi.sh | /bin/bash
 #### Kubernetes KCL Package Conversion Optimization
 
 The v0.5.0 version optimizes the experience of using Kubernetes KCL packages:
-+ Built-in Kubernetes package: KCL provides out of the box KCL packages for Kubernetes 1.14-1.27 versions, which can be obtained through the package management tool `kpm pull k8s:<version>`.
-+ If you need to convert other Kubernetes versions of the KCL model on your own, you can use the following preprocessing script to convert the `swagger.json` file downloaded from the Kubernetes repository into the KCL package. Change 1.27 of the following command to the desired Kubernetes version.
+
+- Built-in Kubernetes package: KCL provides out of the box KCL packages for Kubernetes 1.14-1.27 versions, which can be obtained through the package management tool `kpm pull k8s:<version>`.
+- If you need to convert other Kubernetes versions of the KCL model on your own, you can use the following preprocessing script to convert the `swagger.json` file downloaded from the Kubernetes repository into the KCL package. Change 1.27 of the following command to the desired Kubernetes version.
 
 ```bash
 version=1.27
@@ -247,10 +248,10 @@ models/k8s
 
 #### Bugfix
 
-+ Escape attribute names with the `-` character as `_` to comply with KCL v0.5.0 syntax, [see details](https://github.com/kcl-lang/kcl-openapi/pull/43)
-+ Automatically recognize and set import as reference aliases to avoid reference conflicts, [see details](https://github.com/kcl-lang/kcl-openapi/pull/45)
-+ Fix the issue of attribute description indentation in docstring, and automatically indent the internal line breaks of attribute descriptions. [See details](https://github.com/kcl-lang/kcl-openapi/pull/46)
-+ Fix the generated reference path to be the full reference path based on the root directory of the package, [see details](https://github.com/kcl-lang/kcl-openapi/pull/51)
+- Escape attribute names with the `-` character as `_` to comply with KCL v0.5.0 syntax, [see details](https://github.com/kcl-lang/kcl-openapi/pull/43)
+- Automatically recognize and set import as reference aliases to avoid reference conflicts, [see details](https://github.com/kcl-lang/kcl-openapi/pull/45)
+- Fix the issue of attribute description indentation in docstring, and automatically indent the internal line breaks of attribute descriptions. [See details](https://github.com/kcl-lang/kcl-openapi/pull/46)
+- Fix the generated reference path to be the full reference path based on the root directory of the package, [see details](https://github.com/kcl-lang/kcl-openapi/pull/51)
 
 ### Package Management Tool
 
@@ -310,15 +311,15 @@ See [here](https://kcl-lang.io/docs/user_docs/guides/package-management/overview
 
 In the new version of KCL, we have provided an example scheme of **Github Actions as the CI integration**. We hope to implement the end-to-end application development process by using containers, Continuous Integration (CI) for configuration generation, and GitOps for Continuous Deployment (CD). The overall workflow is as follows:
 
-+ Develop application code and submit it to the GitHub repository to trigger CI (using Python Flask web application as an example).
+- Develop application code and submit it to the GitHub repository to trigger CI (using Python Flask web application as an example).
 
 ![app](/img/blog/2023-07-14-kcl-0.5.0-release/app.png)
 
-+ GitHub Actions generate container images from application code and push them to the `docker.io` container registry.
+- GitHub Actions generate container images from application code and push them to the `docker.io` container registry.
 
 ![app-ci](/img/blog/2023-07-14-kcl-0.5.0-release/app-ci.png)
 
-+ GitHub Actions automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
+- GitHub Actions automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
 
 ![auto-update](/img/blog/2023-07-14-kcl-0.5.0-release/auto-update.png)
 
@@ -372,11 +373,11 @@ For more details, please refer to [here](https://kcl-lang.io/docs/user_docs/guid
 
 In addition, we also provide **ArgoCD as an example solution for CD integration**. Through Github Action CI integration and ArgoCD KCL plugin, we can complete end-to-end GitOps workflow, improve application configuration automatic change and deployment efficiency. The following is an overview and synchronization of Kubernetes configuration using ArgoCD application. By using ArgoCD's ability, when application code changes, it is automatically updated and deployed synchronously.
 
-+ **Application Overview**
+- **Application Overview**
 
 ![argocd-app](/img/blog/2023-07-14-kcl-0.5.0-release/argocd-app.png)
 
-+ **Configuration Synchronization**
+- **Configuration Synchronization**
 
 ![argocd-sync](/img/blog/2023-07-14-kcl-0.5.0-release/argocd-sync.png)
 
@@ -426,7 +427,7 @@ $ kubectl kcl apply -f krm-kcl-abstration.yaml
 deployment.apps/app created
 service/app created
 ```
- 
+
 More detailed introductions and use cases of Kubernetes configuration management tools can be found [here](https://github.com/kcl-lang/krm-kcl/tree/main/examples)
 
 At present, the integration of Kubernetes configuration management tools supported by KCL is still in its early stages. If you have more ideas and requirements, welcome to open issues to discuss.
@@ -441,24 +442,24 @@ The versioning semantic option is added to the [KCL website](https://kcl-lang.io
 
 ## Community
 
-+ Thank @harri2012 for his first contribution to the KCL IDE plugin 🙌
-+ Thank @niconical for his contribution to the KCL command line basic code and CI/CD scripts 🙌
-+ Thank @Ekko for his contribution to the integration of KCL cloud native tools 🙌
-+ Congratulations to Junxing Zhu his successful selection into the GitLink Programming Summer Camp (GLCC) "Terraform/JsonSchema to KCL Schema" project 🎉
-+ Congratulations to Yiming Ren on her successful selection of the topic "IDE plug-in enhancement and language server integration" in the summer of open source 🎉
-+ We have relocated KCL 30+ repos as a whole to the new Github **kcl-lang** organization, keeping the project address in mind [https://github.com/kcl-lang](https://github.com/kcl-lang) ❤️
-+ KCL's joining CNCF Landscape is a small encouragement and recognition from the cloud native community. The next step is to strive to join CNCF Sandbox and make more contributions to the cloud native community 💪
+- Thank @harri2012 for his first contribution to the KCL IDE plugin 🙌
+- Thank @niconical for his contribution to the KCL command line basic code and CI/CD scripts 🙌
+- Thank @Ekko for his contribution to the integration of KCL cloud native tools 🙌
+- Congratulations to Junxing Zhu his successful selection into the GitLink Programming Summer Camp (GLCC) "Terraform/JsonSchema to KCL Schema" project 🎉
+- Congratulations to Yiming Ren on her successful selection of the topic "IDE plug-in enhancement and language server integration" in the summer of open source 🎉
+- We have relocated KCL 30+ repos as a whole to the new Github **kcl-lang** organization, keeping the project address in mind [https://github.com/kcl-lang](https://github.com/kcl-lang) ❤️
+- KCL's joining CNCF Landscape is a small encouragement and recognition from the cloud native community. The next step is to strive to join CNCF Sandbox and make more contributions to the cloud native community 💪
 
 ## Next
 
 It is expected that in September 2023, we will release **KCL v0.6.0**. The expected key evolution includes:
 
-+ KCL language is further improved for convenience, the user interface is continuously optimized and experience is improved, user support and pain points are solved.
-+ More IDE extensions, package management tools, Kubernetes scenario integration, feature support, and user experience improvement.
-+ Provide more out-of-box KCL model support for cloud-native scenarios, mainly including containers, services, computing, storage, and networks.
-+ More CI/CD integrations such as Jenkins, Gitlab CI, FluxCD, etc.
-+ Support `helmfile` KCL plugins, directly generating, mutating, and validating Kubernetes resources through the KCL code.
-+ Support for mutating and validating YAML by running KCL code through the admission controller at the Kubernetes runtime.
+- KCL language is further improved for convenience, the user interface is continuously optimized and experience is improved, user support and pain points are solved.
+- More IDE extensions, package management tools, Kubernetes scenario integration, feature support, and user experience improvement.
+- Provide more out-of-box KCL model support for cloud-native scenarios, mainly including containers, services, computing, storage, and networks.
+- More CI/CD integrations such as Jenkins, Gitlab CI, FluxCD, etc.
+- Support `helmfile` KCL plugins, directly generating, mutating, and validating Kubernetes resources through the KCL code.
+- Support for mutating and validating YAML by running KCL code through the admission controller at the Kubernetes runtime.
 
 For more details, please refer to [KCL 2023 Roadmap](https://kcl-lang.io/docs/community/release-policy/roadmap) and [KCL v0.6.0 Milestone](https://github.com/kcl-lang/kcl/milestone/6).
 
@@ -472,10 +473,10 @@ For more information, see [KCL FAQ](https://kcl-lang.io/docs/user_docs/support/)
 
 Thank all KCL users for their valuable feedback and suggestions during this version release. For more resources, please refer to:
 
-+ [KCL Website](https://kcl-lang.io/)
-+ [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/kcl-lang/kcl)
-+ [Kusion Repo](https://github.com/KusionStack/kusion)
-+ [Konfig Repo](https://github.com/KusionStack/konfig)
+- [KCL Website](https://kcl-lang.io/)
+- [Kusion Website](https://kusionstack.io/)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [Kusion Repo](https://github.com/KusionStack/kusion)
+- [Konfig Repo](https://github.com/KusionStack/konfig)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏

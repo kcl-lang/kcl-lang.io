@@ -362,7 +362,7 @@ assert x.upper() == "LENGTH"
 
 There are 2 different ways to format a string: to use the `"{}".format()` built-in function, or to specify the variable between the curly braces and use a `$` mark to tell KCL to extract its value. This is called **string interpolation** in KCL. In following example, both `a` and `b` will be assigned to string `"hello world"`.
 
-Besides, the variable to serialized can be extracted in special data format, such as YAML or JSON.  In this case, a `#yaml` or `#json` can be included within the curly braces.
+Besides, the variable to serialized can be extracted in special data format, such as YAML or JSON. In this case, a `#yaml` or `#json` can be included within the curly braces.
 
 Specifically, when the dollar sign `$` itself is needed in a **string interpolation**, it needs to be escaped and use `$$` instead. Or in another way, `+` can be used to concat the dollar sign with the **string interpolation** to avoid that escape. In following example, both `c` and `c2` will be assigned to string `$hello world$`
 
@@ -412,8 +412,6 @@ example: |-
   and also a blank line:
 
   plus another line at the end.
-
-
 ```
 
 The result is
@@ -436,7 +434,7 @@ KCL raw string is created by prefixing a string literal with `'r'` or `'R'`. KCL
 
 ```python
 s = "Hi\nHello"
-raw_s = r"Hi\nHello"  # This is a KCL raw string with the `r` prefix. 
+raw_s = r"Hi\nHello"  # This is a KCL raw string with the `r` prefix.
 ```
 
 ```yaml
@@ -451,7 +449,7 @@ raw_s: Hi\nHello
 ```python
 worldString = "world"
 s = "Hello ${worldString}"
-raw_s = r"Hello ${worldString}"  # This is a KCL raw string with the `r` prefix. 
+raw_s = r"Hello ${worldString}"  # This is a KCL raw string with the `r` prefix.
 ```
 
 ```yaml
@@ -610,7 +608,7 @@ We can ignore the key quotation marks when we writing simple literals on the key
 
 ```python
 data = {
-    key1 = "value1"  # Ignore key quotation '"' 
+    key1 = "value1"  # Ignore key quotation '"'
     key2 = "value2"
 }  # {"key1": "value1", "key2": "value2"}
 ```
@@ -760,9 +758,9 @@ The output is as follows:
 ```yaml
 a: null
 b:
-- 1
-- 2
-- null
+  - 1
+  - 2
+  - null
 c:
   key1: value1
   key2: null
@@ -793,8 +791,8 @@ The output is as follows:
 
 ```yaml
 b:
-- 1
-- 2
+  - 1
+  - 2
 c:
   key1: value1
 ```
@@ -1124,7 +1122,7 @@ schema Company:
 schema Person:
     name: str
     job?: Company
-        
+
 alice = Person {
     name = "alice"
 }
@@ -2023,15 +2021,15 @@ The output is
 configOrigin:
   id: 1
   values:
-  - 0
-  - 1
+    - 0
+    - 1
 configNew:
   id: 2
   values:
-  - 0
-  - 1
-  - 2
-  - 3
+    - 0
+    - 1
+    - 2
+    - 3
 ```
 
 In addition, schema attribute default values can be modified by schema config.
@@ -2244,7 +2242,7 @@ schema Fib[n: int]:
         value = 1
     else:
         value = Fib(n1).value + Fib(n2).value
-    
+
 fib8 = Fib(8).value  # 21
 ```
 
@@ -2325,10 +2323,10 @@ bob:
   name: Bob
   age: 10
 aliceAndBob:
-- name: Alice
-  age: 18
-- name: Bob
-  age: 10
+  - name: Alice
+    age: 18
+  - name: Bob
+    age: 10
 ```
 
 ### Config Operations
@@ -2402,9 +2400,9 @@ The output is
 data1:
   key: value
 data2:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 data3: null
 ```
 
@@ -2486,7 +2484,7 @@ config:
 schema Data:
     d1?: int
     d2?: int
-    
+
 schema Config:
     # This is one configuration that will be merged.
     data: Data {
@@ -2560,8 +2558,8 @@ Output:
 data:
   labels:
     key1:
-    - 0
-    - 1
+      - 0
+      - 1
 ```
 
 If no index is specified, the last index will be used.
@@ -2643,7 +2641,7 @@ rule SomeRule:
     age > 0, "rule check failure message"
     name == "Alice"
 
-rule1 = SomeRule()  # Rule call 
+rule1 = SomeRule()  # Rule call
 rule2 = SomeRule {}  # Rule call
 ```
 
@@ -2798,7 +2796,7 @@ The modules in the same package are visible and cross-package references need to
 Code structure:
 
 ```bash
-. 
+.
 └── root
     ├── model
     │   ├── model1.k
@@ -2858,7 +2856,7 @@ The definition of the root path `ROOT_PATH` is the directory corresponding to th
 Code structure:
 
 ```bash
-. 
+.
 └── root
     ├── kcl.mod
     ├── model
@@ -2903,7 +2901,7 @@ kcl employee.k -D bankCard=123
 Currently, supported types of top-level argument are number, string, bool, list and dict.
 
 ```bash
-kcl main.k -D list_key='[1,2,3]' -D dict_key='{"key":"value"}' 
+kcl main.k -D list_key='[1,2,3]' -D dict_key='{"key":"value"}'
 ```
 
 We need to pay attention to the escape of quotation marks `"` and other symbols in the command line
@@ -2918,7 +2916,7 @@ kcl_options:
     value: 1
   - key: key_dict
     value:
-      innerDictKey:  innerDictValue
+      innerDictKey: innerDictValue
   - key: key_list
     value:
       - 1
@@ -3077,7 +3075,7 @@ schema Backend:
         progressDeadlineSeconds = 600
         replicas = 1
         revisionHistoryLimit = 10
-        selector = {}  
+        selector = {}
     }
 
 _backends = [Backend {
@@ -3292,8 +3290,8 @@ person:
   name: Alice
   age: 10
   ids:
-  - 1
-  - 2
+    - 1
+    - 2
 ```
 
 ##### Override Delete Sample
@@ -3304,7 +3302,7 @@ KCL code:
 schema Config:
     x?: int = 1
     y?: str = "s"
-    
+
 config = Config {
     x = 2
 }

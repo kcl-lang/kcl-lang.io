@@ -15,8 +15,8 @@ tags: [KCL, Kubernetes Resource Model, Dynamic Configuration Management]
 
 Kubernetes 和云 API 越来越复杂的原因主要有以下几点：
 
-+ **不断增加的功能和能力**：Kubernetes 和云 API 都是为了应对不断增长的应用需求和云计算的发展而不断演进。为了满足用户的需求，它们不断引入新的功能和能力，如自动扩展、服务发现、负载均衡、权限管理等。这些新功能的引入增加了系统的复杂性。虽然我们已经有了各式各样的自动化手段，随着时间的推移，因为不同资源类型的数量、这些资源类型的潜在设置数量以及这些资源类型之间的复杂关系呈指数级增长
-+ **复杂的配置和管理需求**：随着应用规模的增长，配置和管理 Kubernetes 和云 API 变得越来越复杂。例如，需要管理大量的容器实例和资源、配置复杂的网络和存储、实现高可用性和负载均衡，需要针对不同的环境和拓扑重复的进行配置等。这些复杂的配置和管理需求增加了 Kubernetes 和云 API 的复杂性，开玩笑的说甚至在 Kubernetes 领域常常伴随催生了一批 YAML 工程师。
+- **不断增加的功能和能力**：Kubernetes 和云 API 都是为了应对不断增长的应用需求和云计算的发展而不断演进。为了满足用户的需求，它们不断引入新的功能和能力，如自动扩展、服务发现、负载均衡、权限管理等。这些新功能的引入增加了系统的复杂性。虽然我们已经有了各式各样的自动化手段，随着时间的推移，因为不同资源类型的数量、这些资源类型的潜在设置数量以及这些资源类型之间的复杂关系呈指数级增长
+- **复杂的配置和管理需求**：随着应用规模的增长，配置和管理 Kubernetes 和云 API 变得越来越复杂。例如，需要管理大量的容器实例和资源、配置复杂的网络和存储、实现高可用性和负载均衡，需要针对不同的环境和拓扑重复的进行配置等。这些复杂的配置和管理需求增加了 Kubernetes 和云 API 的复杂性，开玩笑的说甚至在 Kubernetes 领域常常伴随催生了一批 YAML 工程师。
 
 尽管 Kubernetes 和云 API 的复杂性愈发增加，但它们提供了强大的功能和灵活性，可以帮助组织更好地管理和扩展其应用程序。通过使用适当的工具、工程实践和方法，可以减轻这种复杂性，并更有效地利用这些技术来满足业务需求。动态配置管理技术便是其中之一可以一定程度帮助解决 Kubernetes 和云 API 的复杂性。
 
@@ -30,8 +30,8 @@ Kubernetes 和云 API 越来越复杂的原因主要有以下几点：
 
 与动态配置管理相对应的方式是静态配置管理，静态配置会带来一系列问题
 
-+ **维度爆炸**: 大多数静态配置需要为每个环境单独进行配置；在最糟糕的情况下，它可能引入涉及环境交叉链接的难以调试的错误，稳定性和扩展性都较差。
-+ **配置漂移**: 对于不同环境的静态管理应用程序和基础设施配置的方式，往往没有标准的方式去管理这些动态的不同环境的配置，采用非标准化的方法会导致复杂度呈指数增长，并导致配置漂移。
+- **维度爆炸**: 大多数静态配置需要为每个环境单独进行配置；在最糟糕的情况下，它可能引入涉及环境交叉链接的难以调试的错误，稳定性和扩展性都较差。
+- **配置漂移**: 对于不同环境的静态管理应用程序和基础设施配置的方式，往往没有标准的方式去管理这些动态的不同环境的配置，采用非标准化的方法会导致复杂度呈指数增长，并导致配置漂移。
 
 ## 为什么需要一种新范式
 
@@ -41,10 +41,10 @@ Kubernetes 和云 API 越来越复杂的原因主要有以下几点：
 
 于是我们思考需要有一个统一规范描述来同时承载配置语言能力，并且可以尽可能无副作用地同时满足规模化配置场景下的稳定性、扩展性、效率等特性，并且解决静态配置管理的问题
 
-+ **抽象和组合能力**：通过可编程 Schema 的方式提供给平台人员屏蔽底层底层基础设施细节和平台，并提供给开发人员一个更好更稳定的 API 抽象。
-+ **稳定性**：通过语言内置开箱提供的稳定特性如规则编写，静态类型等特性，使得风险尽可能左移，在 VCS 中编写实时发现错误，可审计可追溯可回滚，易于自动化。
-+ **可复用扩展性**：就像应用软件供应链那样，应当将基础设施配置也视为软件供应链中的一环，用户可以通过标准的方式分发复用配置，对于常用的配置用户可以在开源世界中轻易获得它，对于内部平台，我们可以轻易编写和扩展配置代码。
-+ **高性能**：由于动态配置管理提倡由一份基线配置根据部署上下文生成不同环境不同拓扑的配置，对于配置代码本身的执行渲染性能有较高的要求，开发者通常不希望花费数十分钟才看到真实配置输出而影响软件迭代升级的效率
+- **抽象和组合能力**：通过可编程 Schema 的方式提供给平台人员屏蔽底层底层基础设施细节和平台，并提供给开发人员一个更好更稳定的 API 抽象。
+- **稳定性**：通过语言内置开箱提供的稳定特性如规则编写，静态类型等特性，使得风险尽可能左移，在 VCS 中编写实时发现错误，可审计可追溯可回滚，易于自动化。
+- **可复用扩展性**：就像应用软件供应链那样，应当将基础设施配置也视为软件供应链中的一环，用户可以通过标准的方式分发复用配置，对于常用的配置用户可以在开源世界中轻易获得它，对于内部平台，我们可以轻易编写和扩展配置代码。
+- **高性能**：由于动态配置管理提倡由一份基线配置根据部署上下文生成不同环境不同拓扑的配置，对于配置代码本身的执行渲染性能有较高的要求，开发者通常不希望花费数十分钟才看到真实配置输出而影响软件迭代升级的效率
 
 ## KRM KCL 规范
 
@@ -56,10 +56,10 @@ KRM KCL 规范的另一个重要特性是其对动态配置管理的支持。传
 
 除了动态配置管理，KRM KCL 规范 还具有一些其他的优势。首先，它基于 Kubernetes，可以与现有的 Kubernetes 生态系统进行无缝集成。其次，KRM KCL 规范提供了丰富的工具和库，使得开发人员可以轻松地创建、测试和维护配置。最后，KRM KCL 规范采用了开放的标准，可以与其他的配置管理工具如 Kubectl, Helm, Kustomize 等进行互操作，并且具备如下特点
 
-+ **声明式**：配置描述以代码方式抽象和组织，用户可以通过编辑器或 IDE 查看、编辑，代码中清晰描述了资源、服务、网络等多方面的配置。
-+ **面向终态**：面向终态且实现无关，通过高度抽象并内置特定领域的基础能力，具象的业务由使用者编写声明。使用者通过统一的描述代码和 GitOps 流程避免人工操作及私有脚本的非统一模式和引入的安全问题。
-+ **稳定性**：任何配置代码的修改都可能造成非预期的结果，甚至异常或故障发生。结合版本控制和语言本身的稳定性特性。不同版本的配置代码可以通过 Git 按需切换，可审计性，以满足研发、测试、生产阶段的需求，如异常后回滚到某个验证可用的版本。结合版本控制的代码化可以有效避免配置漂移。
-+ **可复用扩展**：配置代码往往有 “一次编写，多次使用” 的特点，结合动态参数化的配置代码往往使差异环境、差异用户等多维度的配置复用需求变得简单。通过与 OCI 等标准软件供应链的方式集成，将配置代码与业务代码同等对待，更好地实现基础设施即代码 (IaC)
+- **声明式**：配置描述以代码方式抽象和组织，用户可以通过编辑器或 IDE 查看、编辑，代码中清晰描述了资源、服务、网络等多方面的配置。
+- **面向终态**：面向终态且实现无关，通过高度抽象并内置特定领域的基础能力，具象的业务由使用者编写声明。使用者通过统一的描述代码和 GitOps 流程避免人工操作及私有脚本的非统一模式和引入的安全问题。
+- **稳定性**：任何配置代码的修改都可能造成非预期的结果，甚至异常或故障发生。结合版本控制和语言本身的稳定性特性。不同版本的配置代码可以通过 Git 按需切换，可审计性，以满足研发、测试、生产阶段的需求，如异常后回滚到某个验证可用的版本。结合版本控制的代码化可以有效避免配置漂移。
+- **可复用扩展**：配置代码往往有 “一次编写，多次使用” 的特点，结合动态参数化的配置代码往往使差异环境、差异用户等多维度的配置复用需求变得简单。通过与 OCI 等标准软件供应链的方式集成，将配置代码与业务代码同等对待，更好地实现基础设施即代码 (IaC)
 
 总而言之，KRM KCL 规范是一种全新的动态配置管理范式，它以 KRM 和 KCL 为基础，为现代软件开发提供了更高效、更可靠的配置解决方案。它的动态配置管理能力、灵活的语法和语义以及与 Kubernetes 的集成，无论是在云原生应用开发还是在微服务架构中，KRM KCL 规范都将为开发人员带来更好的配置管理体验。
 
@@ -69,15 +69,15 @@ KRM KCL 规范的另一个重要特性是其对动态配置管理的支持。传
 
 在 KRM KCL 规范，我们将 KCL 配置模型的行为主要分成三类
 
-+ **Mutation**: 输入 KCL 参数 `params` 和 KRM 列表并输出修改后 KRM 列表。
-+ **Validation**: 输入 KCL 参数 `params` 和 KRM 列表并输出 KRM 列表和资源验证结果。
-+ **Abstraction**: 输入 KCL 参数 `params` 并输出 KRM 列表
+- **Mutation**: 输入 KCL 参数 `params` 和 KRM 列表并输出修改后 KRM 列表。
+- **Validation**: 输入 KCL 参数 `params` 和 KRM 列表并输出 KRM 列表和资源验证结果。
+- **Abstraction**: 输入 KCL 参数 `params` 并输出 KRM 列表
 
 我们可以使用 KCL 以可编程的方式实现如下能力:
 
-+ 使用 KCL 对资源进行修改，如根据某个条件添加/修改 label 标签或 annotation 注释或在包含 PodTemplate 的所有 Kubernetes Resource Model (KRM) 资源中注入 Sidecar 容器配置等。
-+ 使用 KCL Schema 验证所有 KRM 资源，如约束只能以 Root 方式启动容器等。
-+ 使用抽象模型生成 KRM 资源或者对不同的 KRM API 进行组合并使用。
+- 使用 KCL 对资源进行修改，如根据某个条件添加/修改 label 标签或 annotation 注释或在包含 PodTemplate 的所有 Kubernetes Resource Model (KRM) 资源中注入 Sidecar 容器配置等。
+- 使用 KCL Schema 验证所有 KRM 资源，如约束只能以 Root 方式启动容器等。
+- 使用抽象模型生成 KRM 资源或者对不同的 KRM API 进行组合并使用。
 
 此外配置模型 `source` 可以引用自 OCI，Git, Filesystem, 和原始 KCL 代码，我们可以借助 KCL IDE 和 KPM 包管理工具编写模型并上传到 OCI Registry 以实现模型复用，并且这些模型可以根据场景需求分别用在客户端或者运行时。
 
@@ -206,11 +206,11 @@ kubectl get po nginx -o yaml | grep kcl-operator
 
 ## 参考
 
-+ Declarative Application Management in Kubernetes: https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#
-+ CNCF Platforms White Paper: https://tag-app-delivery.cncf.io/whitepapers/platforms/
-+ Google SRE Workbook: https://sre.google/workbook/configuration-specifics/
-+ What is Dynamic Configuration Management: https://humanitec.com/blog/what-is-dynamic-configuration-management
-+ Implementing Dynamic Configuration Management with Score and Humanitec: https://humanitec.com/blog/implementing-dynamic-configuration-management-with-score-and-humanitec
-+ What is Platform Engineering: https://platformengineering.org/blog/what-is-platform-engineering
-+ What is Internal Developer Platform: https://internaldeveloperplatform.org/what-is-an-internal-developer-platform/
-+ What Team Structure is Right for DevOps to Flourish: https://web.devopstopologies.com/#anti-types
+- Declarative Application Management in Kubernetes: https://docs.google.com/document/d/1cLPGweVEYrVqQvBLJg6sxV-TrE5Rm2MNOBA_cxZP2WU/edit#
+- CNCF Platforms White Paper: https://tag-app-delivery.cncf.io/whitepapers/platforms/
+- Google SRE Workbook: https://sre.google/workbook/configuration-specifics/
+- What is Dynamic Configuration Management: https://humanitec.com/blog/what-is-dynamic-configuration-management
+- Implementing Dynamic Configuration Management with Score and Humanitec: https://humanitec.com/blog/implementing-dynamic-configuration-management-with-score-and-humanitec
+- What is Platform Engineering: https://platformengineering.org/blog/what-is-platform-engineering
+- What is Internal Developer Platform: https://internaldeveloperplatform.org/what-is-an-internal-developer-platform/
+- What Team Structure is Right for DevOps to Flourish: https://web.devopstopologies.com/#anti-types

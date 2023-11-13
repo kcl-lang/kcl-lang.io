@@ -5,6 +5,7 @@ type: "docs"
 description: crypto 包 - 提供 SHA 相关的哈希函数
 weight: 100
 ---
+
 ## md5
 
 `md5(value: str, encoding: str = "utf-8") -> str`

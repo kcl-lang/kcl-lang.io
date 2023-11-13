@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: KCL 错误与警告
 ---
+
 # KCL 错误与警告
 
 文档的此部分中的文章介绍了由 KCL 生成的诊断错误和警告消息。
@@ -73,7 +74,7 @@ error[E1001]: InvalidSyntax
 ```python
 schema Person:
     name: str # 通过tab表示缩进
-    age: int # 通过四个空格标识缩进, 
+    age: int # 通过四个空格标识缩进,
              # 在当前运行环境中的四个空格与tab不同
 ```
 
@@ -505,7 +506,7 @@ schema Data:
     [str]: str
 
 data = Data {
-    count: 1 
+    count: 1
 }
 ```
 
@@ -929,7 +930,7 @@ Invalid value for top level arguments
 ```python
 a = option("key")
 
-# kcl main.k -D key=value= 
+# kcl main.k -D key=value=
 # key=value= is an illegal expression
 ```
 
@@ -1017,7 +1018,7 @@ KCL 会出现的运行时错误信息如下表所示:
 可能出现错误的 KCL 程序片段如下:
 
 ```
-# module.k 
+# module.k
 import main # module.k 导入了 main.k
 
 print('module')
@@ -1285,7 +1286,7 @@ schema Name:
 
 schema Person:
     name: Name
-    
+
 person = Person {
     name.err_name: "Alice" # err_name is not found in schema Name
 }
@@ -1397,7 +1398,7 @@ error[E3M38]: EvaluationError
  --> /assert/invalid/fail_0/main.k:1
   |
 1 | assert False
-  | 
+  |
   |
 ```
 

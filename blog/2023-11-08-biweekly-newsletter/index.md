@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 This section will update the KCL language community's latest developments every two weeks, including features, website updates, and the latest community news, helping everyone better understand the KCL community!
 
-***KCL Website: [https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## Overview
 
@@ -23,7 +23,7 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 - **KCL IDE Updates** - Supports for symbol find-references and rename; Optimized the formatting output for import statements and union types; Fixed the bug where file changes caused the language server to crash.
 - **KCL Package Management Tool KPM Updates** - kpm is integrating with ArtifactHub, enabling KCL packages publishing to ArtifactHub.
-- **KCL Language Updates** - Optimized error messages for mismatched parameter types in methods, providing clearer indications of the mismatch. 
+- **KCL Language Updates** - Optimized error messages for mismatched parameter types in methods, providing clearer indications of the mismatch.
 - **Unified Interface of KCL Command-Line** - Redesigned the command-line interface and workflow for KCL tools to achieve a unified experience.
 
 - **KCL IDE Update** - More intelligent configuration value completion, property list completion, function parameter completion, built-in package reference completion, and docstring completion, etc.
@@ -36,9 +36,9 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 The following are listed in no particular order:
 
-+ Thanks to @jakezhu9 for the improvement of KCL benchmark from single-threaded Rc to Arc, and for fixing the bug related to reference paths in the KCL import tool. 🙌 https://github.com/kcl-lang/kcl-go/pull/170, etc.
-+ Thanks to @liangyuanpeng for contributing the `karmada` model package to KCL models, welcome! 🙌 https://github.com/kcl-lang/artifacthub/pull/48/files
-+ Additionally, thanks to @Matt Gowie, @ddh for their attention to KCL and valuable feedback. 🙌
+- Thanks to @jakezhu9 for the improvement of KCL benchmark from single-threaded Rc to Arc, and for fixing the bug related to reference paths in the KCL import tool. 🙌 https://github.com/kcl-lang/kcl-go/pull/170, etc.
+- Thanks to @liangyuanpeng for contributing the `karmada` model package to KCL models, welcome! 🙌 https://github.com/kcl-lang/artifacthub/pull/48/files
+- Additionally, thanks to @Matt Gowie, @ddh for their attention to KCL and valuable feedback. 🙌
 
 ## Featured Updates
 
@@ -63,10 +63,10 @@ The package management tool has now interconnected the core workflow of KCL pack
 The optimization of error message output in the KCL compilation command continues to progress, aiming to provide clear and understandable guidance to help developers quickly locate and fix issues and write correct code. Recently, KCL has optimized the error messages for schema field type mismatches:
 
 - before:
-![](/img/blog/2023-11-08-biweekly-newsletter/schema-expr-type-error-before.png)
+  ![](/img/blog/2023-11-08-biweekly-newsletter/schema-expr-type-error-before.png)
 
 - after:
-![](/img/blog/2023-11-08-biweekly-newsletter/schema-expr-type-error-after.png)
+  ![](/img/blog/2023-11-08-biweekly-newsletter/schema-expr-type-error-after.png)
 
 Additionally, support has been added for adding type annotations in lambda expressions, and system libraries now support validation, serialization, and deserialization of JSON/YAML strings. The following issues have been fixed: cache invalidation for KCL programs with third-party libraries, path conflicts when compiling imported files across kcl.mod, and semantic checks for default value of KCL functions.
 

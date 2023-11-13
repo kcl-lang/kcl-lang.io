@@ -5,6 +5,7 @@ type: "docs"
 description: crypto system module
 weight: 100
 ---
+
 ## md5
 
 `md5(value: str, encoding: str = "utf-8") -> str`

@@ -53,15 +53,15 @@ kcl main.k -D env-type=TEST -D deploy-topology='[{"cluster":"my-cluster","idc":"
 
 ```yaml
 kcl_options:
-- key: env-type
-  value: TEST
-- key: deploy-topology
-  value:
-  - cluster: my-cluster
-    idc: my-idc
-    replicas: 2
-    workspace: my-workspace
-    zone: my-zone
+  - key: env-type
+    value: TEST
+  - key: deploy-topology
+    value:
+      - cluster: my-cluster
+        idc: my-idc
+        replicas: 2
+        workspace: my-workspace
+        zone: my-zone
 ```
 
 在代码中使用内置的 option 函数获取即可
@@ -76,11 +76,11 @@ deploy_topology = option("deploy-topology")
 ```yaml
 env: TEST
 deploy_topology:
-- cluster: my-cluster
-  idc: my-idc
-  replicas: 2
-  workspace: my-workspace
-  zone: my-zone
+  - cluster: my-cluster
+    idc: my-idc
+    replicas: 2
+    workspace: my-workspace
+    zone: my-zone
 ```
 
 ### 3. 如何使用 kcl 的多文件编译特性？

@@ -20,10 +20,10 @@ The blog is only used to clarify the landscape of declarative configuration, [KC
   - **Various configuration formats**: JSON, YAML, XML, TOML, various configuration templates such as Java Velocity, Go Template, etc.
 - The stability of the configuration is crucial. One of the main reasons for system errors is that a large number of engineers frequently update the configuration. Table 1 shows several system error events caused by configuration.
 
-| Time | Event |
-| --- | --- |
+| Time    | Event                                                                                                                         |
+| ------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | 2021.07 | The Bilibili website in China went down because SLB Lua configuration code fell into an infinite loop with calculation errors |
-| 2021.10 | KT Company in South Korea suffers major network interruption nationwide due to wrong routing configuration |
+| 2021.10 | KT Company in South Korea suffers major network interruption nationwide due to wrong routing configuration                    |
 
 Table 1 System error events caused by configuration.
 
@@ -282,12 +282,12 @@ In KCL, the configuration merge operation can be fine-grained to each configurat
 
 #### 3.3.1 Features
 
-|  | HCL | KCL |
-| --- | --- | --- |
-| Modeling | The user interface is not directly perceived through the Terraform provider Schema definition. In addition, the user interface is cumbersome when writing complex object and required/optional field definitions. | Modeling through KCL schema, and achieve high model abstraction through language level engineering and some object-oriented features. |
-| Constraint | The dynamic parameters are constrained by the condition field of the variable. The constraints of the resource itself need to be defined by provider schema or combined with Sentinel/Rego and other policy languages. The integrity of the language itself cannot be self closed, and its implementation methods are not unified | Define structures and constraints in a unified way. |
-| Scalability | Terraform HCL overrides by file. The mode is fixed and the capability is limited. | KCL can customize the configuration block writing method and multiple strategies to meet the requirements of complex multi-tenant and multi-environment configuration scenarios. |
-| Code writing | The user interface is complicated when writing complex object definitions and required/optional field definitions. | Complex structure definitions and constraint are easy to write without using other GPLs or tools. |
+|              | HCL                                                                                                                                                                                                                                                                                                                               | KCL                                                                                                                                                                              |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Modeling     | The user interface is not directly perceived through the Terraform provider Schema definition. In addition, the user interface is cumbersome when writing complex object and required/optional field definitions.                                                                                                                 | Modeling through KCL schema, and achieve high model abstraction through language level engineering and some object-oriented features.                                            |
+| Constraint   | The dynamic parameters are constrained by the condition field of the variable. The constraints of the resource itself need to be defined by provider schema or combined with Sentinel/Rego and other policy languages. The integrity of the language itself cannot be self closed, and its implementation methods are not unified | Define structures and constraints in a unified way.                                                                                                                              |
+| Scalability  | Terraform HCL overrides by file. The mode is fixed and the capability is limited.                                                                                                                                                                                                                                                 | KCL can customize the configuration block writing method and multiple strategies to meet the requirements of complex multi-tenant and multi-environment configuration scenarios. |
+| Code writing | The user interface is complicated when writing complex object definitions and required/optional field definitions.                                                                                                                                                                                                                | Complex structure definitions and constraint are easy to write without using other GPLs or tools.                                                                                |
 
 #### 3.3.2 Examples
 
@@ -452,12 +452,12 @@ To sum up, in KCL, its types and constraints are defined in a declarative way th
 
 #### 3.4.1 Features
 
-|  | CUE | KCL |
-| --- | --- | --- |
-| Modeling | Modeling through struct, no inheritance and other features, can achieve high abstraction when there is no conflict between model definitions. Because CUE performs all constraint checks at runtime, there may be performance bottlenecks in large-scale modeling scenarios. | Modeling is conducted through KCL schema, and high model abstraction can be achieved through language level engineering and some object-oriented features (such as single inheritance). KCL is a statically compiled language with low overhead for large-scale modeling scenarios. |
-| Constraint | CUE combines types and values into one concept. It simplifies the writing of constraints through various syntax. For example, generic types and enumerations are not required. Summing types and null value merging are the same thing. | KCL provides a richer check declarative constraint syntax, which makes it easier to write. For some configuration field combination constraints, it is simpler to write (compared with CUE, KCL provides more if guard combination constraints, all/any/map/filter and other collection constraint writing methods, which makes it easier to write) |
-| Scalability | CUE supports configuration merging but it is completely idempotent. It may not meet the requirements of complex multi-tenant and multi- environment configuration scenarios | KCL can customize the configuration block writing method and multiple strategies to meet the requirements of complex multi-tenant and multi-environment configuration scenarios. |
-| Code writing | For complex loop and constraint scenarios, it is complex to write, and it is cumbersome to write scenarios that require accurate configuration modifications. | Complex structure definition, loop, and conditional constraint scenarios are easy to write. |
+|              | CUE                                                                                                                                                                                                                                                                          | KCL                                                                                                                                                                                                                                                                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Modeling     | Modeling through struct, no inheritance and other features, can achieve high abstraction when there is no conflict between model definitions. Because CUE performs all constraint checks at runtime, there may be performance bottlenecks in large-scale modeling scenarios. | Modeling is conducted through KCL schema, and high model abstraction can be achieved through language level engineering and some object-oriented features (such as single inheritance). KCL is a statically compiled language with low overhead for large-scale modeling scenarios.                                                                 |
+| Constraint   | CUE combines types and values into one concept. It simplifies the writing of constraints through various syntax. For example, generic types and enumerations are not required. Summing types and null value merging are the same thing.                                      | KCL provides a richer check declarative constraint syntax, which makes it easier to write. For some configuration field combination constraints, it is simpler to write (compared with CUE, KCL provides more if guard combination constraints, all/any/map/filter and other collection constraint writing methods, which makes it easier to write) |
+| Scalability  | CUE supports configuration merging but it is completely idempotent. It may not meet the requirements of complex multi-tenant and multi- environment configuration scenarios                                                                                                  | KCL can customize the configuration block writing method and multiple strategies to meet the requirements of complex multi-tenant and multi-environment configuration scenarios.                                                                                                                                                                    |
+| Code writing | For complex loop and constraint scenarios, it is complex to write, and it is cumbersome to write scenarios that require accurate configuration modifications.                                                                                                                | Complex structure definition, loop, and conditional constraint scenarios are easy to write.                                                                                                                                                                                                                                                         |
 
 #### 3.4.2 Examples
 
@@ -657,9 +657,9 @@ output "r10" {
 
 - Running time (considering the actual resource cost of the production environment, this test is subject to the single core).
 
-| Environment | KCL v0.4.3 Running time (including compilation+runtime) | CUE v0.4.3 Running time (including compilation+runtime) | Jsonnet v0.18.0 Running time (including compilation+runtime)  | HCL in Terraform v1.3.0 Running time (including compilation+runtime) |
-| --- | --- | --- | --- | --- |
-| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 440 ms (kcl test.k) | 6290 ms (cue export test.cue) | 3340 ms (jsonnet test.jsonnet) | 1774 ms (terraform plan -parallelism=1) |
+| Environment                                                                                            | KCL v0.4.3 Running time (including compilation+runtime) | CUE v0.4.3 Running time (including compilation+runtime) | Jsonnet v0.18.0 Running time (including compilation+runtime) | HCL in Terraform v1.3.0 Running time (including compilation+runtime) |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------ | -------------------------------------------------------------------- |
+| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 440 ms (kcl test.k)                                     | 6290 ms (cue export test.cue)                           | 3340 ms (jsonnet test.jsonnet)                               | 1774 ms (terraform plan -parallelism=1)                              |
 
 #### Another Complex Case
 
@@ -697,9 +697,9 @@ deployment = v1.Deployment {
 }
 ```
 
-| Environment | KCL v0.4.3 Running time (including compilation+runtime) | CUE v0.4.3 Running time (including compilation+runtime) |
-| --- | --- | --- |
-| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kcl test.k) | 350 ms (cue export test.cue) |
+| Environment                                                                                            | KCL v0.4.3 Running time (including compilation+runtime) | CUE v0.4.3 Running time (including compilation+runtime) |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------- |
+| OS: macOS 10.15.7; CPU: Intel(R) Core(TM) i7-8850H CPU @ 2.60GHz; Memory: 32 GB 2400 MHz DDR4; no NUMA | 140 ms (kcl test.k)                                     | 350 ms (cue export test.cue)                            |
 
 ## 4. Summary
 
@@ -728,7 +728,7 @@ The blog gives a landscape overview of declarative configuration technology, foc
 - Kube-linter: [https://github.com/stackrox/kube-linter](https://github.com/stackrox/kube-linter)
 - Checkov: [https://github.com/bridgecrewio/checkov](https://github.com/bridgecrewio/checkov)
 - KCL Documents: [https://kcl-lang.io/docs/reference/lang/tour](https://kcl-lang.io/docs/reference/lang/tour)
-- How Terraform Works: A Visual Intro: [https://betterprogramming.pub/how-terraform-works-a-visual-intro-6328cddbe067](https://betterprogramming.pub/how-terraform-works-a-visual-intro-6328cddbe067) 
+- How Terraform Works: A Visual Intro: [https://betterprogramming.pub/how-terraform-works-a-visual-intro-6328cddbe067](https://betterprogramming.pub/how-terraform-works-a-visual-intro-6328cddbe067)
 - How Terraform Works: Modules Illustrated: [https://awstip.com/terraform-modules-illustrate-26cbc48be83a](https://awstip.com/terraform-modules-illustrate-26cbc48be83a)
 - Helm: [https://helm.sh/](https://helm.sh/)
 - Helm vs. Kustomize: [https://harness.io/blog/helm-vs-kustomize](https://harness.io/blog/helm-vs-kustomize)

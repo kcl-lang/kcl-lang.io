@@ -6,6 +6,7 @@ weight: 2
 description: 使用 KCL 编写简单配置
 sidebar_position: 1
 ---
+
 ## 1. Introduction
 
 KCL is a simple and easy-to-use configuration language, where users can simply write the reusable configuration code.
@@ -60,7 +61,7 @@ The exported variable is immutable by default so that once it is declared, we ca
 
 Sometimes we want to write a logic in configuration, then we can use:
 
-- Mutable and non-exported variable starting with '_'
+- Mutable and non-exported variable starting with '\_'
 - If-else statement
 
 A non-exported variable means it will not appear in the output YAML, and it can be assigned multiple times.
@@ -152,9 +153,9 @@ Stdout:
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
+  run: my-nginx
 image: nginx:1.14.2
 service: my-service
 ```
@@ -206,9 +207,9 @@ Stdout:
 cpu: 256
 memory: 512
 command:
-- nginx
-- -f
-- file
+  - nginx
+  - -f
+  - file
 labels:
   run: my-nginx
 image: nginx:1.14.2
@@ -260,10 +261,10 @@ After adding env:pre-prod pair into labels, we will get the output as:
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
-    env: pre-prod
+  run: my-nginx
+  env: pre-prod
 image: nginx:1.14.2
 service: my-service
 ```
@@ -322,10 +323,10 @@ Stdout:
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
-    env: pre-prod
+  run: my-nginx
+  env: pre-prod
 image: nginx:1.14.2
 service: my-service
 run: my-nginx
@@ -428,10 +429,10 @@ Stdout:
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
-    env: pre-prod
+  run: my-nginx
+  env: pre-prod
 image: nginx:1.14.2
 service: my-service
 ```
@@ -477,10 +478,10 @@ Stdout:
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
-    env: pre-prod
+  run: my-nginx
+  env: pre-prod
 image: nginx:1.14.2
 service: my-service
 ```

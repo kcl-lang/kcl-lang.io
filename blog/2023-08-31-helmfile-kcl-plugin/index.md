@@ -15,8 +15,8 @@ tags: [KCL, Biweekly-Newsletter]
 
 Helmfile is a declarative specification and tool for simplifying and managing Helm Charts. The Helmfile KCL Plugin provides additional functionality to the Helmfile tool, making it more convenient and efficient to use. With the Helmfile KCL Plugin, you can:
 
-+ Edit or validate Helm Chart configurations directly on the client-side using non-intrusive hooks. This allows you to separate the data and logic parts of Kubernetes configuration management without needing to fork the upstream Chart to modify internal logic include modifying resource labels/annotations and injecting Sidecar container configurations.
-+ Validate Kubernetes resources using KCL Schema, define your own abstract models, and share them for reusability.
+- Edit or validate Helm Chart configurations directly on the client-side using non-intrusive hooks. This allows you to separate the data and logic parts of Kubernetes configuration management without needing to fork the upstream Chart to modify internal logic include modifying resource labels/annotations and injecting Sidecar container configurations.
+- Validate Kubernetes resources using KCL Schema, define your own abstract models, and share them for reusability.
 
 In this blog, we will quickly guide you through getting started with the Helmfile KCL Plugin, enabling you to easily manage your Kubernetes Helm Charts.
 
@@ -36,29 +36,29 @@ Create a file named helmfile.yaml in the root directory of your project and writ
 
 ```yaml
 repositories:
-- name: prometheus-community
-  url: https://prometheus-community.github.io/helm-charts
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
 releases:
-- name: prom-norbac-ubuntu
-  namespace: prometheus
-  chart: prometheus-community/prometheus
-  set:
-  - name: rbac.create
-    value: false
-  transformers:
-  # Use KCL Plugin to mutate or validate Kubernetes manifests.
-  - apiVersion: krm.kcl.dev/v1alpha1
-    kind: KCLRun
-    metadata:
-      name: "set-annotation"
-      annotations:
-        config.kubernetes.io/function: |
-          container:
-            image: docker.io/kcllang/kustomize-kcl:v0.2.0
-    spec:
-      source: |
-        # A single line of KCL code can be used to modify workload configurations in-place.
-        items = [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "helmfile-kcl"}} for resource in option("resource_list").items]
+  - name: prom-norbac-ubuntu
+    namespace: prometheus
+    chart: prometheus-community/prometheus
+    set:
+      - name: rbac.create
+        value: false
+    transformers:
+      # Use KCL Plugin to mutate or validate Kubernetes manifests.
+      - apiVersion: krm.kcl.dev/v1alpha1
+        kind: KCLRun
+        metadata:
+          name: "set-annotation"
+          annotations:
+            config.kubernetes.io/function: |
+              container:
+                image: docker.io/kcllang/kustomize-kcl:v0.2.0
+        spec:
+          source: |
+            # A single line of KCL code can be used to modify workload configurations in-place.
+            items = [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "helmfile-kcl"}} for resource in option("resource_list").items]
 ```
 
 In the above configuration, we reference the Prometheus Helm Chart and use a single line of KCL code to inject the label `managed-by="helmfile-kcl"` to all the Deployment resources of Prometheus.
@@ -93,7 +93,7 @@ apiVersion: krm.kcl.dev/v1alpha1
 kind: KCLRun
 metadata:
   name: https-only
-  annotations: 
+  annotations:
     krm.kcl.dev/version: 0.0.1
     krm.kcl.dev/type: validation
     documentation: >-

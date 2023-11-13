@@ -2,10 +2,10 @@
 
 本文档描述 KCL 的类型系统，包括：
 
-+ 类型规则
-+ 类型检查
-+ 类型转换
-+ 类型推导
+- 类型规则
+- 类型检查
+- 类型转换
+- 类型推导
 
 ## 类型规则
 
@@ -283,7 +283,7 @@ $$
 
 算数运算符
 
-Expr op, op $\in$ {-, /, %, **, //}
+Expr op, op $\in$ {-, /, %, \*\*, //}
 
 $$
 \frac{\Gamma \vdash E_1: T \ \ \ \Gamma \vdash E_2: T \ \ \ T \in \{integer, float\}}{\Gamma \vdash E_1 \ op \ E_2: T}
@@ -295,7 +295,7 @@ $$
 \frac{\Gamma \vdash E_1: T \ \ \ \Gamma \vdash E_2: T \ \ \ T \in \{integer, float, string, listof(T_1)\}}{\Gamma \vdash E_1 \ + \ E_2: T}
 $$
 
-Expr *
+Expr \*
 
 $$
 \frac{\Gamma \vdash E_1: T_1 \ \ \ \Gamma \vdash E_2: T_2 \ \ \ \ (T_1==T_2 \in \{integer, float\}) \ or \ (T_1 == interger \ and \ T_2 \ \in \ \{string, listof(T_3)\}) \ or \ (T_2 == interger \ and \ T_1 \ \in \ \{string, listof(T_3)\})} {\Gamma \vdash E_1 \ * \ E_2: T}
@@ -463,18 +463,18 @@ $$
 
 其中 $union\_op(T_1, T_2)$ 表示对相同 $K_i$ 的不同类型的判断操作：
 
-+ 当 $T_1$ 与 $T_2$ 有偏序关系时， 如果 $T_1 \sqsubseteq T_2$ 时，返回 $T_2$，否则返回 $T_1$，即取最小上界
-+ 当 $T_1$ 与 $T_2$ 不存在偏序关系时，有三种可选的处理逻辑：
-  + 结构体 union 失败，返回 type_error
-  + 返回后者的类型，此处为 $T_2$
-  + 返回类型 $unionof(T_1, T_2)$
+- 当 $T_1$ 与 $T_2$ 有偏序关系时， 如果 $T_1 \sqsubseteq T_2$ 时，返回 $T_2$，否则返回 $T_1$，即取最小上界
+- 当 $T_1$ 与 $T_2$ 不存在偏序关系时，有三种可选的处理逻辑：
+  - 结构体 union 失败，返回 type_error
+  - 返回后者的类型，此处为 $T_2$
+  - 返回类型 $unionof(T_1, T_2)$
 
 此处需要根据实际需求选择适当的处理方式。
 
 结构体继承可以看做一种特殊的 union，整体逻辑与 union 相似，但在 $union\_op(T_1, T_2)$ 中对相同 $K_i$ 的不同类型的判断操作如下：
 
-+ 当 $T_1$ 与 $T_2$ 有偏序关系且 $T_1 \sqsubseteq T_2$ 时，返回 $T_1$，即仅当 $T_1$ 是 $T_2$ 的下界时以下界 $T_1$ 为准
-+ 否则返回 type_error
+- 当 $T_1$ 与 $T_2$ 有偏序关系且 $T_1 \sqsubseteq T_2$ 时，返回 $T_1$，即仅当 $T_1$ 是 $T_2$ 的下界时以下界 $T_1$ 为准
+- 否则返回 type_error
 
 通过这样的继承设计可以实现分层的、自下而上逐层收缩的类型定义。
 
@@ -498,8 +498,8 @@ $$
 
 注意：
 
-+ 此处表达式 $e$ 的类型 $T_1$ 同原先同名属性 $K_1$ 的具有相同的类型。可根据实际情况需要适当放松，如 $e$ 的类型 $\sqsubseteq T_1$ 即可。
-+ 对于多层结构体嵌套的操作，递归的使用以上规则即可。
+- 此处表达式 $e$ 的类型 $T_1$ 同原先同名属性 $K_1$ 的具有相同的类型。可根据实际情况需要适当放松，如 $e$ 的类型 $\sqsubseteq T_1$ 即可。
+- 对于多层结构体嵌套的操作，递归的使用以上规则即可。
 
 ## 类型偏序
 
@@ -751,16 +751,16 @@ $$
 
 ## 基础方法
 
-+ sup(t1: T, t2: T) -> T: 根据类型偏序计算两类型 t1, t2 的最小上界。需要动态创建 union type。
-+ typeEqual(t1: T, t2: T) -> bool: 比较两类型 t1, t2 是否相等。
-+ typeToString(t: T) -> string: 自顶向下递归解析并转化类型成对应的字符串类型。
+- sup(t1: T, t2: T) -> T: 根据类型偏序计算两类型 t1, t2 的最小上界。需要动态创建 union type。
+- typeEqual(t1: T, t2: T) -> bool: 比较两类型 t1, t2 是否相等。
+- typeToString(t: T) -> string: 自顶向下递归解析并转化类型成对应的字符串类型。
 
 ### Sup Function
 
-+ 暂不考虑类型参数，条件类型等特性
-+ 使用一个有序集合存储 UnionType 的所有类型
-+ 使用一个全局的 Map 根据 UnionType 的名称存储产生的所有 UnionType
-+ 根据偏序关系计算类型之间的包含关系
+- 暂不考虑类型参数，条件类型等特性
+- 使用一个有序集合存储 UnionType 的所有类型
+- 使用一个全局的 Map 根据 UnionType 的名称存储产生的所有 UnionType
+- 根据偏序关系计算类型之间的包含关系
 
 ```go
 // The Sup function returns the minimum supremum of all types in an array of types
@@ -772,7 +772,7 @@ func Sup(types: T[]) -> T {
 func typeOf(types: T[], removeSubTypes: bool = false) -> T {
     assert isNotNullOrEmpty(types)
     // 1. Initialize an ordered set to store the type array
-    typeSet: Set[T] = {}  
+    typeSet: Set[T] = {}
     // 2. Add the type array to the ordered set for sorting by the type id and de-duplication
     addTypesToTypeSet(typeSet, types)
     // 3. Remove sub types according to partial order relation rules e.g. sub schema types
@@ -825,7 +825,7 @@ func removeSubTypes(types: Set[T]) -> void {
     }
 }
 
-// isPartialOrderRelatedTo function Determine whether two types have a partial order relationship `source \sqsubseteq target` 
+// isPartialOrderRelatedTo function Determine whether two types have a partial order relationship `source \sqsubseteq target`
 // according to the partial order relationship table and rules
 func isPartialOrderRelatedTo(source: T, target: T) -> bool {
     assert isNotNullOrEmpty(source)
@@ -843,7 +843,7 @@ func isPartialOrderRelatedTo(source: T, target: T) -> bool {
         return true
     }
     // Literal Type
-    if (isStringLiteral(source) and isString(target)) or \ 
+    if (isStringLiteral(source) and isString(target)) or \
     (isBooleanLiteral(source) and isBool(target)) or \
     (isIntLiteral(source) and isInt(target)) or \
     (isFloatLiteral(source) and isFloat(target)) {
@@ -1186,8 +1186,8 @@ func binOp(E) {
 
 ### 基础定义
 
-+ 在类型信息不完全的情况下类型规则推导、重建类型
-+ 自底向上推导并重建数程序中的数据结构类型，如基础类型，list, dict, Struct
+- 在类型信息不完全的情况下类型规则推导、重建类型
+- 自底向上推导并重建数程序中的数据结构类型，如基础类型，list, dict, Struct
 
 ### 基础方法
 
@@ -1223,7 +1223,7 @@ func unifier(t1, t2, subst, expr) {
             raise occurrence_violation_error(t1, t2, expr)
         }
     }
-    
+
     if isTypeVar(t2) {
         if isNoOccur(t2, t1) {
             addTypeEquationToSubst(subst, t2, t1)
@@ -1295,7 +1295,7 @@ func addTypeEquationToSubst(subst, tvar, t) {
         for tvar in t.vars {
             tmp := applyOneSubst(tsvar, tvar, t)
             *tvar = tmp
-        } 
+        }
     }
     subst.add(tvar, t)
 }
@@ -1394,8 +1394,8 @@ T : {
 
 ## Reference
 
-+ [https://en.wikipedia.org/wiki/Type_system](https://en.wikipedia.org/wiki/Type_system)
-+ Pierce, Benjamin C. (2002). Types and Programming Languages. MIT Press.
-+ [https://www.cs.cornell.edu/courses/cs4110/2010fa/](https://www.cs.cornell.edu/courses/cs4110/2010fa/)
-+ [https://www.typescriptlang.org/docs/handbook/basic-types.html](https://www.typescriptlang.org/docs/handbook/basic-types.html)
-+ [https://www.typescriptlang.org/docs/handbook/advanced-types.html](https://www.typescriptlang.org/docs/handbook/advanced-types.html)
+- [https://en.wikipedia.org/wiki/Type_system](https://en.wikipedia.org/wiki/Type_system)
+- Pierce, Benjamin C. (2002). Types and Programming Languages. MIT Press.
+- [https://www.cs.cornell.edu/courses/cs4110/2010fa/](https://www.cs.cornell.edu/courses/cs4110/2010fa/)
+- [https://www.typescriptlang.org/docs/handbook/basic-types.html](https://www.typescriptlang.org/docs/handbook/basic-types.html)
+- [https://www.typescriptlang.org/docs/handbook/advanced-types.html](https://www.typescriptlang.org/docs/handbook/advanced-types.html)

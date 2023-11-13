@@ -15,10 +15,10 @@ tags: [KCL, Biweekly-Newsletter]
 
 Helmfile 是一个是用于简化和管理 Helm Charts 的声明性规范和工具，Helmfile KCL 插件为 Helmfile 工具提供了额外的功能，使得在使用 Helmfile 时更加便捷和高效，通过 Helmfile KCL 插件您可以
 
-+ 通过无侵入的 Hook 方式在客户端直接编辑或者验证 Helm Chart 配置，将 Kubernetes 配置管理的数据部分和逻辑部分分离，无需 Fork 上游 Chart 修改内部逻辑，比如
-  + 修改资源标签/注解, 注入 Sidecar 容器配置
-  + 使用 KCL Schema 校验 Kubernetes 资源，定义自己的抽象模型并分享复用
-+ 优雅地维护多环境、多租户场景配置，而不是简单地复制粘贴
+- 通过无侵入的 Hook 方式在客户端直接编辑或者验证 Helm Chart 配置，将 Kubernetes 配置管理的数据部分和逻辑部分分离，无需 Fork 上游 Chart 修改内部逻辑，比如
+  - 修改资源标签/注解, 注入 Sidecar 容器配置
+  - 使用 KCL Schema 校验 Kubernetes 资源，定义自己的抽象模型并分享复用
+- 优雅地维护多环境、多租户场景配置，而不是简单地复制粘贴
 
 在本文中，我们将带您快速了解和入门 Helmfile KCL 插件，让您轻松管理您的 Kubernetes Helm Charts。
 
@@ -38,30 +38,30 @@ https://github.com/helmfile/helmfile
 
 ```yaml
 repositories:
-- name: prometheus-community
-  url: https://prometheus-community.github.io/helm-charts
+  - name: prometheus-community
+    url: https://prometheus-community.github.io/helm-charts
 
 releases:
-- name: prom-norbac-ubuntu
-  namespace: prometheus
-  chart: prometheus-community/prometheus
-  set:
-  - name: rbac.create
-    value: false
-  transformers:
-  # Use KCL Plugin to mutate or validate Kubernetes manifests.
-  - apiVersion: krm.kcl.dev/v1alpha1
-    kind: KCLRun
-    metadata:
-      name: "set-annotation"
-      annotations:
-        config.kubernetes.io/function: |
-          container:
-            image: docker.io/kcllang/kustomize-kcl:v0.2.0
-    spec:
-      source: |
-        # 仅通过一行 KCL 代码，就可实现对 workload 配置原地修改
-        items = [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "helmfile-kcl"}} for resource in option("resource_list").items]
+  - name: prom-norbac-ubuntu
+    namespace: prometheus
+    chart: prometheus-community/prometheus
+    set:
+      - name: rbac.create
+        value: false
+    transformers:
+      # Use KCL Plugin to mutate or validate Kubernetes manifests.
+      - apiVersion: krm.kcl.dev/v1alpha1
+        kind: KCLRun
+        metadata:
+          name: "set-annotation"
+          annotations:
+            config.kubernetes.io/function: |
+              container:
+                image: docker.io/kcllang/kustomize-kcl:v0.2.0
+        spec:
+          source: |
+            # 仅通过一行 KCL 代码，就可实现对 workload 配置原地修改
+            items = [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "helmfile-kcl"}} for resource in option("resource_list").items]
 ```
 
 在上述配置中，我们引用了 Prometheus Helm Chart, 并通过一行 KCL 代码就可以完成 Prometheus 的所有的 Deployment 资源注入标签 managed-by="helmfile-kcl"。
@@ -96,7 +96,7 @@ apiVersion: krm.kcl.dev/v1alpha1
 kind: KCLRun
 metadata:
   name: https-only
-  annotations: 
+  annotations:
     krm.kcl.dev/version: 0.0.1
     krm.kcl.dev/type: validation
     documentation: >-

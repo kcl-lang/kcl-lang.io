@@ -24,9 +24,9 @@ Where `/path/to/kcl` is the complete path of the kcl application. After running 
 
 Please ensure that the following dependencies are in your PATH:
 
-+ `clang` for MacOS
-+ `gcc` for Linux
-+ `cl.exe` for Windows, which can be obtained by installing `MSVC`
+- `clang` for MacOS
+- `gcc` for Linux
+- `cl.exe` for Windows, which can be obtained by installing `MSVC`
 
 ## Encountering exit status 0xc0000135 error on Windows platform
 

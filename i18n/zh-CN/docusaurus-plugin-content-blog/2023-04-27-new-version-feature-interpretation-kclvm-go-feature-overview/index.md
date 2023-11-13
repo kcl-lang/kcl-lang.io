@@ -61,7 +61,7 @@ spec = {
 之后可以直接在命令行中执行 KCL
 
 ```shell
-$ kcl-go run ./hello.k 
+$ kcl-go run ./hello.k
 apiVersion: apps/v1
 kind: Deployment
 metadata:

@@ -1,25 +1,25 @@
-import clsx from "clsx"
-import React from "react"
+import clsx from "clsx";
+import React from "react";
 
 type Props = {
-  className?: string
-  onClick?: () => void
-  side: "top" | "right" | "bottom" | "left"
-}
+  className?: string;
+  onClick?: () => void;
+  side: "top" | "right" | "bottom" | "left";
+};
 
 const Chevron = ({ className, onClick, side }: Props) => {
-  let angle = 0
+  let angle = 0;
 
   if (side === "right") {
-    angle = 90
+    angle = 90;
   }
 
   if (side === "bottom") {
-    angle = 180
+    angle = 180;
   }
 
   if (side === "left") {
-    angle = 270
+    angle = 270;
   }
 
   return (
@@ -36,11 +36,11 @@ const Chevron = ({ className, onClick, side }: Props) => {
     >
       <path d="M6.582 12.141a.695.695 0 01-.978 0 .68.68 0 010-.969l3.908-3.83a.697.697 0 01.979 0l3.908 3.83a.68.68 0 010 .969.697.697 0 01-.979 0L10 9l-3.418 3.141z" />
     </svg>
-  )
-}
+  );
+};
 
 Chevron.defaultProps = {
   side: "top",
-}
+};
 
-export default Chevron
+export default Chevron;

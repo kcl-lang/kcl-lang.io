@@ -222,17 +222,17 @@ anotherWayDeleteListItem = filter item in originList {
 
 ```yaml
 originList:
-- 1
-- 2
-- 3
-- 4
-- 5
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
 oneWayDeleteListItem:
-- 1
-- 2
+  - 1
+  - 2
 anotherWayDeleteListItem:
-- 1
-- 2
+  - 1
+  - 2
 ```
 
 ## 8. 怎样写 for 循环？怎样理解和使用 list comprehension 列表推导式 和 dict comprehension 字典推导式 ？
@@ -580,7 +580,7 @@ x = 'a: {a}, b: {b}, c: {c}'.format(a = 1, b = 'Two', c = 12.3)
 输出为:
 
 ```yaml
-x: 'a: 1, b: Two, c: 12.3'
+x: "a: 1, b: Two, c: 12.3"
 ```
 
 ## 13. 字符串中使用单引号和双引号的区别是什么？
@@ -674,18 +674,18 @@ regex_result_false = regex.match("192.168.0,1", "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-
 ```yaml
 regex_source: Apple,Google,Baidu,Xiaomi
 regex_split:
-- Apple
-- Google
-- Baidu
-- Xiaomi
+  - Apple
+  - Google
+  - Baidu
+  - Xiaomi
 regex_replace: Apple|Google|Baidu|Xiaomi
 regex_compile: true
 regex_search: true
 regex_find_all:
-- a
-- a
-- a
-- a
+  - a
+  - a
+  - a
+  - a
 regex_result: true
 regex_result_false: false
 ```
@@ -812,14 +812,14 @@ schema Sample:
 
 综上所述，KCL Schema 中支持的校验类型为:
 
-| 校验类型 | 使用方法                                                |
-| -------- | ------------------------------------------------------- |
-| 范围校验 | 使用 `<`, `>` 等比较运算符                                |
-| 正则校验 | 使用 `regex` 系统库中的 `match` 等方法                      |
+| 校验类型 | 使用方法                                                   |
+| -------- | ---------------------------------------------------------- |
+| 范围校验 | 使用 `<`, `>` 等比较运算符                                 |
+| 正则校验 | 使用 `regex` 系统库中的 `match` 等方法                     |
 | 长度校验 | 使用 `len` 内置函数，可以求 `list/dict/str` 类型的变量长度 |
-| 枚举校验 | 使用字面值联合类型                                      |
-| 非空校验 | 使用 schema 的可选/必选属性                             |
-| 条件校验 | 使用 check if 条件表达式                                |
+| 枚举校验 | 使用字面值联合类型                                         |
+| 非空校验 | 使用 schema 的可选/必选属性                                |
+| 条件校验 | 使用 check if 条件表达式                                   |
 
 ## 20. 如何为 schema 及其属性添加文档注释？
 
@@ -1010,7 +1010,7 @@ person:
 比如对于如下目录结构:
 
 ```
-. 
+.
 └── root
     ├── kcl.mod
     ├── model
@@ -1046,7 +1046,7 @@ import model  # Error: recursively loading
 除了 main 包当中的同一文件夹下的 KCL 可以相互引用而不需通过 import 相互引用，比如对于如下目录结构:
 
 ```
-. 
+.
 └── root
     ├── kcl.mod
     ├── model
@@ -1128,12 +1128,12 @@ The continue second line\
 ```python
 data1 = [
     1, 2,
-    3, 4 \  
+    3, 4 \
 ]  # Error, 需要保持右方括号]的缩进
 
 data2 = [
     1, 2,
-  3, 4 
+  3, 4
 ]  # Error, 需要数字1和3的缩进统一
 ```
 
@@ -1156,7 +1156,7 @@ data3 = [ \
 ]  # Right, 使用续行符的列表定义, 无需保持缩进, 实际效果是单行列表
 ```
 
-## 28. **, * 这些符号是什么意思？
+## 28. \*_, _ 这些符号是什么意思？
 
 - `**`, `*` 出现在 dict/list 外部时分别表示乘方运算符和乘法运算符
 
@@ -1403,7 +1403,7 @@ schema Person:
 
 person = Person {
     name = "Alice"
-    gender = "Male"  # gender 只能为 "Male" 或者 "Female" 
+    gender = "Male"  # gender 只能为 "Male" 或者 "Female"
 }
 ```
 
@@ -1433,7 +1433,7 @@ schema Person:
 
 person = Person {
     name = "Alice"
-    gender = "Male"  # gender 只能为 "Male" 或者 "Female" 
+    gender = "Male"  # gender 只能为 "Male" 或者 "Female"
 }
 ```
 
@@ -1527,8 +1527,8 @@ data = {  # 定义一个字典类型的变量 data
 ```python
 schema Person:
     name: str = "Alice"  # schema Person 的 name 属性具有默认值 "Alice"
-    age: int = 18  # schema Person 的 age 属性具有默认值 18 
-        
+    age: int = 18  # schema Person 的 age 属性具有默认值 18
+
 bob = Person {
     name = "Bob"  # "Bob" -> "Alice", 属性 name 的值 "Bob" 的值会覆盖 schema Person name 属性的默认值 "Alice"
     age = 10  # 10 -> 18, 属性 age 的值 10 的值会覆盖 schema Person age 属性的默认值 18
@@ -1681,14 +1681,14 @@ configBase:
   intKey: 1
   floatKey: 1.0
   listKey:
-  - 0
+    - 0
   dictKey:
     key1: value1
 configNew:
   intKey: 0
   listKey:
-  - 0
-  - 1
+    - 0
+    - 1
   dictKey:
     key1: value1
     key2: value2
@@ -1718,14 +1718,14 @@ configBase:
   intKey: 1
   floatKey: 1.0
   listKey:
-  - 0
+    - 0
   dictKey:
     key1: value1
 configNew:
   intKey: 0
   listKey:
-  - 0
-  - 1
+    - 0
+    - 1
   dictKey:
     key1: value1
     key2: value2
@@ -1763,23 +1763,23 @@ matrix = [x + y for x in dimension1 for y in dimension2]  # matrix 列表的长�
 
 ```yaml
 dimension1:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 dimension2:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 matrix:
-- 2
-- 3
-- 4
-- 3
-- 4
-- 5
-- 4
-- 5
-- 6
+  - 2
+  - 3
+  - 4
+  - 3
+  - 4
+  - 5
+  - 4
+  - 5
+  - 6
 ```
 
 - 举例 2: 使用 for 循环配合 zip 内置函数按照索引一一对应对多个列表进行遍历
@@ -1794,17 +1794,17 @@ dimension3 = [d[0] + d[1] for d in zip(dimension1, dimension2)]  # dimension3 �
 
 ```yaml
 dimension1:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 dimension2:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 dimension3:
-- 2
-- 4
-- 6
+  - 2
+  - 4
+  - 6
 ```
 
 ## 39. KCL 中如何为 option 函数设定默认值
@@ -2126,7 +2126,7 @@ schema Data:
 
 data = Data {
     color = "Red"  # Ok, 赋值为 "Red"、"Yellow" 和 "Blue" 均可
-} 
+}
 ```
 
 然而以下代码是错误的：
@@ -2139,7 +2139,7 @@ _color = "Red"
 
 data = Data {
     color = _color  # Error: expect str(Red)|str(Yellow)|str(Blue), got str
-} 
+}
 ```
 
 这是因为没有为变量 `_color` 申明一个类型，它会被 KCL 编译器推导为 `str` 字符串类型，因此当一个 “较大” 的类型 `str` 赋值为一个 “较小” 的类型时 `"Red" | "Yellow" | "Blue"` 会报错，一个解决方式是为 `_color` 变量声明一个类型，以下代码是正确的：
@@ -2230,9 +2230,9 @@ var_list: [any] = [1, "12", Data {}]
 
 ```yaml
 var_list:
-- 1
-- '12'
-- id: 1
+  - 1
+  - "12"
+  - id: 1
 ```
 
 此外，我们可以使用 `typeof` 函数来判断 KCL 变量的类型:
@@ -2252,11 +2252,11 @@ data_type_list: [str] = [typeof(data) for data in data_list]
 
 ```yaml
 data_list:
-- id: 1
-- name: name
+  - id: 1
+  - name: name
 data_type_list:
-- Data1
-- Data2
+  - Data1
+  - Data2
 ```
 
 ## 49. 如何通过编写 KCL 插件进行扩展?

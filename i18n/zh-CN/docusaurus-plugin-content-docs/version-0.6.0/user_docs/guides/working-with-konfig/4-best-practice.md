@@ -2,6 +2,7 @@
 id: practice
 sidebar_label: 最佳实践
 ---
+
 # 最佳实践
 
 本文档旨在讲解新的业务模型接入 Konfig 大库以及 KCL 代码模型设计与编写的最佳实践，新业务模型一般采用前-后端模型分离的最佳实践进行设计与抽象，区分前端模型和后端模型的直接目的是将「用户界面」和「模型实现」进行分离，实现用户友好的简单的配置界面以及自动化配置增删改查接口。
@@ -40,13 +41,13 @@ sidecars = [
 
 对于此类常用复杂的模板一个简单的最佳实践是在前端模型中抽象为一个简单的 bool 类型的变量 overQuota，让用户做选择题而不是填空题，比如当 overQuota 变量为 True 时，后端模型才会渲染这个复杂逻辑。
 
-+ 前端模型属性 `overQuota`
+- 前端模型属性 `overQuota`
 
 ```python
 overQuota: bool
 ```
 
-+ 后端模型 YAML 输出
+- 后端模型 YAML 输出
 
 ```yaml
 spec:
@@ -56,11 +57,11 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: k8s/is-over-quota
-                operator: In
-                values:
-                - 'true'
+              - matchExpressions:
+                  - key: k8s/is-over-quota
+                    operator: In
+                    values:
+                      - "true"
 ```
 
 此外也可以根据具体的业务场景设计不同的模版名称来填空，比如如下所示的代码设计一个属性 template 来辅助用户做模版的选择而不是直接填入模板内容。合法的 template 值可以为 "success_ratio" 或者 "service_cost", 当后端模型扩展更多的模版时，前端代码无需作出任何修改，仅需在后端模型中适配相应模板逻辑即可。

@@ -75,8 +75,8 @@ optional arguments:
   --config file  KCL lint config path
 ```
 
-+ --config : lint 配置文件 `.kcllint` 的路径
-+ file : 需要检查的单个 `.k` 文件路径或路径目录下的所有 `.k` 文件，支持绝对路径或当前目录的相对路径
+- --config : lint 配置文件 `.kcllint` 的路径
+- file : 需要检查的单个 `.k` 文件路径或路径目录下的所有 `.k` 文件，支持绝对路径或当前目录的相对路径
 
 ### Lint 配置参数
 
@@ -101,7 +101,7 @@ Lint 的配置参数的优先级如下：
 示例：
 
 ```yaml
-check_list: ["import","misc"]
+check_list: ["import", "misc"]
 ignore: ["E0501"]
 max_line_length: 120
 output: ["stdout"]
@@ -121,11 +121,11 @@ output: ["stdout"]
 
 目前提供 import_checker 和 misc_checker
 
-+ import_checker
-  + E0401: Unable to import.
-  + W0401: Reimport.
-  + E0406: Module import itself.
-  + W0411: Import but unused.
-  + E0413: ImportStmt is not at the top of the file
-+ misc_checker
-  + E0501: Line too long
+- import_checker
+  - E0401: Unable to import.
+  - W0401: Reimport.
+  - E0406: Module import itself.
+  - W0411: Import but unused.
+  - E0413: ImportStmt is not at the top of the file
+- misc_checker
+  - E0501: Line too long

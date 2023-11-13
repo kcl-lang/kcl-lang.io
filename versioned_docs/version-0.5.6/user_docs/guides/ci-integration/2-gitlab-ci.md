@@ -13,13 +13,13 @@ In the GitOps section, we have introduced how to integrate KCL with GitOps. In t
 
 The overall workflow is as follows:
 
-+ Develop application code and submit it to the Gitlab repository to trigger CI.
-+ Gitlab generate container images from application code and push them to the `docker.io` container registry.
-+ Gitlab CI automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
+- Develop application code and submit it to the Gitlab repository to trigger CI.
+- Gitlab generate container images from application code and push them to the `docker.io` container registry.
+- Gitlab CI automatically synchronizes and updates the KCL manifest deployment file based on the version of the container image in the docker.io container registry.
 
 ## Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ## How to
 
@@ -27,7 +27,7 @@ We put the application source code and infrastructure deployment code in differe
 
 ### 1. Get the Example
 
-+ Get the application code
+- Get the application code
 
 ```shell
 git clone https://gitlab.com/kcl-lang/flask-demo.git/
@@ -38,8 +38,8 @@ This is a web application written in Python. We can use the `Dockerfile` in the 
 
 ```yaml
 stages:
-- publish
-- deploy
+  - publish
+  - deploy
 
 publish:
   stage: publish
@@ -84,7 +84,7 @@ After submitting in the `flask-demo` repository, Gitlab will automatically build
 
 After the Gitlab CI process in the application repository is completed, an automatic update configuration CI will be triggered in the repository where the KCL configuration is stored and submitted to the main branch of the `flask-demo` repository.
 
-+ We can obtain the deployment manifest source code for compilation and validation
+- We can obtain the deployment manifest source code for compilation and validation
 
 ```shell
 git checkout main && git pull && cd deploy && kcl

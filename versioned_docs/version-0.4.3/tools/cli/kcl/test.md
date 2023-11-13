@@ -45,7 +45,7 @@ Execute the following command:
 ```
 $ kcl-test
 ok   /pkg/to/app [365.154142ms]
-$ 
+$
 ```
 
 ## Failed Test Case
@@ -92,6 +92,7 @@ $
 ```
 
 ## Option Args
+
 Literal type command line arguments can be specified via the testing package:
 
 ```python
@@ -120,12 +121,12 @@ schema TestOptions:
 The option arguments can also be loaded from the `settings.yaml`. There is a file `settings.yaml`:
 
 ```yaml
-  - key: app-name
-    value: app
-  - key: env-type
-    value: prod
-  - key: image
-    value: reg.docker.inc.com/test-image
+- key: app-name
+  value: app
+- key: env-type
+  value: prod
+- key: image
+  value: reg.docker.inc.com/test-image
 ```
 
 Parameters can then be configured via `testing.setting_file("./settings.yaml")`. At the same time, `testing.arguments()` is still supported to override the parameters in the configuration file:
@@ -149,9 +150,9 @@ Automatically execute integration tests when the directory contains `*.k`. If th
 
 ## Batch Test
 
-+ `kcl-test path` Execute the test of the specified directory. It can be omitted if it's the same directory that the command is executed
-+ `kcl-test -run=regexp` Execute the test which matches patterns
-+ `kcl-test ./...` Execute unit tests recursively
+- `kcl-test path` Execute the test of the specified directory. It can be omitted if it's the same directory that the command is executed
+- `kcl-test -run=regexp` Execute the test which matches patterns
+- `kcl-test ./...` Execute unit tests recursively
 
 ## Args
 

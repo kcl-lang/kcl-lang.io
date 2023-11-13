@@ -6,8 +6,8 @@ KCL 可用于创建函数来转换和/或验证 YAML Kubernetes 资源模型 (KR
 
 ## 先决条件
 
-+ 安装 [kpt](https://github.com/GoogleContainerTools/kpt)
-+ 安装 Docker
+- 安装 [kpt](https://github.com/GoogleContainerTools/kpt)
+- 安装 Docker
 
 ## 快速开始
 
@@ -65,4 +65,4 @@ cat ./data/resources.yaml | grep annotations -A1 -B5
 
 ## 更多文档和示例
 
-+ [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk)
+- [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk)

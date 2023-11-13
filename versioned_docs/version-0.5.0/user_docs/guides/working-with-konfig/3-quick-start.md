@@ -2,6 +2,7 @@
 id: guide
 sidebar_label: Quick Start
 ---
+
 # Introduction
 
 This guide shows you how to use the KCL language and CLIs to complete the deployment of an application running in Kubernetes. We call the abstraction of application operation and maintenance configuration as `Server`, and its instance as `Application`. It is essentially an operation and maintenance model defined by KCL.
@@ -68,20 +69,20 @@ spec:
         app.kubernetes.io/component: nginx-exampledev
     spec:
       containers:
-      - image: nginx:1.7.8
-        name: main
-        ports:
-        - containerPort: 80
-          protocol: TCP
-        resources:
-          limits:
-            cpu: 100m
-            memory: 100Mi
-            ephemeral-storage: 1Gi
-          requests:
-            cpu: 100m
-            memory: 100Mi
-            ephemeral-storage: 1Gi
+        - image: nginx:1.7.8
+          name: main
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+              ephemeral-storage: 1Gi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+              ephemeral-storage: 1Gi
 ---
 apiVersion: v1
 kind: Namespace
@@ -95,9 +96,9 @@ metadata:
   namespace: nginx-example
 spec:
   ports:
-  - nodePort: 30201
-    port: 80
-    targetPort: 80
+    - nodePort: 30201
+      port: 80
+      targetPort: 80
   selector:
     app.kubernetes.io/name: nginx-example
     app.kubernetes.io/env: dev
@@ -154,20 +155,20 @@ spec:
         app.kubernetes.io/component: nginx-exampledev
     spec:
       containers:
-      - image: nginx:latest
-        name: main
-        ports:
-        - containerPort: 80
-          protocol: TCP
-        resources:
-          limits:
-            cpu: 100m
-            memory: 100Mi
-            ephemeral-storage: 1Gi
-          requests:
-            cpu: 100m
-            memory: 100Mi
-            ephemeral-storage: 1Gi
+        - image: nginx:latest
+          name: main
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+              ephemeral-storage: 1Gi
+            requests:
+              cpu: 100m
+              memory: 100Mi
+              ephemeral-storage: 1Gi
 ---
 apiVersion: v1
 kind: Namespace
@@ -181,9 +182,9 @@ metadata:
   namespace: nginx-example
 spec:
   ports:
-  - nodePort: 30201
-    port: 80
-    targetPort: 80
+    - nodePort: 30201
+      port: 80
+      targetPort: 80
   selector:
     app.kubernetes.io/name: nginx-example
     app.kubernetes.io/env: dev

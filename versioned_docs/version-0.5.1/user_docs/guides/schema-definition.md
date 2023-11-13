@@ -83,10 +83,10 @@ schema Volume:
 
 In the above file, we use the `schema` keyword to define three models `App`, `Service` and `Volume`. The `App` model has four attributes `domainType`, `containerPort`, `volumes` and `services`, where
 
-+ The type of `domainType` is a string literal union type, similar to an "enumeration", which means that the value of `domainType` can only take one of `"Standard"`, `"Customized"` and `"Global"`.
-+ The type of `containerPort` is an integer (`int`). In addition, we use the `check` keyword to define its value range from 1 to 65535.
-+ The type of `services` is `Service` schema list type, and we use `?` to mark it as an optional attribute.
-+ The type of `volumes` is a `Volume` schema list type, and we use `?` to mark it as an optional attribute.
+- The type of `domainType` is a string literal union type, similar to an "enumeration", which means that the value of `domainType` can only take one of `"Standard"`, `"Customized"` and `"Global"`.
+- The type of `containerPort` is an integer (`int`). In addition, we use the `check` keyword to define its value range from 1 to 65535.
+- The type of `services` is `Service` schema list type, and we use `?` to mark it as an optional attribute.
+- The type of `volumes` is a `Volume` schema list type, and we use `?` to mark it as an optional attribute.
 
 We can get the YAML output of the `app` instance by using the following command line
 
@@ -101,11 +101,11 @@ app:
   domainType: Standard
   containerPort: 80
   volumes:
-  - container: '*'
-    mountPath: /tmp
+    - container: "*"
+      mountPath: /tmp
   services:
-  - clusterIP: None
-    type: ClusterIP
+    - clusterIP: None
+      type: ClusterIP
 ```
 
 ### 2. Output Configuration
@@ -123,11 +123,11 @@ app:
   domainType: Standard
   containerPort: 80
   volumes:
-  - container: '*'
-    mountPath: /tmp
+    - container: "*"
+      mountPath: /tmp
   services:
-  - clusterIP: None
-    type: ClusterIP
+    - clusterIP: None
+      type: ClusterIP
 ```
 
 ## Summary

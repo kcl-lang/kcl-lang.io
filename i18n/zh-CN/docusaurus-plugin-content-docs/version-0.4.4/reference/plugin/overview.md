@@ -111,7 +111,7 @@ $
 KCL 的插件是有一个独立的纯 Python 代码文件实现，并且插件相互之间不能直接调用。插件的内容如下：
 
 ```shell
-$ cat ./hello/plugin.py 
+$ cat ./hello/plugin.py
 # Copyright 2020 The KCL Authors. All rights reserved.
 INFO = {
     'name': 'hello',

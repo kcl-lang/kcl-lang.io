@@ -117,7 +117,7 @@ $
 The `_examples` directory is the sample code of the plugin, the `_test` directory is the KCL test code of the plugin, and the other directories starting with letters are ordinary plugins. The content of the plugin is as follows:
 
 ```shell
-$ cat ./hello/plugin.py 
+$ cat ./hello/plugin.py
 # Copyright 2020 The KCL Authors. All rights reserved.
 INFO = {
     'name': 'hello',

@@ -78,5 +78,4 @@ jobs:
 
       - name: Run kpm project from oci registry
         run: kpm run oci://${{ secrets.REG }}/${{ secrets.REG_ACCOUNT }}/catalog --tag 0.0.1
-
 ```

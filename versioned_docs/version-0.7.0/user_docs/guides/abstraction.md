@@ -29,14 +29,14 @@ Application centric development allows developers to focus on their workload's a
 
 Here are some references to learn more about Docker Compose and Kubernetes manifests:
 
-+ [Docker Compose documentation](https://docs.docker.com/compose/)
-+ [Kubernetes manifest documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
+- [Docker Compose documentation](https://docs.docker.com/compose/)
+- [Kubernetes manifest documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/)
 
 The application model aims to reduce developer toil and cognitive load by only having to define a single KCL file that works across multiple platforms, and it is designed to be applied to multiple environments to reduce the amount of configuration. Now, let's learn how to do this.
 
 ### 0. Prerequisite
 
-+ Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ### 1. Get the Example
 

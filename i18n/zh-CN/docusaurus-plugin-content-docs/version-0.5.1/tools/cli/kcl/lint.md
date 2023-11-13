@@ -51,4 +51,4 @@ OPTIONS:
     -Y, --setting <setting>...    Sets the input file to use
 ```
 
-+ input: 需要检查的单个 `.k` 文件路径或路径目录下的所有 `.k` 文件，支持绝对路径或当前目录的相对路径
+- input: 需要检查的单个 `.k` 文件路径或路径目录下的所有 `.k` 文件，支持绝对路径或当前目录的相对路径

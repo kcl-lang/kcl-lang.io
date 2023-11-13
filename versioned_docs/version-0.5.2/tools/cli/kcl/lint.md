@@ -53,4 +53,4 @@ OPTIONS:
     -Y, --setting <setting>...    Sets the input file to use
 ```
 
-+ input: the path of a single `*.k` file or directory to be checked. Support the absolute path or relative path of the current directory.
+- input: the path of a single `*.k` file or directory to be checked. Support the absolute path or relative path of the current directory.

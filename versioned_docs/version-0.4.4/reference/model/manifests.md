@@ -19,12 +19,12 @@ yaml_stream(values: [any], opts: {str:} = {
 
 This function is used to serialize the KCL object list into YAML output with the --- separator. It has two parameters:
 
-+ `values` - A list of KCL objects
-+ `opts` - The YAML serialization options
-  + `sort_keys`: Whether to sort the serialized results in the dictionary order of attribute names (the default is `False`).
-  + `ignore_private`: Whether to ignore the attribute output whose name starts with the character `_` (the default value is `True`).
-  + `ignore_none`: Whether to ignore the attribute with the value of' None '(the default value is `False`).
-  + `sep`: Set the separator between multiple YAML documents (the default value is `"---"`).
+- `values` - A list of KCL objects
+- `opts` - The YAML serialization options
+  - `sort_keys`: Whether to sort the serialized results in the dictionary order of attribute names (the default is `False`).
+  - `ignore_private`: Whether to ignore the attribute output whose name starts with the character `_` (the default value is `True`).
+  - `ignore_none`: Whether to ignore the attribute with the value of' None '(the default value is `False`).
+  - `sep`: Set the separator between multiple YAML documents (the default value is `"---"`).
 
 Here's an example:
 
@@ -50,7 +50,7 @@ schema Service:
     metadata: {str:} = {
          name = "svc"
     }
-    spec: {str:} = {}    
+    spec: {str:} = {}
 
 # Define two `Deployment` resources.
 deployments = [Deployment {}, Deployment {}]

@@ -2,6 +2,7 @@
 title: "builtin"
 sidebar_position: 1
 ---
+
 KCL provides a list of built-in functions that are automatically loaded and can be used directly without providing any module name. For example, `print` is a function provided by a widely used built-in module.
 
 ## Type Conversion Functions
@@ -32,7 +33,7 @@ l1 = list([1, 2, 3])
 
 ## String Builtin Member Functions
 
-+ [String Spec](/docs/reference/lang/spec/datatypes)
+- [String Spec](/docs/reference/lang/spec/datatypes)
 
 ## print
 

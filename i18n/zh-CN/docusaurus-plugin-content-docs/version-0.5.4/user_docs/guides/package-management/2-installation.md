@@ -18,7 +18,7 @@ go install kcl-lang.io/kpm@latest
 
 ```shell
 # KPM_INSTALLATION_PATH 是 `kpm` 二进制文件的所在目录.
-export PATH=$KPM_INSTALLATION_PATH:$PATH  
+export PATH=$KPM_INSTALLATION_PATH:$PATH
 ```
 
 请使用以下命令以确保您成功安装了`kpm`。

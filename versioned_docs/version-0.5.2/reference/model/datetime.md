@@ -5,6 +5,7 @@ type: "docs"
 description: datetime system module
 weight: 100
 ---
+
 ## time
 
 `ticks() -> float`

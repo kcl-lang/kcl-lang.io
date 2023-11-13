@@ -63,7 +63,7 @@ servers = [
 该配置输出的 YAML 结果如下：
 
 ```yaml
-$ kcl server.k 
+$ kcl server.k
 title: KCL Example
 owner:
   name: The KCL Authors
@@ -123,7 +123,7 @@ database = DatabaseConfig {
 执行时将产生类似以下的错误（显示的文件路径和本地环境有关）：
 
 ```shell
-$ kcl server.k 
+$ kcl server.k
 KCL Compile Error[E2G22] : The type got is inconsistent with the type expected
     ---> File /path/to/server.k:8:2
     8 |    ports = [1.2, 1.3]

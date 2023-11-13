@@ -19,12 +19,12 @@ yaml_stream(values: [any], opts: {str:} = {
 
 这个函数的功能是将 KCL 对象列表序列化为带 `---` 分隔符的样式 YAML 输出，它具有两个参数:
 
-+ `values` - 一个 KCL 对象列表
-+ `opts` - YAML 序列化选项
-  + `sort_keys`：是否按属性名称的字典序对序列化结果进行排序（默认为 `False`）。
-  + `ignore_private`：是否忽略名称以 `_` 开头的属性序列化输出（默认为 `True`）。
-  + `ignore_none`：是否忽略值为 `None` 的属性（默认为 `False`）。
-  + `sep`：在多个 YAML 文档之间选择怎样的分隔符（默认为 `"---"`）。
+- `values` - 一个 KCL 对象列表
+- `opts` - YAML 序列化选项
+  - `sort_keys`：是否按属性名称的字典序对序列化结果进行排序（默认为 `False`）。
+  - `ignore_private`：是否忽略名称以 `_` 开头的属性序列化输出（默认为 `True`）。
+  - `ignore_none`：是否忽略值为 `None` 的属性（默认为 `False`）。
+  - `sep`：在多个 YAML 文档之间选择怎样的分隔符（默认为 `"---"`）。
 
 下面我们通过一个例子来说明:
 
@@ -50,7 +50,7 @@ schema Service:
     metadata: {str:} = {
          name = "svc"
     }
-    spec: {str:} = {}    
+    spec: {str:} = {}
 
 # Define two `Deployment` resources.
 deployments = [Deployment {}, Deployment {}]

@@ -6,6 +6,7 @@ authors:
   title: KCL Team
 tags: [KCL, k8s, Sidecar]
 ---
+
 ## 介绍
 
 `Sidecar` 北京土话叫三蹦子，通俗叫就是带棚子的三轮摩托车。今天我们要聊的 K8S 中三蹦子也称为边三轮车：边三轮车是在摩托车边上挂靠一个拖斗，云原生中的叫法是主容器和边容器。本系列文章将展示 `Sidecar` 模式的用法，以及如何通过 [KCL](https://kcl-lang.io/) 等面向配置的编程语言来简化 YAML 的编写。
@@ -21,10 +22,10 @@ metadata:
   name: web-app
 spec:
   containers:
-  - image: nginx
-    name: main-container
-    ports:
-      - containerPort: 80
+    - image: nginx
+      name: main-container
+      ports:
+        - containerPort: 80
 ```
 
 `Pod` 是云原生中的一个基础原语。`Pod` 将多个容器包装为一个逻辑单元，`Kubernetes` 运行时确保 `Pod` 中的容器运行在一个机器上。因此 `Pod` 中的所有容器都共享生命周期、共享磁盘卷、共享网络环境等。`Sidecar` 模式就是在 `Pod` 中增加其他容器来扩展和增强主容器的能力。
@@ -74,12 +75,12 @@ spec:
       - containerPort: 80
 
     # --- 以下是新添加的内容 ---
-    
+
     # 和 Sidecar 通过 磁盘卷共享要发布的文件目录
     volumeMounts:
     - name: var-logs
       mountPath: /usr/share/nginx/html
-  
+
   # Sidecar 容器
   - image: busybox
     command: ["/bin/sh"]
@@ -108,7 +109,7 @@ done
 然后重新启动 `Pod`，并重新映射本地宿主机端口到容器端口：
 
 ```shell
-$ kubectl create -f pod.yaml 
+$ kubectl create -f pod.yaml
 pod/web-app created
 $ kubectl port-forward web-app 3999:80
 Forwarding from 127.0.0.1:3999 -> 80

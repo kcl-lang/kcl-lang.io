@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: Errors
 ---
+
 When errors happen, developers should be able to detect the error and abort
 execution. Thus, KCL introduce the `assert` syntax.
 

@@ -5,22 +5,22 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
-import Seo from '@theme/Seo';
-import BlogLayout from '@theme/BlogLayout';
-import ChangelogItem from '@theme/ChangelogItem';
-import BlogPostPaginator from '@theme/BlogPostPaginator';
-import type {Props} from '@theme/BlogPostPage';
-import {ThemeClassNames} from '@docusaurus/theme-common';
-import TOC from '@theme/TOC';
-import Link from '@docusaurus/Link';
+import React from "react";
+import Seo from "@theme/Seo";
+import BlogLayout from "@theme/BlogLayout";
+import ChangelogItem from "@theme/ChangelogItem";
+import BlogPostPaginator from "@theme/BlogPostPaginator";
+import type { Props } from "@theme/BlogPostPage";
+import { ThemeClassNames } from "@docusaurus/theme-common";
+import TOC from "@theme/TOC";
+import Link from "@docusaurus/Link";
 
 // This page doesn't change anything. It's just swapping BlogPostItem with our
 // own ChangelogItem. We don't want to apply the swizzled item to the actual
 // blog.
 export default function BlogPostPage(props: Props): JSX.Element {
-  const {content: BlogPostContents, sidebar} = props;
-  const {assets, metadata} = BlogPostContents;
+  const { content: BlogPostContents, sidebar } = props;
+  const { assets, metadata } = BlogPostContents;
   const {
     title,
     description,
@@ -57,12 +57,14 @@ export default function BlogPostPage(props: Props): JSX.Element {
             maxHeadingLevel={tocMaxHeadingLevel}
           />
         ) : undefined
-      }>
+      }
+    >
       <Seo
         title={title}
         description={description}
         keywords={keywords}
-        image={image}>
+        image={image}
+      >
         <meta property="og:type" content="article" />
         <meta property="article:published_time" content={date} />
 
@@ -72,13 +74,13 @@ export default function BlogPostPage(props: Props): JSX.Element {
             content={authors
               .map((author) => author.url)
               .filter(Boolean)
-              .join(',')}
+              .join(",")}
           />
         )}
         {tags.length > 0 && (
           <meta
             property="article:tag"
-            content={tags.map((tag) => tag.label).join(',')}
+            content={tags.map((tag) => tag.label).join(",")}
           />
         )}
       </Seo>
@@ -89,7 +91,8 @@ export default function BlogPostPage(props: Props): JSX.Element {
         frontMatter={frontMatter}
         assets={assets}
         metadata={metadata}
-        isBlogPostPage>
+        isBlogPostPage
+      >
         <BlogPostContents />
       </ChangelogItem>
 

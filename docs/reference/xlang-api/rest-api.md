@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 ---
+
 # Rest API
 
 ## 1. Start REST Service
@@ -69,7 +70,7 @@ schema Person:
 Then we want to use `Person` to verify the following JSON data:
 
 ```json
-{"key": "value"}
+{ "key": "value" }
 ```
 
 This can be done through the `ValidateCode` method of the `KclvmService` service. Refer to the `ValidateCode_Args` structure of the `ValidateCode` method:
@@ -88,8 +89,8 @@ Construct the JSON data required by the POST request according to the `ValidateC
 
 ```json
 {
-    "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
-    "data": "{\"key\": \"value\"}"
+  "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
+  "data": "{\"key\": \"value\"}"
 }
 ```
 
@@ -187,7 +188,7 @@ service KclvmService {
 	rpc FormatPath(FormatPath_Args) returns(FormatPath_Result);
 	rpc LintPath(LintPath_Args) returns(LintPath_Result);
 	rpc OverrideFile(OverrideFile_Args) returns (OverrideFile_Result);
-	
+
 	rpc GetSchemaType(GetSchemaType_Args) returns(GetSchemaType_Result);
 	rpc GetSchemaTypeMapping(GetSchemaTypeMapping_Args) returns(GetSchemaTypeMapping_Result);
 	rpc ValidateCode(ValidateCode_Args) returns(ValidateCode_Result);
@@ -232,7 +233,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-	
+
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 

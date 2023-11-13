@@ -6,6 +6,7 @@ weight: 2
 description: 使用 KCL 编写简单配置
 sidebar_position: 1
 ---
+
 ## 1. 介绍
 
 KCL 是一种简单易用的配置语言，用户可以简单地编写可重用的配置代码。
@@ -152,9 +153,9 @@ kcl my_config.k
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
+  run: my-nginx
 image: nginx:1.14.2
 service: my-service
 ```
@@ -206,9 +207,9 @@ kcl my_config.k
 cpu: 256
 memory: 512
 command:
-- nginx
-- -f
-- file
+  - nginx
+  - -f
+  - file
 labels:
   run: my-nginx
 image: nginx:1.14.2
@@ -260,10 +261,10 @@ Assertion failure: env label is a must.
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
-    env: pre-prod
+  run: my-nginx
+  env: pre-prod
 image: nginx:1.14.2
 service: my-service
 ```
@@ -322,10 +323,10 @@ kcl my_config.k
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
-    env: pre-prod
+  run: my-nginx
+  env: pre-prod
 image: nginx:1.14.2
 service: my-service
 run: my-nginx
@@ -341,8 +342,8 @@ env: pre-prod
 在 `my_config.k` 中定义配置数据：
 
 ```python
-_priority = 1  # 非导出可变变量 
-_cpu = 256  # 非导出可变变量 
+_priority = 1  # 非导出可变变量
+_cpu = 256  # 非导出可变变量
 
 if _priority == 1:
     _cpu = 256
@@ -372,7 +373,7 @@ service = "my-service"
 import my_config
 
 # debugging
-print(my_config.labels) # 通过打印调试 
+print(my_config.labels) # 通过打印调试
 
 # test
 assert len(my_config.labels) > 0, "labels can't be empty" # 使用 len() 得到列表长度
@@ -412,7 +413,7 @@ labels = {
     run = "my-{}".format(_name)
     env = _env
 } # a dict
-image = "{}:1.14.2".format(_name) # 字符串格式 
+image = "{}:1.14.2".format(_name) # 字符串格式
 service = "my-service"
 ```
 
@@ -428,10 +429,10 @@ kcl my_config.k -D priority=2 -D env=pre-prod
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
-    env: pre-prod
+  run: my-nginx
+  env: pre-prod
 image: nginx:1.14.2
 service: my-service
 ```
@@ -477,10 +478,10 @@ kcl my_config.k -D priority=2 -D env=pre-prod
 cpu: 512
 memory: 1024
 command:
-    - nginx
+  - nginx
 labels:
-    run: my-nginx
-    env: pre-prod
+  run: my-nginx
+  env: pre-prod
 image: nginx:1.14.2
 service: my-service
 ```

@@ -32,7 +32,7 @@ schema Spec:
 
 schema Config:
     name?: str
-    spec: Spec = Spec {  
+    spec: Spec = Spec {
         id = 1
     } # Before KCL v0.4.5, this statement will report an attribute non-null error. After v0.4.5, the schema non-null attribute lazy validation is supported
 
@@ -136,8 +136,8 @@ data:
 
 After KCL v0.4.5, KCL supports the use of the index tag style format `<format_ele_index>[<index_or_key>]` in the `{}` format block for KCL variables of list and dictionary types similar to the Python language.
 
-+ `<format_ele_index>` indicates the index that is needed to serialize list and dictionary-type elements.
-+ `<index_or_key>` indicates the list sub-element index or dictionary sub-element key value of the corresponding list and dictionary type element.
+- `<format_ele_index>` indicates the index that is needed to serialize list and dictionary-type elements.
+- `<index_or_key>` indicates the list sub-element index or dictionary sub-element key value of the corresponding list and dictionary type element.
 
 For example, for the following KCL code
 
@@ -367,20 +367,20 @@ The versioning semantic option is added to the [KCL website](https://kcl-lang.io
 
 ## Community
 
-+ Two external contributors @thinkrapido and @Rishav1707 have participated in the KCL community, thank them for their enthusiasm and active participation in contributing.
-+ Thank @Rishav1707 for establishing the Rust version of [kcl-loader-rs](https://github.com/i-think-rapido/kcl-loader-rs) sub-project based on KCL, which supports the automatic generation of Rust structure according to the schema and configuration definition in the KCL file and the deserialization function from KCL value to Rust structure value.
+- Two external contributors @thinkrapido and @Rishav1707 have participated in the KCL community, thank them for their enthusiasm and active participation in contributing.
+- Thank @Rishav1707 for establishing the Rust version of [kcl-loader-rs](https://github.com/i-think-rapido/kcl-loader-rs) sub-project based on KCL, which supports the automatic generation of Rust structure according to the schema and configuration definition in the KCL file and the deserialization function from KCL value to Rust structure value.
 
 ## Next
 
 It is expected that in the middle of April 2023, we will release **KCL v0.4.6**. The expected key evolution includes:
 
-+ KCL language is further improved for convenience, the user interface is continuously optimized and experience is improved, user support and pain points are solved.
-+ A new version of the KCL language server and [VSCode language plug-in](https://github.com/kcl-lang/vscode-kcl), the performance is expected to increase by **20 times**, and it is expected to support core basic capabilities such as code warning and error wavy line prompt, jump, reference search, etc.
-+ Continuously improve the language ability for the pain points of Kubernetes Manifests configuration management scenarios. For example, design and provide the [Helm](https://github.com/helm/helm) KCL Schema plug-in and provide the KCL SDK for the [kpt](https://github.com/GoogleContainerTools/kpt) tool.
-+ [KCL package management tool called KPM](https://github.com/kcl-lang/kpm) release. It is expected to support Git repo code dependency configuration and update, code download, and other basic capabilities.
-+ [KCL Playground](https://github.com/kcl-lang/kcl-playground): Support code sharing and KCL version selection.
-+ [KCL Go SDK](https://github.com/kcl-lang/kcl-go): More capability support such as supporting the bidirectional conversion of the KCL schema and Go structure
-+ [KCL Python SDK](https://github.com/kcl-lang/kclvm-py): More capability support.
+- KCL language is further improved for convenience, the user interface is continuously optimized and experience is improved, user support and pain points are solved.
+- A new version of the KCL language server and [VSCode language plug-in](https://github.com/kcl-lang/vscode-kcl), the performance is expected to increase by **20 times**, and it is expected to support core basic capabilities such as code warning and error wavy line prompt, jump, reference search, etc.
+- Continuously improve the language ability for the pain points of Kubernetes Manifests configuration management scenarios. For example, design and provide the [Helm](https://github.com/helm/helm) KCL Schema plug-in and provide the KCL SDK for the [kpt](https://github.com/GoogleContainerTools/kpt) tool.
+- [KCL package management tool called KPM](https://github.com/kcl-lang/kpm) release. It is expected to support Git repo code dependency configuration and update, code download, and other basic capabilities.
+- [KCL Playground](https://github.com/kcl-lang/kcl-playground): Support code sharing and KCL version selection.
+- [KCL Go SDK](https://github.com/kcl-lang/kcl-go): More capability support such as supporting the bidirectional conversion of the KCL schema and Go structure
+- [KCL Python SDK](https://github.com/kcl-lang/kclvm-py): More capability support.
 
 For more details, please refer to [KCL v0.4.6 Milestone](https://github.com/kcl-lang/kcl/milestone/4)
 
@@ -392,10 +392,10 @@ For more information, see [KCL FAQ](https://kcl-lang.io/docs/user_docs/support/)
 
 Thank all KCL users for their valuable feedback and suggestions during this version release. For more resources, please refer to:
 
-+ [KCL Website](https://kcl-lang.io/)
-+ [Kusion Website](https://kusionstack.io/)
-+ [KCL Repo](https://github.com/kcl-lang/kcl)
-+ [Kusion Repo](https://github.com/KusionStack/kusion)
-+ [Konfig Repo](https://github.com/KusionStack/konfig)
+- [KCL Website](https://kcl-lang.io/)
+- [Kusion Website](https://kusionstack.io/)
+- [KCL Repo](https://github.com/kcl-lang/kcl)
+- [Kusion Repo](https://github.com/KusionStack/kusion)
+- [Konfig Repo](https://github.com/KusionStack/konfig)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏

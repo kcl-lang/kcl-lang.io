@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 本栏目将会双周更新 KCL 语言社区最新动态，包括功能、官网更新和最新的社区动态等，帮助大家更好地了解 KCL 社区！
 
-***KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## 内容概述
 
@@ -30,14 +30,14 @@ tags: [KCL, Biweekly-Newsletter]
 **📰 官网和用例更新**
 
 - KCL 官网新增 v0.5.6 文档版本
-- 新增通过 Github Action 发布 KCL 代码包直接发布到 docker.io 和 ghcr.io 等 Registry 用例: *[https://github.com/kcl-lang/kpm/blob/main/docs/push_by_github_action.md](https://github.com/kcl-lang/kpm/blob/main/docs/push_by_github_action.md)*
-- 新增 KCL Operator 集成用例: *[https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator)*
+- 新增通过 Github Action 发布 KCL 代码包直接发布到 docker.io 和 ghcr.io 等 Registry 用例: _[https://github.com/kcl-lang/kpm/blob/main/docs/push_by_github_action.md](https://github.com/kcl-lang/kpm/blob/main/docs/push_by_github_action.md)_
+- 新增 KCL Operator 集成用例: _[https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator)_
 
 ## 特别鸣谢
 
 以下排名不分先后
 
-- 感谢 @jakezhu9 对 KCL Import 工具 JSON 和 YAML 配置数据到 KCL 配置块转换的贡献 🙌 *[https://github.com/kcl-lang/kcl-go/pull/141](https://github.com/kcl-lang/kcl-go/pull/141)*
+- 感谢 @jakezhu9 对 KCL Import 工具 JSON 和 YAML 配置数据到 KCL 配置块转换的贡献 🙌 _[https://github.com/kcl-lang/kcl-go/pull/141](https://github.com/kcl-lang/kcl-go/pull/141)_
 - 感谢 @xxmao123 和 @starkers 对 KCL NeoVim 以及 Idea IDE 插件的贡献 🙌 *https://github.com/kcl-lang/intellij-kcl/pull/12*
 - 此外感谢 @kolloch, @prahaladramji 等在过去两周使用 KCL 过程中提出的宝贵反馈和讨论 🙌
 
@@ -49,9 +49,9 @@ tags: [KCL, Biweekly-Newsletter]
 
 KCL Operator 提供了 Kubernetes 集群集成，允许您在将资源应用到集群时使用 Access Webhook 根据 KCL 配置生成、变异或验证资源。Webhook 将捕获创建、应用和编辑操作，并 `KCLRun` 在与每个操作关联的配置上执行资源，比如可以使用 KCL 语言完成如下功能
 
-+ 使用 KCL 对资源进行修改，如根据某个条件添加/修改 label 标签或 annotation 注释或在包含 PodTemplate 的所有 Kubernetes Resource Model (KRM) 资源中注入 Sidecar 容器配置等。
-+ 使用 KCL Schema 验证所有 KRM 资源，如约束只能以 Root 方式启动容器等。
-+ 使用抽象模型生成 KRM 资源或者对不同的 KRM API 进行组合并使用。
+- 使用 KCL 对资源进行修改，如根据某个条件添加/修改 label 标签或 annotation 注释或在包含 PodTemplate 的所有 Kubernetes Resource Model (KRM) 资源中注入 Sidecar 容器配置等。
+- 使用 KCL Schema 验证所有 KRM 资源，如约束只能以 Root 方式启动容器等。
+- 使用抽象模型生成 KRM 资源或者对不同的 KRM API 进行组合并使用。
 
 使用 KCL Operator, 通过几个步骤您就可以在 Kubernetes 集群内部以很轻量的方式地通过 KCL 代码自动化地完成资源配置的管理和安全验证，无需重复开发 Webhook Server 在运行时动态修改和验证配置。
 
@@ -147,18 +147,18 @@ https://github.com/kcl-lang/krm-kcl/tree/main/examples
 
 过去两周，我们将 KCL 语言服务器 LSP 集成到了 NeoVim 和 Idea 中，使得可以在 NeoVim 和 IntelliJ IDEA 中体验到和 VS Code IDE 支持的补全、跳转和悬停等功能
 
-+ NeoVim KCL 插件
+- NeoVim KCL 插件
 
 ![kcl.nvim](/img/docs/tools/Ide/neovim/overview.png)
 
-+ IntelliJ 插件
+- IntelliJ 插件
 
 ![intellij](/img/docs/tools/Ide/intellij/overview.png)
 
 更多 IDE 插件下载安装方式和功能说明可参考：
 
-+ https://kcl-lang.io/docs/user_docs/getting-started/install#neovim
-+ https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea
+- https://kcl-lang.io/docs/user_docs/getting-started/install#neovim
+- https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea
 
 ## 其他资源
 

@@ -13,7 +13,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 This section will update the KCL language community's latest developments every two weeks, including features, website updates, and the latest community news, helping everyone better understand the KCL community!
 
-***KCL Website: [https://kcl-lang.io](https://kcl-lang.io)***
+**_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
 
 ## Overview
 
@@ -25,7 +25,7 @@ Thank you to all contributors for their outstanding work over the past two weeks
 - **KCL IDE Updates** - Supports right-click formatting ability, formatting individual files or parts of KCL code.
 - **KCL Documentation Tool Updates** - Exported documents support HTML escape.
 - **KCL Package Management Tool KPM Updates** - `kpm run` command execution and error message optimization, supports running KCL packages located in local paths.
-- **KCL Language Updates** - Optimized system package type check error messages and unified error message codes. 
+- **KCL Language Updates** - Optimized system package type check error messages and unified error message codes.
 
 **📰 Official Website and Use Case Updates**
 
@@ -37,9 +37,9 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 The following are listed in no particular order:
 
-+ Thanks to @jakezhu9 for the contribution of converting JSON and YAML configuration data to KCL configuration in the KCL Import Tool 🙌 [https://github.com/kcl-lang/kcl-go/pull/141](https://github.com/kcl-lang/kcl-go/pull/141)
-+ Thanks to @xxmao123 and @starkers for their contributions to the KCL NeoVim and Idea IDE extensions 🙌 [https://github.com/kcl-lang/intellij-kcl/pull/12](https://github.com/kcl-lang/intellij-kcl/pull/12)
-+ Thanks to @kolloch, @prahaladramji, and others for their valuable feedback and discussions during the use of KCL in the past two weeks 🙌 
+- Thanks to @jakezhu9 for the contribution of converting JSON and YAML configuration data to KCL configuration in the KCL Import Tool 🙌 [https://github.com/kcl-lang/kcl-go/pull/141](https://github.com/kcl-lang/kcl-go/pull/141)
+- Thanks to @xxmao123 and @starkers for their contributions to the KCL NeoVim and Idea IDE extensions 🙌 [https://github.com/kcl-lang/intellij-kcl/pull/12](https://github.com/kcl-lang/intellij-kcl/pull/12)
+- Thanks to @kolloch, @prahaladramji, and others for their valuable feedback and discussions during the use of KCL in the past two weeks 🙌
 
 **Congratulations @jakezhu9 for becoming a KCL community Maintainer 🎉**
 
@@ -49,12 +49,12 @@ The following are listed in no particular order:
 
 KCL Operator provides cluster integration, allowing you to use Access Webhook to generate, mutate, or validate resources based on KCL configuration when apply resources to the cluster. Webhook will capture creation, application, and editing operations, and execute [KCLRun](https://github.com/kcl-lang/krm-kcl) on the configuration associated with each operation, and the KCL programming language can be used to
 
-+ Add labels or annotations based on a condition.
-+ Inject a sidecar container in all KRM resources that contain a `PodTemplate`.
-+ Validating all KRM resources using KCL Schema, such as constraints on starting containers only in a root mode.
-+ Generating KRM resources using an abstract model or combining and using different KRM APIs. 
+- Add labels or annotations based on a condition.
+- Inject a sidecar container in all KRM resources that contain a `PodTemplate`.
+- Validating all KRM resources using KCL Schema, such as constraints on starting containers only in a root mode.
+- Generating KRM resources using an abstract model or combining and using different KRM APIs.
 
-With KCL Operator, you can automate resource configuration management and security validation in a Kubernetes cluster using lightweight KCL code, without the need to develop a webhook server to dynamically mutate and validate configurations at runtime. 
+With KCL Operator, you can automate resource configuration management and security validation in a Kubernetes cluster using lightweight KCL code, without the need to develop a webhook server to dynamically mutate and validate configurations at runtime.
 
 Furthermore, leveraging KCL's modeling and abstraction capabilities, we can define functionality abstractions/compositions for different resource APIs and expose them in the form of KCL Schema. We can further generate OpenAPI Schema definitions from KCL Schema for other clients in the cluster to use, without manually maintaining complex OpenAPI Schema definitions for API abstractions/compositions. Here is an example of using KCL Operator to modify resource annotations:
 
@@ -144,18 +144,18 @@ We have provided more than 30 built-in models, and you can find more code exampl
 
 In the past two weeks, we have integrated the KCL language server LSP into NeoVim and Idea, enabling the completion, navigation, and hover features supported by VS Code IDE in NeoVim and IntelliJ IDEA.
 
-+ NeoVim KCL Extension
+- NeoVim KCL Extension
 
 ![kcl.nvim](/img/docs/tools/Ide/neovim/overview.png)
 
-+ IntelliJ Extension
+- IntelliJ Extension
 
 ![intellij](/img/docs/tools/Ide/intellij/overview.png)
 
 For more information on downloading, installation, and features of the IDE plugins, please refer to:
 
-+ [https://kcl-lang.io/docs/user_docs/getting-started/install#neovim](https://kcl-lang.io/docs/user_docs/getting-started/install#neovim)
-+ [https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea](https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea)
+- [https://kcl-lang.io/docs/user_docs/getting-started/install#neovim](https://kcl-lang.io/docs/user_docs/getting-started/install#neovim)
+- [https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea](https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea)
 
 ## Resources
 

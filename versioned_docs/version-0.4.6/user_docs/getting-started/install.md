@@ -79,13 +79,13 @@ alias kcl='kcl-go run'
 
 ### From Docker
 
-+ Command
+- Command
 
 ```bash
 docker run --rm -it kusionstack/kclvm
 ```
 
-+ Update image
+- Update image
 
 ```bash
 docker pull kusionstack/kclvm

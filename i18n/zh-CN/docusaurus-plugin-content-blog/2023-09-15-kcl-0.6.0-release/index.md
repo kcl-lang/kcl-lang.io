@@ -11,9 +11,9 @@ tags: [Release Blog, KCL]
 
 KCL 团队很高兴地宣布 **KCL v0.6.0 新版本现在已经可用**！本次发布为大家带来了三方面的重点更新：**语言**、**工具链**、**社区集成 & 扩展支持**。
 
-+ *使用功能更完善错误更少的 KCL 语言、工具链和 IDE 提升代码编写体验和效率*
-+ *使用包管理 KPM 和 OCI Registry 等工具直接使用和共享您的云原生领域模型，降低学习和上手成本*
-+ *使用 Helmfile KCL 插件和 KCL Operator 等云原生集成扩展同时支持在客户端和运行时对 Kubernetes 资源进行原地修改和验证，避免配置硬编码*
+- _使用功能更完善错误更少的 KCL 语言、工具链和 IDE 提升代码编写体验和效率_
+- _使用包管理 KPM 和 OCI Registry 等工具直接使用和共享您的云原生领域模型，降低学习和上手成本_
+- _使用 Helmfile KCL 插件和 KCL Operator 等云原生集成扩展同时支持在客户端和运行时对 Kubernetes 资源进行原地修改和验证，避免配置硬编码_
 
 进一步您可以在 [KCL v0.6.0 发布页面](https://github.com/kcl-lang/kcl/releases/tag/v0.6.0) 或者 [KCL 官方网站](https://kcl-lang.io) 获得下载安装指南和详细发布信息。
 
@@ -42,7 +42,7 @@ key2 = config.key2  # key2 的类型为 int
 
 ### 🏄 API 更新
 
-+ KCL Schema 模型解析 GetSchemaType API 获取 KCL 包相关信息和 Schema 属性默认值
+- KCL Schema 模型解析 GetSchemaType API 获取 KCL 包相关信息和 Schema 属性默认值
 
 ### 🐞 错误修复
 
@@ -74,18 +74,18 @@ l = L {
 
 #### 功能更新
 
-+ 跳转性能大幅度提升，支持毫秒级跳转
-+ 支持 KCL 包中的变量以及 Schema 属性补全
-+ 支持 KCL Schema 属性文档属性悬停提示
-+ 支持无用 Import 语句快速修复
+- 跳转性能大幅度提升，支持毫秒级跳转
+- 支持 KCL 包中的变量以及 Schema 属性补全
+- 支持 KCL Schema 属性文档属性悬停提示
+- 支持无用 Import 语句快速修复
 
 ![ide-quick-fix](/img/blog/2023-09-15-kcl-0.6.0-release/ide-quick-fix.png)
 
-+ 支持右键格式化文件和代码片段
+- 支持右键格式化文件和代码片段
 
 ![ide-format](/img/blog/2023-09-15-kcl-0.6.0-release/ide-format.png)
 
-+ 支持内置函数和系统库中函数信息的悬停提示
+- 支持内置函数和系统库中函数信息的悬停提示
 
 ![ide-func-hover](/img/blog/2023-09-15-kcl-0.6.0-release/ide-func-hover.png)
 
@@ -93,24 +93,24 @@ l = L {
 
 我们将 KCL 语言服务器 LSP 集成到了 NeoVim 和 Idea 中，使得可以在 NeoVim 和 IntelliJ IDEA 中体验到和 VS Code IDE 支持的补全、跳转和悬停等功能
 
-+ NeoVim KCL 插件
+- NeoVim KCL 插件
 
 ![kcl.nvim](/img/docs/tools/Ide/neovim/overview.png)
 
-+ IntelliJ 插件
+- IntelliJ 插件
 
 ![intellij](/img/docs/tools/Ide/intellij/overview.png)
 
 更多 IDE 插件下载安装方式和功能说明可参考：
 
-+ https://kcl-lang.io/docs/user_docs/getting-started/install#neovim
-+ https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea
+- https://kcl-lang.io/docs/user_docs/getting-started/install#neovim
+- https://kcl-lang.io/docs/user_docs/getting-started/install#intellij-idea
 
 ### KCL 格式化工具更新
 
 支持对缩进不正确的配置块进行格式化
 
-+ 格式化前
+- 格式化前
 
 ```python
 config = {
@@ -125,7 +125,7 @@ b = {
 }
 ```
 
-+ 格式化后
+- 格式化后
 
 ```python
 config = {
@@ -142,12 +142,12 @@ config = {
 
 ### KCL 文档工具更新
 
-+ 新增 Markdown 文档导出支持
-+ 支持导出文档索引页
-+ 支持导出文档自定义样式模版
-+ 支持导出文档 HTML 转义
-+ 文档生成增强，支持对文档注释中示例代码片段的解析和渲染
-+ 通过在 Github workflow 中跟踪模型的更新，并重新生成文档，即可实现文档的自动同步。具体参考: https://github.com/KusionStack/catalog/pull/31/files
+- 新增 Markdown 文档导出支持
+- 支持导出文档索引页
+- 支持导出文档自定义样式模版
+- 支持导出文档 HTML 转义
+- 文档生成增强，支持对文档注释中示例代码片段的解析和渲染
+- 通过在 Github workflow 中跟踪模型的更新，并重新生成文档，即可实现文档的自动同步。具体参考: https://github.com/KusionStack/catalog/pull/31/files
 
 #### 从 kpm 包生成模型文档
 
@@ -163,7 +163,7 @@ schema Service:
     Service is a kind of workload profile that describes how to run your application code. This
     is typically used for long-running web applications that should "never" go down, and handle
     short-lived latency-sensitive web requests, or events.
-    
+
     Attributes
     ----------
     workloadType : str = "Deployment" | "StatefulSet", default is Deployment, required.
@@ -174,7 +174,7 @@ schema Service:
         More info: https://kubernetes.io/docs/concepts/containers/images
     replicas : int, default is 2, required.
         Number of container replicas based on this configuration that should be ran.
-    
+
     Examples
     --------
     # Instantiate a long-running service and its image is "nginx:v1"
@@ -193,7 +193,7 @@ EOF
 ```
 
 2. 生成 Markdown 格式的包文档：
-以下命令将 demo 包文档输出到当前工作目录下的 doc/ 目录：
+   以下命令将 demo 包文档输出到当前工作目录下的 doc/ 目录：
 
 ```
 kcl-go doc generate --file-path demo
@@ -213,97 +213,85 @@ kcl-go doc generate --file-path demo
 
 ```json
 {
-    "format_version": "0.2",
-    "provider_schemas": {
-        "registry.terraform.io/aliyun/alicloud": {
-            "provider": {
-                "version": 0,
-                "block": {
-                    "attributes": {},
-                    "block_types": {},
-                    "description_kind": "plain"
-                }
-            },
-            "resource_schemas": {
-                "alicloud_db_instance": {
-                    "version": 0,
-                    "block": {
-                        "attributes": {
-                            "db_instance_type": {
-                                "type": "string",
-                                "description_kind": "plain",
-                                "computed": true
-                            },
-                            "engine": {
-                                "type": "string",
-                                "description_kind": "plain",
-                                "required": true
-                            },
-                            "security_group_ids": {
-                                "type": [
-                                    "set",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            },
-                            "security_ips": {
-                                "type": [
-                                    "set",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            },
-                            "tags": {
-                                "type": [
-                                    "map",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true
-                            }
-                        },
-                        "block_types": {},
-                        "description_kind": "plain"
-                    }
-                },
-                "alicloud_config_rule": {
-                    "version": 0,
-                    "block": {
-                        "attributes": {
-                            "compliance": {
-                                "type": [
-                                    "list",
-                                    [
-                                        "object",
-                                        {
-                                            "compliance_type": "string",
-                                            "count": "number"
-                                        }
-                                    ]
-                                ],
-                                "description_kind": "plain",
-                                "computed": true
-                            },
-                            "resource_types_scope": {
-                                "type": [
-                                    "list",
-                                    "string"
-                                ],
-                                "description_kind": "plain",
-                                "optional": true,
-                                "computed": true
-                            }
-                        }
-                    }
-                }
-            },
-            "data_source_schemas": {}
+  "format_version": "0.2",
+  "provider_schemas": {
+    "registry.terraform.io/aliyun/alicloud": {
+      "provider": {
+        "version": 0,
+        "block": {
+          "attributes": {},
+          "block_types": {},
+          "description_kind": "plain"
         }
+      },
+      "resource_schemas": {
+        "alicloud_db_instance": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "db_instance_type": {
+                "type": "string",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "engine": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "security_group_ids": {
+                "type": ["set", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "security_ips": {
+                "type": ["set", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "tags": {
+                "type": ["map", "string"],
+                "description_kind": "plain",
+                "optional": true
+              }
+            },
+            "block_types": {},
+            "description_kind": "plain"
+          }
+        },
+        "alicloud_config_rule": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "compliance": {
+                "type": [
+                  "list",
+                  [
+                    "object",
+                    {
+                      "compliance_type": "string",
+                      "count": "number"
+                    }
+                  ]
+                ],
+                "description_kind": "plain",
+                "computed": true
+              },
+              "resource_types_scope": {
+                "type": ["list", "string"],
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              }
+            }
+          }
+        }
+      },
+      "data_source_schemas": {}
     }
+  }
 }
 ```
 
@@ -371,10 +359,13 @@ schema AlicloudDbInstance:
 
 kpm 支持通过 kpm pull <package_name>:<package_version> 的方式拉取对应的包。
 以 `k8s`包为例，你可以通过以下命令直接下载对应的包到本地。
+
 ```
 kpm pull k8s
 ```
+
 或者
+
 ```
 kpm pull k8s:1.27
 ```
@@ -453,7 +444,7 @@ kpm: package 'my_package' will be pushed.
 kpm: package version '0.1.0' already exists
 ```
 
-对一个已经 push 到 Registry 中的 kcl 包，在不改变 tag 的情况下改动包的内容，会产生很大的风险，因为这个包有可能已经被其他人使用了，因此，如果您需要 push 您的包，我们建议 
+对一个已经 push 到 Registry 中的 kcl 包，在不改变 tag 的情况下改动包的内容，会产生很大的风险，因为这个包有可能已经被其他人使用了，因此，如果您需要 push 您的包，我们建议
 
 - 变更您的 tag, 并且建议您遵守语义化版本的规范。
 - 如果迫不得已需要在 tag 不能变更的情况下改变包的内容，您只能到 Registry 上删除已有的 tag。
@@ -512,9 +503,9 @@ helmfile apply
 
 KCL Operator 提供了 Kubernetes 集群集成，允许您在将资源应用到集群时使用 Access Webhook 根据 KCL 配置生成、变异或验证资源。Webhook 将捕获创建、应用和编辑操作，并 `KCLRun` 在与每个操作关联的配置上执行资源，比如可以使用 KCL 语言完成如下功能
 
-+ 使用 KCL 对资源进行修改，如根据某个条件添加/修改 label 标签或 annotation 注释或在包含 PodTemplate 的所有 Kubernetes Resource Model (KRM) 资源中注入 Sidecar 容器配置等。
-+ 使用 KCL Schema 验证所有 KRM 资源，如约束只能以 Root 方式启动容器等。
-+ 使用抽象模型生成 KRM 资源或者对不同的 KRM API 进行组合并使用。
+- 使用 KCL 对资源进行修改，如根据某个条件添加/修改 label 标签或 annotation 注释或在包含 PodTemplate 的所有 Kubernetes Resource Model (KRM) 资源中注入 Sidecar 容器配置等。
+- 使用 KCL Schema 验证所有 KRM 资源，如约束只能以 Root 方式启动容器等。
+- 使用抽象模型生成 KRM 资源或者对不同的 KRM API 进行组合并使用。
 
 下面以一个简单的资源 annotation 注解修改示例介绍 KCL Operator 的使用方式
 
@@ -641,7 +632,7 @@ kcl main.k | vals eval -f -
 
 ### GitLab CI 集成
 
-在之前的文章中，我们提到了使用 Github Action 作为 CI 通过 GitOps 方式进行应用发布，此次版本中我们进一步提供了 GitLab CI 集成，用例详情可参考：*[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)*
+在之前的文章中，我们提到了使用 Github Action 作为 CI 通过 GitOps 方式进行应用发布，此次版本中我们进一步提供了 GitLab CI 集成，用例详情可参考：_[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)_
 
 ## 其他更新与错误修复
 
@@ -653,14 +644,14 @@ kcl main.k | vals eval -f -
 
 ## 社区动态
 
-+ 感谢 @jakezhu9 对 KCL Import 工具包括 Terraform Provider Schema, JsonSchema, Json, YAML 等配置格式/数据到 KCL Schema/配置的转换 🙌
-+ 感谢 @xxmao123 对 KCL LSP 语言服务器接入到 Idea IDE 插件的贡献 🙌
-+ 感谢 @starkers 对 KCL NeoVim 插件的贡献 🙌
-+ 感谢 @starkers 对 mason.nvim registry 增加 KCL 的安装支持 🙌
-+ 感谢 @Ekko 对 KCL 云原生工具集成以及 KCL Operator 的贡献 🙌
-+ 感谢 @prahaladramji 对 KCL Homebrew 安装脚本的升级更新与贡献 🙌
-+ 感谢 @yyxhero 在 Helmfile KCL 插件支持中提供的帮助与支持 🙌
-+ 感谢 @nkabir, @mihaigalos, @prahaladramji, @yamin-oanda, @dhhopen,@magick93, @MirKml, @kolloch, @steeling 等在过去两个月使用 KCL 过程中提出的宝贵反馈和讨论 🙌
+- 感谢 @jakezhu9 对 KCL Import 工具包括 Terraform Provider Schema, JsonSchema, Json, YAML 等配置格式/数据到 KCL Schema/配置的转换 🙌
+- 感谢 @xxmao123 对 KCL LSP 语言服务器接入到 Idea IDE 插件的贡献 🙌
+- 感谢 @starkers 对 KCL NeoVim 插件的贡献 🙌
+- 感谢 @starkers 对 mason.nvim registry 增加 KCL 的安装支持 🙌
+- 感谢 @Ekko 对 KCL 云原生工具集成以及 KCL Operator 的贡献 🙌
+- 感谢 @prahaladramji 对 KCL Homebrew 安装脚本的升级更新与贡献 🙌
+- 感谢 @yyxhero 在 Helmfile KCL 插件支持中提供的帮助与支持 🙌
+- 感谢 @nkabir, @mihaigalos, @prahaladramji, @yamin-oanda, @dhhopen,@magick93, @MirKml, @kolloch, @steeling 等在过去两个月使用 KCL 过程中提出的宝贵反馈和讨论 🙌
 
 ## 常见问题及解答
 
@@ -672,9 +663,9 @@ kcl main.k | vals eval -f -
 
 更多其他资源请参考：
 
-+ [KCL 网站](https://kcl-lang.io/)
-+ [Kusion 网站](https://kusionstack.io/)
-+ [KCL GitHub 仓库](https://github.com/kcl-lang/kcl)
-+ [Kusion GitHub 仓库](https://github.com/KusionStack/kusion)
+- [KCL 网站](https://kcl-lang.io/)
+- [Kusion 网站](https://kusionstack.io/)
+- [KCL GitHub 仓库](https://github.com/kcl-lang/kcl)
+- [Kusion GitHub 仓库](https://github.com/KusionStack/kusion)
 
 欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/kcl-lang/community](https://github.com/kcl-lang/community)

@@ -13,7 +13,7 @@ sidebar_position: 4
 
 ## 先决条件
 
-+ 安装 [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
+- 安装 [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
 
 ## 快速入门
 

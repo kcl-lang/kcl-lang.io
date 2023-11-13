@@ -9,7 +9,7 @@ KCL provides many out of the box support for Kubernetes configuration. Through K
 
 ## Prerequisite
 
-+ Install [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
+- Install [kcl](https://kcl-lang.io/docs/user_docs/getting-started/install/)
 
 ## Quick Start
 
@@ -50,10 +50,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 Transform the Kubernetes YAML code to KCL
@@ -134,10 +134,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 ### Generate Types in KCL for Custom Resource
@@ -146,7 +146,7 @@ KCL supports extracting and generating KCL schemas from Kubernetes OpenAPI/Custo
 
 If you developed CRDs, you can generate the KCL version of the CRD schemas and declare CRs based on that. Here we take the example [CronTab CRD](https://kubernetes.io/docs/tasks/extend-kubernetes/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition) specified in the Kubernetes documentation.
 
-* Generate KCL Schema from CRD
+- Generate KCL Schema from CRD
 
 ```shell
 # Add the Kubernetes dependency
@@ -155,7 +155,7 @@ kcl mod add k8s
 kcl import -m crd -s -f crd.yaml
 ```
 
-* Define CR (cr.k) based on CRDs in KCL
+- Define CR (cr.k) based on CRDs in KCL
 
 ```python
 import models
@@ -184,7 +184,7 @@ kind: CronTab
 metadata:
   name: my-new-cron-object
 spec:
-  cronSpec: '* * * * */5'
+  cronSpec: "* * * * */5"
   image: my-awesome-cron-image
   replicas: 3
 ```

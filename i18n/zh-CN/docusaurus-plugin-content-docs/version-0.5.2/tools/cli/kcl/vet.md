@@ -14,17 +14,17 @@ KCL 支持通过内置的 `kcl-vet` 命令行工具提供了基本的配置数�
 
 ```json
 {
-    "name": "Alice",
-    "age": 18,
-    "message": "This is Alice",
-    "data": {
-        "id": 1,
-        "value": "value1"
-    },
-    "labels": {
-        "key": "value"
-    },
-    "hc": [1, 2, 3]
+  "name": "Alice",
+  "age": 18,
+  "message": "This is Alice",
+  "data": {
+    "id": 1,
+    "value": "value1"
+  },
+  "labels": {
+    "key": "value"
+  },
+  "hc": [1, 2, 3]
 }
 ```
 
@@ -38,7 +38,7 @@ schema User:
     data: Data
     labels: {str:}
     hc: [int]
-        
+
     check:
         age > 10
 

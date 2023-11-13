@@ -183,7 +183,7 @@ schema Person:
 然后希望通过 `Person` 来校验以下的 JSON 数据：
 
 ```json
-{"key": "value"}
+{ "key": "value" }
 ```
 
 可以通过 `KclvmService` 服务的 `ValidateCode` 方法完成。参考 `ValidateCode` 方法的 `ValidateCode_Args` 参数结构：
@@ -202,8 +202,8 @@ message ValidateCode_Args {
 
 ```json
 {
-    "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
-    "data": "{\"key\": \"value\"}"
+  "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
+  "data": "{\"key\": \"value\"}"
 }
 ```
 

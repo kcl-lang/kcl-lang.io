@@ -5,6 +5,7 @@ type: "docs"
 weight: 2
 description: Expressions
 ---
+
 ## Syntax
 
 In KCL, an expression specifies the computation of a value.

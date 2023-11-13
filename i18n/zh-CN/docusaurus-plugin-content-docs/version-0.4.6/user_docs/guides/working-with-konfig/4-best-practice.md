@@ -2,6 +2,7 @@
 id: practice
 sidebar_label: 最佳实践
 ---
+
 # 最佳实践
 
 本文档旨在讲解新的业务模型接入 Konfig 大库以及 KCL 代码模型设计与编写的最佳实践，新业务模型一般采用前-后端模型分离的最佳实践进行设计与抽象，区分前端模型和后端模型的直接目的是将「用户界面」和「模型实现」进行分离，实现用户友好的简单的配置界面以及自动化配置增删改查接口。
@@ -38,13 +39,13 @@ sidecars = [
 
 对于一些后端模型所需要填写的配置字段往往是大而全的设计，需要用户主动输入较为复杂的配置模版，并且不同用户对于该字段的填写内容基本一致，比如在图 1 示出的超卖逻辑的配置就需要用户填写大量的模板数据，心智成本较高，一个简单的最佳实践是对于此类常用复杂的模板在前端模型中抽象为一个简单的 bool 类型的变量 overQuota，让用户做选择题而不是填空题，比如当 overQuota 变量为 True 时，后端模型才会渲染这个复杂逻辑。
 
-+ The front-end attribute `overQuota`
+- The front-end attribute `overQuota`
 
 ```python
 overQuota: bool
 ```
 
-+ The back-end YAML output:
+- The back-end YAML output:
 
 ```yaml
 spec:
@@ -54,11 +55,11 @@ spec:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             nodeSelectorTerms:
-            - matchExpressions:
-              - key: k8s/is-over-quota
-                operator: In
-                values:
-                - 'true'
+              - matchExpressions:
+                  - key: k8s/is-over-quota
+                    operator: In
+                    values:
+                      - "true"
 ```
 
 对于不是 True/False 属性可以选择的模版，也可以根据具体的业务场景设计不同的模版名称来填空，比如如图 2 所示的代码设计一个属性 template 来辅助用户做模版的选择而不是直接填入模板内容。合法的 template 值可以为 "success_ratio" 或者 "service_cost", 当后端模型扩展更多的模版时，前端代码无需作出任何修改，仅需在后端模型中适配相应模板逻辑即可。
@@ -136,7 +137,7 @@ dataB = _dataFactory["DataB"]()
 schema DataA:
     id?: int = 1
     value?: str = "value"
-    
+
 schema DataB:
     name?: str = "DataB"
 
@@ -153,10 +154,10 @@ dataB: DataA | DataB = DataB()
 schema Person:
     name: str
     age: int
-    
+
 schema House:
     persons: [Person]
-    
+
 house = House {
     persons = [
         Person {
@@ -282,8 +283,8 @@ kcl_cli_configs:
     - ${KCL_MOD}/base/pkg/kusion_models/kube/render/render.k
 ```
 
-+ `${KCL_MOD}` 表示 Konfig 根目录 kcl.mod 文件所在的路径
-+ metadata_render.k 预先定义一些常量用户使用，针对不同的场景可以不同，非必须
-+ base.k 应用的基线配置，使用前端模型生成相应 instance，非必须
-+ main.k 应用的环境配置，使用前端模型生成相应 instance
-+ render.k 后端代码，负责拿到用户前端 instance 作模型渲染
+- `${KCL_MOD}` 表示 Konfig 根目录 kcl.mod 文件所在的路径
+- metadata_render.k 预先定义一些常量用户使用，针对不同的场景可以不同，非必须
+- base.k 应用的基线配置，使用前端模型生成相应 instance，非必须
+- main.k 应用的环境配置，使用前端模型生成相应 instance
+- render.k 后端代码，负责拿到用户前端 instance 作模型渲染

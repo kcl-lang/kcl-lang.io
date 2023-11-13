@@ -403,8 +403,6 @@ example: |-
   and also a blank line:
 
   plus another line at the end.
-
-
 ```
 
 结果为：
@@ -427,7 +425,7 @@ KCL 原始字符串是通过在字符串字面值前加上 `'r'` 或 `'R'` 来�
 
 ```python
 s = "Hi\nHello"
-raw_s = r"Hi\nHello"  # This is a KCL raw string with the `r` prefix. 
+raw_s = r"Hi\nHello"  # This is a KCL raw string with the `r` prefix.
 ```
 
 ```yaml
@@ -442,7 +440,7 @@ raw_s: Hi\nHello
 ```python
 worldString = "world"
 s = "Hello ${worldString}"
-raw_s = r"Hello ${worldString}"  # This is a KCL raw string with the `r` prefix. 
+raw_s = r"Hello ${worldString}"  # This is a KCL raw string with the `r` prefix.
 ```
 
 ```yaml
@@ -599,7 +597,7 @@ data = {
 
 ```python
 data = {
-    key1 = "value1"  # Ignore key quotation '"' 
+    key1 = "value1"  # Ignore key quotation '"'
     key2 = "value2"
 }  # {"key1": "value1", "key2": "value2"}
 ```
@@ -731,9 +729,9 @@ c = {key1 = "value1", key2 = None}
 ```yaml
 a: null
 b:
-- 1
-- 2
-- null
+  - 1
+  - 2
+  - null
 c:
   key1: value1
   key2: null
@@ -764,8 +762,8 @@ c = {key1 = "value1", key2 = Undefined}
 
 ```yaml
 b:
-- 1
-- 2
+  - 1
+  - 2
 c:
   key1: value1
 ```
@@ -1093,7 +1091,7 @@ schema Company:
 schema Person:
     name: str
     job?: Company
-        
+
 alice = Person {
     name = "alice"
 }
@@ -1222,7 +1220,7 @@ else:
 _result = "success" if success else "failed"
 ```
 
-`if` 或 `elif` 语句计算一个给定的表达式。当表达式的计算结果为 `True`,  `:` 之后的语句将被计算，而当表达式为 `False` ，后面的语句不会被计算。
+`if` 或 `elif` 语句计算一个给定的表达式。当表达式的计算结果为 `True`, `:` 之后的语句将被计算，而当表达式为 `False` ，后面的语句不会被计算。
 
 请注意，常量 `False`, `None`, 数字 `0`, 空列表 `[]`, 空字典 `{}` 和空字符串 `""` 都被视为 `False` 。
 
@@ -1806,9 +1804,9 @@ alice:
   name: alice
   age: 10
   hands:
-  - 1
-  - 2
-  - 3
+    - 1
+    - 2
+    - 3
 ```
 
 ##### 校验
@@ -1996,7 +1994,7 @@ protocol PersonProtocol:
     firstName: str
     lastName: str
     fullName?: str
-    
+
 mixin FullNameMixin for PersonProtocol:
     fullName = "{} {}".format(firstName, lastName)
 ```
@@ -2147,7 +2145,7 @@ schema Fib[n: int]:
         value = 1
     else:
         value = Fib(n1).value + Fib(n2).value
-    
+
 fib8 = Fib(8).value  # 21
 ```
 
@@ -2234,10 +2232,10 @@ bob:
   name: Bob
   age: 10
 aliceAndBob:
-- name: Alice
-  age: 18
-- name: Bob
-  age: 10
+  - name: Alice
+    age: 18
+  - name: Bob
+    age: 10
 ```
 
 ### 配置操作
@@ -2311,9 +2309,9 @@ data3 = None | None  # None
 data1:
   key: value
 data2:
-- 1
-- 2
-- 3
+  - 1
+  - 2
+  - 3
 data3: null
 ```
 
@@ -2397,7 +2395,7 @@ config:
 schema Data:
     d1?: int
     d2?: int
-    
+
 schema Config:
     # This is one configuration that will be merged.
     data: Data {
@@ -2469,8 +2467,8 @@ data = Data {
 data:
   labels:
     key1:
-    - 0
-    - 1
+      - 0
+      - 1
 ```
 
 如果没有定义索引，将使用最后一个索引。
@@ -2535,7 +2533,7 @@ rule SomeRule:
     age > 0, "rule check failure message"
     name == "Alice"
 
-rule1 = SomeRule()  # Rule call 
+rule1 = SomeRule()  # Rule call
 rule2 = SomeRule {}
 ```
 
@@ -2686,7 +2684,7 @@ KCL 配置文件以 **模块** 形式组织。 单个 KCL 文件被认为是一�
 同一个包内的模块是可见的，跨包引用需要通过导入可见。
 
 ```
-. 
+.
 └── root
     ├── model
     │   ├── model1.k
@@ -2746,7 +2744,7 @@ m = root.Schema {}
 从当前目录或者父级目录中查找 `kcl.mod` 文件对应的目录。
 
 ```
-. 
+.
 └── root
     ├── kcl.mod
     ├── model
@@ -2791,7 +2789,7 @@ kcl employee.k -D bankCard=123
 目前，支持顶级参数的类型有数字、字符串、布尔、列表和字典。
 
 ```
-kcl main.k -D list_key='[1,2,3]' -D dict_key='{"key":"value"}' 
+kcl main.k -D list_key='[1,2,3]' -D dict_key='{"key":"value"}'
 ```
 
 请注意，命令行中引号 `"` 等符号需要使用 `\` 进行转义
@@ -2806,7 +2804,7 @@ kcl_options:
     value: 1
   - key: key_dict
     value:
-      innerDictKey:  innerDictValue
+      innerDictKey: innerDictValue
   - key: key_list
     value:
       - 1
@@ -2958,7 +2956,7 @@ schema Backend:
         progressDeadlineSeconds = 600
         replicas = 1
         revisionHistoryLimit = 10
-        selector = {}  
+        selector = {}
     }
 
 _backends = [Backend {
@@ -3176,7 +3174,7 @@ KCL 代码：
 schema Config:
     x?: int = 1
     y?: str = "s"
-    
+
 config = Config {
     x = 2
 }

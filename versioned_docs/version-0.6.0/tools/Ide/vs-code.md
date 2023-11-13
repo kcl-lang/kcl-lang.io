@@ -8,11 +8,14 @@ sidebar_position: 1
 
 - **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to your PATH:
   In MacOs and Linux:
+
   ```bash
   which kcl
   which kcl-language-server
   ```
+
   In Windows:
+
   ```bash
   where kcl
   where kcl-language-server

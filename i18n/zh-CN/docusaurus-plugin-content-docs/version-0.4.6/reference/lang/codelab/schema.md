@@ -6,6 +6,7 @@ weight: 2
 description: 使用 KCL Schema 编写复杂配置
 sidebar_position: 2
 ---
+
 ## 1. 介绍
 
 KCL 是一种简单易用的配置语言，用户可以简单地编写可重用的配置代码。
@@ -76,7 +77,7 @@ schema Deployment:
     service: str = "my-service"  # defaulting
     replica: int = 1  # defaulting
     command: [str]
-    labels?: {str:str}  # labels is an optional attribute 
+    labels?: {str:str}  # labels is an optional attribute
 ```
 
 And then we can set the service type annotation as the string literal type to make it immutable:
@@ -134,7 +135,7 @@ nginx:
   service: my-service
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
@@ -150,9 +151,9 @@ nginx = Deployment {
     cpu = 256
     memory = 512
     image = "nginx:1.14.2"
-    command = ["nginx"]  # 忽略行尾的逗号 
-    labels.run = "my-nginx" # schema 中的字典变量可以使用选择器表达式 
-    labels.env = "pre-prod" # schema 中的字典变量可以使用选择器表达式 
+    command = ["nginx"]  # 忽略行尾的逗号
+    labels.run = "my-nginx" # schema 中的字典变量可以使用选择器表达式
+    labels.env = "pre-prod" # schema 中的字典变量可以使用选择器表达式
 }
 ```
 
@@ -213,7 +214,7 @@ nginx:
   service: my-service
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
@@ -305,20 +306,20 @@ nginx:
   cpu: 512
   memory: 1024
   volumes:
-  - name: mydir
-    mountPath: /test-pd
-    hostPath: /data
+    - name: mydir
+      mountPath: /test-pd
+      hostPath: /data
   image: nginx:1.14.2
   service:
     name: my-service
     ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 9376
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 9376
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
@@ -543,20 +544,20 @@ nginx:
   cpu: 512
   memory: 1024
   volumes:
-  - name: mydir
-    mountPath: /test-pd
-    hostPath: /data
+    - name: mydir
+      mountPath: /test-pd
+      hostPath: /data
   image: nginx:1.14.2
   service:
     name: my-service
     ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 9376
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 9376
   replica: 3
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
@@ -581,7 +582,7 @@ mixin PersistentVolumeClaimMixin for PVCProtocol:
     PersistentVolumeClaim (PVC) sample:
     Link: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#persistentvolumeclaims
     """
-    
+
     # Mix in a new attribute `kubernetesPVC`
     kubernetesPVC?: v1.PersistentVolumeClaim
 
@@ -657,27 +658,27 @@ server:
   cpu: 512
   memory: 1024
   volumes:
-  - name: mydir
-    mountPath: /test-pd
-    hostPath: /data
+    - name: mydir
+      mountPath: /test-pd
+      hostPath: /data
   image: nginx:1.14.2
   service:
     name: my-service
     ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 9376
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 9376
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod
   pvc:
     name: my_pvc
     accessModes:
-    - ReadWriteOnce
+      - ReadWriteOnce
     resources:
       requests:
         storage: 8Gi
@@ -689,7 +690,7 @@ metadata:
   name: my_pvc
 spec:
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   storageClassName: slow
   resources:
     requests:
@@ -739,7 +740,7 @@ pkg/
 在 `server.k` 中，我们可以只使用 `deploy.k` 中的 Deployment schema 和 `pvc.k` 中的 pvc schema 而无需导入：
 
 ```python
-# 无需 import 
+# 无需 import
 schema Server(Deployment):
     mixin [PersistentVolumeClaimMixin]
     pvc?: {str:}
@@ -787,20 +788,20 @@ server:
   cpu: 512
   memory: 1024
   volumes:
-  - name: mydir
-    mountPath: /test-pd
-    hostPath: /data
+    - name: mydir
+      mountPath: /test-pd
+      hostPath: /data
   image: nginx:1.14.2
   service:
     name: my-service
     ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 9376
+      - name: http
+        protocol: TCP
+        port: 80
+        targetPort: 9376
   replica: 1
   command:
-  - nginx
+    - nginx
   labels:
     run: my-nginx
     env: pre-prod

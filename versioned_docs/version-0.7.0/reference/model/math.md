@@ -5,6 +5,7 @@ type: "docs"
 description: math system module
 weight: 100
 ---
+
 ## ceil
 
 `ceil(x) -> int`

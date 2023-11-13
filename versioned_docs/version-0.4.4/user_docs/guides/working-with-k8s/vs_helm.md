@@ -14,7 +14,7 @@ Helm has the concepts of `values.yaml` and `template`. In general, the Helm char
 
 We can execute the following command line to obtain a typical Helm Chart project.
 
-+ Create a directory named `workload-helm` to hold the chart project
+- Create a directory named `workload-helm` to hold the chart project
 
 ```bash
 # Create a directory to hold the chart project
@@ -43,7 +43,7 @@ containers:
     image:
       name: busybox:latest
     command: ["/bin/echo"]
-    args: 
+    args:
       - "-c"
       - "Hello World!"
     resources:
@@ -56,7 +56,7 @@ containers:
 EOF
 ```
 
-+ Create a directory to hold templates
+- Create a directory to hold templates
 
 ```bash
 # Create a directory to hold templates
@@ -266,7 +266,7 @@ In KCL, we provide the ability similar to Helm `values.yaml` to configure dynami
 
 We can execute the following command line to obtain a typical KCL project with the `kcl.yaml`.
 
-+ Create a directory named `workload-kcl` to hold the KCL project
+- Create a directory named `workload-kcl` to hold the KCL project
 
 ```bash
 # Create a directory to hold the KCL project
@@ -280,7 +280,7 @@ kcl_options:
         image:
           name: busybox:latest
         command: ["/bin/echo"]
-        args: 
+        args:
           - "-c"
           - "Hello World!"
         resources:
@@ -302,7 +302,7 @@ kcl_options:
 EOF
 ```
 
-+ Create KCL files to hold kubernetes resources.
+- Create KCL files to hold kubernetes resources.
 
 ```bash
 # Create a workload-kcl/deployment.k
@@ -355,7 +355,7 @@ In KCL, we can dynamically receive external parameters through conditional state
 
 We can get the `Deployment` and `Service` resources throw the following command:
 
-+ `Deployment`
+- `Deployment`
 
 ```shell
 $ kcl workload-kcl/deployment.k -Y workload-kcl/kcl.yaml
@@ -392,7 +392,7 @@ spec:
             memory: 128Mi
 ```
 
-+ `Service`
+- `Service`
 
 ```shell
 $ kcl workload-kcl/service.k -Y workload-kcl/kcl.yaml
@@ -450,9 +450,9 @@ In fact, KCL and Helm are not antagonistic. We can even use KCL to write HelmRel
 
 We also expect that KCL models and constraints can be managed as a package (this package has only KCL files). For example, the Kubernetes models and constraints can be used out of the box. Users can generate configurations or verify existing configurations, and can simply extend the models and constraints users want through KCL inheritance.
 
-At this stage, you can use tools such as Git or [OCI Registry As Storage (ORAS)]( https://github.com/oras-project/oras) to manage KCL configuration versions.
+At this stage, you can use tools such as Git or [OCI Registry As Storage (ORAS)](https://github.com/oras-project/oras) to manage KCL configuration versions.
 
 ## More Documents
 
-+ KCL Github Repo: [https://github.com/kcl-lang/kcl](https://github.com/kcl-lang/kcl)
-+ KCL Website: [https://kcl-lang.io](https://kcl-lang.io)
+- KCL Github Repo: [https://github.com/kcl-lang/kcl](https://github.com/kcl-lang/kcl)
+- KCL Website: [https://kcl-lang.io](https://kcl-lang.io)

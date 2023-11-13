@@ -13,7 +13,7 @@ sidebar_position: 3
 
 ```yaml
 string1: 'here '' s to "quotes"'
-string2: "here's to \"quotes\""
+string2: 'here''s to "quotes"'
 string3: here's to "quotes"
 ```
 

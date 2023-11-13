@@ -13,9 +13,9 @@ tags: [Release Blog, KCL]
 
 KCL 团队很高兴地宣布 KCL v0.4.6 新版本现在已经可用！本次发布为大家带来了三方面的重点更新：**语言**、**工具链**、**社区集成 & 扩展支持**。
 
-+ *使用 IDE 插件提升 KCL 代码编写体验和效率*
-+ *Helm/Kustomize/KPT 云原生社区工具集成*
-+ *完善 KCL 多语言 SDK，方便应用程序集成*
+- _使用 IDE 插件提升 KCL 代码编写体验和效率_
+- _Helm/Kustomize/KPT 云原生社区工具集成_
+- _完善 KCL 多语言 SDK，方便应用程序集成_
 
 进一步您可以在 [KCL v0.4.6 发布页面](https://github.com/kcl-lang/kcl/releases/tag/v0.4.6) 或者 [KCL 官方网站](https://kcl-lang.io) 获得下载安装指南和详细发布信息。
 
@@ -30,7 +30,7 @@ KCL 团队很高兴地宣布 KCL v0.4.6 新版本现在已经可用！本次发�
 KCL 字符串新增 `removeprefix` 和 `removesuffix` 成员函数用于去除字符串的前缀和后缀子字符串
 
 ```python
-data1 = "prefix-string".removeprefix("prefix-") # "string" 
+data1 = "prefix-string".removeprefix("prefix-") # "string"
 data2 = "string-suffix".removesuffix("-suffix") # "string"
 ```
 
@@ -69,7 +69,7 @@ error[E1001]: InvalidSyntax
 
 在之前的 KCL 版本中，在编写如下 KCL 代码时，会将两个 schema 配置进行合并后输出，在 KCL v0.4.6 版本中，要求显式使用属性合并运算符而不是属性覆盖运算符
 
-+ 更新前
+- 更新前
 
 ```python
 schema Config:
@@ -84,7 +84,7 @@ config = Config {
 }
 ```
 
-+ 更新后
+- 更新后
 
 ```python
 schema Config:
@@ -160,19 +160,19 @@ app = App {
 
 在此次更新中，我们发布了全新的 KCL VS Code 插件和使用 Rust 语言重写的语言服务服务器，相比于之前 KCL 版本性能约提升 20 倍，并支持了 KCL 错误警告在 IDE 中实时显示，以及 KCL 代码补全等新功能。
 
-+ **错误与告警实时显示**
+- **错误与告警实时显示**
 
 ![Diagnostics](/img/docs/tools/Ide/vs-code/Diagnostics.gif)
 
-+ **跳转**
+- **跳转**
 
 ![Goto Definition](/img/docs/tools/Ide/vs-code/GotoDef.gif)
 
-+ **补全**
+- **补全**
 
 ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
-+ **悬停**
+- **悬停**
 
 ![Hover](/img/docs/tools/Ide/vs-code/Hover.gif)
 
@@ -235,8 +235,8 @@ spec:
             - containerPort: 80
 ```
 
-+ 更多 KCL 包管理工具安装方式、详细内容及用例[详见](https://kcl-lang.io/docs/user_docs/guides/package-management/overview)
-+ 更多 Konfig 模型库的内容和使用方式[详见](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview)
+- 更多 KCL 包管理工具安装方式、详细内容及用例[详见](https://kcl-lang.io/docs/user_docs/guides/package-management/overview)
+- 更多 Konfig 模型库的内容和使用方式[详见](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview)
 
 ## 社区集成 & 扩展更新
 
@@ -272,9 +272,9 @@ spec:
   selector:
     app: MyApp
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 9376
+    - protocol: TCP
+      port: 80
+      targetPort: 9376
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -298,10 +298,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 在上述 YAML 配置中，我们仅编写了一行 KCL 代码就完成为 Deployment 资源添加一个 `managed-by=kustomize-kcl` 注解
@@ -312,26 +312,26 @@ spec:
 
 此外我们为 Kustomize/Helm/KPT 三个工具均提供了常用的容器、服务配置修改校验 KCL 模型，并且会持续完善，欢迎社区小伙伴一起参与共建。
 
-+ 更多 Kustomize KCL 插件详细内容以及用例 [详见](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kustomize_kcl_plugin)
-+ 更多 Helm KCL 插件详细内容以及用例 [详见](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin)
-+ 更多 KPT KCL 插件详细内容以及用例 [详见](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk)
+- 更多 Kustomize KCL 插件详细内容以及用例 [详见](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kustomize_kcl_plugin)
+- 更多 Helm KCL 插件详细内容以及用例 [详见](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin)
+- 更多 KPT KCL 插件详细内容以及用例 [详见](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk)
 
 ### 多语言 SDK
 
 在此次更新中，我们发布了全新的 KCL Go SDK 将 KCL 集成到您的 Go 应用程序中，并提供丰富的 API 与 KCL 进行交互。您可以在 [这里](https://kcl-lang.io/docs/next/reference/xlang-api/go-api) 查询详细的 API 文档。此外我们还更新了如下特性和错误修复：
 
-+ 感谢 @jakezhu9 修复了 kcl-go 未预期的 KCL 格式化 API 在 CI Pipeline 中单元测试错误
-+ 感谢 @Ekko 贡献 Go struct 和 KCL schema 双向转换支持，详见:
-  + [Go struct -> KCL schema](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genkcl.go#L23)
-  + [KCL schema -> Go struct](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/gengo.go#L23)
-+ KCL schema 到 protobuf message 的转换支持，[详见](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genpb.go#L25)
-+ KCL 新增获取 schema 类型和实例 API，[详见](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype)
+- 感谢 @jakezhu9 修复了 kcl-go 未预期的 KCL 格式化 API 在 CI Pipeline 中单元测试错误
+- 感谢 @Ekko 贡献 Go struct 和 KCL schema 双向转换支持，详见:
+  - [Go struct -> KCL schema](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genkcl.go#L23)
+  - [KCL schema -> Go struct](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/gengo.go#L23)
+- KCL schema 到 protobuf message 的转换支持，[详见](https://github.com/kcl-lang/kcl-go/blob/main/pkg/tools/gen/genpb.go#L25)
+- KCL 新增获取 schema 类型和实例 API，[详见](https://kcl-lang.io/docs/reference/xlang-api/go-api#func-getschematype)
 
 ## 其他更新与错误修复
 
-+ KCL python plugin 功能默认不开启，如需开启可参考 [KCL Plugin 文档](https://kcl-lang.io/docs/reference/plugin/overview)
-+ KCL playground 支持代码分享能力，您可以通过访问 [KCL 官网](https://kcl-lang.io/) 并点击 Playground 按钮进行体验
-+ 更多更新与错误修复，[详见](https://github.com/kcl-lang/kcl/milestone/3?closed=1)
+- KCL python plugin 功能默认不开启，如需开启可参考 [KCL Plugin 文档](https://kcl-lang.io/docs/reference/plugin/overview)
+- KCL playground 支持代码分享能力，您可以通过访问 [KCL 官网](https://kcl-lang.io/) 并点击 Playground 按钮进行体验
+- 更多更新与错误修复，[详见](https://github.com/kcl-lang/kcl/milestone/3?closed=1)
 
 ## 文档更新
 
@@ -341,13 +341,13 @@ spec:
 
 预计 2023 年年中，我们将发布 **KCL v0.5.0 版本**，预期重点演进包括：
 
-+ 更多针对场景问题的 KCL 语言编写便利性改进，用户界面持续优化与体验提升，用户支持和痛点解决
-+ 更多 IDE 插件、包管理工具、Helm/Kustomize/KPT 场景集成、功能支持和用户体验提升
-+ 针对云原生场景提供更多开箱即用的 KCL 模型支持，主要包含容器、服务、计算、存储和网络等
-+ 支持 KCL Schema 直接生成 Kubernetes CRD
-+ 支持 kubectl 和 helmfile KCL plugin，通过 KCL 代码直接生成、编辑和校验 Kubernetes 原生资源
-+ 支持在 Kubernetes 运行时通过 Admission Controller 运行 KCL 代码对 YAML 进行编辑和校验
-+ 更多非 Kubernetes 场景支持，如通过 KCL Schema 对 AI 模型进行数据清理和数据库 Schema 集成支持
+- 更多针对场景问题的 KCL 语言编写便利性改进，用户界面持续优化与体验提升，用户支持和痛点解决
+- 更多 IDE 插件、包管理工具、Helm/Kustomize/KPT 场景集成、功能支持和用户体验提升
+- 针对云原生场景提供更多开箱即用的 KCL 模型支持，主要包含容器、服务、计算、存储和网络等
+- 支持 KCL Schema 直接生成 Kubernetes CRD
+- 支持 kubectl 和 helmfile KCL plugin，通过 KCL 代码直接生成、编辑和校验 Kubernetes 原生资源
+- 支持在 Kubernetes 运行时通过 Admission Controller 运行 KCL 代码对 YAML 进行编辑和校验
+- 更多非 Kubernetes 场景支持，如通过 KCL Schema 对 AI 模型进行数据清理和数据库 Schema 集成支持
 
 更多详情请参考 [KCL v0.5.0 Milestone](https://github.com/kcl-lang/kcl/milestone/5)
 
@@ -363,10 +363,10 @@ spec:
 
 更多其他资源请参考：
 
-+ [KCL 网站](https://kcl-lang.io/)
-+ [Kusion 网站](https://kusionstack.io/)
-+ [KCL Github 仓库](https://github.com/kcl-lang/kcl)
-+ [Kusion Github 仓库](https://github.com/KusionStack/kusion)
-+ [Konfig Github 仓库](https://github.com/KusionStack/konfig)
+- [KCL 网站](https://kcl-lang.io/)
+- [Kusion 网站](https://kusionstack.io/)
+- [KCL Github 仓库](https://github.com/kcl-lang/kcl)
+- [Kusion Github 仓库](https://github.com/KusionStack/kusion)
+- [Konfig Github 仓库](https://github.com/KusionStack/konfig)
 
 欢迎加入我们的社区进行交流 👏👏👏：[https://github.com/kcl-lang/community](https://github.com/kcl-lang/community)

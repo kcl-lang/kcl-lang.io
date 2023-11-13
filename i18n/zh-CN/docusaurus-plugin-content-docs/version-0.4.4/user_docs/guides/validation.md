@@ -39,14 +39,14 @@ schema Sample:
 
 综上所述，KCL Schema 中支持的校验类型为:
 
-| 校验类型 | 使用方法                                                |
-| -------- | ------------------------------------------------------- |
-| 范围校验 | 使用 `<`, `>` 等比较运算符                                |
-| 正则校验 | 使用 `regex` 系统库中的 `match` 等方法                      |
+| 校验类型 | 使用方法                                                   |
+| -------- | ---------------------------------------------------------- |
+| 范围校验 | 使用 `<`, `>` 等比较运算符                                 |
+| 正则校验 | 使用 `regex` 系统库中的 `match` 等方法                     |
 | 长度校验 | 使用 `len` 内置函数，可以求 `list/dict/str` 类型的变量长度 |
-| 枚举校验 | 使用字面值联合类型                                      |
-| 非空校验 | 使用 schema 的可选/必选属性                             |
-| 条件校验 | 使用 check if 条件表达式                                |
+| 枚举校验 | 使用字面值联合类型                                         |
+| 非空校验 | 使用 schema 的可选/必选属性                                |
+| 条件校验 | 使用 check if 条件表达式                                   |
 
 基于此，KCL 提供了相应的[校验工具](/docs/tools/cli/kcl/vet) 直接对 JSON/YAML 数据进行校验。此外，通过 KCL schema 的 check 表达式可以非常清晰简单地校验输入的 JSON 是否满足相应的 schema 结构定义与 check 约束。
 
@@ -58,17 +58,17 @@ schema Sample:
 
 ```json
 {
-    "name": "Alice",
-    "age": "18",
-    "message": "This is Alice",
-    "data": {
-        "id": "1",
-        "value": "value1"
-    },
-    "labels": {
-        "key": "value"
-    },
-    "hc": [1, 2, 3]
+  "name": "Alice",
+  "age": "18",
+  "message": "This is Alice",
+  "data": {
+    "id": "1",
+    "value": "value1"
+  },
+  "labels": {
+    "key": "value"
+  },
+  "hc": [1, 2, 3]
 }
 ```
 
@@ -82,7 +82,7 @@ schema User:
     data: Data
     labels: {str:}
     hc: [int]
-        
+
     check:
         age > 10
 

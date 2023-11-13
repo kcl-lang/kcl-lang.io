@@ -55,7 +55,7 @@ The definition of the root path `ROOT_PATH` is the directory corresponding to th
 Code structure:
 
 ```
-. 
+.
 └── root
     ├── kcl.mod
     ├── model

@@ -2,26 +2,22 @@
 
 When we deploy software systems, we do not think they are fixed. Evolving business requirements, infrastructure requirements, and other factors mean that systems are constantly changing. When we need to change the system behavior quickly, and the change process needs expensive and lengthy reconstruction and redeployment process, business code change is often not enough. Configuration can provide us with a low overhead way to change system functions. For example, we often write JSON or YAML files as shown below for our system configuration.
 
-+ JSON configuration
+- JSON configuration
 
 ```json
 {
-    "server": {
-        "addr": "127.0.0.1",
-        "listen": 4545
-    },
-    "database": {
-        "enabled": true,
-        "ports": [
-            8000,
-            8001,
-            8002
-        ],
-    }
+  "server": {
+    "addr": "127.0.0.1",
+    "listen": 4545
+  },
+  "database": {
+    "enabled": true,
+    "ports": [8000, 8001, 8002]
+  }
 }
 ```
 
-+ YAML configuration
+- YAML configuration
 
 ```yaml
 server:
@@ -30,9 +26,9 @@ server:
 database:
   enabled: true
   ports:
-  - 8000
-  - 8001
-  - 8002
+    - 8000
+    - 8001
+    - 8002
 ```
 
 We can choose to store the static configuration in JSON and YAML files as needed. In addition, the configuration can also be stored in a high-level language that allows more flexible configuration, which can be coded, rendered, and statically configured. KCL is such a configuration language. We can write KCL code to generate JSON/YAML and other configurations.
@@ -77,15 +73,15 @@ spec:
                 - 'true'
 ```
 
-+ The structured data in YAML is untyped and lacks validation methods, so the validity of all data cannot be checked immediately.
-+ YAML has poor programming ability. It is easy to write incorrect indents and has no common code organization methods such as logical judgment. It is easy to write a large number of repeated configurations and difficult to maintain.
-+ The design of Kubernetes is complex, and it is difficult for users to understand all the details, such as the `toleration` and `affinity` fields in the above configuration. If users do not understand the scheduling logic, it may be wrongly omitted or superfluous added.
+- The structured data in YAML is untyped and lacks validation methods, so the validity of all data cannot be checked immediately.
+- YAML has poor programming ability. It is easy to write incorrect indents and has no common code organization methods such as logical judgment. It is easy to write a large number of repeated configurations and difficult to maintain.
+- The design of Kubernetes is complex, and it is difficult for users to understand all the details, such as the `toleration` and `affinity` fields in the above configuration. If users do not understand the scheduling logic, it may be wrongly omitted or superfluous added.
 
 Therefore, KCL expects to solve the following problems in Kubernetes YAML resource management:
 
-+ Use **production level high-performance programming language** to **write code** to improve the flexibility of configuration, such as conditional statements, loops, functions, package management and other features to improve the ability of configuration reuse.
-+ Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
-+ Provide **the ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
+- Use **production level high-performance programming language** to **write code** to improve the flexibility of configuration, such as conditional statements, loops, functions, package management and other features to improve the ability of configuration reuse.
+- Improve the ability of **configuration semantic verification** at the code level, such as optional/required fields, types, ranges, and other configuration checks.
+- Provide **the ability to write, combine and abstract configuration blocks**, such as structure definition, structure inheritance, constraint definition, etc.
 
 ## How to use KCL to generate and manage Kubernetes resources
 
@@ -146,10 +142,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 Of course, we can use KCL together with kubectl and other tools. Let's execute the following commands and see the result:
@@ -222,15 +218,15 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```
 
 The `image=metadata.name+": 1.14.2" if option ("env")=="prod" else metadata.name + ": latest"` in the above code snippet means that when the value of the dynamic parameter `env` is set to `prod`, the value of the image field is `nginx: 1.14.2`; otherwise, it is' nginx: latest'. Therefore, we can set env to different values as required to obtain Kubernetes resources with different contents.
 
-KCL also supports maintaining the dynamic parameters of the option function in the configuration file, such as writing the ` kcl.yaml ` file.
+KCL also supports maintaining the dynamic parameters of the option function in the configuration file, such as writing the `kcl.yaml` file.
 
 ```yaml
 kcl_options:
@@ -264,8 +260,8 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ```

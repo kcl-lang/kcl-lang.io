@@ -13,9 +13,9 @@ The `kcl-openapi` tool supports extracting and generating KCL schemas from Kuber
 ## 3. Migrate From Kubernetes To KCL
 
 ### 3.1 Write configurations based on the Kusion_Models package
-``
-We provide an out-of-the-box `kusion_models` package for you to quickly start. It contains a well-designed frontend model called [`Server schema`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k). You can declare the configurations by initializing the `Server schema`. For the description and usage of the schema and its attributes, please refer to the [Server schema documentation](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server).
-``
+
+``We provide an out-of-the-box `kusion_models` package for you to quickly start. It contains a well-designed frontend model called [`Server schema`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k). You can declare the configurations by initializing the `Server schema`. For the description and usage of the schema and its attributes, please refer to the [Server schema documentation](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server).``
+
 ### 3.2 Build Your Custom Frontend Models
 
 The existing KCL Models may not meet your specific business requirements, then you can also design your custom frontend model package. You can design your custom models based on the pre-generated Kubernetes KCL models among all versions. And you can also develop your custom scripts to migrate your configuration data as what `kube2kcl` tool does.
@@ -38,12 +38,12 @@ You can develop your custom scripts to migrate your configuration data automatic
 
 If you developed CRDs, you can generate the KCL version of the CRD schemas and declare CRs based on that.
 
-* Generate KCL Schema from CRD
+- Generate KCL Schema from CRD
 
-    ```
-    kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
-    ```
+  ```
+  kcl-openapi generate model --crd --skip-validation -f <your_crd.yaml>
+  ```
 
-* Define CR based on CRDs in KCL
+- Define CR based on CRDs in KCL
 
   You can initialize the CRD schema to define a CR, or further, you can use the generated schema as a backend model and design a frontend interface for users to initialize. The practice is similar to what `KCL Models` does on Kubernetes built-in models.

@@ -84,13 +84,13 @@ alias kcl='kcl-go run'
 
 ### From Docker
 
-+ Command
+- Command
 
 ```bash
 docker run --rm -p 8080:8080 -it kusionstack/kclvm
 ```
 
-+ Update image
+- Update image
 
 ```bash
 docker pull kusionstack/kclvm
@@ -120,4 +120,4 @@ Download the distribution from [here](https://github.com/kcl-lang/intellij-kcl/r
 
 ## Next Step
 
-+ [KCL Quick Start](/docs/user_docs/getting-started/kcl-quick-start)
+- [KCL Quick Start](/docs/user_docs/getting-started/kcl-quick-start)

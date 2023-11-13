@@ -7,14 +7,14 @@ sidebar_position: 1
 
 [Kubectl](https://kubernetes.io/docs/reference/kubectl/) is a command line tool for communicating with a Kubernetes cluster's control plane, using the Kubernetes API. You can use the `Kubectl-KCL-Plugin` to
 
-+ Edit the YAML configuration in a hook way to separate data and logic for the Kubernetes manifests management.
-+ For multi-environment and multi-tenant scenarios, you can maintain these configurations gracefully rather than simply copy and paste.
-+ Validate all KRM resources using the KCL schema.
+- Edit the YAML configuration in a hook way to separate data and logic for the Kubernetes manifests management.
+- For multi-environment and multi-tenant scenarios, you can maintain these configurations gracefully rather than simply copy and paste.
+- Validate all KRM resources using the KCL schema.
 
 ## 前置条件
 
-+ Install [Kubectl](https://github.com/kubernetes/kubectl)
-+ Install [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl)
+- Install [Kubectl](https://github.com/kubernetes/kubectl)
+- Install [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl)
 
 ## 快速开始
 
@@ -55,10 +55,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: nginx:1.14.2
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -113,10 +113,10 @@ spec:
         app: nginx
     spec:
       containers:
-      - image: nginx:1.14.2
-        name: nginx
-        ports:
-        - containerPort: 80
+        - image: nginx:1.14.2
+          name: nginx
+          ports:
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -126,9 +126,9 @@ metadata:
   name: test
 spec:
   ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 9376
+    - port: 80
+      protocol: TCP
+      targetPort: 9376
   selector:
     app: MyApp
 ```
@@ -161,20 +161,20 @@ metadata:
   name: tls-example-ingress
 spec:
   tls:
-  - hosts:
-      - https-example.foo.com
-    secretName: testsecret-tls
+    - hosts:
+        - https-example.foo.com
+      secretName: testsecret-tls
   rules:
-  - host: https-example.foo.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: service1
-            port:
-              number: 80
+    - host: https-example.foo.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: service1
+                port:
+                  number: 80
 ```
 
 #### 2. Test and Run
@@ -195,11 +195,11 @@ Ingress should be https. The `kubernetes.io/ingress.allow-http: "false"` annotat
 
 Here's what you can do in the KCL code:
 
-+ Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
-+ Return a KRM list for output resources.
-+ Return an error using `assert {condition}, {error_message}`.
+- Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
+- Return a KRM list for output resources.
+- Return an error using `assert {condition}, {error_message}`.
 
 ## More Resources
 
-+ [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl)
-+ [Artifact Hub KCL Modules](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1)
+- [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl)
+- [Artifact Hub KCL Modules](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1)
