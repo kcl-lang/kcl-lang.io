@@ -31,9 +31,9 @@ GITHUB_REPO=cli
 # KCL filename
 KCL_CLI_FILENAME=kcl
 # KCL file path
-KCL_CLI_FILE=${KCL_INSTALL_DIR}/kclvm/bin/${KCL_CLI_FILENAME}
+KCL_CLI_FILE=${KCL_INSTALL_DIR}/bin/${KCL_CLI_FILENAME}
 # KCL Home dir
-KCL_HOME_DIR=${KCL_INSTALL_DIR}/kclvm
+KCL_HOME_DIR=${KCL_INSTALL_DIR}/bin
 
 # --- helper functions for logs ---
 info() {
@@ -192,23 +192,23 @@ isReleaseAvailable() {
 
 installFile() {
     tar xf $ARTIFACT_TMP_FILE -C $KCL_TMP_ROOT
-    local tmp_kclvm_folder=$KCL_TMP_ROOT
+    local tmp_kcl_folder=$KCL_TMP_ROOT
 
-    if [ ! -f "$tmp_kclvm_folder/kcl" ]; then
+    if [ ! -f "$tmp_kcl_folder/kcl" ]; then
         error "Failed to unpack KCL executable."
         exit 1
     fi
 
-    # Copy temp kclvm folder into the target installation directory.
-    info "Copy the kclvm folder $tmp_kclvm_folder into the target installation directory $KCL_INSTALL_DIR"
-    runAsRoot cp -rf $tmp_kclvm_folder $KCL_INSTALL_DIR
+    # Copy temp kcl folder into the target installation directory.
+    info "Copy the kcl temp folder $tmp_kcl_folder into the target installation directory $KCL_INSTALL_DIR/bin"
+    runAsRoot cp -f $tmp_kcl_folder/kcl $KCL_INSTALL_DIR/bin
 
     if [ -f "$KCL_CLI_FILE" ]; then
-        updateProfile "$KCL_HOME_DIR" && info "Finished" "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/kclvm/bin successfully."
+        updateProfile "$KCL_HOME_DIR" && info "Finished" "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/bin successfully."
         # Check the KCL CLI version
         runAsRoot $KCL_CLI_FILE -V
     else 
-        error "Failed to install KCL into $KCL_CLI_FILE"
+        error "Failed to install KCL into $KCL_INSTALL_DIR/bin"
         exit 1
     fi
 }
@@ -299,7 +299,7 @@ buildPathStr() {
         # fish uses a little different syntax to modify the PATH
         cat <<END_FISH_SCRIPT
 
-string match -r "kclvm" "\$PATH" > /dev/null; or set -gx PATH "\$profile_install_dir/bin" \$PATH
+string match -r "kcl" "\$PATH" > /dev/null; or set -gx PATH "\$profile_install_dir/bin" \$PATH
 
 END_FISH_SCRIPT
     else
@@ -329,7 +329,7 @@ cleanup() {
 }
 
 installCompleted() {
-    echo -e "\nPlease add ${KCL_INSTALL_DIR}/kclvm/bin into your PATH"
+    echo -e "\nPlease add ${KCL_INSTALL_DIR}/bin into your PATH"
     echo -e "Remeber run the command source ~/.bash_profile or source ~/.bashrc to ensure your PATH is effective"
     echo -e "Reopen a terminal and execute the kcl --help command to ensure successful installation"
     echo -e "\nTo get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
