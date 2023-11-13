@@ -12,15 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script
-        run: |
-          static/script/install.sh
-          curl https://kusionstack.io/scripts/install.sh | sh
+        run: curl https://www.kusionstack.io/scripts/install.sh | sh
       - name: Check Kusion run
         shell: bash -leo pipefail {0}
         run: |
           sudo kusion version
           sudo kusion compile -w static/stack -o stdout
           cd static/stack && sudo kusion compile
+      - name: Uninstall Kusion
+        run: curl https://www.kusionstack.io/scripts/uninstall.sh | sh
 
   check-kusion-brew-install:
     strategy:
@@ -38,6 +38,7 @@ jobs:
           kusion version
           kusion compile -w static/stack -o stdout
           cd static/stack && kusion compile
+          brew uninstall KusionStack/tap/kusion
 
   check-kusion-go-install:
     strategy:
