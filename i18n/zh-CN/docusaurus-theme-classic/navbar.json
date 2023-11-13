@@ -23,6 +23,10 @@
     "message": "软件包",
     "description": "Navbar item with label Packages"
   },
+  "item.label.Modules": {
+    "message": "模型库",
+    "description": "Navbar item with label Modules"
+  },
   "item.label.Examples": {
     "message": "样例",
     "description": "Navbar item with label Examples"

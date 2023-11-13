@@ -195,8 +195,8 @@ const config = {
           {
             href: 'https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1',
             position: 'left',
-            sidebarId: 'packages',
-            label: 'Packages',
+            sidebarId: 'modules',
+            label: 'Modules',
           },
           {
             href: 'http://play.kcl-lang.io/',
