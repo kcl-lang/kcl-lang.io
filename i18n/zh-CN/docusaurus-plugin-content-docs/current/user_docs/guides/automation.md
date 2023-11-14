@@ -157,8 +157,7 @@ app:
 执行如下命令启动 RestAPI 服务端
 
 ```bash
-python3 -m pip install kclvm -U
-python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+kcl server
 ```
 
 通过如下命令 POST 命令请求配置修改服务

@@ -153,8 +153,7 @@ In addition, we can automatically modify the configuration attributes through th
 Take the RestAPI as an example. The RestAPI service can be started in the following way:
 
 ```bash
-python3 -m pip install kclvm -U
-python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+kcl server
 ```
 
 The service can then be requested via the POST protocol:
