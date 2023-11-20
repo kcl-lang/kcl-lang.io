@@ -55,7 +55,10 @@ server:
   ports:
     - 80
     - 8080
-server_yaml: "ports:\n  - 80\n  - 8080\n"
+server_yaml: |
+  ports:
+    - 80
+    - 8080
 ```
 
 ### 3. JSON 集成
