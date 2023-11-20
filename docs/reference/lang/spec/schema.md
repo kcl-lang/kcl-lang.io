@@ -15,7 +15,7 @@ A schema is a language element to define a type of configuration data.
 To define a schema, the syntax is the following:
 
 ```bnf
-schema_stmt: [decorators] "schema" ["relaxed"] identifier ["[" [arguments] "]"] ["(" operand_name ")"] ":" NEWLINE [schema_body]
+schema_stmt: [decorators] "schema" identifier ["[" [arguments] "]"] ["(" operand_name ")"] ":" NEWLINE [schema_body]
 schema_body: _INDENT (string NEWLINE)* [mixin_stmt] (schema_attribute_stmt | schema_index_signature | statement)* [check_block] _DEDENT
 ```
 
