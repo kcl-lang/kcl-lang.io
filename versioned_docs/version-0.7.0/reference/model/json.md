@@ -8,7 +8,7 @@ weight: 100
 
 ## encode
 
-```
+```python
 encode(
     data: any,
     sort_keys: bool = False,
@@ -28,7 +28,7 @@ Deserialize `value` (a string instance containing a JSON document) to a KCL obje
 
 ## dump_to_file
 
-```
+```python
 dump_to_file(
     data: any,
     filename: str,
@@ -40,3 +40,11 @@ dump_to_file(
 ```
 
 Serialize a KCL object `data` to a JSON formatted str and write it into the file `filename`.
+
+## validate
+
+```python
+validate(value: str) -> bool
+```
+
+Validate whether the given string is a valid JSON.
