@@ -8,7 +8,7 @@ weight: 100
 
 ## encode
 
-```
+```python
 encode(
     data: any,
     sort_keys: bool = False,
@@ -28,7 +28,7 @@ encode(
 
 ## dump_to_file
 
-```
+```python
 dump_to_file(
     data: any,
     filename: str,
@@ -40,3 +40,11 @@ dump_to_file(
 ```
 
 将 KCL 对象 `data` 序列化为 JSON 格式的字符串，并将其写入文件 `filename` 中。
+
+## validate
+
+```python
+validate(value: str) -> bool
+```
+
+验证给定的字符串是否是一个合法的 JSON 字符串。
