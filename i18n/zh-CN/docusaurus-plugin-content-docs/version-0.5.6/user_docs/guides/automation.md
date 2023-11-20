@@ -23,7 +23,7 @@ sidebar_position: 6
 
 ```bash
 git clone https://github.com/kcl-lang/kcl-lang.io.git/
-cd ./kcl-lang.io/examples/data-integration
+cd ./kcl-lang.io/examples/automation
 ```
 
 我们可以执行如下命令显示配置
