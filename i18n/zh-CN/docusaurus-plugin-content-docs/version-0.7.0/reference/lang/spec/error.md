@@ -17,7 +17,7 @@ schema is violated.
 The syntax of the `assert` statement is the following.
 
 ```bnf
-assert_stmt: 'assert' test ['if' test] [',' test]
+assert_stmt: ASSERT simple_expr (IF simple_expr)? (COMMA test)?
 ```
 
 In the basic form, an `assert` statement evaluates an expression. If the

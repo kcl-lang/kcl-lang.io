@@ -296,13 +296,21 @@ KCL supports a few standard system modules. The following is the full list of th
     Deserialize `value` (a string instance containing a JSON document) to a KCL object.
   - dump_to_file(data: any, filename: str, ignore_private: bool = False, ignore_none: bool = False) -> None
     Serialize a KCL object `data` to a JSON formatted str and write it into the file `filename`.
+  - validate(data: any) -> bool
+    Validate whether the given string is a valid JSON.
 - yaml
   - encode(data: any, sort_keys: bool = False, ignore_private: bool = False, ignore_none: bool = False) -> str
     Serialize a KCL object `data` to a YAML formatted str.
+  - encode_all(data: [any], sort_keys: bool = False, ignore_private: bool = False, ignore_none: bool = False) -> str
+    Serialize a sequence of KCL objects into a YAML stream str.
   - decode(value: str) -> any
     Deserialize `value` (a string instance containing a YAML document) to a KCL object.
+  - decode_all(value: str) -> [any]
   - dump_to_file(data: any, filename: str, ignore_private: bool = False, ignore_none: bool = False) -> None
     Serialize a KCL object `data` to a YAML formatted str and write it into the file `filename`.
+    Parse all YAML documents in a stream and produce corresponding KCL objects.
+  - validate(value: str) -> str
+    Validate whether the given string is a valid YAML or YAML stream document.
 - net
   - split_host_port(ip_end_point: str) -> List[str]
     Split the 'host' and 'port' from the ip end point.

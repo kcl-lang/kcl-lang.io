@@ -30,8 +30,8 @@ A small statement is comprised of a single logical line. Multiple statements in 
 Generally, assign_stmt is divided into assignment and augmented assignment. The syntax is the following:
 
 ```bnf
-assign_stmt: target_primary ("=" target_primary)* "=" test | target_primary augassign test
-augassign: "+=" | "-=" | "*=" | "**=" | "/=" | "//=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | "or" | "and"
+assign_stmt: target_primary (":" type) ("=" target_primary)* "=" test | target_primary aug_assign test
+aug_assign: "+=" | "-=" | "*=" | "**=" | "/=" | "//=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>="
 target_primary: identifier | target_primary DOT identifier
 ```
 
@@ -61,7 +61,7 @@ _x -= 1
 _filename += ".k"
 ```
 
-There is no concept of in-place modification in KCL. The `augassign` statement will modify a copy of the **target_primary** and assign the copy to **target_primary**.
+There is no concept of in-place modification in KCL. The `aug_assign` statement will modify a copy of the **target_primary** and assign the copy to **target_primary**.
 
 In particular, in KCL, the `|=` symbol represents the **union** operation, which is defined as follows:
 
@@ -117,7 +117,7 @@ Assert statements are a convenient way to insert debugging assertions into KCL c
 The syntax is the following:
 
 ```
-assert_stmt: ASSERT test ("," test)?
+assert_stmt: ASSERT test ("if" test)? ("," test)?
 ```
 
 The conditional expression in assert will be evaluated and get a boolean. Report an error if returning a `False`.
@@ -178,7 +178,7 @@ else:
 Schema statements are used to define a type of configuration data. The syntax is the following:
 
 ```bnf
-schema_stmt: [decorators] "schema" ["relaxed"] identifier ["[" [arguments] "]"] ["(" operand_name ")"] ":" NEWLINE [schema_body]
+schema_stmt: [decorators] "schema" identifier ["[" [arguments] "]"] ["(" operand_name ")"] ":" NEWLINE [schema_body]
 schema_body: _INDENT (string NEWLINE)* [mixin_stmt] (schema_attribute_stmt | statement)* [check_block] _DEDENT
 ```
 
