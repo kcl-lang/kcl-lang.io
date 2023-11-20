@@ -119,7 +119,7 @@ schema_arguments: schema_argument (COMMA schema_argument)*
 schema_argument: NAME [COLON type] [ASSIGN test]
 schema_body: _INDENT (string NEWLINE)* [mixin_stmt] (schema_attribute_stmt|schema_init_stmt|schema_index_signature)* [check_block] _DEDENT
 schema_attribute_stmt: attribute_stmt NEWLINE
-attribute_stmt: [decorators] identifier [QUESTION] COLON type [(ASSIGN|COMP_OR) test]
+attribute_stmt: [decorators] (identifier | STRING) [QUESTION] COLON type [(ASSIGN|COMP_OR) test]
 schema_init_stmt: if_simple_stmt | if_stmt
 schema_index_signature: LEFT_BRACKETS [NAME COLON] [ELLIPSIS] basic_type RIGHT_BRACKETS COLON type [ASSIGN test] NEWLINE
 
@@ -135,8 +135,9 @@ decorator_expr: identifier [call_suffix]
 
 //////////// type ////////////
 type: type_element (OR type_element)*
-type_element: schema_type | basic_type | compound_type | literal_type
+type_element: schema_type | function_type | basic_type | compound_type | literal_type
 schema_type: identifier
+function_type: LEFT_PARENTHESES [type_element (COMMA type_element)*] RIGHT_PARENTHESES [RIGHT_ARROW type_element]
 basic_type: STRING_TYPE | INT_TYPE | FLOAT_TYPE | BOOL_TYPE | ANY_TYPE
 compound_type: list_type | dict_type
 list_type: LEFT_BRACKETS (type)? RIGHT_BRACKETS
@@ -191,11 +192,11 @@ identifier: NAME (DOT NAME)*
 quant_expr: quant_op [ identifier COMMA ] identifier IN quant_target LEFT_BRACE (simple_expr [IF simple_expr] | NEWLINE _INDENT simple_expr [IF simple_expr] NEWLINE _DEDENT)? RIGHT_BRACE
 quant_target: string | identifier | list_expr | list_comp | config_expr | dict_comp
 quant_op: ALL | ANY | FILTER | MAP
-list_expr: LEFT_BRACKETS [list_items | NEWLINE [_INDENT list_items _DEDENT]] RIGHT_BRACKETS
+list_expr: LEFT_BRACKETS [list_items | NEWLINE [list_items]] RIGHT_BRACKETS
 list_items: list_item ((COMMA [NEWLINE] | [NEWLINE]) list_item)* [COMMA] [NEWLINE]
 list_item: test | star_expr | if_item
-list_comp: LEFT_BRACKETS (list_item comp_clause+ | NEWLINE _INDENT list_item comp_clause+ _DEDENT) RIGHT_BRACKETS
-dict_comp: LEFT_BRACE (entry comp_clause+ | NEWLINE _INDENT entry comp_clause+ _DEDENT) RIGHT_BRACE
+list_comp: LEFT_BRACKETS (list_item comp_clause+ | NEWLINE list_item comp_clause) RIGHT_BRACKETS
+dict_comp: LEFT_BRACE (entry comp_clause+ | NEWLINE entry comp_clause+) RIGHT_BRACE
 entry: test (COLON | ASSIGN | COMP_PLUS) test
 comp_clause: FOR loop_variables [COMMA] IN simple_expr [NEWLINE] [IF test [NEWLINE]]
 if_entry: IF test COLON if_entry_exec_block (ELIF test COLON if_entry_exec_block)* (ELSE COLON if_entry_exec_block)?
@@ -207,7 +208,7 @@ star_expr: MULTIPLY test
 double_star_expr: DOUBLE_STAR test
 loop_variables: primary_expr (COMMA primary_expr)*
 schema_expr: identifier (LEFT_PARENTHESES [arguments] RIGHT_PARENTHESES)? config_expr
-config_expr: LEFT_BRACE [config_entries | NEWLINE [_INDENT config_entries _DEDENT]] RIGHT_BRACE
+config_expr: LEFT_BRACE [config_entries | NEWLINE [config_entries]] RIGHT_BRACE
 config_entries: config_entry ((COMMA [NEWLINE] | [NEWLINE]) config_entry)* [COMMA] [NEWLINE]
 config_entry: test (COLON | ASSIGN | COMP_PLUS) test | double_star_expr | if_entry
 
@@ -220,8 +221,8 @@ multiplier: SI_N_L | SI_U_L | SI_M_L | SI_K_L | SI_K | SI_M | SI_G | SI_T | SI_P
     | SI_K_IEC | SI_M_IEC | SI_G_IEC | SI_T_IEC | SI_P_IEC
 string: STRING | LONG_STRING
 constant : TRUE | FALSE | NONE | UNDEFINED
-// Tokens
 
+// Tokens
 ASSIGN: "="
 COLON: ":"
 SEMI_COLON: ";"
@@ -332,10 +333,10 @@ STRING: /r?("(?!"").*?(?<!\\)(\\\\)*?"|'(?!'').*?(?<!\\)(\\\\)*?')/i
 LONG_STRING: /r?(""".*?(?<!\\)(\\\\)*?"""|'''.*?(?<!\\)(\\\\)*?''')/is
 
 DEC_NUMBER: /\-?0|\-?[1-9]\d*/i
-HEX_NUMBER.2: /\-?0[xX][0-9a-fA-F]+/i
-OCT_NUMBER.2: /\-?0[oO]?[0-7]+/i
-BIN_NUMBER.2 : /\-?0[bB][0-1]+/i
-FLOAT_NUMBER.2: /(([-+]?\d+\.\d*|\.\d+)(e[-+]?\d+)?|\d+(e[-+]?\d+))/i
+HEX_NUMBER: /\-?0[xX][0-9a-fA-F]+/i
+OCT_NUMBER: /\-?0[oO]?[0-7]+/i
+BIN_NUMBER: /\-?0[bB][0-1]+/i
+FLOAT_NUMBER: /(([-+]?\d+\.\d*|\.\d+)(e[-+]?\d+)?|\d+(e[-+]?\d+))/i
 
 %ignore /[\t \f]+/  // WS
 %ignore /\\[\t \f]*\r?\n/   // LINE_CONT
