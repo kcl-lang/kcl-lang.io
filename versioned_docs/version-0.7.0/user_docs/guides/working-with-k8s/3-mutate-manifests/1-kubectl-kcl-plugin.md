@@ -182,7 +182,7 @@ spec:
 Run the KCL code via the `Kubectl KCL Plugin`.
 
 ```bash
-kubectl kcl run -f ./kcl-run-oci-err.yaml
+kubectl kcl run -f ./kcl-vet-oci-err.yaml
 ```
 
 The expected error message is
