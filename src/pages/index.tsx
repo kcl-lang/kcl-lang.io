@@ -268,7 +268,7 @@ function CNCFSection() {
       <div className="container">
         <div className="container text--center">
           <h2 className={clsx("hero__subtitle", styles.poppinsFont)}>
-            <Translate>We are a </Translate>{" "}
+            <Translate>We are a</Translate>{" "}
             <Link to="https://cncf.io/">
               <Translate>Cloud Native Computing Foundation</Translate>
             </Link>{" "}
