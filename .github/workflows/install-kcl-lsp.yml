@@ -1,0 +1,40 @@
+name: script-kcl-lsp
+on:
+  push:
+    branches: 
+     - main
+jobs:
+  check-macos:
+    strategy:
+      matrix:
+        os: [macos-11, macos-12, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Install Script KCL Language Server
+        run: static/script/install-kcl-lsp.sh
+      - name: Check run
+        shell: bash -leo pipefail {0}
+        run: sudo kcl-language-server version
+
+  check-linux:
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Install Script KCL Language Server
+        run: static/script/install-kcl-lsp.sh
+      - name: Check run
+        shell: bash -ieo pipefail {0}
+        run: kcl-language-server version
+
+  check-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Check Install Script KCL Language Server
+        run: static/script/install-kcl-lsp.ps1
+      - name: Check run
+        run: C:\kclvm\bin\kcl-language-server.exe version

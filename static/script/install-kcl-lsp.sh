@@ -33,9 +33,9 @@ GITHUB_REPO=kcl
 # KCL filename
 KCL_CLI_FILENAME=kcl-language-server
 # KCL file path
-KCL_CLI_FILE=${KCL_INSTALL_DIR}/kclvm/bin/${KCL_CLI_FILENAME}
+KCL_CLI_FILE=${KCL_INSTALL_DIR}/bin/${KCL_CLI_FILENAME}
 # KCL Home dir
-KCLVM_HOME_DIR=${KCL_INSTALL_DIR}/kclvm
+KCLVM_HOME_DIR=${KCL_INSTALL_DIR}/
 
 # --- helper functions for logs ---
 info() {
@@ -126,7 +126,7 @@ checkExistingKCL() {
     if [ -f "$KCL_CLI_FILE" ]; then
         # Check the KCL CLI version
         echo -e "\nKCL is detected:"
-        $KCL_CLI_FILE -V
+        $KCL_CLI_FILE version
         echo -e "Reinstalling KCL into ${KCL_CLI_FILE} ...\n"
     fi
 }
@@ -202,7 +202,7 @@ installFile() {
     fi
 
     # Copy temp kclvm folder into the target installation directory.
-    info "Copy the kclvm folder $tmp_kclvm_folder into the target installation directory $KCL_INSTALL_DIR"
+    info "Copy the kcl language server binary $tmp_kclvm_folder/bin/kcl-language-server into the target installation directory $KCL_INSTALL_DIR"
     runAsRoot cp -f $tmp_kclvm_folder/bin/kcl-language-server $KCL_INSTALL_DIR/bin
 
     if [ -f "$KCL_CLI_FILE" ]; then
@@ -210,7 +210,7 @@ installFile() {
         # Check the KCL CLI version
         runAsRoot kcl-language-server version
     else 
-        error "Failed to install KCL into $KCL_CLI_FILE"
+        error "Failed to install KCL language server into $KCL_CLI_FILE"
         exit 1
     fi
 }
@@ -231,11 +231,11 @@ updateProfile() {
         return 1
     else
         if ! command grep -qc 'KCLVM_HOME' "$detected_profile"; then
-            info "The KCLVM PATH string is"
+            info "The KCL PATH string is"
             info $path_str
             command printf "$path_str" >> "$detected_profile"
         else
-            warn "Your profile ($detected_profile) already mentions kcl and has not been changed."
+            warn "Your profile ($detected_profile) already mentions kcl language server and has not been changed."
         fi
     fi
 }
@@ -317,7 +317,7 @@ END_BASH_SCRIPT
 fail_trap() {
     result=$?
     if [ "$result" != "0" ]; then
-        error "Failed to install KCL"
+        error "Failed to install KCL language server"
         info "For support, go to https://kcl-lang.io"
     fi
     cleanup
@@ -331,10 +331,10 @@ cleanup() {
 }
 
 installCompleted() {
-    echo -e "\nPlease add ${KCL_INSTALL_DIR}/kclvm/bin into your PATH"
+    echo -e "\nPlease add ${KCL_INSTALL_DIR}/bin into your PATH"
     echo -e "Remeber run the command source ~/.bash_profile or source ~/.bashrc to ensure your PATH is effective"
-    echo -e "Reopen a terminal and execute `kcl -h` to ensure successful installation"
-    echo -e "\nTo get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
+    echo -e "Reopen a terminal and execute `kcl-language-server version` to ensure successful installation"
+    echo -e "\nTo get started with KCL language server, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
 }
 
 # -----------------------------------------------------------------------------

@@ -13,8 +13,6 @@
 # Reference: https://github.com/dapr/cli/tree/master/install
 # ------------------------------------------------------------
 
-# @Warning: This script will be deprecated in KCL v0.8.0.
-
 param (
     [string]$Version,
     [string]$KCLRoot = "$Env:SystemDrive\kclvm",
@@ -33,7 +31,7 @@ $KCLCliFileName = "kcl-language-server.exe"
 $KCLCliFileBinPath = "${KCLRoot}\bin"
 $KCLCliFilePath = "${KCLCliFileBinPath}\${KCLCliFileName}"
 
-# GitHub Org and repo hosting KCL CLI
+# GitHub Org and repo hosting KCL language server CLI
 $GitHubOrg = "kcl-lang"
 $GitHubRepo = "kcl"
 
@@ -66,11 +64,16 @@ else {
     Write-Output "Installing KCL language server..."
 }
 
-# Create KCL Directory
+# Create KCL and bin Directory
 Write-Output "Creating $KCLRoot directory"
 New-Item -ErrorAction Ignore -Path $KCLRoot -ItemType "directory"
 if (!(Test-Path $KCLRoot -PathType Container)) {
     throw "Cannot create $KCLRoot, without admin rights"
+}
+Write-Output "Creating $KCLRoot\bin directory"
+New-Item -ErrorAction Ignore -Path "$KCLRoot\bin" -ItemType "directory"
+if (!(Test-Path "$KCLRoot\bin" -PathType Container)) {
+    throw "Cannot create $KCLRoot\bin, without admin rights"
 }
 
 # Get the list of release from GitHub
@@ -113,7 +116,7 @@ function GetWindowsAsset {
     else {
         $windowsAsset = $Release | Select-Object -ExpandProperty assets | Where-Object { $_.name -Like "*windows.zip" }
         if (!$windowsAsset) {
-            throw "Cannot find the windows KCL CLI binary"
+            throw "Cannot find the windows KCL language-server binary"
         }
         [hashtable]$return = @{}
         $return.url = $windowsAsset.url
@@ -124,7 +127,7 @@ function GetWindowsAsset {
 
 $release = GetVersionInfo -Version $Version -Releases $releases
 if (!$release) {
-    throw "Cannot find the specified KCL CLI binary version"
+    throw "Cannot find the specified KCL language server binary version"
 }
 $asset = GetWindowsAsset -Release $release
 $zipFileUrl = $asset.url
@@ -142,15 +145,22 @@ if (!(Test-Path $zipFilePath -PathType Leaf)) {
     throw "Failed to download KCL language server binary - $zipFilePath"
 }
 
-# Extract KCL language server CLI to $KCLRoot
+# Extract KCL language server to the temp folder and
+# move the language server binary to $KCLRoot
 Write-Output "Extracting $zipFilePath..."
+$tempFolder = New-Item -ItemType Directory -Path "$env:TEMP\tempfolder" -Force
+Expand-Archive -Force -Path $zipFilePath -DestinationPath $tempFolder.FullName
+Copy-Item -Path "$tempFolder\bin\$KCLCliFileName" -Destination "$KCLRoot\bin"
+
 Microsoft.Powershell.Archive\Expand-Archive -Force -Path $zipFilePath -DestinationPath $KCLRoot
+# C:\kclvm\bin\kcl-language-server
 if (!(Test-Path $KCLCliFilePath -PathType Leaf)) {
     throw "Failed to download KCL language server archieve - $zipFilePath"
 }
 
 # Clean up zipfile
 Write-Output "Clean up $zipFilePath..."
+Remove-Item -Path $tempFolder.FullName -Force -Recurse
 Remove-Item $zipFilePath -Force
 
 # Add KCLRoot directory to User Path environment variable
@@ -167,6 +177,5 @@ else {
     Write-Output "Added $KCLCliFileBinPath to User Path - $UserPathEnvironmentVar"
 }
 
-Write-Output "`r`nKCL language server is installed successfully."
-Write-Output "To get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start ."
-Write-Output "Ensure that Docker Desktop is set to Linux containers mode when you run KCL in self hosted mode."
+Write-Output "`r`nKCL language server is installed to $KCLCliFilePath successfully."
+Write-Output "To get started with KCL language server, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start ."
