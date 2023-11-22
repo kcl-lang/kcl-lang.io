@@ -38,3 +38,42 @@ jobs:
         run: static/script/install-kcl-lsp.ps1
       - name: Check run
         run: C:\kclvm\bin\kcl-language-server.exe version
+
+  check-kcl-lsp-scoop-install:
+      runs-on: windows-latest
+      steps:
+        - uses: actions/checkout@v3
+        - name: Check Scoop Install
+          shell: powershell
+          run: |
+            iwr -useb get.scoop.sh -outfile 'install.ps1'
+            .\install.ps1 -RunAsAdmin
+            scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
+            scoop install kcl-lang/kcl-lsp
+            kcl-language-server.exe version
+
+  check-kcl-lsp-brew-install-macos:
+      strategy:
+        matrix:
+          os: [macos-11, macos-12, macos-latest]
+      runs-on: ${{ matrix.os }}
+      steps:
+        - uses: actions/checkout@v3
+  
+        - name: Check Brew Installation
+          working-directory: .
+          run: |
+            brew install kcl-lang/tap/kcl-lsp
+            kcl-language-server version
+
+  check-kcl-lsp-brew-install-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Homebrew/actions/setup-homebrew@master
+
+      - name: Check Brew Installation
+        working-directory: .
+        run: |
+          brew install kcl-lang/tap/kcl-lsp
+          kcl-language-server version
