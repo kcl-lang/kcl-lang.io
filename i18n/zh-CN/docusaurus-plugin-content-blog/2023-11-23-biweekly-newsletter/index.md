@@ -21,7 +21,7 @@ tags: [KCL, Biweekly-Newsletter]
 
 **📦 模型更新**
 - KCL 模型数量新增至 **200 个**，主要新增与 `Pod`, `RBAC` 相关的校验模型及 Kubernetes 1.14-1.28 版本的模型参考文档
-- 可以在 `Artifact Hub` 中搜索浏览到所有模型的文档及使用方式: _[https://artifacthub.io/packages/search?org=kclsort=relevance&page=1](https://artifacthub.io/packagessearch?org=kcl&sort=relevance&page=1)_
+- 可以在 `Artifact Hub` 中搜索浏览到所有模型的文档及使用方式: _[https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1)_
 
 **💬 语言更新**
 - **体验改进**

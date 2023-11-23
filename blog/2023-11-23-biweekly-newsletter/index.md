@@ -21,7 +21,7 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 **📦 Module Update**
 - The number of KCL modules has been increased to **200+**, mainly adding validation modules related to `Pod`, `RBAC`, and reference documentation for Kubernetes 1.14-1.28.
-- Now we can search and browse the documentation and usage of all modules on the `Artifact Hub` website: _[https://artifacthub.io/packages/search?org=kclsort=relevance&page=1](https://artifacthub.io/packagessearch?org=kcl&sort=relevance&page=1)_
+- Now we can search and browse the documentation and usage of all modules on the `Artifact Hub` website: _[https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1)_
 
 **💬 Language Update**
 - **Developer Experience**
