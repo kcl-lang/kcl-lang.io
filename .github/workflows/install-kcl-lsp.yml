@@ -63,7 +63,7 @@ jobs:
         - name: Check Brew Installation
           working-directory: .
           run: |
-            brew install kcl-lang/tap/kcl-lsp
+            brew install kcl-lang/tap/kcl-lsp@0.7.0
             kcl-language-server version
 
   check-kcl-lsp-brew-install-linux:
@@ -75,5 +75,5 @@ jobs:
       - name: Check Brew Installation
         working-directory: .
         run: |
-          brew install kcl-lang/tap/kcl-lsp
+          brew install kcl-lang/tap/kcl-lsp@0.7.0
           kcl-language-server version
