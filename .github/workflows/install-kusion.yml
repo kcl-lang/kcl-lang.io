@@ -17,8 +17,8 @@ jobs:
         shell: bash -leo pipefail {0}
         run: |
           sudo kusion version
-          sudo kusion build -w static/stack -o stdout
-          cd static/stack && sudo kusion build
+          sudo kusion compile -w static/stack -o stdout
+          cd static/stack && sudo kusion compile
       - name: Uninstall Kusion
         run: curl https://www.kusionstack.io/scripts/uninstall.sh | sh
 
@@ -36,8 +36,8 @@ jobs:
           brew install KusionStack/tap/kusion
           echo "brew installed successfully"
           kusion version
-          kusion build -w static/stack -o stdout
-          cd static/stack && kusion build
+          kusion compile -w static/stack -o stdout
+          cd static/stack && kusion compile
           brew uninstall KusionStack/tap/kusion
 
   check-kusion-go-install:
@@ -58,11 +58,11 @@ jobs:
       - name: Check Go Installation
         working-directory: .
         run: |
-          go install kusionstack.io/kusion@main
+          go install kusionstack.io/kusion@latest
           echo "go installed successfully"
           $HOME/go/bin/kusion version
-          $HOME/go/bin/kusion build -w static/stack -o stdout
-          cd static/stack && $HOME/go/bin/kusion build
+          $HOME/go/bin/kusion compile -w static/stack -o stdout
+          cd static/stack && $HOME/go/bin/kusion compile
 
   check-kusion-scoop-install:
     runs-on: windows-latest
@@ -76,4 +76,4 @@ jobs:
           scoop bucket add KusionStack https://github.com/KusionStack/scoop-bucket.git
           scoop install KusionStack/kusion
           mkdir C:\Users\runneradmin\go
-          kusion build -w static/stack -o stdout
+          kusion compile -w static/stack -o stdout
