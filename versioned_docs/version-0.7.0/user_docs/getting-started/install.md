@@ -28,7 +28,7 @@ $env:PATH += ";{install-location};"
 
 #### MacOS
 
-Install or upgrade the latest darwin KCL to /usr/local/kclvm/bin
+Install or upgrade the latest darwin KCL to /usr/local/bin
 
 ```bash
 curl -fsSL https://kcl-lang.io/script/install-cli.sh | /bin/bash
@@ -36,7 +36,7 @@ curl -fsSL https://kcl-lang.io/script/install-cli.sh | /bin/bash
 
 #### Linux
 
-Install or upgrade the latest linux KCL to /usr/local/kclvm/bin
+Install or upgrade the latest linux KCL to /usr/local/bin
 
 ```bash
 wget -q https://kcl-lang.io/script/install-cli.sh -O - | /bin/bash
@@ -119,19 +119,82 @@ If you are unable to successfully install and run KCL, you can refer to [here](/
 
 ## 2. Install KCL IDE Extension
 
-### VS Code
+### Install Language Server
+
+Before we enable the IDE extension, first we install the KCL Language Server binary and add it to the PATH.
+
+#### MacOS
+
+Install or upgrade the latest darwin KCL language server to /usr/local/bin
+
+```bash
+curl -fsSL https://kcl-lang.io/script/install-kcl-lsp.sh | /bin/bash
+```
+
+#### Linux
+
+Install or upgrade the latest linux KCL language server to /usr/local/bin
+
+```bash
+wget -q https://kcl-lang.io/script/install-kcl-lsp.sh -O - | /bin/bash
+```
+
+#### Windows
+
+Install or upgrade the latest windows KCL language server to $Env:SystemDrive\kclvm\bin and add this directory to User PATH environment variable.
+
+```bash
+powershell -Command "iwr -useb https://kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
+```
+
+#### Homebrew (MacOS)
+
+- Install
+
+```bash
+# Install the latest version
+brew install kcl-lang/tap/kcl-lsp@0.7.0
+
+# Specify a version
+brew install kcl-lang/tap/kcl-lsp@x.y.z
+```
+
+- Upgrade
+
+```bash
+brew upgrade kcl-lang/tap/kcl-lsp
+```
+
+- Uninstall
+
+```bash
+brew uninstall kcl-lang/tap/kcl-lsp
+```
+
+#### Scoop (Windows)
+
+Install [Scoop](https://scoop.sh/) first, then add this bucket and install `kcl-language-server` by running:
+
+```bash
+scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
+scoop install kcl-lang/kcl-lsp
+```
+
+### Install KCL Extensions for IDE
+
+#### VS Code
 
 The KCL Extension extension provides some coding assistance, e.g., highlight, goto definition, completion, hover, outline, and diagnostics. You can go [here](/docs/tools/Ide/vs-code) for more information about the installation.
 
 ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
-### NeoVim
+#### NeoVim
 
 See [here](https://github.com/kcl-lang/kcl.nvim) to config the KCL language server and enable it.
 
 ![kcl.nvim](/img/docs/tools/Ide/neovim/overview.png)
 
-### IntelliJ IDEA
+#### IntelliJ IDEA
 
 Download the distribution from [here](https://github.com/kcl-lang/intellij-kcl/releases) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
 
