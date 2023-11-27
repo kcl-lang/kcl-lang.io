@@ -20,10 +20,12 @@ This section will update the KCL language community's latest developments every 
 Thank you to all contributors for their outstanding work over the past two weeks (11.09 - 11.23 2023). Here is an overview of the key content:
 
 **📦 Module Update**
+
 - The number of KCL modules has been increased to **200+**, mainly adding validation modules related to `Pod`, `RBAC`, and reference documentation for Kubernetes 1.14-1.28.
 - Now we can search and browse the documentation and usage of all modules on the `Artifact Hub` website: _[https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1)_
 
 **💬 Language Update**
+
 - **Developer Experience**
   - Optimized syntax indentation check for configuration code blocks, no longer enforced as an error.
   - Support for using file path wildcards as compilation entry points.
@@ -46,41 +48,46 @@ Thank you to all contributors for their outstanding work over the past two weeks
   - Added the update command to automatically update local dependencies: _[https://github.com/kcl-lang/kpm/pull/212](https://github.com/kcl-lang/kpm/pull/212)_
 
 **💻 IDE Update**
+
 - **Developer Experience**
   - Support the completion of external package dependency import statements added by package management tools.
 - **Bug Fixes**
   - Fixed the display position of undefined type errors for function parameters.
 
 **🏄 API Update**
+
 - Added KCL Unit Testing API: _[https://github.com/kcl-lang/kcl/pull/904](https://github.com/kcl-lang/kcl/pull/904)_
 - Added KCL Symbol Renaming API: _[https://github.com/kcl-lang/kcl/pull/890](https://github.com/kcl-lang/kcl/pull/890)_
 
 **🔥 Architecture Upgrade**
+
 - KCL has designed and reconstructed a new semantic model, as well as APIs that support nearest symbol lookup and symbol semantic information query.
 - IDE features such as autocomplete, definition, and hover have been migrated to the new semantic model, significantly reducing the difficulty and amount of code for IDE feature development.
 
 **🚀 Performance Improvement**
+
 - The KCL compiler supports incremental parsing of syntax and incremental checking of semantics, significantly improving the performance of KCL compilation, build, and IDE plugin usage in most scenarios by **5-10 times**.
 
 ## Special Thanks
 
 The following are listed in no particular order:
 
-+ Thanks to @cr7258 for his contributions to the KCL model library and KCL documentation 🙌
+- Thanks to @cr7258 for his contributions to the KCL model library and KCL documentation 🙌
   - _[https://github.com/kcl-lang/kcl-lang.io/pull/203](https://github.com/kcl-lang/kcl-lang.io/pull/203)_
   - _[https://github.com/kcl-lang/kcl-lang.io/pull/209](https://github.com/kcl-lang/kcl-lang.io/pull/209)_
   - _[https://github.com/kcl-lang/kcl-lang.io/pull/210](https://github.com/kcl-lang/kcl-lang.io/pull/210)_
   - _[https://github.com/kcl-lang/kcl-lang.io/pull/211](https://github.com/kcl-lang/kcl-lang.io/pull/211)_
   - _[https://github.com/kcl-lang/modules/pull/67](https://github.com/kcl-lang/modules/pull/67)_
-- Thanks to @XiaoK29 for his contributions to the code architecture refactoring of hover and reference lookup features in the KCL IDE, as well as the KCL documentation 🙌
+
+* Thanks to @XiaoK29 for his contributions to the code architecture refactoring of hover and reference lookup features in the KCL IDE, as well as the KCL documentation 🙌
   - _[https://github.com/kcl-lang/kcl/pull/887](https://github.com/kcl-lang/kcl/pull/887)_
   - _[https://github.com/kcl-lang/kcl/pull/899](https://github.com/kcl-lang/kcl/pull/899)_
   - _[https://github.com/kcl-lang/kcl-lang.io/pull/205](https://github.com/kcl-lang/kcl-lang.io/pull/205)_
-- Thanks to @MeenuyD, @negz for their discussions and support regarding the integration of Crossplane KCL Composition Functions 🙌
+* Thanks to @MeenuyD, @negz for their discussions and support regarding the integration of Crossplane KCL Composition Functions 🙌
   - _[https://github.com/kcl-lang/kcl/issues/885](https://github.com/kcl-lang/kcl/issues/885)_
-- Thanks to @kolloch for his valuable feedback on the Bazel KCL build rule script 🙌
+* Thanks to @kolloch for his valuable feedback on the Bazel KCL build rule script 🙌
   - _[https://github.com/kcl-lang/rules_kcl/pull/2](https://github.com/kcl-lang/rules_kcl/pull/2)_
-- Thanks to @Yun Lu, @Even Solberg, @Prahalad Ramji, @Matt Gowie, @ddh, and @mouuii for their valuable feedback and discussions during the promotion and usage of KCL 🙌
+* Thanks to @Yun Lu, @Even Solberg, @Prahalad Ramji, @Matt Gowie, @ddh, and @mouuii for their valuable feedback and discussions during the promotion and usage of KCL 🙌
 
 ## Featured Updates
 

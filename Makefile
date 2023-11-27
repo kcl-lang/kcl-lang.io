@@ -36,6 +36,10 @@ version:
 	npm run docusaurus docs:version $(shell cat VERSION)
 
 .PHONY: test
+fmt:
+	npm run format
+
+.PHONY: test
 test:
 	./examples/test.sh
 

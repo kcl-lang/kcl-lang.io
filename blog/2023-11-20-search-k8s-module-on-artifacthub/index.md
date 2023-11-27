@@ -18,13 +18,14 @@ Therefore, we have leveraged the [ArtifactHub](https://artifacthub.io/) project 
 ## Prerequisites
 
 - Install KCL: *https://kcl-lang.io/docs/user_docs/getting-started/install/*
-+ Install kubectl: *https://kubernetes.io/docs/tasks/tools/#kubectl*
-+ Install minikube: *https://minikube.sigs.k8s.io/docs/start/*
+
+* Install kubectl: *https://kubernetes.io/docs/tasks/tools/#kubectl*
+* Install minikube: *https://minikube.sigs.k8s.io/docs/start/*
 
 Start minikube using the following command:
 
 ```shell
-minikube start --cache-images=true  
+minikube start --cache-images=true
 ```
 
 If the Ingress controller is not installed in your minikube, you can use the following command to install it:
@@ -38,13 +39,13 @@ minikube addons enable ingress
 First, let's prepare a simple JavaScript application:
 
 ```js
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 8080;
 
 // Define a route that responds to GET requests
-app.get('/', (req, res) => {
-  res.send('Welcome to my web application!');
+app.get("/", (req, res) => {
+  res.send("Welcome to my web application!");
 });
 
 // Start the server

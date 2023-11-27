@@ -26,7 +26,7 @@ tags: [KCL, Kubernetes, Modules, ArtifactHub]
 使用以下命令启动 minikube
 
 ```shell
-minikube start --cache-images=true  
+minikube start --cache-images=true
 ```
 
 如果您的 minikube 中没有安装 Ingress 控制器，您可以使用如下命令安装：
@@ -35,18 +35,18 @@ minikube start --cache-images=true
 minikube addons enable ingress
 ```
 
-## HelloWorld 案例  
+## HelloWorld 案例
 
 首先，我们可以准备一个简单的 js 应用。
 
 ```js
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 8080;
 
 // 定义一个响应 GET 请求的路由
-app.get('/', (req, res) => {
-  res.send('欢迎来到我的Web应用程序！');
+app.get("/", (req, res) => {
+  res.send("欢迎来到我的Web应用程序！");
 });
 
 // 启动服务器
@@ -202,7 +202,7 @@ $ curl http://localhost:8080
 欢迎来到我的 Web 应用程序！
 ```
 
-如果您通过浏览器访问，您将会看到：  
+如果您通过浏览器访问，您将会看到：
 
 ![browser](/img/blog/2023-11-20-search-k8s-module-on-artifacthub/browser.png)
 

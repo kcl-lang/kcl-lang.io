@@ -8,7 +8,6 @@ Before you submit your PR, there are a few things you need to consider carefully
 
 - All source code of KCL modules in `modules` are **public**, if you want your KCL module to be private, sorry we currently do not support it, you can try to solve this problem by building your own repository.
 
-
 - If you want to publish your KCL module to `modules` and can be found on `AH`, **The version of your module is required, and the version number must comply with the definition of [semantic versioning](https://semver.org/)**, that is, the `version` field in the kcl.mod, and must comply with the definition of semantic versioning.
 
 ```
@@ -19,7 +18,6 @@ version = "0.0.1" # This field is required and it must comply with the definitio
 ```
 
 - **Once a version of a module is published, its content cannot be changed. We do not allow the content of a module to be changed without changing the module version**. That is, if you submit a PR, change the content of the KCL module, and you want everyone to be able to use the changes you made, then you must upgrade the version of your KCL module, i.e., change the `version` field in kcl.mod. If you encounter difficulties that require you to change the content of a certain version of the module, please raise an issue in the repository and contact us.
-
 
 ## Quick Start
 
@@ -58,7 +56,7 @@ Currently, the directory structure of a valid KCL module that the repository can
 
 - README.md : A markdown file as the documentation for your module, this file is **optional**, **if you do not provide this file, it will not be displayed on artifacthub.io**.
 
-- (*.k) kcl program files: The source code of your KCL program.
+- (\*.k) kcl program files: The source code of your KCL program.
 
 ### Publish your module by PR
 
@@ -146,4 +144,3 @@ description = "This is my module."
 ```
 
 **At the same time, you cannot upload the same version module multiple times.** Once the version number of your module has been used, you will not be able to use this version number again. The only way to upload this module again is to upgrade the version number.
-

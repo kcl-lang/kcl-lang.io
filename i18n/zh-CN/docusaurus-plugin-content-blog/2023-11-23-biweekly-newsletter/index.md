@@ -20,10 +20,12 @@ tags: [KCL, Biweekly-Newsletter]
 感谢所有贡献者过去两周 (2023 11.09 - 11.23) 的杰出工作，以下是重点内容概述
 
 **📦 模型更新**
+
 - KCL 模型数量新增至 **200 个**，主要新增与 `Pod`, `RBAC` 相关的校验模型及 Kubernetes 1.14-1.28 版本的模型参考文档
 - 可以在 `Artifact Hub` 中搜索浏览到所有模型的文档及使用方式: _[https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1)_
 
 **💬 语言更新**
+
 - **体验改进**
   - 优化配置代码块的语法缩进检查，不再强制报错
   - 支持通过文件路径通配符作为编译入口
@@ -32,6 +34,7 @@ tags: [KCL, Biweekly-Newsletter]
   - 修复 Schema 参数数量的检查
 
 **🔧 工具链更新**
+
 - **测试工具发布**
   - 支持使用 KCL 函数编写单元测试并使用工具执行测试
   - 支持使用正则表达式过滤待测试用例
@@ -45,20 +48,24 @@ tags: [KCL, Biweekly-Newsletter]
   - 新增 update 命令用于自动更新本地依赖: _[https://github.com/kcl-lang/kpm/pull/212](https://github.com/kcl-lang/kpm/pull/212)_
 
 **💻 IDE 更新**
+
 - **体验改进**
   - 支持包管理工具引入的外部包依赖 import 语句补全
 - **错误修复**
   - 修复函数参数未定义类型错误显示位置
 
 **🏄 API 更新**
+
 - 新增 KCL 单元测试 API: _[https://github.com/kcl-lang/kcl/pull/904](https://github.com/kcl-lang/kcl/pull/904)_
 - 新增 KCL 符号重命名 API: _[https://github.com/kcl-lang/kcl/pull/890](https://github.com/kcl-lang/kcl/pull/890)_
 
 **🔥 架构升级**
+
 - KCL 设计并重构了新的语义模型以及支持最近符号查找和符号语义信息查询 API
 - IDE 补全，跳转和悬停等功能实现迁移至新语义模型，显著降低 IDE 功能开发难度和代码量
 
 **🚀 性能提升**
+
 - KCL 编译器支持语法增量解析以及语义增量检查，大部分场景提升 KCL 编译构建和 IDE 插件使用性能 **5-10 倍**
 
 ## 特别鸣谢

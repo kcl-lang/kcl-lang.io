@@ -52,13 +52,13 @@ version = "0.0.1" # 这个字段不可以为空，并且必须符合语义化版
 - kcl.mod.lock : 自动生成的用来固定依赖版本的文件，这个文件**可选的**，不需要手动改动。
 - artifacthub-pkg.yaml : 这个文件是**可选的**，因为我们的仓库目前通过 artifacthub 展示所有的包，通过 artifacthub-pkg.yaml 来配置您想要包的信息，这里我们采取的策略是**如果在您的包的 kcl.mod 文件所在目录中有一个名为 artifacthub-pkg.yaml 的配置文件，那么，我们将使用您提供 artifacthub-pkg.yaml 来展示您的包的信息，否则，我们将会使用一些默认的信息生成对应的 artifacthub-pkg.yaml 文件。**
 - README.md : 一个 markdown 文件作为您的包的文档，这个文件是**可选的**，**如果您不提供这个文件，artifacthub 上将不会展示您的包的文档。**
-- (*.k) kcl program files: 您的 KCL 程序的源代码。
+- (\*.k) kcl program files: 您的 KCL 程序的源代码。
 
 ### 通过 PR 发布您的包
 
 #### 1. 下载代码仓库
 
-首先，您需要使用 git 将仓库 https://github.com/kcl-lang/modules 下载到您的本地 
+首先，您需要使用 git 将仓库 https://github.com/kcl-lang/modules 下载到您的本地
 
 ```shell
 git clone https://github.com/kcl-lang/modules --depth=1
@@ -107,7 +107,7 @@ echo "This is a kcl module named helloworld." >> helloworld/README.md
 git add .
 ```
 
-使用 `git commit -s` 命令提交您的包, 我们推荐您的 commit message 遵循  “publish module <module_name>” 的格式。
+使用 `git commit -s` 命令提交您的包, 我们推荐您的 commit message 遵循 “publish module <module_name>” 的格式。
 
 ```shell
 git commit -m "publish module helloworld" -s
@@ -126,6 +126,7 @@ git push
 - [如何创建 PR](https://docs.github.com/zh/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 
 ### 通过 PR 升级您的包
+
 完成包的内容上传后，您可以通过 PR 升级您的包。
 
 注意：**我们没有提供任何改变包的内容但是不改变版本号的升级策略。** 如果您想要升级您的包，并希望您升级后的包被展示在 AH 上，您需要修改您的包的版本号。即在 kcl.mod 文件的 module 章节中的 version 字段。
