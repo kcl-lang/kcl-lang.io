@@ -50,7 +50,7 @@ wget -q https://kcl-lang.io/script/install-cli.sh -O - | /bin/bash
 powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
 ```
 
-### Homebrew (MacOS)
+#### Homebrew (MacOS)
 
 - 安装最新版本
 
@@ -74,7 +74,7 @@ brew upgrade kcl-lang/tap/kcl
 brew uninstall kcl-lang/tap/kcl
 ```
 
-### Scoop (Windows)
+#### Scoop (Windows)
 
 首先安装 [Scoop](https://scoop.sh/), 然后通过如下命令安装 `kcl`:
 
@@ -147,7 +147,7 @@ wget -q https://kcl-lang.io/script/install-kcl-lsp.sh -O - | /bin/bash
 powershell -Command "iwr -useb https://kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
 ```
 
-#### Homebrew (MacOS)
+### Homebrew (MacOS)
 
 - 安装最新版本
 
@@ -171,7 +171,7 @@ brew upgrade kcl-lang/tap/kcl-lsp
 brew uninstall kcl-lang/tap/kcl-lsp
 ```
 
-#### Scoop (Windows)
+### Scoop (Windows)
 
 首先安装 [Scoop](https://scoop.sh/), 然后通过如下命令安装 `kcl-language-server` 二进制:
 

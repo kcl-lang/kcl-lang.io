@@ -117,7 +117,6 @@ Cross-language APIs defined via Protobuf([https://github.com/kcl-lang/kcl-go/blo
 // Copyright 2023 The KCL Authors. All rights reserved.
 //
 // This file defines the request parameters and return structure of the KCL RPC server.
-// We can use the following command to start a KCL RPC server.
 
 syntax = "proto3";
 
@@ -127,6 +126,12 @@ import "google/protobuf/any.proto";
 import "google/protobuf/descriptor.proto";
 
 // ----------------------------------------------------------------------------
+
+// kcl main.k -E pkg_name=pkg_path
+message CmdExternalPkgSpec {
+	string pkg_name = 1;
+	string pkg_path = 2;
+}
 
 // kcl main.k -D name=value
 message CmdArgSpec {
@@ -169,7 +174,7 @@ message KclErrorInfo {
 }
 
 // ----------------------------------------------------------------------------
-// service request/response
+// service requset/response
 // ----------------------------------------------------------------------------
 
 // gpyrpc.BuiltinService
@@ -190,11 +195,17 @@ service KclvmService {
 	rpc OverrideFile(OverrideFile_Args) returns (OverrideFile_Result);
 
 	rpc GetSchemaType(GetSchemaType_Args) returns(GetSchemaType_Result);
+	rpc GetFullSchemaType(GetFullSchemaType_Args) returns(GetSchemaType_Result);
 	rpc GetSchemaTypeMapping(GetSchemaTypeMapping_Args) returns(GetSchemaTypeMapping_Result);
 	rpc ValidateCode(ValidateCode_Args) returns(ValidateCode_Result);
 
 	rpc ListDepFiles(ListDepFiles_Args) returns(ListDepFiles_Result);
 	rpc LoadSettingsFiles(LoadSettingsFiles_Args) returns(LoadSettingsFiles_Result);
+
+	rpc Rename(Rename_Args) returns(Rename_Result);
+	rpc RenameCode(RenameCode_Args) returns(RenameCode_Result);
+
+	rpc Test(Test_Args) returns (Test_Result);
 }
 
 message Ping_Args {
@@ -233,7 +244,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-
+	
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 
@@ -254,14 +265,28 @@ message ExecProgram_Args {
 
 	// yaml/json: sort keys
 	bool sort_keys = 12;
-	// include schema type path in JSON/YAML result
-	bool include_schema_type_path = 13;
+
+	// -E --external : external packages path
+	repeated CmdExternalPkgSpec external_pkgs = 13;
+
+	// Whether including schema type in JSON/YAML result
+	bool include_schema_type_path = 14;
+
+	// Whether only compiling the program
+	bool compile_only = 15;
+
+	// Compile the dir recursively 
+	bool recursive = 16;
+
+	// -S --path_selector
+	repeated string path_selector = 17;
 }
+
 message ExecProgram_Result {
 	string json_result = 1;
 	string yaml_result = 2;
-
-	string escaped_time = 101;
+	string log_message = 3;
+	string err_message = 4;
 }
 
 message ResetPlugin_Args {
@@ -305,19 +330,9 @@ message OverrideFile_Result {
 	bool result = 1;
 }
 
-message EvalCode_Args {
-	string code = 1;
-}
-message EvalCode_Result {
-	string json_result = 2;
-}
-
-message ResolveCode_Args {
-	string code = 1;
-}
-
-message ResolveCode_Result {
-	bool success = 1;
+message GetFullSchemaType_Args {
+	ExecProgram_Args exec_args = 1;
+	string schema_name = 2;
 }
 
 message GetSchemaType_Args {
@@ -394,6 +409,8 @@ message CliConfig {
 	bool disable_none = 6;
 	int64 verbose = 7;
 	bool debug = 8;
+	bool sort_keys = 9;
+	bool include_schema_type_path = 10;
 }
 
 message KeyValuePair {
@@ -401,8 +418,61 @@ message KeyValuePair {
 	string value = 2;
 }
 
+// ---------------------------------------------------------------------------------
+// Rename API
+//    find all the occurrences of the target symbol and rename them. This API will rewrite files if they contain symbols to be renamed.
+// ---------------------------------------------------------------------------------
+
+message Rename_Args {
+    string symbol_path = 1;               // the path to the target symbol to be renamed. The symbol path should conform to format: `<pkgpath>:<field_path>` When the pkgpath is '__main__', `<pkgpath>:` can be omitted.
+    repeated string file_paths = 2;       // the paths to the source code files
+    string new_name = 3;                   // the new name of the symbol
+}
+
+message Rename_Result {
+    repeated string changed_files = 1;    // the file paths got changed
+}
+
+// ---------------------------------------------------------------------------------
+// RenameCode API
+//    find all the occurrences of the target symbol and rename them. This API won't rewrite files but return the modified code if any code has been changed.
+// ---------------------------------------------------------------------------------
+
+message RenameCode_Args {
+    string symbol_path = 1;               // the path to the target symbol to be renamed. The symbol path should conform to format: `<pkgpath>:<field_path>` When the pkgpath is '__main__', `<pkgpath>:` can be omitted.
+    map<string, string> source_codes = 2; // the source code. a <filename>:<code> map
+    string new_name = 3;                   // the new name of the symbol
+}
+
+message RenameCode_Result {
+    map<string, string> changed_codes = 1; // the changed code. a <filename>:<code> map
+}
+
+// ---------------------------------------------------------------------------------
+// Test API
+//    Test KCL packages with test arguments
+// ---------------------------------------------------------------------------------
+
+message Test_Args {
+	ExecProgram_Args exec_args = 1;      // This field stores the execution program arguments.
+	repeated string pkg_list = 2;        // The package path list to be tested e.g., "./...", "/path/to/package/", "/path/to/package/..."
+	string run_regexp = 3;               // This field stores a regular expression for filtering tests to run.
+	bool fail_fast = 4;                  // This field determines whether the test run should stop on the first failure.
+}
+
+message Test_Result {
+	repeated TestCaseInfo info = 2;
+}
+
+message TestCaseInfo {
+	string name = 1;          // Test case name
+	string error = 2;
+	uint64 duration = 3;         // Number of whole microseconds in the duration.
+	string log_message = 4;
+}
+
 // ----------------------------------------------------------------------------
-// JSON Schema Lit
+// KCL Type Structure
 // ----------------------------------------------------------------------------
 
 message KclType {
@@ -421,12 +491,23 @@ message KclType {
 	int32 line = 10;
 
 	repeated Decorator decorators = 11;  // schema decorators
+
+	string filename = 12;                // `filename` represents the absolute path of the file name where the attribute is located.
+	string pkg_path = 13;                // `pkg_path` represents the path name of the package where the attribute is located.
+	string description = 14;             // `description` represents the document of the attribute.
+	map<string, Example> examples = 15;  // A map object to hold examples, the key is the example name.
 }
 
 message Decorator {
 	string name = 1;
 	repeated string arguments = 2;
 	map<string, string> keywords = 3;
+}
+
+message Example {
+	string summary = 1;                // Short description for the example.
+	string description = 2;            // Long description for the example.
+	string value = 3;                  // Embedded literal example.
 }
 
 // ----------------------------------------------------------------------------
