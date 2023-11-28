@@ -199,6 +199,70 @@ function ExampleSection() {
   );
 }
 
+function IntegrationSection() {
+  const integrations = [
+    {
+      name: "Kubernetes",
+      img: "/img/logos/k8s.svg",
+    },
+    {
+      name: "Kustomize",
+      img: "/img/logos/kustomize.png",
+    },
+    {
+      name: "Helm",
+      img: "/img/logos/helm.png",
+    },
+    {
+      name: "Helmfile",
+      img: "/img/logos/helmfile.png",
+    },
+    {
+      name: "KPT",
+      img: "/img/logos/kpt.png",
+    },
+    {
+      name: "Argo",
+      img: "/img/logos/argo.png",
+    },
+    {
+      name: "CrossPlane",
+      img: "/img/logos/crossplane.png",
+    },
+    {
+      name: "Terraform",
+      img: "/img/logos/terraform.png",
+    },
+  ];
+
+  return (
+    <section>
+      <div className="container">
+        <h2
+          className={clsx("text--center")}
+          style={{ color: "var(--ifm-color-primary)" }}
+        >
+          <Translate>Integrate with Your Favorite Tools</Translate>
+        </h2>
+        <div className={styles.whiteboard}>
+          <div className="row">
+            {integrations.map((w) => (
+              <div
+                key={w.name}
+                className={clsx("col col--3", styles.whiteboardCol)}
+              >
+                <a className={styles.integrationLogoWrapper} target="_blank">
+                  <img src={useBaseUrl(w.img)} alt={w.name} />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function PartnerSection() {
   const partners = [
     {
@@ -322,6 +386,8 @@ export default function Home(): JSX.Element {
       <FeaturesSection />
       <BreakSection />
       <ExampleSection />
+      <BreakSection />
+      <IntegrationSection />
       <BreakSection />
       <PartnerSection />
       <BreakSection />
