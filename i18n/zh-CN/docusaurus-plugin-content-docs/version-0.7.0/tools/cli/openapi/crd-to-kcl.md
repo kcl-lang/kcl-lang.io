@@ -3,7 +3,7 @@
 命令
 
 ```shell
-kcl-openapi generate model --crd -f ${your_CRD.yaml} -t ${the_kcl_files_output_dir} --skip-validation
+kcl import -m crd -o ${the_kcl_files_output_dir} -s ${your_CRD.yaml} 
 ```
 
 # 示例

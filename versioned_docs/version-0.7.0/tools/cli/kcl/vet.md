@@ -1,10 +1,10 @@
 ---
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 # Validation
 
-## Intro
+## Introduction
 
 The KCL Validation tool supports basic configuration data verification capabilities. You can write a KCL schema to verify the type and value of the input JSON/YAML files.
 
@@ -50,38 +50,33 @@ schema Data:
 Execute the following command:
 
 ```shell
-kcl-vet data.json schema.k
+kcl vet data.json schema.k
 ```
 
 ## Specify the schema for validation
 
-When multiple schema definitions exist in the KCL file, by default, the KCL Validation tool will use the first schema to check. If you need to specify a schema for verification, you can use the `-d|--schema` parameter
+When multiple schema definitions exist in the KCL file, by default, the KCL Validation tool will use the first schema to check. If you need to specify a schema for verification, you can use the `-s|--schema` parameter
 
 ```shell
-kcl-vet data.json schema.k -d User
+kcl vet data.json schema.k -s User
 ```
 
 ## Args
 
 ```shell
-$ kcl-vet -h
-USAGE:
-    kcl-vet [OPTIONS] [ARGS]
+This command validates the data file using the kcl code.
 
-ARGS:
-    <data_file>    Validation data file
-    <kcl_file>     KCL file
+Usage:
+  kcl vet [flags]
 
-OPTIONS:
-    -d, --schema <schema>
-            Iterate through subdirectories recursively
+Examples:
+  # Validate the JSON data using the kcl code
+  kcl vet data.json code.k
 
-        --format <format>
-            Validation data file format, support YAML and JSON, default is JSON
 
-    -h, --help
-            Print help information
-
-    -n, --attribute_name <attribute_name>
-            The attribute name for the data loading
+Flags:
+  -a, --attribute_name string   Specify the validate config attribute name.
+      --format string           Specify the validate data format. e.g., yaml, json. Default is json
+  -h, --help                    help for vet
+  -s, --schema string           Specify the validate schema.
 ```

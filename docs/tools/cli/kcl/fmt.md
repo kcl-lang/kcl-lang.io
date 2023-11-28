@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 # Format
@@ -14,19 +14,15 @@ The KCL Format tool modifies the files according to the KCL code style: [Style G
 
 - Formatting Single File
 
-```text
-kcl-fmt your_config.k
+```shell
+kcl fmt your_config.k
 ```
 
 - Formatting multiple files
 
-```text
-kcl-fmt your_config_path -R
+```shell
+kcl fmt your_config_path
 ```
-
-- Args
-  - `-R|--recursive` Whether to recursively traverse subfolder
-  - `-w|--fmt-output` Whether to output to STDOUT, without `-w` indicates in-place modification.
 
 ## Display of formatting files
 
@@ -67,4 +63,23 @@ schema Deployment[replicas](DeploymentBase):
 
 deploy = Deployment(replicas=3) {}
 
+```
+
+## Args
+
+```shell
+This command formats all kcl files of the current crate.
+
+Usage:
+  kcl fmt [flags]
+
+Examples:
+  # Format the single file
+  kcl fmt /path/to/file.k
+
+  # Format all files in this folder recursively
+  kcl fmt ./...
+
+Flags:
+  -h, --help   help for fmt
 ```

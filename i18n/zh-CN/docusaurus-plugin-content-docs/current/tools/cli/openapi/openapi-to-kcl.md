@@ -3,7 +3,7 @@
 命令
 
 ```shell
-kcl-openapi generate model -f ${your_open_api_spec.yaml} -t ${the_kcl_files_output_dir}
+kcl import -m openapi -o ${the_kcl_files_output_dir} ${your_open_api_spec.yaml}
 ```
 
 示例：
@@ -35,7 +35,7 @@ paths: {}
 - 命令：
 
 ```shell
-kcl-openapi generate model -f test_open_api_spec.yaml -t ~/
+kcl import -m openapi -o ~/ -s test_open_api_spec.yaml 
 ```
 
 - 输出：~/models/v1/test_int.k

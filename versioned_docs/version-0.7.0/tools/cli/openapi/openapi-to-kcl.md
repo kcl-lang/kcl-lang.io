@@ -3,7 +3,7 @@
 To convert from models defined in the OpenAPI spec file to KCL schema, we could run the following script:
 
 ```shell
-kcl-openapi generate model -f ${your_open_api_spec.yaml} -t ${the_kcl_files_output_dir}
+kcl import -m openapi -o ${the_kcl_files_output_dir} ${your_open_api_spec.yaml}
 ```
 
 For example:
@@ -35,7 +35,7 @@ paths: {}
 - The script will be:
 
 ```shell
-kcl-openapi generate model -f test_open_api_spec.yaml -t ~/ --skip-validation
+kcl import -m openapi -o ~/ -s test_open_api_spec.yaml 
 ```
 
 - Then we can find the generated file here: `~/models/v1/test_int.k`

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 5
 ---
 
 # Lint
@@ -26,31 +26,54 @@ The KCL Lint tool supports checking some warning-level defects in KCL code and s
 Args：
 
 ```shell
-kcl-lint your_config.k
+kcl lint your_config.k
 ```
 
 or
 
 ```shell
-kcl-lint your_config_path
+kcl lint your_config_path
 ```
 
-## KCL Lint Tool
-
-### Args
+## Args
 
 ```shell
-USAGE:
-    kcl-lint [OPTIONS] [--] [input]...
+This command lints the kcl code. 'kcl lint' takes multiple input for arguments.
 
-ARGS:
-    <input>...    Sets the input file to use
+For example, 'kcl lint path/to/kcl.k' will lint the file named path/to/kcl.k
 
-OPTIONS:
-        --emit_warning            Emit warning message
-    -h, --help                    Print help information
-    -v, --verbose                 Print test information verbosely
-    -Y, --setting <setting>...    Sets the input file to use
+Usage:
+  kcl lint [flags]
+
+Examples:
+  # Lint a single file and output YAML
+  kcl lint path/to/kcl.k
+
+  # Lint multiple files
+  kcl lint path/to/kcl1.k path/to/kcl2.k
+  
+  # Lint OCI packages
+  kcl lint oci://ghcr.io/kcl-lang/hello-world
+  
+  # Lint the current package
+  kcl lint
+  
+
+Flags:
+  -D, --argument strings        Specify the top-level argument
+  -d, --debug                   Run in debug mode
+  -n, --disable_none            Disable dumping None values
+  -E, --external strings        Specify the mapping of package name and path where the package is located
+      --format string           Specify the output format (default "yaml")
+  -h, --help                    help for lint
+      --no_style                Set to prohibit output of command line waiting styles, including colors, etc.
+  -o, --output string           Specify the YAML/JSON output file path
+  -O, --overrides strings       Specify the configuration override path and value
+  -S, --path_selector strings   Specify the path selectors
+  -q, --quiet                   Set the quiet mode (no output)
+  -Y, --setting strings         Specify the command line setting files
+  -k, --sort_keys               Sort output result keys
+  -r, --strict_range_check      Do perform strict numeric range checks
+  -t, --tag string              Specify the tag for the OCI or Git artifact
+  -V, --vendor                  Run in vendor mode
 ```
-
-- input: the path of a single `*.k` file or directory to be checked. Support the absolute path or relative path of the current directory.

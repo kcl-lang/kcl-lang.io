@@ -3,7 +3,7 @@
 To convert from models defined in the Kubernetes CRD file to KCL schema, we could run the following script:
 
 ```shell
-kcl-openapi generate model --crd -f ${your_CRD.yaml} -t ${the_kcl_files_output_dir} --skip-validation
+kcl import -m crd -o ${the_kcl_files_output_dir} -s ${your_CRD.yaml} 
 ```
 
 ## Example
@@ -58,7 +58,7 @@ spec:
 - The script will be:
 
 ```shell
-kcl-openapi generate model -f test_crontab_CRD.yaml -t ~/ --skip-validation --crd
+kcl import -m crd -o ~/ -s test_crontab_CRD.yaml 
 ```
 
 - Then we can find the generated file here: `~/models/stable_example_com_v1_cron_tab.k`
