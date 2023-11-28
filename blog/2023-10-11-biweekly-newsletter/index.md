@@ -5,6 +5,7 @@ authors:
   name: KCL Team
   title: KCL Team
 tags: [KCL, Biweekly-Newsletter]
+image: /img/biweekly-newsletter.png
 ---
 
 ![](/img/biweekly-newsletter.png)
