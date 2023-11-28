@@ -1,8 +1,8 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 ---
 
-# 格式化代码
+# 代码格式化工具
 
 KCL 支持通过内置的命令行工具一键格式化多个 KCL 文件文档。本文展示 KCL 编码风格和 KCL 格式化工具的使用方式。
 
@@ -14,14 +14,14 @@ KCL 格式化对文件的修改样式具体见 KCL 编码风格：[Style Guide f
 
 - 单文件格式化
 
-```text
-kcl-fmt your_config.k
+```shell
+kcl fmt your_config.k
 ```
 
 - 文件夹内多文件格式化
 
-```text
-kcl-fmt your_config_path -R
+```shell
+kcl fmt your_config_path -R
 ```
 
 - 命令行参数
@@ -67,4 +67,23 @@ schema Deployment[replicas](DeploymentBase):
 
 deploy = Deployment(replicas=3) {}
 
+```
+
+## 参数说明
+
+```shell
+This command formats all kcl files of the current crate.
+
+Usage:
+  kcl fmt [flags]
+
+Examples:
+  # Format the single file
+  kcl fmt /path/to/file.k
+
+  # Format all files in this folder recursively
+  kcl fmt ./...
+
+Flags:
+  -h, --help   help for fmt
 ```

@@ -1,12 +1,12 @@
 ---
-sidebar_position: 4
+sidebar_position: 7
 ---
 
-# Validation 校验代码
+# 校验工具
 
 ## 简介
 
-KCL 支持通过内置的 `kcl-vet` 命令行工具提供了基本的配置数据校验能力，可以编写 KCL schema 对输入的 JSON/YAML 格式文件进行类型以及数值的校验。
+KCL 支持通过内置的 `kcl vet` 命令行工具提供了基本的配置数据校验能力，可以编写 KCL schema 对输入的 JSON/YAML 格式文件进行类型以及数值的校验。
 
 ## 使用方式
 
@@ -50,38 +50,39 @@ schema Data:
 在目录下执行如下命令
 
 ```shell
-$ kcl-vet data.json schema.k
+kcl vet data.json schema.k
 ```
 
 ## 指定校验的 schema
 
-当校验的 KCL 文件中存在多个 schema 定义时，kcl-vet 工具会默认取第一个 schema 定义进行校验，如果需要指定校验的 schema，可以使用 `-d|--schema` 参数
+当校验的 KCL 文件中存在多个 schema 定义时，kcl vet 工具会默认取第一个 schema 定义进行校验，如果需要指定校验的 schema，可以使用 `-s|--schema` 参数
 
 ```shell
-$ kcl-vet data.json schema.k -d User
+kcl vet data.json schema.k -s User
 ```
 
 ## 命令行参数
 
 ```shell
-$ kcl-vet -h
-USAGE:
-    kcl-vet [OPTIONS] [ARGS]
+This command validates the data file using the kcl code.
 
-ARGS:
-    <data_file>    Validation data file
-    <kcl_file>     KCL file
+Usage:
+  kcl vet [flags]
 
-OPTIONS:
-    -d, --schema <schema>
-            Iterate through subdirectories recursively
+Examples:
+  # Validate the JSON data using the kcl code
+  kcl vet data.json code.k
 
-        --format <format>
-            Validation data file format, support YAML and JSON, default is JSON
+  # Validate the YAML data using the kcl code
+  kcl vet data.yaml code.k --format yaml
 
-    -h, --help
-            Print help information
+  # Validate the JSON data using the kcl code with the schema name
+  kcl vet data.json code.k -s Schema
 
-    -n, --attribute_name <attribute_name>
-            The attribute name for the data loading
+
+Flags:
+  -a, --attribute_name string   Specify the validate config attribute name.
+      --format string           Specify the validate data format. e.g., yaml, json. Default is json
+  -h, --help                    help for vet
+  -s, --schema string           Specify the validate schema.
 ```
