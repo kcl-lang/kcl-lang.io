@@ -162,6 +162,23 @@
   }
 }
 
+.integrationLogoWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;
+}
+
+.integrationLogoWrapper img {
+  height: 80%;
+}
+
+@media screen and (max-width: 768px) {
+  .integrationLogoWrapper {
+    height: 80px;
+  }
+}
+
 .cncfLogo {
   height: 96px;
 }
