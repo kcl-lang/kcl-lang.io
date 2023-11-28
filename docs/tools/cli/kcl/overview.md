@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 ---
 
 # Overview
@@ -24,53 +24,34 @@ KCL toolchain is a toolset of KCL language, which aims to improve the efficiency
 |            | NeoVim KCL extension         | Provide assistance for KCL in coding and compiling on NeoVim        |
 |            | VS Code KCL extension        | Provide assistance for KCL in coding and compiling on VS Code       |
 
-## KCL Tool
-
-### Args
+## Args
 
 ```shell
-This command runs the kcl code and displays the output. 'kcl run' takes multiple input for arguments.
-
-For example, 'kcl run path/to/kcl.k' will run the file named path/to/kcl.k
-
 Usage:
-  run [flags]
+  kcl [command]
 
-Aliases:
-  run, r
-
-Examples:
-  # Run a single file and output YAML
-  kcl run path/to/kcl.k
-
-  # Run a single file and output JSON
-  kcl run path/to/kcl.k --format json
-
-  # Run multiple files
-  kcl run path/to/kcl1.k path/to/kcl2.k
-
-  # Run OCI packages
-  kcl run oci://ghcr.io/kcl-lang/hello-world
-
-  # Run the current package
-  kcl run
-
+Available Commands:
+  clean       KCL clean tool
+  completion  Generate the autocompletion script for the specified shell
+  doc         KCL document tool
+  fmt         KCL format tool
+  import      KCL import tool
+  lint        Run KCL codes.
+  mod         KCL module management
+  play        Open the kcl playground in the browser.
+  registry    KCL registry management
+  run         Run KCL codes.
+  server      Run a KCL server
+  test        KCL test tool
+  version     Show version of the KCL CLI
+  vet         KCL validation tool
 
 Flags:
-  -D, --argument strings        Specify the top-level argument
-  -d, --debug                   Run in debug mode
-  -n, --disable_none            Disable dumping None values
-  -E, --external strings        Specify the mapping of package name and path where the package is located
-      --format string           Specify the output format (default "yaml")
-  -h, --help                    help for run
-      --no_style                Set to prohibit output of command line waiting styles, including colors, etc.
-  -o, --output string           Specify the YAML/JSON output file path
-  -O, --overrides strings       Specify the configuration override path and value
-  -S, --path_selector strings   Specify the path selectors
-  -q, --quiet                   Set the quiet mode (no output)
-  -Y, --setting strings         Specify the command line setting files
-  -k, --sort_keys               Sort output result keys
-  -r, --strict_range_check      Do perform strict numeric range checks
-  -t, --tag string              Specify the tag for the OCI or Git artifact
-  -V, --vendor                  Run in vendor mode
+  -h, --help      help for kcl
+  -v, --version   version for kcl
+
+Additional help topics:
+  kcl            
+
+Use "kcl [command] --help" for more information about a command.
 ```
