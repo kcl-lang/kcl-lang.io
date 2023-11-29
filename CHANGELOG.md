@@ -1,5 +1,7 @@
 # KCL Changelog
 
+- KCL v0.7.0-beta.2 - https://github.com/kcl-lang/kcl/releases/tag/v0.7.0-beta.2
+- KCL v0.7.0-beta.1 - https://github.com/kcl-lang/kcl/releases/tag/v0.7.0-beta.1
 - KCL v0.7.0-alpha.2 - https://github.com/kcl-lang/kcl/releases/tag/v0.7.0-alpha.2
 - KCL v0.7.0-alpha.1 - https://github.com/kcl-lang/kcl/releases/tag/v0.7.0-alpha.1
 - KCL v0.6.0 - https://github.com/kcl-lang/kcl/releases/tag/v0.6.0
