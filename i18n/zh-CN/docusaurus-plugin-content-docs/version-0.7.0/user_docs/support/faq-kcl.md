@@ -2353,3 +2353,16 @@ t_float: float = float(t_str)  # 输出的 t_float 为一个浮点型 "t_float: 
 ```
 
 如果您想查看更多详细的关于KCL类型系统和类型转换的内容，您可以查阅 [KCL 内置类型](https://kcl-lang.io/docs/reference/lang/tour#built-in-types) 和 [KCL 类型系统](https://kcl-lang.io/docs/reference/lang/tour#type-system)。
+
+## 51. 如何将列表类型的变量逐个解包到字符串中
+
+KCL 的列表提供了内置的字符串格式化方法，我们可以使用 str 函数或者 str 变量的 format 函数完成此类功能，比如下面的代码
+
+```python
+allowed = ["development", "staging", "production"]
+
+schema Data:
+    environment: str
+    check:
+        environment in allowed, "environment must be one of {}".format(allowed)
+```

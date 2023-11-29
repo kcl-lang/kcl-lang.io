@@ -2339,3 +2339,16 @@ t_float: float = float(t_str)  # you will get "t_float: 1.0"
 ```
 
 For more information about type conversion, see [KCL Builtin Types](https://kcl-lang.io/docs/reference/lang/tour#built-in-types) and [KCL Type System](https://kcl-lang.io/docs/reference/lang/tour#type-system).
+
+## 51. Is there an easy way to unpack a list into a string?
+
+The KCL list provides built-in string formatting methods, which can be achieved using the str function or the format function of the str variable, such as the following code:
+
+```python
+allowed = ["development", "staging", "production"]
+
+schema Data:
+    environment: str
+    check:
+        environment in allowed, "environment must be one of {}".format(allowed)
+```
