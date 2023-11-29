@@ -35,7 +35,7 @@ paths: {}
 - The script will be:
 
 ```shell
-kcl import -m openapi -o ~/ -s test_open_api_spec.yaml 
+kcl import -m openapi -o ~/ -s test_open_api_spec.yaml
 ```
 
 - Then we can find the generated file here: `~/models/v1/test_int.k`

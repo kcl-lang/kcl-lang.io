@@ -32,7 +32,7 @@ The branch name mainly includes two fields, which are separated by "-". Includin
 
 For example, Alice first transfers the Fork warehouse to his own account, and then creates a branch with the corresponding name 'alice: fix output fmt bug' (Alice's account is before the colon) to fix the output formatting bug.
 
-## 3. 关于 Git Commit
+## 3. About Git Commit
 
 We refer to [Commitizen](https://github.com/commitizen/cz-cli) to write a Commit Message.
 

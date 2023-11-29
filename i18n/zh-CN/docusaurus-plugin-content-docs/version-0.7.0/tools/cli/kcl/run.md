@@ -22,13 +22,13 @@ Examples:
 
   # Run multiple files
   kcl run path/to/kcl1.k path/to/kcl2.k
-  
+
   # Run OCI packages
   kcl run oci://ghcr.io/kcl-lang/hello-world
-  
+
   # Run the current package
   kcl run
-  
+
 
 Flags:
   -D, --argument strings        Specify the top-level argument

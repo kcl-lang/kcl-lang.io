@@ -2,7 +2,7 @@
 sidebar_position: 4
 ---
 
-# Import 
+# Import
 
 ## Introduction
 

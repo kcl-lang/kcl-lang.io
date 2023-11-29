@@ -14,7 +14,7 @@ The KCL project version release strategy is as follows:
 ## Release Process and Rules
 
 - Feature Development: Main branch development, branch releases, block user issues, critical bugs, security vulnerabilities, and high-priority fixes. It is given higher priority over general feature development and should be completed within a week.
-Iteration Cycle: The iteration cycle is typically 3 months, with a new minor version released every 3 months.
+- Iteration Cycle: The iteration cycle is typically 3 months, with a new minor version released every 3 months.
 - Version Planning: Two weeks before the release, an alpha version is produced, followed by a beta version one week before the release. Alpha versions can still include feature merging, while beta versions only include bug fixes. The final release version is tagged as a long-term saved release branch.
 - Release Plan: A detailed release plan (Github Milestone) is created at the beginning of each release cycle, including release dates, version numbers, feature lists, and testing plans. The release plan should be followed as closely as possible to ensure timely releases.
 - Pre-release Testing: Comprehensive testing, including unit testing, integration testing, fuzz testing, stress testing, and user acceptance testing, is conducted before releasing a new version. The new version is only released when it passes all tests without any issues.

@@ -54,13 +54,13 @@ val = Schema {
 
 使用 `kcl doc generate` 命令，从用户指定的文件或目录中提取文档，并输出到指定目录。
 
-为当前 KCL 包生成 Markdown 文档到 `/docs` 目录 (包含 kcl.mod 文件) 
+为当前 KCL 包生成 Markdown 文档到 `/docs` 目录 (包含 kcl.mod 文件)
 
 ```shell
 kcl doc generate
-``` 
-  
-为当前 KCL 包生成 HTML 文档到 `/docs` 目录 (包含 kcl.mod 文件) 
+```
+
+为当前 KCL 包生成 HTML 文档到 `/docs` 目录 (包含 kcl.mod 文件)
 
 ```shell
 kcl doc generate --format html
@@ -106,7 +106,7 @@ Aliases:
 Examples:
   # Generate document for current package
   kcl doc generate
-  
+
 
 Available Commands:
   generate    Generates documents from code and examples

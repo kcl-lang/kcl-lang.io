@@ -35,7 +35,7 @@ paths: {}
 - 命令：
 
 ```shell
-kcl import -m openapi -o ~/ -s test_open_api_spec.yaml 
+kcl import -m openapi -o ~/ -s test_open_api_spec.yaml
 ```
 
 - 输出：~/models/v1/test_int.k

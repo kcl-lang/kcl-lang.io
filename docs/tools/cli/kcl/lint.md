@@ -51,13 +51,13 @@ Examples:
 
   # Lint multiple files
   kcl lint path/to/kcl1.k path/to/kcl2.k
-  
+
   # Lint OCI packages
   kcl lint oci://ghcr.io/kcl-lang/hello-world
-  
+
   # Lint the current package
   kcl lint
-  
+
 
 Flags:
   -D, --argument strings        Specify the top-level argument

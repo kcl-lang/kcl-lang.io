@@ -58,8 +58,8 @@ Generate Markdown document for current package with a `kcl.mod` file.
 
 ```shell
 kcl doc generate
-``` 
-  
+```
+
 Generate HTML document for current package
 
 ```shell
@@ -106,7 +106,7 @@ Aliases:
 Examples:
   # Generate document for current package
   kcl doc generate
-  
+
 
 Available Commands:
   generate    Generates documents from code and examples

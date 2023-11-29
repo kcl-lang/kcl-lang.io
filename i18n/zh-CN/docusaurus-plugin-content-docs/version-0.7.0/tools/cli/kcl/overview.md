@@ -51,7 +51,7 @@ Flags:
   -v, --version   version for kcl
 
 Additional help topics:
-  kcl            
+  kcl
 
 Use "kcl [command] --help" for more information about a command.
 ```

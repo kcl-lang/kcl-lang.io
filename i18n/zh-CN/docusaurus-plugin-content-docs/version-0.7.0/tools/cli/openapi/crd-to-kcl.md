@@ -3,7 +3,7 @@
 命令
 
 ```shell
-kcl import -m crd -o ${the_kcl_files_output_dir} -s ${your_CRD.yaml} 
+kcl import -m crd -o ${the_kcl_files_output_dir} -s ${your_CRD.yaml}
 ```
 
 # 示例

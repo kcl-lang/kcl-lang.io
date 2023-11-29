@@ -91,7 +91,7 @@ EvaluationError
  --> hello_test.k:3:1
   |
 3 |     assert a.name == 'kcl2'
-  | 
+  |
   |
 
 
@@ -100,7 +100,7 @@ EvaluationError
  --> hello_test.k:7:1
   |
 7 |     assert a.age == 123
-  | 
+  |
   |
 
 
@@ -109,7 +109,7 @@ EvaluationError
   --> hello_test.k:11:1
    |
 11 |     assert a.name == "kcl2"
-   | 
+   |
    |
 
 
@@ -148,7 +148,7 @@ Examples:
 
   # Test with the regex expression filter 'test_func'
   kcl test ./... --run test_func
-  
+
 
 Flags:
       --fail-fast    Exist when meet the first fail test case in the test process.
