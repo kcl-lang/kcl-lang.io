@@ -11,7 +11,7 @@ The KCL project version release strategy is as follows:
 - Release Process: Before releasing a new version, rigorous testing and review are conducted to ensure the quality of the new version. After finalizing the release and completing the testing, the source code, binaries, and images of the new version will be published on Github, along with detailed documentation and usage guides.
 - Version Support: Long-term support will be provided for the latest version, including bug fixes and security updates. Limited support will be provided for older versions, with fixes only done when necessary.
 
-## 发布流程与规则
+## Release Process and Rules
 
 - Feature Development: Main branch development, branch releases, block user issues, critical bugs, security vulnerabilities, and high-priority fixes. It is given higher priority over general feature development and should be completed within a week.
 Iteration Cycle: The iteration cycle is typically 3 months, with a new minor version released every 3 months.
