@@ -118,10 +118,10 @@ jobs:
           scoop install kcl-lang/kcl
           kcl.exe ./static/stack/main.k
 
-  check-kcl-brew-install-macos:
+  check-kcl-brew-install:
     strategy:
       matrix:
-        os: [macos-11, macos-12, macos-latest]
+        os: [macos-11, macos-12, macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -134,43 +134,7 @@ jobs:
           kcl version
           kcl ./static/stack/main.k
           brew uninstall kcl-lang/tap/kcl
-
-          brew install kcl-lang/tap/kcl@0.6.0
-          echo "brew installed successfully"
-          kcl version
-          kcl ./static/stack/main.k
-          brew uninstall kcl-lang/tap/kcl@0.6.0
-
-          brew install kcl-lang/tap/kcl@0.7.0
-          echo "brew installed successfully"
-          kcl version
-          kcl ./static/stack/main.k
-          kcl-language-server version
-          brew uninstall kcl-lang/tap/kcl@0.7.0
-          brew uninstall kcl-lang/tap/kcl-lsp@0.7.0
-
-          brew install kcl-lang/tap/kcl-lsp
           brew uninstall kcl-lang/tap/kcl-lsp
-          brew install kcl-lang/tap/kcl-lsp@0.6.0
-          brew uninstall kcl-lang/tap/kcl-lsp@0.6.0
-          brew install kcl-lang/tap/kcl-lsp@0.7.0
-          kcl-language-server version
-          brew uninstall kcl-lang/tap/kcl-lsp@0.7.0
-
-  check-kcl-brew-install-linux:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: Homebrew/actions/setup-homebrew@master
-
-      - name: Check Brew Installation
-        working-directory: .
-        run: |
-          brew install kcl-lang/tap/kcl
-          echo "brew installed successfully"
-          kcl version
-          kcl ./static/stack/main.k
-          brew uninstall kcl-lang/tap/kcl
 
           brew install kcl-lang/tap/kcl@0.6.0
           echo "brew installed successfully"
