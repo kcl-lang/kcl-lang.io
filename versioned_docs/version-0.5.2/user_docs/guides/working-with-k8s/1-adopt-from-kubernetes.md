@@ -9,7 +9,7 @@ KCL provides many out of the box support for Kubernetes configuration. Through K
 
 ## Prerequisite
 
-- Install [kcl-openapi](https://kcl-lang.io/docs/tools/cli/openapi/quick-start)
+- Install kcl-openapi
 
 ## Quick Start
 
