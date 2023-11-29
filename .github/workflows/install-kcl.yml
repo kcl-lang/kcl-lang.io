@@ -135,6 +135,7 @@ jobs:
           kcl version
           kcl ./static/stack/main.k
           brew uninstall kcl-lang/tap/kcl
+          brew uninstall kcl-lang/tap/kcl-lsp
 
           brew install kcl-lang/tap/kcl@0.6.0
           echo "brew installed successfully"
