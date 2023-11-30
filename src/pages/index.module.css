@@ -192,3 +192,16 @@
     height: 64px;
   }
 }
+
+.toolLogo {
+  display: block;
+  margin: 20 auto;
+  max-width: 100%;
+  max-height: 840px;
+}
+
+@media screen and (max-width: 768px) {
+  .toolLogo {
+    max-height: 700px;
+  }
+}

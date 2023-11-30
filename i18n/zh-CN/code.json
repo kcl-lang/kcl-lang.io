@@ -323,8 +323,14 @@
   "Trusted By": {
     "message": "工程师信赖的技术产品"
   },
-  "Integrate with Your Favorite Tools": {
-    "message": "与您最喜欢的工具集成"
+  "Integrate with Your Favorite Projects": {
+    "message": "与您最喜欢的项目集成"
+  },
+  "Tools for Experience": {
+    "message": "使用工具提升体验"
+  },
+  "IDEs, SDKs, Sharing, Formatting, Testing, Documents": {
+    "message": "IDEs, SDKs, Sharing, Formatting, Testing, Documents"
   },
   "KCL is in": {
     "message": "KCL 已经加入"

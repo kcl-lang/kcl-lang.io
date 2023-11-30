@@ -199,6 +199,37 @@ function ExampleSection() {
   );
 }
 
+function ToolSection() {
+  return (
+    <section>
+      <div className="container">
+        <div className="container text--center">
+          <h2
+            className={clsx("text--center")}
+            style={{ color: "var(--ifm-color-primary)" }}
+          >
+            <Translate>Tools for Experience</Translate>
+          </h2>
+          <p className={clsx("text--center", styles.description)}>
+            <Translate>IDEs, SDKs, Sharing, Formatting, Testing, Documents</Translate>
+          </p>
+
+          <div>
+            <ThemedImage
+              className={styles.toolLogo}
+              alt="Tool image"
+              sources={{
+                light: useBaseUrl("/img/registry-and-ide.png"),
+                dark: useBaseUrl("/img/registry-and-ide.png"),
+              }}
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function IntegrationSection() {
   const integrations = [
     {
@@ -242,7 +273,7 @@ function IntegrationSection() {
           className={clsx("text--center")}
           style={{ color: "var(--ifm-color-primary)" }}
         >
-          <Translate>Integrate with Your Favorite Tools</Translate>
+          <Translate>Integrate with Your Favorite Projects</Translate>
         </h2>
         <div className={styles.whiteboard}>
           <div className="row">
@@ -386,6 +417,8 @@ export default function Home(): JSX.Element {
       <FeaturesSection />
       <BreakSection />
       <ExampleSection />
+      <BreakSection />
+      <ToolSection />
       <BreakSection />
       <IntegrationSection />
       <BreakSection />
