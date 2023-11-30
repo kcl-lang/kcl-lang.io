@@ -258,7 +258,7 @@ spec = {
 
 ## 文档更新
 
-KCL 网站 新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前支持 v0.4.x, v0.5.x, v0.6.x 和 v0.7.0 版本选择，同时欢迎社区同学进行文档共建。
+KCL 网站新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前支持 v0.4.x, v0.5.x, v0.6.x 和 v0.7.0 版本选择，同时欢迎社区同学进行文档共建。
 
 ## 社区动态
 
@@ -281,8 +281,8 @@ KCL 网站 新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前
 
 ## 下一步计划
 
-预计 2023 年 11 月，我们将发布 KCL v0.8.0 版本，更多详情请参考 KCL 2024 路线规划 和 KCL v0.8.0 Milestone，如果您有更多的想法和需求，欢迎在 KCL Github 仓库发起 Issues 或讨论，也欢迎加入我们的社区进行交流 🙌 🙌 🙌
-- KCL 2024 路线规划: https://kcl-lang.io/docs/community/release-policy/roadmap
+预计 2024 年 2 月，我们将发布 KCL v0.8.0 版本，更多详情请参考 KCL 2024 路线规划 和 KCL v0.8.0 Milestone，如果您有更多的想法和需求，欢迎在 KCL Github 仓库发起 Issues 或讨论，也欢迎加入我们的社区进行交流 🙌 🙌 🙌
+- KCL 2024 路线规划: https://github.com/kcl-lang/kcl/issues/882
 - KCL v0.8.0 Milestone: https://github.com/kcl-lang/kcl/milestone/8
 - KCL GitHub Issues: https://github.com/kcl-lang/kcl/issues
 - KCL GitHub Discussion: https://github.com/orgs/kcl-lang/discussions

@@ -300,9 +300,9 @@ More details - https://kcl-lang.io/blog/2023-09-19-kcl-joining-cncf-sandbox/
 
 ## Next Steps
 
-- We expect to release KCL v0.8.0 in November 2023. For more details, please refer to KCL 2024 Roadmap and KCL v0.8.0 Milestone. If you have more ideas and needs, please feel free to raise Issues or Discussions in the KCL Github repository, and welcome to join our community for discussion 🙌 🙌 🙌
+- We expect to release KCL v0.8.0 in February 2024. For more details, please refer to KCL 2024 Roadmap and KCL v0.8.0 Milestone. If you have more ideas and needs, please feel free to raise Issues or Discussions in the KCL Github repository, and welcome to join our community for discussion 🙌 🙌 🙌
 
-- KCL 2024 Roadmap: https://kcl-lang.io/docs/community/release-policy/roadmap
+- KCL 2024 Roadmap: https://github.com/kcl-lang/kcl/issues/882
 - KCL v0.8.0 Milestone: https://github.com/kcl-lang/kcl/milestone/8
 - KCL GitHub Issues: https://github.com/kcl-lang/kcl/issues
 - KCL GitHub Discussion: https://github.com/orgs/kcl-lang/discussions
