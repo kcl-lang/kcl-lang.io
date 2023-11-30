@@ -25,7 +25,7 @@ This blog will introduce the content of KCL v0.7.0 and recent developments in th
 
 ## Language Updates
 
-### ⭐️ New KCL Cli
+### ⭐️ New KCL CLI
 
 When compiling, use `kcl`, when downloading packages, use `kpm`, if you have a KCL model that you want to send to the cluster, you also need to use `kusion`, kcl is the compilation command, `kpm run` can also be compiled, I also found `kusion compile` in the kusion command line, do you have the same confusion, what is the relationship between these tools? How do I use them?
 
