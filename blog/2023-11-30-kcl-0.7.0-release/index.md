@@ -13,13 +13,13 @@ The KCL team is pleased to announce that KCL v0.7.0 is now available! This relea
 
 - _Use KCL language, tools and IDE extensions with more complete features and fewer errors to improve code writing experience and efficiency._
 
-- _The new KCL cli integrates KCL package management, doc, test and other peripheral ecosystems._
+- _The new KCL CLI integrates KCL package management, doc, test and other peripheral ecosystems._
 
 - _The rich KCL third-party library market artifacthub.io provides more than 200 KCL third-party libraries for you to choose from._
 
 KCL v0.7.0 is now available for download at [KCL v0.7.0 Release Page](https://github.com/kcl-lang/kcl/releases/tag/v0.7.0) or [KCL Official Website](https://kcl-lang.io).
 
-[KCL](https://github.com/kcl-lang/kcl) is an open-source, constraint-based record and functional language. KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
+[KCL](https://github.com/kcl-lang/kcl) is an open-source, constraint-based record and functional language hosted by Cloud Native Computing Foundation (CNCF). KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
 This blog will introduce the content of KCL v0.7.0 and recent developments in the KCL community to readers.
 
@@ -29,9 +29,9 @@ This blog will introduce the content of KCL v0.7.0 and recent developments in th
 
 When compiling, use `kcl`, when downloading packages, use `kpm`, if you have a KCL model that you want to send to the cluster, you also need to use `kusion`, kcl is the compilation command, `kpm run` can also be compiled, I also found `kusion compile` in the kusion command line, do you have the same confusion, what is the relationship between these tools? How do I use them?
 
-For this reason, we provide you with a new KCL cli, the goal is to include the KCL ecosystem together, to provide you with a unified and concise operation page, everything, one-click direct.
+For this reason, we provide you with a new KCL CLI, the goal is to include the KCL ecosystem together, to provide you with a unified and concise operation page, everything, one-click direct.
 
-The new KCL cli will continue to use `kcl` as the command prefix, and currently provides multiple sub-commands including compilation, package management, and formatting tools.
+The new KCL CLI will continue to use `kcl` as the command prefix, and currently provides multiple sub-commands including compilation, package management, and formatting tools.
 
 ![cli-help](/img/blog/2023-11-30-kcl-0.7.0-release/cli-help.png)
 
