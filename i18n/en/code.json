@@ -494,8 +494,14 @@
   "Trusted By": {
     "message": "Trusted By"
   },
-  "Integrate with Your Favorite Tools": {
-    "message": "Integrate with Your Favorite Tools"
+  "Integrate with Your Favorite Projects": {
+    "message": "Integrate with Your Favorite Projects"
+  },
+  "Tools for Experience": {
+    "message": "Tools for Experience"
+  },
+  "IDEs, SDKs, Sharing, Formatting, Testing, Documents": {
+    "message": "IDEs, SDKs, Sharing, Formatting, Testing, Documents"
   },
   "KCL is in": {
     "message": "KCL is in"
