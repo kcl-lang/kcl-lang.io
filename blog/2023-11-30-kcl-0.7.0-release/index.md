@@ -96,9 +96,11 @@ c = identity(s.Test{name="hello"})
 
 ### 🏄 API Updates
 
-- New KCL unit test API: https://github.com/kcl-lang/kcl/pull/904
+- New KCL unit test API: _[https://github.com/kcl-lang/kcl/pull/904](https://github.com/kcl-lang/kcl/pull/904)_
 
-- KCL schema parsing API enhancement version `GetFullSchemaType` supports obtaining KCL package related information with third-party libraries
+- KCL schema parsing API enhancement version `GetFullSchemaType` supports obtaining KCL package related information with third-party libraries. _[https://github.com/kcl-lang/kcl/pull/906](https://github.com/kcl-lang/kcl/pull/906)_
+
+- New KCL symbol renaming API: _[https://github.com/kcl-lang/kcl/pull/890](https://github.com/kcl-lang/kcl/pull/890)_
 
 ### 🐞 Error Fixes
 
@@ -116,7 +118,43 @@ c = identity(s.Test{name="hello"})
 
 - Add a check to prohibit duplicate import statements https://github.com/kcl-lang/kcl/pull/727
 
-## Toolchain Updates
+## IDE & Toolchain Updates
+
+### IDE Updates
+
+#### KCL IDE supports goto reference and renaming of symbols
+
+IDE supports goto reference of symbols, using `goto reference` or `find all references`:
+
+![find-ref](/img/docs/tools/Ide/vs-code/FindRefs.png)
+
+IDE supports renaming of symbols:
+
+![rename](/img/docs/tools/Ide/vs-code/Rename.gif)
+
+#### IDE supports formatting of import statements and union types
+
+We have optimized the behavior of blank lines between import statements and other code blocks (formatted as one blank line) and the behavior of spaces between union types (formatted as separated by `|`):
+
+![fmt](/img/blog/2023-10-25-kcl-biweekly-newsletter/Format.gif)
+
+#### KCL IDE has added a lot of completion prompts
+
+We have added a lot of completion prompts for the **configuration definition**, which simplifies the user's mind of writing configuration based on the model and improves the efficiency of configuration editing. In addition, the parameter completion when calling the built-in function is enhanced. Talk is cheap, let's take a look at the effect directly:
+
+![func-completion](/img/blog/2023-11-08-biweekly-newsletter/module-function-completion.gif)
+
+![conf-completion](/img/blog/2023-11-08-biweekly-newsletter/config-completion.gif)
+
+And for the **model design**, we have also added a quick generation of docstring to reduce the boilerplate of typing by hand:
+
+![gen-docstring](/img/blog/2023-11-08-biweekly-newsletter/docstring-gen.gif)
+
+#### KCL IDE other updates and error fixes
+
+- Fix the problem that the language service virtual file system related bug: the file dimension change will cause the language service to crash and must be restarted to recover, which has now been fixed.
+- Support import statement completion of external package dependencies introduced by package management tools
+- Fix the display position of the function parameter undefined type error
 
 ### Test Tool Updates
 

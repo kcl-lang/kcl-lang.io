@@ -95,8 +95,9 @@ c = identity(s.Test{name="hello"})
 
 ### 🏄 API 更新
 
-- 新增 KCL 单元测试 API: https://github.com/kcl-lang/kcl/pull/904
-- KCL Schema 模型解析API增强版 GetFullSchemaType支持获取带有三方库的 KCL 包相关信息和 Schema 属性默认值 https://github.com/kcl-lang/kcl/pull/914
+- 新增 KCL 单元测试 API: _[https://github.com/kcl-lang/kcl/pull/904](https://github.com/kcl-lang/kcl/pull/904)_
+- KCL Schema 模型解析API增强版 GetFullSchemaType支持获取带有三方库的 KCL 包相关信息和 Schema 属性默认值 _[https://github.com/kcl-lang/kcl/pull/906](https://github.com/kcl-lang/kcl/pull/906)_
+- 新增 KCL 符号重命名 API: _[https://github.com/kcl-lang/kcl/pull/890](https://github.com/kcl-lang/kcl/pull/890)_
 
 ### 🐞 错误修复
 
@@ -109,7 +110,44 @@ c = identity(s.Test{name="hello"})
 
 - 增加了检查，禁止同名的 import 语句 https://github.com/kcl-lang/kcl/pull/727
 
-## 工具链更新
+## IDE & 工具链更新
+
+### IDE 更新
+
+#### KCL IDE 插件支持了对符号的引用跳转及重命名功能
+
+IDE 增加了对符号的引用跳转支持，使用`转到引用`或`查找所有引用`：
+
+![find-ref](/img/docs/tools/Ide/vs-code/FindRefs.png)
+
+对符号进行`重命名`：
+
+![rename](/img/docs/tools/Ide/vs-code/Rename.gif)
+
+#### IDE 支持对引用语句和 union 类型的格式化
+
+优化了引用语句与其他代码块之间的空行行为（格式化为一个空行）和union 类型的空格行为（多个类型之间格式化为以 `|` 间隔）：
+
+![fmt](/img/blog/2023-10-25-kcl-biweekly-newsletter/Format.gif)
+
+#### KCL IDE 插件基于新增了大量补全提示
+
+针对**配置定义**这一核心环节，简化用户基于模型编写配置的心智、提升配置编辑的效率。此外，增强了调用内置函数时参数补全。talk is cheap，我们直接来看效果：
+
+![func-completion](/img/blog/2023-11-08-biweekly-newsletter/module-function-completion.gif)
+
+![conf-completion](/img/blog/2023-11-08-biweekly-newsletter/config-completion.gif)
+
+而对于**模型设计**环节，也新增了对 docstring 的快速生成，减少手敲 boilerplate：
+
+![gen-docstring](/img/blog/2023-11-08-biweekly-newsletter/docstring-gen.gif)
+
+#### KCL IDE 其他更新和错误修复
+- 支持对标准库和内置函数的悬停提示，支持对 KCL 代码错误的快速修复
+- 优化了对引用语句和 union 类型的格式化输出。
+- 修复了语言服务虚拟文件系统相关的bug：文件维度的变更引发会语言服务崩溃，必须重启 IDE 恢复，现已修复。
+- 支持包管理工具引入的外部包依赖 import 语句补全
+- 修复函数参数未定义类型错误显示位置
 
 ### 测试工具更新
 
