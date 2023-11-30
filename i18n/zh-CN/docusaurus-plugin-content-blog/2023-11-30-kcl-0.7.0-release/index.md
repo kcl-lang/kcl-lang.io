@@ -250,7 +250,7 @@ spec = {
 
 欢迎大家来 artifacthub.io 为 KCL 社区贡献您的三方库，让 KCL 社区变得更加丰富多彩！
 
-贡献指南：https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/publish-modules/
+贡献指南：https://kcl-lang.io/docs/user_docs/guides/package-management/how-to/publish_pkg_to_ah
 
 ## 其他更新
 
@@ -258,7 +258,7 @@ spec = {
 
 ## 文档更新
 
-KCL 网站 新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前支持 v0.4.x, v0.5.x 和 v0.7.0 版本选择，同时欢迎社区同学进行文档共建。
+KCL 网站 新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前支持 v0.4.x, v0.5.x, v0.6.x 和 v0.7.0 版本选择，同时欢迎社区同学进行文档共建。
 
 ## 社区动态
 
