@@ -21,13 +21,13 @@ import DocsCards from '@site/src/components/global/DocsCards';
 ## 文档
 
 <DocsCards>
-  <DocsCard header="Adopt from Kubernetes" href="adopt-from-kubernetes">
+  <DocsCard header="从 Kubernetes 迁移" href="adopt-from-kubernetes">
     <p>将 Kubernetes 清单和 CRD 转换为 KCL 代码的指南。</p>
   </DocsCard>
-  <DocsCard header="Generate Kubernetes" href="generate-k8s-manifests">
+  <DocsCard header="Kubernetes 配置管理" href="generate-k8s-manifests">
     <p>使用 KCL 生成 Kubernetes 清单的指南。</p>
   </DocsCard>
-  <DocsCard header="Kubernetes Tool Integrations" href="mutate-manifests/kubectl-kcl-plugin">
-    <p>提供一些 Kubernetes 工具集成，以及使用 KCL 模块对 Kubernetes 清单进行变异或验证的指南。</p>
+  <DocsCard header="云原生工具集成" href="mutate-manifests/kubectl-kcl-plugin">
+    <p>提供一些云原生工具集成，以及使用 KCL 模块对 Kubernetes 清单进行变异或验证的指南。</p>
   </DocsCard>
 </DocsCards>

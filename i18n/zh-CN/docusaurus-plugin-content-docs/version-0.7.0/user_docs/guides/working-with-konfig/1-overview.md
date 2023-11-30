@@ -35,13 +35,13 @@ Konfig 提供给用户开箱即用、高度抽象的配置界面，模型库最�
 ## 文档
 
 <DocsCards>
-  <DocsCard header="Structure" href="structure">
+  <DocsCard header="结构" href="structure">
     <p>Konfig 仓库目录和代码结构的说明。</p>
   </DocsCard>
-  <DocsCard header="Quick Start" href="guide">
+  <DocsCard header="快速开始" href="guide">
     <p>使用 Konfig 的快速指南。</p>
   </DocsCard>
-  <DocsCard header="Best Practice" href="practice">
+  <DocsCard header="最佳实践" href="practice">
     <p>将新模型集成到 Konfig 以及 KCL 代码编写的最佳实践指南。</p>
   </DocsCard>
 </DocsCards>
