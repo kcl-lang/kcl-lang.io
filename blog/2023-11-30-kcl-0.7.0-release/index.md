@@ -1,5 +1,5 @@
 ---
-slug: 2023-09-15-kcl-0.7.0-release
+slug: 2023-11-30-kcl-0.7.0-release
 title: KCL v0.7.0 Release Blog
 authors:
   name: KCL Team
@@ -39,7 +39,7 @@ The new KCL CLI will continue to use `kcl` as the command prefix, and currently 
 
 We have tried to add repair suggestions in some error messages. If you are frustrated by the KCL compilation failure, you may wish to listen to the compiler's suggestions.
 
-```
+```python
 import sub as s1
 
 The_first_kcl_program = s.The_first_kcl_program
@@ -57,11 +57,11 @@ KCL cannot find the third-party library used in the package? Try `kcl mod add`, 
 
 #### Removed indentation check in some code blocks
 
-In some code blocks, whether the indentation is aligned has become less important. 
+In some code blocks, whether the indentation is aligned has become less important.
 
 If your code is written like this
 
-```
+```python
 schema TestIndent:
     name: str
     msg: str
@@ -82,40 +82,32 @@ In the past, you may have encountered a lot of red errors, but now this is not a
 
 In the new version of KCL, we have added type annotations for lambda expressions, and you can write lambda with type annotations in the new version of KCL.
 
-```
-import sub as s
+```python
+schema Test:
+    name: str
 
-identity: (s.Test) -> s.Test = lambda res: s.Test {
-  res {
-    name = "world"
-  }
+identity: (Test) -> bool = lambda res: Test -> bool {
+    res.name == "hello"
 }
 
-c = identity(s.Test{name="hello"})
+c = identity(Test { name = "hello" })
 ```
 
 ### 🏄 API Updates
 
 - New KCL unit test API: _[https://github.com/kcl-lang/kcl/pull/904](https://github.com/kcl-lang/kcl/pull/904)_
-
 - KCL schema parsing API enhancement version `GetFullSchemaType` supports obtaining KCL package related information with third-party libraries. _[https://github.com/kcl-lang/kcl/pull/906](https://github.com/kcl-lang/kcl/pull/906)_
-
 - New KCL symbol renaming API: _[https://github.com/kcl-lang/kcl/pull/890](https://github.com/kcl-lang/kcl/pull/890)_
 
-### 🐞 Error Fixes
+### 🐞 Other Updates and Bug Fixes
 
+- KCL command-line tool supports compiling input file wildcards e.g., `kcl path/to/*.k`
 - Fix the type inference error of dictionary types https://github.com/kcl-lang/kcl/pull/900
-
 - Fix the check of Schema parameters https://github.com/kcl-lang/kcl/pull/877/files
-
 - Fix the problem that the compilation cache of KCL programs with third-party libraries is invalid https://github.com/kcl-lang/kcl/pull/841
-
 - In the error message, complete the missing lambda type information https://github.com/kcl-lang/kcl/pull/771
-
 - Fix the problem of singular and plural in diagnostic information https://github.com/kcl-lang/kcl/pull/769
-
 - Fix the problem that the type check is invalid in the assignment statement with type annotation https://github.com/kcl-lang/kcl/pull/757
-
 - Add a check to prohibit duplicate import statements https://github.com/kcl-lang/kcl/pull/727
 
 ## IDE & Toolchain Updates
@@ -150,23 +142,28 @@ And for the **model design**, we have also added a quick generation of docstring
 
 ![gen-docstring](/img/blog/2023-11-08-biweekly-newsletter/docstring-gen.gif)
 
-#### KCL IDE other updates and error fixes
+#### Performance
 
+- KCL has designed and restructured a new semantic model, as well as an API that supports nearest symbol search and symbol semantic information query.
+- The migration of IDE completion, jump, and hover functions to new semantic models significantly reduces the difficulty and code volume of IDE development.
+- The KCL compiler supports syntax incremental parsing and semantic incremental checking, which improves the performance of KCL compilation, construction, and IDE plugin usage in most scenarios by **5-10 times**.
+
+#### KCL IDE other updates and bug fixes
+
+- KCL IDE extension for IntelliJ 2023.2+
 - Fix the problem that the language service virtual file system related bug: the file dimension change will cause the language service to crash and must be restarted to recover, which has now been fixed.
 - Support import statement completion of external package dependencies introduced by package management tools
 - Fix the display position of the function parameter undefined type error
 
 ### Test Tool Updates
 
-Are you worried that your KCL program is written incorrectly? Why not come and test it? This update provides a new KCL test tool. 
+Are you worried that your KCL program is written incorrectly? Why not come and test it? This update provides a new KCL test tool.
 
 The new KCL test tool supports writing unit tests using KCL lambda and executing tests using the tool.
 
 You can write your test cases through lambda expressions in the file with the suffix `_test.k`.
 
-```
-import manifests
-
+```python
 import .app
 
 # Convert the `App` model into Kubernetes Deployment and Service Manifests
@@ -195,7 +192,6 @@ If your test fails, `kcl test` will output error information to help you trouble
 
 ![test-failed](/img/blog/2023-11-30-kcl-0.7.0-release/test-failed.png)
 
-
 ### KCL Package Management
 
 The `update` command is added to the `kcl mod` command. The `update` command is used to automatically update local dependencies. `kcl mod update` will automatically download the missing third-party libraries for you. For details, please refer to: https://github.com/kcl-lang/kpm/pull/212
@@ -206,7 +202,7 @@ The KCL Import tool supports one-click generation of KCL configuration/models fr
 
 If you have the following yaml file:
 
-```
+```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -232,7 +228,7 @@ spec:
 
 You can convert it to a KCL program through the command `kcl import test.yaml`.
 
-```
+```python
 """
 This file was generated by the KCL auto-gen tool. DO NOT EDIT.
 Editing this file might prove futile when you re-run the KCL auto-gen generate command.
@@ -280,7 +276,7 @@ More details: https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adopt-f
 
 ## Community Integrations & Extensions Updates
 
-### KCL Marketplace artifacthub.io
+### KCL Marketplace with ArtifactHub
 
 Through the integration of artifacthub.io, we have built a KCL third-party library market, where you can share your KCL programs with us. You can also choose freely and find the KCL third-party library that suits you!
 
@@ -302,7 +298,7 @@ Contributing to KCL Marketplace: https://kcl-lang.io/docs/user_docs/guides/packa
 
 ## Other Updates
 
-The Full Update and Error Fix List of KCL v0.7.0 can be found at: https://github.com/kcl-lang/kcl/compare/v0.6.0...v0.7.0
+The full update and bugfix List of KCL v0.7.0 can be found at: https://github.com/kcl-lang/kcl/compare/v0.6.0...v0.7.0
 
 ## Document Updates
 
@@ -316,29 +312,9 @@ The versioning semantic option is added to the [KCL website](https://kcl-lang.io
 
 More details - https://kcl-lang.io/blog/2023-09-19-kcl-joining-cncf-sandbox/
 
-### Thanks to the community for their contributions
-
-- Thanks to @jakezhu9 for his contribution to the KCL Import tool Terraform Schema to KCL Schema conversion 🙌 _[https://github.com/kcl-lang/kcl-go/pull/152](https://github.com/kcl-lang/kcl-go/pull/152)_
-
-- Thanks to @jakezhu9 for his contribution to the KCL Import tool Terraform Schema to KCL Schema conversion _[https://github.com/kcl-lang/kpm/pull/194](https://github.com/kcl-lang/kpm/pull/194)_
-
-- Thanks to @jakezhu9 for his contribution to the KCL Import tool Terraform Schema to KCL Schema conversion 🙌 _[https://github.com/kcl-lang/tree-sitter-kcl/pull/1](https://github.com/kcl-lang/tree-sitter-kcl/pull/1)_ 
-
-- Thanks to @jakezhu9 for his contribution to the KCL Import tool Terraform Schema to KCL Schema conversion 🙌 _[https://github.com/kcl-lang/kcl/pull/794](https://github.com/kcl-lang/kcl/pull/794)_
-
-- Thanks to @opsnull for his correction and contribution to the code examples in the KCL official website documentation 🙌 _[https://github.com/kcl-lang/kcl-lang.io/pull/182](https://github.com/kcl-lang/kcl-lang.io/pull/182)_
-
-- Thanks to @prahaladramji for his correction and optimization of the KCL IntelliJ plugin formatting function 🙌 _[https://github.com/kcl-lang/intellij-kcl/pull/15](https://github.com/kcl-lang/intellij-kcl/pull/15)_
-
-- Thanks to @jakezhu9 for his improvement of the KCL syntax parsing unit test, and unified some test cases to use the snaptest framework 🙌 _[https://github.com/kcl-lang/kcl-go/pull/170](https://github.com/kcl-lang/kcl-go/pull/170)_ 
-
-- Thanks to @liangyuanpeng for his contribution of the karmada model package to the KCL model 🙌 _[https://github.com/kcl-lang/artifacthub/pull/48/files](https://github.com/kcl-lang/artifacthub/pull/48/files)_
-
-- Thanks to @mrgleeco, @ghpu, @steeling, @prahaladramji, @zwpaper and others for their valuable feedback and discussion in the use of KCL and toolchain 🙌
-
 ## Next Steps
 
-- We expect to release KCL v0.8.0 in February 2024. For more details, please refer to KCL 2024 Roadmap and KCL v0.8.0 Milestone. If you have more ideas and needs, please feel free to raise Issues or Discussions in the KCL Github repository, and welcome to join our community for discussion 🙌 🙌 🙌
+We expect to release KCL v0.8.0 in February 2024. For more details, please refer to KCL 2024 Roadmap and KCL v0.8.0 Milestone. If you have more ideas and needs, please feel free to raise Issues or Discussions in the KCL Github repository, and welcome to join our community for discussion 🙌 🙌 🙌
 
 - KCL 2024 Roadmap: https://github.com/kcl-lang/kcl/issues/882
 - KCL v0.8.0 Milestone: https://github.com/kcl-lang/kcl/milestone/8
@@ -360,4 +336,3 @@ Thank all KCL users for their valuable feedback and suggestions during this vers
 - [Kusion Repo](https://github.com/KusionStack/kusion)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏
-
