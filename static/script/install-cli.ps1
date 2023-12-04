@@ -108,7 +108,7 @@ function GetWindowsAsset {
         return $CustomAssetFactory.Invoke($Release)
     }
     else {
-        $windowsAsset = $Release | Select-Object -ExpandProperty assets | Where-Object { $_.name -Like "*windows-amd64.zip" }
+        $windowsAsset = $Release | Select-Object -ExpandProperty assets | Where-Object { $_.name -Like "kcl-v*windows-amd64.zip" }
         if (!$windowsAsset) {
             throw "Cannot find the windows KCL CLI binary"
         }
