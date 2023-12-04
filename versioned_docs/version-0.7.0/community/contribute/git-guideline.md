@@ -101,8 +101,6 @@ We suggest that the PR title be consistent with the branch name and the commit m
 {type} ( {component_name_or_file_name} ) :{a_short_description}
 ```
 
-比如，Alice 为分支`fix/alice/fix_output_fmt_bug`创建的PR名称。
-
 For example, Alice creates the PR name `fix/alice/fix_output_fmt_bug` for one branch.
 
 ```
