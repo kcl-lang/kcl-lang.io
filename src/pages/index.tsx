@@ -371,13 +371,10 @@ function CNCFSection() {
           </h2>
           <br />
           <div>
-            <ThemedImage
+            <img
               className={styles.cncfLogo}
               alt="CNCF themed image"
-              sources={{
-                light: useBaseUrl("/img/cncf-color.png"),
-                dark: useBaseUrl("/img/cncf-white.png"),
-              }}
+              src="/img/cncf-color.png"
             />
           </div>
         </div>
