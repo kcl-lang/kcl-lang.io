@@ -1,3 +1,4 @@
 # Roadmap
 
-![](/img/docs/community/release-policy/roadmap.jpg)
++ 2023 Roadmap: https://github.com/kcl-lang/kcl/issues/29
++ 2024 Roadmap: https://github.com/kcl-lang/kcl/issues/882

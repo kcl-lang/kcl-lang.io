@@ -1,3 +1,4 @@
 # 路线规划
 
-![](/img/docs/community/release-policy/roadmap.jpg)
++ 2023 路线规划: https://github.com/kcl-lang/kcl/issues/29
++ 2024 路线规划: https://github.com/kcl-lang/kcl/issues/882
