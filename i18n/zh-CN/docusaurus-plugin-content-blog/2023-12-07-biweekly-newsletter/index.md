@@ -142,6 +142,8 @@ kcl run
 
 ```yaml
 original:
+  apiVersion: apps/v1
+  kind: Deployment
   metadata:
     name: my-deployment
     labels:
@@ -156,7 +158,10 @@ original:
         - name: my-container-2
           image: my-image-2
 patch:
+  apiVersion: apps/v1
+  kind: Deployment
   metadata:
+    name: my-deployment
     labels:
       version: v1
   spec:
@@ -169,6 +174,8 @@ patch:
         - name: my-container-3
           image: my-image-3
 got:
+  apiVersion: apps/v1
+  kind: Deployment
   metadata:
     name: my-deployment
     labels:

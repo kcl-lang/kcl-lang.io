@@ -90,61 +90,47 @@ Write the configuration patch code in `main.k` (using the `labels`, `replicas`, 
 import strategic_merge_patch as s
 
 original = {
-    "apiVersion": "apps/v1",
-    "kind": "Deployment",
-    "metadata": {
-        "name": "my-deployment",
-        "labels": {
-            "app": "my-app"
-        }
-    },
-    "spec": {
-        "replicas": 3,
-        "template": {
-            "spec": {
-                "containers": [
-                    {
-                        "name": "my-container-1",
-                        "image": "my-image-1"
-                    },
-                    {
-                        "name": "my-container-2",
-                        "image": "my-image-2"
-                    }
-                ]
+    apiVersion = "apps/v1"
+    kind = "Deployment"
+    metadata = {
+        name = "my-deployment"
+        labels.app = "my-app"
+    }
+    spec: {
+        replicas = 3
+        template.spec.containers = [
+            {
+                name = "my-container-1"
+                image = "my-image-1"
             }
-        }
+            {
+                name = "my-container-2"
+                image = "my-image-2"
+            }
+        ]
     }
 }
-
 patch = {
-    "apiVersion": "apps/v1",
-    "kind": "Deployment",
-    "metadata": {
-        "name": "my-deployment",
-        "labels": {
-            "version": "v1"
-        }
-    },
-    "spec": {
-        "replicas": 4,
-        "template": {
-            "spec": {
-                "containers": [
-                    {
-                        "name": "my-container-1",
-                        "image": "my-new-image-1"
-                    },
-                    {
-                        "name": "my-container-3",
-                        "image": "my-image-3"
-                    }
-                ]
+    apiVersion = "apps/v1"
+    kind = "Deployment"
+    metadata = {
+        name = "my-deployment"
+        labels.version = "v1"
+    }
+    spec: {
+        replicas = 4
+        template.spec.containers = [
+            {
+                name = "my-container-1"
+                image = "my-new-image-1"
             }
-        }
+            {
+                name = "my-container-3"
+                image = "my-image-3"
+            }
+        ]
     }
 }
-
 got = s.merge(original, patch)
 ```
 
@@ -158,6 +144,8 @@ The output will be:
 
 ```yaml
 original:
+  apiVersion: apps/v1
+  kind: Deployment
   metadata:
     name: my-deployment
     labels:
@@ -172,7 +160,10 @@ original:
         - name: my-container-2
           image: my-image-2
 patch:
+  apiVersion: apps/v1
+  kind: Deployment
   metadata:
+    name: my-deployment
     labels:
       version: v1
   spec:
@@ -185,6 +176,8 @@ patch:
         - name: my-container-3
           image: my-image-3
 got:
+  apiVersion: apps/v1
+  kind: Deployment
   metadata:
     name: my-deployment
     labels:
