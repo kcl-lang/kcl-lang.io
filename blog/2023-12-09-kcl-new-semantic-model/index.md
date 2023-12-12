@@ -1,6 +1,6 @@
 ---
 slug: 2023-12-09-kcl-new-semantic-model
-title: KCL New Semantic Model
+title: Unlocking Advanced Code Intelligence with the KCL Semantic Model
 authors:
   name: KCL Team Member
   title: KCL Team Member

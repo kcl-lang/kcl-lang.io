@@ -1,6 +1,6 @@
 ---
 slug: 2023-12-09-kcl-new-semantic-model
-title: KCL 新语义模型
+title: KCL 高效语义模型技术揭秘：实现快速编译与增强 IDE 支持
 authors:
   name: KCL 团队
   title: KCL 团队
