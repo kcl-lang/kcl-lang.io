@@ -196,11 +196,6 @@ installFile() {
     tar xf $ARTIFACT_TMP_FILE -C $KCL_TMP_ROOT
     local tmp_kclvm_folder=$KCL_TMP_ROOT/kclvm
 
-    if [ ! -f "$tmp_kclvm_folder/bin/kcl" ]; then
-        error "Failed to unpack KCL executable."
-        exit 1
-    fi
-
     # Copy temp kclvm folder into the target installation directory.
     info "Copy the kclvm folder $tmp_kclvm_folder into the target installation directory $KCL_INSTALL_DIR"
     runAsRoot cp -rf $tmp_kclvm_folder $KCL_INSTALL_DIR
