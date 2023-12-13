@@ -1,0 +1,16 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: kcl-play-svc
+spec:
+  components:
+  - name: kcl-play-svc
+    properties:
+      image: kcllang/kcl
+      ports:
+      - port: 80
+        expose: true
+      cmd:
+      - kcl
+      - play
+    type: webservice
