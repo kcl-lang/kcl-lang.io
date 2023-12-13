@@ -31,7 +31,7 @@ GITHUB_ORG=kcl-lang
 GITHUB_REPO=kcl
 
 # KCL filename
-KCL_CLI_FILENAME=kcl
+KCL_CLI_FILENAME=kclvm_cli
 # KCL file path
 KCL_CLI_FILE=${KCL_INSTALL_DIR}/kclvm/bin/${KCL_CLI_FILENAME}
 # KCL Home dir

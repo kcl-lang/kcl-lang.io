@@ -29,7 +29,7 @@ $ErrorActionPreference = 'stop'
 $KCLRoot = $KCLRoot -replace ' ', '` '
 
 # Constants
-$KCLCliFileName = "kcl.exe"
+$KCLCliFileName = "kclvm_cli.exe"
 $KCLCliFileBinPath = "${KCLRoot}\bin"
 $KCLCliFilePath = "${KCLCliFileBinPath}\${KCLCliFileName}"
 
