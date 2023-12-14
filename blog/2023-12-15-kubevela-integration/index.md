@@ -110,6 +110,10 @@ oam.Application {
 }
 ```
 
+> Note: You can see documents here: [https://artifacthub.io/packages/kcl/kcl-module/oam](https://artifacthub.io/packages/kcl/kcl-module/oam) or in the IDE extension.
+
+![oam-definition-hover](/img/blog/2023-12-15-kubevela-integration/oam-definition-hover.png)
+
 ### 4. Deploy the application and verify.
 
 - Apply the configuration.

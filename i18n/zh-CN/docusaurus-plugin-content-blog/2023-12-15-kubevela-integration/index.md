@@ -112,6 +112,10 @@ oam.Application {
 }
 ```
 
+> 注意，你可以在 ArtifactHub 上查阅到相应的 OAM 模型文档或者直接在 IDE 中查看 [https://artifacthub.io/packages/kcl/kcl-module/oam](https://artifacthub.io/packages/kcl/kcl-module/oam) or in the IDE extension.
+
+![oam-definition-hover](/img/blog/2023-12-15-kubevela-integration/oam-definition-hover.png)
+
 ### 4. 部署应用并验证
 
 - 下发配置
