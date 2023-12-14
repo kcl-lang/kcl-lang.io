@@ -105,7 +105,7 @@ oam.Application {
         type = "webservice"
         properties = {
             image = "kcllang/kcl"
-            ports = [{port = 80, expose = True}]  
+            ports = [{port = 80, expose = True}]
             cmd = ["kcl", "play"]
         }
     }]

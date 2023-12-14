@@ -23,10 +23,11 @@ Thank you to all contributors for their outstanding work over the past two weeks
 **📦 Module Update**
 
 The number of KCL models has increased to **240**, mainly including models related to Crossplane Provider and libraries related to JSON merging operations.
-+ KCL JSON Patch library:_[https://artifacthub.io/packages/kcl/kcl-module/jsonpatch](https://artifacthub.io/packages/kcl/kcl-module/jsonpatch)_
-+ KCL JSON Merge Patch library: _[https://artifacthub.io/packages/kcl/kcl-module/json_merge_patch](https://artifacthub.io/packages/kcl/kcl-module/json_merge_patch)_
-+ KCL Kubernetes Strategy Merge Patch library: _[https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch](https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch)_
-+ KCL Crossplane and Crossplane Provider series models: _[https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1&ts_query_web=crossplane](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1&ts_query_web=crossplane)_
+
+- KCL JSON Patch library:_[https://artifacthub.io/packages/kcl/kcl-module/jsonpatch](https://artifacthub.io/packages/kcl/kcl-module/jsonpatch)_
+- KCL JSON Merge Patch library: _[https://artifacthub.io/packages/kcl/kcl-module/json_merge_patch](https://artifacthub.io/packages/kcl/kcl-module/json_merge_patch)_
+- KCL Kubernetes Strategy Merge Patch library: _[https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch](https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch)_
+- KCL Crossplane and Crossplane Provider series models: _[https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1&ts_query_web=crossplane](https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1&ts_query_web=crossplane)_
 
 **🔧 Toolchain Update**
 
@@ -55,11 +56,11 @@ In addition to the existing Go and Python SDKs in KCL, a new Rust SDK has been a
 
 **📒 Documentation Updates**
 
-+ Added index cards for KCL system library documentation for easy navigation: _[https://kcl-lang.io/docs/reference/model/overview](https://kcl-lang.io/docs/reference/model/overview)_
-+ Updated KCL CLI reference documentation: _[https://kcl-lang.io/docs/tools/cli/kcl/overview](https://kcl-lang.io/docs/tools/cli/kcl/overview)_
-+ Updated KCL API reference documentation: _[https://kcl-lang.io/docs/reference/xlang-api/overview](https://kcl-lang.io/docs/reference/xlang-api/overview)_
-+ KCL 2023 & 2024 Roadmap document: _[https://kcl-lang.io/docs/community/release-policy/roadmap](https://kcl-lang.io/docs/community/release-policy/roadmap)_
-+ Supplemented project structure introduction and FAQ for Intellij KCL repository: _[https://github.com/kcl-lang/intellij-kcl/pull/18](https://github.com/kcl-lang/intellij-kcl/pull/18)_
+- Added index cards for KCL system library documentation for easy navigation: _[https://kcl-lang.io/docs/reference/model/overview](https://kcl-lang.io/docs/reference/model/overview)_
+- Updated KCL CLI reference documentation: _[https://kcl-lang.io/docs/tools/cli/kcl/overview](https://kcl-lang.io/docs/tools/cli/kcl/overview)_
+- Updated KCL API reference documentation: _[https://kcl-lang.io/docs/reference/xlang-api/overview](https://kcl-lang.io/docs/reference/xlang-api/overview)_
+- KCL 2023 & 2024 Roadmap document: _[https://kcl-lang.io/docs/community/release-policy/roadmap](https://kcl-lang.io/docs/community/release-policy/roadmap)_
+- Supplemented project structure introduction and FAQ for Intellij KCL repository: _[https://github.com/kcl-lang/intellij-kcl/pull/18](https://github.com/kcl-lang/intellij-kcl/pull/18)_
 
 ## Special Thanks
 
@@ -155,10 +156,10 @@ original:
     template:
       spec:
         containers:
-        - name: my-container-1
-          image: my-image-1
-        - name: my-container-2
-          image: my-image-2
+          - name: my-container-1
+            image: my-image-1
+          - name: my-container-2
+            image: my-image-2
 patch:
   apiVersion: apps/v1
   kind: Deployment
@@ -171,10 +172,10 @@ patch:
     template:
       spec:
         containers:
-        - name: my-container-1
-          image: my-new-image-1
-        - name: my-container-3
-          image: my-image-3
+          - name: my-container-1
+            image: my-new-image-1
+          - name: my-container-3
+            image: my-image-3
 got:
   apiVersion: apps/v1
   kind: Deployment
@@ -188,12 +189,12 @@ got:
     template:
       spec:
         containers:
-        - name: my-container-1
-          image: my-new-image-1
-        - name: my-container-2
-          image: my-image-2
-        - name: my-container-3
-          image: my-image-3
+          - name: my-container-1
+            image: my-new-image-1
+          - name: my-container-2
+            image: my-image-2
+          - name: my-container-3
+            image: my-image-3
 ```
 
 As seen in the output, the labels, replicas, and container fields of the Deployment template have all been updated with the correct values. For more documentation and usage examples, please refer to [the document](https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch).

@@ -22,6 +22,7 @@ tags: [KCL, Biweekly-Newsletter]
 **📦 模型更新**
 
 KCL 模型数量新增至 **240 个**，主要新增与 Crossplane Provider 相关的模型和与 JSON 合并操作相关的库
+
 - KCL JSON Patch 库：_[https://artifacthub.io/packages/kcl/kcl-module/jsonpatch](https://artifacthub.io/packages/kcl/kcl-module/jsonpatch)_
 - KCL JSON Merge Patch 库：_[https://artifacthub.io/packages/kcl/kcl-module/json_merge_patch](https://artifacthub.io/packages/kcl/kcl-module/json_merge_patch)_
 - KCL Kubernetes Strategy Merge Patch 库：_[https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch](https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch)_
@@ -153,10 +154,10 @@ original:
     template:
       spec:
         containers:
-        - name: my-container-1
-          image: my-image-1
-        - name: my-container-2
-          image: my-image-2
+          - name: my-container-1
+            image: my-image-1
+          - name: my-container-2
+            image: my-image-2
 patch:
   apiVersion: apps/v1
   kind: Deployment
@@ -169,10 +170,10 @@ patch:
     template:
       spec:
         containers:
-        - name: my-container-1
-          image: my-new-image-1
-        - name: my-container-3
-          image: my-image-3
+          - name: my-container-1
+            image: my-new-image-1
+          - name: my-container-3
+            image: my-image-3
 got:
   apiVersion: apps/v1
   kind: Deployment
@@ -186,12 +187,12 @@ got:
     template:
       spec:
         containers:
-        - name: my-container-1
-          image: my-new-image-1
-        - name: my-container-2
-          image: my-image-2
-        - name: my-container-3
-          image: my-image-3
+          - name: my-container-1
+            image: my-new-image-1
+          - name: my-container-2
+            image: my-image-2
+          - name: my-container-3
+            image: my-image-3
 ```
 
 可以看到 `Deployment` 模版的 `labels`, `replicas` 和 `container` 字段都被更新为了正确的值，更多文档和使用方式请查阅 _[https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch](https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch)_

@@ -211,7 +211,9 @@ function ToolSection() {
             <Translate>Tools for Experience</Translate>
           </h2>
           <p className={clsx("text--center", styles.description)}>
-            <Translate>IDEs, SDKs, Sharing, Formatting, Testing, Documents</Translate>
+            <Translate>
+              IDEs, SDKs, Sharing, Formatting, Testing, Documents
+            </Translate>
           </p>
 
           <div>

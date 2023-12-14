@@ -6,6 +6,7 @@ authors:
   title: KCL 团队
 tags: [KCL, Semantic]
 ---
+
 ## 什么是 KCL 语义模型？
 
 ![image.png](/img/blog/2023-12-09-kcl-new-semantic-model/01.png)
@@ -166,7 +167,7 @@ pub struct SymbolRef {
 具体而言，`SymbolData` 会根据 `SymbolRef` 的 `kind`，取出不同类型的 Symbol，并转化为抽象的 `trait Symbol`。
 
 ```rust
-pub type KCLSymbol = dyn Symbol<SymbolData = KCLSymbolData, 
+pub type KCLSymbol = dyn Symbol<SymbolData = KCLSymbolData,
     SemanticInfo = KCLSymbolSemanticInfo>;
 pub fn get_symbol(&self, id: SymbolRef) -> Option<&KCLSymbol> {
         match id.get_kind() {
@@ -231,7 +232,7 @@ pub trait Scope {
 
     fn get_all_defs(&self, ...) -> HashMap<String, SymbolRef>;
 
-    fn dump(&self, scope_data: &ScopeData, 
+    fn dump(&self, scope_data: &ScopeData,
             symbol_data: &Self::SymbolData) -> Option<String>;
 }
 ```
