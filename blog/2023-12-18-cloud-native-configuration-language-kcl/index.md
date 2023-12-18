@@ -10,13 +10,6 @@ tags: [KCL, Meeting]
 
 > This blog is a review of the content of the KCL language part of the speech at the 2023 CNCF KCD ShenZhen meeting by KusionStack leader Dayuan Li and KCL project Maintainer Zhe Zong. The main content of this article is a review of the content of the KCL language part of the speech, the activity link: [https://community.cncf.io/events/details/cncf-kcd-hangzhou-presents-kcd-shenzhen-2023/](https://community.cncf.io/events/details/cncf-kcd-shenzhen-presents-kcd-shenzhen-2023/)
 
-
-## Self-introduction
-
-Hello everyone, I am Zhe Zong from Ant Group, and also the Manitinor of the KCL language project. I am very honored to participate in this KCD Shenzhen conference. Next, I will introduce some content about the KCL language part.
-
-![intro-myself.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/intro-myself.png)
-
 ## In the cloud-native era, infrastructure as code (IaC) is the core of developer experience
 
 In today's rapidly developing technical world, infrastructure as code (IaC) has become the key to automating and managing cloud resources, and IaC has also become the core part of developer experience, bringing convenience and efficiency, but it also brings a series of challenges.
@@ -102,9 +95,7 @@ Finally, in this case, the abstraction of the configuration is demonstrated. We 
 
 ## Summary
 
-Finally, this is some data that KCL is in practice at Ant Group and other companies. This is some old data. The new data is not available due to some time constraints. However, this data also reflects some real situations in the KCL practice process. You can see that the ratio of platform-side and application developers is 1:9, which also reflects to a certain extent the role of KCL language in reducing the cognitive burden of application developers.
-
-![kcl-data.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-data.png)
+KCL language is a domain language focusing on cloud-native configuration management. It provides a series of language features, such as strong type system, Schema abstraction, flow control, lambda expression, assert statement, check statement, etc., to solve the problems in the cloud-native configuration management field, such as dynamic configuration management, configuration reliability verification and testing, and reducing developer cognitive burden. At the same time, KCL also provides a series of peripheral tools, such as IDE plug-ins, ArtifactHub integration, KCL Operator, etc., to improve the development experience of developers and reduce development costs.
 
 ## Other Resources
 

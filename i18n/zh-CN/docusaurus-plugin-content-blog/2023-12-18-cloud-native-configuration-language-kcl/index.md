@@ -9,12 +9,6 @@ tags: [KCL, Meeting]
 
 > KusionStack 负责人李大元和云原生策略配置语言 KCL 项目的 Maintainer 宗喆在 2023 年 CNCF KCD 深圳会议的内容回顾，本文章主要是 KCL 语言部分演讲的内容回顾，活动链接: [https://community.cncf.io/events/details/cncf-kcd-hangzhou-presents-kcd-shenzhen-2023/](https://community.cncf.io/events/details/cncf-kcd-shenzhen-presents-kcd-shenzhen-2023/)
 
-## 自我介绍
-
-大家好，来自蚂蚁集团的宗喆，也是 KCL 语言项目的 Manitinor，很荣幸能够参加这次 KCD 深圳大会，接下来由我为大家介绍一些关于 KCL 语言部分的内容。
-
-![intro-myself.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/intro-myself.png)
-
 ## 云原生时代，基础设施代码化是开发者体验的核心
 
 在当今快速发展的技术世界中，基础设施代码化（IaC）已成为自动化和管理云资源的关键，IaC 也成为了开发者体验的核心部分，带来了便利和效率的同时，但它也带来了一系列挑战。
@@ -98,8 +92,7 @@ KCL 建立在一个完全开放的云原生世界当中，KCL 几乎不与任何
 
 ## 总结
 
-最后这个是 KCL 目前在蚂蚁和其他公司实践的一些数据，这个是一些旧的数据，新数据因为一些时间关系，这次会议没赶上。不过从这个数据中也能够反映出一些 KCL 实践过程中的真实情况，可以看到平台侧和应用开发的人员投入占比达到了 1:9，也正在一定程度上反映了 KCL 语言在降低应用开发者心智负担这个方面起到的作用。
-![kcl-data.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-data.png)
+KCL 语言是一个专注于云原生配置管理的领域语言，它提供了一系列的语言特性，如强类型系统，Schema 抽象，流程控制，lambda 表达式，assert 语句，check 语句等等，来解决云原生配置管理领域的问题，如动态配置管理，配置可靠性的验证与测试，降低开发者认知负担等等。同时，KCL 也提供了一系列的周边工具，如 IDE 插件，ArtifactHub 集成，KCL Operator 等等，来提升开发者的开发体验，降低开发成本。
 
 ## 其他资源
 
