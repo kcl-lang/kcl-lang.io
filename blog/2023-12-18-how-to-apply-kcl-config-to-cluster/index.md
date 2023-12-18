@@ -51,7 +51,7 @@ https://kcl-lang.io/blog/2023-10-23-cloud-native-supply-chain-krm-kcl-spec
 
 https://kcl-lang.io/blog/2023-12-15-kubevela-integration
 
-## Using KCL Operator
+### Using KCL Operator
 
 https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator
 
