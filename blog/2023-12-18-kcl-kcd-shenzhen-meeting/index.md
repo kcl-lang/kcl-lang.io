@@ -1,6 +1,6 @@
 ---
 slug: 2023-12-18-kcl-kcd-shenzhen-meeting
-title: KCL && KusionStack Introduction at CNCF KCD shenzhen 2023 Meeting
+title: KCL && KusionStack Introduction at CNCF KCD ShenZhen 2023 Meeting
 authors:
   name: KCL Team
   title: KCL Team
