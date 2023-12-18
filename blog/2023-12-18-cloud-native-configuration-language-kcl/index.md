@@ -14,7 +14,7 @@ tags: [KCL, Meeting]
 
 In today's rapidly developing technical world, infrastructure as code (IaC) has become the key to automating and managing cloud resources, and IaC has also become the core part of developer experience, bringing convenience and efficiency, but it also brings a series of challenges.
 
-![intro-iac.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/intro-iac.png)
+![intro-iac-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/intro-iac-en.png)
 
 First of all, application developers need to face the complex infrastructure and platform concepts provided by k8s, which has caused a high cognitive burden and affected the software delivery experience of higher-level application developers.
 
@@ -24,7 +24,7 @@ Therefore, we urgently need a way to reduce the cognitive burden of developers, 
 
 So we tried to design a new configuration language KCL to solve many of the problems mentioned above by designing the language syntax and enhancing the surrounding tools.
 
-![intro-kcl.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/intro-kcl.png)
+![intro-kcl-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/intro-kcl-en.png)
 
 KCL language starts from the three aspects of **dynamic configuration management**, **configuration reliability verification and testing** and **reducing developer cognitive burden** mentioned above. We propose three main design concepts, **Mutation**, **Validation** and **Abstraction**, and we also use these three design concepts as the core slogan of KCL homepage.
 
@@ -37,7 +37,7 @@ Around the three design concepts, KCL has done some design on the language synta
 
 I have listed some small code snippets that can reflect the language features in the ppt:
 
-![kcl-feature.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-feature.png)
+![kcl-feature-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-feature-en.png)
 
 At first, the leftmost picture shows the flow control, lambda expression, and python-style loop expression that are similar to general-purpose programming languages. Then, the middle picture shows the assert statement provided for verification and testing, and the check block of the schema. Through the strategy written in check, the fields in the schema can be checked. Finally, the rightmost picture is to use the schema to define the data structure and instantiate the configuration. And you can see that in this example, the strong type system of KCL has also demonstrated the ability to check the configuration type. If the type of a field is written incorrectly in the process of instantiating the configuration using the schema, the error will be checked at the compilation stage. The last picture is to use the third-party library of k8s to create an nginx pod. Some unnecessary fields have been shielded, and the application developer only needs to fill in a few fields to complete the configuration writing.
 
@@ -47,7 +47,7 @@ KCL provides some dynamic behaviors such as check, assert statements, type syste
 
 Therefore, in addition to working on language mechanisms, we also need to have the ability to integrate with the community ecology to make the role of KCL language features play on other configuration languages, so that KCL can truly solve the problems in the IaC field. Under the premise of minimizing the changes to the stock configuration, give full play to the role of KCL language features, and solve the problems of dynamic configuration, reliability verification, and reducing the cognitive burden of developers.
 
-![kcl-krm.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-krm.png)
+![kcl-krm-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-krm-en.png)
 
 Therefore, we proposed the [KCL KRM specification](https://github.com/kcl-lang/krm-kcl), based on this specification, we can use the capabilities of the KCL language to dynamically configure, verify and abstract the resources in KRM.
 
@@ -55,7 +55,7 @@ Therefore, we proposed the [KCL KRM specification](https://github.com/kcl-lang/k
 
 Based on the KCL & KRM specification, we have developed some peripheral tools to better integrate KCL with the surrounding tool ecology.
 
-![kcl-integration.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-integration.png)
+![kcl-integration-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-integration-en.png)
 
 - Data structure import and export: KCL provides import/export tools, which support using KCL to import/export data structures from JsonSchema, Terraform, etc., to reduce the process of duplicating data modeling in the development process, and make KCL effect is applied to stock configuration.
 - Plugins: KCL provides plugins for tools such as kubectl, kustomize, helm/helmfile, etc. Users can choose the appropriate engine such as Kubectl, KusionStack, KubeVela or Helmfile according to different scenarios to combine with KCL to make the configuration effective to the cluster.	
@@ -69,27 +69,27 @@ Although KCL is a domain language. KCL also provides a toolchain that is basical
 
 For IDE plug-ins, KCL currently mainly provides VS Code, IntelliJ and NeoVim. The three IDE plug-ins are based on the same KCL Language Server to implement the same capabilities such as completion, jump, hover, code refactoring, and formatting.
 
-![kcl-tools.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-tools.png)
+![kcl-tools-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-tools-en.png)
 
 ## **Artifacthub & KCL**
 
 KCL has been integrated with ArtifactHub, which is used as the model market of KCL, providing more than 200+ KCL models, covering multiple aspects such as configuration editing, verification and model abstraction. If you are interested, you can take a look at whether there are models you are interested in, or if you have good ideas to share with everyone, you can also contribute your KCL package to ArtifactHub.
 
-![kcl-ah.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-ah.png)
+![kcl-ah-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-ah-en.png)
 
 ## Some practical cases
 
 Finally, I will show some simple cases to of the use of KCL.
 
-![kcl-mut.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-mut.png)
+![kcl-mut-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-mut-en.png)
 
 At first, if the KCL Operator is installed in the cluster, then the configuration on the right can be mutated through the configuration file on the left. The behavior code is written in KCL in the source field, and the annotation is dynamically added to the configuration file on the right.
 
-![kcl-vet.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-vet.png)
+![kcl-vet-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-vet-en.png)
 
 Then, in this case, the configuration content generated by terraform plan is verified using the configuration verification tool kcl-vet provided by KCL.
 
-![kcl-abs.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-abs.png)
+![kcl-abs-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-abs-en.png)
 
 Finally, in this case, the abstraction of the configuration is demonstrated. We can get the Kubernetes manifests by directly writing the KCL program, or by writing the configuration using KCL & KRM and compiling it into the corresponding Kubernetes manifests.
 
