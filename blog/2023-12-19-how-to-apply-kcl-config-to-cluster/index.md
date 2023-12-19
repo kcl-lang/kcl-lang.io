@@ -1,5 +1,5 @@
 ---
-slug: 2023-12-18-how-to-apply-kcl-config-to-cluster
+slug: 2023-12-19-how-to-apply-kcl-config-to-cluster
 title: How to Apply KCL Configuration to Cluster
 authors:
   name: KCL Team Member
@@ -15,7 +15,7 @@ tags: [KCL, KubeVela]
 
 ## Several Ways to Deploy KCL Configuration to a cluster
 
-![cloud-native-tool-integration](/img/blog/2023-12-18-how-to-apply-kcl-config-to-cluster/cloud-native-tool-integration.png)
+![cloud-native-tool-integration](/img/blog/2023-12-19-how-to-apply-kcl-config-to-cluster/cloud-native-tool-integration.png)
 
 Since KCL can output YAML/JSON files, theoretically, any method that supports deploying YAML/JSON configurations to a cluster can be used to deploy KCL configurations. Usually, KCL files are stored in Git or Module Registry for easy sharing among different roles and teams. However, KCL can do much more than that, and the main ways to deploy KCL configurations to a cluster are as follows.
 

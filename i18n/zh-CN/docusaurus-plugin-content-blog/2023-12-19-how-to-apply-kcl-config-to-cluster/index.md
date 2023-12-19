@@ -1,5 +1,5 @@
 ---
-slug: 2023-12-18-how-to-apply-kcl-config-to-cluster
+slug: 2023-12-19-how-to-apply-kcl-config-to-cluster
 title: 如何将 KCL 代码部署到集群?
 authors:
   name: KCL 团队
@@ -15,7 +15,7 @@ tags: [KCL]
 
 ## 将 KCL 配置部署到集群的几种方式
 
-![cloud-native-tool-integration](/img/blog/2023-12-18-how-to-apply-kcl-config-to-cluster/cloud-native-tool-integration.png)
+![cloud-native-tool-integration](/img/blog/2023-12-19-how-to-apply-kcl-config-to-cluster/cloud-native-tool-integration.png)
 
 因为 KCL 本身可以输出为 YAML/JSON 文件，因此理论上支持将 YAML/JSON 配置部署到集群的方式，都可以将 KCL 配置部署到集群，通常我们将 KCL 文件放在 Git 或者 Module Registry 中保存方便与不同的角色和团队之间共享配置，但是 KCL 可以做到的远不止这些，这里将可以将 KCL 配置部署到的集群主要分为如下几种情况。
 
