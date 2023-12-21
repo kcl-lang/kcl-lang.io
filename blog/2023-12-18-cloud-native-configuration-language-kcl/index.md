@@ -1,12 +1,11 @@
 ---
 slug: 2023-12-18-cloud-native-configuration-language-kcl
-title: Cloud Native Strategy Configuration Language - KCL
+title: Cloud Native Configuration and Policy Language - KCL
 authors:
   name: KCL Team
   title: KCL Team
 tags: [KCL, Meeting]
 ---
-
 
 > This blog is a review of the content of the KCL language part of the speech at the 2023 CNCF KCD ShenZhen meeting by KusionStack leader Dayuan Li and KCL project Maintainer Zhe Zong. The main content of this article is a review of the content of the KCL language part of the speech, the activity link: [https://community.cncf.io/events/details/cncf-kcd-hangzhou-presents-kcd-shenzhen-2023/](https://community.cncf.io/events/details/cncf-kcd-shenzhen-presents-kcd-shenzhen-2023/)
 
@@ -20,7 +19,7 @@ First of all, application developers need to face the complex infrastructure and
 
 Therefore, we urgently need a way to reduce the cognitive burden of developers, provide efficient dynamic configuration management, and ensure the reliability of configuration through standard configuration testing and verification methods to ensure the efficiency and security of infrastructure.
 
-## Cloud Native Strategy Configuration Language - KCL
+## Cloud Native Configuration and Policy Language - KCL
 
 So we tried to design a new configuration language KCL to solve many of the problems mentioned above by designing the language syntax and enhancing the surrounding tools.
 
@@ -29,6 +28,7 @@ So we tried to design a new configuration language KCL to solve many of the prob
 KCL language starts from the three aspects of **dynamic configuration management**, **configuration reliability verification and testing** and **reducing developer cognitive burden** mentioned above. We propose three main design concepts, **Mutation**, **Validation** and **Abstraction**, and we also use these three design concepts as the core slogan of KCL homepage.
 
 Around the three design concepts, KCL has done some design on the language syntax:
+
 - To use KCL for dynamic configuration management, the language side needs to provide syntaxes such as flow control and lambda expressions that can describe program behavior.
 - To do configuration reliability related verification and testing: you need to give this language the ability to check the configuration content through a strong type system, assert, check and other syntaxes to support the testing and verification process.
 - To reduce developer cognitive burden and development cost: KCL provides a `Schema` model to abstract the data structure. For developers, it shields unnecessary fields, and provides rich third-party library resources through the package management mechanism, reducing the cost of developers directly writing models.
@@ -58,7 +58,7 @@ Based on the KCL & KRM specification, we have developed some peripheral tools to
 ![kcl-integration-en.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-integration-en.png)
 
 - Data structure import and export: KCL provides import/export tools, which support using KCL to import/export data structures from JsonSchema, Terraform, etc., to reduce the process of duplicating data modeling in the development process, and make KCL effect is applied to stock configuration.
-- Plugins: KCL provides plugins for tools such as kubectl, kustomize, helm/helmfile, etc. Users can choose the appropriate engine such as Kubectl, KusionStack, KubeVela or Helmfile according to different scenarios to combine with KCL to make the configuration effective to the cluster.	
+- Plugins: KCL provides plugins for tools such as kubectl, kustomize, helm/helmfile, etc. Users can choose the appropriate engine such as Kubectl, KusionStack, KubeVela or Helmfile according to different scenarios to combine with KCL to make the configuration effective to the cluster.
 - KCL Operator: Developed [KCL Operator](https://github.com/kcl-lang/kcl-operator) to integrate with Kubernetes, and automatically modify the configuration at runtime without the need to repeatedly develop Kubernetes Webhook to write a large amount of configuration processing logic.
 
 KCL is built in a completely open cloud-native world. KCL is almost not strongly bound to any orchestration/engineering tools, and can provide API abstraction, combination and verification capabilities for both clients and runtimes at the same time.

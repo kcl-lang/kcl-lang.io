@@ -19,7 +19,7 @@ tags: [KCL, Meeting]
 同时，对于一些不同的动态环境下的配置管理，目前工业界缺少一套成熟标准的管理办法，往往依赖于一线人员的专业素养，采用非标准化的方法比如脚本和胶水代码的方式进行配置管理，会导致项目变得越来越复杂，难于维护并且引入了配置漂移的风险。
 因此，我们迫切需要一种能够减轻开发者认知负担、提供高效动态配置管理，并且通过标准的配置测试与验证手段来保证可靠性的配置管理方式，来确保基础设施既的高效与安全。
 
-##  KCL 云原生策略配置语言
+## KCL 云原生策略配置语言
 
 于是，我们尝试设计了一种新的配置语言 KCL ，通过在语言语法的设计和周边工具的增强来解决上文中提到诸多问题。
 
@@ -28,6 +28,7 @@ tags: [KCL, Meeting]
 KCL 语言针对前面提到的**动态配置管理**， **配置可靠性的验证与测试**和**降低开发者认知负担**的三个方面出发。提出三个主要的设计理念，**Mutation**， **Validation** 和 **Abstraction** ，我们也将这三个设计理念作为了 KCL 核心的 slogan 展示在 KCL 官网的首页。
 
 围绕着三个设计理念，KCL 在语言语法上做了一些设计：
+
 - 要使用 KCL 做动态的配置管理，语言侧就需要提供诸如流程控制，lambda表达式等能够描述程序行为的语法。
 - 要做配置可靠性相关的验证与测试：就要通过强类型系统，assert，check 等语法，赋予这个语言能够检查配置内容的能力，来支持测试和验证过程。
 - 降低开发者认知负担和开发成本：KCL 提供了 Schema 模型对数据结构进行抽象，对于开发者来说屏蔽非必要字段，并且通过包管理机制提供丰富的三方库资源，降低开发者直接编写模型的编写成本。
@@ -55,7 +56,7 @@ KCL 语言针对前面提到的**动态配置管理**， **配置可靠性的验
 
 ![kcl-integration.png](/img/blog/2023-12-18-cloud-native-configuration-language-kcl/kcl-integration.png)
 
-- 数据结构的导入导出：KCL 提供了如 import/export 工具，支持使用 KCL 从 JsonSchema，Terraform 等导入/导出数据结构，以减少在开发过程中对于数据重复建模的过程，使 KCL 的特性能够更加直接的作用于存量配置。	
+- 数据结构的导入导出：KCL 提供了如 import/export 工具，支持使用 KCL 从 JsonSchema，Terraform 等导入/导出数据结构，以减少在开发过程中对于数据重复建模的过程，使 KCL 的特性能够更加直接的作用于存量配置。
 - 提供了如 kubectl, kustomize, helm/helmfile 等工具的 KCL 插件，用户可以针对不同的场景选择合适场景的引擎比如 Kubectl, KusionStack, KubeVela 或 Helmfile 等来和 KCL 结合将配置生效到集群。
 - 开发了 [KCL Operator](https://github.com/kcl-lang/kcl-operator) 与Kubernetes 集成，在运行时实现配置自动修改，无需重复开发Kubernetes Webhook 编写大量的配置处理逻辑。
 
