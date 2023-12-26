@@ -172,7 +172,7 @@ Infra from Code (IfC) is an approach to infrastructure management similar to IaC
 - [Winglang](https://github.com/winglang/wing) - Winglang is a new cloud-oriented programming language that combines infrastructure and runtime code in one language, supporting multiple build targets such as AWS and Kubernetes. Additionally, Winglang provides built-in libraries for direct manipulation of containers and Helm Chart configurations.
 - [Plutolang](https://github.com/pluto-lang/pluto) - Pluto is a new open-source programming language designed to help developers write cloud applications, making it easier to utilize cloud services. Developers can directly use required resources such as KV databases and message queues in their code based on business needs. Pluto uses static code analysis to obtain the infrastructure resource topology the application depends on and deploys the corresponding resource instances and applications on the specified cloud platform or Kubernetes.
 
-### Conclusion
+## Conclusion
 
 Each management approach has its specific advantages and applications. For simple projects, native Kubernetes YAML files and ConfigMaps may be all that's needed. For more complex projects that require stronger templating capabilities and package management, options like Helm or Kustomize might be chosen. If you need to handle configuration programmatically or integrate Kubernetes into a broader cloud infrastructure management system, Infrastructure as Code (IaC) tools such as Terraform and Pulumi, or DSLs like KCL and CUE, might be more suitable.
 
