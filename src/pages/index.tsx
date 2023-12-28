@@ -8,6 +8,7 @@ import styles from "./index.module.css";
 import { ExampleScroller } from "../components/ExampleScroller";
 import ThemedImage from "@theme/ThemedImage";
 import Translate from "@docusaurus/Translate";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { HiLightningBolt } from "react-icons/hi";
 import {
@@ -216,14 +217,11 @@ function ToolSection() {
             </Translate>
           </p>
 
-          <div>
-            <ThemedImage
+          <div className={styles.imageContainer}>
+            <LazyLoadImage
               className={styles.toolLogo}
               alt="Tool image"
-              sources={{
-                light: useBaseUrl("/img/registry-and-ide.png"),
-                dark: useBaseUrl("/img/registry-and-ide.png"),
-              }}
+              src={useBaseUrl("/img/registry-and-ide.png")}
             />
           </div>
         </div>
