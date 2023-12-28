@@ -24,7 +24,9 @@ tags: [KCL, Biweekly-Newsletter]
 KCL 模型数量新增至 **300 个**，增加了 k8s 1.29 版本的 KCL 模型。
 
 **🔧 工具链更新**
+
 - **导入工具更新**
+
   - 导入工具支持 OpenAPI allOf 关键字校验表达式生成
   - 导入工具支持 KCL 数组和字典类型的 all/any 校验表达式生成
   - 导入工具修复 JSON Schema 数组生成 KCL 代码片段错误及字符串转义错误
@@ -66,8 +68,9 @@ KubeVela 是一个 CNCF 基金会托管的现代的应用交付系统，它基�
 以 KCL Playground 应用为例（这是使用 Go 和 HTML5 编写的应用）展示如何使用 KCL 定义需要部署的 OAM 配置，并通过 KubeVela 发布应用配置。
 
 - 准备工作
+
   - 配置 Kubernetes 集群
-  - 安装 KubeVela 
+  - 安装 KubeVela
   - 安装 KCL
 
 - 新建工程并添加 OAM 库依赖
@@ -77,6 +80,7 @@ kcl mod init kcl-play-svc && cd kcl-play-svc && kcl mod add oam
 ```
 
 - 在 main.k 中编写代码
+
 ```
 import oam
 
@@ -95,11 +99,13 @@ oam.Application {
 ```
 
 - 运行命令下发配置
+
 ```
 kcl run | vela up -f -
 ```
 
 - 端口转发
+
 ```
 vela port-forward kcl-play-svc
 ```

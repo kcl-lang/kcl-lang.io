@@ -25,7 +25,9 @@ Thank you to all contributors for their outstanding work over the past two weeks
 KCL model quantity increased to **300**, added KCL models for k8s 1.29.
 
 **🔧 Toolchain Updates**
+
 - **Import Tool Updates**
+
   - Import tool supports OpenAPI allOf keyword validation expression generation
   - Import tool supports KCL array and dictionary type all/any validation expression generation
   - Import tool fixes JSON Schema array generation KCL code snippet error and string escape error
@@ -50,7 +52,6 @@ KCL model quantity increased to **300**, added KCL models for k8s 1.29.
 
 ## Featured Updates
 
-
 ### Efficient Cloud Native Application Deployment - KCL and KubeVela Integration Quick Guide
 
 [KCL](https://kcl-lang.io) is a configuration and policy language for cloud-native scenarios, hosted by the CNCF Foundation. It aims to improve the writing of complex configurations, such as cloud-native Kubernetes configurations, using mature programming language techniques and practices. KCL focuses on building better modularity, scalability, and stability around configuration, as well as easier logic writing, automation, and integration with the toolchain.
@@ -69,6 +70,7 @@ Using KCL with KubeVela has the following benefits:
 Taking the KCL Playground application (written in Go and HTML5) as an example, we use KCL to define the OAM configuration that needs to be deployed. The overall workflow is as follows:
 
 - Prepare
+
   - Configure the Kubernetes cluster
   - Install KubeVela
   - Install KCL
