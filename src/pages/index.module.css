@@ -193,6 +193,12 @@
   }
 }
 
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .toolLogo {
   display: block;
   margin: 20 auto;
