@@ -142,6 +142,7 @@ Representative technologies for general-purpose languages and CDKs include:
 
 Some tools primarily employ structured KV for configuration management but also provide additional extensions to handle complex scenarios, eliminating the need for extensive YAML templating. For instance, some cloud-native tools offer function extensions that can be implemented in general-purpose languages such as Go, TypeScript, or DSLs like KCL.
 
+- [YTT](https://github.com/carvel-dev/ytt) - YTT is a templating tool that understands YAML structure. It helps you easily configure complex software via reusable templates and user provided values using the Starlark language.
 - [KPT](https://kpt.dev/) - KPT and KPT Functions are used to decouple data and logic definitions, using a Git repository as the source of truth for configurations while managing Kubernetes configurations declaratively without losing extensibility.
 - [Kustomize](https://kustomize.io/) - Similar to KPT, Kustomize and Kustomize Functions can also decouple data and logic definitions.
 - [Crossplane](https://www.crossplane.io/) - Crossplane and Crossplane Composite Functions are used to decouple XR and Composite resource definitions. XRs allow developers to create higher-level abstractions that can encapsulate and compose multiple types of cloud resources across different providers and services. Using Crossplane Composite Functions to render these abstractions can effectively enhance template capabilities for various provider resources while reducing the amount of YAML code needed.
@@ -201,6 +202,7 @@ Do you know of other ways? Feel free to add. ❤️
 - Dhall: [https://github.com/dhall-lang/dhall-lang](https://github.com/dhall-lang/dhall-lang)
 - Thrift: [https://github.com/Thriftpy/thriftpy2](https://github.com/Thriftpy/thriftpy2)
 - Kustomize: [https://kustomize.io/](https://kustomize.io/)
+- YTT: [https://github.com/carvel-dev/ytt](https://github.com/carvel-dev/ytt)
 - KPT: [https://kpt.dev/](https://kpt.dev/)
 - Kube-linter: [https://github.com/stackrox/kube-linter](https://github.com/stackrox/kube-linter)
 - Checkov: [https://github.com/bridgecrewio/checkov](https://github.com/bridgecrewio/checkov)

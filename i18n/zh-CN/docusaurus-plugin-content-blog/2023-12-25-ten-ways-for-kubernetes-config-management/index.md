@@ -136,6 +136,7 @@ Configuration as Code (CaC), 使用代码产生配置，就像工程师们只需
 
 有些工具虽然常用方式是定义结构化 KV 来实现配置管理，但是仍然提供了额外的扩展方式来应对复杂的场景，消除更多 YAML 模版。比如一些云原生工具提供了函数扩展方式，这些函数可以使用 Go, Typescript 等通用语言或者 KCL 等 DSL 来实现。
 
+- [YTT](https://github.com/carvel-dev/ytt) - YTT 是一个理解 YAML 结构的模板工具，它通过使用 Starlark 语言帮助您通过可重复使用的模板和用户提供的值轻松配置复杂的软件。
 - [KPT](https://kpt.dev/)：使用 KPT 和 KPT Function 可以解耦数据和逻辑定义，以 Git 仓库作为配置源的真实来源，通过声明式方式管理 Kubernetes 配置的同时不失扩展性。
 - [Kustomize](https://kustomize.io/)：类似 KPT，使用 Kustomize 和 Kustomize Function 也可以解耦数据和逻辑定义。
 - [Crossplane](https://www.crossplane.io/)：使用 Crossplane 和 Crossplane Composite Function 解耦 XR 和 Composite 资源定义。XR 复合资源允许开发人员创建更高级别的抽象，这些抽象可以封装和组合多个不同类型的云资源（可能跨越不同的云提供商和服务）。使用 Crossplane Composite Function 渲染这些抽象能够很好为不同的供应商资源提供循环或者条件等功能提升模版能力的同时地减少 YAML 代码编写量。
@@ -197,6 +198,7 @@ GitOps 工具提供了一种以 Git 为核心的持续部署方法。而 Operato
 - CEL: [https://kubernetes.io/docs/reference/using-api/cel/](https://kubernetes.io/docs/reference/using-api/cel/)
 - Thrift: [https://github.com/Thriftpy/thriftpy2](https://github.com/Thriftpy/thriftpy2)
 - Kustomize: [https://kustomize.io/](https://kustomize.io/)
+- YTT: [https://github.com/carvel-dev/ytt](https://github.com/carvel-dev/ytt)
 - KPT: [https://kpt.dev/](https://kpt.dev/)
 - Kube-linter: [https://github.com/stackrox/kube-linter](https://github.com/stackrox/kube-linter)
 - Checkov: [https://github.com/bridgecrewio/checkov](https://github.com/bridgecrewio/checkov)
