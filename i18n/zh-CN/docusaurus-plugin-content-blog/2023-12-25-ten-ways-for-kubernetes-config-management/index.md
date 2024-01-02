@@ -147,6 +147,7 @@ Kubernetes 提供了 Mutation Webhook 和 Validation Webhook 可以在运行时�
 
 Operators 和 Kubernetes CRDs 的代表技术有
 
+- [KusionStack](https://kusionstack) - KusionStack 是一个现代的应用程序交付和管理工具链，使开发人员能够以声明的方式指定所需的意图，然后使用一致的工作流来推动应用程序生命周期中的连续部署。此外，KusionStack 通过 `Operation` 和 `ControllerMesh` 等子项目提供满足 K8s 标准的云原生运维、链路可观测、资源可洞察、灰度发布、熔断限流等能力，支持对 Pod 进行增量配置和无损变更，以帮助开发者更好地搭建自己的平台。
 - [KubeVela](https://kubevela.io/docs/)：KubeVela 是一个现代化的应用交付系统，它基于 Open Application Model（OAM）规范构建，为开发者和运维团队提供了一套简化和统一的方式来部署、管理和运维应用。
 - [Crossplane](https://www.crossplane.io/)：Crossplane 是一个开源的多云控制平面，它在 Kubernetes 上提供了基础设施即代码的能力。Crossplane 允许你定义 XRD 和 XR 来管理和组合云资源（如数据库、存储和计算资源）直接从 Kubernetes API。
 - [KCL Operator](https://github.com/kcl-lang/kcl-operator)：KCL Operator 基于 KCL 语言在运行时为 Kubernetes 资源配置带来编程能力，使用 DSL 的灵活性来避免繁琐的 Webhook 的开发并接入 KCL 已有的[生态模型](https://github.com/kcl-lang/modules)。

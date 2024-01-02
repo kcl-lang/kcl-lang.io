@@ -153,6 +153,7 @@ Kubernetes offers Mutation Webhooks and Validation Webhooks that can modify or v
 
 Representative technologies for Operators and Kubernetes CRDs include:
 
+- [KusionStack](https://kusionstack) - KusionStack is a modern application delivery and management toolchain that enables developers to specify desired intent in a declarative way and then using a consistent workflow to drive continuous deployment through application lifecycle. Besides, KusionStack provides cloud native operations, observable, and insightful resources that meet the K8s standard through `KusionStack Operation` and `Controller Mesh`
 - [KubeVela](https://kubevela.io/docs/) - KubeVela is a modern application delivery system based on the Open Application Model (OAM) specification, providing developers and operation teams with a simplified and unified approach to deploying, managing, and operating applications.
 - [Crossplane](https://www.crossplane.io/) - Crossplane is an open-source multicloud control plane that provides infrastructure as code capabilities on Kubernetes. Crossplane enables you to define XRDs and XRs to manage and compose cloud resources (such as databases, storage, and compute resources) directly from the Kubernetes API.
 - [KCL Operator](https://github.com/kcl-lang/kcl-operator) - KCL Operator brings programming capabilities to Kubernetes resource configurations at runtime based on the KCL language, utilizing the flexibility of DSL to avoid the complexity of developing Webhooks while integrating with KCL's existing [modules](https://github.com/kcl-lang/modules).
