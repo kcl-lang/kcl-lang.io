@@ -55,6 +55,7 @@ The Templated KV has the capability of static configuration data and dynamic par
 Representative technologies of templated KV include:
 
 - [Helm](https://helm.sh/): The package management tool of Kubernetes resources, which manages the configuration of Kubernetes resources through the configuration template.
+- [Helmfile](https://github.com/helmfile/helmfile): Helmfile is a declarative tool used to assist users in configuring and managing Helm charts running in Kubernetes clusters. Besides, Helmfile extends the functionality of Helm, making it easier and more repeatable to manage multiple Helm charts.
 - Other configuration templates: Java Velocity, Go Template and other text template engines are very suitable for HTML writing templates. However,when used in configuration scenarios, they are difficult for developers and tools to maintain and analyze.
 
 ### Programmable Key-Value Pair

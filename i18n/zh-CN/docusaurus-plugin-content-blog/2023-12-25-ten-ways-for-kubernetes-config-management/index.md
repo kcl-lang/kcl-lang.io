@@ -59,6 +59,7 @@ Kubernetes 的声明式 API 通常是通过 YAML 或 JSON 格式的清单（Mani
 模版化代表技术有:
 
 - [Helm](https://helm.sh/)：Kubernetes 资源的包管理工具，通过配置模版管理 Kubernetes 资源配置。
+- [Helmfile](https://github.com/helmfile/helmfile)：Helmfile 是一个声明式的工具，用于帮助用户配置和管理在 Kubernetes 集群中运行的 Helm 图表（charts）。此外，Helmfile 扩展了 Helm 的功能，使得管理多个 Helm 图表变得更加容易。
 
 ### 代码化 (Programmable) 的 KV
 
