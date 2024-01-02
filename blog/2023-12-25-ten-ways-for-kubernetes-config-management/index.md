@@ -147,7 +147,7 @@ Some tools primarily employ structured KV for configuration management but also 
 - [Kustomize](https://kustomize.io/) - Similar to KPT, Kustomize and Kustomize Functions can also decouple data and logic definitions.
 - [Crossplane](https://www.crossplane.io/) - Crossplane and Crossplane Composite Functions are used to decouple XR and Composite resource definitions. XRs allow developers to create higher-level abstractions that can encapsulate and compose multiple types of cloud resources across different providers and services. Using Crossplane Composite Functions to render these abstractions can effectively enhance template capabilities for various provider resources while reducing the amount of YAML code needed.
 
-### Operators and Kubernetes CRDs
+### Client or Runtime Tools including Operators and Kubernetes CRDs
 
 Kubernetes offers Mutation Webhooks and Validation Webhooks that can modify or validate Kubernetes resource objects at runtime before they are persisted.
 
@@ -156,6 +156,7 @@ Representative technologies for Operators and Kubernetes CRDs include:
 - [KusionStack](https://kusionstack) - KusionStack is a modern application delivery and management toolchain that enables developers to specify desired intent in a declarative way and then using a consistent workflow to drive continuous deployment through application lifecycle. Besides, KusionStack provides cloud native operations, observable, and insightful resources that meet the K8s standard through `KusionStack Operation` and `Controller Mesh`
 - [KubeVela](https://kubevela.io/docs/) - KubeVela is a modern application delivery system based on the Open Application Model (OAM) specification, providing developers and operation teams with a simplified and unified approach to deploying, managing, and operating applications.
 - [Crossplane](https://www.crossplane.io/) - Crossplane is an open-source multicloud control plane that provides infrastructure as code capabilities on Kubernetes. Crossplane enables you to define XRDs and XRs to manage and compose cloud resources (such as databases, storage, and compute resources) directly from the Kubernetes API.
+- [Radius](https://github.com/radius-project/radius) - Radius is a cloud-native, portable application platform that makes app development easier for teams building cloud-native apps.
 - [KCL Operator](https://github.com/kcl-lang/kcl-operator) - KCL Operator brings programming capabilities to Kubernetes resource configurations at runtime based on the KCL language, utilizing the flexibility of DSL to avoid the complexity of developing Webhooks while integrating with KCL's existing [modules](https://github.com/kcl-lang/modules).
 
 ### GitOps Tools
@@ -213,6 +214,7 @@ Do you know of other ways? Feel free to add. ❤️
 - Helm: [https://helm.sh/](https://helm.sh/)
 - Helm vs. Kustomize: [https://harness.io/blog/helm-vs-kustomize](https://harness.io/blog/helm-vs-kustomize)
 - KubeVela: [https://kubevela.io/docs/](https://kubevela.io/docs/)
+- Radius: [https://github.com/radius-project/radius](https://github.com/radius-project/radius)
 - Crossplane: [https://www.crossplane.io/](https://www.crossplane.io/)
 - ArgoCD: [https://argo-cd.readthedocs.io/en/stable/](https://argo-cd.readthedocs.io/en/stable/)
 - FluxCD: [https://fluxcd.io/](https://fluxcd.io/)

@@ -141,7 +141,7 @@ Configuration as Code (CaC), 使用代码产生配置，就像工程师们只需
 - [Kustomize](https://kustomize.io/)：类似 KPT，使用 Kustomize 和 Kustomize Function 也可以解耦数据和逻辑定义。
 - [Crossplane](https://www.crossplane.io/)：使用 Crossplane 和 Crossplane Composite Function 解耦 XR 和 Composite 资源定义。XR 复合资源允许开发人员创建更高级别的抽象，这些抽象可以封装和组合多个不同类型的云资源（可能跨越不同的云提供商和服务）。使用 Crossplane Composite Function 渲染这些抽象能够很好为不同的供应商资源提供循环或者条件等功能提升模版能力的同时地减少 YAML 代码编写量。
 
-### Operators 和 Kubernetes CRDs
+### 客户端或者运行时工具 (包括 Operators 和 Kubernetes CRDs)
 
 Kubernetes 提供了 Mutation Webhook 和 Validation Webhook 可以在运行时修改或验证 Kubernetes 资源对象在被持久化之前的请求。
 
@@ -150,6 +150,7 @@ Operators 和 Kubernetes CRDs 的代表技术有
 - [KusionStack](https://kusionstack) - KusionStack 是一个现代的应用程序交付和管理工具链，使开发人员能够以声明的方式指定所需的意图，然后使用一致的工作流来推动应用程序生命周期中的连续部署。此外，KusionStack 通过 `Operation` 和 `ControllerMesh` 等子项目提供满足 K8s 标准的云原生运维、链路可观测、资源可洞察、灰度发布、熔断限流等能力，支持对 Pod 进行增量配置和无损变更，以帮助开发者更好地搭建自己的平台。
 - [KubeVela](https://kubevela.io/docs/)：KubeVela 是一个现代化的应用交付系统，它基于 Open Application Model（OAM）规范构建，为开发者和运维团队提供了一套简化和统一的方式来部署、管理和运维应用。
 - [Crossplane](https://www.crossplane.io/)：Crossplane 是一个开源的多云控制平面，它在 Kubernetes 上提供了基础设施即代码的能力。Crossplane 允许你定义 XRD 和 XR 来管理和组合云资源（如数据库、存储和计算资源）直接从 Kubernetes API。
+- [Radius](https://github.com/radius-project/radius) - Radius 是一个云原生、可移植的应用程序平台，使构建云原生应用程序的团队更容易进行应用程序开发。
 - [KCL Operator](https://github.com/kcl-lang/kcl-operator)：KCL Operator 基于 KCL 语言在运行时为 Kubernetes 资源配置带来编程能力，使用 DSL 的灵活性来避免繁琐的 Webhook 的开发并接入 KCL 已有的[生态模型](https://github.com/kcl-lang/modules)。
 
 ### GitOps 工具
@@ -209,6 +210,7 @@ GitOps 工具提供了一种以 Git 为核心的持续部署方法。而 Operato
 - Helm: [https://helm.sh/](https://helm.sh/)
 - Helm vs. Kustomize: [https://harness.io/blog/helm-vs-kustomize](https://harness.io/blog/helm-vs-kustomize)
 - KubeVela: [https://kubevela.io/docs/](https://kubevela.io/docs/)
+- Radius: [https://github.com/radius-project/radius](https://github.com/radius-project/radius)
 - KusionStack: [https://kusionstack.io](https://kusionstack.io)
 - Crossplane: [https://www.crossplane.io/](https://www.crossplane.io/)
 - ArgoCD: [https://argo-cd.readthedocs.io/en/stable/](https://argo-cd.readthedocs.io/en/stable/)
