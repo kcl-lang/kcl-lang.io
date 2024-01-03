@@ -701,7 +701,7 @@
   },
   "sidebar.user_docs.category.Package Management Tools": {
     "message": "Package Management Tools",
-    "description": "The label for category Package Management in sidebar user_docs"
+    "description": "The label for category Package Management Tools in sidebar user_docs"
   },
   "sidebar.user_docs.category.Konfig": {
     "message": "Konfig",
@@ -774,5 +774,9 @@
   "sidebar.tools.category.Command Reference": {
     "message": "Command Reference",
     "description": "The label for category Command Reference in sidebar tools"
+  },
+  "sidebar.tools.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar tools"
   }
 }
