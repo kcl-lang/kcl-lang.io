@@ -1,9 +1,53 @@
 ---
-title: "Crossplane KCL Function"
-sidebar_position: 6
+slug: 2024-01-04-biweekly-newsletter
+title: KCL Biweekly Newsletter (2023 12.22 - 2024.01.04) | Crossplane KCL Integration
+authors:
+  name: KCL Team
+  title: KCL Team
+tags: [KCL, Biweekly-Newsletter]
+image: /img/biweekly-newsletter.png
 ---
 
-## Introduction
+![](/img/biweekly-newsletter.png)
+
+[KCL](https://github.com/kcl-lang) is a constraint-based record and functional language hosted by Cloud Native Computing Foundation (CNCF) that enhances the writing of complex configurations, including those for cloud-native scenarios. With its advanced programming language technology and practices, KCL is dedicated to promoting better modularity, scalability, and stability for configurations. It enables simpler logic writing and offers ease of automation APIs and integration with homegrown systems.
+
+This section will update the KCL language community's latest developments every two weeks, including features, website updates, and the latest community news, helping everyone better understand the KCL community!
+
+**_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
+
+## Overview
+
+Thank you to all contributors for their outstanding work over the past two weeks (12.22 2023 - 01.04 2024). Here is an overview of the key content:
+
+**🔧 Toolchain Update**
+
+**Package Management Tool Update**
+
+- Adds support for automatic translation of external package names containing the - symbol to an underscore _ that KCL recognizes, such as set-annotation -> set_annotation
+- Fixes a null pointer error caused when kcl mod add encounters a mismatch between the Registry package version and the version of the package already present locally
+
+**💻 IDE Update**
+
+**Semantic Highlighting**
+
+- KCL IDE now supports semantic-level highlighting, avoiding differences in highlighting across various IDE plugins
+
+**Enhancement for Completion Features**
+
+- Differentiates between Schema type and instance completion symbols
+- Unifies the format for Schema comment documentation completion
+- Fixes inconsistencies in completion symbol types across different syntaxes
+
+## Special Thanks
+
+The following are listed in no particular order:
+
+- Thanks to @FLAGLORD, @YiuTerran, @flyinox, @steeling, @Anoop, @Phillip Neumann, and @Even Solberg for their valuable feedback and discussions during the promotion and usage of KCL 🙌
+
+## Featured Updates
+
+### Using KCL to Write Crossplane Composite Functions
 
 Crossplane and Crossplane Composite Functions are used to decouple XR and Composite resource definitions. XRs allow developers to create higher-level abstractions that can encapsulate and compose multiple types of cloud resources across different providers and services. Using Crossplane Composite Functions to render these abstractions can effectively enhance template capabilities for various provider resources while reducing the amount of YAML code needed.
 
@@ -13,18 +57,18 @@ Combining KCL with Crossplane composite functions offers several benefits:
 + **Reusability and Modularity**: KCL supports modularity and code reuse through OCI Registry, which means you can create reusable configuration components. Combined with Crossplane, this promotes the modularity of composite resources, increases the reuse of configurations, and reduces errors.
 + **Automation and Policy-Driven**: You can use KCL’s powerful features to write policies and constraints that, combined with Crossplane’s declarative resource management, can be automatically enforced, ensuring compliance within the cloud environment.
 
-## Prerequisites
+#### Prerequisites
 
 - Prepare a Kubernetes cluster
 - Install Kubectl
 - Install [Crossplane and Crossplane CLI 1.14+](https://docs.crossplane.io/)
 - Install Go 1.21+
 
-## Quick Start
+#### Quick Start
 
 Let’s write a KCL function abstraction which generates managed resources `VPC` and `InternetGateway` with a input resource `Network`.
 
-### 1. Install the Crossplane KCL Function
+##### 1. Install the Crossplane KCL Function
 
 Installing a Function creates a function pod. Crossplane sends requests to this pod to ask it what resources to create when you create a composite resource.
 
@@ -41,7 +85,7 @@ spec:
 EOF
 ```
 
-### 2. Apply the Composition Resource
+##### 2. Apply the Composition Resource
 
 Just like a render function, you can apply the composition resource using KCL into cluster.
 
@@ -105,7 +149,7 @@ spec:
 EOF
 ```
 
-### 3. Create Crossplane XRD
+##### 3. Create Crossplane XRD
 
 We define a schema using the crossplane XRD for the input resource `Network`, it has a field named `id` which denotes the network id.
 
@@ -142,7 +186,7 @@ spec:
 EOF
 ```
 
-### 4. Apply the Crossplane XR
+##### 4. Apply the Crossplane XR
 
 ```shell
 kubectl apply -f- << EOF
@@ -156,7 +200,7 @@ spec:
 EOF
 ```
 
-### 5. Verify the Generated Managed Resources
+##### 5. Verify the Generated Managed Resources
 
 + VPC
 
@@ -174,11 +218,11 @@ kubectl get InternetGateway -o yaml | grep network-id
 
 It can be seen that we have indeed successfully generated `VPC` and `InternetGateway` resources, and their fields meet expectations.
 
-### 6. Debugging KCL Functions Locally
+##### 6. Debugging KCL Functions Locally
 
 See [here](https://github.com/kcl-lang/crossplane-kcl) for more information.
 
-## Client Enhancements
+#### Client Enhancements
 
 It can be seen that the above abstract code often requires a crossplane as a control plane intermediary, and you can still complete the abstraction in a fully client-side manner and directly generate crossplane managed resources to reduce the burden on the cluster.
 
@@ -217,22 +261,14 @@ spec:
       matchControllerRef: true
 ```
 
-## Guides for Developing KCL
+See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/crossplane-kcl-function) for more information and examples.
 
-Here's what you can do in the KCL script:
+## Resources
 
-+ Return an error using `assert {condition}, {error_message}`.
-+ Read the `ObservedCompositeResource` from `option("params").oxr`.
-+ Read the `ObservedComposedResources` from `option("params").ocds`.
-+ Read the `DesiredCompositeResource` from `option("params").dxr`.
-+ Read the `DesiredComposedResources` from `option("params").dcds`.
-+ Read the environment variables. e.g. `option("PATH")` (**Not yet implemented**).
+❤️ Thanks to all KCL users and community members for their valuable feedback and suggestions in the community. See [here](https://github.com/kcl-lang/community) to join us!
 
-## Library
+For more resources, please refer to
 
-You can directly use [KCL standard libraries](https://kcl-lang.io/docs/reference/model/overview) such as `regex.match`, `math.log`.
-
-## More Documents and Examples
-
-- [KRM KCL Spec](https://github.com/kcl-lang/krm-kcl)
-- [Crossplane KCL](https://github.com/kcl-lang/crossplane-kcl/examples)
+- [KCL Website](https://kcl-lang.io/)
+- [KusionStack Website](https://kusionstack.io/)
+- [KCL v0.8.0 Milestone](https://github.com/kcl-lang/kcl/milestone/8)
