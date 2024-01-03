@@ -71,7 +71,7 @@ spec:
       spec:
         # Generate new resources
         target: Resources
-        # OCI, Git or inline Source
+        # OCI, Git or inline source
         # source: oci://ghcr.io/kcl-lang/crossplane-xnetwork-kcl-function
         # source: github.com/kcl-lang/modules/crossplane-xnetwork-kcl-function
         source: |
@@ -83,7 +83,7 @@ spec:
               apiVersion = "ec2.aws.upbound.io/v1beta1"
               kind = "VPC"
               metadata.name = "vpc"
-              metadata.labels: network_id_labels
+              metadata.labels = network_id_labels
               spec.forProvider = {
                   region = "eu-west-1"
                   cidrBlock = "192.168.0.0/16"
@@ -95,7 +95,7 @@ spec:
               apiVersion = "ec2.aws.upbound.io/v1beta1"
               kind = "InternetGateway"
               metadata.name = "gateway"
-              metadata.labels: network_id_labels
+              metadata.labels = network_id_labels
               spec.forProvider = {
                   region = "eu-west-1"
                   vpcIdSelector.matchControllerRef = True
