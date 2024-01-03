@@ -57,22 +57,22 @@ global     nonlocal   struct     class       final
 
 The following list of operators is ordered from **highest to lowest**:
 
-| Operator                                                         | Description                                              |
-| ---------------------------------------------------------------- | -------------------------------------------------------- | ---------- |
-| `**`                                                             | Exponentiation (highest priority)                        |
-| `+x` `-x` `~x`                                                   | Positive, negative, bitwise NOT                          |
-| `*` `/` `%` `//`                                                 | Multiplication, division, floor division and remainder   |
-| `+` `-`                                                          | Addition and subtraction                                 |
-| `<<` `>>`                                                        | Left and right shifts                                    |
-| `&`                                                              | Bitwise AND                                              |
-| `^`                                                              | Bitwise XOR                                              |
-| `                                                                | `                                                        | Bitwise OR |
-| `in`, `not in`, `is`, `is not`, `<`, `<=`, `>`, `>=`, `!=`, `==` | Comparisons, including membership and identity operators |
-| `not`                                                            | Boolean NOT                                              |
-| `and`                                                            | Boolean AND                                              |
-| `or`                                                             | Boolean OR                                               |
-| `if – else`                                                      | Conditional expression =                                 |
-| `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `                       | =`, `^=`, `\*\*=`, `//=`, `<<=`, `>>=`                   | Assign     |
+| Operator                                                                         | Description                                              |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| `**`                                                                             | Exponentiation (highest priority)                        |
+| `+x` `-x` `~x`                                                                   | Positive, negative, bitwise NOT                          |
+| `*` `/` `%` `//`                                                                 | Multiplication, division, floor division and remainder   |
+| `+` `-`                                                                          | Addition and subtraction                                 |
+| `<<` `>>`                                                                        | Left and right shifts                                    |
+| `&`                                                                              | Bitwise AND                                              |
+| `^`                                                                              | Bitwise XOR                                              |
+| \|                                                                               | Bitwise OR                                               |
+| `in`, `not in`, `is`, `is not`, `<`, `<=`, `>`, `>=`, `!=`, `==`                 | Comparisons, including membership and identity operators |
+| `not`                                                                            | Boolean NOT                                              |
+| `and`                                                                            | Boolean AND                                              |
+| `or`                                                                             | Boolean OR                                               |
+| `if – else`                                                                      | Conditional expression =                                 |
+| `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `=`, `^=`, `\*\*=`, `//=`, `<<=`, `>>=` | Assign                                                   |
 
 ## Grammar
 
