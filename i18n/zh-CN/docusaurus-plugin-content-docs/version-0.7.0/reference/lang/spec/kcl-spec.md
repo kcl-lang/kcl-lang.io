@@ -97,15 +97,10 @@ assert_stmt: ASSERT simple_expr (IF simple_expr)? (COMMA test)?
 //////////// if_stmt ////////////
 if_stmt: IF test COLON execution_block (ELIF test COLON execution_block)* (ELSE COLON execution_block)?
 execution_block: if_simple_stmt | NEWLINE _INDENT schema_init_stmt+ _DEDENT
-if_simple_stmt: (simple_assign_stmt | unification_stmt | expr_stmt | assert_stmt) NEWLINE
+if_simple_stmt: (assign_stmt | unification_stmt | expr_stmt | assert_stmt) NEWLINE
 
 //////////// assign_stmt ////////////
 assign_stmt: identifier [COLON type] (ASSIGN identifier)* ASSIGN test
-    | identifier (COMP_PLUS | COMP_MINUS | COMP_MULTIPLY | COMP_DOUBLE_STAR | COMP_DIVIDE
-    | COMP_DOUBLE_DIVIDE | COMP_MOD | COMP_AND | COMP_OR | COMP_XOR | COMP_SHIFT_LEFT
-    | COMP_SHIFT_RIGHT) test
-
-simple_assign_stmt: identifier ASSIGN test
     | identifier (COMP_PLUS | COMP_MINUS | COMP_MULTIPLY | COMP_DOUBLE_STAR | COMP_DIVIDE
     | COMP_DOUBLE_DIVIDE | COMP_MOD | COMP_AND | COMP_OR | COMP_XOR | COMP_SHIFT_LEFT
     | COMP_SHIFT_RIGHT) test
