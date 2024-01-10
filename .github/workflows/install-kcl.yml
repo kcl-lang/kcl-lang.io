@@ -25,7 +25,7 @@ jobs:
           python-version: '3.9'
       - uses: actions/setup-go@v1
         with:
-          go-version: "1.19"
+          go-version: "1.21"
 
       - name: Check Python Installation
         run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
@@ -56,7 +56,7 @@ jobs:
           python-version: '3.9'
       - uses: actions/setup-go@v1
         with:
-          go-version: "1.19"
+          go-version: "1.21"
 
       - name: Check Python Installation
         run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
@@ -67,7 +67,7 @@ jobs:
   check-windows:
     strategy:
       matrix:
-        goversion: ['1.19', '1.20']
+        goversion: ['1.20', '1.21']
         pyversion: ['3.9', '3.10']
     runs-on: windows-latest
     steps:
