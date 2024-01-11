@@ -1,12 +1,10 @@
-# 如何在 github action 中使用 kpm 发布您的 KCL 包
+# 如何在 github action 中使用 kcl 包管理发布您的 KCL 包
 
-[kpm](https://github.com/KusionStack/kpm) 是一个用于管理 kcl 包的工具。本文将指导您如何在 GitHub Action 中使用 kpm 将您的 kcl 包推送到发布到 ghcr.io 中。
+本文将指导您如何在 GitHub Action 中使用 kcl 包管理将您的 kcl 包推送到发布到 ghcr.io 中。
 
-下面是一个简单的步骤，指导您如何使用 kpm 将您的 kcl 包推送到 OCI Registry。
+## 步骤 1：安装 KCL CLI
 
-## 步骤 1：安装 kpm
-
-首先，您需要在您的计算机上安装 kpm。您可以按照 [kpm 安装文档](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)中的说明进行操作。
+首先，您需要在您的计算机上安装 KCL CLI。您可以按照 [KCL CLI 安装文档](https://kcl-lang.io/zh-CN/docs/user_docs/getting-started/install)中的说明进行操作。
 
 ## 步骤 2：创建一个 GitHub 账号
 
@@ -31,7 +29,7 @@
 ├── LICENSE
 ├── README.md
 ├── kcl.mod # kcl.mod 将当前仓库内容定义为一个 kcl 包
-├── kcl.mod.lock # kcl.mod.lock 是 kpm 自动生成的文件
+├── kcl.mod.lock # kcl.mod.lock 是 kcl 包管理工具自动生成的文件
 └── main.k # 您的 KCL 程序
 ```
 
@@ -69,17 +67,17 @@ jobs:
         with:
           go-version: 1.19
 
-      - name: Install kpm
-        run: go install kcl-lang.io/kpm@latest
+      - name: Install KCL CLI 
+        run: go install kcl-lang.io/cli/cmd/kcl@latest
 
       - name: Login and Push
         env:
           # 通过环境变量指定 OCI Registry 和账户
           KPM_REG: ${{ secrets.REG }}
           KPM_REPO: ${{ secrets.REG_ACCOUNT }}
-          # kpm login 时使用 secrets.REG_TOKEN
-        run: kpm login -u ${{ secrets.REG_ACCOUNT }} -p ${{ secrets.REG_TOKEN }} ${{ secrets.REG }} && kpm push
+          # kcl registry login 时使用 secrets.REG_TOKEN
+        run: kcl registry login -u ${{ secrets.REG_ACCOUNT }} -p ${{ secrets.REG_TOKEN }} ${{ secrets.REG }} && kcl mod push
 
-      - name: Run kpm project from oci registry
-        run: kpm run oci://${{ secrets.REG }}/${{ secrets.REG_ACCOUNT }}/catalog --tag 0.0.1
+      - name: Run KCL project from oci registry
+        run: kcl run oci://${{ secrets.REG }}/${{ secrets.REG_ACCOUNT }}/catalog --tag 0.0.1
 ```
