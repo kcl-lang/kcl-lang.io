@@ -16,3 +16,4 @@ data:
         args:
           - -c
           - kcl
+          - run
