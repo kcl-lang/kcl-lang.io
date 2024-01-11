@@ -70,7 +70,7 @@ description = "This is my package."
 ### 3.1. oci dependency
 
 kpm 默认将包保存在 oci registry 上，默认使用的 oci registry 是 `ghcr.io/kcl-lang`。
-更多内容关于 oci registry 请参考 [kpm 支持 OCI registry](./docs/kpm_oci-zh.md)。
+更多内容关于 oci registry 请参考 [支持 OCI registry](https://kcl-lang.io/docs/user_docs/guides/package-management/how-to/oci_reg_supports)。
 
 你可以按照以下方式指定依赖项：
 
