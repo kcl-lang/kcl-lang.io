@@ -2142,6 +2142,20 @@ data = Data {
 }
 ```
 
+```python
+import regex
+
+schema DataMap:
+    [attr: str]: str
+    check:
+        regex.match(attr, r'^[-_a-zA-Z0-9]+$')
+
+data = DataMap {
+    key1 = "value1"
+    "foo.bar" = "value2"  # check error
+}
+```
+
 ##### 继承
 
 类似于其他面向对象语言，KCL 提供了基础且有限的面向对象支持，例如 **属性复用**，**私有和公有变量**和**单继承**。KCL 不支持多继承。
