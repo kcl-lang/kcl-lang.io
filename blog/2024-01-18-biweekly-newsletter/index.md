@@ -1,0 +1,207 @@
+---
+slug: 2024-01-04-biweekly-newsletter
+title: KCL Biweekly Newsletter (2024 01.04 - 2024.01.18) | KCL v0.7.4 Released!
+authors:
+  name: KCL Team
+  title: KCL Team
+tags: [KCL, Biweekly-Newsletter]
+image: /img/biweekly-newsletter.png
+---
+
+![](/img/biweekly-newsletter.png)
+
+[KCL](https://github.com/kcl-lang) is a constraint-based record and functional language hosted by Cloud Native Computing Foundation (CNCF) that enhances the writing of complex configurations, including those for cloud-native scenarios. With its advanced programming language technology and practices, KCL is dedicated to promoting better modularity, scalability, and stability for configurations. It enables simpler logic writing and offers ease of automation APIs and integration with homegrown systems.
+
+This section will update the KCL language community's latest developments every two weeks, including features, website updates, and the latest community news, helping everyone better understand the KCL community!
+
+**_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
+
+## Overview
+
+Thank you to all contributors for their outstanding work over the past two weeks (01.04 2024 - 01.18 2024). Here is an overview of the key content:
+
+**🌞 KCL Update**
+
+- v0.7.4 released, adding support for Linux arm64.
+
+**🎁 API Update**
+
+- Added APIs for syntax and semantic analysis 
+
+**🔧 Toolchain Update**
+
+- **kcl-go sdk update**
+  - KCL Doc tool supports output in OpenAPI format.
+  - Added Parsing related APIs.
+
+- **Import tool update**
+  - Optimized the user experience of the import tool to generate KCL, and added support for keywords oneOf and allOf.
+
+- **KCL Package Management Tool**
+  - Released v0.6.0, which supports adding dependencies via git commit.
+
+**💻 IDE Update**
+
+- **Semantic Highlighting**
+  - KCL IDE optimized semantic highlighting.
+
+- **Enhancement for Completion Features**
+  - Fixed the completion error in nested schema definitions
+  - Fixed the missing hover information
+
+## Special Thanks
+
+The following are listed in no particular order:
+
+- Thanks to @jakezhu9 for his continuous contribution to the kcl import tool 🤝
+- Thanks to @AdmiralNemo, @Phillip Neumann, @Naxe, @steeling, etc. for their valuable feedback and suggestions in the use of KCL 🙌
+
+## Featured Updates
+
+### KCL IDE Semantic Highlighting Enhancement
+
+KCL IDE previously only supported KCL syntax highlighting, as shown in the figure below:
+
+![](/img/blog/2024-01-18-biweekly-newsletter/old-ide.png)
+
+This year, we gradually enabled the new KCL semantic architecture model. With the support of the new semantic architecture, KCL IDE supports semantic-level highlighting, and the code related to semantics will be highlighted in the same way.
+
+![](/img/blog/2024-01-18-biweekly-newsletter/new-ide.png)
+
+For more information about the KCL semantic architecture model, please refer to:
+
+[Unlocking Advanced Code Intelligence with the KCL Semantic Model](https://kcl-lang.io/blog/2023-12-09-kcl-new-semantic-model)
+
+### KCL Package Management Tool Supports Adding Git Dependencies via Commit
+
+KCL Package Management Tool supports adding git dependencies via commit. 
+Take https://github.com/KusionStack/catalog as an example, add commit a29e3db as a dependency. You can add it directly through the dependency in the kcl.mod file or the command line.
+
+Edit the kcl.mod file as follows:
+```
+[dependencies]
+catalog = { git = "https://github.com/KusionStack/catalog.git", commit = "a29e3db" }
+```
+
+Or add it via the command line:
+
+```
+kcl mod add -git https://github.com/KusionStack/catalog.git -commit a29e3db
+```
+
+### KCL Import Tool Enhancement
+
+The import tool supports the generation with oneOf and allOf keywords. Take the oneOf keyword as an example, save the following content in the file oneof.json.
+
+```json
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://example.com/schemas/book.json",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "$comment": "oneOf for types",
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        {
+          "type": "integer"
+        }
+      ]
+    },
+    "category": {
+      "$comment": "oneOf for objects",
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Through the import command, you can generate the corresponding KCL file.
+
+```
+kcl import oneof.json
+```
+
+You can see that the generated oneof.k file content is as follows.
+
+```kcl
+"""
+This file was generated by the KCL auto-gen tool. DO NOT EDIT.
+Editing this file might prove futile when you re-run the KCL auto-gen generate command.
+"""
+
+schema Book:
+    r"""
+    Book
+
+    Attributes
+    ----------
+    title : str, optional
+    author : str | [str] | int, optional
+    category : BookCategoryOneOf0 | BookCategoryOneOf1, optional
+    """
+
+    title?: str
+    author?: str | [str] | int
+    category?: BookCategoryOneOf0 | BookCategoryOneOf1
+
+schema BookCategoryOneOf0:
+    r"""
+    BookCategoryOneOf0
+
+    Attributes
+    ----------
+    name : str, optional
+    """
+
+    name?: str
+
+schema BookCategoryOneOf1:
+    r"""
+    BookCategoryOneOf1
+
+    Attributes
+    ----------
+    title : str, optional
+    """
+
+    title?: str
+```
+
+## Resources
+
+❤️ Thanks to all KCL users and community members for their valuable feedback and suggestions in the community. See [here](https://github.com/kcl-lang/community) to join us!
+
+For more resources, please refer to
+
+- [KCL Website](https://kcl-lang.io/)
+- [KusionStack Website](https://kusionstack.io/)
+- [KCL v0.8.0 Milestone](https://github.com/kcl-lang/kcl/milestone/8)
