@@ -1,5 +1,5 @@
 ---
-slug: 2024-01-04-biweekly-newsletter
+slug: 2024-01-18-biweekly-newsletter
 title: KCL Biweekly Newsletter (2024 01.04 - 2024.01.18) | KCL v0.7.4 Released!
 authors:
   name: KCL Team
