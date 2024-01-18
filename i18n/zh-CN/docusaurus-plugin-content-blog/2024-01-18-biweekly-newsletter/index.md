@@ -1,6 +1,6 @@
 ---
 slug: 2024-01-18-biweekly-newsletter
-title: KCL 社区开源双周报 (2023 01.04 - 2024.01.18) | KCL v0.7.4 版本发布！
+title: KCL 社区开源双周报 (2024 01.04 - 2024.01.18) | KCL v0.7.4 版本发布！
 authors:
   name: KCL 团队
   title: KCL 团队
