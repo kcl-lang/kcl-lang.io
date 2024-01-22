@@ -79,7 +79,7 @@ kind: Function
 metadata:
   name: kcl-function
 spec:
-  package: kcllang/crossplane-kcl
+  package: docker.io/kcllang/crossplane-kcl
 EOF
 ```
 
