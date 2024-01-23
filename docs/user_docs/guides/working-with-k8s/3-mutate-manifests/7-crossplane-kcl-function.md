@@ -22,7 +22,7 @@ Combining KCL with Crossplane composite functions offers several benefits:
 
 ## Quick Start
 
-Let’s write a KCL function abstraction which generates managed resources `VPC` and `InternetGateway` with a input resource `Network`.
+Let’s write a KCL function abstraction which generates managed resources `VPC` and `InternetGateway` with an input resource `Network`.
 
 ### 1. Install the Crossplane KCL Function
 
