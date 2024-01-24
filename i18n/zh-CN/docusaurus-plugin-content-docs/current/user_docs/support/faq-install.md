@@ -26,8 +26,8 @@ xattr -rd com.apple.quarantine /path/to/kcl
 
 - MacOS: `clang`
 - Linux: `gcc`
-- Windows: `cl.exe` (可以通过安装 `MSVC` 获得)
+- Windows: `cl.exe` (可以通过安装 `MSVC` 获得，主要包括 `MSVCP140.dll` 和 `VCRUNTIME140.dll` 等程序集)
 
 ## 在 Windows 平台上遇到 exit status 0xc0000135 错误
 
-请确保您的 Windows 上安装了 .NET Framework 和 MSVC，如没有安装，可以安装并重试
+请确保您的 Windows 上安装了 `.NET Framework` 和 `MSVC`，如没有安装，可以安装并重试。
