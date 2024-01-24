@@ -257,7 +257,7 @@ spec:
 
 当然，后续我们会结合 `crossplane-provider-aws` 等模型库进一步详细介绍如何获得一个更好的客户端抽象，尽情期待!
 
-此外，可以在这里查看到更多 Crossplane 和 KCL 结合的用例：[https://github.com/kcl-lang/crossplane-kcl](https://github.com/kcl-lang/crossplane-kcl)
+此外，可以在这里查看到更多 Crossplane 和 KCL 结合的用例：[https://github.com/crossplane-contrib/function-kcl](https://github.com/crossplane-contrib/function-kcl)
 
 ## 其他资源
 

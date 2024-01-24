@@ -220,7 +220,7 @@ It can be seen that we have indeed successfully generated `VPC` and `InternetGat
 
 ##### 6. Debugging KCL Functions Locally
 
-See [here](https://github.com/kcl-lang/crossplane-kcl) for more information.
+See [here](https://github.com/crossplane-contrib/function-kcl) for more information.
 
 #### Client Enhancements
 

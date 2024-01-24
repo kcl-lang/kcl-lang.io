@@ -176,7 +176,7 @@ It can be seen that we have indeed successfully generated `VPC` and `InternetGat
 
 ### 6. Debugging KCL Functions Locally
 
-See [here](https://github.com/kcl-lang/crossplane-kcl) for more information.
+See [here](https://github.com/crossplane-contrib/function-kcl) for more information.
 
 ## Client Enhancements
 
@@ -235,4 +235,4 @@ You can directly use [KCL standard libraries](https://kcl-lang.io/docs/reference
 ## More Documents and Examples
 
 - [KRM KCL Spec](https://github.com/kcl-lang/krm-kcl)
-- [Crossplane KCL](https://github.com/kcl-lang/crossplane-kcl/examples)
+- [Crossplane KCL](https://github.com/crossplane-contrib/function-kcl/examples)
