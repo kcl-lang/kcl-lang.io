@@ -47,15 +47,17 @@ The following are listed in no particular order:
 
 ## Featured Updates
 
-### Using KCL to Write Crossplane Composite Functions
+### Using KCL to Write Crossplane Composition Functions
 
-Crossplane and Crossplane Composite Functions are used to decouple XR and Composite resource definitions. XRs allow developers to create higher-level abstractions that can encapsulate and compose multiple types of cloud resources across different providers and services. Using Crossplane Composite Functions to render these abstractions can effectively enhance template capabilities for various provider resources while reducing the amount of YAML code needed.
+Crossplane and its XRs allow developers to create higher-level abstractions that can encapsulate and compose multiple types of cloud resources across different providers and services. Using Composition Functions to render these abstractions can effectively enhance template capabilities for various provider resources while reducing the amount of YAML code needed.
 
-Combining KCL with Crossplane composite functions offers several benefits:
+Combining KCL with Composition Functions offers several benefits:
 
 + **Simplification of Complex Configurations**: KCL provides a more concise syntax and structure as a DSL, reducing the complexity of configurations. When combined with Crossplane’s composite resources, you can create more intuitive and easy-to-understand configuration templates with loop and condition features, simplifying the definition and maintenance of resources instead of duplicate YAML and Go code snippets.
 + **Reusability and Modularity**: KCL supports modularity and code reuse through OCI Registry, which means you can create reusable configuration components. Combined with Crossplane, this promotes the modularity of composite resources, increases the reuse of configurations, and reduces errors.
 + **Automation and Policy-Driven**: You can use KCL’s powerful features to write policies and constraints that, combined with Crossplane’s declarative resource management, can be automatically enforced, ensuring compliance within the cloud environment.
+
+Additionally, you can refer to [here](https://kcl-lang.io/docs/user_docs/getting-started/intro#how-to-choose) to learn about the differences between KCL and other configuration formats or DSLs.
 
 #### Prerequisites
 
@@ -70,7 +72,7 @@ Let’s write a KCL function abstraction which generates managed resources `VPC`
 
 ##### 1. Install the Crossplane KCL Function
 
-Installing a Function creates a function pod. Crossplane sends requests to this pod to ask it what resources to create when you create a composite resource.
+Installing a function creates a function pod. The function logic is processed as a pipeline step in a composition that may create managed resources when triggered through specified parameters.
 
 Install a Function with a Crossplane Function object setting the `spec.package` value to the location of the function package.
 
@@ -87,7 +89,7 @@ EOF
 
 ##### 2. Apply the Composition Resource
 
-Just like a render function, you can apply the composition resource using KCL into cluster.
+You can apply the composition resource with the inline KCL code into the cluster.
 
 ```shell
 kubectl apply -f- << EOF
@@ -220,13 +222,13 @@ It can be seen that we have indeed successfully generated `VPC` and `InternetGat
 
 ##### 6. Debugging KCL Functions Locally
 
-See [here](https://github.com/crossplane-contrib/function-kcl) for more information.
+See [here](https://github.com/crossplane-contrib/function-kcl) for more information and examples.
 
 #### Client Enhancements
 
 It can be seen that the above abstract code often requires a crossplane as a control plane intermediary, and you can still complete the abstraction in a fully client-side manner and directly generate crossplane managed resources to reduce the burden on the cluster.
 
-For example
+On the client side, there are two methods to render managed resources. One method is to use the `crossplane beta render` command, and the other is to render directly using the `kcl run` command. The usage for the former can be found here. For the latter, the usage is as follows.
 
 ```shell
 kcl run oci://ghcr.io/kcl-lang/crossplane-xnetwork-kcl-function -S items -D params='{"oxr": {"spec": {"id": "network-test-functions"}}}'
@@ -261,7 +263,7 @@ spec:
       matchControllerRef: true
 ```
 
-See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/crossplane-kcl-function) for more information and examples.
+Both methods require a registry (usually docker.io) to assist in completing the work. The ultimate choice between them may depend on your operational habits and environmental costs. Regardless of the method chosen, we recommend maintaining your KCL code in Git to better implement GitOps and obtain a better IDE experience and reusable modules such as the [Crossplane AWS Provider Modules](https://github.com/kcl-lang/modules/tree/main/crossplane-provider-aws).
 
 ## Resources
 
