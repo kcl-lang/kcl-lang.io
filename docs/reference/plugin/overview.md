@@ -10,7 +10,13 @@ KCL plugin Git repository: [https://github.com/kcl-lang/kcl-plugin](https://gith
 
 ## 0. Prerequisites
 
-Using the KCL Python plugin requires the presence of `Python 3.7+` in your `PATH`.
+Using the KCL Python plugin requires the presence of `Python 3.7+` in your `PATH`, install the KCL python SDK and set the plugin path.
+
+```shell
+python3 -m pip install kclvm
+alias kcl-plugin="python3 -m kclvm.tools.plugin"
+export KCL_PLUGINS_ROOT=~/.kcl/plugins
+```
 
 ## 1. Hello Plugin
 

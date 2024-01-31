@@ -10,7 +10,13 @@ KCL 是声明式配置策略语言，对于不方便通过配置直接描述的�
 
 ## 0. 前置依赖
 
-使用 KCL Python 插件需要您的 `PATH` 中存在 `Python3.7+`。
+使用 KCL Python 插件需要您的 `PATH` 中存在 `Python3.7+` 并安装 KCL Python SDK, 设置插件存放路径。
+
+```shell
+python3 -m pip install kclvm
+alias kcl-plugin="python3 -m kclvm.tools.plugin"
+export KCL_PLUGINS_ROOT=~/.kcl/plugins
+```
 
 ## 1. 你好插件
 
