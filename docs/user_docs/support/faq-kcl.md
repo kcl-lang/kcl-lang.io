@@ -2352,3 +2352,32 @@ schema Data:
     check:
         environment in allowed, "environment must be one of {}".format(allowed)
 ```
+
+## 52. How to output pretty json string in KCL?
+
+KCL has in-built support for getting  formatted JSON strings. Here's how you can do it:
+
+Paste the below content in your main.k file.
+
+```python
+import json
+
+config = {
+    key1 = "value1"
+    key2 = "value2"
+}
+configJson = json.encode(config, ignore_private=True, indent=4)
+```
+
+After  running this code, `configJson` variable will contain a prettified JSON string.
+
+```json
+config:
+  key1: value1
+  key2: value2
+configJson: |-
+  {
+      "key1": "value1",
+      "key2": "value2"
+  }
+```
