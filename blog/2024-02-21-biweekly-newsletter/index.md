@@ -1,6 +1,6 @@
 ---
 slug: 2024-02-21-biweekly-newsletter
-title: KCL Biweekly Newsletter (2024 01.19 - 2024.02.01) | KCL v0.7.3 Released and Flux Integration
+title: KCL Biweekly Newsletter (2024 01.19 - 2024.02.01) | KCL v0.7.5 Released and Flux Integration
 authors:
   name: KCL Team
   title: KCL Team
