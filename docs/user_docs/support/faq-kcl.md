@@ -2416,3 +2416,26 @@ aahash: 1992c2ef118972b9c3f96c3f74cdd1a5
 bbhash: 5c71751205373815a9f2e022dd846758
 cchash: 5c71751205373815a9f2e022dd846758
 ```
+
+## 54. How to deduplicate str lists?
+
+You can use KCL to deduplicate lists of strings as shown in the code snippet below:
+
+```python
+to_set = lambda items: [str] {
+    [item for item in {item = None for item in items}]
+}
+
+data = to_set(["aa", "bb", "bb", "cc"])
+dataIsUnique = isunique(data)
+```
+
+After running  above script, You'll get output like this:
+
+```bash
+data:
+- aa
+- bb
+- cc
+dataIsUnique: true
+```
