@@ -88,7 +88,7 @@ nginx:
 Besides, we can dynamically receive external parameters through the KCL builtin function `option`. For example, for the following KCL file (db.k), we can use the KCL command line `-D` flag to receive an external dynamic parameter.
 
 ```python
-env: str = option("env") or "dev"  # The attribute `env` has a default value "den"
+env: str = option("env") or "dev"  # The attribute `env` has a default value "dev"
 database: str = option("database")
 hosts = {
     dev = "postgres.dev"
