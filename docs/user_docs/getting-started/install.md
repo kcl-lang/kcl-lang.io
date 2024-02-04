@@ -34,6 +34,12 @@ Install or upgrade the latest darwin KCL to /usr/local/bin
 curl -fsSL https://kcl-lang.io/script/install-cli.sh | /bin/bash
 ```
 
+Uninstall
+
+```bash
+curl -fsSL https://kcl-lang.io/script/uninstall-cli.sh | /bin/bash
+```
+
 #### Linux
 
 Install or upgrade the latest linux KCL to /usr/local/bin
@@ -42,12 +48,24 @@ Install or upgrade the latest linux KCL to /usr/local/bin
 wget -q https://kcl-lang.io/script/install-cli.sh -O - | /bin/bash
 ```
 
+Uninstall
+
+```bash
+wget -q https://kcl-lang.io/script/uninstall-cli.sh -O - | /bin/bash
+```
+
 #### Windows
 
 Install or upgrade the latest windows KCL to $Env:SystemDrive\kclvm\bin and add this directory to User PATH environment variable.
 
 ```bash
 powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
+```
+
+Uninstall
+
+```shell
+powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | iex"
 ```
 
 ### Homebrew (MacOS)
