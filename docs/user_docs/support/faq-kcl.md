@@ -2355,7 +2355,7 @@ schema Data:
 
 ## 52. How to output pretty json string in KCL?
 
-KCL has in-built support for getting  formatted JSON strings. Here's how you can do it:
+KCL has in-built support for getting formatted JSON strings. Here's how you can do it:
 
 Paste the below content in your main.k file.
 
@@ -2369,7 +2369,7 @@ config = {
 configJson = json.encode(config, ignore_private=True, indent=4)
 ```
 
-After  running this code, `configJson` variable will contain a prettified JSON string.
+After running this code, `configJson` variable will contain a prettified JSON string.
 
 ```json
 config:
@@ -2394,7 +2394,7 @@ import crypto
 
 schema Person:
     a: int
-    
+
 aa = Person {a = 1}
 bb = Person {a = 2}
 cc = Person {a = 2}
@@ -2403,7 +2403,7 @@ bbhash = crypto.md5(str(bb))
 cchash = crypto.md5(str(cc))
 ```
 
-After running  above script, You'll get output like this:
+After running above script, You'll get output like this:
 
 ```bash
 aa:
@@ -2430,7 +2430,7 @@ data = to_set(["aa", "bb", "bb", "cc"])
 dataIsUnique = isunique(data)
 ```
 
-After running  above script, You'll get output like this:
+After running above script, You'll get output like this:
 
 ```bash
 data:

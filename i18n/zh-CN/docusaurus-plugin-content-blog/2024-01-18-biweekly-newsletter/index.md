@@ -30,10 +30,12 @@ tags: [KCL, Biweekly-Newsletter]
 **🔧 工具链更新**
 
 - **kcl-go sdk 更新**
+
   - KCL Doc 工具支持输出为 OpenAPI 格式。
   - 增加 Parse 过程相关 API。
 
 - **Import 工具更新**
+
   - 优化了 import 工具生成 KCL 配置用户体验，增加了对关键字 oneOf, allOf 的支持。
 
 - **KCL 包管理工具**
@@ -69,17 +71,19 @@ KCL IDE 高亮之前仅支持 KCL 语法高亮，如下图所示：
 更多关于 KCL 语义架构模型的内容，参考：
 [KCL 高效语义模型技术揭秘：实现快速编译与增强 IDE 支持](https://kcl-lang.io/zh-CN/blog/2023-12-09-kcl-new-semantic-model)
 
-### KCL 包管理支持通过 commit 添加 git 依赖 
+### KCL 包管理支持通过 commit 添加 git 依赖
 
-KCL 包管理工具增加了通过 commit 来添加 git 三方库依赖的功能。以    https://github.com/KusionStack/catalog 为例，添加 commit 为 a29e3db 的版本作为依赖。可以通过编辑 kcl.mod 文件中的依赖或者命令行直接添加。
+KCL 包管理工具增加了通过 commit 来添加 git 三方库依赖的功能。以 https://github.com/KusionStack/catalog 为例，添加 commit 为 a29e3db 的版本作为依赖。可以通过编辑 kcl.mod 文件中的依赖或者命令行直接添加。
 
 编辑 kcl.mod 文件内容如下：
+
 ```
 [dependencies]
 catalog = { git = "https://github.com/KusionStack/catalog.git", commit = "a29e3db" }
 ```
 
 或者通过命令行添加：
+
 ```
 kcl mod add -git https://github.com/KusionStack/catalog.git -commit a29e3db
 ```

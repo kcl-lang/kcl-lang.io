@@ -9,9 +9,9 @@ Crossplane and Crossplane Composite Functions are used to decouple XR and Compos
 
 Combining KCL with Crossplane composite functions offers several benefits:
 
-+ **Simplification of Complex Configurations**: KCL provides a more concise syntax and structure as a DSL, reducing the complexity of configurations. When combined with Crossplane’s composite resources, you can create more intuitive and easy-to-understand configuration templates with loop and condition features, simplifying the definition and maintenance of resources instead of duplicate YAML and Go code snippets.
-+ **Reusability and Modularity**: KCL supports modularity and code reuse through OCI Registry, which means you can create reusable configuration components. Combined with Crossplane, this promotes the modularity of composite resources, increases the reuse of configurations, and reduces errors.
-+ **Automation and Policy-Driven**: You can use KCL’s powerful features to write policies and constraints that, combined with Crossplane’s declarative resource management, can be automatically enforced, ensuring compliance within the cloud environment.
+- **Simplification of Complex Configurations**: KCL provides a more concise syntax and structure as a DSL, reducing the complexity of configurations. When combined with Crossplane’s composite resources, you can create more intuitive and easy-to-understand configuration templates with loop and condition features, simplifying the definition and maintenance of resources instead of duplicate YAML and Go code snippets.
+- **Reusability and Modularity**: KCL supports modularity and code reuse through OCI Registry, which means you can create reusable configuration components. Combined with Crossplane, this promotes the modularity of composite resources, increases the reuse of configurations, and reduces errors.
+- **Automation and Policy-Driven**: You can use KCL’s powerful features to write policies and constraints that, combined with Crossplane’s declarative resource management, can be automatically enforced, ensuring compliance within the cloud environment.
 
 ## Prerequisites
 
@@ -158,14 +158,14 @@ EOF
 
 ### 5. Verify the Generated Managed Resources
 
-+ VPC
+- VPC
 
 ```shell
 kubectl get VPC -o yaml | grep network-id
       networks.meta.fn.crossplane.io/network-id: network-test-functions
 ```
 
-+ InternetGateway
+- InternetGateway
 
 ```shell
 kubectl get InternetGateway -o yaml | grep network-id
@@ -221,12 +221,12 @@ spec:
 
 Here's what you can do in the KCL script:
 
-+ Return an error using `assert {condition}, {error_message}`.
-+ Read the `ObservedCompositeResource` from `option("params").oxr`.
-+ Read the `ObservedComposedResources` from `option("params").ocds`.
-+ Read the `DesiredCompositeResource` from `option("params").dxr`.
-+ Read the `DesiredComposedResources` from `option("params").dcds`.
-+ Read the environment variables. e.g. `option("PATH")` (**Not yet implemented**).
+- Return an error using `assert {condition}, {error_message}`.
+- Read the `ObservedCompositeResource` from `option("params").oxr`.
+- Read the `ObservedComposedResources` from `option("params").ocds`.
+- Read the `DesiredCompositeResource` from `option("params").dxr`.
+- Read the `DesiredComposedResources` from `option("params").dcds`.
+- Read the environment variables. e.g. `option("PATH")` (**Not yet implemented**).
 
 ## Library
 

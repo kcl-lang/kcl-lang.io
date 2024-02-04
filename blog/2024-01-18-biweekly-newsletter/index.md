@@ -26,15 +26,17 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 **🎁 API Update**
 
-- Added APIs for syntax and semantic analysis 
+- Added APIs for syntax and semantic analysis
 
 **🔧 Toolchain Update**
 
 - **kcl-go sdk update**
+
   - KCL Doc tool supports output in OpenAPI format.
   - Added Parsing related APIs.
 
 - **Import tool update**
+
   - Optimized the user experience of the import tool to generate KCL, and added support for keywords oneOf and allOf.
 
 - **KCL Package Management Tool**
@@ -43,6 +45,7 @@ Thank you to all contributors for their outstanding work over the past two weeks
 **💻 IDE Update**
 
 - **Semantic Highlighting**
+
   - KCL IDE optimized semantic highlighting.
 
 - **Enhancement for Completion Features**
@@ -74,10 +77,11 @@ For more information about the KCL semantic architecture model, please refer to:
 
 ### KCL Package Management Tool Supports Adding Git Dependencies via Commit
 
-KCL Package Management Tool supports adding git dependencies via commit. 
+KCL Package Management Tool supports adding git dependencies via commit.
 Take https://github.com/KusionStack/catalog as an example, add commit a29e3db as a dependency. You can add it directly through the dependency in the kcl.mod file or the command line.
 
 Edit the kcl.mod file as follows:
+
 ```
 [dependencies]
 catalog = { git = "https://github.com/KusionStack/catalog.git", commit = "a29e3db" }

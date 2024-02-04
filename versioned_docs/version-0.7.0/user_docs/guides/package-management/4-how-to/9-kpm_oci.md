@@ -14,9 +14,9 @@ The default content of the configuration file is as follows:
 
 ```json
 {
-    "DefaultOciRegistry":"ghcr.io",
-    "DefaultOciRepo":"kcl-lang",
-    "DefaultOciPlainHttp":true
+  "DefaultOciRegistry": "ghcr.io",
+  "DefaultOciRepo": "kcl-lang",
+  "DefaultOciPlainHttp": true
 }
 ```
 
@@ -95,9 +95,9 @@ You can use `kcl mod push` to upload a KCL package to an OCI Registry.
 
 ```shell
 # Create a new kcl package.
-$ kcl mod init <package_name> 
+$ kcl mod init <package_name>
 # Enter the root directory of the kcl package
-$ cd <package_name> 
+$ cd <package_name>
 # Upload the kcl package to an oci registry
 $ kcl mod push
 ```
@@ -114,9 +114,9 @@ You can also specify the url of the OCI registry in the `kcl mod push` command.
 
 ```shell
 # Create a new kcl package.
-$ kcl mod init <package_name> 
+$ kcl mod init <package_name>
 # Enter the root directory of the kcl package
-$ cd <package_name> 
+$ cd <package_name>
 # Upload the kcl package to an oci registry
 $ kcl mod push <oci_url>
 ```

@@ -34,6 +34,12 @@ $env:PATH += ";{install-location};"
 curl -fsSL https://kcl-lang.io/script/install-cli.sh | /bin/bash
 ```
 
+卸载
+
+```bash
+curl -fsSL https://kcl-lang.io/script/uninstall-cli.sh | /bin/bash
+```
+
 #### Linux
 
 将 KCL linux 最新版本安装到 /usr/local/bin
@@ -42,12 +48,24 @@ curl -fsSL https://kcl-lang.io/script/install-cli.sh | /bin/bash
 wget -q https://kcl-lang.io/script/install-cli.sh -O - | /bin/bash
 ```
 
+卸载
+
+```bash
+wget -q https://kcl-lang.io/script/uninstall-cli.sh -O - | /bin/bash
+```
+
 #### Windows
 
 将 KCL windows 最新版本安装到 $Env:SystemDrive\kclvm\bin，并将该目录添加到用户 PATH 环境变量中。
 
 ```bash
-powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
+wget -q https://kcl-lang.io/script/uninstall-cli.sh -O - | /bin/bash
+```
+
+卸载
+
+```shell
+powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | iex"
 ```
 
 #### Homebrew (MacOS)

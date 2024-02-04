@@ -181,9 +181,9 @@ Pkl 是一门配置即代码语言，它具有可编程、可扩展和安全的�
 
 KCL 和 Pkl 之间有一些相似之处：
 
-+ 语言特征：Schema 定义、验证、不变性等。
-+ 多语言绑定，KCL 为 Python、Go 和 Java 语言等提供了绑定，Pkl 也提供了诸如 Java, Swift 和 Kotlin 等语言绑定。
-+ 支持多种 IDE 插件：NeoVim、VS Code等。
+- 语言特征：Schema 定义、验证、不变性等。
+- 多语言绑定，KCL 为 Python、Go 和 Java 语言等提供了绑定，Pkl 也提供了诸如 Java, Swift 和 Kotlin 等语言绑定。
+- 支持多种 IDE 插件：NeoVim、VS Code等。
 
 不同的是，KCL 提供了更多与云原生工具和模型代码库更多的集成。
 

@@ -32,7 +32,7 @@ kcl run oci://ghcr.io/kcl-lang/podinfo -D replicas=2
 
 - Improved error messages when object attribute are not found at compile time.
 - Fixed the recursive check error for mandatory attribute of schema objects.
-- Enhanced the robustness of type-checking for schema index signatures. 
+- Enhanced the robustness of type-checking for schema index signatures.
 
 **🔧 Toolchain Updates**
 
@@ -42,11 +42,12 @@ kcl run oci://ghcr.io/kcl-lang/podinfo -D replicas=2
 **💻 IDE Updates**
 
 - **Semantic Highlighting**
+
   - KCL IDE optimized semantic highlighting.
 
 - **Enhancement for Completion Features**
-   - Fixed the issue with erroneous completions after strings followed by comments.
-   - Fixed the issue where internal property symbols in Schema could not be navigated. 
+  - Fixed the issue with erroneous completions after strings followed by comments.
+  - Fixed the issue where internal property symbols in Schema could not be navigated.
 
 **🎁 API Updates**
 
@@ -84,9 +85,9 @@ The following are listed in no particular order:
 
 Using KCL together with GitOps tools like Flux has the following benefits:
 
-+ The abstraction and programmability capabilities of KCL can help simplify complex Kubernetes deployment configurations, reducing the error rate of manually writing YAML files. It allows for configuration constraint checks at compile-time, making it easier to detect errors. Additionally, it eliminates redundant configuration templates, improves the scalability of configurations across multiple environments and tenants, and enhances configurability and maintainability.
-+ KCL allows developers to define the required resources for an application in a declarative manner. Combining KCL with Flux enables better implementation of Infrastructure as Code (IaC), improving deployment efficiency and simplifying application configuration management.
-+ With Flux, developers and operations teams can manage the deployment of applications by separately modifying application and configuration code. The Flux Controller automatically synchronizes changes to the configuration, enabling continuous deployment and ensuring consistency. In case of issues, quick rollbacks can be achieved.
+- The abstraction and programmability capabilities of KCL can help simplify complex Kubernetes deployment configurations, reducing the error rate of manually writing YAML files. It allows for configuration constraint checks at compile-time, making it easier to detect errors. Additionally, it eliminates redundant configuration templates, improves the scalability of configurations across multiple environments and tenants, and enhances configurability and maintainability.
+- KCL allows developers to define the required resources for an application in a declarative manner. Combining KCL with Flux enables better implementation of Infrastructure as Code (IaC), improving deployment efficiency and simplifying application configuration management.
+- With Flux, developers and operations teams can manage the deployment of applications by separately modifying application and configuration code. The Flux Controller automatically synchronizes changes to the configuration, enabling continuous deployment and ensuring consistency. In case of issues, quick rollbacks can be achieved.
 
 #### Workflow
 
@@ -111,7 +112,7 @@ The overall workflow is as follows:
 
 ##### 1. Prepare a Kubernetes Cluster
 
-+ Install [K3d](https://github.com/k3d-io/k3d) and create a cluster:
+- Install [K3d](https://github.com/k3d-io/k3d) and create a cluster:
 
 ```shell
 k3d cluster create
@@ -119,8 +120,8 @@ k3d cluster create
 
 > Note: You can use other methods to create your own Kubernetes cluster, such as kind, minikube, etc.
 
-+ Install kubectl
-+ Install kustomize
+- Install kubectl
+- Install kustomize
 
 ##### 2. Install Flux KCL Controller
 

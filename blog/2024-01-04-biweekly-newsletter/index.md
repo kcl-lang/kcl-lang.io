@@ -24,7 +24,7 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 **Package Management Tool Update**
 
-- Adds support for automatic translation of external package names containing the - symbol to an underscore _ that KCL recognizes, such as set-annotation -> set_annotation
+- Adds support for automatic translation of external package names containing the - symbol to an underscore \_ that KCL recognizes, such as set-annotation -> set_annotation
 - Fixes a null pointer error caused when kcl mod add encounters a mismatch between the Registry package version and the version of the package already present locally
 
 **💻 IDE Update**
@@ -53,9 +53,9 @@ Crossplane and its XRs allow developers to create higher-level abstractions that
 
 Combining KCL with Composition Functions offers several benefits:
 
-+ **Simplification of Complex Configurations**: KCL provides a more concise syntax and structure as a DSL, reducing the complexity of configurations. When combined with Crossplane’s composite resources, you can create more intuitive and easy-to-understand configuration templates with loop and condition features, simplifying the definition and maintenance of resources instead of duplicate YAML and Go code snippets.
-+ **Reusability and Modularity**: KCL supports modularity and code reuse through OCI Registry, which means you can create reusable configuration components. Combined with Crossplane, this promotes the modularity of composite resources, increases the reuse of configurations, and reduces errors.
-+ **Automation and Policy-Driven**: You can use KCL’s powerful features to write policies and constraints that, combined with Crossplane’s declarative resource management, can be automatically enforced, ensuring compliance within the cloud environment.
+- **Simplification of Complex Configurations**: KCL provides a more concise syntax and structure as a DSL, reducing the complexity of configurations. When combined with Crossplane’s composite resources, you can create more intuitive and easy-to-understand configuration templates with loop and condition features, simplifying the definition and maintenance of resources instead of duplicate YAML and Go code snippets.
+- **Reusability and Modularity**: KCL supports modularity and code reuse through OCI Registry, which means you can create reusable configuration components. Combined with Crossplane, this promotes the modularity of composite resources, increases the reuse of configurations, and reduces errors.
+- **Automation and Policy-Driven**: You can use KCL’s powerful features to write policies and constraints that, combined with Crossplane’s declarative resource management, can be automatically enforced, ensuring compliance within the cloud environment.
 
 Additionally, you can refer to [here](https://kcl-lang.io/docs/user_docs/getting-started/intro#how-to-choose) to learn about the differences between KCL and other configuration formats or DSLs.
 
@@ -204,14 +204,14 @@ EOF
 
 ##### 5. Verify the Generated Managed Resources
 
-+ VPC
+- VPC
 
 ```shell
 kubectl get VPC -o yaml | grep network-id
       networks.meta.fn.crossplane.io/network-id: network-test-functions
 ```
 
-+ InternetGateway
+- InternetGateway
 
 ```shell
 kubectl get InternetGateway -o yaml | grep network-id

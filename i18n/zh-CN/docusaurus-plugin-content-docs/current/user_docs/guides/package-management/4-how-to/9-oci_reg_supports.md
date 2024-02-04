@@ -14,9 +14,9 @@ KCL 包管理工具默认使用 ghcr.io 保存 KCL 包。
 
 ```json
 {
-    "DefaultOciRegistry":"ghcr.io",
-    "DefaultOciRepo":"kcl-lang",
-    "DefaultOciPlainHttp":true
+  "DefaultOciRegistry": "ghcr.io",
+  "DefaultOciRepo": "kcl-lang",
+  "DefaultOciPlainHttp": true
 }
 ```
 
@@ -95,9 +95,9 @@ kpm logout localhost:5001
 
 ```shell
 # 创建一个新的 kcl 包。
-$ kcl mod init <package_name> 
+$ kcl mod init <package_name>
 # 进入 kcl 包的根目录
-$ cd <package_name> 
+$ cd <package_name>
 # 将 kcl 包上传到一个 oci registry
 $ kcl mod push
 ```
@@ -114,9 +114,9 @@ $ kcl mod push
 
 ```shell
 # 创建一个新的 kcl 包。
-$ kcl mod init <package_name> 
+$ kcl mod init <package_name>
 # 进入 kcl 包的根目录
-$ cd <package_name> 
+$ cd <package_name>
 # 将 kcl 包上传到一个 oci registry
 $ kcl mod push <oci_url>
 ```

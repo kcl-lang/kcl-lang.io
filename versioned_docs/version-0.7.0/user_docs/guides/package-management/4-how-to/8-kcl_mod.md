@@ -5,6 +5,7 @@
 The `kcl.mod` file for each module is called its manifest. It is written in the TOML format. It contains metadata that is needed to compile the module.
 
 In the MVP version, the sections we plan to support are as follows:
+
 - Package metadata:
   - [package](#package) - Defines a package.
     - [name](#package) — The name of the package.
@@ -44,28 +45,29 @@ You can specify a dependency from git repository by git tag.
 
 ```toml
 [dependencies]
-<package name> = { git = "<git repo url>", tag = "<git repo tag>" } 
+<package name> = { git = "<git repo url>", tag = "<git repo tag>" }
 ```
 
 You can specify a dependency from git repository by git commit id.
 
 ```toml
 [dependencies]
-<package name> = { git = "<git repo url>", commit = "<git repo commit>" } 
-``` 
+<package name> = { git = "<git repo url>", commit = "<git repo commit>" }
+```
 
 You can specify a dependency from local file path.
 
 ```toml
 # Find the kcl.mod under "./xxx/xxx".
 [dependencies]
-<package name> = {path = "<package local path>"} 
+<package name> = {path = "<package local path>"}
 ```
 
 ## entries
+
 You can specify the entry points of the package when compiling.
 
-`entries` is a sub section of `profile` section. 
+`entries` is a sub section of `profile` section.
 
 ```toml
 [profile]
@@ -100,9 +102,10 @@ entries = [
 ]
 ```
 
-The `mod relative paths` must contains the preffix `${k8s:KCL_MOD}`, `k8s` is the package name, `${k8s:KCL_MOD}` means the package root path of the package `k8s`. Therefore, if the package root path of `k8s` is `/.kcl/kpm/k8s`, the `entries` show above will take `/usr/my_pkg/entry1.k`, `/usr/my_pkg/subdir/entry2.k` and `/.kcl/kpm/k8s/core/api/v1/deployment.k` as the entry point of the kcl compiler. 
+The `mod relative paths` must contains the preffix `${k8s:KCL_MOD}`, `k8s` is the package name, `${k8s:KCL_MOD}` means the package root path of the package `k8s`. Therefore, if the package root path of `k8s` is `/.kcl/kpm/k8s`, the `entries` show above will take `/usr/my_pkg/entry1.k`, `/usr/my_pkg/subdir/entry2.k` and `/.kcl/kpm/k8s/core/api/v1/deployment.k` as the entry point of the kcl compiler.
 
 ### Note
+
 You can use `normal path` to specify the compilation entry point in the current package path, and use `mod relative path` to specify the entry point in a third-party package.
 
 Therefore, the file path specified by `normal path` must come from the same package, that is, the `kcl.mod` path found from the normal path must only find one `kcl.mod` file, otherwise the compiler will output an error.
@@ -110,6 +113,7 @@ Therefore, the file path specified by `normal path` must come from the same pack
 For example:
 
 In the path `/usr/kcl1`:
+
 ```
 /usr/kcl1
       |--- kcl.mod
@@ -117,6 +121,7 @@ In the path `/usr/kcl1`:
 ```
 
 In the path `/usr/kcl2`:
+
 ```
 /usr/kcl2
       |--- kcl.mod
@@ -124,6 +129,7 @@ In the path `/usr/kcl2`:
 ```
 
 If you compile with this `kcl.mod` in the path `/usr/kcl1`:
+
 ```
 entries = [
    "entry1.k", # The corresponding kcl.mod file is /usr/kcl1/kcl.mod
@@ -132,6 +138,7 @@ entries = [
 ```
 
 You will get an error:
+
 ```
 error[E3M38]: conflict kcl.mod file paths
 ```

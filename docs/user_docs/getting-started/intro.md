@@ -181,9 +181,9 @@ Pkl is a configuration as code language that has programmable, extensible, and s
 
 There some similarities between KCL and Pkl here:
 
-+ Language features: schema, validation, immutability, etc.
-+ Multi language binding, KCL provides binding for Python, Go, and Java, etc. and Pkl providers others.
-+ Multiple IDE plugin support: NeoVim, VS Code, etc.
+- Language features: schema, validation, immutability, etc.
+- Multi language binding, KCL provides binding for Python, Go, and Java, etc. and Pkl providers others.
+- Multiple IDE plugin support: NeoVim, VS Code, etc.
 
 Differently, KCL provides more relevant integration with cloud native tools and model code libraries.
 

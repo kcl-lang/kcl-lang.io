@@ -175,6 +175,18 @@ Starlark is the language of Bazel, which is a dialect of Python. It does not hav
 
 KCL can also be regarded as a variant of Python to some extent, but it greatly enhances the design related to static typing and configuration extensibility, and is a compiled language, which is essentially different from Starlark.
 
+### vs. Pkl
+
+Pkl is a configuration as code language that has programmable, extensible, and secure features.
+
+There some similarities between KCL and Pkl here:
+
+- Language features: schema, validation, immutability, etc.
+- Multi language binding, KCL provides binding for Python, Go, and Java, etc. and Pkl providers others.
+- Multiple IDE plugin support: NeoVim, VS Code, etc.
+
+Differently, KCL provides more relevant integration with cloud native tools and model code libraries.
+
 ### vs. Kustomize
 
 The key feature of Kustomize is its ability to overlay files at a granular level. However, it faces challenges with multiple overlay chains as a specific attribute value may not be the final value, as it can be overridden by another value elsewhere. Retrieving the inheritance chain of Kustomize files can be less convenient than retrieving the inheritance chain of KCL code, particularly for complex scenarios where careful consideration of the specified configuration file overwrite order is necessary. Additionally, Kustomize does not address issues related to YAML configuration writing, constraint verification, model abstraction, and development, making it more suited for simpler configuration scenarios.

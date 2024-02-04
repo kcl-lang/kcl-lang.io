@@ -50,17 +50,17 @@ Crossplane 及其 Composite Function 功能被用于解耦 XR（CompositeResourc
 
 将 KCL 与 Crossplane Composite Function 功能结合可以获得如下能力
 
-+ **简化复杂配置**：KCL 作为 DSL 提供了更简洁的语法和结构，可以减少配置的复杂性。当与 Crossplane 的复合资源结合时，可以创建更直观、易于理解的配置模板，比如编写循环和条件语句降低模版，编写 Schema 和 Rule 进行模型抽象和校验，使用 KCL 简化资源的定义和维护，而不是编写重复的 YAML 或者使用 Go 代码编写并部署 Crossplane Function，降低配置和策略的开发及维护成本。此外，因为 Crosssplane Composition 资源本身缺乏强大的模版能力且云 API 丰富且复杂，因此有些 Composition 资源可能需要上千行 YAML 才能完成渲染资源编写，维护成本较高，使用 KCL 可以平替 YAML 提升动态配置能力。
-+ **可重用和模块化**：KCL 通过 OCI Registry 支持模块化和代码复用，这意味着可以创建可重用的配置模型，为 Crossplane Composition 资源带来模块化能力，且可同时在运行时和客户端使用，方便不同的平台团队之间进行协作。
-+ **自动化和策略**：可以使用 KCL 的强大功能来编写策略和约束，与 Crossplane 的声明式资源管理结合使用，并且在集群中自动执行，确保云资源或者 Kubernetes 资源的合规性，而无需引入额外的策略引擎。
+- **简化复杂配置**：KCL 作为 DSL 提供了更简洁的语法和结构，可以减少配置的复杂性。当与 Crossplane 的复合资源结合时，可以创建更直观、易于理解的配置模板，比如编写循环和条件语句降低模版，编写 Schema 和 Rule 进行模型抽象和校验，使用 KCL 简化资源的定义和维护，而不是编写重复的 YAML 或者使用 Go 代码编写并部署 Crossplane Function，降低配置和策略的开发及维护成本。此外，因为 Crosssplane Composition 资源本身缺乏强大的模版能力且云 API 丰富且复杂，因此有些 Composition 资源可能需要上千行 YAML 才能完成渲染资源编写，维护成本较高，使用 KCL 可以平替 YAML 提升动态配置能力。
+- **可重用和模块化**：KCL 通过 OCI Registry 支持模块化和代码复用，这意味着可以创建可重用的配置模型，为 Crossplane Composition 资源带来模块化能力，且可同时在运行时和客户端使用，方便不同的平台团队之间进行协作。
+- **自动化和策略**：可以使用 KCL 的强大功能来编写策略和约束，与 Crossplane 的声明式资源管理结合使用，并且在集群中自动执行，确保云资源或者 Kubernetes 资源的合规性，而无需引入额外的策略引擎。
 
 #### 前置工作
 
-+ 准备一个 Kubernetes 集群
-+ 安装 Kubectl
-+ 安装 [Crossplane 及 Crossplane CLI 1.14+](https://docs.crossplane.io/)
-+ 安装 KCL
-+ 安装 Go 1.21+ (可选，需要本地调试函数时才用到)
+- 准备一个 Kubernetes 集群
+- 安装 Kubectl
+- 安装 [Crossplane 及 Crossplane CLI 1.14+](https://docs.crossplane.io/)
+- 安装 KCL
+- 安装 Go 1.21+ (可选，需要本地调试函数时才用到)
 
 #### 快速开始
 
@@ -200,14 +200,14 @@ EOF
 
 ##### 5. 检查生成的托管资源
 
-+ VPC
+- VPC
 
 ```shell
 kubectl get VPC -o yaml | grep network-id
       networks.meta.fn.crossplane.io/network-id: network-test-functions
 ```
 
-+ InternetGateway
+- InternetGateway
 
 ```shell
 kubectl get InternetGateway -o yaml | grep network-id

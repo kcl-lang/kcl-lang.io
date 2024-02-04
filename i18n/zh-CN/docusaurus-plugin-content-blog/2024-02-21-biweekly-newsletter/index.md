@@ -36,6 +36,7 @@ kcl run oci://ghcr.io/kcl-lang/podinfo -D replicas=2
 **🔧 工具链更新**
 
 - **文档工具更新**
+
   - 支持在生成的 Markdown 格式文档对多行字符使用 HTML 转义
 
 - **CodeQL KCL 工具**
@@ -120,8 +121,8 @@ k3d cluster create
 
 > 注意：你可以在此方案中使用其他方式创建您自己的 Kubernetes 集群，如 kind, minikube 等。
 
-+ 安装 Kubectl
-+ 安装 Kustomize
+- 安装 Kubectl
+- 安装 Kustomize
 
 ##### 2. 安装 Flux KCL Controller
 
@@ -189,7 +190,7 @@ spec:
 
 ##### 4. 提交业务代码
 
-+ 获取代码
+- 获取代码
 
 ```shell
 git clone https://github.com/kcl-lang/flask-demo.git/

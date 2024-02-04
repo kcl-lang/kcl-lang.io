@@ -2352,3 +2352,90 @@ schema Data:
     check:
         environment in allowed, "environment must be one of {}".format(allowed)
 ```
+
+## 52. How to output pretty json string in KCL?
+
+KCL has in-built support for getting formatted JSON strings. Here's how you can do it:
+
+Paste the below content in your main.k file.
+
+```python
+import json
+
+config = {
+    key1 = "value1"
+    key2 = "value2"
+}
+configJson = json.encode(config, ignore_private=True, indent=4)
+```
+
+After running this code, `configJson` variable will contain a prettified JSON string.
+
+```json
+config:
+  key1: value1
+  key2: value2
+configJson: |-
+  {
+      "key1": "value1",
+      "key2": "value2"
+  }
+```
+
+## 53. How to calculate the hash or md5 value of KCL objects?
+
+KCL have in-built support for calculating MD5 hashes as well. Here is how you can do it:
+
+Paste the below content in your main.k file.
+
+```python
+
+import crypto
+
+schema Person:
+    a: int
+
+aa = Person {a = 1}
+bb = Person {a = 2}
+cc = Person {a = 2}
+aahash = crypto.md5(str(aa))
+bbhash = crypto.md5(str(bb))
+cchash = crypto.md5(str(cc))
+```
+
+After running above script, You'll get output like this:
+
+```bash
+aa:
+  a: 1
+bb:
+  a: 2
+cc:
+  a: 2
+aahash: 1992c2ef118972b9c3f96c3f74cdd1a5
+bbhash: 5c71751205373815a9f2e022dd846758
+cchash: 5c71751205373815a9f2e022dd846758
+```
+
+## 54. How to deduplicate str lists?
+
+You can use KCL to deduplicate lists of strings as shown in the code snippet below:
+
+```python
+to_set = lambda items: [str] {
+    [item for item in {item = None for item in items}]
+}
+
+data = to_set(["aa", "bb", "bb", "cc"])
+dataIsUnique = isunique(data)
+```
+
+After running above script, You'll get output like this:
+
+```bash
+data:
+- aa
+- bb
+- cc
+dataIsUnique: true
+```

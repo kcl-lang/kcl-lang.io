@@ -19,21 +19,26 @@
     - [entries](#entries) - 编译包的入口点。
 
 ## 2. package
+
 `kcl.mod` 中的第一个部分是 `[package]`。主要包含 `name`, `version`, `edition` 和 `description` 字段。
 
 ### 2.1. name
+
 `name` 是包的名称，它是一个字符串, 这是一个必要的字段, 注意，包的名称中不可以包含`"."`。
 
 例如: 一个包名为 my_pkg 的 kcl 程序包。
+
 ```
 [package]
 name = "my_pkg"
 ```
 
 ### 2.2. version
+
 `version` 是包的版本，它是一个字符串, 这是一个必要的字段。注意，目前 KCL 程序包的版本号仅支持语义化版本号。
 
 例如: `my_pkg` 程序包的版本号为 `0.1.0`。
+
 ```
 [package]
 name = "my_pkg"
@@ -41,9 +46,11 @@ version = "0.1.0"
 ```
 
 ### 2.3. edition
+
 `edition` 是 KCL 编译器版本，它是一个字符串, 这是一个必要的字段。注意，目前 KCL 编译器版本号仅支持语义化版本号。
 
 例如: `my_pkg` 程序包的版本号为 `0.1.0`, 并且与 0.5.1 的 KCL 编译器兼容。
+
 ```
 [package]
 name = "my_pkg"
@@ -52,9 +59,11 @@ edition = "0.5.0"
 ```
 
 ### 2.4. description
+
 `description` 是包的描述，它是一个字符串, 这是一个可选的字段。
 
 例如: `my_pkg` 程序包的描述为 `This is my package.`。
+
 ```
 [package]
 name = "my_pkg"
@@ -91,17 +100,21 @@ k8s = "1.27"
 ### 3.2. git dependency
 
 根据 git 仓库中的 tag 指定对应的依赖。
+
 ```
 [dependencies]
-<package name> = { git = "<git repo url>", tag = "<git repo tag>" } 
+<package name> = { git = "<git repo url>", tag = "<git repo tag>" }
 ```
+
 这将会从 Git 存储库`<git repo url>`中拉取名称为 `<package name>` 的包，`tag` 为 `<git repo tag>`。
 
 根据 git 仓库中的 commit id 指定对应的依赖。
+
 ```
 [dependencies]
-<package name> = { git = "<git repo url>", commit = "<git repo commit>" } 
+<package name> = { git = "<git repo url>", commit = "<git repo commit>" }
 ```
+
 这将会从 Git 存储库`<git repo url>`中拉取名称为 `<package name>` 的包，`commit id` 为 `<git repo commit>`。
 
 ## 4. entries
@@ -117,7 +130,7 @@ entries = [
 ]
 ```
 
-entries 中可以定义绝对路径和相对路径，如果定义的是相对路径，那么就会以当前包的 
+entries 中可以定义绝对路径和相对路径，如果定义的是相对路径，那么就会以当前包的
 
 `entries` 是 kcl 包根路径的相对路径，`kcl.mod` 文件路径是包的根路径。支持两种文件路径格式，即 `normal paths` 和 `mod relative paths`。
 
@@ -125,6 +138,7 @@ entries 中可以定义绝对路径和相对路径，如果定义的是相对路
 - mod relative path：相对于 kcl.mod 中 [dependencies](#dependencies) 部分中的三方包的根路径。
 
 例如：
+
 1. 如果 `kcl.mod` 位于 `/usr/my_pkg/kcl.mod`，则 `kpm run` 将把 `/usr/my_pkg/entry1.k` 和 `/usr/my_pkg/subdir/entry2.k` 作为 `kcl` 编译器的入口点。
 
 ```
@@ -147,6 +161,7 @@ entries = [
 `mod relative paths` 必须包含前缀 `${k8s:KCL_MOD}`，其中 `k8s` 是包名，`${k8s:KCL_MOD}` 表示包 k8s 的包根路径。因此，如果 `k8s` 的包根路径是 `/.kcl/kpm/k8s`，则上面的 `entries` 将把 `/usr/my_pkg/entry1.k`、`/usr/my_pkg/subdir/entry2.k` 和 `/.kcl/kpm/k8s/core/api/v1/deployment.k` 作为 `kcl` 编译器的入口点。
 
 ### 注意
+
 你可以使用 `normal path` 指定当前包路径中的编译入口点，使用 `mod relative path` 指定三方包中的入口点。
 
 因此，使用 `normal path` 制定的文件路径必须来自于同一个包，即从 `normal path` 开始寻找的 `kcl.mod` 路径必须只能找到一个 `kcl.mod` 文件，不然编译器将输出错误。
@@ -154,6 +169,7 @@ entries = [
 例如:
 
 在路径 `/usr/kcl1` 下
+
 ```
 /usr/kcl1
       |--- kcl.mod
@@ -161,6 +177,7 @@ entries = [
 ```
 
 在路径 `/usr/kcl2` 下
+
 ```
 /usr/kcl2
       |--- kcl.mod
@@ -168,6 +185,7 @@ entries = [
 ```
 
 如果你在路径`/usr/kcl1`下使用这样的 kcl.mod 编译：
+
 ```
 entries = [
    "entry1.k", # 对应的 kcl.mod 文件是 /usr/kcl1/kcl.mod
@@ -176,6 +194,7 @@ entries = [
 ```
 
 将会得到错误：
+
 ```
 error[E3M38]: conflict kcl.mod file paths
 ```
