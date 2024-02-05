@@ -33,6 +33,10 @@ jobs:
       - name: Check Go Installation
         run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./static/stack/main.k
 
+      - name: Check Uninstall Script CLI
+        run: static/script/uninstall-cli.sh
+
+
   check-linux:
     strategy:
       matrix:
@@ -63,6 +67,9 @@ jobs:
 
       - name: Check Go Installation
         run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./static/stack/main.k
+
+      - name: Check Uninstall Script CLI
+        run: static/script/uninstall-cli.sh
 
   check-windows:
     strategy:
@@ -95,6 +102,9 @@ jobs:
 
       - name: Check Go Installation
         run: go install kcl-lang.io/cli/cmd/kcl@main && C:\Users\runneradmin\go\bin\kcl.exe run ./static/stack/main.k
+
+      - name: Check Uninstall Script CLI
+        run: static/script/uninstall-cli.ps1
 
   check-kcl-scoop-install:
     runs-on: windows-latest
