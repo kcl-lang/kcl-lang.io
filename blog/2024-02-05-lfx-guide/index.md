@@ -69,6 +69,6 @@ If you have any questions, please feel free to get more information directly fro
 | Mentee Applications Open | January 29 | February 13, 5:00 PM PDT |
 | Application Review/Admission Decisions/HR Paperwork | February 13 | February 27, 5:00 PM PDT |
 | Mentorship Program Begins with Initial Work Assignments | March 4 (Week 1) |  |
-| Midterm Mentee Evaluations<br>First Stipend Payments | April 10 (Week 6) |  |
-| Final Mentee Evaluations Due<br>Mentee Feedback/Blog Submission Due<br>Second and Final Stipend Payment Approvals | May 22, 5:00 PM PST (Week 12) |  |
+| Midterm Mentee Evaluations / First Stipend Payments | April 10 (Week 6) |  |
+| Final Mentee Evaluations Due / Mentee Feedback Submission Due / Second and Final Stipend Payment Approvals | May 22, 5:00 PM PST (Week 12) |  |
 | Last Day of Term | May 31 |  |
