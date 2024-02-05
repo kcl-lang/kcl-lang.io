@@ -1,6 +1,6 @@
 ---
 slug: 2024-02-05-lfs-guide
-title: 2024 LFX Mentorship Internship Launch: KCL Open Source Community Welcomes Your Participation!!!
+title: 2024 LFX Mentorship Internship Launch:KCL Open Source Community Welcomes Your Participation!!!
 authors:
   name: KCL Team
   title: KCL Team
