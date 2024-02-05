@@ -13,7 +13,7 @@ tags: [KCL, LFX-Mentorship]
 **_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**\
 **_KCL Github Repo: [https://github.com/kcl-lang](https://github.com/kcl-lang)_**
 
-For those interested in cloud-native, platform engineering,compiler, package management tools, and IDEs, we invite you to apply for the 2024 Spring Linux Foundation LFX Mentorship project.
+For those interested in cloud-native, platform engineering,compiler, package management tools, and IDEs, we invite you to apply for the 2024 Spring Linux Foundation LFX Mentorship project. You can earn a minimum of $3000 for completing the project! Apply now!
 
 ## LFX Mentorship Project
 
@@ -26,7 +26,7 @@ KCL package management tool (kpm) currently supports uploading, downloading, and
 In this project, you need to add the package version management part of kpm to ensure that kpm can select the appropriate third-party dependencies.
 
 - More details: https://github.com/kcl-lang/kpm/issues/246
-- Pretest：https://github.com/kcl-lang/kpm/issues/263
+- Pretest: https://github.com/kcl-lang/kpm/issues/263
 - Apply Link: https://mentorship.lfx.linuxfoundation.org/project/06b5baee-bdcd-4f5e-9a1a-454191445a01
 
 ### 2. KCL IDE Quick Fix
@@ -45,9 +45,9 @@ KCL IDE is the most direct interface for KCL users. It often fails to  find thir
 
 In this project, you need to use the ability of kpm to implement common functions in the IDE, such as automatically downloading third-party dependencies, automatically updating third-party dependencies when kcl.mod changes, and Quick Fix triggering third-party dependencies automatic download, to ensure that KCL IDE can provide a more complete development experience with the support of package management tools.
 
-- More Details：https://github.com/kcl-lang/kcl/issues/998
-- Pretest：https://github.com/kcl-lang/kcl/issues/1031
-- Apply Link://mentorship.lfx.linuxfoundation.org/project/59d5fb6c-153d-4e46-9d1f-2948641b0471
+- More Details: https://github.com/kcl-lang/kcl/issues/998
+- Pretest: https://github.com/kcl-lang/kcl/issues/1031
+- Apply Link: https://mentorship.lfx.linuxfoundation.org/project/59d5fb6c-153d-4e46-9d1f-2948641b0471
 
 ### 4. How to Apply
 
@@ -63,3 +63,13 @@ If you have any questions, please feel free to get more information directly fro
 
 - KCL IDE dependency update https://github.com/kcl-lang/kcl/issues/998
 
+
+### 5. Project Timeline
+| Event | Start Date | End Date |
+| --- | --- | --- |
+| Mentee Applications Open | January 29 | February 13, 5:00 PM PDT |
+| Application Review/Admission Decisions/HR Paperwork | February 13 | February 27, 5:00 PM PDT |
+| Mentorship Program Begins with Initial Work Assignments | March 4 (Week 1) |  |
+| Midterm Mentee Evaluations<br>First Stipend Payments | April 10 (Week 6) |  |
+| Final Mentee Evaluations Due<br>Mentee Feedback/Blog Submission Due<br>Second and Final Stipend Payment Approvals | May 22, 5:00 PM PST (Week 12) |  |
+| Last Day of Term | May 31 |  |

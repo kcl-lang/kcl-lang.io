@@ -12,7 +12,7 @@ tags: [KCL, Biweekly-Newsletter]
 **_KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)_**\
 **_KCL Github 仓库：[https://github.com/kcl-lang](https://github.com/kcl-lang)_**
 
-对云原生、平台工程、语言编译器、语言包管理工具和语言 IDE 感兴趣的小伙伴，我们邀请你申请 KCL 的 2024 春季 Linux 基金会 LFX Mentorship 项目。
+对云原生、平台工程、语言编译器、语言包管理工具和语言 IDE 感兴趣的小伙伴，我们邀请你申请 KCL 的 2024 春季 Linux 基金会 LFX Mentorship 项目，完成项目有最低 3000 美金的奖励哦！快来申请吧！
 
 ## LFX Mentorship 项目
 
@@ -62,3 +62,13 @@ KCL IDE 作为 KCL 用户最直接的开发界面，要想提供良好的用户�
 
 - KCL IDE 依赖更新 https://github.com/kcl-lang/kcl/issues/998
 
+### 5. 项目时间节点
+
+| 事件 | 开始日期 | 结束日期 |
+| --- | --- | --- |
+| 学员申请开放 | January 29 | February 13, 5:00 PM PDT |
+| 申请审查/录取决定/人力资源文书工作 | February 13 | February 27, 5:00 PM PDT |
+| 导师计划开始并分配初始工作 | March 4 (Week 1) |  |
+| 中期学员评估<br>第一笔津贴支付 | April 10 (Week 6) |  |
+| 最终学员评估到期<br>学员反馈/博客提交到期<br>批准第二笔和最后一笔津贴支付 | May 22, 5:00 PM PST (Week 12) |  |
+| 学期最后一天 | May 31 |  |
