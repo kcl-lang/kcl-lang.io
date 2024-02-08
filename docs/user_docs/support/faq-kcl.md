@@ -2439,3 +2439,24 @@ data:
 - cc
 dataIsUnique: true
 ```
+
+## 55. How do i omit attributes in the output for variables with "None" value?
+
+In KCL, there is a builtin disableNone feature `-n` that does not print variables with null value.
+
+```kcl
+a = 1
+b = None
+```
+
+You can use the following command to run the above script(main.k) with disableNone feature
+
+```
+kcl main.k -n
+```
+
+The output comes out as: 
+
+```bash
+a:1
+```
