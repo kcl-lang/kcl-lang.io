@@ -2444,19 +2444,19 @@ dataIsUnique: true
 
 In KCL, there is a builtin disableNone feature `-n` that does not print variables with null value.
 
-```kcl
+```python
 a = 1
 b = None
 ```
 
 You can use the following command to run the above script(main.k) with disableNone feature
 
-```
+```shell
 kcl main.k -n
 ```
 
-The output comes out as: 
+The output comes out as:
 
-```bash
-a:1
+```yaml
+a: 1
 ```
