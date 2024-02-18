@@ -27,14 +27,14 @@ description: KCL 错误与警告
 
 KCL 会出现的语法错误信息如下表所示:
 
-| ewcode | KCL exception                                                       | messages                |
-| ------ | ------------------------------------------------------------------- | ----------------------- |
-| E1001  | [InvalidSyntaxError](#111-invalidsyntaxerror-e1001)                 | Invalid syntax          |
-| E1002  | [KCLTabError](#112-kcltaberror-e1002)                               | Tab Error               |
-| E1003  | [KCLIndentationError](#113-kclindentationerror-e1003)               | Indentation Error       |
-| E1I37  | [IllegalArgumentSyntaxError](#114-illegalargumentsyntaxerror-e1i37) | Illegal argument syntax |
+| ewcode | KCL exception                                             | messages                |
+| ------ | --------------------------------------------------------- | ----------------------- |
+| E1001  | [InvalidSyntaxError](#invalidsyntaxerror)                 | Invalid syntax          |
+| E1002  | [KCLTabError](#taberror)                                  | Tab Error               |
+| E1003  | [KCLIndentationError](#indentationerror)                  | Indentation Error       |
+| E1I37  | [IllegalArgumentSyntaxError](#illegalargumentsyntaxerror) | Illegal argument syntax |
 
-### InvalidSyntaxError [E1001]
+### InvalidSyntaxError
 
 如果在运行 KCL 时遇到错误:
 
@@ -63,7 +63,7 @@ error[E1001]: InvalidSyntax
 
 ### TabError
 
-如果在运行 KCL 时遇到错误: `KCLTabError`
+如果在运行 KCL 时遇到错误: `TabError`
 
 那么此时 KCL 程序中出现了
 
@@ -95,7 +95,7 @@ error[E1001]: InvalidSyntax
 
 ### IndentationError
 
-如果在运行 KCL 时遇到错误: `KCLIndentationError`
+如果在运行 KCL 时遇到错误: `IndentationError`
 
 那么此时 KCL 程序中出现了
 
@@ -165,28 +165,27 @@ func(input_1, ..., input_n, param_with_key_1 = input_with_key_1, ..., param_with
 
 KCL 会出现的编译错误信息如下表所示:
 
-| ewcode | KCL exception                                                           | messages                                            |
-| ------ | ----------------------------------------------------------------------- | --------------------------------------------------- |
-| E2F04  | [CannotFindModule](#121-cannotfindmodule-e2f04)                         | Cannot find the module                              |
-| E2F05  | [FailedLoadModule](#122-failedloadmodule-e2f05)                         | Failed to load module                               |
-| E2H13  | [UnKnownDecoratorError](#123-unknowndecoratorerror-e2h13)               | UnKnown decorator                                   |
-| E2C15  | [MixinNamingError](#125-mixinnamingerror-e2c15)                         | Illegal mixin naming                                |
-| E2C16  | [MixinStructureIllegal](#126-mixinstructureillegal-e2c16)               | Illegal mixin structure                             |
-| E2B17  | [CannotAddMembersComplieError](#127-cannotaddmemberscomplieerror-e2b17) | Cannot add members to a schema                      |
-| E2B20  | [IndexSignatureError](#128-indexsignatureerror-e2b20)                   | Invalid index signature                             |
-| E2G22  | [TypeComplieError](#129-typecomplieerror-e2g22)                         | The type got is inconsistent with the type expected |
-| E2L23  | [CompileError](#1210-compileerror-e2l23)                                | A complie error occurs during compiling             |
-| E2L25  | [KCLNameError](#1211-kclnameerror-e2l25)                                | Name Error                                          |
-| E2L26  | [KCLValueError](#1212-kclvalueerror-e2l26)                              | Value Error                                         |
-| E2L27  | [KCLKeyError](#1213-kclkeyerror-e2l27)                                  | Key Error                                           |
-| E2L28  | [UniqueKeyError](#1214-uniquekeyerror-e2l28)                            | Unique key error                                    |
-| E2A29  | [KCLAttributeComplieError](#1215-kclattributecomplieerror-e2a29)        | Attribute error occurs during compiling             |
-| E2D32  | [MultiInheritError](#1216-multiinheriterror-e2d32)                      | Multiple inheritance is illegal                     |
-| E2D34  | [IllegalInheritError](#1217-illegalinheriterror-e2d34)                  | Illegal inheritance                                 |
-| E2I36  | [IllegalArgumentComplieError](#1218-illegalargumentcomplieerror-e2i36)  | Illegal argument during compiling                   |
-| E3L41  | [ImmutableCompileError](#1219-immutablecompileerror-e3l41)              | Immutable variable is modified                      |
+| ewcode | KCL exception                                         | messages                                            |
+| ------ | ----------------------------------------------------- | --------------------------------------------------- |
+| E2F04  | [CannotFindModule](#cannotfindmodule-e2f04)           | Cannot find the module                              |
+| E2H13  | [UnKnownDecoratorError](#unknowndecoratorerror-e2h13) | UnKnown decorator                                   |
+| E2C15  | [MixinNamingError](#mixinnamingerror-e2c15)           | Illegal mixin naming                                |
+| E2C16  | [MixinStructureIllegal](#mixinstructureillegal-e2c16) | Illegal mixin structure                             |
+| E2B17  | [CannotAddMembersError](#cannotaddmemberserror-e2b17) | Cannot add members to a schema                      |
+| E2B20  | [IndexSignatureError](#indexsignatureerror-e2b20)     | Invalid index signature                             |
+| E2G22  | [TypeError](#typeerror-e2g22)                         | The type got is inconsistent with the type expected |
+| E2L23  | [CompileError](#compileerror-e2l23)                   | An error occurs during compiling                    |
+| E2L25  | [NameError](#nameerror-e2l25)                         | Name Error                                          |
+| E2L26  | [ValueError](#valueerror-e2l26)                       | Value Error                                         |
+| E2L27  | [KeyError](#keyerror-e2l27)                           | Key Error                                           |
+| E2L28  | [UniqueKeyError](#uniquekeyerror-e2l28)               | Unique key error                                    |
+| E2A29  | [AttributeError](#attributeerror-e2a29)               | Attribute error occurs during compiling             |
+| E2D32  | [MultiInheritError](#multiinheriterror-e2d32)         | Multiple inheritance is illegal                     |
+| E2D34  | [IllegalInheritError](#illegalargumenterror-e2i36)    | Illegal inheritance                                 |
+| E2I36  | [IllegalArgumentError](#illegalargumenterror-e2i36)   | Illegal argument during compiling                   |
+| E3L41  | [ImmutableError](#immutableerror-e3l41)               | Immutable variable is modified                      |
 
-### CannotFindModule [E2F04]
+### CannotFindModule (E2F04)
 
 如果在运行 KCL 时遇到错误:
 
@@ -219,22 +218,7 @@ error[E2F04]: CannotFindModule
 
 - 在 import 路径下添加导入模块文件。
 
-### FailedLoadModule [E2F05]
-
-如果在运行 KCL 时遇到错误:
-
-- `FailedLoadModule`, 对应的 encode 为 `E2F05`
-
-那么此时 KCL 程序中出现了
-
-- 导入模块加载错误
-
-可以尝试以下步骤来修复这个错误：
-
-- 查看文件是否可读
-- 查看文件是否为 kcl 文件
-
-### UnKnownDecoratorError
+### UnKnownDecoratorError (E2H13)
 
 如果在运行 KCL 时遇到错误:
 
@@ -273,7 +257,7 @@ error[E2L23]: CompileError
 
 - 检查装饰器是否存在。
 
-### MixinNamingError [E2C15]
+### MixinNamingError (E2C15)
 
 如果在运行 KCL 时遇到错误:
 
@@ -320,7 +304,7 @@ error[E2D34]: IllegalInheritError
 
 - 如果 schema 是一个 mixin，那么这个 schema 的名称应该以 Mixin 结尾。
 
-### MixinStructureIllegal [E2C16]
+### MixinStructureIllegal (E2C16)
 
 如果在运行 KCL 时遇到错误:
 
@@ -334,11 +318,11 @@ error[E2D34]: IllegalInheritError
 
 - 检查作为 Mixin 的 Schema 的结构。
 
-### CannotAddMembersComplieError [E2B17]
+### CannotAddMembersError (E2B17)
 
 如果在运行 KCL 时遇到错误:
 
-- `CannotAddMembersComplieError`, 对应的 encode 为 `E2B17`
+- `CannotAddMembersError`, 对应的 encode 为 `E2B17`
 
 那么此时 KCL 程序中出现了
 
@@ -510,11 +494,11 @@ error[E1001]: IndexSignatureError
 
 - 调整 Schema 属性或者调整索引签名。
 
-### TypeComplieError [E2G22]
+### TypeError (E2G22)
 
 如果在运行 KCL 时遇到错误:
 
-- `TypeComplieError`, 对应的 encode 为 `E2G22`
+- `TypeError`, 对应的 encode 为 `E2G22`
 
 那么此时 KCL 程序中出现了
 
@@ -554,7 +538,7 @@ error[E2G22]: TypeError
 
 - 检查赋给某个变量的值的类型与这个变量的类型是否一致。
 
-###0 CompileError [E2L23]
+### CompileError (E2L23)
 
 如果在运行 KCL 时遇到错误:
 
@@ -597,7 +581,7 @@ KCL 在运行上述 KCL 程序片段时的输出信息如下.
 error[E2G22]: TypeError
  --> operator/operator_fail_0/main.k:2:5
   |
-2 | b = 1 + None # Unsupport operand type + for int and None
+2 | b = 1 + None # Unsupported operand type + for int and None
   |     ^ unsupported operand type(s) for +: 'int(1)' and 'NoneType'
   |
 ```
@@ -704,11 +688,11 @@ error[E2L23]: CompileError
   |
 ```
 
-### NameError [E2L25]
+### NameError (E2L25)
 
 如果在运行 KCL 时遇到错误:
 
-- `KCLNameError`, 对应的 encode 为 `E2L25`
+- `NameError`, 对应的 encode 为 `E2L25`
 
 那么此时 KCL 程序中出现了
 
@@ -718,11 +702,11 @@ error[E2L23]: CompileError
 
 - 检查报错信息中出现的变量是否存在。
 
-### ValueError [E2L26]
+### ValueError (E2L26)
 
 如果在运行 KCL 时遇到错误:
 
-- `KCLValueError`, 对应的 encode 为 `E2L26`
+- `ValueError`, 对应的 encode 为 `E2L26`
 
 那么此时 KCL 程序中出现了
 
@@ -732,11 +716,11 @@ error[E2L23]: CompileError
 
 - 检查参数的具体类型。
 
-### KeyError [E2L27]
+### KeyError (E2L27)
 
 如果在运行 KCL 时遇到错误:
 
-- `KCLKeyError`, 对应的 encode 为 `E2L27`
+- `KeyError`, 对应的 encode 为 `E2L27`
 
 那么此时 KCL 程序中出现了
 
@@ -746,7 +730,7 @@ error[E2L23]: CompileError
 
 - 检查字典中是否存在 key。
 
-### UniqueKeyError [E2L28]
+### UniqueKeyError (E2L28)
 
 如果在运行 KCL 时遇到错误:
 
@@ -791,11 +775,11 @@ error[E2L28]: UniqueKeyError
 
 - 检查出现错误的名称是否已经被使用。
 
-### AttributeComplieError [E2A29]
+### AttributeError (E2A29)
 
 如果在运行 KCL 时遇到错误:
 
-- `KCLAttributeComplieError`, 对应的 encode 为 `E2A29`
+- `AttributeError`, 对应的 encode 为 `E2A29`
 
 那么此时 KCL 程序中出现了
 
@@ -829,7 +813,7 @@ error[E2G22]: TypeError
 
 - 在使用 Schema 属性时检查这个属性是否存在。
 
-### MultiInheritError [E2D32]
+### MultiInheritError (E2D32)
 
 如果在运行 KCL 时遇到错误:
 
@@ -869,7 +853,7 @@ error[E1001]: InvalidSyntax
 
 - 检查程序的继承结构，KCL 中不支持多继承。
 
-### IllegalInheritError [E2D34]
+### IllegalInheritError (E2D34)
 
 如果在运行 KCL 时遇到错误:
 
@@ -900,11 +884,11 @@ Invalid value for top level arguments
 
 - KCL 中 Schema 支持单继承 Schema。
 
-### IllegalArgumentComplieError [E2I36]
+### IllegalArgumentError (E2I36)
 
 如果在运行 KCL 时遇到错误:
 
-- `IllegalArgumentComplieError`, 对应的 encode 为 `E2I36`
+- `IllegalArgumentError`, 对应的 encode 为 `E2I36`
 
 那么此时 KCL 程序中出现了
 
@@ -930,11 +914,11 @@ Invalid value for top level arguments
 
 - 检查通过命令设置的 KCL option 参数是否为合法参数。
 
-### ImmutableCompileError [E3L41]
+### ImmutableError (E3L41)
 
 如果在运行 KCL 时遇到错误:
 
-- `ImmutableCompileError`, 对应的 encode 为 `E3L41`
+- `ImmutableError`, 对应的 encode 为 `E3L41`
 
 那么此时 KCL 程序中出现了
 
@@ -973,24 +957,22 @@ note: change the variable name to '_a' to make it mutable
 
 KCL 会出现的运行时错误信息如下表所示:
 
-| ewcode | KCL exception                                                           | messages                                            |
-| ------ | ----------------------------------------------------------------------- | --------------------------------------------------- |
-| E3F06  | [RecursiveLoad](#131-recursiveload-e3f06)                               | Recursively loading module                          |
-| E3K04  | [FloatOverflow](#132-floatoverflow-e3k04)                               | Float overflow                                      |
-| E3K09  | [IntOverflow](#133-intoverflow-e3k09)                                   | Integer overflow                                    |
-| E3N11  | [DeprecatedError](#134-deprecatederror-e3n11)                           | Deprecated error                                    |
-| E3A30  | [KCLAttributeRuntimeError](#135-kclattributeruntimeerror-e3a30)         | Attribute error occurs at runtime                   |
-| E3G21  | [TypeRuntimeError](#136-typeruntimeerror-e3g21)                         | The type got is inconsistent with the type expected |
-| E3B17  | [SchemaCheckFailure](#137-schemacheckfailure-e3b17)                     | Schema check is failed to check condition           |
-| E3B19  | [CannotAddMembersRuntimeError](#138-cannotaddmembersruntimeerror-e3b19) | Cannot add members to a schema                      |
-| E3M38  | [EvaluationError](#139-evaluationerror-e3m38)                           | Evaluation failure                                  |
-| E3M39  | [InvalidFormatSpec](#1310-invalidformatspec-e3m39)                      | Invalid format specification                        |
-| E3M40  | [KCLAssertionError](#1311-kclassertionerror-e3m40)                      | Assertion failure                                   |
-| E3M44  | [ImmutableRuntimeError](#1312-immutableruntimeerror-e3m44)              | Immutable variable is modified                      |
-| E2D33  | [CycleInheritError](#1313-cycleinheriterror-e2d33)                      | Cycle Inheritance is illegal                        |
-| E3M42  | [KCLRecursionError](#1314-kclrecursionerror-e3m42)                      | Recursively reference                               |
+| ewcode | KCL exception                                                       | messages                                            |
+| ------ | ------------------------------------------------------------------- | --------------------------------------------------- |
+| E3F06  | [RecursiveLoad](#recursiveload-e3f06)                               | Recursively loading module                          |
+| E3K04  | [FloatOverflow](#floatoverflow-e3k04)                               | Float overflow                                      |
+| E3K09  | [IntOverflow](#intoverflow-e3k09)                                   | Integer overflow                                    |
+| E3N11  | [DeprecatedError](#deprecatederror-e3n11)                           | Deprecated error                                    |
+| E3A30  | [AttributeRuntimeError](#attributeruntimeerror-e3a30)               | Attribute error occurs at runtime                   |
+| E3G21  | [TypeRuntimeError](#typeruntimeerror-e3g21)                         | The type got is inconsistent with the type expected |
+| E3B17  | [SchemaCheckFailure](#schemacheckfailure-e3b17)                     | Schema check is failed to check condition           |
+| E3B19  | [CannotAddMembersRuntimeError](#cannotaddmembersruntimeerror-e3b19) | Cannot add members to a schema                      |
+| E3M38  | [EvaluationError](#evaluationerror-e3m38)                           | Evaluation failure                                  |
+| E3M39  | [InvalidFormatSpec](#invalidformatspec-e3m39)                       | Invalid format specification                        |
+| E3M40  | [AssertionError](#assertionerror-e3m40)                             | Assertion failure                                   |
+| E3M42  | [RecursionError](#recursionerror-e3m42)                             | Recursively reference                               |
 
-### RecursiveLoad [E3F06]
+### RecursiveLoad (E3F06)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1029,7 +1011,7 @@ error[E2L23]: CompileError
 
 - 检查包的导入部分是否存在循环导入的问题。
 
-### FloatOverflow [E3K04]
+### FloatOverflow (E3K04)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1064,7 +1046,7 @@ error[E3M38]: EvaluationError
 
 - 检查浮点数的值是否在 KCL 支持的数字范围内。
 
-### IntOverflow [E3K09]
+### IntOverflow (E3K09)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1098,7 +1080,7 @@ error[E3M38]: EvaluationError
 
 - 检查整数的值是否在 KCL 支持的数字范围内。
 
-### DeprecatedError [E3N11]
+### DeprecatedError (E3N11)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1118,7 +1100,7 @@ schema Person:
     name: str
 
 JohnDoe = Person {
-    name: "deprecated" # name已经被过时，并且strict设置为True
+    name: "deprecated" # name已经过时，并且strict设置为True
 }
 ```
 
@@ -1138,11 +1120,11 @@ error[E3M38]: EvaluationError
 - strict 设置为 True 时无法使用过时的代码，可以将 strict 设置为 False，将不会出现错误，而是输出一个警告。
 - 调整代码，不使用已经过时的代码。
 
-### AttributeRuntimeError [E3A30]
+### AttributeRuntimeError (E3A30)
 
 如果在运行 KCL 时遇到错误:
 
-- `KCLAttributeRuntimeError`, 对应的 encode 为 `E3A30`
+- `AttributeRuntimeError`, 对应的 encode 为 `E3A30`
 
 那么此时 KCL 程序中出现了
 
@@ -1171,7 +1153,7 @@ error[E3M38]: EvaluationError
 
 - 检查属性调用是否正确。
 
-### TypeRuntimeError [E3G21]
+### TypeRuntimeError (E3G21)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1207,7 +1189,7 @@ error[E3M38]: EvaluationError
 
 - 停止错误的类型合并或者将类型调整为 KCL 支持的类型合并。
 
-### SchemaCheckFailure [E3B17]
+### SchemaCheckFailure (E3B17)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1253,7 +1235,7 @@ error[E3M38]: EvaluationError
 
 - 检查 Schema 的属性与 check 中的条件是否符合
 
-### CannotAddMembersRuntimeError [E3B19]
+### CannotAddMembersRuntimeError (E3B19)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1293,7 +1275,7 @@ error[E2L23]: CompileError
 - 为 Schema 添加不存在的成员。
 - 访问 Schema 中存在的成员。
 
-### EvaluationError [E3M38]
+### EvaluationError (E3M38)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1327,7 +1309,7 @@ error[E3M38]: EvaluationError
 
 - 检查表达式中是否存在变量为 None，或者非法的计算过程。
 
-###0 InvalidFormatSpec [E3M39]
+###0 InvalidFormatSpec (E3M39)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1360,11 +1342,11 @@ error[E2L23]: CompileError
 
 - 将非法 String 调整为 KCL 标准支持的 String。
 
-### AssertionError [E3M40]
+### AssertionError (E3M40)
 
 如果在运行 KCL 时遇到错误:
 
-- `KCLAssertionError`, 对应的 encode 为 `E3M40`
+- `AssertionError`, 对应的 encode 为 `E3M40`
 
 那么此时 KCL 程序中出现了
 
@@ -1391,49 +1373,7 @@ error[E3M38]: EvaluationError
 
 - 检查 Assert 的条件，Assert 条件为 False 时，就会出现此类错误，去掉 Assert 语句或改变条件为 True。
 
-### ImmutableRuntimeError [E3M44]
-
-如果在运行 KCL 时遇到错误:
-
-- `ImmutableRuntimeError`, 对应的 encode 为 `E3M44`
-
-那么此时 KCL 程序中出现了
-
-- 不可变量的值发生改变
-
-可能出现错误的 KCL 程序片段如下:
-
-```python
-schema Person:
-    final firstName : str
-    lastName : str
-
-
-schema Scholar(Person):
-    firstName = "CBA"
-
-
-scholar = Scholar {
-    "firstName": "ABC" # firstName in schema Person is final.
-}
-```
-
-KCL 在运行上述 KCL 程序片段时的输出信息如下.
-
-```shell
-error[E3M38]: EvaluationError
- --> /final/fail_lazy_init_0/main.k:8:1
-  |
-8 | scholar = Scholar {
-  |  attribute 'lastName' of Scholar is required and can't be None or Undefined
-  |
-```
-
-可以尝试以下步骤来修复这个错误：
-
-- 检查 final 修饰的不可变量是否出现了赋值等改变值的操作。
-
-### CycleInheritError [E2D33]
+### CycleInheritError (E2D33)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1475,11 +1415,11 @@ error[E2L23]: CompileError
 
 - 检查 Schema 的继承关系，避免出现 A 继承 B，B 继承 A 的情况。
 
-### RecursionError [E3M42]
+### RecursionError (E3M42)
 
 如果在运行 KCL 时遇到错误:
 
-- `KCLRecursionError`, 对应的 encode 为 `E3M42`
+- `RecursionError`, 对应的 encode 为 `E3M42`
 
 那么此时 KCL 程序中出现了
 
@@ -1524,13 +1464,13 @@ fatal runtime error: stack overflow
 
 KCL 中的编译警告如下表所示：
 
-| ewcode | KCL exception                                     | messages           |
-| ------ | ------------------------------------------------- | ------------------ |
-| W2K04  | [FloatUnderflow](#141-floatunderflow-w2k08)       | Float underflow    |
-| W2P10  | [InvalidDocstring](#142-invaliddocstring-w2p10)   | Invalid docstring  |
-| W2N12  | [DeprecatedWarning](#143-deprecatedwarning-w2n12) | Deprecated warning |
+| ewcode | KCL exception                                 | messages           |
+| ------ | --------------------------------------------- | ------------------ |
+| W2K04  | [FloatUnderflow](#floatunderflow-w2k04)       | Float underflow    |
+| W2P10  | [InvalidDocstring](#invaliddocstring-w2p10)   | Invalid docstring  |
+| W2N12  | [DeprecatedWarning](#deprecatedwarning-w2n12) | Deprecated warning |
 
-### FloatUnderflow [W2K08]
+### FloatUnderflow (W2K08)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1540,7 +1480,7 @@ KCL 中的编译警告如下表所示：
 
 - 检查浮点数的值是否在 KCL 支持的数字范围内。
 
-### InvalidDocstring [W2P10]
+### InvalidDocstring (W2P10)
 
 如果在运行 KCL 时遇到错误:
 
@@ -1554,7 +1494,7 @@ KCL 中的编译警告如下表所示：
 
 - 请按照 KCL 标准编写 doc。
 
-### DeprecatedWarning [W2N12]
+### DeprecatedWarning (W2N12)
 
 如果在运行 KCL 时遇到错误:
 
