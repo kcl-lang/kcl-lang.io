@@ -40,7 +40,7 @@ In this project, you need to develop different Quick Fix functions for IDE based
 
 ### 3. KCL IDE automatically loads KCL third-party dependencies
 
-KCL IDE is the most direct interface for KCL users. It often fails to  find third-party dependencies. Currently, KCL's package management tool kpm has provided the ability to automatically download and update third-party dependencies, but users still need to update third-party libraries through the command line, which affects the user's development experience. Therefore, KCL IDE needs to be integrated with KCL's package management tool kpm to provide the ability to automatically download and update third-party libraries for the IDE.
+KCL IDE is the most direct interface for KCL users. It often fails to find third-party dependencies. Currently, KCL's package management tool kpm has provided the ability to automatically download and update third-party dependencies, but users still need to update third-party libraries through the command line, which affects the user's development experience. Therefore, KCL IDE needs to be integrated with KCL's package management tool kpm to provide the ability to automatically download and update third-party libraries for the IDE.
 
 In this project, you need to use the ability of kpm to implement common functions in the IDE, such as automatically downloading third-party dependencies, automatically updating third-party dependencies when kcl.mod changes, and Quick Fix triggering third-party dependencies automatic download, to ensure that KCL IDE can provide a more complete development experience with the support of package management tools.
 
@@ -62,13 +62,13 @@ If you have any questions, please feel free to get more information directly fro
 
 - KCL IDE dependency update https://github.com/kcl-lang/kcl/issues/998
 
-
 ### 5. Project Timeline
-| Event | Start Date | End Date |
-| --- | --- | --- |
-| Mentee Applications Open | January 29 | February 13, 5:00 PM PDT |
-| Application Review/Admission Decisions/HR Paperwork | February 13 | February 27, 5:00 PM PDT |
-| Mentorship Program Begins with Initial Work Assignments | March 4 (Week 1) |  |
-| Midterm Mentee Evaluations / First Stipend Payments | April 10 (Week 6) |  |
-| Final Mentee Evaluations Due / Mentee Feedback Submission Due / Second and Final Stipend Payment Approvals | May 22, 5:00 PM PST (Week 12) |  |
-| Last Day of Term | May 31 |  |
+
+| Event                                                                                                      | Start Date                    | End Date                 |
+| ---------------------------------------------------------------------------------------------------------- | ----------------------------- | ------------------------ |
+| Mentee Applications Open                                                                                   | January 29                    | February 13, 5:00 PM PDT |
+| Application Review/Admission Decisions/HR Paperwork                                                        | February 13                   | February 27, 5:00 PM PDT |
+| Mentorship Program Begins with Initial Work Assignments                                                    | March 4 (Week 1)              |                          |
+| Midterm Mentee Evaluations / First Stipend Payments                                                        | April 10 (Week 6)             |                          |
+| Final Mentee Evaluations Due / Mentee Feedback Submission Due / Second and Final Stipend Payment Approvals | May 22, 5:00 PM PST (Week 12) |                          |
+| Last Day of Term                                                                                           | May 31                        |                          |

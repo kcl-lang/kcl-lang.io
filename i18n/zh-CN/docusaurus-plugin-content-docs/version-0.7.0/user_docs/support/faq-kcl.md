@@ -2366,3 +2366,104 @@ schema Data:
     check:
         environment in allowed, "environment must be one of {}".format(allowed)
 ```
+
+## 52. 如何在 KCL 中输出带缩进的 JSON 字符串？
+
+KCL 内置了格式化 JSON 字符串的参数。
+
+```python
+import json
+config = {
+    key1 = "value1"
+    key2 = "value2"
+}
+configJson = json.encode(config, ignore_private=True, indent=4)
+```
+
+运行此代码后，`configJson` 变量将包含一个缩进的 JSON 字符串。
+
+```yaml
+config:
+  key1: value1
+  key2: value2
+configJson: |-
+  {
+      "key1": "value1",
+      "key2": "value2"
+  }
+```
+
+## 53. 如何计算 KCL 对象的哈希或 MD5 值？
+
+在 KCL 中，可以使用 crypto 库计算哈希或 MD5 值
+
+```python
+import crypto
+
+schema Person:
+    a: int
+
+aa = Person {a = 1}
+bb = Person {a = 2}
+cc = Person {a = 2}
+aahash = crypto.md5(str(aa))
+bbhash = crypto.md5(str(bb))
+cchash = crypto.md5(str(cc))
+```
+
+输出如下:
+
+```yaml
+aa:
+  a: 1
+bb:
+  a: 2
+cc:
+  a: 2
+aahash: 1992c2ef118972b9c3f96c3f74cdd1a5
+bbhash: 5c71751205373815a9f2e022dd846758
+cchash: 5c71751205373815a9f2e022dd846758
+```
+
+## 54. 如何对 str 列表去重？
+
+我们可以定义一个 `to_set` 函数对 str 列表去重，其原理是使用 KCL dict 来去除重复的值
+
+```python
+to_set = lambda items: [str] {
+    [item for item in {item = None for item in items}]
+}
+data = to_set(["aa", "bb", "bb", "cc"])
+dataIsUnique = isunique(data)
+```
+
+输出如下:
+
+```yaml
+data:
+- aa
+- bb
+- cc
+dataIsUnique: true
+```
+
+## 55. 如何在变量的输出中省略具有 None 值的属性？
+
+在 KCL 命令行工具中，有一个内置的 disableNone 标志 (-n)，启用它后 KCL 不会打印具有 None 值的属性。
+
+```python
+a = 1
+b = None
+```
+
+你可以使用以下命令运行带有 `disableNone` 功能的上述脚本（main.k）
+
+```shell
+kcl main.k -n
+```
+
+输出如下:
+
+```yaml
+a: 1
+```
