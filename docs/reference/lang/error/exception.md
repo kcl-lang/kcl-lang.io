@@ -25,14 +25,14 @@ In the following sections you will find:
 
 This section mainly includes KCL errors:
 
-| ewcode | KCL exception                                                       | messages                |
-| ------ | ------------------------------------------------------------------- | ----------------------- |
-| E1001  | [InvalidSyntaxError](#111-invalidsyntaxerror-e1001)                 | Invalid syntax          |
-| E1002  | [KCLTabError](#112-kcltaberror-e1002)                               | Tab Error               |
-| E1003  | [KCLIndentationError](#113-kclindentationerrore1003)                | Indentation Error       |
-| E1I37  | [IllegalArgumentSyntaxError](#114-illegalargumentsyntaxerror-e1i37) | Illegal argument syntax |
+| ewcode | KCL exception                                             | messages                |
+| ------ | --------------------------------------------------------- | ----------------------- |
+| E1001  | [InvalidSyntaxError](#invalidsyntaxerror)                 | Invalid syntax          |
+| E1002  | [KCLTabError](#taberror)                                  | Tab Error               |
+| E1003  | [KCLIndentationError](#indentationerror)                  | Indentation Error       |
+| E1I37  | [IllegalArgumentSyntaxError](#illegalargumentsyntaxerror) | Illegal argument syntax |
 
-### InvalidSyntaxError (E1001)
+### InvalidSyntaxError
 
 KCL will report `InvalidSyntaxError` when KCL has a syntax error.
 
@@ -61,7 +61,7 @@ Possible resolution:
 
 ### TabError
 
-KCL will report `KCLTabError` when KCL has a tab and white space syntax error.
+KCL will report `TabError` when KCL has a tab and white space syntax error.
 
 In KCL, it is forbidden to mix tabs and four spaces in one indentation block. And we recommend only using white spaces or tabs for indentation in the entire KCL project, don’t mix them.
 
@@ -91,7 +91,7 @@ Possible resolution:
 
 ### IndentationError
 
-KCL will report `KCLIndentationError` when KCL has an indentation syntax error.
+KCL will report `IndentationError` when KCL has an indentation syntax error.
 
 The KCL syntax includes indentation. A tab or four white spaces in KCL represents an indentation. The other cases will be regarded as syntax errors by KCL.
 
@@ -119,7 +119,7 @@ Possible resolution:
 
 - Only use a tab or four white spaces in the KCL program for indentation.
 
-### IllegalArgumentSyntaxError (E1I37)
+### IllegalArgumentSyntaxError
 
 KCL will report `IllegalArgumentSyntaxError` when KCL has an illegal argument in KCL syntax.
 
@@ -152,26 +152,25 @@ func(input_1, ..., input_n, param_with_key_1 = input_with_key_1, ..., param_with
 
 This section mainly includes KCL errors:
 
-| ewcode | KCL exception                                                          | messages                                            |
-| ------ | ---------------------------------------------------------------------- | --------------------------------------------------- |
-| E2F04  | [CannotFindModule](#121-cannotfindmodulee2f04)                         | Cannot find the module                              |
-| E2F05  | [FailedLoadModule](#122-failedloadmodulee2f05)                         | Failed to load module                               |
-| E2H13  | [UnKnownDecoratorError](#123-unknowndecoratorerrore2h13)               | UnKnown decorator                                   |
-| E2C15  | [MixinNamingError](#125-mixinnamingerrore2c15)                         | Illegal mixin naming                                |
-| E2C16  | [MixinStructureIllegal](#126-mixinstructureillegale2c16)               | Illegal mixin structure                             |
-| E2B17  | [CannotAddMembersComplieError](#127-cannotaddmemberscomplieerrore2b17) | Cannot add members to a schema                      |
-| E2B20  | [IndexSignatureError](#128-indexsignatureerrore2b20)                   | Invalid index signature                             |
-| E2G22  | [TypeComplieError](#129-typecomplieerrore2g22)                         | The type got is inconsistent with the type expected |
-| E2L23  | [CompileError](#1210-compileerrore2l23)                                | A complie error occurs during compiling             |
-| E2L25  | [KCLNameError](#1211-kclnameerrore2l25)                                | Name Error                                          |
-| E2L26  | [KCLValueError](#1212-kclvalueerrore2l26)                              | Value Error                                         |
-| E2L27  | [KCLKeyError](#1213-kclkeyerrore2l27)                                  | Key Error                                           |
-| E2L28  | [UniqueKeyError](#1214-uniquekeyerrore2l28)                            | Unique key error                                    |
-| E2A29  | [KCLAttributeComplieError](#1215-kclattributecomplieerrore2a29)        | Attribute error occurs during compiling             |
-| E2D32  | [MultiInheritError](#1216-multiinheriterrore2d32)                      | Multiple inheritance is illegal                     |
-| E2D34  | [IllegalInheritError](#1217-illegalinheriterrore2d34)                  | Illegal inheritance                                 |
-| E2I36  | [IllegalArgumentComplieError](#1218-illegalargumentcomplieerrore2i36)  | Illegal argument during compiling                   |
-| E3L41  | [ImmutableCompileError](#1219-immutablecompileerror-e3l41)             | Immutable variable is modified                      |
+| ewcode | KCL exception                                         | messages                                            |
+| ------ | ----------------------------------------------------- | --------------------------------------------------- |
+| E2F04  | [CannotFindModule](#cannotfindmodule-e2f04)           | Cannot find the module                              |
+| E2H13  | [UnKnownDecoratorError](#unknowndecoratorerror-e2h13) | UnKnown decorator                                   |
+| E2C15  | [MixinNamingError](#mixinnamingerror-e2c15)           | Illegal mixin naming                                |
+| E2C16  | [MixinStructureIllegal](#mixinstructureillegal-e2c16) | Illegal mixin structure                             |
+| E2B17  | [CannotAddMembersError](#cannotaddmemberserror-e2b17) | Cannot add members to a schema                      |
+| E2B20  | [IndexSignatureError](#indexsignatureerror-e2b20)     | Invalid index signature                             |
+| E2G22  | [TypeError](#typeerror-e2g22)                         | The type got is inconsistent with the type expected |
+| E2L23  | [CompileError](#compileerror-e2l23)                   | An error occurs during compiling                    |
+| E2L25  | [NameError](#nameerror-e2l25)                         | Name Error                                          |
+| E2L26  | [ValueError](#valueerror-e2l26)                       | Value Error                                         |
+| E2L27  | [KeyError](#keyerror-e2l27)                           | Key Error                                           |
+| E2L28  | [UniqueKeyError](#uniquekeyerror-e2l28)               | Unique key error                                    |
+| E2A29  | [AttributeError](#attributeerror-e2a29)               | Attribute error occurs during compiling             |
+| E2D32  | [MultiInheritError](#multiinheriterror-e2d32)         | Multiple inheritance is illegal                     |
+| E2D34  | [IllegalInheritError](#illegalargumenterror-e2i36)    | Illegal inheritance                                 |
+| E2I36  | [IllegalArgumentError](#illegalargumenterror-e2i36)   | Illegal argument during compiling                   |
+| E3L41  | [ImmutableError](#immutableerror-e3l41)               | Immutable variable is modified                      |
 
 ### CannotFindModule (E2F04)
 
@@ -237,7 +236,7 @@ Possible resolution:
 
 - Check whether the decorator exists.
 
-### MixinNamingError(E2C15)
+### MixinNamingError (E2C15)
 
 KCL will report `MixinNamingError` when a mixin name does not end with 'Mixin'.
 
@@ -280,7 +279,7 @@ Possible resolution:
 
 - If the schema is a mixin, then the name of the schema should end with Mixin.
 
-### MixinStructureIllegal(E2C16)
+### MixinStructureIllegal (E2C16)
 
 KCL will report `MixinStructureIllegal` when the KCL structure is illegal.
 
@@ -290,11 +289,11 @@ Possible resolution:
 
 - Check the structure of schema as Mixin.
 
-### CannotAddMembersComplieError(E2B17)
+### CannotAddMembersError (E2B17)
 
-KCL will report `CannotAddMembersComplieError` when members that are not in the schema are used.
+KCL will report `CannotAddMembersError` when members that are not in the schema are used.
 
-The `ewcode` of `CannotAddMembersComplieError` is `E2B17`.
+The `ewcode` of `CannotAddMembersError` is `E2B17`.
 
 For example:
 
@@ -534,7 +533,7 @@ For example:
 
 ```python
 a = None
-b = 1 + None # Unsupport operand type + for int and None
+b = 1 + None # Unsupported operand type + for int and None
 ```
 
 The KCL program will cause the following error message.
@@ -543,7 +542,7 @@ The KCL program will cause the following error message.
 error[E2G22]: TypeError
  --> operator/operator_fail_0/main.k:2:5
   |
-2 | b = 1 + None # Unsupport operand type + for int and None
+2 | b = 1 + None # Unsupported operand type + for int and None
   |     ^ unsupported operand type(s) for +: 'int(1)' and 'NoneType'
   |
 ```
@@ -652,21 +651,21 @@ error[E2L23]: CompileError
 
 ### NameError (E2L25)
 
-KCL will report `KCLNameError` when a name error occurs in compiling.
+KCL will report `NameError` when a name error occurs in compiling.
 
-The `ewcode` of `KCLNameError` is `E2L25`.
+The `ewcode` of `NameError` is `E2L25`.
 
 ### ValueError (E2L26)
 
-KCL will report `KCLValueError` will be raised when a value error occurs in compiling.
+KCL will report `ValueError` will be raised when a value error occurs in compiling.
 
-The `ewcode` of `KCLValueError` is `E2L25`.
+The `ewcode` of `ValueError` is `E2L25`.
 
 ### KeyError (E2L27)
 
-KCL will report `KCLKeyError` will be raised when a key error occurs in compiling.
+KCL will report `KeyError` will be raised when a key error occurs in compiling.
 
-The `ewcode` of `KCLKeyError` is `E2L25`.
+The `ewcode` of `KeyError` is `E2L25`.
 
 ### UniqueKeyError (E2L28)
 
@@ -709,11 +708,11 @@ Possible resolution:
 
 - Check if the name with error has been used.
 
-### AttributeComplieError (E2A29)
+### AttributeError (E2A29)
 
-KCL will report `KCLAttributeComplieError` when KCL has an illegal attribute in the schema.
+KCL will report `AttributeError` when KCL has an illegal attribute in the schema.
 
-The `ewcode` of `KCLAttributeComplieError` is `E2A29`.
+The `ewcode` of `AttributeError` is `E2A29`.
 
 For example:
 
@@ -810,11 +809,11 @@ Possible resolution:
 
 - Schema supports single inheritance of schema in KCL.
 
-### IllegalArgumentComplieError (E2I36)
+### IllegalArgumentError (E2I36)
 
-KCL will report `IllegalArgumentComplieError` when the argument of option in KCL is illegal.
+KCL will report `IllegalArgumentError` when the argument of option in KCL is illegal.
 
-The `ewcode` of `IllegalArgumentComplieError` is `E2I36`.
+The `ewcode` of `IllegalArgumentError` is `E2I36`.
 
 For example:
 
@@ -836,11 +835,11 @@ Possible resolution:
 
 - Check whether the KCL option arguments are legal.
 
-### ImmutableCompileError (E3L41)
+### ImmutableError (E3L41)
 
-KCL will report `ImmutableCompileError` when the value of the immutable variable changes.
+KCL will report `ImmutableError` when the value of the immutable variable changes.
 
-The `ewcode` of `ImmutableCompileError` is `E3L41`.
+The `ewcode` of `ImmutableError` is `E3L41`.
 
 For example:
 
@@ -875,22 +874,20 @@ Possible resolution:
 
 This section mainly includes KCL errors:
 
-| ewcode | KCL exception                                                          | messages                                            |
-| ------ | ---------------------------------------------------------------------- | --------------------------------------------------- |
-| E3F06  | [RecursiveLoad](#131-recursiveload-e3f06)                              | Recursively loading module                          |
-| E3K04  | [FloatOverflow](#132-floatoverflow-e3k04)                              | Float overflow                                      |
-| E3K09  | [IntOverflow](#133-intoverflow-e3k09)                                  | Integer overflow                                    |
-| E3N11  | [DeprecatedError](#134-deprecatederror-e3n11)                          | Deprecated error                                    |
-| E3A30  | [KCLAttributeRuntimeError](#135-kclattributeruntimeerror-e3a30)        | Attribute error occurs at runtime                   |
-| E3G21  | [TypeRuntimeError](#136-typeruntimeerror-e3g21)                        | The type got is inconsistent with the type expected |
-| E3B17  | [SchemaCheckFailure](#137-schemacheckfailure-e3b17)                    | Schema check is failed to check condition           |
-| E3B19  | [CannotAddMembersRuntimeError](#138-cannotaddmembersruntimeerrore3b19) | Cannot add members to a schema                      |
-| E3M38  | [EvaluationError](#139-evaluationerrore3m38)                           | Evaluation failure                                  |
-| E3M39  | [InvalidFormatSpec](#1310-invalidformatspec-e3m39)                     | Invalid format specification                        |
-| E3M40  | [KCLAssertionError](#1311-kclassertionerror-e3m40)                     | Assertion failure                                   |
-| E3M44  | [ImmutableRuntimeError](#1312-immutableruntimeerror-e3m44)             | Immutable variable is modified                      |
-| E2D33  | [CycleInheritError](#1313-cycleinheriterror-e2d33)                     | Cycle Inheritance is illegal                        |
-| E3M42  | [KCLRecursionError](#1314-kclrecursionerror-e3m42)                     | Recursively reference                               |
+| ewcode | KCL exception                                                       | messages                                            |
+| ------ | ------------------------------------------------------------------- | --------------------------------------------------- |
+| E3F06  | [RecursiveLoad](#recursiveload-e3f06)                               | Recursively loading module                          |
+| E3K04  | [FloatOverflow](#floatoverflow-e3k04)                               | Float overflow                                      |
+| E3K09  | [IntOverflow](#intoverflow-e3k09)                                   | Integer overflow                                    |
+| E3N11  | [DeprecatedError](#deprecatederror-e3n11)                           | Deprecated error                                    |
+| E3A30  | [AttributeRuntimeError](#attributeruntimeerror-e3a30)               | Attribute error occurs at runtime                   |
+| E3G21  | [TypeRuntimeError](#typeruntimeerror-e3g21)                         | The type got is inconsistent with the type expected |
+| E3B17  | [SchemaCheckFailure](#schemacheckfailure-e3b17)                     | Schema check is failed to check condition           |
+| E3B19  | [CannotAddMembersRuntimeError](#cannotaddmembersruntimeerror-e3b19) | Cannot add members to a schema                      |
+| E3M38  | [EvaluationError](#evaluationerror-e3m38)                           | Evaluation failure                                  |
+| E3M39  | [InvalidFormatSpec](#invalidformatspec-e3m39)                       | Invalid format specification                        |
+| E3M40  | [AssertionError](#assertionerror-e3m40)                             | Assertion failure                                   |
+| E3M42  | [RecursionError](#recursionerror-e3m42)                             | Recursively reference                               |
 
 ### RecursiveLoad (E3F06)
 
@@ -1027,9 +1024,9 @@ Possible resolution:
 
 ### AttributeRuntimeError (E3A30)
 
-KCL will report `KCLAttributeRuntimeError`, if an error occurs during dynamically accessing schema attributes through variables at runtime.
+KCL will report `AttributeRuntimeError`, if an error occurs during dynamically accessing schema attributes through variables at runtime.
 
-The `ewcode` of `KCLAttributeRuntimeError` is `E3A30`.
+The `ewcode` of `AttributeRuntimeError` is `E3A30`.
 
 For example:
 
@@ -1250,42 +1247,6 @@ Possible resolution:
 
 - Check the condition of Assert, and when the Assert condition is False, such an error occurs, removing the Assert statement or changing the condition to True.
 
-### ImmutableRuntimeError (E3M44)
-
-KCL will report `ImmutableRuntimeError` when the value of the immutable variable changes.
-
-The `ewcode` of `ImmutableRuntimeError` is `E3M44`.
-
-For example:
-
-```python
-schema Person:
-    final firstName : str
-    lastName : str
-
-schema Scholar(Person):
-    firstName = "CBA"
-
-scholar = Scholar {
-    "firstName": "ABC" # firstName in schema Person is final.
-}
-```
-
-The KCL program will cause the following error message.
-
-```shell
-error[E3M38]: EvaluationError
- --> /final/fail_lazy_init_0/main.k:8:1
-  |
-8 | scholar = Scholar {
-  |  attribute 'lastName' of Scholar is required and can't be None or Undefined
-  |
-```
-
-Possible resolution:
-
-- Check if the final variables have been assigned or other changes affect the values of the final variables.
-
 ### CycleInheritError (E2D33)
 
 KCL will report `CycleInheritError` when circle inheritance appeared in the schema.
@@ -1326,9 +1287,9 @@ Possible resolution:
 
 ### RecursionError (E3M42)
 
-KCL will report `KCLRecursionError` when a circle reference appears in the program.
+KCL will report `RecursionError` when a circle reference appears in the program.
 
-The `ewcode` of `KCLRecursionError` is `E3M42`.
+The `ewcode` of `RecursionError` is `E3M42`.
 
 For example:
 
@@ -1369,11 +1330,11 @@ Possible resolution:
 
 This section mainly includes KCL warnings:
 
-| ewcode | KCL exception                                     | messages           |
-| ------ | ------------------------------------------------- | ------------------ |
-| W2K04  | [FloatUnderflow](#141-floatunderflow-w2k04)       | Float underflow    |
-| W2P10  | [InvalidDocstring](#142-invaliddocstring-w2p10)   | Invalid docstring  |
-| W2N12  | [DeprecatedWarning](#143-deprecatedwarning-w2n12) | Deprecated warning |
+| ewcode | KCL exception                                 | messages           |
+| ------ | --------------------------------------------- | ------------------ |
+| W2K04  | [FloatUnderflow](#floatunderflow-w2k04)       | Float underflow    |
+| W2P10  | [InvalidDocstring](#invaliddocstring-w2p10)   | Invalid docstring  |
+| W2N12  | [DeprecatedWarning](#deprecatedwarning-w2n12) | Deprecated warning |
 
 ### FloatUnderflow (W2K04)
 
