@@ -1,5 +1,5 @@
 ---
-slug: 2024-02-21-biweekly-newsletter
+slug: 2024-02-01-biweekly-newsletter
 title: KCL 社区开源双周报 (2024 01.19 - 2024.02.21) | KCL v0.7.5 版本和 Flux KCL 集成更新速递
 authors:
   name: KCL 团队
@@ -126,7 +126,7 @@ k3d cluster create
 
 ##### 2. 安装 Flux KCL Controller
 
-![flux-kcl-workflow](/img/blog/2024-02-21-biweekly-newsletter/flux-kcl-workflow.png)
+![flux-kcl-workflow](/img/blog/2024-02-01-biweekly-newsletter/flux-kcl-workflow.png)
 
 ```shell
 git clone https://github.com/kcl-lang/flux-kcl-controller.git && cd flux-kcl-controller && make deploy
