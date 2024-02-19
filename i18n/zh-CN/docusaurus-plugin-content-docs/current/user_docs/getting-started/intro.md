@@ -36,11 +36,13 @@ KCL 期望通过更现代化的声明式配置语言和工具，在轻量级客�
 
 除了语言自身，KCL 还提供了许多额外的工具如格式化，测试、文档、包管理等工具帮助您使用、理解和检查编写的配置或策略；通过 VS Code 等 IDE 插件和 Playground 降低配置编写、分享的成本；通过 Rust, Go, 和 Python 多语言 SDK 自动化地管理和执行配置。
 
-此外，KCL 是一种现代高级领域编程语言，并且它是一种编译静态的强类型语言。KCL 为开发人员提供了通过记录和函数语言设计将**配置（config）**、**建模抽象（schema）**、**逻辑（lambda）**和**策略（rule）**作为核心能力。
+KCL 本身提供了与其他语言、格式和云原生工具的许多集成。例如，我们可以使用 KCL 验证工具来验证terraform plan 文件, JSON/YAML 等格式，并使用导入工具从 terraform provider schema 和Kubernetes CRD 等直接生成 KCL Schema。此外得益于统一 [KRM KCL 规范](https://github.com/kcl-lang/krm-kcl)，KCL 提供了几乎所有您所知道的云原生工具的集成。
+
+KCL 是一种现代高级领域编程语言，并且它是一种编译静态的强类型语言。KCL 为开发人员提供了通过记录和函数语言设计将**配置（config）**、**建模抽象（schema）**、**逻辑（lambda）**和**策略（rule）**作为核心能力。
 
 ![](/img/docs/user_docs/intro/kcl-concepts.png)
 
-KCL 试图提供独立于运行时的可编程性，不在本地提供线程和IO等系统功能，但支持云本地操作场景的功能，并试图为解决领域问题并提供稳定、安全、低噪声、低副作用、易于自动化和易于管理的编程支持。
+KCL 试图提供独立于运行时的可编程性，不在本地提供线程和 IO 等系统功能，并试图为解决领域问题并提供稳定、安全、低噪声、低副作用、易于自动化和易于管理的编程支持。通过不可变性、纯函数和属性运算符等语言特性，您可以在配置可扩展性和安全性方面获得一个良好的平衡。
 
 总之，KCL 具备如下特点:
 
@@ -56,7 +58,7 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 - **开发友好**：[语言工具](https://kcl-lang.io/docs/tools/cli/kcl/) (Format，Lint，Test，Vet，Doc 等)、 [IDE 插件](https://github.com/kcl-lang/vscode-kcl) 构建良好的研发体验
 - **安全可控**：面向领域，不原生提供线程、IO 等系统级功能，低噪音，低安全风险，易维护，易治理
 - **多语言 SDK**：[Go](https://kcl-lang.io/docs/reference/xlang-api/go-api)，[Python](https://kcl-lang.io/docs/reference/xlang-api/python-api)，[Java](https://kcl-lang.io/docs/reference/xlang-api/java-api) 和 [REST API](https://kcl-lang.io/docs/reference/xlang-api/rest-api) 满足不同场景和应用使用需求
-- **生态集成**：通过 [Kustomize KCL 插件](https://github.com/kcl-lang/kustomize-kcl), [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl) 或者 [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk) 直接编辑或校验资源
+- **生态集成**：通过 [Kustomize KCL 插件](https://github.com/kcl-lang/kustomize-kcl), [Helm KCL 插件](https://github.com/kcl-lang/helm-kcl), [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk), [Kubectl KCL 插件](https://github.com/kcl-lang/kubectl-kcl) 或者 [Crossplane KCL 函数](https://github.com/kcl-lang/crossplane-kcl) 分离数据和逻辑，并直接编辑或校验资源
 - **生产可用**：广泛应用在蚂蚁集团平台工程及自动化的生产环境实践中
 
 虽然 KCL 不是通用语言，但它有相应的应用场景。开发人员可以通过 KCL 编写**config**、**schema**、**function**和**rule**，其中 config 用于定义数据，schema 用于描述数据的模型定义，rule 用于验证数据，schema 和 rule 还可以组合使用模型和约束来充分描述数据。此外，还可以使用 KCL 中的 lambda 纯函数来组织数据代码，封装通用代码，并在需要时直接调用它。
