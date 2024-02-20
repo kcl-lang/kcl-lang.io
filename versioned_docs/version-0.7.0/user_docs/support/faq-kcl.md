@@ -2460,3 +2460,27 @@ The output comes out as:
 ```yaml
 a: 1
 ```
+
+## 56. How to convert JSON structures into schemas?
+
+To convert a piece of JSON code or code structured in the JSON format, we import the built-in `json` module of KCL and use the json.decode function. In the KCL code below, we have used the `Server` schema to directly verify the integrated JSON data. 
+
+```KCL
+import json
+
+schema Server:
+    ports: [int]
+
+server: Server = json.decode('{"ports": [80, 8080]}')
+```
+
+For the above code(json.k), on doing `KCL json.k`, the output comes out as:
+
+```bash
+server:
+  ports:
+  - 80
+  - 8080
+  ```
+
+  
