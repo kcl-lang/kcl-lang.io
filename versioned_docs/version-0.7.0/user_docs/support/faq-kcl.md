@@ -2463,7 +2463,7 @@ a: 1
 
 ## 56. How to convert JSON structures into schemas?
 
-To convert a piece of JSON code or code structured in the JSON format, we import the built-in `json` module of KCL and use the json.decode function. In the KCL code below, we have used the `Server` schema to directly verify the integrated JSON data. 
+To convert a piece of JSON code or code structured in the JSON format, we import the built-in `json` module of KCL and use the `json.decode` function. In the KCL code below, we have used the `Server` schema to directly verify the integrated JSON data. 
 
 ```KCL
 import json
@@ -2483,4 +2483,23 @@ server:
   - 8080
   ```
 
-  
+## 57. What type of return value is json.decode() or yaml.decode() in KCL?
+
+In KCL, when we use the built-in modules `json` or `yaml` for the functions `json.decode()` or `yaml.decode()`, the return type is 'any' which can be of any type according to our wish. Therefore, we use type annotation or any other method such as using the `Schema` syntax in the below KCL code to ensure type safety. 
+
+```KCL 
+import yaml
+
+schema Server:
+    ports: [int]
+
+server: Server = yaml.decode("""\
+ports:
+- 80
+- 8080
+""")
+```
+
+
+
+
