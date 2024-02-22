@@ -2500,6 +2500,6 @@ ports:
 """)
 ```
 
+## 58. What is the difference between the Schema function and the lambda function?
 
-
-
+The difference between Schema function and lambda function lies on the execution of both. The execution order of the logic in Schema function depends on the dependency relationships of the fields, it  represents a structured and regimented approach to logic. While the lambda function is a pure function used only to represent sequential logical execution without the constraints of predefined structure.
