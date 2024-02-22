@@ -2460,3 +2460,17 @@ The output comes out as:
 ```yaml
 a: 1
 ```
+
+## 56. How to write a schema where a property can have one or more different schemas of definitions?
+
+We can use union types (sum types) in KCL. For example
+```shell
+schema Config:
+    route: EndPoint | Gateway
+
+schema EndPoint:
+    attr: str
+
+schema Gateway:
+    attr: str
+```
