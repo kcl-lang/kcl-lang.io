@@ -114,18 +114,13 @@ $ curl -X POST \
 Cross-language APIs defined via Protobuf([https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto)):
 
 ```protobuf
-// Copyright 2023 The KCL Authors. All rights reserved.
+// Copyright The KCL Authors. All rights reserved.
 //
 // This file defines the request parameters and return structure of the KCL RPC server.
 
 syntax = "proto3";
 
 package gpyrpc;
-
-import "google/protobuf/any.proto";
-import "google/protobuf/descriptor.proto";
-
-// ----------------------------------------------------------------------------
 
 // kcl main.k -E pkg_name=pkg_path
 message CmdExternalPkgSpec {
@@ -148,33 +143,22 @@ message CmdOverrideSpec {
 }
 
 // ----------------------------------------------------------------------------
-// gpyrpc request/response/error types
+// Error types
 // ----------------------------------------------------------------------------
 
-message RestResponse {
-	google.protobuf.Any result = 1;
-	string error = 2;
-	KclError kcl_err = 3;
+message Error {
+	string level = 1;
+	string code = 2;
+	repeated Message messages = 3;
 }
 
-message KclError {
-	string ewcode = 1; // See kclvm/kcl/error/kcl_err_msg.py
-	string name = 2;
-	string msg = 3;
-	repeated KclErrorInfo error_infos = 4;
-}
-
-message KclErrorInfo {
-	string err_level = 1;
-	string arg_msg = 2;
-	string filename = 3;
-	string src_code = 4;
-	string line_no = 5;
-	string col_no = 6;
+message Message {
+	string msg = 1;
+	Position pos = 2;
 }
 
 // ----------------------------------------------------------------------------
-// service requset/response
+// service request/response
 // ----------------------------------------------------------------------------
 
 // gpyrpc.BuiltinService
@@ -188,6 +172,12 @@ service KclvmService {
 	rpc Ping(Ping_Args) returns(Ping_Result);
 
 	rpc ExecProgram(ExecProgram_Args) returns(ExecProgram_Result);
+	rpc BuildProgram(BuildProgram_Args) returns(BuildProgram_Result);
+	rpc ExecArtifact(ExecArtifact_Args) returns(ExecProgram_Result);
+
+	rpc ParseFile(ParseFile_Args) returns(ParseFile_Result);
+	rpc ParseProgram(ParseProgram_Args) returns(ParseProgram_Result);
+	rpc LoadPackage(LoadPackage_Args) returns(LoadPackage_Result);
 
 	rpc FormatCode(FormatCode_Args) returns(FormatCode_Result);
 	rpc FormatPath(FormatPath_Args) returns(FormatPath_Result);
@@ -222,21 +212,77 @@ message ListMethod_Result {
 	repeated string method_name_list = 1;
 }
 
-message ParseFile_AST_Args {
-	string filename = 1;
-	string source_code = 2;
-}
-message ParseFile_AST_Result {
-	string ast_json = 1; // json value
-	KclError kcl_err = 2;
+message ParseFile_Args {
+	string path = 1;
+	string source = 2;
+	repeated CmdExternalPkgSpec external_pkgs = 3;  // External packages path
 }
 
-message ParseProgram_AST_Args {
-	repeated string k_filename_list = 1;
+message ParseFile_Result {
+	string ast_json = 1;         // JSON string value
+	repeated string deps = 2;    // file dependency paths
+	repeated Error errors = 3;    // Parse errors
 }
-message ParseProgram_AST_Result {
-	string ast_json = 1; // json value
-	KclError kcl_err = 2;
+
+message ParseProgram_Args {
+	repeated string paths = 1;
+	repeated string sources = 2;
+	repeated CmdExternalPkgSpec external_pkgs = 3;  // External packages path
+}
+
+message ParseProgram_Result {
+	string ast_json = 1;            // JSON string value
+	repeated string paths = 2;      // Returns the files in the order they should be compiled
+	repeated Error errors = 3;     // Parse errors
+}
+
+message LoadPackage_Args {
+	ParseProgram_Args parse_args = 1;
+	bool resolve_ast = 2;
+	bool load_builtin = 3;
+	bool with_ast_index = 4;
+}
+
+message LoadPackage_Result {
+	string program = 1;          // JSON string value
+	repeated string paths = 2;   // Returns the files in the order they should be compiled
+	repeated Error parse_errors = 3;     // Parse errors
+	repeated Error type_errors = 4;      // Type errors
+	map<string, Scope> scopes = 5;    // Map key is the ScopeIndex json string.
+	map<string, Symbol> symbols = 6;  // Map key is the SymbolIndex json string.
+	map<string, SymbolIndex> node_symbol_map = 7;  // Map key is the AST index UUID string.
+	map<string, string> symbol_node_map = 8;       // Map key is the SymbolIndex json string.
+	map<string, SymbolIndex> fully_qualified_name_map = 9;  // Map key is the fully_qualified_name e.g. `pkg.Name`
+	map<string, ScopeIndex> pkg_scope_map = 10;      // Map key is the package path.
+}
+
+message Symbol {
+	KclType ty = 1;
+	string name = 2;
+	SymbolIndex owner = 3;
+	SymbolIndex def = 4;
+	repeated SymbolIndex attrs = 5;
+	bool is_global = 6;
+}
+
+message Scope {
+	string kind = 1;
+	ScopeIndex parent = 2;
+	SymbolIndex owner = 3;
+	repeated ScopeIndex children = 4;
+	repeated SymbolIndex defs = 5;
+}
+
+message SymbolIndex {
+	uint64 i = 1;
+	uint64 g = 2;
+	string kind = 3;
+}
+
+message ScopeIndex {
+	uint64 i = 1;
+	uint64 g = 2;
+	string kind = 3;
 }
 
 message ExecProgram_Args {
@@ -244,7 +290,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-
+	
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 
@@ -275,8 +321,8 @@ message ExecProgram_Args {
 	// Whether only compiling the program
 	bool compile_only = 15;
 
-	// Compile the dir recursively
-	bool recursive = 16;
+	// Show hidden attributes
+	bool show_hidden = 16;
 
 	// -S --path_selector
 	repeated string path_selector = 17;
@@ -287,6 +333,20 @@ message ExecProgram_Result {
 	string yaml_result = 2;
 	string log_message = 3;
 	string err_message = 4;
+}
+
+message BuildProgram_Args {
+	ExecProgram_Args exec_args = 1;
+	string output = 2;
+}
+
+message BuildProgram_Result {
+	string path = 1;
+}
+
+message ExecArtifact_Args {
+	string path = 1;
+	ExecProgram_Args exec_args = 2;
 }
 
 message ResetPlugin_Args {
@@ -355,10 +415,11 @@ message GetSchemaTypeMapping_Result {
 
 message ValidateCode_Args {
 	string data = 1;
-	string code = 2;
-	string schema = 3;
-	string attribute_name = 4;
-	string format = 5;
+	string file = 2;
+	string code = 3;
+	string schema = 4;
+	string attribute_name = 5;
+	string format = 6;
 }
 
 message ValidateCode_Result {
@@ -401,7 +462,7 @@ message LoadSettingsFiles_Result {
 }
 
 message CliConfig {
-    repeated string files = 1;
+	repeated string files = 1;
 	string output = 2;
 	repeated string overrides = 3;
 	repeated string path_selector = 4;
@@ -410,7 +471,8 @@ message CliConfig {
 	int64 verbose = 7;
 	bool debug = 8;
 	bool sort_keys = 9;
-	bool include_schema_type_path = 10;
+	bool show_hidden = 10;
+	bool include_schema_type_path = 11;
 }
 
 message KeyValuePair {
@@ -424,13 +486,14 @@ message KeyValuePair {
 // ---------------------------------------------------------------------------------
 
 message Rename_Args {
-    string symbol_path = 1;               // the path to the target symbol to be renamed. The symbol path should conform to format: `<pkgpath>:<field_path>` When the pkgpath is '__main__', `<pkgpath>:` can be omitted.
-    repeated string file_paths = 2;       // the paths to the source code files
-    string new_name = 3;                   // the new name of the symbol
+	string package_root = 1;              // the file path to the package root
+	string symbol_path = 2;               // the path to the target symbol to be renamed. The symbol path should conform to format: `<pkgpath>:<field_path>` When the pkgpath is '__main__', `<pkgpath>:` can be omitted.
+	repeated string file_paths = 3;       // the paths to the source code files
+	string new_name = 4;                  // the new name of the symbol
 }
 
 message Rename_Result {
-    repeated string changed_files = 1;    // the file paths got changed
+	repeated string changed_files = 1;    // the file paths got changed
 }
 
 // ---------------------------------------------------------------------------------
@@ -439,13 +502,14 @@ message Rename_Result {
 // ---------------------------------------------------------------------------------
 
 message RenameCode_Args {
-    string symbol_path = 1;               // the path to the target symbol to be renamed. The symbol path should conform to format: `<pkgpath>:<field_path>` When the pkgpath is '__main__', `<pkgpath>:` can be omitted.
-    map<string, string> source_codes = 2; // the source code. a <filename>:<code> map
-    string new_name = 3;                   // the new name of the symbol
+	string package_root = 1;              // the file path to the package root
+	string symbol_path = 2;               // the path to the target symbol to be renamed. The symbol path should conform to format: `<pkgpath>:<field_path>` When the pkgpath is '__main__', `<pkgpath>:` can be omitted.
+	map<string, string> source_codes = 3; // the source code. a <filename>:<code> map
+	string new_name = 4;                  // the new name of the symbol
 }
 
 message RenameCode_Result {
-    map<string, string> changed_codes = 1; // the changed code. a <filename>:<code> map
+	map<string, string> changed_codes = 1; // the changed code. a <filename>:<code> map
 }
 
 // ---------------------------------------------------------------------------------

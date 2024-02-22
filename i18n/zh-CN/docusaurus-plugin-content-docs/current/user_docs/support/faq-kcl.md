@@ -2441,9 +2441,9 @@ dataIsUnique = isunique(data)
 
 ```yaml
 data:
-- aa
-- bb
-- cc
+  - aa
+  - bb
+  - cc
 dataIsUnique: true
 ```
 

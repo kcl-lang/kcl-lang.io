@@ -10,8 +10,6 @@ sidebar_position: 3
 import kcl "kcl-lang.io/kcl-go"
 ```
 
-## KCL Go SDK
-
 ```
 ┌─────────────────┐         ┌─────────────────┐           ┌─────────────────┐
 │     kcl files   │         │    KCL-Go-API   │           │  KCLResultList  │
@@ -95,49 +93,50 @@ x1 = Person {
 ## Index
 
 - [Go API](#go-api)
-  - [KCL Go SDK](#kcl-go-sdk)
-  - [Index](#index)
-  - [Constants](#constants)
-  - [func FormatCode](#func-formatcode)
-  - [func FormatPath](#func-formatpath)
-  - [func GetSchemaTypeMapping](#func-getschematypemapping)
-  - [func InitKclvmPath](#func-initkclvmpath)
-  - [func InitKclvmRuntime](#func-initkclvmruntime)
-  - [func LintPath](#func-lintpath)
-  - [func ListDepFiles](#func-listdepfiles)
-  - [func ListDownStreamFiles](#func-listdownstreamfiles)
-  - [func ListUpStreamFiles](#func-listupstreamfiles)
-  - [func OverrideFile](#func-overridefile)
-  - [func Validate](#func-validate)
-  - [func ValidateCode](#func-validatecode)
-  - [type KCLResult](#type-kclresult)
-  - [type KCLResultList](#type-kclresultlist)
-    - [func MustRun](#func-mustrun)
-    - [func Run](#func-run)
-    - [func RunFiles](#func-runfiles)
-  - [type KclType](#type-kcltype)
-    - [func GetSchemaType](#func-getschematype)
-  - [type ListDepFilesOption](#type-listdepfilesoption)
-  - [type ListDepsOptions](#type-listdepsoptions)
-  - [type Option](#type-option)
-    - [func WithCode](#func-withcode)
-    - [func WithDisableNone](#func-withdisablenone)
-    - [func WithExternalPkgs](#func-withexternalpkgs)
-    - [func WithIncludeSchemaTypePath](#func-withincludeschematypepath)
-    - [func WithKFilenames](#func-withkfilenames)
-    - [func WithLogger](#func-withlogger)
-    - [func WithOptions](#func-withoptions)
-    - [func WithOverrides](#func-withoverrides)
-    - [func WithPrintOverridesAST](#func-withprintoverridesast)
-    - [func WithSelectors](#func-withselectors)
-    - [func WithSettings](#func-withsettings)
-    - [func WithSortKeys](#func-withsortkeys)
-    - [func WithWorkDir](#func-withworkdir)
-  - [type TestCaseInfo](#type-testcaseinfo)
-  - [type TestOptions](#type-testoptions)
-  - [type TestResult](#type-testresult)
-    - [func Test](#func-test)
-  - [type ValidateOptions](#type-validateoptions)
+	- [Index](#index)
+	- [Constants](#constants)
+	- [func FormatCode](#func-formatcode)
+	- [func FormatPath](#func-formatpath)
+	- [func GetSchemaTypeMapping](#func-getschematypemapping)
+	- [func InitKclvmPath](#func-initkclvmpath)
+	- [func InitKclvmRuntime](#func-initkclvmruntime)
+	- [func LintPath](#func-lintpath)
+	- [func ListDepFiles](#func-listdepfiles)
+	- [func ListDownStreamFiles](#func-listdownstreamfiles)
+	- [func ListUpStreamFiles](#func-listupstreamfiles)
+	- [func OverrideFile](#func-overridefile)
+	- [func Validate](#func-validate)
+	- [func ValidateCode](#func-validatecode)
+	- [type KCLResult](#type-kclresult)
+	- [type KCLResultList](#type-kclresultlist)
+		- [func MustRun](#func-mustrun)
+		- [func Run](#func-run)
+		- [func RunFiles](#func-runfiles)
+	- [type KclType](#type-kcltype)
+		- [func GetSchemaType](#func-getschematype)
+	- [type ListDepFilesOption](#type-listdepfilesoption)
+	- [type ListDepsOptions](#type-listdepsoptions)
+	- [type Option](#type-option)
+		- [func WithCode](#func-withcode)
+		- [func WithDisableNone](#func-withdisablenone)
+		- [func WithExternalPkgs](#func-withexternalpkgs)
+		- [func WithFullTypePath](#func-withfulltypepath)
+		- [func WithIncludeSchemaTypePath](#func-withincludeschematypepath)
+		- [func WithKFilenames](#func-withkfilenames)
+		- [func WithLogger](#func-withlogger)
+		- [func WithOptions](#func-withoptions)
+		- [func WithOverrides](#func-withoverrides)
+		- [func WithPrintOverridesAST](#func-withprintoverridesast)
+		- [func WithSelectors](#func-withselectors)
+		- [func WithSettings](#func-withsettings)
+		- [func WithShowHidden](#func-withshowhidden)
+		- [func WithSortKeys](#func-withsortkeys)
+		- [func WithWorkDir](#func-withworkdir)
+	- [type TestCaseInfo](#type-testcaseinfo)
+	- [type TestOptions](#type-testoptions)
+	- [type TestResult](#type-testresult)
+		- [func Test](#func-test)
+	- [type ValidateOptions](#type-validateoptions)
 
 ## Constants
 
@@ -147,7 +146,7 @@ KclvmAbiVersion is the current kclvm ABI version.
 const KclvmAbiVersion = scripts.KclvmAbiVersion
 ```
 
-## func [FormatCode](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L133)
+## func [FormatCode](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L143)
 
 ```go
 func FormatCode(code interface{}) ([]byte, error)
@@ -185,7 +184,7 @@ a = 1 + 2
 </p>
 </details>
 
-## func [FormatPath](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L145)
+## func [FormatPath](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L155)
 
 ```go
 func FormatPath(path string) (changedPaths []string, err error)
@@ -220,7 +219,7 @@ func main() {
 </p>
 </details>
 
-## func [GetSchemaTypeMapping](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L227)
+## func [GetSchemaTypeMapping](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L237)
 
 ```go
 func GetSchemaTypeMapping(file, code, schemaName string) (map[string]*KclType, error)
@@ -262,7 +261,7 @@ func InitKclvmRuntime(n int)
 
 InitKclvmRuntime init kclvm process.
 
-## func [LintPath](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L165)
+## func [LintPath](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L175)
 
 ```go
 func LintPath(paths []string) (results []string, err error)
@@ -307,7 +306,7 @@ Module 'a' imported but unused
 </p>
 </details>
 
-## func [ListDepFiles](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L150)
+## func [ListDepFiles](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L160)
 
 ```go
 func ListDepFiles(workDir string, opt *ListDepFilesOption) (files []string, err error)
@@ -315,7 +314,7 @@ func ListDepFiles(workDir string, opt *ListDepFilesOption) (files []string, err 
 
 ListDepFiles return the depend files from the given path
 
-## func [ListDownStreamFiles](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L160)
+## func [ListDownStreamFiles](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L170)
 
 ```go
 func ListDownStreamFiles(workDir string, opt *ListDepsOptions) ([]string, error)
@@ -323,7 +322,7 @@ func ListDownStreamFiles(workDir string, opt *ListDepsOptions) ([]string, error)
 
 ListDownStreamFiles return a list of downstream depend files from the given changed path list.
 
-## func [ListUpStreamFiles](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L155)
+## func [ListUpStreamFiles](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L165)
 
 ```go
 func ListUpStreamFiles(workDir string, opt *ListDepsOptions) (deps []string, err error)
@@ -331,7 +330,7 @@ func ListUpStreamFiles(workDir string, opt *ListDepsOptions) (deps []string, err
 
 ListUpStreamFiles return a list of upstream depend files from the given path list
 
-## func [OverrideFile](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L177)
+## func [OverrideFile](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L187)
 
 ```go
 func OverrideFile(file string, specs, importPaths []string) (bool, error)
@@ -346,7 +345,7 @@ When the pkgpath is '__main__', it can be omitted.
 
 importPaths. List of import statements that need to be added
 
-## func [Validate](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L188)
+## func [Validate](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L198)
 
 ```go
 func Validate(dataFile, schemaFile string, opts *ValidateOptions) (ok bool, err error)
@@ -354,7 +353,7 @@ func Validate(dataFile, schemaFile string, opts *ValidateOptions) (ok bool, err 
 
 Validate validates the given data file against the specified schema file with the provided options.
 
-## func [ValidateCode](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L182)
+## func [ValidateCode](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L192)
 
 ```go
 func ValidateCode(data, code string, opts *ValidateOptions) (ok bool, err error)
@@ -670,7 +669,7 @@ func main() {
 type KclType = kcl.KclType
 ```
 
-### func [GetSchemaType](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L210)
+### func [GetSchemaType](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L220)
 
 ```go
 func GetSchemaType(file, code, schemaName string) ([]*KclType, error)
@@ -738,6 +737,14 @@ func WithExternalPkgs(externalPkgs ...string) Option
 
 WithExternalPkgs returns a Option which hold a external package list.
 
+### func [WithFullTypePath](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L118)
+
+```go
+func WithFullTypePath(fullTypePath bool) Option
+```
+
+WithFullTypePath returns a Option which hold a include full type string in the \`\_type\` attribute.
+
 ### func [WithIncludeSchemaTypePath](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L113)
 
 ```go
@@ -754,7 +761,7 @@ func WithKFilenames(filenames ...string) Option
 
 WithKFilenames returns a Option which hold a filenames list.
 
-### func [WithLogger](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L128)
+### func [WithLogger](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L138)
 
 ```go
 func WithLogger(l io.Writer) Option
@@ -816,7 +823,7 @@ func WithOverrides(override_list ...string) Option
 
 WithOverrides returns a Option which hold a override list.
 
-### func [WithPrintOverridesAST](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L118)
+### func [WithPrintOverridesAST](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L123)
 
 ```go
 func WithPrintOverridesAST(printOverridesAST bool) Option
@@ -840,13 +847,21 @@ func WithSettings(filename string) Option
 
 WithSettings returns a Option which hold a settings file.
 
-### func [WithSortKeys](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L123)
+### func [WithShowHidden](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L133)
+
+```go
+func WithShowHidden(showHidden bool) Option
+```
+
+WithShowHidden returns a Option which holds a showHidden switch.
+
+### func [WithSortKeys](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L128)
 
 ```go
 func WithSortKeys(sortKeys bool) Option
 ```
 
-WithSortKeys returns a Option which hold a sortKeys switch.
+WithSortKeys returns a Option which holds a sortKeys switch.
 
 ### func [WithWorkDir](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L107)
 
@@ -874,7 +889,7 @@ type TestOptions = testing.TestOptions
 type TestResult = testing.TestResult
 ```
 
-### func [Test](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L193)
+### func [Test](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L203)
 
 ```go
 func Test(testOpts *TestOptions, opts ...Option) (TestResult, error)
