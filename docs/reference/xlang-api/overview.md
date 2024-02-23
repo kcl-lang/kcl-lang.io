@@ -72,7 +72,7 @@ x1 = Person{age:101}
 `
 
 	result := kcl.MustRun("hello.k", kcl.WithCode(k_code)).First()
-	fmt.Println(result.YAMLString())
+	fmt.Println(result.GetRawYAMLString())
 
 	fmt.Println("----")
 	fmt.Println("x0.name:", result.Get("x0.name"))
@@ -187,14 +187,18 @@ The C-API provided by KCL does not have a REST-API. The REST-API is defined by P
 The RestAPI service can be started in the following way:
 
 ```shell
-python3 -m pip install kclvm -U
-python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+kcl server
 ```
 
 The service can then be requested via the POST protocol:
 
 ```shell
-$ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
+curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
+```
+
+The output is
+
+```json
 {
 	"error": "",
 	"result": {}
@@ -287,7 +291,3 @@ $ curl -X POST \
     }
 }
 ```
-
-## APIs in other languages
-
-Coming soon

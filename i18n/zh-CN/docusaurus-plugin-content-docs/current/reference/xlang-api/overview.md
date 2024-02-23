@@ -116,8 +116,7 @@ KCL 提供的 C-API 并没有 REST-API，REST-API 是通过 Protobuf 定义，�
 通过以下方式可以启动 RestAPI 服务：
 
 ```shell
-python3 -m pip install kclvm -U
-python3 -m gunicorn "kclvm.program.rpc-server.__main__:create_app()" -t 120 -w 4 -k uvicorn.workers.UvicornWorker -b :2021
+kcl server
 ```
 
 然后可以通过 POST 协议请求服务：
