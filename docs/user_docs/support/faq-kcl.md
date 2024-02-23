@@ -2474,3 +2474,22 @@ schema EndPoint:
 schema Gateway:
     attr: str
 ```
+
+## 57. How to convert dict and schema within kcl?
+
+In KCL, dict is a dynamic data that does not have the check constraint of a schema. We can convert dict to a schema to obtain constraints. We can directly assign dict data to schema type data, and KCL runtime will automatically complete type conversion and perform type checking.
+
+```shell
+schema Person:
+    name: str
+    age: int
+
+    check:
+        age > 20
+
+config = {
+    name = "Alice"
+    age = 25
+}
+alice: Person = config
+```
