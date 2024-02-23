@@ -51,4 +51,7 @@ For relatively complex general logic, it is provided through the system modules.
   <DocsCard header="yaml" href="yaml">
     <p>Provides YAML related encoding/decoding functions.</p>
   </DocsCard>
+   <DocsCard header="file" href="file">
+    <p>Provides filesystem functions.</p>
+  </DocsCard>
 </DocsCards>
