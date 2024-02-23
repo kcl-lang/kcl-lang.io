@@ -114,6 +114,10 @@
     "message": "CI 集成",
     "description": "The label for category CI Integration in sidebar user_docs"
   },
+  "sidebar.user_docs.category.CD Integration": {
+    "message": "CD 集成",
+    "description": "The label for category CD Integration in sidebar user_docs"
+  },
   "sidebar.docs.category.Mutate or Validate Kubernetes Manifests": {
     "message": "编辑或验证 Kubernetes 资源",
     "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar docs"
