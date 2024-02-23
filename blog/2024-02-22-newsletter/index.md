@@ -120,13 +120,11 @@ three = hello.add(1,2) # 3
 
 The following are listed in no particular order:
 
-The following list is in no particular order
-
 - Thanks to @octonawish-akcodes and @d4v1d03 for their continuous contributions to KCL FAQ documentation and KCL IDE functionality 🙌
 - Thanks to @octonawish-akcodes for the contribution to the Ansible KCL Module
 - Thanks to @AkashKumar7902 and @Vanshikav123 for the contribution to the KCL package management tool functionality 🙌
 - Thanks to @StevenLeiZhang for the contribution to KCL documentation and KCL plugins
-- Thanks to @TheChinBot, @Evgeny Shepelyuk, @yonas, @steeling, @vtomilov, @Fdall, @CloudZero357, @bozaro, @starkers, and @FLAGLORD, among others, for their valuable feedback and suggestions while using KCL recently. 🙌
+- Thanks to @TheChinBot, @Evgeny Shepelyuk, @yonas, @steeling, @vtomilov, @Fdall, @CloudZero357, @bozaro, @starkers, @MrGuoRanDuo and @FLAGLORD, among others, for their valuable feedback and suggestions while using KCL recently. 🙌
 
 ## Resources
 

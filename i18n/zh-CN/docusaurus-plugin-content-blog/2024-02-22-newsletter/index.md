@@ -124,7 +124,7 @@ three = hello.add(1,2) # 3
 - 感谢 @octonawish-akcodes 对 Ansible KCL Module 的贡献
 - 感谢 @AkashKumar7902 和 @Vanshikav123 对 KCL 包管理工具功能的贡献 🙌
 - 感谢 @StevenLeiZhang 对 KCL 文档和 KCL 插件的贡献
-- 感谢 @TheChinBot, @Evgeny Shepelyuk, @yonas, @steeling, @vtomilov, @Fdall, @CloudZero357, @bozaro, @starkers 和 @FLAGLORD 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
+- 感谢 @TheChinBot, @Evgeny Shepelyuk, @yonas, @steeling, @vtomilov, @Fdall, @CloudZero357, @bozaro, @starkers, @MrGuoRanDuo 和 @FLAGLORD 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 其他资源
 
