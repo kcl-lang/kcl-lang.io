@@ -4,11 +4,102 @@ sidebar_position: 1
 
 # 简介
 
-KCL 是声明式配置策略语言，对于不方便通过配置直接描述的复杂的业务逻辑可以通过通用的编程语言开发 KCL 插件对语言进行扩展。KCL 支持通过通用语言开发插件，KCL 程序导入插件中的函数。KCL 通过插件运行时和辅助的命令行工具提供插件支持。KCL 插件框架支持多种不同的通用语言开发插件，这里我们以 Python 为例简单说明插件的使用。
+KCL 是声明式配置策略语言，对于不方便通过配置直接描述的复杂的业务逻辑可以通过通用的编程语言开发 KCL 插件对语言进行扩展。KCL 支持通过通用语言开发插件，KCL 程序导入插件中的函数。KCL 通过插件运行时和辅助的命令行工具提供插件支持。KCL 插件框架目前支持 Python 语言和 Go 语言开发插件。
 
 插件的 Git 仓库: [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin)
 
-## 0. 前置依赖
+## 使用 Go 编写插件
+
+### 0. 前置依赖
+
+使用 KCL Go 插件需要您的 `PATH` 中存在 `Go 1.21+` 并在 Go 代码中添加 KCL Go SDK 的依赖
+
+### 1. 你好插件
+
+编写如下 Go 代码并添加你好插件的依赖
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"kcl-lang.io/kcl-go/pkg/kcl"
+	"kcl-lang.io/kcl-go/pkg/native"                // Import the native API
+	_ "kcl-lang.io/kcl-go/pkg/plugin/hello_plugin" // Import the hello plugin
+)
+
+func main() {
+	// Note we use `native.MustRun` here instead of `kcl.MustRun`, because it needs the cgo feature.
+	yaml := native.MustRun("main.k", kcl.WithCode(code)).GetRawYamlResult()
+	fmt.Println(yaml)
+}
+
+const code = `
+import kcl_plugin.hello
+
+name = "kcl"
+three = hello.add(1,2)  # hello.add is written by Go
+`
+```
+
+在 KCL 代码中，可以通过 `kcl_plugin.hello` 导入 `hello` 插件。运行上述代码可以得到如下输出结果
+
+```yaml
+name: kcl
+three: 3
+```
+
+### 2. 插件结构
+
+KCL Go 插件本质上是一个简单的 Go 工程，主要包含插件代码的 Go 文件 `api.go`，其中定义了插件的注册以及实现函数
+
+```go
+package hello_plugin
+
+import (
+	"kcl-lang.io/kcl-go/pkg/plugin"
+)
+
+func init() {
+	plugin.RegisterPlugin(plugin.Plugin{
+		Name: "hello",
+		MethodMap: map[string]plugin.MethodSpec{
+			"add": {
+				Body: func(args *plugin.MethodArgs) (*plugin.MethodResult, error) {
+					v := args.IntArg(0) + args.IntArg(1)
+					return &plugin.MethodResult{V: v}, nil
+				},
+			},
+		},
+	})
+}
+```
+
+### 3. 插件测试
+
+编写 `api_test.go` 文件对插件函数进行单元测试
+
+```go
+package hello_plugin
+
+import (
+	"testing"
+
+	"kcl-lang.io/kcl-go/pkg/plugin"
+)
+
+func TestPluginAdd(t *testing.T) {
+	result_json := plugin.Invoke("kcl_plugin.hello.add", []interface{}{111, 22}, nil)
+	if result_json != "133" {
+		t.Fatal(result_json)
+	}
+}
+```
+
+## 使用 Python 编写插件
+
+### 0. 前置依赖
 
 使用 KCL Python 插件需要您的 `PATH` 中存在 `Python3.7+` 并安装 KCL Python SDK, 设置插件存放路径。
 
@@ -18,7 +109,7 @@ alias kcl-plugin="python3 -m kclvm.tools.plugin"
 export KCL_PLUGINS_ROOT=~/.kcl/plugins
 ```
 
-## 1. 你好插件
+### 1. 你好插件
 
 KCL 插件在 KCL 的 `plugins` 子目录（通常安装在 `$HOME/.kcl/plugins` 目录），或者通过 `$KCL_PLUGINS_ROOT` 环境变量设置（环境变量优先级更高）。此外，`plugins` 插件目录还可以放在执行 KCL 命令的 `pwd` 路径或者父路径中。对于插件开发人员，插件都在 Git 仓库管理： [https://github.com/kcl-lang/kcl-plugin](https://github.com/kcl-lang/kcl-plugin) ，可以将插件仓库克隆到该目录进行开发。
 
@@ -55,7 +146,7 @@ name: kcl
 three: 3
 ```
 
-## 2. `kcl-plugin` 辅助命令
+### 2. `kcl-plugin` 辅助命令
 
 `kcl-plugin` 是提供的插件辅助工具，命令行帮助如下：
 
@@ -76,7 +167,7 @@ optional arguments:
 
 其中 `list` 子命令用于查看插件列表；`info` 用户查看插件目录和每个插件的信息；`init` 可以用户初始化新插件；`gendoc` 更新全部插件的 API 文档；`test` 测试指定的插件。
 
-## 3. 插件信息和文档
+### 3. 插件信息和文档
 
 输入 `kcl-plugin info hello` 查看 `hello` 插件信息：
 
@@ -100,7 +191,7 @@ $ kcl-plugin info hello
 
 插件的信息主要包含插件的名字和版本信息，插件提供的函数信息。该信息和插件目录中自动生成的 `api.md` 文件是一致的（插件 API 变化时通过 `kcl-plugin gendoc` 为全部的插件重新生成 `api.md` 文件）。
 
-## 4. 插件的目录结构
+### 4. 插件的目录结构
 
 插件的目录结构如下（将其中的 `/Users/kcl_user` 替换成本地的 `$HOME` 路径）：
 
@@ -137,7 +228,7 @@ def add(a: int, b: int) -> int:
 
 其中 `INFO` 指明了插件的名字、概要说明、详细说明和版本信息。而所有名字以字母开头的函数是插件给 KCL 提供的函数，因此 KCL 中可以直接调用 `add` 函数。
 
-## 5. 创建一个插件
+### 5. 创建一个插件
 
 通过 `kcl-plugin init` 命令可以创建一个插件示例：
 
@@ -150,7 +241,7 @@ hi: hi doc - 0.0.1
 
 `kcl-plugin init` 命令会以内置的模板构造一个新的插件，然后通过 `kcl-plugin list` 命令可以查看到新创建的插件。
 
-## 6. 插件的删除
+### 6. 插件的删除
 
 KCL 插件在 KCL 的 `plugins` 子目录（通常安装在 `$HOME/.kcl/plugins` 目录）。
 可以通过命令 `kcl-plugin info` 查询插件安装目录。
@@ -169,7 +260,7 @@ $ tree /Users/kcl_user/.kcl/plugins/
 $
 ```
 
-## 7. 插件的测试
+### 7. 插件的测试
 
 插件是独立的纯 Python 文件实现，插件目录下有个 `plugin_test.py` 文件是插件的单元测试文件（基于 pytest 测试框架）。此外在 `_test` 目录下放置的是 KCL 文件的插件集成测试。`plugin_test.py` 单元测试是必须的，`_test` 目录下的 KCL 集成测试可以根据情况添加。
 
