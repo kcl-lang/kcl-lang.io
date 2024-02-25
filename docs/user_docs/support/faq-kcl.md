@@ -2493,3 +2493,20 @@ config = {
 }
 alice: Person = config
 ```
+
+## 58. Please explain the relationship and usage of 'r' prefix in a String and String Interpolation.
+
+In KCL, we can use `${..}` for string interpolation. But in some cases, we don't want to escape it. Therefore, we use create a raw string by prefixing the string literal with `'r'` or `'R'`. An example KCL code over here is:
+
+```KCL
+worldString = "world"
+s = "Hello ${worldString}"
+raw_s = r"Hello ${worldString}"  
+```
+
+The output comes out as:
+
+```bash
+worldString: world
+s: Hello world
+raw_s: Hello ${worldString}
