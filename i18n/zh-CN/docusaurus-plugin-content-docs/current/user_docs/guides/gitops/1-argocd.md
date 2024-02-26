@@ -1,6 +1,6 @@
 ---
 id: gitops-quick-start
-sidebar_label: 快速开始
+sidebar_label: 使用 ArgoCD 支持 KCL 实现 GitOps
 ---
 
 # 快速开始

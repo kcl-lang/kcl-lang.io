@@ -1,6 +1,6 @@
 ---
 id: gitops-quick-start
-sidebar_label: Quick Start
+sidebar_label: Implement GitOps with KCL and ArgoCD
 ---
 
 # Quick Start

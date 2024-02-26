@@ -1,128 +1,111 @@
 ---
-id: flux-cd
-sidebar_label: Flux-KCL-Controller
+id: gitops-with-fluxcd
+sidebar_label: 使用 flux-kcl-controller 支持 KCL 与 FluxCD 实现 GitOps
 ---
 
-# Flux KCL Controller
+# 快速开始
 
-## 介绍
+## 简介
+
+### 什么是 GitOps
+
+GitOps 是一种实现持续交付的现代方式。它的核心思想是拥有一个包含环境和应用程序配置的 Git 存储库。通过更改应用存储库中的文件，可以自动部署应用程序。应用 GitOps 的好处包括：
+
+- 提高生产力，持续交付可以加快部署时间。
+- 降低开发人员部署的障碍。通过推送代码而不是容器配置，开发人员可以在不知道其内部实现的情况下轻松部署 Kubernetes 集群和应用。
+- 追踪变更记录。使用 Git 管理配置使每一项更改都具有可跟踪性，从而增强审计跟踪。
+
+### 将 KCL 与 FluxCD 一起使用
+
+将 [KCL](https://github.com/kcl-lang/kcl) 与 [FluxCD](https://github.com/fluxcd/flux2) 等 GitOps 工具一起使用具有如下好处:
+
+- 通过 KCL 语言的[抽象能力](/docs/user_docs/guides/abstraction)和可编程能力可以帮助我们**简化复杂的 Kubernetes 部署配置文件**，降低手动编写 YAML 文件的错误率，消除多余的配置模版，提升多环境多租户的配置扩展能力，同时提高配置的可读性和可维护性。
+- KCL 允许开发人员以声明式的方式定义应用程序所需的资源，通过将 KCL 和 FluxCD 相结合可以帮助我们更好地实现**基础设施即代码（IaC）**，提高部署效率，简化应用程序的配置管理。
+- FluxCD 可以**自动化**地实现应用程序的连续部署，并提供友好的可视化界面。
+
+使用 GitOps，开发人员和运维团队可以通过分别修改应用和配置代码来管理应用程序的部署，GitOps 工具链将自动同步对配置的更改，从而实现持续部署并确保一致性。如果出现问题，可以使用 GitOps 工具链快速回滚。
+
+### Flux-KCL-Controller
 
 kcl-controller 是一个组件，用于集成 [KCL](https://github.com/kcl-lang/kcl) 和 [Flux](https://github.com/fluxcd/flux2), 主要用来根据存储在 git/oci 仓库中的 KCL 程序定义的基础设施和工作负载，通过 [source-controller](https://github.com/fluxcd/source-controller) 获取 KCL 程序，实现基础设施和工作负载的持续交付。
 
 ![](/img/docs/user_docs/guides/cd-integration/kcl-flux.png)
 
-## 特性
+## 先决条件
 
-- 定期监控存储 KCL 程序的 git/oci 仓库，并根据 git 仓库中的变化，调谐 k8s 集群状态。
+- 安装 [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ## 快速开始
 
-### 前提条件
+### 1. 安装 Kubernetes 和 GitOps 工具
 
-- k3d: 用于创建测试用的 k8s 集群，如果你已经有了 k8s 集群，可以忽略这一步。
-- Kustomize
-- Kubectl
+#### 配置 Kubernetes 集群和 FluxCD 控制器
 
-### 创建测试用的 k8s 集群
+- 安装 [K3d](https://github.com/k3d-io/k3d) 并创建一个集群
 
-使用`mycluster.yaml`创建集群：
-
-```yaml
-apiVersion: k3d.io/v1alpha2
-kind: Simple
-name: mycluster
-servers: 1
-agents: 2
-```
-通过如下命令创建集群：
-
-```shell
-k3d cluster create -c mycluster.yaml
+```bash
+k3d cluster create mycluster
 ```
 
-### 下载 kcl-controller 并且安装到集群中
+> 注意：你可以在此方案中使用其他方式创建您自己的 Kubernetes 集群，如 kind, minikube 等。
 
-clone 本仓库到本地：
+- 安装 Flux KCL Controller
 
-```shell
-git clone https://github.com/kcl-lang/kcl-controller.git
+```bash
+git clone https://github.com/kcl-lang/flux-kcl-controller.git && cd flux-kcl-controller && make deploy
 ```
 
-进入到本仓库的根目录：
+- 通过 `kubectl get` 命令查看 fluxcd 控制器容器是否初始化完成进入运行（Running）状态。
 
-```shell
-cd kcl-controller
+```bash
+kubectl get pod -n source-system -l app=kcl-controller
 ```
 
-将 kcl-controller 安装到集群中：
+### 2. 编写 Flux-KCL-Controller 配置文件
 
-```shell
-make deploy
-```
-
-### 监控一个 git 仓库
-
-我们以仓库 https://github.com/awesome-kusion/kcl-deployment 为例，该仓库中存储了一个 KCL 程序，该程序定义了一个 Deployment，我们将使用 kcl-controller 来部署该程序。
-
-通过 `gitrepo.yaml` 文件，定义一个 `GitRepository` 对象，用来监控该仓库：
+以[《使用 Github、Argo CD 和 KCL 实现 GitOps 以简化 DevOps》](https://kcl-lang.io/zh-CN/blog/2023-07-31-kcl-github-argocd-gitops/) 中的 flask demo 为例，我们在 `flux-kcl-controller` 仓库中创建一个 `GitRepository` 对象，用于监控存储在 git 仓库中的 KCL 程序。将一下内容保存在文件 `gitrepo.yaml` 中。
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: kcl-deployment
-  namespace: source-system
+  namespace: default
 spec:
-  interval: 30s # 每隔 30s 检查一次仓库
-  url: https://github.com/awesome-kusion/kcl-deployment.git
+  interval: 10s # 每隔 10 秒检查
+  url: https://github.com/kcl-lang/flask-demo-kcl-manifests.git
   ref:
     branch: main # 监控 main 分支
 ---
 apiVersion: krm.kcl.dev.fluxcd/v1alpha1
 kind: KCLRun
 metadata:
-  name: kcl-deployment
-  namespace: source-system
+  name: kcl-git-controller
+  namespace: default
 spec:
   sourceRef:
     kind: GitRepository
     name: kcl-deployment
 ```
 
-使用命令 `kubectl apply -f gitrepo.yaml` 将该对象部署到集群中。
+通过命令 `kubectl apply -f gitrepo.yaml` 部署对象到集群。
 
-### 查看部署结果
+### 3. 查看部署结果
 
-使用命令 `kubectl get deployment` 查看部署结果：
+通过 `kubectl get deployments` 命令查看 python flask demo 部署结果。
 
-```shell
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment   1/1     1            0           28s
+```
+kubectl get deployments   
 ```
 
-可以看到，kcl-controller 根据仓库中的 KCL 程序，创建了一个 Deployment。
-
-### 更新仓库中的 KCL 程序
-
-我们可以通过修改仓库中的 KCL 程序，来更新集群中的 Deployment。
-
-修改仓库中的 KCL 程序，将 nginx 的版本从 `1.7.7` 修改为 `1.7.8`，将`deployment`的名字改为 `nginx-deployment-1`，并且提交到 main 分支。
-
-具体变化可以参考:
-[nginx:1.7.7 deployment](https://github.com/awesome-kusion/kcl-deployment/commit/dc8b2aa70b1b47bef0637212ea184792b8c43449) -> [nginx:1.7.8 deployment](https://github.com/awesome-kusion/kcl-deployment/commit/f257a71fdff6cb9190f49c1dbf5fa4496d7b3cb2)
-
-
-使用命令 `kubectl get deployment` 查看部署结果：
-
-```shell
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment     1/1     1            1           20m
-nginx-deployment-1   1/1     1            0           4s
+可以看到结果，部署成功
+```
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+flask-demo   1/1     1            1           17d
 ```
 
-可以看到，kcl-controller 根据仓库中的 KCL 程序，创建了一个 nginx-deployment-1。
+### 4. 更多内容
 
-## 未来工作
-
-- 添加 KCL OCI Registry Controller，用于支持存储在 OCI 仓库中的 KCL 程序。
+- [FluxCD 官方文档](https://toolkit.fluxcd.io/)
+- [Flux Source Controller 官方文档](https://fluxcd.io/flux/components/source/)
+- [GitRepositrory](https://fluxcd.io/flux/components/source/gitrepositories/)

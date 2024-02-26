@@ -1,116 +1,114 @@
 ---
-id: flux-cd
-sidebar_label: Flux-KCL-Controller
+id: gitops-with-fluxcd
+sidebar_label: Implement GitOps with KCL and FluxCD
 ---
 
-# Flux KCL Controller
+# Quick Start
 
 ## Introduction
 
-The kcl-controller is a component developed for the integration of [KCL](https://github.com/kcl-lang/kcl) and [Flux](https://github.com/fluxcd/flux2), designed to orchestrate continuous delivery pipelines for infrastructure and workloads defined with KCL based on the [source-controller](https://github.com/fluxcd/source-controller) to acquire the KCL program from repositories.
+### What is GitOps
+
+GitOps is a modern way to do continuous delivery. Its core idea is to have a Git repository which contains environmental and application configurations. An automated process is also needed for sync the config to cluster.
+
+By changing the files in repository, developers can apply the applications automatically. The benefits of applying GitOps include:
+
+- Increased productivity. Continuous delivery can speed up the time of deployment.
+- Lower the barrier for developer to deploy. By pushing code instead of container configuration, developers can easily deploy Kubernetes without knowing its internal implementation.
+- Trace the change records. Managing the cluster with Git makes every change traceable, enhancing the audit trail.
+- Recover the cluster with Git's rollback and branch.
+
+### GitOps with KCL and FluxCD
+
+Benefits of Using KCL and FluxCD Together:
+
+- KCL can help us **simplify complex Kubernetes deployment configuration files**, reduce the error rate of manually writing YAML files, and improve code readability and maintainability.
+- FluxCD can **automate** the deployment of Kubernetes applications, achieve continuous deployment, and provide comprehensive monitoring and control functions.
+- By combining KCL and FluxCD, deployment efficiency can be improved, errors reduced, and management and monitoring of Kubernetes applications strengthened.
+- The combination of KCL and FluxCD can also help us achieve **Infrastructure as Code (IaC)**, simplify application deployment and management, and better implement DevOps principles.
+
+With GitOps, developer and operation teams can manage application deployment and configuration by modifying KCL code and generating YAML files. The GitOps toolchain will automatically synchronize the changes to the Kubernetes cluster, enabling continuous deployment and ensuring consistency. If there are issues, the GitOps toolchain can be used to quickly rollback.
+
+### Flux-KCL-Controller
+
+flux-kcl-controller is a component that integrates [KCL](https://github.com/kcl-lang/kcl) and [Flux](https://github.com/fluxcd/flux2), which is mainly used to define infrastructure and workloads based on KCL programs stored in git/oci repositories, and to achieve continuous delivery of infrastructure and workloads through [source-controller](
 
 ![](/img/docs/user_docs/guides/cd-integration/kcl-flux.png)
 
-## Features
+## Prerequisite
 
-- Periodically monitor git repositories that store KCL programs and reconcile k8s cluster status according to changes in git repositories.
+- Install [KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)
 
 ## Quick Start
 
-### Prerequisites
+### 1. Install Kubernetes and GitOps Tools
 
-- k3d: used to create a k8s cluster for testing, if you already have a k8s cluster, you can skip ignore this.
-- Kustomize
-- Kubectl
+#### Configure Kubernetes Cluster and FluxCD Controller
 
-### Create a test k8s cluster
+- Install [K3d](https://github.com/k3d-io/k3d) to create a default cluster.
 
-Create a cluster using the following command:
-
-```shell
-k3d cluster create
+```bash
+k3d cluster create mycluster
 ```
 
-### Download kcl-controller and install it into the cluster
+- Install Flux KCL Controller
 
-Clone this repository to local:
-
-```shell
-git clone https://github.com/kcl-lang/flux-kcl-controller.git
+```bash
+git clone https://github.com/kcl-lang/flux-kcl-controller.git && cd flux-kcl-controller && make deploy
 ```
 
-Enter the root directory of this repository:
+- Check if the fluxcd controller container is initialized and running by using the `kubectl get` command.
 
-```shell
-cd flux-kcl-controller
+```bash
+kubectl get pod -n source-system -l app=kcl-controller
 ```
 
-Install kcl-controller into the cluster:
+### 2. Write Flux-KCL-Controller Configuration File
 
-```shell
-make deploy
-```
-
-### Monitor a git repository
-
-Take the github repository https://github.com/awesome-kusion/kcl-deployment as an example. This repository stores a KCL program that defines a `Deployment`. We will use kcl-controller to deploy this program.
-
-Define a `GitRepository` object through the `gitrepo.yaml` file to monitor the repository:
+Create a `GitRepository` object for `flux-kcl-controller` to monitor the KCL program stored in the git repository. For example, we use the flask demo in [“Implementing GitOps using Github, Argo CD, and KCL to Simplify DevOps”](https://kcl-lang.io/blog/2023-07-31-kcl-github-argocd-gitops/#3-get-the-application-code) as an example. We create a `GitRepository` object in the `flux-kcl-controller` repository to monitor the KCL program stored in the git repository. Save the following content in the file `gitrepo.yaml`.
 
 ```yaml
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: GitRepository
 metadata:
   name: kcl-deployment
-  namespace: source-system
+  namespace: default
 spec:
-  interval: 30s
-  url: https://github.com/awesome-kusion/kcl-deployment.git
+  interval: 10s # Check every 10 seconds
+  url: https://github.com/kcl-lang/flask-demo-kcl-manifests.git
   ref:
-    branch: main
+    branch: main # Monitor the main branch
 ---
 apiVersion: krm.kcl.dev.fluxcd/v1alpha1
 kind: KCLRun
 metadata:
-  name: kcl-deployment
-  namespace: source-system
+  name: kcl-git-controller
+  namespace: default
 spec:
   sourceRef:
     kind: GitRepository
     name: kcl-deployment
 ```
 
-Use the command `kubectl apply -f gitrepo.yaml` to deploy the object to the cluster.
+Apply the `GitRepository` object to the cluster by running the `kubectl apply -f gitrepo.yaml` command.
 
-### View the deployment result
+### 3. Check the Deployment Result
 
-Use the command `kubectl get deployment` to view the deployment result:
+Check the deployment result by running the `kubectl get deployments` command.
 
-```shell
-NAME               READY   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment   1/1     1            0           28s
+```
+kubectl get deployments   
 ```
 
-The `nginx-deployment` is deployed successfully.
+You can see the result, and the deployment is successful.
 
-### Update the KCL program in the repository
-
-We can update the `Deployment` in the cluster by modifying the KCL program in the repository.
-
-Change the version of nginx from `1.7.7` to `1.7.8` and the name of `deployment` to `nginx-deployment-1`, and commit to the main branch.
-
-The changes can be referred to: [nginx:1.7.7 deployment](https://github.com/awesome-kusion/kcl-deployment/commit/dc8b2aa70b1b47bef0637212ea184792b8c43449) -> [nginx:1.7.8 deployment](https://github.com/awesome-kusion/kcl-deployment/commit/f257a71fdff6cb9190f49c1dbf5fa4496d7b3cb2)
-
-Use the command `kubectl get deployment` to view the deployment result:
-
-```shell
-NAME                 READY   UP-TO-DATE   AVAILABLE   AGE
-nginx-deployment     1/1     1            1           20m
-nginx-deployment-1   1/1     1            0           4s
+```
+NAME         READY   UP-TO-DATE   AVAILABLE   AGE
+flask-demo   1/1     1            1           17d
 ```
 
-kcl-controller creates a `nginx-deployment-1` according to the KCL program in the repository.
+### 4. More
 
-## Roadmap
-
-- Add KCL OCI Registry Controller to support KCL programs stored in OCI registry.
+- [FluxCD](https://toolkit.fluxcd.io/)
+- [Flux Source Controller](https://fluxcd.io/flux/components/source/)
+- [GitRepositrory](https://fluxcd.io/flux/components/source/gitrepositories/)
