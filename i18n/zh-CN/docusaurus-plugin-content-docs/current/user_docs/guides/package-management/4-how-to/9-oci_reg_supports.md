@@ -77,16 +77,16 @@ Login succeeded
 
 ### kcl registry logout
 
-你可以使用 `kpm logout` 退出一个 OCI Registry。
+你可以使用 `kcl registry logout` 退出一个 OCI Registry。
 
 ```shell
-kpm logout <registry>
+kcl registry logout <registry>
 ```
 
 对我们的示例来说，命令如下：
 
 ```shell
-kpm logout localhost:5001
+kcl registry logout localhost:5001
 ```
 
 ### kcl mod push
@@ -134,13 +134,13 @@ $ kcl mod push oci://localhost:5001/test/MyPkg --tag v0.1.0
 你可以使用 `kcl mod pull` 从默认的 OCI registry 中下载一个 kcl 包。kpm 会自动从 `kpm.json` 中的 OCI registry 中寻找 kcl 包。
 
 ```shell
-kpm pull <package_name>:<package_version>
+kcl mod pull <package_name>:<package_version>
 ```
 
 对于示例来说，命令如下：
 
 ```shell
-kpm pull MyPkg:v0.1.0
+kcl mod pull MyPkg:v0.1.0
 ```
 
 或者，你也可以从指定的 OCI registry url 中下载一个 kcl 包。

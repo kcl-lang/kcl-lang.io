@@ -80,13 +80,13 @@ Login succeeded
 You can use `kcl registry logout` to logout an OCI Registry.
 
 ```shell
-kpm logout <registry>
+kcl registry logout <registry>
 ```
 
 For the example, the command is as follows:
 
 ```shell
-kpm logout localhost:5001
+kcl registry logout localhost:5001
 ```
 
 ### `kcl mod push` to upload a KCL package
@@ -134,13 +134,13 @@ $ kcl mod push oci://localhost:5001/test/MyPkg --tag v0.1.0
 You can use `kcl mod pull` to download a KCL package from the default OCI registry. KPM will automatically search for the kcl package from the OCI registry in `kpm.json`.
 
 ```shell
-kpm pull <package_name>:<package_version>
+kcl mod pull <package_name>:<package_version>
 ```
 
 For the example, the command is as follows:
 
 ```shell
-kpm pull MyPkg:v0.1.0
+kcl mod pull MyPkg:v0.1.0
 ```
 
 Or, you can download a kcl package from the specified OCI registry url.
