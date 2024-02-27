@@ -41,3 +41,15 @@ weight: 100
 `sha512(value: str, encoding: str = "utf-8") -> str`
 
 使用注册编码器和 `SHA512` 算法对字符串 `value` 进行加密。
+
+## uuid
+
+`uuid() -> str`
+
+生成一个随机 UUID 字符串。
+
+## filesha256
+
+`filesha256(filepath: str) -> str`
+
+计算文件 `filepath` 的 SHA256 哈希。

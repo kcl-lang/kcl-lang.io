@@ -41,3 +41,15 @@ Encrypt the string `value` using `SHA384` and the codec registered for encoding.
 `sha512(value: str, encoding: str = "utf-8") -> str`
 
 Encrypt the string `value` using `SHA512` and the codec registered for encoding.
+
+## uuid
+
+`uuid() -> str`
+
+Generate a random UUID string.
+
+## filesha256
+
+`filesha256(filepath: str) -> str`
+
+Calculate the SHA256 hash of the file `filepath`.
