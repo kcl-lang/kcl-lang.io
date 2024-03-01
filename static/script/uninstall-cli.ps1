@@ -30,16 +30,5 @@ if (Test-Path $KCLRoot) {
     }
 }
 
-# Remove KCLRoot from User Path environment variable
-Write-Output "Removing $KCLRoot from User Path Environment variable..."
-$UserPathEnvironmentVar = Environment::GetEnvironmentVariable("PATH", "User")
-if ($UserPathEnvironmentVar -like "*$KCLRoot*") {
-    $NewUserPath = ($UserPathEnvironmentVar -split ';' | Where-Object { $_ -ne $KCLRoot -and $_ -ne $KCLCliFileBinPath }) -join ';'
-    Environment::SetEnvironmentVariable("PATH", $NewUserPath, "User")
-    Write-Output "KCL directory removed from User Path."
-} else {
-    Write-Output "KCL directory not found in User Path. Skipping..."
-}
-
 Write-Output "KCL has been uninstalled successfully."
 Write-Output "Please restart your system or log off and on for the changes to take effect."
