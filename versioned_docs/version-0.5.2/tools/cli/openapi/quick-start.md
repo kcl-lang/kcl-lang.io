@@ -33,7 +33,7 @@ curl -fsSL https://kcl-lang.io/script/install-kcl-openapi.sh | /bin/bash
 # https://github.com/kcl-lang/kcl-openapi/releases
 
 # 2. Unzip the package and add the binary location to PATH
-export PATH="<Your directory to store KCLOpenapi binary>:$PATH"
+export PATH="<Your directory to store KCLOpenAPI binary>:$PATH"
 ```
 
 ## 1.4 Verify your installation

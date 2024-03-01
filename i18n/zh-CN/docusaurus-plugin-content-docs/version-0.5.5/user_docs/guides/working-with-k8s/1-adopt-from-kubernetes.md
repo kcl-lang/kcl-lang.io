@@ -15,7 +15,7 @@ KCL 对 Kubernetes 配置提供了许多开箱即用的支持，通过 KCL 工�
 
 ### 2. KCL OpenAPI 支持
 
-KCLOpenAPI 工具支持从 OpenAPI/CRD 定义提取并生成 KCL schema. 在[KCLOpenapi Spec](/docs/tools/cli/openapi/spec)中明确定义了 OpenAPI 规范与 KCL 语言之间的映射关系。
+KCLOpenAPI 工具支持从 OpenAPI/CRD 定义提取并生成 KCL schema. 在 KCLOpenAPI Spec 中明确定义了 OpenAPI 规范与 KCL 语言之间的映射关系。
 
 ### 3. 从 Kubernetes 模型迁移到 KCL
 

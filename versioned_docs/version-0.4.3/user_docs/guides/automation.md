@@ -35,8 +35,6 @@ override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 
 Note: When `identifier` appears multiple times, modify/delete all `identifier` values
 
-Besides, we provide `OverrideFile` API to achieve the same capabilities. For details, refer to [KCL APIs](/docs/reference/xlang-api/).
-
 ## Examples
 
 ### Override Update Sample

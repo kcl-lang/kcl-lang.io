@@ -8,7 +8,7 @@ In addition, Kubernetes CRD uses [OpenAPI V3.0 validation](https://kubernetes.io
 
 ## 2. KCL OpenAPI Support
 
-The `kcl-openapi` tool supports extracting and generating KCL schemas from Kubernetes OpenAPI/CRD. the [KCL OpenAPI Spec](/docs/tools/cli/openapi/spec) defines the mapping between the OpenAPI specification and the KCL language features. For a quick start with the tool, see [KCL OpenAPI tool](/docs/tools/cli/openapi/)
+The `kcl-openapi` tool supports extracting and generating KCL schemas from Kubernetes OpenAPI/CRD. the [KCL OpenAPI Spec](/docs/tools/cli/openapi/spec) defines the mapping between the OpenAPI specification and the KCL language features.
 
 ## 3. Migrate From Kubernetes To KCL
 

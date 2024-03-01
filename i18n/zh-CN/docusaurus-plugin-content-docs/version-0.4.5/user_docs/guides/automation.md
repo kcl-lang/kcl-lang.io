@@ -35,8 +35,6 @@ override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 
 请注意，当 `identifier` 出现多次时，修改/删除全部 `identifier` 的值
 
-此外，在 KCL 中还提供了 API 用于变量查询和修改，详见 [API 文档](/docs/reference/xlang-api/)
-
 ## 示例
 
 ### 修改示例
