@@ -60,7 +60,7 @@ KCL has released preview version 0.8.0, mainly including the following updates:
 
 In addition to using Python for KCL plugin functions, it now supports using Go to write plugin functions for KCL, which is very simple to use.
 
-+ Define a plugin (using a hello plugin containing the add function as an example)
+- Define a plugin (using a hello plugin containing the add function as an example)
 
 ```go
 package hello_plugin
@@ -84,7 +84,7 @@ func init() {
 }
 ```
 
-+ Use the plugin
+- Use the plugin
 
 ```go
 package main

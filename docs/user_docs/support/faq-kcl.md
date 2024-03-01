@@ -2464,6 +2464,7 @@ a: 1
 ## 56. How to write a schema where a property can have one or more different schemas of definitions?
 
 We can use union types (sum types) in KCL. For example
+
 ```shell
 schema Config:
     route: EndPoint | Gateway
@@ -2501,7 +2502,7 @@ In KCL, we can use `${..}` for string interpolation. But in some cases, we don't
 ```KCL
 worldString = "world"
 s = "Hello ${worldString}"
-raw_s = r"Hello ${worldString}"  
+raw_s = r"Hello ${worldString}"
 ```
 
 The output comes out as:
@@ -2510,3 +2511,4 @@ The output comes out as:
 worldString: world
 s: Hello world
 raw_s: Hello ${worldString}
+```

@@ -97,7 +97,7 @@ Apply the `GitRepository` object to the cluster by running the `kubectl apply -f
 Check the deployment result by running the `kubectl get deployments` command.
 
 ```
-kubectl get deployments   
+kubectl get deployments
 ```
 
 You can see the result, and the deployment is successful.

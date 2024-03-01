@@ -95,10 +95,11 @@ spec:
 通过 `kubectl get deployments` 命令查看 python flask demo 部署结果。
 
 ```
-kubectl get deployments   
+kubectl get deployments
 ```
 
 可以看到结果，部署成功
+
 ```
 NAME         READY   UP-TO-DATE   AVAILABLE   AGE
 flask-demo   1/1     1            1           17d

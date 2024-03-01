@@ -59,7 +59,7 @@ kcl mod add jsonschema:0.0.4
 
 除了使用 Python 为 KCL 插件函数，现在支持使用 Go 为 KCL 编写插件函数，使用方式非常简单。
 
-+ 定义插件 (以一个包含 add 函数的 hello 插件作为示例)
+- 定义插件 (以一个包含 add 函数的 hello 插件作为示例)
 
 ```go
 package hello_plugin
@@ -83,7 +83,7 @@ func init() {
 }
 ```
 
-+ 使用插件
+- 使用插件
 
 ```go
 package main
@@ -120,7 +120,7 @@ three = hello.add(1,2) # 3
 以下排名不分先后
 
 - 感谢 @octonawish-akcodes 和 @d4v1d03
- 对 KCL FAQ 文档和 KCL IDE 功能的持续贡献 🙌
+  对 KCL FAQ 文档和 KCL IDE 功能的持续贡献 🙌
 - 感谢 @octonawish-akcodes 对 Ansible KCL Module 的贡献
 - 感谢 @AkashKumar7902 和 @Vanshikav123 对 KCL 包管理工具功能的贡献 🙌
 - 感谢 @StevenLeiZhang 对 KCL 文档和 KCL 插件的贡献

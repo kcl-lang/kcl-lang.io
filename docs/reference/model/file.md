@@ -22,7 +22,7 @@ Return a list containing all file names that match `pattern`.
 
 `modpath() -> str`
 
-Return the root path of the current KCL module (kcl.mod file path or single *.k file path).
+Return the root path of the current KCL module (kcl.mod file path or single \*.k file path).
 
 ## workdir
 

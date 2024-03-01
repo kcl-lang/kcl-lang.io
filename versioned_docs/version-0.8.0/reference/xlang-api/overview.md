@@ -200,8 +200,8 @@ The output is
 
 ```json
 {
-	"error": "",
-	"result": {}
+  "error": "",
+  "result": {}
 }
 ```
 
