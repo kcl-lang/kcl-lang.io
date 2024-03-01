@@ -2467,3 +2467,55 @@ kcl main.k -n
 ```yaml
 a: 1
 ```
+
+## 56. 如何定义一个属性可以包含一个或多个不同定义 Schema？
+
+在 KCL 中，我们可以使用联合类型来实现这一点。例如：
+
+```python
+schema Config:
+    route: EndPoint | Gateway
+
+schema EndPoint:
+    attr: str
+
+schema Gateway:
+    attr: str
+```
+
+## 57. 如何在 KCL 中转换字典和 Schema？
+
+在 KCL 中，字典是一个动态数据，没有 Schema 的检查约束。我们可以将字典转换为 Schema 以获得约束条件。我们可以直接将字典数据分配给 Schema 类型数据，KCL 运行时会自动完成类型转换并执行类型检查。
+
+```python
+schema Person:
+    name: str
+    age: int
+    check:
+        age > 20
+
+config = {
+    name = "Alice"
+    age = 25
+}
+
+alice: Person = config
+```
+
+## 58. 请解释在 KCL 字符串和字符串插值中 'r' 前缀的关系和用法。
+
+在 KCL 中，我们可以使用 `${..}` 进行字符串插值。但在某些情况下，我们不希望进行转义。因此，我们可以通过在字符串文字前添加 'r' 或 'R' 前缀来创建原始字符串。下面是一个 KCL 代码示例：
+
+```python
+worldString = "world"
+s = "Hello ${worldString}"
+raw_s = r"Hello ${worldString}"
+```
+
+输出结果如下：
+
+```yaml
+worldString: world
+s: Hello world
+raw_s: Hello ${worldString}
+```
