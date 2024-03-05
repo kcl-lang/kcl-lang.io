@@ -324,13 +324,13 @@ spec = {
     template.metadata.labels = metadata.labels
     template.spec.containers = [
         {
-            name = name
+            name = n
             image = container.image.name
             command = container.command
             command = container.args
             env = container.env
             resources = container.resources
-        } for name, container in option("containers") or {}
+        } for n, container in option("containers") or {}
     ]
 }
 EOF
