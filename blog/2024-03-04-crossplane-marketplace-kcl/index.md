@@ -39,11 +39,11 @@ Combining KCL with Composition Functions offers several benefits:
 
 There are two ways to combine KCL and Crossplane:
 
-- One involves using KCL to write Crossplane composite functions and install them for use in a cluster, still using YAML to define the schema and input required by the app team. KCL is used to write rendering logic to Crossplane Manged Resource to interface with different cloud platforms or Kubernetes clusters. **Note: This approach can install KCL functions for use in the cluster and also use the crossplane beta render command to complete Managed Resource rendering directly on the client.**
+- One involves using KCL to write Crossplane composite functions and install them for use in a cluster, still using YAML to define the schema and input required by the app team. KCL is used to write rendering logic to Crossplane Managed Resource to interface with different cloud platforms or Kubernetes clusters. **Note: This approach can install KCL functions for use in the cluster and also use the crossplane beta render command to complete Managed Resource rendering directly on the client.**
 
 ![crossplane-kcl-func](/img/blog/2024-03-04-crossplane-marketplace-kcl/crossplane-kcl-func.png)
 
-- The other method involves using KCL to entirely provide abstractions for application developers on the client side and generating Crossplane managed resources to deploy to a cluster, providing a unified programmable access layer for Kubernetes. Specific usage defines the schema input required by the app team using KCL Schema and writes the logic to render it to Crossplane Manged Resource to interface with different cloud platforms or Kubernetes clusters.
+- The other method involves using KCL to entirely provide abstractions for application developers on the client side and generating Crossplane managed resources to deploy to a cluster, providing a unified programmable access layer for Kubernetes. Specific usage defines the schema input required by the app team using KCL Schema and writes the logic to render it to Crossplane Managed Resource to interface with different cloud platforms or Kubernetes clusters.
 
 ![kcl-on-crossplane](/img/blog/2024-03-04-crossplane-marketplace-kcl/kcl-on-crossplane.png)
 
