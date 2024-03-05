@@ -572,6 +572,22 @@ print("", end='')  # recommended
 print("", end = '')  # non-recommended
 ```
 
+### Index Signature
+
+- It is recommended to place the schema index signature before the schema attribute instead of mixed placement.
+
+```python
+schema ConfigReCommended:
+    [...str]: str # recommended
+    name: str
+    image: str
+
+schema ConfigNonReCommended:
+    name: str
+    [...str]: str # non-recommended
+    image: str
+```
+
 ## Keywords
 
 - Only one space is usually reserved around the keyword, such as `schema`, `mixin`, `is` and `not`, etc.
