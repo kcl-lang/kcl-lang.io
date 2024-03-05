@@ -39,11 +39,11 @@ Crossplane 及其组合模型允许开发人员创建更高级别的抽象，这
 
 有两种将 KCL 和 Crossplane 结合使用的方式
 
-- 一种是使用 KCL 编写 Crossplane 组合函数并安装到集群使用，仍然采用 YAML 来定义 App Team 所需的 Schema 和输入，使用 KCL 撰写渲染逻辑到 Crossplane Manged Resource 的逻辑以对接不同的云平台或者 Kubernetes 集群。**需要注意的是：这种方式既可以将 KCL 函数安装到集群中使用，也可以使用 crossplane beta render 命令直接在客户端完成 Manged Resource 的渲染。**
+- 一种是使用 KCL 编写 Crossplane 组合函数并安装到集群使用，仍然采用 YAML 来定义 App Team 所需的 Schema 和输入，使用 KCL 撰写渲染逻辑到 Crossplane Managed Resource 的逻辑以对接不同的云平台或者 Kubernetes 集群。**需要注意的是：这种方式既可以将 KCL 函数安装到集群中使用，也可以使用 crossplane beta render 命令直接在客户端完成 Managed Resource 的渲染。**
 
 ![crossplane-kcl-func](/img/blog/2024-03-04-crossplane-marketplace-kcl/crossplane-kcl-func.png)
 
-- 另外一种是使用 KCL 完全在客户端提供面向应用开发者的抽象并生成 Crossplane 托管资源下发到集群，提供 Kubernetes 的统一可编程接入层，具体使用 KCL Schema 规定 App Team 所需的 Schema 输入，并撰写渲染到 Crossplane Manged Resource 的逻辑以对接不同的云平台或者 Kubernetes 集群
+- 另外一种是使用 KCL 完全在客户端提供面向应用开发者的抽象并生成 Crossplane 托管资源下发到集群，提供 Kubernetes 的统一可编程接入层，具体使用 KCL Schema 规定 App Team 所需的 Schema 输入，并撰写渲染到 Crossplane Managed Resource 的逻辑以对接不同的云平台或者 Kubernetes 集群
 
 ![kcl-on-crossplane](/img/blog/2024-03-04-crossplane-marketplace-kcl/kcl-on-crossplane.png)
 
