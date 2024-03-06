@@ -1,6 +1,6 @@
 ---
 slug: 2024-03-04-kcl-0.8.0-release
-title: 链接世界，无限可能 - KCL v0.8.0 融汇社区生态
+title: KCL v0.8.0 重磅发布 - 融汇社区生态
 authors:
   name: KCL Team
   title: KCL Team
@@ -20,6 +20,10 @@ KCL 团队很高兴地宣布 **KCL v0.8.0 新版本现在已经可用**！本次
 [KCL](https://github.com/kcl-lang/kcl) 是一个 CNCF 基金会托管的面向云原生领域开源的基于约束的记录及函数编程语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置比如云原生 Kubernetes 配置场景的编写，致力于围绕配置的模块化、扩展性和稳定性，打造更简单的逻辑编写体验，构建更简单的自动化和生态集成路径。
 
 ## 语言更新
+
+### 🚗 语法语义更新
+
+在 KCL v0.8.0 版本中去除了 Schema 对象内部非预期的内置类型属性`__settings__`通过 print 输出。
 
 ### 🔧 诊断信息的优化
 
@@ -94,7 +98,7 @@ age = _a.age
 
 编译结果如下所示：
 
-```shell
+```yaml
 name: John
 age: 10
 ```
@@ -165,7 +169,7 @@ KCL 的 Release 产物中新增了对 Linux arm64 平台的支持。
 
 ### 🏄 SDK & API 更新
 
-#### Rust SDK 
+#### Rust SDK
 
 KCL Rust SDK 提供了一系列的 API，可以用于 KCL 文件的编译、校验、测试和格式化代码等操作。
 
@@ -182,6 +186,7 @@ KCL Java SDK 新增语法树、作用域、符号等语法语义结构定义及�
 
 #### API 更新
 
+- 新增 json/yaml 验证 API 用来验证 json 和 yaml 文件。
 - 新增语法和语义分析 API 用于对 KCL 代码进行分析。
 - 新增构建二进制产物 API 用于缓存编译结果。
 - 新增运行二进制产物 API 用于直接运行编译结果，避免重复编译并提升性能。
@@ -192,10 +197,11 @@ KCL Java SDK 新增语法树、作用域、符号等语法语义结构定义及�
 - 修复了 KCL CLI 使用编译参数 -S 可能会导致的编译错误
 - 修复了 kcl fmt 工具对 lambda 表达式进行格式化时，结尾增加一个空行的错误。
 - 修复 Schema Doc 补全代码片段错误
+- 修复 Schema 对象必选属性递归检查错误
+- 提升 Schema 索引签名类型检查健壮性
+- 修复 Schema 内部诸如 "$if" 的字符串标识符定义找不到的错误
 - 优化非预期 token 的语法错误提示
-- 去除 Schema 对象内部非预期的内置类型属性通过 print 输出
 - 修复非预期的字典生成表达式中的 key 与循环变量相同时的变量计算
-- 修复 schema 内部诸如 "$if" 的字符串标识符定义找不到的错误
 
 ## IDE & 工具链更新
 
@@ -205,14 +211,26 @@ KCL Java SDK 新增语法树、作用域、符号等语法语义结构定义及�
 
 KCL IDE 高亮之前仅支持 KCL 语法高亮，如下图所示：
 
-![](/img/blog/2024-01-18-biweekly-newsletter/old-ide.png)
+![old-ide](/img/blog/2024-01-18-biweekly-newsletter/old-ide.png)
 
 我们今年逐步启用了新的 KCL 语义架构模型，在新语义架构的支撑下，KCL IDE 支持语义级别的高亮，在语义上有关联的代码会显示相同的高亮。
 
-![](/img/blog/2024-01-18-biweekly-newsletter/new-ide.png)
+![new-ide](/img/blog/2024-01-18-biweekly-newsletter/new-ide.png)
 
 更多关于 KCL 语义架构模型的内容，参考：
 [KCL 高效语义模型技术揭秘：实现快速编译与增强 IDE 支持](https://kcl-lang.io/zh-CN/blog/2023-12-09-kcl-new-semantic-model)
+
+#### 新增 builtin 方法的补全
+
+KCL IDE 支持 builtin 方法的补全，如下图所示：
+
+![builtin-completion](/img/blog/2024-03-04-kcl-0.8.0-release/builtin-ide.gif)
+
+#### 增加变量引用错误时的快速修复功能
+
+KCL IDE 支持变量引用错误时的快速修复功能，如下图所示：
+
+![quick-fix](/img/blog/2024-03-04-kcl-0.8.0-release/quick-fix.gif)
 
 #### IDE 支持增量解析和异步编译功能
 
@@ -220,14 +238,20 @@ IDE 通过 KCL 新语义模型支持增量解析和异步编译功能，提升�
 
 更多内容详见 [https://kcl-lang.io/zh-CN/blog/2023-12-09-kcl-new-semantic-model](https://kcl-lang.io/zh-CN/blog/2023-12-09-kcl-new-semantic-model)
 
-#### IDE 问题修复
+#### IDE LSP 问题修复
 
 - 修复 assert 语句中字符串插值变量不能跳转的异常
 - 修复了字符串中异常触发函数补全的异常
+- 修复了字符串后跟注释中补全错误的问题
+- 修复了 schema 内部属性符号不能跳转的问题
 - 修复 import 语句别名语义检查和补全的异常
 - 修复了 schema 中 check 表达式补全的异常
 - 修复了嵌套 schema 定义中补全错误的问题
 - 修复了部分悬停信息缺失的问题
+- 修复不同语法补全符号类型不统一的问题
+- 区分 Schema 类型和实例补全符号
+- 统一 Schema 注释文档补全的格式
+- 修复了配置块内部 if 语句符号不能跳转和补全的问题
 
 ### 验证工具更新
 
@@ -291,17 +315,18 @@ kcl run <git url>
 
 #### KCL 包管理支持通过 commit 添加 git 依赖
 
-KCL 包管理工具增加了通过 commit 来添加 git 三方库依赖的功能。以 https://github.com/KusionStack/catalog 为例，添加 commit 为 a29e3db 的版本作为依赖。可以通过编辑 kcl.mod 文件中的依赖或者命令行直接添加。
+KCL 包管理工具增加了通过 commit 来添加 git 三方库依赖的功能。以 <https://github.com/KusionStack/catalog> 为例，添加 commit 为 a29e3db 的版本作为依赖。可以通过编辑 kcl.mod 文件中的依赖或者命令行直接添加。
 
 编辑 kcl.mod 文件内容如下：
 
-```
+```toml
 [dependencies]
 catalog = { git = "https://github.com/KusionStack/catalog.git", commit = "a29e3db" }
 ```
+
 或者通过命令行添加：
 
-```
+```shell
 kcl mod add -git https://github.com/KusionStack/catalog.git -commit a29e3db
 ```
 
@@ -358,40 +383,40 @@ spec:
     name: kcl-deployment
 ```
 
-更多内容详见: https://kcl-lang.io/zh-CN/blog/2024-02-01-biweekly-newsletter/
+更多内容详见: <https://kcl-lang.io/zh-CN/blog/2024-02-01-biweekly-newsletter/>
 
 ### CodeQL KCL 工具
 
 初步支持 CodeQL KCL dbschema 定义以及对 KCL 语法语义进行数据提取，并可通过 CodeQL 进行数据查询对 KCL 代码进行静态分析和扫描，提升代码安全。
 
-更多内容详见: https://github.com/kcl-lang/codeql-kcl
+更多内容详见: <https://github.com/kcl-lang/codeql-kcl>
 
 ## 模型更新
 
 KCL 模型数量新增至 303 个，主要新增与 Crossplane Provider 相关的模型和与 JSON 合并操作相关的库
 
-- KCL JSON Patch 库：https://artifacthub.io/packages/kcl/kcl-module/jsonpatch
-- KCL JSON Merge Patch 库：https://artifacthub.io/packages/kcl/kcl-module/json_merge_patch
-- KCL Kubernetes Strategy Merge Patch 库：https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch
-- KCL Crossplane 及 Crossplane Provider 系列模型：https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1&ts_query_web=crossplane
+- KCL JSON Patch 库：<https://artifacthub.io/packages/kcl/kcl-module/jsonpatch>
+- KCL JSON Merge Patch 库：<https://artifacthub.io/packages/kcl/kcl-module/json_merge_patch>
+- KCL Kubernetes Strategy Merge Patch 库：<https://artifacthub.io/packages/kcl/kcl-module/strategic_merge_patch>
+- KCL Crossplane 及 Crossplane Provider 系列模型：<https://artifacthub.io/packages/search?org=kcl&sort=relevance&page=1&ts_query_web=crossplane>
 
-- Kubenetes 1.29 版本: https://artifacthub.io/packages/kcl/kcl-module/k8s/1.29.0
+- Kubenetes 1.29 版本: <https://artifacthub.io/packages/kcl/kcl-module/k8s/1.29.0>
 
 - 新增 Podinfo 应用配置模型，支持设置外部动态参数如 replicas 等，可以直接通过一条命令渲染 Kubernetes 资源配置，并且可以在此模型的基础上修改并自定义资源模版
 
-```
+```shell
 kcl run oci://ghcr.io/kcl-lang/podinfo -D replicas=2
 ```
 
 - JSON Schema 库发布 0.0.4 版本，修复类型定义错误, 可以执行如下命令更新或添加依赖
 
-```
+```shell
 kcl mod add jsonschema:0.0.4
 ```
 
 ## 其他更新
 
-完整更新和错误修复列表详见: https://github.com/kcl-lang/kcl/compare/v0.7.0...v0.8.0
+完整更新和错误修复列表详见: <https://github.com/kcl-lang/kcl/compare/v0.7.0...v0.8.0>
 
 ## 文档更新
 
@@ -407,14 +432,13 @@ KCL 网站新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前�
 
 自 Crossplane v1.14 中的组合函数 Beta 版发布以来，使用 Crossplane 构建云原生平台的可能体验范围一直在迅速扩大。KCL 团队在第一时间进行跟进并主动构建了一个可重用的函数，整个 Crossplane 生态系统现在可以利用 KCL 提供的高水平经验和能力来构建自己的云原生平台。
 
-更多内容详见: https://blog.crossplane.io/function-kcl/
+更多内容详见: <https://blog.crossplane.io/function-kcl/>
 
 ### 特别鸣谢
 
 感谢社区的小伙伴在 KCL v0.8.0 版本中的贡献，以下排名不分先后
 
 - 感谢 @professorabhay 支持 KCL 测试 Diff 功能 🙌
-https://github.com/kcl-lang/kcl/issues/940
 - 感谢 @jakezhu9 同学对 kcl import 工具的持续贡献 🤝
 - 感谢 @octonawish-akcodes 对 KCL 代码清理和 FAQ 文档的持续贡献 🙌
 - 感谢 @satyazzz123 对 KRM KCL 支持读取环境变量功能的贡献 🙌
@@ -432,12 +456,11 @@ https://github.com/kcl-lang/kcl/issues/940
 
 更多其他资源请参考：
 
-- KCL 网站: https://kcl-lang.io/
-- Kusion 网站: https://kusionstack.io/
-- KCL GitHub 仓库: https://github.com/kcl-lang/kcl
-- Kusion GitHub 仓库: https://github.com/KusionStack/kusion
+- KCL 网站: <https://kcl-lang.io/>
+- Kusion 网站: <https://kusionstack.io/>
+- KCL GitHub 仓库: <https://github.com/kcl-lang/kcl>
+- Kusion GitHub 仓库: <https://github.com/KusionStack/kusion>
 
-- KCL v0.9.0 Milestone: https://github.com/kcl-lang/kcl/milestone/9
-- KCL 2024 路线规划: https://github.com/kcl-lang/kcl/issues/882
-- KCL 社区: https://github.com/kcl-lang/community
-
+- KCL v0.9.0 Milestone: <https://github.com/kcl-lang/kcl/milestone/9>
+- KCL 2024 路线规划: <https://github.com/kcl-lang/kcl/issues/882>
+- KCL 社区: <https://github.com/kcl-lang/community>
