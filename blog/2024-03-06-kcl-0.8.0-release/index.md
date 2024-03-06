@@ -85,25 +85,17 @@ In v0.8.0, by using `yaml_stream` method, you can output the result of yaml scal
 ```kcl
 import manifests
 
-schema Person:
-    name: str = "kcl"
-    age: int = 1
-
-x0 = Person {}
-x1 = Person {
-    age = 101
-}
+x0 = 1
+x1 = 2
 manifests.yaml_stream([x0, x1])
 ```
 
 The compiled result is as follows:
 
 ```yaml
-name: kcl
-age: 1
+1
 ---
-name: kcl
-age: 101
+2
 ```
 
 #### KCL removes the `__settings__` attribute in the compiled output

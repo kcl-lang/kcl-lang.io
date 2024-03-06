@@ -74,32 +74,24 @@ z:
   fullName: John-Doe1
 ```
 
-#### 支持 scalar yaml stream 输出
+#### 支持字面值的 yaml stream 格式输出.
 
-通过 `yaml_stream` 方法，可以支持输出 yaml scalar 的结果。
+通过 `yaml_stream` 方法，可以支持输出 yaml 字面值的结果。
 
 ```kcl
 import manifests
 
-schema Person:
-    name: str = "kcl"
-    age: int = 1
-
-x0 = Person {}
-x1 = Person {
-    age = 101
-}
+x0 = 1
+x1 = 2
 manifests.yaml_stream([x0, x1])
 ```
 
 对应编译结果
 
 ```yaml
-name: kcl
-age: 1
+1
 ---
-name: kcl
-age: 101
+2
 ```
 
 #### 修复了在循环表达式中的类型检查错误
