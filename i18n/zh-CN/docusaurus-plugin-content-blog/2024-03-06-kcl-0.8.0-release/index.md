@@ -1,5 +1,5 @@
 ---
-slug: 2024-03-04-kcl-0.8.0-release
+slug: 2024-03-06-kcl-0.8.0-release
 title: KCL v0.8.0 重磅发布 - 融汇社区生态
 authors:
   name: KCL Team
@@ -23,7 +23,220 @@ KCL 团队很高兴地宣布 **KCL v0.8.0 新版本现在已经可用**！本次
 
 ### 🚗 语法语义更新
 
-在 KCL v0.8.0 版本中去除了 Schema 对象内部非预期的内置类型属性`__settings__`通过 print 输出。
+#### 支持 `show-hidden`
+
+通过 `--show-hidden` 参数显示私有变量。
+
+KCL 程序如下
+
+```kcl
+a = {_b = 1}
+```
+
+通过命令 `kcl run main.k --show-hidden` 编译结果如下
+
+```yaml
+a:
+  _b: 1
+```
+
+#### 支持参数和关键字参数的合并
+
+KCL v0.8.0 版本中新增了参数和关键字参数的合并功能。带参数的 schema 实例在合并操作时参数也会合并。
+
+```kcl
+schema Person[separator]:
+    firstName: str = "John"
+    lastName: str
+    fullName: str = firstName + separator + lastName
+
+x = Person(" ") {lastName = "Doe"}
+
+y = Person("-") {lastName = "Doe1"}
+
+z = x | y
+```
+
+对应编译结果
+
+```yaml
+x:
+  firstName: John
+  lastName: Doe
+  fullName: John Doe
+y:
+  firstName: John
+  lastName: Doe1
+  fullName: John-Doe1
+z:
+  firstName: John
+  lastName: Doe1
+  fullName: John-Doe1
+```
+
+#### 支持 scalar yaml stream 输出
+
+通过 `yaml_stream` 方法，可以支持输出 yaml scalar 的结果。
+
+```kcl
+import manifests
+
+schema Person:
+    name: str = "kcl"
+    age: int = 1
+
+x0 = Person {}
+x1 = Person {
+    age = 101
+}
+manifests.yaml_stream([x0, x1])
+```
+
+对应编译结果
+
+```yaml
+name: kcl
+age: 1
+---
+name: kcl
+age: 101
+```
+
+#### 修复了在循环表达式中的类型检查错误
+
+```kcl
+name = "volume"
+configMapVolumes1: {str:{str:}} = {
+    name = {
+        name = name 
+    } for _ in range(1)
+}
+
+configMapVolumes2: [{str:}] = [
+    {
+        name = name
+    } for _ in range(1)
+]
+```
+
+在 v0.8.0 之前，上述程序编译会出现类型错误。
+
+```shell
+error[E2G22]: TypeError
+ --> main.k:4:9
+  |
+4 |         name = name
+  |         ^ expected {str:any}, got str
+  |
+
+ --> main.k:2:1
+  |
+2 | configMapVolumes1: {str:{str:}} = {
+  | ^ variable is defined here, its type is {str:any}, but got str
+  |
+```
+
+在 v0.8.0 版本中, 将会成功编译出如下结果：
+
+```yaml
+name: volume
+configMapVolumes1:
+  volume:
+    name: volume
+```
+
+#### 修复了 Schema 对象必选属性递归检查错误
+
+在 Schema 内部定义了一个对象，对象内部的属性是必选的，但是在实例化时使用不存在的属性。
+
+```kcl
+schema Name:
+    name: str
+
+schema Config:
+    n: {str:Name}
+
+Config {
+    n = {
+        n.n = "n"
+    }
+}
+```
+
+在 v0.8.0 之后，上述程序编译会出现类型错误。
+
+```shell
+error[E2L23]: CompileError
+ --> main.k:9:11
+  |
+9 |         n.n = "n"
+  |           ^ Cannot add member 'n' to schema 'Name'
+  |
+```
+
+#### 在编译输出结果中去掉 `__settings__` 属性
+
+在 v0.8.0 版本中，编译输出结果中去掉了 `__settings__` 属性。
+
+```kcl
+schema Person:
+    __settings__: {str:str} = {"output_type": "STANDALONE"}
+    name?: str
+    age?: int
+    school?: str
+
+a = Person{
+    name: "a",
+}
+```
+
+在编译结果中去掉了 `__settings__` 属性。
+
+```yaml
+a:
+  name: a
+```
+
+#### 支持在 config 表达式中计算 key 和 value 的值
+
+在 v0.8.0 版本中，支持在 config 表达式中计算 key 和 value 的值。
+
+```kcl
+_data = {
+    "a": 'foo'
+    "b": 'bar'
+}
+
+r0 = [{v = k} for k, v in _data]
+r1 = [{k = v} for k, v in _data]
+r2 = [{k.foo = v} for k, v in _data]
+r3 = [[k] for k, v in _data]
+r4 = [[k, v] for k, v in _data]
+```
+
+编译结果如下：
+
+```yaml
+r0:
+- foo: a
+- bar: b
+r1:
+- a: foo
+- b: bar
+r2:
+- a:
+    foo: foo
+- b:
+    foo: bar
+r3:
+- - a
+- - b
+r4:
+- - a
+  - foo
+- - b
+  - bar
+```
 
 ### 🔧 诊断信息的优化
 
@@ -179,7 +392,7 @@ KCL Rust SDK 提供了一系列的 API，可以用于 KCL 文件的编译、校�
 
 KCL Java SDK 新增语法树、作用域、符号等语法语义结构定义及相关查询 API。
 
-#### Go SDL 更新
+#### Go SDK 更新
 
 - KCL Doc 工具支持输出为 OpenAPI 格式。
 - 增加 Parse 过程相关 API。
@@ -224,13 +437,13 @@ KCL IDE 高亮之前仅支持 KCL 语法高亮，如下图所示：
 
 KCL IDE 支持 builtin 方法的补全，如下图所示：
 
-![builtin-completion](/img/blog/2024-03-04-kcl-0.8.0-release/builtin-ide.gif)
+![builtin-completion](/img/blog/2024-03-06-kcl-0.8.0-release/builtin-ide.gif)
 
 #### 增加变量引用错误时的快速修复功能
 
 KCL IDE 支持变量引用错误时的快速修复功能，如下图所示：
 
-![quick-fix](/img/blog/2024-03-04-kcl-0.8.0-release/quick-fix.gif)
+![quick-fix](/img/blog/2024-03-06-kcl-0.8.0-release/quick-fix.gif)
 
 #### IDE 支持增量解析和异步编译功能
 
