@@ -397,6 +397,8 @@ KCL Java SDK 新增语法树、作用域、符号等语法语义结构定义及�
 - 新增运行二进制产物 API 用于直接运行编译结果，避免重复编译并提升性能。
 - 新增代码生成 API 以编程方式实现 KCL 代码生成而不是编写复杂的模版。
 
+更多的更新可以查看 [KCL v0.8 API 文档](https://kcl-lang.io/docs/reference/xlang-api/go-api)
+
 ### 🐞 其他更新及错误修复
 
 - 修复了 KCL CLI 使用编译参数 -S 可能会导致的编译错误
@@ -652,8 +654,8 @@ KCL 网站新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前�
 - 感谢 @octonawish-akcodes 和 @d4v1d03 对 KCL FAQ 文档和 KCL IDE 功能的持续贡献 🙌
 - 感谢 @octonawish-akcodes 对 Ansible KCL Module 的贡献
 - 感谢 @AkashKumar7902 和 @Vanshikav123 对 KCL 包管理工具功能的贡献 🙌
-- 感谢 @StevenLeiZhang 对 KCL 文档和 KCL 插件的贡献
-- 感谢 @patrycju, @Callum Lyall, @Even Solberg, @Matt Gowie, @ShiroDN, @FLAGLORD, @YiuTerran, @flyinox, @steeling, @Anoop, @Phillip Neumann 和 @Even Solberg, @AdmiralNemo，@Phillip Neumann，@Naxe, @steeling, @steeling, @rozaliev, @CloudZero357, @martingreber, @az, @Art3mK,@AdmiralNemo, @Erick, @TheChinBot, @Evgeny Shepelyuk, @yonas, @steeling, @vtomilov, @Fdall, @CloudZero357, @bozaro, @starkers, @MrGuoRanDuo 和 @FLAGLORD 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
+- 感谢 @StevenLeiZhang 对 KCL 文档和 KCL 插件的贡献 🙌
+- 感谢 @patrycju, @Callum Lyall, @Matt Gowie, @ShiroDN, @FLAGLORD, @YiuTerran, @flyinox, @steeling, @Anoop, @Even Solberg，@Phillip Neumann，@Naxe, @rozaliev, @CloudZero357, @martingreber, @az, @Art3mK, @Erick, @TheChinBot, @Evgeny Shepelyuk, @yonas, @vtomilov, @Fdall, @bozaro, @starkers, 和 @MrGuoRanDuo 等在 KCL v0.8 版本迭代过程中使用 KCL 提供的宝贵建议与反馈 🙌
 
 ## 下一步计划
 
@@ -662,9 +664,9 @@ KCL 网站新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前�
 更多其他资源请参考：
 
 - KCL 网站: <https://kcl-lang.io/>
-- Kusion 网站: <https://kusionstack.io/>
-- KCL GitHub 仓库: <https://github.com/kcl-lang/kcl>
-- Kusion GitHub 仓库: <https://github.com/KusionStack/kusion>
+- KusionStack 网站: <https://kusionstack.io/>
+- KCL GitHub 仓库: <https://github.com/kcl-lang>
+- KusionStack GitHub 仓库: <https://github.com/KusionStack>
 
 - KCL v0.9.0 Milestone: <https://github.com/kcl-lang/kcl/milestone/9>
 - KCL 2024 路线规划: <https://github.com/kcl-lang/kcl/issues/882>

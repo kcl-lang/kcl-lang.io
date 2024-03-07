@@ -329,6 +329,8 @@ KCL Java SDK adds syntax tree, scope, symbol, and other syntax and semantic stru
 - Introducing a binary artifact execution API for directly running compiled results, avoiding redundant compilation and improving performance.
 - Introducing a code generation API to programmatically implement KCL code generation instead of writing complex templates.
 
+More updates can be found [here](https://kcl-lang.io/docs/reference/xlang-api/go-api).
+
 ### 🐞 Other Updates and Bug Fixes
 
 - Fixed compilation errors caused by using the -S compilation parameter in KCL CLI.
@@ -562,11 +564,27 @@ The versioning semantic option is added to the [KCL website](https://kcl-lang.io
 
 Congratulations to @AkashKumar7902, @octonawish-akcodes, @shashank-iitbhu for being selected for the CNCF KCL LFX project, and thanks to @Vanshikav123, @Amit Pandey for their active participation.
 
-### Crossplane Function Market Accepts KCL
+### KCL on Crossplane Function Market
 
 After the release of the combination function in Crossplane v1.14, the scope of using Crossplane to build cloud-native platforms has been rapidly expanded. The KCL team has followed up and proactively built a reusable function. The entire Crossplane ecosystem can now leverage the high-level experience and capabilities provided by KCL to build its own cloud-native platform.
 
 More details: <https://blog.crossplane.io/function-kcl/>
+
+## Special Thanks
+
+Thanks to the community friends for their contributions to KCL v0.8.0. The following list is in no particular order:
+
++ Thanks to @professorabhay for supporting the testing of the Diff feature in KCL 🙌
++ Thanks to @jakezhu9 for the continuous contribution to the kcl import tool 🤝
++ Thanks to @octonawish-akcodes for the continuous contributions to KCL code cleanup and FAQ documentation 🙌
++ Thanks to @satyazzz123 for contributing to the support of reading environment variables in KRM KCL 🙌
++ Thanks to @AkashKumar7902 for the contributions to the package management tool feature in KCL 🙌
++ Thanks to @UtkarshUmre for the contribution to the KCL linux-arm64 build CI 🙌
++ Thanks to @octonawish-akcodes and @d4v1d03 for the continuous contributions to KCL FAQ documentation and KCL IDE feature 🙌
++ Thanks to @octonawish-akcodes for the contribution to the Ansible KCL Module
++ Thanks to @AkashKumar7902 and @Vanshikav123 for the contributions to the package management tool feature in KCL 🙌
++ Thanks to @StevenLeiZhang for the contributions to KCL documentation and KCL plugin
++ Thanks to @patrycju, @Callum Lyall, @Matt Gowie, @ShiroDN, @FLAGLORD, @YiuTerran, @flyinox, @steeling, @Anoop, @Even Solberg, @Phillip Neumann, @Naxe, @rozaliev, @CloudZero357, @martingreber, @az, @Art3mK, @Erick, @TheChinBot, @Evgeny Shepelyuk, @yonas, @vtomilov, @Fdall, @bozaro, @starkers, and @MrGuoRanDuo for their valuable suggestions and feedback during the iteration process of KCL v0.8 🙌
 
 ## Next Steps
 
@@ -587,8 +605,8 @@ For more information, see [KCL FAQ](https://kcl-lang.io/docs/user_docs/support/)
 Thank all KCL users for their valuable feedback and suggestions during this version release. For more resources, please refer to:
 
 - [KCL Website](https://kcl-lang.io/)
-- [Kusion Website](https://kusionstack.io/)
-- [KCL Repo](https://github.com/kcl-lang/kcl)
-- [Kusion Repo](https://github.com/KusionStack/kusion)
+- [KusionStack Website](https://kusionstack.io/)
+- [KCL Repo](https://github.com/kcl-lang/)
+- [KusionStack Repo](https://github.com/KusionStack/)
 
 See the [community](https://github.com/kcl-lang/community) for ways to join us. 👏👏👏
