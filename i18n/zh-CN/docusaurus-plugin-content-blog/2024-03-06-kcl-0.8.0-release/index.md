@@ -1,6 +1,6 @@
 ---
 slug: 2024-03-06-kcl-0.8.0-release
-title: KCL v0.8.0 重磅发布 - 融汇社区生态
+title: KCL v0.8.0 重磅发布 - 融汇社区生态，助力配置体验!
 authors:
   name: KCL Team
   title: KCL Team
@@ -263,7 +263,7 @@ KCL 增加了访问文件系统的方法。在 v0.8.0 版本中支持了包括 `
 ```kcl
 import file
 
-a = read("hello.txt")
+a = file.read("hello.txt")
 ```
 
 在文件 `hello.txt` 中添加如下内容：

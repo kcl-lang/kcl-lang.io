@@ -195,7 +195,7 @@ By using the `read`, you can read the contents of a file as a string.
 ```kcl
 import file
 
-a = read("hello.txt")
+a = file.read("hello.txt")
 ```
 
 Add the following content to the `hello.txt` file:
