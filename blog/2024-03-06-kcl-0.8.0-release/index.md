@@ -375,7 +375,7 @@ KCL IDE supports quick fix for variable reference errors, as shown in the figure
 
 IDE supports incremental parsing and asynchronous compilation through the new semantic model, which improves the compilation speed and writing experience.
 
-More defails: <https://kcl-lang.io/zh-CN/blog/2023-12-09-kcl-new-semantic-model>
+More details: <https://kcl-lang.io/zh-CN/blog/2023-12-09-kcl-new-semantic-model>
 
 #### IDE LSP bug fixes
 
