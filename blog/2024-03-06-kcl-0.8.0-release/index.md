@@ -142,24 +142,24 @@ The compiled result is as follows.
 
 ```yaml
 r0:
-- foo: a
-- bar: b
+  - foo: a
+  - bar: b
 r1:
-- a: foo
-- b: bar
+  - a: foo
+  - b: bar
 r2:
-- a:
-    foo: foo
-- b:
-    foo: bar
+  - a:
+      foo: foo
+  - b:
+      foo: bar
 r3:
-- - a
-- - b
+  - - a
+  - - b
 r4:
-- - a
-  - foo
-- - b
-  - bar
+  - - a
+    - foo
+  - - b
+    - bar
 ```
 
 ### 🚀 Diagnostic Optimization
@@ -400,9 +400,9 @@ Take `hello.json` as an example, we will verify the content of the json file thr
 
 ```json
 {
-    "name": 10,
-    "age": 18,
-    "message": "This is Alice"
+  "name": 10,
+  "age": 18,
+  "message": "This is Alice"
 }
 ```
 
@@ -480,7 +480,7 @@ kcl mod add set-annotation
 In the KCL program, you can reference it through `set_annotation`.
 
 ```kcl
-import set_annotation 
+import set_annotation
 ```
 
 ### KCL Import Tool
@@ -574,17 +574,17 @@ More details: <https://blog.crossplane.io/function-kcl/>
 
 Thanks to the community friends for their contributions to KCL v0.8.0. The following list is in no particular order:
 
-+ Thanks to @professorabhay for supporting the testing of the Diff feature in KCL 🙌
-+ Thanks to @jakezhu9 for the continuous contribution to the kcl import tool 🤝
-+ Thanks to @octonawish-akcodes for the continuous contributions to KCL code cleanup and FAQ documentation 🙌
-+ Thanks to @satyazzz123 for contributing to the support of reading environment variables in KRM KCL 🙌
-+ Thanks to @AkashKumar7902 for the contributions to the package management tool feature in KCL 🙌
-+ Thanks to @UtkarshUmre for the contribution to the KCL linux-arm64 build CI 🙌
-+ Thanks to @octonawish-akcodes and @d4v1d03 for the continuous contributions to KCL FAQ documentation and KCL IDE feature 🙌
-+ Thanks to @octonawish-akcodes for the contribution to the Ansible KCL Module
-+ Thanks to @AkashKumar7902 and @Vanshikav123 for the contributions to the package management tool feature in KCL 🙌
-+ Thanks to @StevenLeiZhang for the contributions to KCL documentation and KCL plugin
-+ Thanks to @patrycju, @Callum Lyall, @Matt Gowie, @ShiroDN, @FLAGLORD, @YiuTerran, @flyinox, @steeling, @Anoop, @Even Solberg, @Phillip Neumann, @Naxe, @rozaliev, @CloudZero357, @martingreber, @az, @Art3mK, @Erick, @TheChinBot, @Evgeny Shepelyuk, @yonas, @vtomilov, @Fdall, @bozaro, @starkers, and @MrGuoRanDuo for their valuable suggestions and feedback during the iteration process of KCL v0.8 🙌
+- Thanks to @professorabhay for supporting the testing of the Diff feature in KCL 🙌
+- Thanks to @jakezhu9 for the continuous contribution to the kcl import tool 🤝
+- Thanks to @octonawish-akcodes for the continuous contributions to KCL code cleanup and FAQ documentation 🙌
+- Thanks to @satyazzz123 for contributing to the support of reading environment variables in KRM KCL 🙌
+- Thanks to @AkashKumar7902 for the contributions to the package management tool feature in KCL 🙌
+- Thanks to @UtkarshUmre for the contribution to the KCL linux-arm64 build CI 🙌
+- Thanks to @octonawish-akcodes and @d4v1d03 for the continuous contributions to KCL FAQ documentation and KCL IDE feature 🙌
+- Thanks to @octonawish-akcodes for the contribution to the Ansible KCL Module
+- Thanks to @AkashKumar7902 and @Vanshikav123 for the contributions to the package management tool feature in KCL 🙌
+- Thanks to @StevenLeiZhang for the contributions to KCL documentation and KCL plugin
+- Thanks to @patrycju, @Callum Lyall, @Matt Gowie, @ShiroDN, @FLAGLORD, @YiuTerran, @flyinox, @steeling, @Anoop, @Even Solberg, @Phillip Neumann, @Naxe, @rozaliev, @CloudZero357, @martingreber, @az, @Art3mK, @Erick, @TheChinBot, @Evgeny Shepelyuk, @yonas, @vtomilov, @Fdall, @bozaro, @starkers, and @MrGuoRanDuo for their valuable suggestions and feedback during the iteration process of KCL v0.8 🙌
 
 ## Next Steps
 

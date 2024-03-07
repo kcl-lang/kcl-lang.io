@@ -9,8 +9,8 @@ tags: [KCL, LFX-Mentorship]
 
 [KCL](https://github.com/kcl-lang) is a constraint-based record and functional language hosted by Cloud Native Computing Foundation (CNCF) that enhances the writing of complex configurations, including those for cloud-native scenarios. With its advanced programming language technology and practices, KCL is dedicated to promoting better modularity, scalability, and stability for configurations. It enables simpler logic writing and offers ease of automation APIs and integration with homegrown systems.
 
-+ **_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
-+ **_KCL Github Repo: [https://github.com/kcl-lang](https://github.com/kcl-lang)_**
+- **_KCL Website: [https://kcl-lang.io](https://kcl-lang.io)_**
+- **_KCL Github Repo: [https://github.com/kcl-lang](https://github.com/kcl-lang)_**
 
 For those interested in cloud-native, platform engineering,compiler, package management tools, and IDEs, we invite you to apply for the 2024 Spring Linux Foundation LFX Mentorship project. You can earn a minimum of $3000 for completing the project! Apply now!
 

@@ -100,7 +100,7 @@ manifests.yaml_stream([x0, x1])
 name = "volume"
 configMapVolumes1: {str:{str:}} = {
     name = {
-        name = name 
+        name = name
     } for _ in range(1)
 }
 
@@ -210,24 +210,24 @@ r4 = [[k, v] for k, v in _data]
 
 ```yaml
 r0:
-- foo: a
-- bar: b
+  - foo: a
+  - bar: b
 r1:
-- a: foo
-- b: bar
+  - a: foo
+  - b: bar
 r2:
-- a:
-    foo: foo
-- b:
-    foo: bar
+  - a:
+      foo: foo
+  - b:
+      foo: bar
 r3:
-- - a
-- - b
+  - - a
+  - - b
 r4:
-- - a
-  - foo
-- - b
-  - bar
+  - - a
+    - foo
+  - - b
+    - bar
 ```
 
 ### 🔧 诊断信息的优化
@@ -468,9 +468,9 @@ IDE 通过 KCL 新语义模型支持增量解析和异步编译功能，提升�
 
 ```json
 {
-    "name": 10,
-    "age": 18,
-    "message": "This is Alice"
+  "name": 10,
+  "age": 18,
+  "message": "This is Alice"
 }
 ```
 
@@ -539,7 +539,7 @@ kcl mod add -git https://github.com/KusionStack/catalog.git -commit a29e3db
 
 #### KCL 包管理工具支持三方库名称带有“-”
 
-KCL 包管理工具支持三方库名称中带有“-”，KCL 包管理工具会自动将 “-” 替换为 “_”。
+KCL 包管理工具支持三方库名称中带有“-”，KCL 包管理工具会自动将 “-” 替换为 “\_”。
 
 以三方库 `set-annotation` 为例，通过以下命令添加 `set-annotation` 为依赖：
 
@@ -550,7 +550,7 @@ kcl mod add set-annotation
 在 KCL 程序中，通过 `set_annotation` 引用：
 
 ```kcl
-import set_annotation 
+import set_annotation
 ```
 
 ### KCL 导入工具更新，支持更多特性
