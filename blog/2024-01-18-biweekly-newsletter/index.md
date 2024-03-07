@@ -90,7 +90,7 @@ catalog = { git = "https://github.com/KusionStack/catalog.git", commit = "a29e3d
 Or add it via the command line:
 
 ```
-kcl mod add -git https://github.com/KusionStack/catalog.git -commit a29e3db
+kcl mod add --git https://github.com/KusionStack/catalog.git --commit a29e3db
 ```
 
 ### KCL Import Tool Enhancement

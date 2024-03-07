@@ -534,7 +534,7 @@ catalog = { git = "https://github.com/KusionStack/catalog.git", commit = "a29e3d
 或者通过命令行添加：
 
 ```shell
-kcl mod add -git https://github.com/KusionStack/catalog.git -commit a29e3db
+kcl mod add --git https://github.com/KusionStack/catalog.git --commit a29e3db
 ```
 
 #### KCL 包管理工具支持三方库名称带有“-”

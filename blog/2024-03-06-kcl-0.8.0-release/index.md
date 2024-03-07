@@ -466,7 +466,7 @@ catalog = { git = "https://github.com/KusionStack/catalog.git", commit = "a29e3d
 Or add it through the command line:
 
 ```shell
-kcl mod add -git https://github.com/KusionStack/catalog.git -commit a29e3db
+kcl mod add --git https://github.com/KusionStack/catalog.git --commit a29e3db
 ```
 
 #### KCL Package Management supports the dependency name with `-`
