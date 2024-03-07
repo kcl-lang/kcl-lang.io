@@ -1,4 +1,5 @@
 # Copyright 2023 The KCL Authors. All rights reserved.
+VERSION := $(shell cat VERSION)
 
 PROJECT_NAME = kcl-lang
 
@@ -59,3 +60,8 @@ algolia:
 .PHONY: sh-in-docker
 sh-in-docker:
 	${RUN_IN_DOCKER} bash
+
+tag:
+	git tag v${VERSION}
+	git push origin v${VERSION}
+	gh release create v${VERSION} --draft --generate-notes --title "v${VERSION} Release"
