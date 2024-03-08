@@ -645,7 +645,6 @@ KCL 网站新增 KCL v0.7.0 文档内容并支持版本化语义选项，目前�
 
 感谢社区的小伙伴在 KCL v0.8.0 版本中的贡献，以下排名不分先后
 
-- 感谢 @professorabhay 支持 KCL 测试 Diff 功能 🙌
 - 感谢 @jakezhu9 同学对 kcl import 工具的持续贡献 🤝
 - 感谢 @octonawish-akcodes 对 KCL 代码清理和 FAQ 文档的持续贡献 🙌
 - 感谢 @satyazzz123 对 KRM KCL 支持读取环境变量功能的贡献 🙌

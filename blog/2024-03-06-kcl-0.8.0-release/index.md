@@ -574,7 +574,6 @@ More details: <https://blog.crossplane.io/function-kcl/>
 
 Thanks to the community friends for their contributions to KCL v0.8.0. The following list is in no particular order:
 
-- Thanks to @professorabhay for supporting the testing of the Diff feature in KCL 🙌
 - Thanks to @jakezhu9 for the continuous contribution to the kcl import tool 🤝
 - Thanks to @octonawish-akcodes for the continuous contributions to KCL code cleanup and FAQ documentation 🙌
 - Thanks to @satyazzz123 for contributing to the support of reading environment variables in KRM KCL 🙌
