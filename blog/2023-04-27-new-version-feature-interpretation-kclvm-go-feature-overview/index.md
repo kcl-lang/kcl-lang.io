@@ -23,19 +23,25 @@ KCL is closely related to the cloud-native domain as a configuration language, w
 
 The initial version of the KCL compiler and runtime were written in Python, and the runtime for the first version of the KCL language had a lot of room for improvement in terms of performance and security due to the performance issues and characteristics of the dynamic nature of the Python language. In light of security and efficiency considerations, later versions of the KCL compiler were written in the Rust programming language. As a result, the new version of `KCL Go SDK` is based on rust-implemented kclvm packaging, eliminating Python dependencies, simplifying installation, and optimizing the user experience.
 
-## Quickly experience KCL Go SDK via the command line
+## How to integrate KCL with Go code?
 
-`KCL Go SDK` provides a built-in command line tool named `kcl-go` ,which supports one-click installation through `go install`. The local Go version must be 1.18+ and the complete CGO toolchain is required.
+Here is an example of how to integrate KCL into your Go program. Using the hello.k file from the previous example, construct the following main.go code:
 
-Simply run:
+```go
+package main
 
-```bash
-go install kusionstack.io/kclvm-go/cmds/kcl-go@latest
-```
+import (
+	"fmt"
 
-Create a new KCL source file hello.k
+	kcl "kcl-lang.io/kcl-go"
+)
 
-```python
+func main() {
+	yaml := kcl.MustRun("kubernetes.k", kcl.WithCode(code)).GetRawYamlResult()
+	fmt.Println(yaml)
+}
+
+const code = `
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {
@@ -54,98 +60,11 @@ spec = {
         }
     ]
 }
+`
 ```
 
-And then execute the KCL directly from the command line with:
-
-```shell
-kcl-go run ./hello.k
-```
-
-The output is
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx
-  labels:
-    app: nginx
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: "nginx:1.14.2"
-          ports:
-            - containerPort: 80
-```
-
-## How to integrate KCL with Go code?
-
-Here is an example of how to integrate KCL into your Go program. Using the hello.k file from the previous example, construct the following main.go code:
-
-```go
-package main
-
-import (
-	"fmt"
-	"kusionstack.io/kclvm-go"
-)
-
-func main() {
-	result := kclvm.MustRun("./hello.k").GetRawYamlResult()
-	fmt.Println(result)
-}
-```
-
-- `kclvm.MustRun("./hello.k").GetRawYamlResult()` runs the corresponding KCL source file
-- `fmt.Println(result)` prints the result of the run
-
-The local environment requires Go version 1.18+ and a complete CGO toolchain. Add the `KCL Go SDK` dependency to this command line tool by running:
-
-```bash
-go get kusionstack.io/kclvm-go@main
-```
-
-The following command runs the Go program:
-
-```shell
-go run main.go
-```
-
-The output is
-
-```yaml
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx
-  labels:
-    app: nginx
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: "nginx:1.14.2"
-          ports:
-            - containerPort: 80
-```
+- `kcl.MustRun("kubernetes.k", kcl.WithCode(code)).GetRawYamlResult()` runs the corresponding KCL source file
+- `fmt.Println(yaml)` prints the result of the run
 
 ## Conclusion
 

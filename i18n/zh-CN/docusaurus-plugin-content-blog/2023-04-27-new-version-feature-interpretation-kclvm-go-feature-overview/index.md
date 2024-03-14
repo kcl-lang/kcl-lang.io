@@ -25,19 +25,25 @@ KCL 作为一门配置型语言，和云原生领域有着极其紧密的联系�
 
 新版本`KCL Go SDK`可以视为一个纯 Go 包使用，无需任何外置依赖，可以通过一键`go install`即可完成安装使用。
 
-## 命令行 `KCL Go SDK`快速体验
+## Go 代码如何集成 KCL
 
-`KCL Go SDK`提供了一个自带的 KCL Go 命令行，支持用户通过`go install`来一键安装 kclvm 的 Go 命令行工具 `kcl-go`，其要求本地 Go 版本为1.18+, 同时要求本地有完整的 CGO 工具链。
+以上一节的 hello.k 为例，构建以下的 main.go 代码：
 
-只需执行
+```go
+package main
 
-```bash
-go install kusionstack.io/kclvm-go/cmds/kcl-go@latest
-```
+import (
+	"fmt"
 
-新建 KCL 源文件 hello.k
+	kcl "kcl-lang.io/kcl-go"
+)
 
-```python
+func main() {
+	yaml := kcl.MustRun("kubernetes.k", kcl.WithCode(code)).GetRawYamlResult()
+	fmt.Println(yaml)
+}
+
+const code = `
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {
@@ -56,75 +62,11 @@ spec = {
         }
     ]
 }
+`
 ```
 
-之后可以直接在命令行中执行 KCL
-
-```shell
-$ kcl-go run ./hello.k
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: nginx
-  labels:
-    app: nginx
-spec:
-  replicas: 3
-  selector:
-    matchLabels:
-      app: nginx
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-        - name: nginx
-          image: "nginx:1.14.2"
-          ports:
-            - containerPort: 80
-```
-
-## Go 代码如何集成 KCL
-
-以上一节的 hello.k 为例，构建以下的 main.go 代码：
-
-```go
-package main
-
-import (
-	"fmt"
-	"kusionstack.io/kclvm-go"
-)
-
-func main() {
-	result := kclvm.MustRun("./hello.k").GetRawYamlResult()
-	fmt.Println(result)
-}
-```
-
-- `kclvm.MustRun("./hello.k").GetRawYamlResult()`运行对应的kcl源文件
-- `fmt.Println(result)`打印运行结果
-
-本地环境要求 Go 版本为1.18+,与完整的 CGO 工具链。运行命令行添加 `KCL Go SDK`依赖
-
-```bash
-go get kusionstack.io/kclvm-go@main
-```
-
-执行 Go 程序，结果为：
-
-```shell
-$ go run main.go
-name: kcl
-age: 1
-x0:
-  name: kcl
-  age: 1
-x1:
-  name: kcl
-  age: 101
-```
+- `kcl.MustRun("kubernetes.k", kcl.WithCode(code)).GetRawYamlResult()`运行对应的kcl源文件
+- `fmt.Println(yaml)`打印运行结果
 
 ## 总结
 
