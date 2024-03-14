@@ -280,7 +280,7 @@
     "message": "Konfig"
   },
   "homepage.feature.kcl.description": {
-    "message": "A constraint-based record & functional language mainly used in configuration and policy scenarios."
+    "message": "A constraint-based record & functional programming language mainly used in configuration and policy scenarios."
   },
   "homepage.feature.konfig.description": {
     "message": "Konfig is a monorepo that stores operation intentions described by KCL and provides a set of out-of-the-box Cloud Native application models, allowing users to quickly start the journey of cloud-native delivery."
@@ -440,8 +440,8 @@
   "Production-Ready": {
     "message": "Production-Ready"
   },
-  "KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.": {
-    "message": "KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios."
+  "KCL is an open-source constraint-based record & functional programming language mainly used in configuration and policy scenarios.": {
+    "message": "KCL is an open-source constraint-based record & functional programming language mainly used in configuration and policy scenarios."
   },
   "Learn More": {
     "message": "Learn More"

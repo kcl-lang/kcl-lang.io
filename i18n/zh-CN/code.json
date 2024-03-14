@@ -269,8 +269,8 @@
   "Production-Ready": {
     "message": "Production-Ready"
   },
-  "KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.": {
-    "message": "KCL 是一个开源的用于配置和策略场景的记录及函数语言"
+  "KCL is an open-source constraint-based record & functional programming language mainly used in configuration and policy scenarios.": {
+    "message": "KCL 是一个开源的用于配置和策略场景的编程语言"
   },
   "Learn More": {
     "message": "了解更多"

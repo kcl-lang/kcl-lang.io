@@ -406,7 +406,7 @@ export default function Home(): JSX.Element {
   return (
     <Layout
       title={`${siteConfig.title} - ${siteConfig.tagline}`}
-      description="KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios."
+      description="KCL is an open-source constraint-based record & functional programming language mainly used in configuration and policy scenarios."
     >
       <BreakSection />
       <HomepageHeader />

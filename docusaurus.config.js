@@ -35,9 +35,9 @@ const config = {
   scripts: [],
 
   customFields: {
-    tagDescription: 'KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.',
+    tagDescription: 'KCL is an open-source constraint-based record & functional programming language mainly used in configuration and policy scenarios.',
     hero: {
-      description: "KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.",
+      description: "KCL is an open-source constraint-based record & functional programming language mainly used in configuration and policy scenarios.",
       buttons: {
         first: {
           url: "docs/user_docs/intro/kcl-intro",
