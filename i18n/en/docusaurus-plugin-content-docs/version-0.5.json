@@ -1,0 +1,254 @@
+{
+  "version.label": {
+    "message": "0.5",
+    "description": "The label for version 0.5"
+  },
+  "sidebar.docs.category.Tools": {
+    "message": "Tools",
+    "description": "The label for category Tools in sidebar docs"
+  },
+  "sidebar.docs.category.Command Line Tools": {
+    "message": "Command Line Tools",
+    "description": "The label for category Command Line Tools in sidebar docs"
+  },
+  "sidebar.docs.category.KCL Tools": {
+    "message": "KCL Tools",
+    "description": "The label for category KCL Tools in sidebar docs"
+  },
+  "sidebar.docs.category.OpenAPI Tools": {
+    "message": "OpenAPI Tools",
+    "description": "The label for category OpenAPI Tools in sidebar docs"
+  },
+  "sidebar.docs.category.IDE": {
+    "message": "IDE",
+    "description": "The label for category IDE in sidebar docs"
+  },
+  "sidebar.docs.category.Reference": {
+    "message": "Reference",
+    "description": "The label for category Reference in sidebar docs"
+  },
+  "sidebar.docs.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar docs"
+  },
+  "sidebar.docs.category.Code Lab": {
+    "message": "Code Lab",
+    "description": "The label for category Code Lab in sidebar docs"
+  },
+  "sidebar.docs.category.Spec": {
+    "message": "Spec",
+    "description": "The label for category Spec in sidebar docs"
+  },
+  "sidebar.docs.category.Errors and Warnings": {
+    "message": "Errors and Warnings",
+    "description": "The label for category Errors and Warnings in sidebar docs"
+  },
+  "sidebar.docs.category.System Package": {
+    "message": "System Package",
+    "description": "The label for category System Package in sidebar docs"
+  },
+  "sidebar.docs.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar docs"
+  },
+  "sidebar.docs.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar docs"
+  },
+  "sidebar.docs.category.Plugin System": {
+    "message": "Plugin System",
+    "description": "The label for category Plugin System in sidebar docs"
+  },
+  "sidebar.docs.category.Multi-Language": {
+    "message": "Multi-Language",
+    "description": "The label for category Multi-Language in sidebar docs"
+  },
+  "sidebar.docs.category.community": {
+    "message": "community",
+    "description": "The label for category community in sidebar docs"
+  },
+  "sidebar.docs.category.Community": {
+    "message": "Community",
+    "description": "The label for category Community in sidebar docs"
+  },
+  "sidebar.docs.category.Release Policy": {
+    "message": "Release Policy",
+    "description": "The label for category Release Policy in sidebar docs"
+  },
+  "sidebar.docs.category.Contribution Guide": {
+    "message": "Contribution Guide",
+    "description": "The label for category Contribution Guide in sidebar docs"
+  },
+  "sidebar.docs.category.user_docs": {
+    "message": "user_docs",
+    "description": "The label for category user_docs in sidebar docs"
+  },
+  "sidebar.docs.category.Get Started": {
+    "message": "Get Started",
+    "description": "The label for category Get Started in sidebar docs"
+  },
+  "sidebar.docs.category.User Guide": {
+    "message": "User Guide",
+    "description": "The label for category User Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Kubernetes": {
+    "message": "Kubernetes",
+    "description": "The label for category Kubernetes in sidebar docs"
+  },
+  "sidebar.docs.category.Mutate or Validate Kubernetes Manifests": {
+    "message": "Mutate or Validate Kubernetes Manifests",
+    "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar docs"
+  },
+  "sidebar.docs.category.Konfig": {
+    "message": "Konfig",
+    "description": "The label for category Konfig in sidebar docs"
+  },
+  "sidebar.docs.category.GitOps": {
+    "message": "GitOps",
+    "description": "The label for category GitOps in sidebar docs"
+  },
+  "sidebar.docs.category.CI Integration": {
+    "message": "CI Integration",
+    "description": "The label for category CI Integration in sidebar docs"
+  },
+  "sidebar.docs.category.Secret Management": {
+    "message": "Secret Management",
+    "description": "The label for category Secret Management in sidebar docs"
+  },
+  "sidebar.docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar docs"
+  },
+  "sidebar.docs.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category FAQ in sidebar docs"
+  },
+  "sidebar.user_docs.category.Get Started": {
+    "message": "Get Started",
+    "description": "The label for category Get Started in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.User Guide": {
+    "message": "User Guide",
+    "description": "The label for category User Guide in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Kubernetes": {
+    "message": "Kubernetes",
+    "description": "The label for category Kubernetes in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Mutate or Validate Kubernetes Manifests": {
+    "message": "Mutate or Validate Kubernetes Manifests",
+    "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Konfig": {
+    "message": "Konfig",
+    "description": "The label for category Konfig in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.GitOps": {
+    "message": "GitOps",
+    "description": "The label for category GitOps in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.CI Integration": {
+    "message": "CI Integration",
+    "description": "The label for category CI Integration in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Secret Management": {
+    "message": "Secret Management",
+    "description": "The label for category Secret Management in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category FAQ in sidebar user_docs"
+  },
+  "sidebar.reference.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar reference"
+  },
+  "sidebar.reference.category.Code Lab": {
+    "message": "Code Lab",
+    "description": "The label for category Code Lab in sidebar reference"
+  },
+  "sidebar.reference.category.Spec": {
+    "message": "Spec",
+    "description": "The label for category Spec in sidebar reference"
+  },
+  "sidebar.reference.category.Errors and Warnings": {
+    "message": "Errors and Warnings",
+    "description": "The label for category Errors and Warnings in sidebar reference"
+  },
+  "sidebar.reference.category.System Package": {
+    "message": "System Package",
+    "description": "The label for category System Package in sidebar reference"
+  },
+  "sidebar.reference.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar reference"
+  },
+  "sidebar.reference.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar reference"
+  },
+  "sidebar.reference.category.Plugin System": {
+    "message": "Plugin System",
+    "description": "The label for category Plugin System in sidebar reference"
+  },
+  "sidebar.reference.category.Multi-Language": {
+    "message": "Multi-Language",
+    "description": "The label for category Multi-Language in sidebar reference"
+  },
+  "sidebar.tools.category.Command Line Tools": {
+    "message": "Command Line Tools",
+    "description": "The label for category Command Line Tools in sidebar tools"
+  },
+  "sidebar.tools.category.KCL Tools": {
+    "message": "KCL Tools",
+    "description": "The label for category KCL Tools in sidebar tools"
+  },
+  "sidebar.tools.category.OpenAPI Tools": {
+    "message": "OpenAPI Tools",
+    "description": "The label for category OpenAPI Tools in sidebar tools"
+  },
+  "sidebar.tools.category.IDE": {
+    "message": "IDE",
+    "description": "The label for category IDE in sidebar tools"
+  },
+  "sidebar.community.category.Community": {
+    "message": "Community",
+    "description": "The label for category Community in sidebar community"
+  },
+  "sidebar.community.category.Release Policy": {
+    "message": "Release Policy",
+    "description": "The label for category Release Policy in sidebar community"
+  },
+  "sidebar.community.category.Contribution Guide": {
+    "message": "Contribution Guide",
+    "description": "The label for category Contribution Guide in sidebar community"
+  },
+  "sidebar.docs.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar docs"
+  },
+  "sidebar.docs.category.How to": {
+    "message": "How to",
+    "description": "The label for category How to in sidebar docs"
+  },
+  "sidebar.user_docs.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.How to": {
+    "message": "How to",
+    "description": "The label for category How to in sidebar user_docs"
+  },
+  "sidebar.reference.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar reference"
+  }
+}
