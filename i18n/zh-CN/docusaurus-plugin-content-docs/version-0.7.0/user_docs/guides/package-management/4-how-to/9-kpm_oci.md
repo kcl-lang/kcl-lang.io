@@ -8,7 +8,24 @@ KCL 包管理工具默认使用 ghcr.io 保存 KCL 包。
 
 默认 registry - [https://github.com/orgs/kcl-lang/packages](https://github.com/orgs/kcl-lang/packages)
 
-可以在配置文件中调整 Registry 的地址和仓库名。KCL 包管理工具的配置文件位于 `$KCL_PKG_PATH/.kpm/config/kpm.json`, 如果没有设置环境变量 `KCL_PKG_PATH` 的值，则默认保存在 `$HOME/.kcl/kpm/.kpm/config/kpm.json`。
+你可以通过以下方法调整 OCI Registry 的地址和仓库名称。
+
+### 通过环境变量
+
+你可以通过设置三个环境变量 KPM_REG、KPM_REGO 和 OCI_REG_PLAIN_HTTP 来调整配置。
+
+```shell
+# 设置默认仓库地址
+export KPM_REG="ghcr.io"
+# 设置默认仓库
+export KPM_REPO="kcl-lang"
+# 设置支持 'http'
+export OCI_REG_PLAIN_HTTP=off
+```
+
+### 通过配置文件
+
+KCL 包管理工具的配置文件位于 `$KCL_PKG_PATH/.kpm/config/kpm.json`，如果环境变量 `KCL_PKG_PATH` 没有设置，它默认保存在 `$HOME/.kcl/kpm/.kpm/config/kpm.json`。
 
 配置文件的默认内容如下：
 
