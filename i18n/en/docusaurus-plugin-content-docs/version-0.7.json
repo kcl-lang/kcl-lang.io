@@ -1,0 +1,782 @@
+{
+  "version.label": {
+    "message": "0.7",
+    "description": "The label for version 0.7"
+  },
+  "sidebar.docs.category.参考手册": {
+    "message": "Reference",
+    "description": "The label for category 参考手册 in sidebar docs"
+  },
+  "sidebar.docs.category.命令行工具": {
+    "message": "Command Line Tools",
+    "description": "The label for category 命令行工具 in sidebar docs"
+  },
+  "sidebar.docs.category.KCL 语言工具": {
+    "message": "KCL Tools",
+    "description": "The label for category KCL 语言工具 in sidebar docs"
+  },
+  "sidebar.docs.category.OpenAPI 工具": {
+    "message": "OpenAPI Tools",
+    "description": "The label for category OpenAPI 工具 in sidebar docs"
+  },
+  "sidebar.docs.category.包管理工具": {
+    "message": "Package Management Tools",
+    "description": "The label for category OpenAPI 工具 in sidebar docs"
+  },
+  "sidebar.docs.category.核心模型库": {
+    "message": "Core Model",
+    "description": "The label for category 核心模型库 in sidebar docs"
+  },
+  "sidebar.docs.category.api": {
+    "message": "api",
+    "description": "The label for category api in sidebar docs"
+  },
+  "sidebar.docs.category.admissionregistration": {
+    "message": "admissionregistration",
+    "description": "The label for category admissionregistration in sidebar docs"
+  },
+  "sidebar.docs.category.v1": {
+    "message": "v1",
+    "description": "The label for category v1 in sidebar docs"
+  },
+  "sidebar.docs.category.apps": {
+    "message": "apps",
+    "description": "The label for category apps in sidebar docs"
+  },
+  "sidebar.docs.category.autoscaling": {
+    "message": "autoscaling",
+    "description": "The label for category autoscaling in sidebar docs"
+  },
+  "sidebar.docs.category.batch": {
+    "message": "batch",
+    "description": "The label for category batch in sidebar docs"
+  },
+  "sidebar.docs.category.v1beta1": {
+    "message": "v1beta1",
+    "description": "The label for category v1beta1 in sidebar docs"
+  },
+  "sidebar.docs.category.core": {
+    "message": "core",
+    "description": "The label for category core in sidebar docs"
+  },
+  "sidebar.docs.category.networking": {
+    "message": "networking",
+    "description": "The label for category networking in sidebar docs"
+  },
+  "sidebar.docs.category.rbac": {
+    "message": "rbac",
+    "description": "The label for category rbac in sidebar docs"
+  },
+  "sidebar.docs.category.apimachinery": {
+    "message": "apimachinery",
+    "description": "The label for category apimachinery in sidebar docs"
+  },
+  "sidebar.docs.category.apis": {
+    "message": "apis",
+    "description": "The label for category apis in sidebar docs"
+  },
+  "sidebar.docs.category.kube": {
+    "message": "kube",
+    "description": "The label for category kube in sidebar docs"
+  },
+  "sidebar.docs.category.frontend": {
+    "message": "frontend",
+    "description": "The label for category frontend in sidebar docs"
+  },
+  "sidebar.docs.category.common": {
+    "message": "common",
+    "description": "The label for category common in sidebar docs"
+  },
+  "sidebar.docs.category.configmap": {
+    "message": "configmap",
+    "description": "The label for category configmap in sidebar docs"
+  },
+  "sidebar.docs.category.container": {
+    "message": "container",
+    "description": "The label for category container in sidebar docs"
+  },
+  "sidebar.docs.category.env": {
+    "message": "env",
+    "description": "The label for category env in sidebar docs"
+  },
+  "sidebar.docs.category.lifecycle": {
+    "message": "lifecycle",
+    "description": "The label for category lifecycle in sidebar docs"
+  },
+  "sidebar.docs.category.port": {
+    "message": "port",
+    "description": "The label for category port in sidebar docs"
+  },
+  "sidebar.docs.category.probe": {
+    "message": "probe",
+    "description": "The label for category probe in sidebar docs"
+  },
+  "sidebar.docs.category.ingress": {
+    "message": "ingress",
+    "description": "The label for category ingress in sidebar docs"
+  },
+  "sidebar.docs.category.resource": {
+    "message": "resource",
+    "description": "The label for category resource in sidebar docs"
+  },
+  "sidebar.docs.category.secret": {
+    "message": "secret",
+    "description": "The label for category secret in sidebar docs"
+  },
+  "sidebar.docs.category.service": {
+    "message": "service",
+    "description": "The label for category service in sidebar docs"
+  },
+  "sidebar.docs.category.serviceaccount": {
+    "message": "serviceaccount",
+    "description": "The label for category serviceaccount in sidebar docs"
+  },
+  "sidebar.docs.category.sidecar": {
+    "message": "sidecar",
+    "description": "The label for category sidecar in sidebar docs"
+  },
+  "sidebar.docs.category.strategy": {
+    "message": "strategy",
+    "description": "The label for category strategy in sidebar docs"
+  },
+  "sidebar.docs.category.volume": {
+    "message": "volume",
+    "description": "The label for category volume in sidebar docs"
+  },
+  "sidebar.docs.category.develop": {
+    "message": "develop",
+    "description": "The label for category develop in sidebar docs"
+  },
+  "sidebar.docs.category.governance": {
+    "message": "governance",
+    "description": "The label for category governance in sidebar docs"
+  },
+  "sidebar.docs.category.开源社区": {
+    "message": "Open Source Community",
+    "description": "The label for category 开源社区 in sidebar docs"
+  },
+  "sidebar.docs.category.发版策略": {
+    "message": "Release Policy",
+    "description": "The label for category 发版策略 in sidebar docs"
+  },
+  "sidebar.docs.category.贡献指南": {
+    "message": "Contribution Guide",
+    "description": "The label for category 贡献指南 in sidebar docs"
+  },
+  "sidebar.docs.category.user_docs": {
+    "message": "user_docs",
+    "description": "The label for category user_docs in sidebar docs"
+  },
+  "sidebar.docs.category.简介": {
+    "message": "Intro",
+    "description": "The label for category 简介 in sidebar docs"
+  },
+  "sidebar.docs.category.快速开始": {
+    "message": "Quick Start",
+    "description": "The label for category 快速开始 in sidebar docs"
+  },
+  "sidebar.docs.category.下载和安装": {
+    "message": "Download and Install",
+    "description": "The label for category 下载和安装 in sidebar docs"
+  },
+  "sidebar.docs.category.架构 & 概念": {
+    "message": "Architecture & Concepts",
+    "description": "The label for category 架构 & 概念 in sidebar docs"
+  },
+  "sidebar.docs.category.用户指南": {
+    "message": "User Guide",
+    "description": "The label for category 用户指南 in sidebar docs"
+  },
+  "sidebar.docs.category.Kubernetes": {
+    "message": "Kubernetes",
+    "description": "The label for category Kubernetes in sidebar docs"
+  },
+  "sidebar.docs.category.项目组织最佳实践": {
+    "message": "Project Organization Best Practices",
+    "description": "The label for category 项目组织最佳实践 in sidebar docs"
+  },
+  "sidebar.docs.category.ArgoCD": {
+    "message": "ArgoCD",
+    "description": "The label for category ArgoCD in sidebar docs"
+  },
+  "sidebar.docs.category.敏感信息管理": {
+    "message": "Information security",
+    "description": "The label for category 敏感信息管理 in sidebar docs"
+  },
+  "sidebar.user_docs.category.简介": {
+    "message": "Intro",
+    "description": "The label for category 简介 in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.快速开始": {
+    "message": "Quick Start",
+    "description": "The label for category 快速开始 in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.下载和安装": {
+    "message": "Download and Install",
+    "description": "The label for category 下载和安装 in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.架构 & 概念": {
+    "message": "Architecture & Concepts",
+    "description": "The label for category 架构 & 概念 in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.用户指南": {
+    "message": "User Guide",
+    "description": "The label for category 用户指南 in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Kubernetes": {
+    "message": "Kubernetes",
+    "description": "The label for category Kubernetes in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.项目组织最佳实践": {
+    "message": "Project Organization Best Practices",
+    "description": "The label for category 项目组织最佳实践 in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.ArgoCD": {
+    "message": "ArgoCD",
+    "description": "The label for category ArgoCD in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.敏感信息管理": {
+    "message": "Information security",
+    "description": "The label for category 敏感信息管理 in sidebar user_docs"
+  },
+  "sidebar.reference.category.命令行工具": {
+    "message": "Command Line Tools",
+    "description": "The label for category 命令行工具 in sidebar reference"
+  },
+  "sidebar.reference.category.KCL 语言工具": {
+    "message": "KCL Tools",
+    "description": "The label for category KCL 语言工具 in sidebar reference"
+  },
+  "sidebar.reference.category.OpenAPI 工具": {
+    "message": "OpenAPI Tools",
+    "description": "The label for category OpenAPI 工具 in sidebar reference"
+  },
+  "sidebar.reference.category.包管理工具": {
+    "message": "Package Management Tools",
+    "description": "The label for category OpenAPI 工具 in sidebar reference"
+  },
+  "sidebar.reference.category.核心模型库": {
+    "message": "Code Model",
+    "description": "The label for category 核心模型库 in sidebar reference"
+  },
+  "sidebar.reference.category.api": {
+    "message": "api",
+    "description": "The label for category api in sidebar reference"
+  },
+  "sidebar.reference.category.admissionregistration": {
+    "message": "admissionregistration",
+    "description": "The label for category admissionregistration in sidebar reference"
+  },
+  "sidebar.reference.category.v1": {
+    "message": "v1",
+    "description": "The label for category v1 in sidebar reference"
+  },
+  "sidebar.reference.category.apps": {
+    "message": "apps",
+    "description": "The label for category apps in sidebar reference"
+  },
+  "sidebar.reference.category.autoscaling": {
+    "message": "autoscaling",
+    "description": "The label for category autoscaling in sidebar reference"
+  },
+  "sidebar.reference.category.batch": {
+    "message": "batch",
+    "description": "The label for category batch in sidebar reference"
+  },
+  "sidebar.reference.category.v1beta1": {
+    "message": "v1beta1",
+    "description": "The label for category v1beta1 in sidebar reference"
+  },
+  "sidebar.reference.category.core": {
+    "message": "core",
+    "description": "The label for category core in sidebar reference"
+  },
+  "sidebar.reference.category.networking": {
+    "message": "networking",
+    "description": "The label for category networking in sidebar reference"
+  },
+  "sidebar.reference.category.rbac": {
+    "message": "rbac",
+    "description": "The label for category rbac in sidebar reference"
+  },
+  "sidebar.reference.category.apimachinery": {
+    "message": "apimachinery",
+    "description": "The label for category apimachinery in sidebar reference"
+  },
+  "sidebar.reference.category.apis": {
+    "message": "apis",
+    "description": "The label for category apis in sidebar reference"
+  },
+  "sidebar.reference.category.kube": {
+    "message": "kube",
+    "description": "The label for category kube in sidebar reference"
+  },
+  "sidebar.reference.category.frontend": {
+    "message": "frontend",
+    "description": "The label for category frontend in sidebar reference"
+  },
+  "sidebar.reference.category.common": {
+    "message": "common",
+    "description": "The label for category common in sidebar reference"
+  },
+  "sidebar.reference.category.configmap": {
+    "message": "configmap",
+    "description": "The label for category configmap in sidebar reference"
+  },
+  "sidebar.reference.category.container": {
+    "message": "container",
+    "description": "The label for category container in sidebar reference"
+  },
+  "sidebar.reference.category.env": {
+    "message": "env",
+    "description": "The label for category env in sidebar reference"
+  },
+  "sidebar.reference.category.lifecycle": {
+    "message": "lifecycle",
+    "description": "The label for category lifecycle in sidebar reference"
+  },
+  "sidebar.reference.category.port": {
+    "message": "port",
+    "description": "The label for category port in sidebar reference"
+  },
+  "sidebar.reference.category.probe": {
+    "message": "probe",
+    "description": "The label for category probe in sidebar reference"
+  },
+  "sidebar.reference.category.ingress": {
+    "message": "ingress",
+    "description": "The label for category ingress in sidebar reference"
+  },
+  "sidebar.reference.category.resource": {
+    "message": "resource",
+    "description": "The label for category resource in sidebar reference"
+  },
+  "sidebar.reference.category.secret": {
+    "message": "secret",
+    "description": "The label for category secret in sidebar reference"
+  },
+  "sidebar.reference.category.service": {
+    "message": "service",
+    "description": "The label for category service in sidebar reference"
+  },
+  "sidebar.reference.category.serviceaccount": {
+    "message": "serviceaccount",
+    "description": "The label for category serviceaccount in sidebar reference"
+  },
+  "sidebar.reference.category.sidecar": {
+    "message": "sidecar",
+    "description": "The label for category sidecar in sidebar reference"
+  },
+  "sidebar.reference.category.strategy": {
+    "message": "strategy",
+    "description": "The label for category strategy in sidebar reference"
+  },
+  "sidebar.reference.category.volume": {
+    "message": "volume",
+    "description": "The label for category volume in sidebar reference"
+  },
+  "sidebar.reference.category.Konfig 配置大库": {
+    "message": "Konfig Lib",
+    "description": "The label for category Konfig 配置大库 in sidebar reference"
+  },
+  "sidebar.develop.category.设计与实现": {
+    "message": "Design and Implementation",
+    "description": "The label for category 设计与实现 in sidebar develop"
+  },
+  "sidebar.governance.category.开源社区": {
+    "message": "Open Source Community",
+    "description": "The label for category 开源社区 in sidebar governance"
+  },
+  "sidebar.governance.category.发版策略": {
+    "message": "Release Policy",
+    "description": "The label for category 发版策略 in sidebar governance"
+  },
+  "sidebar.governance.category.贡献指南": {
+    "message": "Contribution Guide",
+    "description": "The label for category 贡献指南 in sidebar governance"
+  },
+  "sidebar.governance.link.changelog": {
+    "message": "changelog",
+    "description": "The label for link changelog in sidebar governance, linking to /changelog"
+  },
+  "sidebar.docs.category.KCL": {
+    "message": "KCL",
+    "description": "The label for category KCL in sidebar docs"
+  },
+  "sidebar.docs.category.Code Lab": {
+    "message": "Code Lab",
+    "description": "The label for category Code Lab in sidebar docs"
+  },
+  "sidebar.docs.category.Spec": {
+    "message": "Spec",
+    "description": "The label for category Spec in sidebar docs"
+  },
+  "sidebar.docs.category.Errors and Warnings": {
+    "message": "Errors and Warnings",
+    "description": "The label for category Errors and Warnings in sidebar docs"
+  },
+  "sidebar.docs.category.Multi-Language": {
+    "message": "Multi-Language",
+    "description": "The label for category Multi-Language in sidebar docs"
+  },
+  "sidebar.docs.category.Advanced": {
+    "message": "Advanced",
+    "description": "The label for category Advanced in sidebar docs"
+  },
+  "sidebar.docs.category.Plugin System": {
+    "message": "Plugin System",
+    "description": "The label for category Plugin System in sidebar docs"
+  },
+  "sidebar.reference.category.KCL": {
+    "message": "KCL",
+    "description": "The label for category KCL in sidebar reference"
+  },
+  "sidebar.reference.category.Code Lab": {
+    "message": "Code Lab",
+    "description": "The label for category Code Lab in sidebar reference"
+  },
+  "sidebar.reference.category.Spec": {
+    "message": "Spec",
+    "description": "The label for category Spec in sidebar reference"
+  },
+  "sidebar.reference.category.Errors and Warnings": {
+    "message": "Errors and Warnings",
+    "description": "The label for category Errors and Warnings in sidebar reference"
+  },
+  "sidebar.reference.category.Multi-Language": {
+    "message": "Multi-Language",
+    "description": "The label for category Multi-Language in sidebar reference"
+  },
+  "sidebar.reference.category.Advanced": {
+    "message": "Advanced",
+    "description": "The label for category Advanced in sidebar reference"
+  },
+  "sidebar.reference.category.Plugin System": {
+    "message": "Plugin System",
+    "description": "The label for category Plugin System in sidebar reference"
+  },
+  "sidebar.docs.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category FAQ in sidebar docs"
+  },
+  "sidebar.user_docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category FAQ in sidebar user_docs"
+  },
+  "sidebar.docs.category.Events": {
+    "message": "Events",
+    "description": "The label for category Events in sidebar docs"
+  },
+  "sidebar.docs.category.2022": {
+    "message": "2022",
+    "description": "The label for category 2022 in sidebar docs"
+  },
+  "sidebar.docs.category.Reference": {
+    "message": "Reference",
+    "description": "The label for category Reference in sidebar docs"
+  },
+  "sidebar.docs.category.Command Line Tools": {
+    "message": "Command Line Tools",
+    "description": "The label for category Command Line Tools in sidebar docs"
+  },
+  "sidebar.docs.category.KCL Tools": {
+    "message": "KCL Tools",
+    "description": "The label for category KCL Tools in sidebar docs"
+  },
+  "sidebar.docs.category.OpenAPI Tools": {
+    "message": "OpenAPI Tools",
+    "description": "The label for category OpenAPI Tools in sidebar docs"
+  },
+  "sidebar.docs.category.Use Case": {
+    "message": "Use Case",
+    "description": "The label for category Use Case in sidebar docs"
+  },
+  "sidebar.docs.category.Konfig": {
+    "message": "Konfig",
+    "description": "The label for category Konfig in sidebar docs"
+  },
+  "sidebar.docs.category.Design and Implementation": {
+    "message": "Design and Implementation",
+    "description": "The label for category Design and Implementation in sidebar docs"
+  },
+  "sidebar.docs.category.Community": {
+    "message": "Community",
+    "description": "The label for category Community in sidebar docs"
+  },
+  "sidebar.docs.category.Release Policy": {
+    "message": "Release Policy",
+    "description": "The label for category Release Policy in sidebar docs"
+  },
+  "sidebar.docs.category.Contribution Guide": {
+    "message": "Contribution Guide",
+    "description": "The label for category Contribution Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category Introduction in sidebar docs"
+  },
+  "sidebar.docs.category.Get Started": {
+    "message": "Get Started",
+    "description": "The label for category Get Started in sidebar docs"
+  },
+  "sidebar.docs.category.Download & Install": {
+    "message": "Download & Install",
+    "description": "The label for category Download & Install in sidebar docs"
+  },
+  "sidebar.docs.category.Architecture & Concepts": {
+    "message": "Architecture & Concepts",
+    "description": "The label for category Architecture & Concepts in sidebar docs"
+  },
+  "sidebar.docs.category.User Guide": {
+    "message": "User Guide",
+    "description": "The label for category User Guide in sidebar docs"
+  },
+  "sidebar.docs.category.Adopting kcl-lang": {
+    "message": "Adopting kcl-lang",
+    "description": "The label for category Adopting kcl-lang in sidebar docs"
+  },
+  "sidebar.docs.category.Project Best Practices": {
+    "message": "Project Best Practices",
+    "description": "The label for category Project Best Practices in sidebar docs"
+  },
+  "sidebar.docs.category.Manage Sensitive Information": {
+    "message": "Manage Sensitive Information",
+    "description": "The label for category Manage Sensitive Information in sidebar docs"
+  },
+  "sidebar.user_docs.category.Introduction": {
+    "message": "Introduction",
+    "description": "The label for category Introduction in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Get Started": {
+    "message": "Get Started",
+    "description": "The label for category Get Started in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Download & Install": {
+    "message": "Download & Install",
+    "description": "The label for category Download & Install in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Architecture & Concepts": {
+    "message": "Architecture & Concepts",
+    "description": "The label for category Architecture & Concepts in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.User Guide": {
+    "message": "User Guide",
+    "description": "The label for category User Guide in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Adopting kcl-lang": {
+    "message": "Adopting kcl-lang",
+    "description": "The label for category Adopting kcl-lang in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Project Best Practices": {
+    "message": "Project Best Practices",
+    "description": "The label for category Project Best Practices in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Manage Sensitive Information": {
+    "message": "Manage Sensitive Information",
+    "description": "The label for category Manage Sensitive Information in sidebar user_docs"
+  },
+  "sidebar.reference.category.Command Line Tools": {
+    "message": "Command Line Tools",
+    "description": "The label for category Command Line Tools in sidebar reference"
+  },
+  "sidebar.reference.category.KCL Tools": {
+    "message": "KCL Tools",
+    "description": "The label for category KCL Tools in sidebar reference"
+  },
+  "sidebar.reference.category.OpenAPI Tools": {
+    "message": "OpenAPI Tools",
+    "description": "The label for category OpenAPI Tools in sidebar reference"
+  },
+  "sidebar.reference.category.Use Case": {
+    "message": "Use Case",
+    "description": "The label for category Use Case in sidebar reference"
+  },
+  "sidebar.reference.category.Core Model Library": {
+    "message": "Core Model Library",
+    "description": "The label for category Core Model Library in sidebar reference"
+  },
+  "sidebar.reference.category.Konfig": {
+    "message": "Konfig",
+    "description": "The label for category Konfig in sidebar reference"
+  },
+  "sidebar.develop.category.Design and Implementation": {
+    "message": "Design and Implementation",
+    "description": "The label for category Design and Implementation in sidebar develop"
+  },
+  "sidebar.governance.category.Community": {
+    "message": "Community",
+    "description": "The label for category Community in sidebar governance"
+  },
+  "sidebar.governance.category.Release Policy": {
+    "message": "Release Policy",
+    "description": "The label for category Release Policy in sidebar governance"
+  },
+  "sidebar.governance.category.Contribution Guide": {
+    "message": "Contribution Guide",
+    "description": "The label for category Contribution Guide in sidebar governance"
+  },
+  "sidebar.events.category.2022": {
+    "message": "2022",
+    "description": "The label for category 2022 in sidebar events"
+  },
+  "sidebar.docs.category.Events 2022": {
+    "message": "Events 2022",
+    "description": "The label for category Events 2022 in sidebar docs"
+  },
+  "sidebar.docs.category.Tools": {
+    "message": "Tools",
+    "description": "The label for category Tools in sidebar docs"
+  },
+  "sidebar.docs.category.IDE": {
+    "message": "IDE",
+    "description": "The label for category IDE in sidebar docs"
+  },
+  "sidebar.docs.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar docs"
+  },
+  "sidebar.docs.category.System Package": {
+    "message": "System Package",
+    "description": "The label for category System Package in sidebar docs"
+  },
+  "sidebar.docs.category.community": {
+    "message": "community",
+    "description": "The label for category community in sidebar docs"
+  },
+  "sidebar.reference.category.Tutorial": {
+    "message": "Tutorial",
+    "description": "The label for category Tutorial in sidebar reference"
+  },
+  "sidebar.reference.category.System Package": {
+    "message": "System Package",
+    "description": "The label for category System Package in sidebar reference"
+  },
+  "sidebar.tools.category.Command Line Tools": {
+    "message": "Command Line Tools",
+    "description": "The label for category Command Line Tools in sidebar tools"
+  },
+  "sidebar.tools.category.KCL Tools": {
+    "message": "KCL Tools",
+    "description": "The label for category KCL Tools in sidebar tools"
+  },
+  "sidebar.tools.category.OpenAPI Tools": {
+    "message": "OpenAPI Tools",
+    "description": "The label for category OpenAPI Tools in sidebar tools"
+  },
+  "sidebar.tools.category.IDE": {
+    "message": "IDE",
+    "description": "The label for category IDE in sidebar tools"
+  },
+  "sidebar.community.category.Community": {
+    "message": "Community",
+    "description": "The label for category Community in sidebar community"
+  },
+  "sidebar.community.category.Release Policy": {
+    "message": "Release Policy",
+    "description": "The label for category Release Policy in sidebar community"
+  },
+  "sidebar.community.category.Contribution Guide": {
+    "message": "Contribution Guide",
+    "description": "The label for category Contribution Guide in sidebar community"
+  },
+  "sidebar.events.category.Events 2022": {
+    "message": "Events 2022",
+    "description": "The label for category Events 2022 in sidebar events"
+  },
+  "sidebar.docs.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar docs"
+  },
+  "sidebar.docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar docs"
+  },
+  "sidebar.user_docs.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Konfig": {
+    "message": "Konfig",
+    "description": "The label for category Konfig in sidebar user_docs"
+  },
+  "sidebar.docs.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar docs"
+  },
+  "sidebar.reference.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar reference"
+  },
+  "sidebar.reference.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar reference"
+  },
+  "sidebar.docs.category.GitOps": {
+    "message": "GitOps",
+    "description": "The label for category GitOps in sidebar docs"
+  },
+  "sidebar.docs.category.CI Integration": {
+    "message": "CI Integration",
+    "description": "The label for category CI Integration in sidebar docs"
+  },
+  "sidebar.user_docs.category.GitOps": {
+    "message": "GitOps",
+    "description": "The label for category GitOps in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.CI Integration": {
+    "message": "CI Integration",
+    "description": "The label for category CI Integration in sidebar user_docs"
+  },
+  "sidebar.docs.category.Mutate or Validate Kubernetes Manifests": {
+    "message": "Mutate or Validate Kubernetes Manifests",
+    "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar docs"
+  },
+  "sidebar.user_docs.category.Mutate or Validate Kubernetes Manifests": {
+    "message": "Mutate or Validate Kubernetes Manifests",
+    "description": "The label for category Mutate or Validate Kubernetes Manifests in sidebar user_docs"
+  },
+  "sidebar.docs.category.Secret Management": {
+    "message": "Secret Management",
+    "description": "The label for category Secret Management in sidebar docs"
+  },
+  "sidebar.user_docs.category.Secret Management": {
+    "message": "Secret Management",
+    "description": "The label for category Secret Management in sidebar user_docs"
+  },
+  "sidebar.docs.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar docs"
+  },
+  "sidebar.docs.category.How to": {
+    "message": "How to",
+    "description": "The label for category How to in sidebar docs"
+  },
+  "sidebar.docs.category.Terraform": {
+    "message": "Terraform",
+    "description": "The label for category Terraform in sidebar docs"
+  },
+  "sidebar.user_docs.category.How to": {
+    "message": "How to",
+    "description": "The label for category How to in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Terraform": {
+    "message": "Terraform",
+    "description": "The label for category Terraform in sidebar user_docs"
+  },
+  "sidebar.tools.category.Command Reference": {
+    "message": "Command Reference",
+    "description": "The label for category Command Reference in sidebar tools"
+  },
+  "sidebar.tools.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar tools"
+  }
+}
