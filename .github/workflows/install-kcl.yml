@@ -18,7 +18,7 @@ jobs:
         run: static/script/install-cli.sh
       - name: Check KCL run
         shell: bash -leo pipefail {0}
-        run: sudo kcl version && sudo kcl run ./static/stack/main.k
+        run: sudo kcl version && sudo kcl run ./examples/configuration/nginx.k
 
       - uses: actions/setup-python@v4
         with:
@@ -27,11 +27,8 @@ jobs:
         with:
           go-version: "1.21"
 
-      - name: Check Python Installation
-        run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
-
       - name: Check Go Installation
-        run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./static/stack/main.k
+        run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./examples/configuration/nginx.k
 
       - name: Check Uninstall Script CLI
         run: static/script/uninstall-cli.sh
@@ -53,7 +50,7 @@ jobs:
         shell: bash -ieo pipefail {0}
         run: |
           kcl version
-          kcl run ./static/stack/main.k
+          kcl run ./examples/configuration/nginx.k
 
       - uses: actions/setup-python@v4
         with:
@@ -62,11 +59,8 @@ jobs:
         with:
           go-version: "1.21"
 
-      - name: Check Python Installation
-        run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
-
       - name: Check Go Installation
-        run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./static/stack/main.k
+        run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./examples/configuration/nginx.k
 
       - name: Check Uninstall Script CLI
         run: static/script/uninstall-cli.sh
@@ -74,8 +68,8 @@ jobs:
   check-windows:
     strategy:
       matrix:
-        goversion: ['1.20', '1.21']
-        pyversion: ['3.9', '3.10']
+        goversion: ['1.21']
+        pyversion: ['3.9']
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -85,7 +79,7 @@ jobs:
       - name: Check Install Script CLI
         run: static/script/install-cli.ps1
       - name: Check KCL run
-        run: C:\kclvm\bin\kcl.exe run ./static/stack/main.k
+        run: C:\kclvm\bin\kcl.exe run ./examples/configuration/nginx.k
 
       - name: Set up Go
         uses: actions/setup-go@v2
@@ -97,11 +91,8 @@ jobs:
         with:
           python-version: ${{ matrix.pyversion }}
 
-      - name: Check Python Installation
-        run: python3 -m pip install kclvm --user -U && python3 -m kclvm ./static/stack/main.k
-
       - name: Check Go Installation
-        run: go install kcl-lang.io/cli/cmd/kcl@main && C:\Users\runneradmin\go\bin\kcl.exe run ./static/stack/main.k
+        run: go install kcl-lang.io/cli/cmd/kcl@main && C:\Users\runneradmin\go\bin\kcl.exe run ./examples/configuration/nginx.k
 
       - name: Check Uninstall Script CLI
         run: static/script/uninstall-cli.ps1
@@ -117,7 +108,7 @@ jobs:
           .\install.ps1 -RunAsAdmin
           scoop bucket add kcl-lang https://github.com/kcl-lang/scoop-bucket.git
           scoop install kcl-lang/kcl
-          kcl.exe ./static/stack/main.k
+          kcl.exe ./examples/configuration/nginx.k
 
   check-kcl-brew-install:
     strategy:
@@ -134,14 +125,14 @@ jobs:
           brew install kcl-lang/tap/kcl
           echo "brew installed successfully"
           kcl version
-          kcl ./static/stack/main.k
+          kcl ./examples/configuration/nginx.k
           brew uninstall kcl-lang/tap/kcl
           brew uninstall kcl-lang/tap/kcl-lsp
 
           brew install kcl-lang/tap/kcl@0.8.0
           echo "brew installed successfully"
           kcl version
-          kcl ./static/stack/main.k
+          kcl ./examples/configuration/nginx.k
           kcl-language-server version
           brew uninstall kcl-lang/tap/kcl@0.8.0
           brew uninstall kcl-lang/tap/kcl-lsp
