@@ -83,6 +83,9 @@
   "sidebar.tools.category.KCL Tools": {
     "message": "语言工具"
   },
+  "sidebar.tools.category.Package Management Tools": {
+    "message": "包管理工具"
+  },
   "sidebar.tools.category.OpenAPI Tools": {
     "message": "OpenAPI 工具"
   },
