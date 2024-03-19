@@ -178,6 +178,7 @@ service KclvmService {
 	rpc ParseFile(ParseFile_Args) returns(ParseFile_Result);
 	rpc ParseProgram(ParseProgram_Args) returns(ParseProgram_Result);
 	rpc LoadPackage(LoadPackage_Args) returns(LoadPackage_Result);
+	rpc ListOptions(ParseProgram_Args) returns(ListOptions_Result);
 
 	rpc FormatCode(FormatCode_Args) returns(FormatCode_Result);
 	rpc FormatPath(FormatPath_Args) returns(FormatPath_Result);
@@ -256,6 +257,18 @@ message LoadPackage_Result {
 	map<string, ScopeIndex> pkg_scope_map = 10;      // Map key is the package path.
 }
 
+message ListOptions_Result {
+	repeated OptionHelp options = 2;   // Returns the files in the order they should be compiled
+}
+
+message OptionHelp {
+    string name = 1;
+    string type = 2;
+    bool required = 3;
+    string default_value = 4;
+    string help = 5;
+}
+
 message Symbol {
 	KclType ty = 1;
 	string name = 2;
@@ -290,7 +303,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-
+	
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 
@@ -414,12 +427,13 @@ message GetSchemaTypeMapping_Result {
 }
 
 message ValidateCode_Args {
-	string data = 1;
-	string file = 2;
-	string code = 3;
-	string schema = 4;
-	string attribute_name = 5;
-	string format = 6;
+	string datafile = 1;
+	string data = 2;
+	string file = 3;
+	string code = 4;
+	string schema = 5;
+	string attribute_name = 6;
+	string format = 7;
 }
 
 message ValidateCode_Result {

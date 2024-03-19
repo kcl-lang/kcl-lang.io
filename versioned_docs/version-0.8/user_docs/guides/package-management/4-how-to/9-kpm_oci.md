@@ -15,11 +15,11 @@ You can adjust the registry and repository name of the OCI registry by the follo
 You can adjust the configuration of OCI Registry by setting the three environment variables `KPM_REG`, `KPM_REGO`, and `OCI_REG_PLAIN_HTTP`.
 
 ```shell
-# set the kpm default registry
+# set default registry
 export KPM_REG="ghcr.io"
-# set the kpm default repository
+# set default repository
 export KPM_REPO="kcl-lang"
-# set the kpm support for 'http'
+# set support for 'http'
 export OCI_REG_PLAIN_HTTP=off
 ```
 
