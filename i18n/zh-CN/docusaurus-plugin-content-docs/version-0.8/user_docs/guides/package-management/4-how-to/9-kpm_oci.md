@@ -172,9 +172,9 @@ kcl mod pull <oci_url>
 kcl mod pull oci://localhost:5001/test/MyPkg --tag v0.1.0
 ```
 
-### kcl mod run
+### kcl run
 
-KCL 包管理工具可以直接通过 OCI 的 url 编译 kcl 包。
+KCL 可以直接通过 OCI 的 url 编译 kcl 包。
 
 ```shell
 kcl run <oci_url>

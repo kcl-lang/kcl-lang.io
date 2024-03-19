@@ -172,9 +172,9 @@ For the example, the command is as follows:
 kcl mod pull oci://localhost:5001/test/MyPkg --tag v0.1.0
 ```
 
-### `kcl mod run` to compile a KCL package
+### `kcl run` to compile a KCL package
 
-KCL package management tool can directly compile a kcl package through the url of OCI.
+KCL can directly compile a kcl package through the url of OCI.
 
 ```shell
 kcl run <oci_url>
