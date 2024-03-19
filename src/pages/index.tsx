@@ -6,9 +6,7 @@ import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import styles from "./index.module.css";
 import { ExampleScroller } from "../components/ExampleScroller";
-import ThemedImage from "@theme/ThemedImage";
 import Translate from "@docusaurus/Translate";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { HiLightningBolt } from "react-icons/hi";
 import {
@@ -218,10 +216,10 @@ function ToolSection() {
           </p>
 
           <div className={styles.imageContainer}>
-            <LazyLoadImage
+            <img
               className={styles.toolLogo}
               alt="Tool image"
-              src={useBaseUrl("/img/registry-and-ide.png")}
+              src="/img/registry-and-ide.png"
             />
           </div>
         </div>
