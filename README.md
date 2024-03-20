@@ -2,6 +2,7 @@
 [![Forks](https://img.shields.io/github/forks/kcl-lang/kcl-lang.io.svg?style=for-the-badge)](https://github.com/kcl-lang/kcl-lang.io/network/members)
 [![GitHub stars](https://img.shields.io/github/stars/kcl-lang/kcl-lang.io.svg?style=for-the-badge&label=Stars)](https://github.com/kcl-lang/kcl-lang.io/)
 [![license](https://img.shields.io/github/license/kcl-lang/kcl-lang.io.svg?style=for-the-badge)](https://github.com/kcl-lang/kcl-lang.io)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkcl-lang%2Fkcl-lang.io.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkcl-lang%2Fkcl-lang.io?ref=badge_shield)
 
 # kcl-lang.io
 
@@ -37,3 +38,7 @@ Open [http://localhost:8080](http://localhost:8080) in the browser.
 - The English documents are located at [./docs](./docs)
 - The i18n documents are located at [./i18n](./i18n)
   - The Chinese documents are located at [./i18n/zh-CN/docusaurus-plugin-content-docs/current](./i18n/zh-CN/docusaurus-plugin-content-docs/current)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkcl-lang%2Fkcl-lang.io.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkcl-lang%2Fkcl-lang.io?ref=badge_large)
