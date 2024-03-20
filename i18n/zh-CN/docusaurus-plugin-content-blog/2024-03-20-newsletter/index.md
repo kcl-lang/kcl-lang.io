@@ -44,7 +44,7 @@ image: /img/biweekly-newsletter.png
 **🔥 SDK 更新**
 
 - KCL Rust, Go 和 Java SDK 发布 0.8 主要版本，同步 KCL 语法语义更新
-- KCL Python SDK 发布 0.8.0.2 和 0.7.6 版本，修复 `protobuf`, `pyyaml 等依赖版本过于低的问题
+- KCL Python SDK 发布 0.8.0.2 和 0.7.6 版本，修复 `protobuf`, `pyyaml` 等依赖版本过于低的问题
 
 **💻 IDE 更新**
 
