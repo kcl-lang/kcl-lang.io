@@ -74,7 +74,7 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | ie
 
 ```bash
 # 安装最新版本
-brew install kcl-lang/tap/kcl@0.7.0
+brew install kcl-lang/tap/kcl@0.8.0
 
 # 安装固定版本
 brew install kcl-lang/tap/kcl@x.y.z

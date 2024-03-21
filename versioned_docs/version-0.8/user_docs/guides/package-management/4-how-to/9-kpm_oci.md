@@ -174,7 +174,7 @@ kcl mod pull oci://localhost:5001/test/MyPkg --tag v0.1.0
 
 ### `kcl run` to compile a KCL package
 
-KCL can directly compile a kcl package through the url of OCI.
+KCL package management tool can directly compile a kcl package through the url of OCI.
 
 ```shell
 kcl run <oci_url>
