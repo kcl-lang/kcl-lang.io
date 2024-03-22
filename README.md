@@ -39,6 +39,6 @@ Open [http://localhost:8080](http://localhost:8080) in the browser.
 - The i18n documents are located at [./i18n](./i18n)
   - The Chinese documents are located at [./i18n/zh-CN/docusaurus-plugin-content-docs/current](./i18n/zh-CN/docusaurus-plugin-content-docs/current)
 
-
 ## License
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fkcl-lang%2Fkcl-lang.io.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fkcl-lang%2Fkcl-lang.io?ref=badge_large)

@@ -62,8 +62,8 @@ Thanks to to all contributors for their outstanding work over the past twenty da
 
 **🌐 Website Updates**
 
-+ Enabled the `kcl-lang.dev` domain, allowing access to the KCL website through both `kcl-lang.io` and `kcl-lang.dev`.
-+ Optimized website loading speed for an improved documentation experience on the KCL website.
+- Enabled the `kcl-lang.dev` domain, allowing access to the KCL website through both `kcl-lang.io` and `kcl-lang.dev`.
+- Optimized website loading speed for an improved documentation experience on the KCL website.
 
 ## Special Thanks
 
