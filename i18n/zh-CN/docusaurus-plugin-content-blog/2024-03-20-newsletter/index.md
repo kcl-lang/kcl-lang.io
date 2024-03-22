@@ -1,5 +1,5 @@
 ---
-slug: 2024-02-22-newsletter
+slug: 2024-03-20-newsletter
 title: KCL 最新动态速递 (2024 03.06 - 2024.03.20)
 authors:
   name: KCL 团队
