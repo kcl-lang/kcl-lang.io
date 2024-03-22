@@ -83,7 +83,7 @@ kind: Function
 metadata:
   name: kcl-function
 spec:
-  package: docker.io/kcllang/crossplane-kcl
+  package: xpkg.upbound.io/crossplane-contrib/function-kcl:latest
 EOF
 ```
 
