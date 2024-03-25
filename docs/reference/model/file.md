@@ -8,7 +8,7 @@ weight: 100
 
 ## read
 
-`read(filepath: string) -> str`
+`read(filepath: str) -> str`
 
 Read the contents of the file `filepath` and return a string instance.
 
@@ -29,3 +29,15 @@ Return the root path of the current KCL module (kcl.mod file path or single \*.k
 `workdir() -> str`
 
 Return the path of the current working directory.
+
+## exists
+
+`exists(filepath: str) -> bool`
+
+Whether this file path exists. Returns true if the path points at an existing entity. This function will traverse symbolic links to query information about the destination file.
+
+## abs
+
+`abs(filepath: str) -> str`
+
+Returns the canonical, absolute form of the path with all intermediate components normalized and symbolic links resolved.
