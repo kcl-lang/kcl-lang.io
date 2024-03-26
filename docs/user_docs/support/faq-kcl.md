@@ -2512,3 +2512,17 @@ worldString: world
 s: Hello world
 raw_s: Hello ${worldString}
 ```
+
+## 59. How does KCL infer return types in lambdas?
+
+For lambda(s),KCL automatically infers the return value type in the function body, although we can explicitly specify it. An example KCL code over here is:
+
+``KCL
+f1 = lambda t: Type1 {
+    Type2 {}
+} # The type of f1 is (Type1) -> Type2
+
+f2 = lambda t: Type1 -> Type2 {
+    Type2 {}
+} # The type of f2 is (Type1) -> Type2
+```
