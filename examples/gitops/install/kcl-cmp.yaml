@@ -12,7 +12,14 @@ data:
     spec:
       version: v1.0
       generate:
-        command: ["sh"]
+        command: ["sh", "-c"]
         args:
-          - -c
-          - kcl run
+          - |
+            tempfile=$(mktemp)
+            kcl run -q -o $tempfile
+            error=$?
+            if [ $error -eq 0 ]; then
+              cat $tempfile
+              rm $tempfile
+            fi
+            exit $error
