@@ -2517,7 +2517,7 @@ raw_s: Hello ${worldString}
 
 For lambda(s),KCL automatically infers the return value type in the function body, although we can explicitly specify it. An example KCL code over here is:
 
-``KCL
+```KCL
 f1 = lambda t: Type1 {
     Type2 {}
 } # The type of f1 is (Type1) -> Type2
@@ -2526,3 +2526,24 @@ f2 = lambda t: Type1 -> Type2 {
     Type2 {}
 } # The type of f2 is (Type1) -> Type2
 ```
+
+## 60. How to convert a list of lists to a single list in KCL? 
+
+To convert a list of lists into a single list, we use the `sum()` function. For example if we have a number of lists such as [[1,2],[3,4]], [5,6], we use the KCL code given below to convert these three lists into a single list: 
+
+```KCL
+final_list = sum([[1,2],[3,4]],[5,6])
+```
+
+The above KCL code gives the output:
+
+```bash 
+final_list:
+- 5
+- 6
+- 1
+- 2
+- 3
+- 4
+```
+
