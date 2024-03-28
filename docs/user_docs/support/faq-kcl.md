@@ -2527,9 +2527,9 @@ f2 = lambda t: Type1 -> Type2 {
 } # The type of f2 is (Type1) -> Type2
 ```
 
-## 60. How to convert a list of lists to a single list in KCL? 
+## 60. How to convert a list of lists to a single list in KCL?
 
-To convert a list of lists into a single list, we use the `sum()` function. For example if we have a number of lists such as [[1,2],[3,4]], [5,6], we use the KCL code given below to convert these three lists into a single list: 
+To convert a list of lists into a single list, we use the `sum()` function. For example if we have a number of lists such as `[[1,2],[3,4]], [5,6]`, we use the KCL code given below to convert these three lists into a single list:
 
 ```KCL
 final_list = sum([[1,2],[3,4]],[5,6])
@@ -2537,7 +2537,7 @@ final_list = sum([[1,2],[3,4]],[5,6])
 
 The above KCL code gives the output:
 
-```bash 
+```yaml
 final_list:
 - 5
 - 6
@@ -2546,4 +2546,3 @@ final_list:
 - 3
 - 4
 ```
-
