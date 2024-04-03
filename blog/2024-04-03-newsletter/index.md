@@ -62,6 +62,7 @@ the following are listed in no particular order:
 - Thanks to @liangyuanpeng for the contributions to KCL github action 🙌
 - Thanks to @octonawish-akcodes for the contributions to KCL IDE 🙌
 - Thanks to @AkashKumar7902 for the contributions to KCL package management tool 🙌
+- Thanks to @empath-nirvana for the contributions to crossplane function-kcl 🙌
 - Thanks to @reckless-huang, @steeling, @vfarcic, @wilsonwang371, and others for their valuable suggestions and feedback during the recent use of KCL 🙌
 
 ## Resources
