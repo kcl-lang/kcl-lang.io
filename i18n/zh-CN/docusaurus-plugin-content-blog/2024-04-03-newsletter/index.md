@@ -50,7 +50,7 @@ image: /img/biweekly-newsletter.png
 感谢过去两周所有的社区参与者，以下排名不分先后
 
 - 感谢 @bozaro 对 KCL Go SDK 的贡献 🙌
-- 感谢 @reckless-huang 对于 KCL Go SDk 的贡献 🙌
+- 感谢 @reckless-huang 对于 KCL Go SDK 的贡献 🙌
 - 感谢 @vemoo 对 KCL IDE 的贡献 🙌
 - 感谢 @wilsonwang371 对 KCL docker 镜像和 KCL 官网的贡献 🙌
 - 感谢 @d4v1d03 对 KCL 官网的贡献 🙌
