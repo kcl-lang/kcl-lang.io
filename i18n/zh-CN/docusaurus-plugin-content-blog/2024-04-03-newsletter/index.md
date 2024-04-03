@@ -57,6 +57,7 @@ image: /img/biweekly-newsletter.png
 - 感谢 @liangyuanpeng 对 KCL github action 的贡献 🙌
 - 感谢 @octonawish-akcodes 对 KCL IDE 的贡献 🙌
 - 感谢 @AkashKumar7902 对 KCL 包管理工具的贡献 🙌
+- 感谢 @empath-nirvana 对 crossplane function-kcl 的贡献 🙌
 - 感谢 @markphillips100, @reckless-huang, @steeling, @vfarcic, @wilsonwang371, @M Slane, @Tertium, @Abhishek, @Akash Kumar, @Kim Sondrup, @rodrigoalvamat, @riven-blade, @userxiaosi 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 其他资源
