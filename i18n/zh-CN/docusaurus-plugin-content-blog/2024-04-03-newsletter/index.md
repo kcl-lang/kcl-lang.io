@@ -24,7 +24,7 @@ image: /img/biweekly-newsletter.png
 
 **KCL 发布 0.8.3 和 0.8.4 版本**，主要包含如下更新
 
-- 增加了文件系统 built-in 方法 `file.abs` 计算文件绝对路径和 `file.exist` 判断文件是否存在。
+- 增加了文件系统 built-in 方法 `file.abs` 计算文件绝对路径和 `file.exists` 判断文件是否存在。
 
 **🔧 工具链更新**
 
@@ -41,12 +41,23 @@ image: /img/biweekly-newsletter.png
 - KCL Go SDK 修复了 ParseFile 过程中的 panic 问题。
 - KCL Go SDK 支持通过环境变量设置 kcl 编译器自动下载。
 
+**💻 IDE 更新**
+
+- 修复了 IDE 对于未保存代码的 format 功能。
+
 ## 特别鸣谢
 
 感谢过去两周所有的社区参与者，以下排名不分先后
 
 - 感谢 @bozaro 对 KCL Go SDK 的贡献 🙌
-- 感谢 @reckless-huang, @steeling, @vfarcic, @wilsonwang371 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
+- 感谢 @reckless-huang 对于 KCL Go SDk 的贡献 🙌
+- 感谢 @vemoo 对 KCL IDE 的贡献 🙌
+- 感谢 @wilsonwang371 对 KCL docker 镜像和 KCL 官网的贡献 🙌
+- 感谢 @d4v1d03 对 KCL 官网的贡献 🙌
+- 感谢 @liangyuanpeng 对 KCL github action 的贡献 🙌
+- 感谢 @octonawish-akcodes 对 KCL IDE 的贡献 🙌
+- 感谢 @AkashKumar7902 对 KCL 包管理工具的贡献 🙌
+- 感谢 @markphillips100, @reckless-huang, @steeling, @vfarcic, @wilsonwang371, @M Slane, @Tertium, @Abhishek, @Akash Kumar, @Kim Sondrup, @rodrigoalvamat, @riven-blade, @userxiaosi 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 其他资源
 

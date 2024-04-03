@@ -44,6 +44,10 @@ The mainly updates:
 - KCL Go SDK fixed a panic issue that occurred during the ParseFile process.
 - KCL Go SDK supports setting the kcl compiler automatic download through environment variables.
 
+**💻 IDE Update**
+
+- Fixed format function of IDE for unsaved code.
+
 ## Special Thanks
 
 We'd like to thank all the community participants from the past two weeks.
@@ -51,6 +55,13 @@ We'd like to thank all the community participants from the past two weeks.
 the following are listed in no particular order:
 
 - Thanks to @bozaro for the contributions to the KCL Go SDK 🙌
+- Thanks to @reckless-huang for the contributions to the KCL Go SDK 🙌
+- Thanks to @vemoo for the contributions to the KCL IDE 🙌
+- Thanks to @wilsonwang371 for the contributions to the KCL docker image and KCL website 🙌
+- Thanks to @d4v1d03 for the contributions to the KCL website 🙌
+- Thanks to @liangyuanpeng for the contributions to KCL github action 🙌
+- Thanks to @octonawish-akcodes for the contributions to KCL IDE 🙌
+- Thanks to @AkashKumar7902 for the contributions to KCL package management tool 🙌
 - Thanks to @reckless-huang, @steeling, @vfarcic, @wilsonwang371, and others for their valuable suggestions and feedback during the recent use of KCL 🙌
 
 ## Resources
