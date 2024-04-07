@@ -51,7 +51,7 @@ KCL 通过内置模块、系统库模块和插件模块提供工程化的扩展�
   <DocsCard header="yaml" href="yaml">
     <p>提供了与 YAML 相关的编码/解码函数。</p>
   </DocsCard>
-  <DocsCard header="file" href="yaml">
+  <DocsCard header="file" href="file">
     <p>提供了与文件系统相关的函数。</p>
   </DocsCard>
 </DocsCards>
