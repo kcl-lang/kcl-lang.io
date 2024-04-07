@@ -31,3 +31,12 @@ xattr -rd com.apple.quarantine /path/to/kcl
 ## 在 Windows 平台上遇到 exit status 0xc0000135 错误
 
 请确保您的 Windows 上安装了 `.NET Framework` 和 `MSVC`，如没有安装，可以安装并重试。
+
+## 在容器中启动/运行 KCL 报没有权限或者找不到文件的错误
+
+这是因为 KCL 在编译时的默认全局配置和全局包缓存需要写入权限，一种解决方式是将全局配置和包目录设置到 `/tmp` 文件夹，详见[这里](https://github.com/kcl-lang/cli/blob/main/Dockerfile) 的 Dockerfile 配置
+
+```dockerfile
+ENV KCL_PKG_PATH=/tmp
+ENV KCL_CACHE_PATH=/tmp
+```

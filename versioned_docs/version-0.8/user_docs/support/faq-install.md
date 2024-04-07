@@ -31,3 +31,12 @@ Please ensure that the following dependencies are in your PATH:
 ## Encountering exit status 0xc0000135 error on Windows platform
 
 Please ensure that `.NET Framework` and `MSVC` are installed on your Windows. If not installed, you can install them and try again.
+
+## Errors on Starting/Running KCL inside a Container for "Permission Denied" or "File Not Found"
+
+The issue is due to KCL requiring write permissions for its default global configuration and global package cache at compile time. One solution is to set the global configuration and package directory to the `/tmp` folder. For detailed Dockerfile configuration, please see [here](https://github.com/kcl-lang/cli/blob/main/Dockerfile).
+
+```dockerfile
+ENV KCL_PKG_PATH=/tmp
+ENV KCL_CACHE_PATH=/tmp
+```
