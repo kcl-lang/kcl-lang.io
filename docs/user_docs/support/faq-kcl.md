@@ -2549,5 +2549,5 @@ final_list:
 
 ## 61. What does `version: "v1" = "v1"` mean?
 
-The first ` "v1" `over here denotes that the type of version is of string literal type. The second ` "v1" ` denotes that the default value of version is ` "v1" `.
+The first "v1" over here denotes that the type of version is of string literal type. The second "v1" denotes that the default value of version is "v1".
 
