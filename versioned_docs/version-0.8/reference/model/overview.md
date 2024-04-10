@@ -54,4 +54,7 @@ For relatively complex general logic, it is provided through the system modules.
    <DocsCard header="file" href="file">
     <p>Provides filesystem functions.</p>
   </DocsCard>
+   <DocsCard header="template" href="template">
+    <p>Provides template functions.</p>
+  </DocsCard>
 </DocsCards>

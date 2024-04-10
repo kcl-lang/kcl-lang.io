@@ -128,6 +128,8 @@ app: App {
 }
 ```
 
+Note that when `name` of `app` is not in the `App` schema config, it will be added into the config after override.
+
 #### Delete Configuration
 
 Run the command to delete the `key` attribute of `labels`.
