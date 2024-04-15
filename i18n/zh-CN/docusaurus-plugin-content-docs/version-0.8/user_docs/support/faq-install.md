@@ -15,7 +15,7 @@ MacOS 提示无法打开 "kcl"，因为 Apple 无法检查其是否包含恶意�
 打开终端并输入以下命令：
 
 ```shell
-xattr -rd com.apple.quarantine /path/to/kcl
+xattr -d com.apple.quarantine /path/to/kcl
 ```
 
 其中，/path/to/kcl 是 kcl 应用程序的完整路径。运行命令后，应用程序将被添加到白名单中，Gatekeeper 将不再阻止其运行。
