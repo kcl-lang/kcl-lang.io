@@ -2519,3 +2519,40 @@ worldString: world
 s: Hello world
 raw_s: Hello ${worldString}
 ```
+
+## 59. 在 KCL 中如何推断 lambda 函数的返回值类型？
+
+对于 Lambda 函数，KCL 可以自动推断函数体中的返回值类型，尽管我们也可以明确指定它。下面是一个 KCL 代码示例：
+
+```python
+f1 = lambda t: Type1 {
+    Type2 {}
+} # f1 的类型是 (Type1) -> Type2
+f2 = lambda t: Type1 -> Type2 {
+    Type2 {}
+} # f2 的类型是 (Type1) -> Type2, 在这个例子中，我们显式指定了返回值类型为 Type2
+```
+
+## 60. 在 KCL 中如何将列表的列表转换为单个列表？
+
+要将列表的列表转换为单个列表，我们可以使用 sum() 函数。例如，如果我们有多个列表，比如 `[[1,2],[3,4],[5,6]]`，我们可以使用以下 KCL 代码将这三个列表转换为单个列表：
+
+```python
+final_list = sum([[1,2],[3,4],[5,6]], [])
+```
+
+上述 KCL 代码的输出如下：
+
+```yaml
+final_list:
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+```
+
+## 61. KCL 代码片段 `version: "v1" = "v1"` 是什么意思？
+
+这里的第一个 `"v1"` 表示变量 `version` 的类型是字符串字面类型。第二个 `"v1"` 表示变量 `version` 的默认值是 "v1"。

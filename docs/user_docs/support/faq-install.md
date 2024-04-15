@@ -15,7 +15,7 @@ If you don't want to perform these steps every time you open an application, you
 Open the terminal and run the following command:
 
 ```shell
-xattr -rd com.apple.quarantine /path/to/kcl
+xattr -d com.apple.quarantine /path/to/kcl
 ```
 
 Where `/path/to/kcl` is the complete path of the kcl application. After running the command, the application will be added to the whitelist and Gatekeeper will no longer prevent it from running.
