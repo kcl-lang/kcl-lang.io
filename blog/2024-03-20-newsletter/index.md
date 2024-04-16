@@ -1,6 +1,6 @@
 ---
 slug: 2024-03-20-newsletter
-title: KCL Newsletter (2024 03.06 - 2024.03.20)
+title: KCL Newsletter (2024.03.06 - 2024.03.20)
 authors:
   name: KCL Team
   title: KCL Team
@@ -18,7 +18,7 @@ This section will update the KCL language community's latest news, including fea
 
 ## Overview
 
-Thanks to to all contributors for their outstanding work over the past twenty days (2024 03.06 - 2024 03.20). Here is an overview of the key content:
+Thanks to to all contributors for their outstanding work over the past twenty days (2024.03.06 - 2024.03.20). Here is an overview of the key content:
 
 **📦 Module Updates**
 
