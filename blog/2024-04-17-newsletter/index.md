@@ -64,7 +64,7 @@ content = template.execute("""\
 cargo add --git https://github.com/kcl-lang/lib
 ```
 
-- The initial release of the KCL Node.js SDK, supporting KCL code execution API and variable reading API. Repository link: [https://github.com/kcl-lang/lib/tree/main/nodejs](https://github.com/kcl-lang/lib/tree/main/nodejs). Contributions are welcome.
+- The initial release of the KCL Node.js SDK. Repository link: [https://github.com/kcl-lang/lib/tree/main/nodejs](https://github.com/kcl-lang/lib/tree/main/nodejs). Contributions are welcome.
 
 + `__test__/test_data/schema.k`
 
@@ -98,6 +98,19 @@ import { listVariables, ListVariablesArgs } from "kcl-lib";
 function main() {
   const result = listVariables(ListVariablesArgs('__test__/test_data/schema.k', []))
   console.log(result.variables['app'].value);  // 'AppConfig {replicas: 2}'
+}
+
+main();
+```
+
++ `loadPackage`
+
+```ts
+import { listVariables, ListVariablesArgs } from "kcl-lib";
+
+function main() {
+  const result = loadPackage(LoadPackageArgs(['__test__/test_data/schema.k'], [], true));
+  console.log(result.symbols);
 }
 
 main();

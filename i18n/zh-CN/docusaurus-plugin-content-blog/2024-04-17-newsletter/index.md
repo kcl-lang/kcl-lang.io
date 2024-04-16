@@ -64,7 +64,7 @@ content = template.execute("""\
 cargo add --git https://github.com/kcl-lang/lib
 ```
 
-- KCL Node.js SDK 初版发布，支持 KCL 代码运行 API 和变量读取 API，仓库地址 [https://github.com/kcl-lang/lib/tree/main/nodejs](https://github.com/kcl-lang/lib/tree/main/nodejs), 欢迎共建
+- KCL Node.js SDK 初版发布，仓库地址 [https://github.com/kcl-lang/lib/tree/main/nodejs](https://github.com/kcl-lang/lib/tree/main/nodejs), 欢迎共建
 
 + `__test__/test_data/schema.k`
 
@@ -98,6 +98,19 @@ import { listVariables, ListVariablesArgs } from "kcl-lib";
 function main() {
   const result = listVariables(ListVariablesArgs('__test__/test_data/schema.k', []))
   console.log(result.variables['app'].value);  // 'AppConfig {replicas: 2}'
+}
+
+main();
+```
+
++ `execProgram`
+
+```ts
+import { listVariables, ListVariablesArgs } from "kcl-lib";
+
+function main() {
+  const result = loadPackage(LoadPackageArgs(['__test__/test_data/schema.k'], [], true));
+  console.log(result.symbols);
 }
 
 main();
