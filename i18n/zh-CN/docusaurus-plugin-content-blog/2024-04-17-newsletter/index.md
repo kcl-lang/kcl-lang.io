@@ -103,7 +103,7 @@ function main() {
 main();
 ```
 
-+ `execProgram`
++ `loadPackage`
 
 ```ts
 import { listVariables, ListVariablesArgs } from "kcl-lib";
