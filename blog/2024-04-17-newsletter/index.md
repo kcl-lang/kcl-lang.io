@@ -142,7 +142,7 @@ The following are listed in no particular order:
 - Thanks to @octonawish-akcodes for the contribution to the automatic dependency update feature for KCL IDE based on kcl.mod 🙌
 - Thanks to @utnim2 for the contribution to the restart kcl-language-server command for KCL IDE 🙌
 - Thanks to @AkashKumar7902 for the contribution to the KCL package management tool MVS algorithm 🙌
-- Thanks to @steeling, @bozaro, @vtomilov, @sanzoghenzo, @folliehiyuki, @markphillips100, @wilsonwang371, @zargor, @aleeriz, @reckless-huang, @zhuxw, @jheyduk, @Vitaly Tomilov, @Sergey Ryabin, @Stephen C, and others for their valuable suggestions and feedback while using KCL recently. 🙌
+- Thanks to @steeling, @bozaro, @vtomilov, @sanzoghenzo, @folliehiyuki, @markphillips100, @wilsonwang371, @zargor, @aleeriz, @reckless-huang, @zhuxw, @jheyduk, @Vitaly Tomilov, @Sergey Ryabin, @Stephen C, @ytsarev and others for their valuable suggestions and feedback while using KCL recently. 🙌
 
 ## Resources
 

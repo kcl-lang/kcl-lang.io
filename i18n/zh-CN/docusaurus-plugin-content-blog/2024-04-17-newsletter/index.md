@@ -140,7 +140,7 @@ main();
 - 感谢 @octonawish-akcodes 对 KCL IDE 根据 kcl.mod 自动更新依赖功能的贡献 🙌
 - 感谢 @utnim2 对 KCL IDE 重启 kcl-language-server 命令的贡献 🙌
 - 感谢 @AkashKumar7902 对 KCL 包管理工具最小版本选择 MVS 算法的贡献 🙌
-- 感谢 @steeling, @bozaro, @vtomilov, @sanzoghenzo, @folliehiyuki, @markphillips100, @wilsonwang371, @zargor, @aleeriz, @reckless-huang, @zhuxw, @jheyduk ,@Vitaly Tomilov, @Sergey Ryabin, @Stephen C 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
+- 感谢 @steeling, @bozaro, @vtomilov, @sanzoghenzo, @folliehiyuki, @markphillips100, @wilsonwang371, @zargor, @aleeriz, @reckless-huang, @zhuxw, @jheyduk ,@Vitaly Tomilov, @Sergey Ryabin, @Stephen C, @ytsarev 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 其他资源
 
