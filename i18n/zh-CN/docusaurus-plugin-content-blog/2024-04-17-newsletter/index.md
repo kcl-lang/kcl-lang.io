@@ -106,7 +106,7 @@ main();
 + `loadPackage`
 
 ```ts
-import { listVariables, ListVariablesArgs } from "kcl-lib";
+import { loadPackage, LoadPackageArgs } from "kcl-lib";
 
 function main() {
   const result = loadPackage(LoadPackageArgs(['__test__/test_data/schema.k'], [], true));
