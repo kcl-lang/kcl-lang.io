@@ -318,7 +318,7 @@
     "message": "以更现代化的编程方式管理配置和策略"
   },
   "With configs, models, functions and rules": {
-    "message": "通过配置，模型，函数和规则"
+    "message": "配置，模型，函数和规则"
   },
   "Trusted By": {
     "message": "工程师信赖的技术产品"
@@ -330,7 +330,7 @@
     "message": "使用工具提升体验"
   },
   "IDEs, SDKs, Sharing, Formatting, Testing, Documents": {
-    "message": "IDEs, SDKs, Sharing, Formatting, Testing, Documents"
+    "message": "IDE 插件，包管理，格式化，测试和文档工具"
   },
   "KCL is in": {
     "message": "KCL 已经加入"
