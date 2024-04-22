@@ -82,7 +82,7 @@ override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 ```
 
 - `pkgpath`: indicates the package path where the identifier needs to be modified, usually in the form of `a.b.c`. For the main package,`pkgpath` is represented as `__ main__`. When omitted or not written, it indicates the main package
-- `identifier` indicates the identifier that needs to modify the configuration, usually in the form of `a.b.c`.
+- `identifier` indicates the identifier that needs to modify the configuration, usually in the form of `a.b.c` or `a["dot.key"].c`
 - `value` indicates the value of the configuration that needs to be modified, which can be any legal KCL expression, such as number/string literal value, list/dict/schema expression, etc.
 - `=` denotes modifying of the value of the identifier.
 - `-` denotes deleting of the identifier.
