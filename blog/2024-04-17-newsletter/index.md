@@ -83,8 +83,8 @@ app: AppConfig {
 import { execProgram, ExecProgramArgs } from "kcl-lib";
 
 function main() {
-  const result = execProgram(ExecProgramArgs(["__test__/test_data/schema.k"]));
-  console.log(result.yamlResult); // 'app:\n  replicas: 2'
+  const result = execProgram(new ExecProgramArgs(["__test__/test_data/schema.k"]));
+  console.log(result.yamlResult);  // 'app:\n  replicas: 2'
 }
 
 main();
