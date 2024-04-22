@@ -2551,7 +2551,7 @@ final_list:
 
 The first `"v1"` over here denotes that the type of the variable `version` is of string literal type. The second `"v1"` denotes that the default value of the variable `version` is `"v1"`.
 
-## 62. How do i define a schema to verify the contents of a given JSON file?
+## 62. How to define a schema to verify the contents of a given JSON file?
 
 We can use the kcl `vet` tool to validate the JSON data in a given JSOn file. For example, in the below data.json file we use the KCL file(schema.k) below to validate the `age` parameter. 
 

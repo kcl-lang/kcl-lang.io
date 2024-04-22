@@ -95,7 +95,7 @@ Refer to [reST](https://docutils.sourceforge.io/rst.html) for more information.
 ### kcl doc
 
 ```shell
-This command shows documentation for KCL package or symbol.
+This command shows documentation for KCL modules or symbols.
 
 Usage:
   kcl doc [command]
@@ -106,7 +106,6 @@ Aliases:
 Examples:
   # Generate document for current package
   kcl doc generate
-
 
 Available Commands:
   generate    Generates documents from code and examples
@@ -120,6 +119,8 @@ Use "kcl doc [command] --help" for more information about a command.
 ### kcl doc generate
 
 ```shell
+This command generates documents for KCL modules.
+
 Usage:
   kcl doc generate [flags]
 
@@ -138,7 +139,6 @@ Examples:
 
   # Generate Markdown document for specific package to a <target directory>
   kcl doc generate --file-path <package path> --target <target directory>
-
 
 Flags:
       --escape-html         Whether to escape html symbols when the output format is markdown. Always scape when the output format is html. Default to false.

@@ -51,16 +51,15 @@ Examples:
 
   # Lint multiple files
   kcl lint path/to/kcl1.k path/to/kcl2.k
-
+  
   # Lint OCI packages
-  kcl lint oci://ghcr.io/kcl-lang/hello-world
-
+  kcl lint oci://ghcr.io/kcl-lang/helloworld
+  
   # Lint the current package
   kcl lint
 
-
 Flags:
-  -D, --argument strings        Specify the top-level argument
+  -D, --argument stringArray    Specify the top-level argument
   -d, --debug                   Run in debug mode
   -n, --disable_none            Disable dumping None values
   -E, --external strings        Specify the mapping of package name and path where the package is located
@@ -72,6 +71,7 @@ Flags:
   -S, --path_selector strings   Specify the path selectors
   -q, --quiet                   Set the quiet mode (no output)
   -Y, --setting strings         Specify the command line setting files
+  -H, --show_hidden             Display hidden attributes
   -k, --sort_keys               Sort output result keys
   -r, --strict_range_check      Do perform strict numeric range checks
   -t, --tag string              Specify the tag for the OCI or Git artifact
