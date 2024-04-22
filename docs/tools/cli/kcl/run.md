@@ -28,10 +28,10 @@ Examples:
 
   # Run multiple files
   kcl run path/to/kcl1.k path/to/kcl2.k
-  
+
   # Run OCI packages
   kcl run oci://ghcr.io/kcl-lang/helloworld
-  
+
   # Run remote Git repo
   kcl run https://github.com/kcl-lang/flask-demo-kcl-manifests
 
