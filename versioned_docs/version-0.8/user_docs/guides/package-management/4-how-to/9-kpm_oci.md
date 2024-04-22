@@ -2,11 +2,24 @@
 
 KCL package management tool supports saving and sharing KCL packages through OCI Registries.
 
-## Default registry
+## Default OCI Registry
 
 KCL package management tool uses `ghcr.io` to save KCL packages by default.
 
 Default registry - [https://github.com/orgs/kcl-lang/packages](https://github.com/orgs/kcl-lang/packages)
+
+## Use Custom OCI Registry
+
+There are several hosted container registries with OCI support that you can use to store your KCL module.
+
++ [Docker Hub](https://docs.docker.com/docker-hub/oci-artifacts/)
++ [Harbor](https://goharbor.io/docs/main/administration/user-defined-oci-artifact/)
++ [Amazon ECR](https://docs.aws.amazon.com/AmazonECR/latest/userguide/push-oci-artifact.html)
++ [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/container-registry-oci-artifacts)
++ [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/helm/manage-charts)
++ [Alibaba Cloud Container Registry](https://help.aliyun.com/acr/)
++ [IBM Cloud Container Registry](https://cloud.ibm.com/docs/Registry)
++ [JFrog Artifactory](https://jfrog.com/help/r/jfrog-artifactory-documentation/docker-registry)
 
 You can adjust the registry and repository name of the OCI registry by the follow methods.
 
