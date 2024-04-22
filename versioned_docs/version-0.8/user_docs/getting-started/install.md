@@ -123,6 +123,10 @@ docker run --rm -it kcllang/kcl
 docker pull kcllang/kcl
 ```
 
+### From Nix Packages
+
+See [here](https://search.nixos.org/packages?channel=unstable&show=kcl-cli&from=0&size=50&sort=relevance&type=packages&query=kcl-cli)
+
 ### Note
 
 We can execute the following command to ensure that KCL has been installed correctly.

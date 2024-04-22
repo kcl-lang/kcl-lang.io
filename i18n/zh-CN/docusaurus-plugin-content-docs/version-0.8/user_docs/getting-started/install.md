@@ -123,6 +123,10 @@ docker run --rm -it kcllang/kcl
 docker pull kcllang/kcl
 ```
 
+### 使用 Nix 安装
+
+查看[这里](https://search.nixos.org/packages?channel=unstable&show=kcl-cli&from=0&size=50&sort=relevance&type=packages&query=kcl-cli)
+
 ### 注意
 
 可以执行运行如下命令确保 KCL 已经正确安装
