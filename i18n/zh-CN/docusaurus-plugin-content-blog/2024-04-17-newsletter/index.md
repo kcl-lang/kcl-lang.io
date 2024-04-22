@@ -66,7 +66,7 @@ cargo add --git https://github.com/kcl-lang/lib
 
 - KCL Node.js SDK 初版发布，仓库地址 [https://github.com/kcl-lang/lib/tree/main/nodejs](https://github.com/kcl-lang/lib/tree/main/nodejs), 欢迎共建
 
-+ `__test__/test_data/schema.k`
+* `__test__/test_data/schema.k`
 
 ```python
 schema AppConfig:
@@ -77,39 +77,43 @@ app: AppConfig {
 }
 ```
 
-+ `execProgram`
+- `execProgram`
 
 ```ts
 import { execProgram, ExecProgramArgs } from "kcl-lib";
 
 function main() {
   const result = execProgram(ExecProgramArgs(["__test__/test_data/schema.k"]));
-  console.log(result.yamlResult);  // 'app:\n  replicas: 2'
+  console.log(result.yamlResult); // 'app:\n  replicas: 2'
 }
 
 main();
 ```
 
-+ `listVariables`
+- `listVariables`
 
 ```ts
 import { listVariables, ListVariablesArgs } from "kcl-lib";
 
 function main() {
-  const result = listVariables(ListVariablesArgs('__test__/test_data/schema.k', []))
-  console.log(result.variables['app'].value);  // 'AppConfig {replicas: 2}'
+  const result = listVariables(
+    ListVariablesArgs("__test__/test_data/schema.k", []),
+  );
+  console.log(result.variables["app"].value); // 'AppConfig {replicas: 2}'
 }
 
 main();
 ```
 
-+ `loadPackage`
+- `loadPackage`
 
 ```ts
 import { loadPackage, LoadPackageArgs } from "kcl-lib";
 
 function main() {
-  const result = loadPackage(LoadPackageArgs(['__test__/test_data/schema.k'], [], true));
+  const result = loadPackage(
+    LoadPackageArgs(["__test__/test_data/schema.k"], [], true),
+  );
   console.log(result.symbols);
 }
 

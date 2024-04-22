@@ -27,6 +27,12 @@ KCL toolchain is a toolset of KCL language, which aims to improve the efficiency
 ## Args
 
 ```shell
+The KCL Command Line Interface (CLI).
+
+KCL is an open-source, constraint-based record and functional language that
+enhances the writing of complex configurations, including those for cloud-native
+scenarios. The KCL website: https://kcl-lang.io
+
 Usage:
   kcl [command]
 
@@ -35,8 +41,9 @@ Available Commands:
   completion  Generate the autocompletion script for the specified shell
   doc         KCL document tool
   fmt         KCL format tool
+  help        Help about any command
   import      KCL import tool
-  lint        Run KCL codes.
+  lint        Lint KCL codes.
   mod         KCL module management
   play        Open the kcl playground in the browser.
   registry    KCL registry management
@@ -49,9 +56,6 @@ Available Commands:
 Flags:
   -h, --help      help for kcl
   -v, --version   version for kcl
-
-Additional help topics:
-  kcl
 
 Use "kcl [command] --help" for more information about a command.
 ```

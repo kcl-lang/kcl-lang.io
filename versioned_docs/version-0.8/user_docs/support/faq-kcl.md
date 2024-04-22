@@ -2539,14 +2539,50 @@ The above KCL code gives the output:
 
 ```yaml
 final_list:
-- 1
-- 2
-- 3
-- 4
-- 5
-- 6
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
 ```
 
 ## 61. What does `version: "v1" = "v1"` mean?
 
 The first `"v1"` over here denotes that the type of the variable `version` is of string literal type. The second `"v1"` denotes that the default value of the variable `version` is `"v1"`.
+
+## 62. How to define a schema to verify the contents of a given JSON file?
+
+We can use the kcl `vet` tool to validate the JSON data in a given JSOn file. For example, in the below data.json file we use the KCL file(schema.k) below to validate the `age` parameter.
+
+data.json
+
+```json
+[
+  {
+    "name": "Alice",
+    "age": 18
+  },
+  {
+    "name": "Bob",
+    "age": 10
+  }
+]
+```
+
+schema.k
+
+```kcl
+schema Person:
+    name: str
+    age: int
+
+    check:
+        age >= 10
+```
+
+The command to validate the JSON data below gives the output `Validate success!`.
+
+```bash
+kcl vet data.json schema.k
+```
