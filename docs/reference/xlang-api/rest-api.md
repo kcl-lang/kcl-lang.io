@@ -179,6 +179,7 @@ service KclvmService {
 	rpc ParseProgram(ParseProgram_Args) returns(ParseProgram_Result);
 	rpc LoadPackage(LoadPackage_Args) returns(LoadPackage_Result);
 	rpc ListOptions(ParseProgram_Args) returns(ListOptions_Result);
+	rpc ListVariables(ListVariables_Args) returns(ListVariables_Result);
 
 	rpc FormatCode(FormatCode_Args) returns(FormatCode_Result);
 	rpc FormatPath(FormatPath_Args) returns(FormatPath_Result);
@@ -303,7 +304,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-
+	
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 
@@ -339,6 +340,9 @@ message ExecProgram_Args {
 
 	// -S --path_selector
 	repeated string path_selector = 17;
+
+	// -K --fast_eval
+	bool fast_eval = 18;
 }
 
 message ExecProgram_Result {
@@ -401,6 +405,20 @@ message OverrideFile_Args {
 
 message OverrideFile_Result {
 	bool result = 1;
+}
+
+message ListVariables_Args {
+	string file = 1;
+	repeated string specs = 2;
+}
+
+message ListVariables_Result {
+	map<string, Variable> variables = 1;
+	repeated string unsupported_codes = 2; 
+}
+
+message Variable {
+	string value = 1;
 }
 
 message GetFullSchemaType_Args {
@@ -487,6 +505,7 @@ message CliConfig {
 	bool sort_keys = 9;
 	bool show_hidden = 10;
 	bool include_schema_type_path = 11;
+	bool fast_eval = 12;
 }
 
 message KeyValuePair {
