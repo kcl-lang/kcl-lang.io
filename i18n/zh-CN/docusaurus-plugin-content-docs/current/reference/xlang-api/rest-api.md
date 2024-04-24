@@ -36,96 +36,6 @@ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
 完整的 `BuiltinService` 由 Protobuf 定义：
 
 ```protobuf
-service BuiltinService {
-	rpc Ping(Ping_Args) returns(Ping_Result);
-	rpc ListMethod(ListMethod_Args) returns(ListMethod_Result);
-}
-
-message Ping_Args {
-	string value = 1;
-}
-message Ping_Result {
-	string value = 1;
-}
-
-message ListMethod_Args {
-	// empty
-}
-message ListMethod_Result {
-	repeated string method_name_list = 1;
-}
-```
-
-其中 `Ping` 方法可以验证服务是否正常，`ListMethod` 方法可以查询提供的全部服务和函数列表。
-
-## 3. `KclvmService` 服务
-
-`KclvmService` 服务是和 KCL 功能相关的服务。用法和 `BuiltinService` 服务一样。
-
-比如有以下的 `Person` 结构定义：
-
-```python
-schema Person:
-    key: str
-
-    check:
-        "value" in key  # 'key' is required and 'key' must contain "value"
-```
-
-然后希望通过 `Person` 来校验以下的 JSON 数据：
-
-```json
-{ "key": "value" }
-```
-
-可以通过 `KclvmService` 服务的 `ValidateCode` 方法完成。参考 `ValidateCode` 方法的 `ValidateCode_Args` 参数结构：
-
-```protobuf
-message ValidateCode_Args {
-	string data = 1;
-	string code = 2;
-	string schema = 3;
-	string attribute_name = 4;
-	string format = 5;
-}
-```
-
-根据 `ValidateCode_Args` 参数结构构造 POST 请求需要的 JSON 数据，其中包含 `Person` 定义和要校验的 JSON 数据：
-
-```json
-{
-  "code": "\nschema Person:\n    key: str\n\n    check:\n        \"value\" in key  # 'key' is required and 'key' must contain \"value\"\n",
-  "data": "{\"key\": \"value\"}"
-}
-```
-
-将该 JSON 数据保存到 `vet-hello.json` 文件，然后通过以下命令进行校验：
-
-```shell
-curl -X POST \
-    http://127.0.0.1:2021/api:protorpc/KclvmService.ValidateCode \
-    -H  "accept: application/json" \
-    --data @./vet-hello.json
-```
-
-如果看到输出
-
-```json
-{
-  "error": "",
-  "result": {
-    "success": true
-  }
-}
-```
-
-说明校验成功。
-
-## 4. 完整的 Protobuf 服务定义
-
-跨语言的 API 通过 Protobuf 定义([https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto](https://github.com/kcl-lang/kcl-go/blob/main/pkg/spec/gpyrpc/gpyrpc.proto))：
-
-```protobuf
 // Copyright The KCL Authors. All rights reserved.
 //
 // This file defines the request parameters and return structure of the KCL RPC server.
@@ -191,6 +101,7 @@ service KclvmService {
 	rpc ParseProgram(ParseProgram_Args) returns(ParseProgram_Result);
 	rpc LoadPackage(LoadPackage_Args) returns(LoadPackage_Result);
 	rpc ListOptions(ParseProgram_Args) returns(ListOptions_Result);
+	rpc ListVariables(ListVariables_Args) returns(ListVariables_Result);
 
 	rpc FormatCode(FormatCode_Args) returns(FormatCode_Result);
 	rpc FormatPath(FormatPath_Args) returns(FormatPath_Result);
@@ -315,7 +226,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-
+	
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 
@@ -351,6 +262,9 @@ message ExecProgram_Args {
 
 	// -S --path_selector
 	repeated string path_selector = 17;
+
+	// -K --fast_eval
+	bool fast_eval = 18;
 }
 
 message ExecProgram_Result {
@@ -413,6 +327,20 @@ message OverrideFile_Args {
 
 message OverrideFile_Result {
 	bool result = 1;
+}
+
+message ListVariables_Args {
+	string file = 1;
+	repeated string specs = 2;
+}
+
+message ListVariables_Result {
+	map<string, Variable> variables = 1;
+	repeated string unsupported_codes = 2; 
+}
+
+message Variable {
+	string value = 1;
 }
 
 message GetFullSchemaType_Args {
@@ -499,6 +427,7 @@ message CliConfig {
 	bool sort_keys = 9;
 	bool show_hidden = 10;
 	bool include_schema_type_path = 11;
+	bool fast_eval = 12;
 }
 
 message KeyValuePair {

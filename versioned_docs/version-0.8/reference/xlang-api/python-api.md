@@ -4,4 +4,19 @@ sidebar_position: 4
 
 # Python API
 
-At present, the KCL Python SDK is still in the early preview version. The KCL team will continue to update and provide more functions in the future. For more information, see [https://github.com/kcl-lang/kcl-py](https://github.com/kcl-lang/kcl-py)
+## Installation
+
+```shell
+python3 -m pip install kcl-lib
+```
+
+## Quick Start
+
+```typescript
+import kcl_lib.api as api
+
+args = api.ExecProgram_Args(k_filename_list=["path/to/kcl.k"])
+api = api.API()
+result = api.exec_program(args)
+print(result.yaml_result)
+```
