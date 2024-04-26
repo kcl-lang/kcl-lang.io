@@ -74,7 +74,7 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | ie
 
 ```bash
 # Install the latest version
-brew install kcl-lang/tap/kcl@0.8.0
+brew install kcl-lang/tap/kcl
 
 # Specify a version
 brew install kcl-lang/tap/kcl@x.y.z
@@ -175,7 +175,7 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install-kcl-lsp.ps1 | 
 
 ```bash
 # Install the latest version
-brew install kcl-lang/tap/kcl-lsp@0.7.0
+brew install kcl-lang/tap/kcl-lsp
 
 # Specify a version
 brew install kcl-lang/tap/kcl-lsp@x.y.z
