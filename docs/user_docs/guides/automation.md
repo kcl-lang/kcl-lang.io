@@ -92,7 +92,7 @@ override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 Run the command to update the application name.
 
 ```bash
-kcl main.k -O app.name='new_app'
+kcl main.k -O app.name=\'new_app\'
 ```
 
 The output is
@@ -111,7 +111,7 @@ We can see the `name` attribute of the `app` config is updated to `new_app`.
 Besides, when we use KCL CLI `-d` argument, the KCL file will be modified to the following content at the same time.
 
 ```bash
-kcl main.k -O app.name='new_app' -d
+kcl main.k -O app.name=\'new_app\' -d
 ```
 
 ```python

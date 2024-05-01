@@ -92,7 +92,7 @@ override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
 执行如下命令可以更新应用名称:
 
 ```bash
-kcl main.k -O app.name='new_app'
+kcl main.k -O app.name=\'new_app\'
 ```
 
 输出为
@@ -111,7 +111,7 @@ app:
 此外，当我们使用 KCL CLI `-d` 参数时，KCL 文件将同时修改为以下内容
 
 ```bash
-kcl main.k -O app.name='new_app' -d
+kcl main.k -O app.name=\'new_app\' -d
 ```
 
 ```python
