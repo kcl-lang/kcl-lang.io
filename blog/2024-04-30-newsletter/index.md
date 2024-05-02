@@ -50,15 +50,15 @@ Thanks to to all contributors for their outstanding work over the past twenty da
 - KCL Node JS SDK is released to npm.
 
   **<https://www.npmjs.com/search?q=kcl-lib>**
-  
+
 - KCL Java SDK is released to Github Package.
 
   **<https://github.com/orgs/kcl-lang/packages?repo_name=lib>**
 
 **💻 IDE Update**
-  
+
 - KCL VScode supports the highlight of kcl.mod and kcl.mod.lock.
-  
+
 ![kclmod](/img/blog/2024-04-30-biweekly-newsletter/kclmod.png)
 ![kclmodlock](/img/blog/2024-04-30-biweekly-newsletter/kclmodlock.png)
 
@@ -69,15 +69,15 @@ Thanks to to all contributors for their outstanding work over the past twenty da
 - Fixed an issue where the repository specified in the url was invalid when adding dependencies using the oci url.
 
 - Fixed an issue where calling api output logs failed
-  
+
 **📦️ KCL Modules Update**
-  
+
 - Provide `Argo-cd-order` which is a module for ordering argocd sync operations.
 
 - Provide crossplane-provider-gcp-upjet which is spec definition for crossplane-provider-upjet-gcp.
 
 - crossplane is updated to version 1.15.2.
-  
+
 **📘 Doc Update**
 
 - Added SDK related documents.
@@ -100,7 +100,7 @@ Thanks to to all contributors for their outstanding work over the past twenty da
 
 ![youtuber](/img/blog/2024-04-30-biweekly-newsletter/youtuber.png)
 
-  The video link: **<https://www.youtube.com/watch?v=Gn6btuH3ULw>**
+The video link: **<https://www.youtube.com/watch?v=Gn6btuH3ULw>**
 
 ## Special Thanks
 
@@ -110,8 +110,6 @@ The following are listed in no particular order:
 
 - Thanks to @bozaro for the contribution to the KCL Go SDK 🙌
 - Thanks to @jheyduk for the contribution to the Kubectl KCL plugin 🙌
-
--  
 - Thanks to @shruti2522，@metacoma contribution to the KCL 🙌
 - Thanks to @metacoma，@aleeriz contribution to the KCL modules 🙌
 - Thanks to @XiaoK29 contribution to the KCL go SDK 🙌

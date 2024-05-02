@@ -304,7 +304,7 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-	
+
 	repeated CmdArgSpec args = 4;
 	repeated CmdOverrideSpec overrides = 5;
 
@@ -414,7 +414,7 @@ message ListVariables_Args {
 
 message ListVariables_Result {
 	map<string, Variable> variables = 1;
-	repeated string unsupported_codes = 2; 
+	repeated string unsupported_codes = 2;
 }
 
 message Variable {

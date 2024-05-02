@@ -12,14 +12,14 @@ KCL 包管理工具默认使用 ghcr.io 保存 KCL 包。
 
 有几个支持 OCI 的托管容器 Registry，您可以将其用于存储 KCL 模块。
 
-+ [Docker Hub](https://docs.docker.com/docker-hub/oci-artifacts/)
-+ [Harbor](https://goharbor.io/docs/main/administration/user-defined-oci-artifact/)
-+ [Amazon ECR](https://docs.aws.amazon.com/AmazonECR/latest/userguide/push-oci-artifact.html)
-+ [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/container-registry-oci-artifacts)
-+ [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/helm/manage-charts)
-+ [Alibaba Cloud Container Registry](https://help.aliyun.com/acr/)
-+ [IBM Cloud Container Registry](https://cloud.ibm.com/docs/Registry)
-+ [JFrog Artifactory](https://jfrog.com/help/r/jfrog-artifactory-documentation/docker-registry)
+- [Docker Hub](https://docs.docker.com/docker-hub/oci-artifacts/)
+- [Harbor](https://goharbor.io/docs/main/administration/user-defined-oci-artifact/)
+- [Amazon ECR](https://docs.aws.amazon.com/AmazonECR/latest/userguide/push-oci-artifact.html)
+- [Azure Container Registry](https://learn.microsoft.com/azure/container-registry/container-registry-oci-artifacts)
+- [Google Artifact Registry](https://cloud.google.com/artifact-registry/docs/helm/manage-charts)
+- [Alibaba Cloud Container Registry](https://help.aliyun.com/acr/)
+- [IBM Cloud Container Registry](https://cloud.ibm.com/docs/Registry)
+- [JFrog Artifactory](https://jfrog.com/help/r/jfrog-artifactory-documentation/docker-registry)
 
 你可以通过以下方法调整 OCI Registry 的地址和仓库名称。
 

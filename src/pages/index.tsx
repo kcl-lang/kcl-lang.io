@@ -255,6 +255,22 @@ function IntegrationSection() {
       img: "/img/logos/argo.png",
     },
     {
+      name: "Flux",
+      img: "/img/logos/flux.png",
+    },
+    {
+      name: "Ansible",
+      img: "/img/logos/ansible.png",
+    },
+    {
+      name: "KusionStack",
+      img: "/img/logos/kusionstack.png",
+    },
+    {
+      name: "KubeVela",
+      img: "/img/logos/kubevela.png",
+    },
+    {
       name: "CrossPlane",
       img: "/img/logos/crossplane.png",
     },

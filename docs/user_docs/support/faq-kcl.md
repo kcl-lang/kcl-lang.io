@@ -2591,7 +2591,7 @@ kcl vet data.json schema.k
 
 We use the += operator to extend the default values in an array.
 
-```KCL 
+```python
 schema MyApp:
    args: [str] = ["default", "args"]
 
@@ -2599,4 +2599,3 @@ app = MyApp {
    args += ["additional", "args"]
 }
 ```
-

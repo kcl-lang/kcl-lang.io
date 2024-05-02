@@ -55,15 +55,15 @@ image: /img/biweekly-newsletter.png
 - KCL Node JS SDK 发布至 npm 仓库。
 
   仓库地址：**<https://www.npmjs.com/search?q=kcl-lib>**
-  
+
 - KCL Java SDK 发布至 Github Maven 仓库。
 
   仓库地址：**<https://github.com/orgs/kcl-lang/packages?repo_name=lib>**
 
 **💻 IDE 更新**
-  
+
 - KCL VScode 支持包管理清单文件 kcl.mod 和 kcl.mod.lock 的高亮。
-  
+
 ![kclmod](/img/blog/2024-04-30-biweekly-newsletter/kclmod.png)
 ![kclmodlock](/img/blog/2024-04-30-biweekly-newsletter/kclmodlock.png)
 
@@ -74,15 +74,15 @@ image: /img/biweekly-newsletter.png
 - 修复了使用 oci url 添加依赖时，url 中指定的仓库失效的问题。
 
 - 修复了调用 api 输出日志失效的问题。
-  
+
 **📦️ 三方库更新**
-  
+
 - 新增 Argo-cd-order 用于排序 argocd 同步操作的模块。
 
 - 增加了 crossplane-provider-gcp-upjet 的规范定义 crossplane-provider-upjet-gcp。
 
 - crossplane 三方库更新到 1.15.2.
-  
+
 **📘 文档更新**
 
 - 新增多语言 SDK 相关文档。
@@ -105,7 +105,7 @@ image: /img/biweekly-newsletter.png
 
 ![youtuber](/img/blog/2024-04-30-biweekly-newsletter/youtuber.png)
 
-  原视频链接：**<https://www.youtube.com/watch?v=Gn6btuH3ULw>**
+原视频链接：**<https://www.youtube.com/watch?v=Gn6btuH3ULw>**
 
 ## 特别鸣谢
 
