@@ -36,6 +36,7 @@ sidebar_position: 5
 
 ## 快速开始
 
+```java
 import com.kcl.api.API;
 import com.kcl.api.Spec.ExecProgram_Args;
 import com.kcl.api.Spec.ExecProgram_Result;
