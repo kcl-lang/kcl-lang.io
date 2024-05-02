@@ -30,7 +30,7 @@ This way you'll be able to import the above dependency to use the SDK.
 <dependency>
     <groupId>com.kcl</groupId>
     <artifactId>kcl-lib</artifactId>
-    <version>0.8.5</version>
+    <version>0.8.6</version>
 </dependency>
 ```
 

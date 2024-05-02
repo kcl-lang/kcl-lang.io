@@ -2586,3 +2586,16 @@ The command to validate the JSON data below gives the output `Validate success!`
 ```bash
 kcl vet data.json schema.k
 ```
+
+## 63. How can i extend an array's default value in a given schema?
+
+We use the += operator to extend the default values in an array.
+
+```python
+schema MyApp:
+   args: [str] = ["default", "args"]
+
+app = MyApp {
+   args += ["additional", "args"]
+}
+```
