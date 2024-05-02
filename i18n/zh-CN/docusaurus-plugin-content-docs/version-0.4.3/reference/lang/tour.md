@@ -310,8 +310,8 @@ may span multiple lines.
 请注意，KCL 的单引号和双引号字符串的使用几乎没有区别。唯一可以简化的是，我们不需要在单引号字符串中转义双引号，也不需要在双引号中转义单引号。
 
 ```python
-'This is my book named "foo"'  # Don’t need to escape double quotes in single quoted strings.
-"This is my book named 'foo'"  # Don’t need to escape single quotes in double quoted strings.
+'This is my book named "foo"'  # don't need to escape double quotes in single quoted strings.
+"This is my book named 'foo'"  # don't need to escape single quotes in double quoted strings.
 ```
 
 我们可以使用 `+` 操作符连接字符串：

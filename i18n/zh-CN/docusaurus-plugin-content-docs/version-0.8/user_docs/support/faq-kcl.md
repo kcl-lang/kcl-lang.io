@@ -588,8 +588,8 @@ x: "a: 1, b: Two, c: 12.3"
 KCL 单引号和双引号字符串几乎没有区别。唯一的区别是，不需要在单引号字符串中使用 `\"` 转义双引号 `"`，不需要在双引号字符串中使用 `\'` 转义单引号引号 `'`。
 
 ```python
-singleQuotedString = 'This is my book named "foo"'  # Don’t need to escape double quotes in single quoted strings.
-doubleQuotedString = "This is my book named 'foo'"  # Don’t need to escape single quotes in double quoted strings.
+singleQuotedString = 'This is my book named "foo"'  # don't need to escape double quotes in single quoted strings.
+doubleQuotedString = "This is my book named 'foo'"  # don't need to escape single quotes in double quoted strings.
 ```
 
 此外在 KCL 中，使用三个单引号或者三个双引号组成的长字符串，无需在其中对单引号或者三引号进行转义 (除字符串首尾)，比如如下例子：

@@ -307,11 +307,11 @@ may span multiple lines.
 """
 ```
 
-Please note that there is almost no difference in the use of KCL single-quoted and double-quoted strings. The only thing that can be simplified is that we don’t need to escape double quotes in single quoted strings, and we don’t need to escape single quotes in double quoted strings.
+Please note that there is almost no difference in the use of KCL single-quoted and double-quoted strings. The only thing that can be simplified is that we don't need to escape double quotes in single quoted strings, and we don't need to escape single quotes in double quoted strings.
 
 ```python
-'This is my book named "foo"'  # Don’t need to escape double quotes in single quoted strings.
-"This is my book named 'foo'"  # Don’t need to escape single quotes in double quoted strings.
+'This is my book named "foo"'  # don't need to escape double quotes in single quoted strings.
+"This is my book named 'foo'"  # don't need to escape single quotes in double quoted strings.
 ```
 
 We can concatenate strings using the `+` operator:
@@ -419,7 +419,7 @@ See [Yaml Multiline String](https://yaml-multiline.info/) and [YAML Specificatio
 
 ##### Raw String
 
-KCL raw string is created by prefixing a string literal with `'r'` or `'R'`. KCL raw string treats backslash (`\`) and string interpolation (`${}`) as a literal character. This is useful when we want to have a string that contains backslash, string interpolation and don’t want them to be treated as an escape character.
+KCL raw string is created by prefixing a string literal with `'r'` or `'R'`. KCL raw string treats backslash (`\`) and string interpolation (`${}`) as a literal character. This is useful when we want to have a string that contains backslash, string interpolation and don't want them to be treated as an escape character.
 
 - For backslash (`\`), the KCL code and output YAML are as follows:
 
@@ -1706,7 +1706,7 @@ a: any = "s"
 b: int = a as int  # Error: The `str` type cannot be converted to the `int` type
 ```
 
-If we don’t want to throw a runtime error, we can use the type guard for defensive coding with `if` expressions.
+If we don't want to throw a runtime error, we can use the type guard for defensive coding with `if` expressions.
 
 ```python
 a: any = "s"

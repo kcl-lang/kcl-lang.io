@@ -62,7 +62,7 @@ Possible resolution:
 
 KCL will report `KCLTabError` when KCL has a tab and white space syntax error.
 
-In KCL, it is forbidden to mix tabs and four spaces in one indentation block. And we recommend only using white spaces or tabs for indentation in the entire KCL project, don’t mix them.
+In KCL, it is forbidden to mix tabs and four spaces in one indentation block. And we recommend only using white spaces or tabs for indentation in the entire KCL project, don't mix them.
 
 The `ewcode` of `KCLTabError` is `E1002`.
 

@@ -586,8 +586,8 @@ x: "a: 1, b: Two, c: 12.3"
 There is little difference between KCL single-quoted and double-quoted strings. The only difference is that we don't need to use `\"` to escape `"` in single-quoted strings, and we don't need to use `\'` to escape `'` in double-quoted strings.
 
 ```python
-singleQuotedString = 'This is my book named "foo"'  # Don’t need to escape double quotes in single quoted strings.
-doubleQuotedString = "This is my book named 'foo'"  # Don’t need to escape single quotes in double quoted strings.
+singleQuotedString = 'This is my book named "foo"'  # don't need to escape double quotes in single quoted strings.
+doubleQuotedString = "This is my book named 'foo'"  # don't need to escape single quotes in double quoted strings.
 ```
 
 In addition, a long string consisting of three single quotes or three double quotes does not need to be escaped (except for the beginning and end of the string), such as the following example:
