@@ -83,9 +83,11 @@ The output is
 
 Here's what you can do in the KCL code:
 
-- Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("items")` and the params from `option("params")`.
+- Read resources from `option("items")`. The `option("items")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification).
 - Return a KRM list for output resources.
 - Return an error using `assert {condition}, {error_message}`.
+- Read the PATH variables. e.g. `option("PATH")`.
+- Read the environment variables. e.g. `option("env")`.
 
 ## More Documents and Examples
 

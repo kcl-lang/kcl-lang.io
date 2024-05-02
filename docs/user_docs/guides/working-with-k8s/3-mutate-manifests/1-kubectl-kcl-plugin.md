@@ -195,9 +195,11 @@ Ingress should be https. The `kubernetes.io/ingress.allow-http: "false"` annotat
 
 Here's what you can do in the KCL code:
 
-- Read resources from `option("resource_list")`. The `option("resource_list")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification). You can read the input resources from `option("resource_list")["items"]` and the `functionConfig` from `option("resource_list")["functionConfig"]`.
+- Read resources from `option("items")`. The `option("items")` complies with the [KRM Functions Specification](https://kpt.dev/book/05-developing-functions/01-functions-specification).
 - Return a KRM list for output resources.
 - Return an error using `assert {condition}, {error_message}`.
+- Read the PATH variables. e.g. `option("PATH")`.
+- Read the environment variables. e.g. `option("env")`.
 
 ## More Resources
 

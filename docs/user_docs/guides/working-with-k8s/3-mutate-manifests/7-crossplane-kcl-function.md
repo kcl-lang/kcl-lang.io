@@ -221,12 +221,14 @@ spec:
 
 Here's what you can do in the KCL script:
 
-- Return an error using `assert {condition}, {error_message}`.
 - Read the `ObservedCompositeResource` from `option("params").oxr`.
 - Read the `ObservedComposedResources` from `option("params").ocds`.
 - Read the `DesiredCompositeResource` from `option("params").dxr`.
 - Read the `DesiredComposedResources` from `option("params").dcds`.
-- Read the environment variables. e.g. `option("PATH")` (**Not yet implemented**).
+- Read the function pipeline's context from `option("params").ctx`.
+- Return an error using `assert {condition}, {error_message}`.
+- Read the PATH variables. e.g. `option("PATH")`.
+- Read the environment variables. e.g. `option("env")`.
 
 ## Library
 
@@ -234,5 +236,5 @@ You can directly use [KCL standard libraries](https://kcl-lang.io/docs/reference
 
 ## More Documents and Examples
 
+- [Crossplane KCL](https://github.com/crossplane-contrib/function-kcl/)
 - [KRM KCL Spec](https://github.com/kcl-lang/krm-kcl)
-- [Crossplane KCL](https://github.com/crossplane-contrib/function-kcl/examples)
