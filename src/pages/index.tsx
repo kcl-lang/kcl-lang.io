@@ -28,7 +28,8 @@ function HomepageHeader() {
         >
           <Translate>Mutation</Translate>, &nbsp;
           <Translate>Validation</Translate>, &nbsp;
-          <Translate>Abstraction</Translate>
+          <Translate>Abstraction</Translate>, &nbsp;
+          <Translate>Automation</Translate>
         </h2>
         <h2
           className={styles.title}
