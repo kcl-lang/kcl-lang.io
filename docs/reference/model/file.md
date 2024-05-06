@@ -41,3 +41,27 @@ Whether this file path exists. Returns true if the path points at an existing en
 `abs(filepath: str) -> str`
 
 Returns the canonical, absolute form of the path with all intermediate components normalized and symbolic links resolved.
+
+## mkdir
+
+`mkdir(directory: str, exists: bool=False)`
+
+Create a new directory at the specified path if it doesn't already exist.
+
+## delete
+
+`delete(directory: str, exists)`
+
+Delete a file or an empty directory at the specified path.
+
+## cp
+
+`cp(src: str, dest: str)`
+
+Copy a file or directory from the source path to the destination path.
+
+## mv
+
+`mv(src: str, dest: str)`
+
+Move a file or directory from the source path to the destination path.
