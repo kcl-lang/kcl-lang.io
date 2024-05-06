@@ -9,9 +9,9 @@ const katex = require('rehype-katex');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'KCL programming language.',
-  tagline: 'Mutation  Validation  Abstraction  Production-Ready',
+  tagline: 'Mutation  Validation  Abstraction  Automation  Production-Ready',
 
-  url: 'https://kcl-lang.github.io',
+  url: 'https://www.kcl-lang.io',
   organizationName: 'kcl-lang', // Usually your GitHub org/user name.
   projectName: 'kcl', // Usually your repo name.
 

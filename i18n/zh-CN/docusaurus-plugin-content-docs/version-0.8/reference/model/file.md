@@ -41,3 +41,27 @@ weight: 100
 `abs(filepath: str) -> str`
 
 返回路径的规范化绝对形式，其中所有中间路径均已规范化并解析为符号链接。
+
+## mkdir
+
+`mkdir(directory: str, exists: bool=False)`
+
+如果指定路径上不存在目录，则创建一个新目录。
+
+## delete
+
+`delete(directory: str, exists)`
+
+在指定路径上删除一个文件或空目录。
+
+## cp
+
+`cp(src: str, dest: str)`
+
+将文件或目录从源路径复制到目标路径。
+
+## mv
+
+`mv(src: str, dest: str)`
+
+将文件或目录从源路径移动到目标路径。
