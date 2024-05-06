@@ -159,13 +159,6 @@ const config = {
         id: 'announcementBar-1', // Increment on change
         content: `Give us a star ⭐️ - If you are using KCL or think it is an interesting project, we would love a star and record on <a target="_blank" rel="noopener noreferrer" href="https://github.com/kcl-lang/kcl">Github</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.com/kcl-lang/kcl/issues/578">Record Issue</a>`,
       },
-
-      algolia: {
-        appId: 'I3BKOKGSD5',
-        apiKey: '20af56a3665effe7fa744b4b6cf78d60',
-        indexName: 'kcl-lang',
-        contextualSearch: true,
-      },
       navbar: {
         title: 'KCL',
         logo: {
@@ -321,6 +314,12 @@ const config = {
       {
         trackingID: 'G-MZD1X1PB2Q',
         anonymizeIP: true,
+      },
+    ],
+    [
+      require.resolve("@cmfcmf/docusaurus-search-local"),
+      {
+        language: ["en", "zh"],
       },
     ],
     async function myPlugin(context, options) {
