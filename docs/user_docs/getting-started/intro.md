@@ -66,12 +66,12 @@ Although KCL is not a general language, it has corresponding application scenari
 The configuration of attributes in KCL usually meets the simple pattern:
 
 $$
-k = (T) v
+k op (T) v
 $$
 
-where $k$ is the attribute name, $v$ is the attributes value, and $T$ is the type annotation. Since KCL has the ability of the type inference, $T$ is usually omitted.
+where $k$ is the attribute name, $v$ is the attributes value, $op$ is the attribute operator and $T$ is the type annotation. Since KCL has the ability of the type inference, $T$ is usually omitted. `deploy = Deployment {}` is a simple example that satisfies the pattern.
 
-This is an example of generating kubernetes manifests.
+This is an example of generating Kubernetes manifests.
 
 ```python
 apiVersion = "apps/v1"
