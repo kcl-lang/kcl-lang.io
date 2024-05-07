@@ -50,7 +50,7 @@ Create a new directory at the specified path if it doesn't already exist.
 
 ## delete
 
-`delete(directory: str, exists)`
+`delete(directory: str)`
 
 Delete a file or an empty directory at the specified path.
 

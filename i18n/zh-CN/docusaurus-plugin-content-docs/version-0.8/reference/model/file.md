@@ -50,7 +50,7 @@ weight: 100
 
 ## delete
 
-`delete(directory: str, exists)`
+`delete(directory: str)`
 
 在指定路径上删除一个文件或空目录。
 
