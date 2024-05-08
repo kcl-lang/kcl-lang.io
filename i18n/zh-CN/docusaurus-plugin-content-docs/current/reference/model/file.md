@@ -65,3 +65,15 @@ weight: 100
 `mv(src: str, dest: str)`
 
 将文件或目录从源路径移动到目标路径。
+
+## size
+
+`size(filepath: str) -> int`
+
+获取指定路径上文件的大小。
+
+## write
+
+`write(filepath: str, content: str)`
+
+将内容写入指定路径的文件。如果文件不存在，将会被创建。如果文件存在，其内容将被替换。

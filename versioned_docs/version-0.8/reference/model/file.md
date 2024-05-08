@@ -65,3 +65,15 @@ Copy a file or directory from the source path to the destination path.
 `mv(src: str, dest: str)`
 
 Move a file or directory from the source path to the destination path.
+
+## size
+
+`size(filepath: str) -> int`
+
+Get the size of a file at the specified path.
+
+## write
+
+`write(filepath: str, content: str)`
+
+Write content to a file at the specified path. If the file doesn't exist, it will be created. If it does exist, its content will be replaced.
