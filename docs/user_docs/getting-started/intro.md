@@ -6,64 +6,63 @@ sidebar_position: 1
 
 ## What is KCL?
 
-[KCL](https://github.com/kcl-lang/kcl) is an open-source, constraint-based record and functional language that enhances the writing of complex configurations, including those for cloud-native scenarios. It is hosted by the Cloud Native Computing Foundation (CNCF) as a Sandbox Project. With advanced programming language technology and practices, KCL is dedicated to promoting better modularity, scalability, and stability for configurations. It enables simpler logic writing and offers ease of automation APIs and integration with homegrown systems.
+[KCL](https://github.com/kcl-lang/kcl) is an open-source configuration and policy language hosted by the Cloud Native Computing Foundation (CNCF) as a Sandbox Project. Built on a foundation of constraints and functional programming principles, KCL enhances the process of writing complex configurations, particularly in cloud-native environments. By leveraging advanced programming language techniques, KCL promotes improved modularity, scalability, and stability in configuration management. It simplifies logic writing, offers easy-to-use automation APIs, and seamlessly integrates with existing systems.
 
 ## Why KCL?
 
-KCL aims to fill the gap in configuration languages and tools in the lightweight client-side cloud-native dynamic configuration domain through a more modern declarative configuration language and tools. It aims to address the following problems:
+KCL addresses a crucial gap in existing configuration tooling by offering a modern, declarative approach specifically designed for dynamic configurations in the lightweight client-side cloud-native environments. It tackles several key challenges:
 
-- **Dimension explosion**: Most static configurations, such as Kubernetes YAML configurations in the cloud-native domain, require separate configurations for each environment. In the worst case, this can introduce difficult-to-debug errors involving cross-environment links, resulting in poor stability and scalability.
-- **Configuration drift**: There is often no standardized way to manage the dynamic configurations of applications and infrastructure for different environments, leading to configuration drift. Using non-standardized methods, such as scripting and piecing together glue code, can exponentially increase complexity and lead to configuration drift.
-- **Cognitive loading**: Platform technologies such as Kubernetes excel in unifying infrastructure details at the lower level, but lack higher-level application software delivery abstractions. This creates a higher cognitive loading for regular developers and affects the software delivery experience for developers at higher levels.
+- **Dimension explosion**: Traditional large scale static configurations, such as Kubernetes YAML, necessitate separate files for each environment. In the worst case,this can lead to difficult-to-debug errors, impacting stability and scalability.
+- **Configuration drift**: Managing dynamic configurations across diverse environments often lacks standardized approaches. Utilizing ad-hoc methods like scripting increases complexity and leads to inconsistent configurations.
+- **Cognitive loading**: While platforms like Kubernetes excel in low-level infrastructure management, they lack higher-level abstractions for application delivery. This burdens developers and hinders the software delivery experience.
 
-To address these problems, KCL aims to provide the following capabilities:
+KCL offers the following solutions:
 
-- Hide infrastructure and platform details by defining more appropriate **API abstractions** to reduce the burden of developers.
-- **Mutate** and **validate** existing config files or manifests.
-- **Manage large-scale configuration data** across teams without side effects through configuration language.
+- **API abstractions**: KCL hides infrastructure complexities, reducing developers' cognitive load by providing relevant abstractions.
+- **Mutation and validation**: KCL empowers users to modify and verify existing configuration files or manifests effectively.
+- **Large-scale configuration management and automation**: KCL enables seamless management and automation of extensive configuration data across teams, ensuring consistency and preventing unintended side effects.
 
-Specifically, KCL can
+Specifically, KCL empowers developers to:
 
-- Improve the ability to **semantically validate configurations** at the code level, such as schema definitions, required/optional attribute requirements, types, range constraints, and etc.
-- Provide capabilities for **writing, combining, and abstracting configuration chunks**, such as structure definitions, structure inheritance, constraint definitions, and configuration policy merging.
-- Enhance configuration flexibility by adopting **modern programming language** features, such as conditional statements, loops, functions, and package management, to improve configuration reusability.
-- Provide **comprehensive toolchain support**, including rich IDE extensions and toolchains support to reduce the learning curve and enhance the user experience.
-- Enable easier sharing, propagation, and delivery of configurations between different teams/roles through **package management tools** and **OCI registries**.
-- Offer a **high-performance** compiler to meet the demands of scalable configuration scenarios, such as rendering performance for generating configurations for different environments and topologies based on a baseline configuration and configuration automation modification performance requirements.
-- Improve **automation integration** capabilities through **multi-language SDKs**, **KCL language plugins**, and other means, significantly reducing the learning curve while leveraging the value of configuration and policy writing with KCL.
+- **Semantically validate configurations**: Ensure code-level configuration validity through features like schema definitions, attribute requirements, type checks, and range constraints.
+- **Structure and abstract configurations**: Define, combine, and abstract configuration chunks using features like structure definitions, inheritance, constraint definitions, and policy merging.
+- **Enhance flexibility**: Leverage modern programming language features like conditional statements, loops, functions, and package management to improve configuration reusability.
+- **Utilize comprehensive tooling**: Benefit from rich IDE extensions and robust toolchains that simplify learning and enhance user experience.
+- **Facilitate configuration sharing**: Share, propagate, and deliver configurations efficiently across teams using package management tools and OCI registries.
+- **Leverage high-performance compilation**: Utilize a high-performance compiler designed to meet the demands of large-scale configuration scenarios, including rapid rendering for various environments and efficient configuration automation modifications.
+- **Improve automation integration**: Enhance automation capabilities through multi-language SDKs, KCL language plugins, and other tools, simplifying integration while maximizing the value of KCL configurations and policies.
 
 ![](/img/docs/user_docs/intro/kcl-overview.png)
 
-In addition to the language itself, KCL also provides many additional tools, such as formatting, testing, document, package management, to help users use, understand and check the configuration or policy they write. We can reduce the cost of configuration writing and sharing through IDE extensions such as VS Code, playground and package manage tools. In addition, through KCL Rust, Go, and Python multilingual SDKs, the configuration can be automatically managed and executed.
+Beyond the core language, KCL offers a rich ecosystem of tools for formatting, testing, documentation, and package management. These tools empower users to write, understand, and verify configurations efficiently. IDE extensions like VS Code and playground environments, along with package management tools, further reduce the cost of configuration management and sharing. KCL's multi-language SDKs for Rust, Go, Python, Java and Node.js enable automated configuration management and execution.
 
-KCL itself provides many integrations with other languages, formats, and cloud native tools. For example, we can use the kcl vet tool to validate terraform plan files and use the import tool to generate KCL schema from the terraform provider schema, Kubernetes CRD, etc. For cloud native tools, KCL provides almost all the integration of tools you know, thanks to the [KRM KCL specification](https://github.com/kcl-lang/krm-kcl).
+KCL seamlessly integrates with various languages, formats, and cloud-native tools. For instance, the kcl vet tool validates Terraform plan files, while the import tool generates KCL schemas from diverse sources like Terraform provider schemas and Kubernetes CRDs. KCL's comprehensive integration with cloud-native tools stems from the [KRM KCL specification](https://github.com/kcl-lang/krm-kcl).
 
-KCL is a modern high-level domain language, which is a compiled and static typed language. It provides developers with the ability to write **configuration (config)**, **modeling abstraction (schema)**, **logic (lambda)**, and **policies (rule)** as the core elements through recording and functional language design. By utilizing language features such as immutability, pure functions, and attribute operators, you can achieve a good balance between configuration scalability and security.
+As a modern, high-level domain language, KCL employs a compiled and statically typed approach. Its record and functional paradigm allows developers to define **configurations**, **schemas**, **lambdas (functions)**, and **rules (policies)** as core elements. By embracing language features like immutability, pure functions, and attribute operators, KCL achieves a balance between configuration scalability and security.
 
 ![](/img/docs/user_docs/intro/kcl-concepts.png)
 
-KCL tries to provide runtime-independent programmability and does not natively provide system functions such as threads and IO, but supports functions for cloud-native operation scenarios, and tries to provide stable, secure, low-noise, low-side effect, easy-to-automate and easy-to-govern programming support for solving domain problems.
+KCL prioritizes runtime-independent programmability. While it avoids system-level functions like threading and I/O, it provides specialized functions tailored for cloud-native scenarios. KCL strives to offer stable, secure, predictable, and automation-friendly programming support for solving domain-specific challenges.
 
-In summary, KCL has the following characteristics:
+In summary, KCL boasts the following characteristics:
 
-- **Easy-to-use**: Originated from high-level languages ​​such as Python and Golang, incorporating functional language features with low side effects.
-- **Well-designed**: Independent Spec-driven syntax, semantics, runtime and system modules design.
-- **Quick modeling**: [Schema](https://kcl-lang.github.io/docs/reference/lang/tour#schema)-centric configuration types and modular abstraction.
-- **Rich capabilities**: Configuration with type, logic and policy based on [Config](https://kcl-lang.github.io/docs/reference/lang/codelab/simple), [Schema](https://kcl-lang.github.io/docs/reference/lang/tour/#schema), [Lambda](https://kcl-lang.github.io/docs/reference/lang/tour/#function), [Rule](https://kcl-lang.github.io/docs/reference/lang/tour/#rule).
+- **Easy-to-use**: Drawing inspiration from Python and Golang, KCL incorporates functional programming principles with minimal side effects.
+- **Well-designed**: KCL's syntax, semantics, runtime, and system modules adhere to a spec-driven design, ensuring consistency and clarity.
+- **Quick modeling**: [Schema](https://kcl-lang.github.io/docs/reference/lang/tour#schema)-centric configuration types and modular abstraction enable rapid and efficient modeling.
 - **Stability**: Configuration stability built on [static type system](https://kcl-lang.github.io/docs/reference/lang/tour/#type-system), [constraints](https://kcl-lang.github.io/docs/reference/lang/tour/#validation), and [rules](https://kcl-lang.github.io/docs/reference/lang/tour#rule).
-- **Scalability**: High scalability through [automatic merge mechanism](https://kcl-lang.github.io/docs/reference/lang/tour/#-operators-1) of isolated config blocks.
-- **Fast automation**: Gradient automation scheme of [CRUD APIs](https://kcl-lang.github.io/docs/reference/lang/tour/#kcl-cli-variable-override), [multilingual SDKs](https://kcl-lang.github.io/docs/reference/xlang-api/overview), [language plugin](https://kcl-lang.github.io/docs/reference/plugin/overview)
-- **High performance**: High compile time and runtime performance using Rust & C and [LLVM](https://llvm.org/), and support compilation to native code and [WASM](https://webassembly.org/).
-- **API affinity**: Native support API ecological specifications such as [OpenAPI](https://kcl-lang.github.io/docs/tools/cli/openapi/), Kubernetes CRD, Kubernetes YAML spec.
-- **Development friendly**: Friendly development experiences with rich [language tools](https://kcl-lang.github.io/docs/tools/cli/kcl/overview) (Format, Lint, Test, Vet, Doc, etc.) and [IDE extensions](https://kcl-lang.github.io/docs/tools/Ide/).
-- **Safety & maintainable**: Domain-oriented, no system-level functions such as native threads and IO, low noise and security risk, easy maintenance and governance.
-- **Rich multi-language SDK**: [Go](https://kcl-lang.io/docs/reference/xlang-api/go-api), [Python](https://kcl-lang.io/docs/reference/xlang-api/python-api), [Java](https://kcl-lang.io/docs/reference/xlang-api/java-api) and [REST APIs](https://kcl-lang.io/docs/reference/xlang-api/rest-api) meet different scenarios and application use prelude.
-- **Kubernetes Integrations**: External mutation and validation plugins including [Kustomize KCL Plugin](https://github.com/kcl-lang/kustomize-kcl), [Helm KCL Plugin](https://github.com/kcl-lang/helm-kcl), [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk), [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl) or [Crossplane KCL Function](https://github.com/kcl-lang/crossplane-kcl) to separate data and logic.
-- **Production-ready**: Widely used in production practice of platform engineering and automation at Ant Group.
+- **Scalability**: KCL's automatic merge mechanism for isolated configuration blocks promotes high scalability.
+- **Fast automation**: KCL offers a gradient automation scheme encompassing [CRUD APIs](https://kcl-lang.github.io/docs/reference/lang/tour/#kcl-cli-variable-override), [multilingual SDKs](https://kcl-lang.github.io/docs/reference/xlang-api/overview), and [language plugins](https://kcl-lang.github.io/docs/reference/plugin/overview)
+- **High performance**: Leveraging Rust, C, and LLVM, KCL achieves high compilation and runtime performance, supporting compilation to native code and WebAssembly.
+- **API affinity**: KCL natively supports API specifications like JsonSchema, [OpenAPI](https://kcl-lang.github.io/docs/tools/cli/openapi/), Kubernetes CRDs, Kubernetes YAML, Terraform provider schema and etc.
+- **Development friendly**: KCL provides a rich suite of language tools (format, lint, test, vet, doc) and [IDE extensions](https://kcl-lang.github.io/docs/tools/Ide/) for a smooth development experience.
+- **Safety and maintainability**: KCL's domain-oriented nature avoids system-level functions, minimizing noise, security risks, and maintenance overhead.
+- **Rich multi-language SDK**: SDKs for Rust, Go, Python, Java, Node.js and REST APIs cater to diverse scenarios and application use cases.
+- **Kubernetes integrations**: External mutation and validation plugins including [Kustomize KCL Plugin](https://github.com/kcl-lang/kustomize-kcl), [Helm KCL Plugin](https://github.com/kcl-lang/helm-kcl), [KPT KCL SDK](https://github.com/kcl-lang/kpt-kcl-sdk), [Kubectl KCL Plugin](https://github.com/kcl-lang/kubectl-kcl) or [Crossplane KCL Function](https://github.com/kcl-lang/crossplane-kcl) to separate data and logic.
+- **Production-ready**: KCL has been successfully deployed in production environments at Ant Group for platform engineering and automation.
 
-Although KCL is not a general language, it has corresponding application scenarios. Developers can write **config**, **schema**, **function** and **rule** through KCL, where config is used to define data, schema is used to describe the model definition of data, rule is used to validate data, and schema and rule can also be combined to use models and constraints that fully describe data, In addition, we can also use the lambda pure function in KCL to organize data code, encapsulate common code, and call it directly when needed.
+While KCL is not a general-purpose language, it excels within its specific domain. Developers can leverage KCL to write configurations, schemas, functions, and rules. Configurations define data, schemas describe data models, rules enforce data validation, and schemas and rules can be combined to comprehensively describe data models and constraints. KCL's lambda functions enable code organization, encapsulation, and reusability.
 
-The configuration of attributes in KCL usually meets the simple pattern:
+KCL's attribute configuration follows a simple pattern:
 
 $$
 k op (T) v
