@@ -22,12 +22,6 @@ The KCL project version release strategy is as follows:
 - Release Documentation: Detailed documentation, including release notes, update logs, API documentation, and usage guides, is provided during the release to help users understand and use the new version. In KCL, this documentation is maintained on the KCL website.
 - Version Compatibility: When releasing a new version, compatibility is maintained as much as possible to minimize the need for modifications and adaptations by users. Since KCL has not reached version 1 yet, there are no compatibility guarantees at the moment. The goal of KCL is to minimize major changes unless they provide significant benefits, such as solving problems in the target scenarios or improving the overall user experience. For features or changes that may introduce compatibility issues, appropriate prompts and solutions will be provided. Gradual upgrade guides or automated migration tools will be offered to help users smoothly transition to the new version.
 
-## Release Components
-
-![](/img/docs/community/release-policy/kcl-components.png)
-
-For each version release, all related components of KCL depend on the same major version of the KCL core. The dependencies are organized in a tree structure and released and regression tested in a specific order until the release testing is completed, with efforts made to avoid triangular dependencies and prohibit circular dependencies.
-
 ## Lifecycle of a Feature
 
 - Design and Documentation: Clearly answer the motivations, problems to be solved, and goals of the feature through issues. Define user requirements and user stories. Specify what the feature does, how it is implemented, its difficulty level, estimated time, dependencies, and testing requirements. (Tips: Split large designs into smaller ones, find a simple and sustainable solution through trade-offs and extensive research, and ensure scalability to adapt to future business or technical changes. Finalize the design through continuous discussions and design reviews).
