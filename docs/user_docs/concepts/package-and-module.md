@@ -17,7 +17,7 @@ A KCL module contains a configuration laid out in a directory hierarchy. It cont
 A module can be created by running the following command within the module root:
 
 ```bash
-kcl init [module name]
+kcl mod init [module name]
 ```
 
 The module name is **required** if a package within the module needs to import another package within the module. A module can also be created by setting up the `kcl.mod` file manually.
