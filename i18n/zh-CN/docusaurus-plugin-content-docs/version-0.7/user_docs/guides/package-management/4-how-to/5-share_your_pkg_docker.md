@@ -49,7 +49,7 @@ kcl mod init my_package
 kcl mod init
 ```
 
-关于如何使用 kpm init 的更多信息，请参阅 [kcl mod init](https://kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/init)。
+关于如何使用 kcl mod init 的更多信息，请参阅 [kcl mod init](https://kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/init)。
 
 ### 2. 推送 kcl 包
 
