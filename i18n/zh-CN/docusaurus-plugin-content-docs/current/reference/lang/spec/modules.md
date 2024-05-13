@@ -1,916 +1,350 @@
 ---
-title: "Schema"
-linkTitle: "Schema"
+title: "Modules"
+linkTitle: "Modules"
 type: "docs"
 weight: 2
-description: Schema
+description: Modules
 ---
 
-## Syntax
+## Modules and the Import System
 
-### Schema Definition
+KCL code is organized in **modules**. For code in one module to access the code defined in another module, a process called **importing** must be used.
 
-A schema is a language element to define a type of configuration data.
+Importing is undertaken at compile-time in KCL. The advantage is to have static checking enabled.
 
-To define a schema, the syntax is the following:
+A regular KCL module is a file on the file system. It is required to have a `.k` suffix.
 
-```bnf
-schema_stmt: [decorators] "schema" identifier ["[" [arguments] "]"] ["(" operand_name ")"] ":" NEWLINE [schema_body]
-schema_body: _INDENT (string NEWLINE)* [mixin_stmt] (schema_attribute_stmt | schema_index_signature | statement)* [check_block] _DEDENT
+## Packages
+
+To help manage modules and provide a naming hierarchy, KCL has the concept of packages. In KCL, a package maps to exactly a file system directory, and a regular module maps to a file.
+
+Files directly under a package are considered parts of the package, instead of individual regular modules.
+
+Packages can have sub-packages.
+
+Packages are special modules:
+
+- All packages in KCL are modules.
+- A single-file module can never be a package.
+
+All modules have a name.
+
+Sub package names are separated from their parent package name by dots.
+
+To summary, a regular KCL module is a `.k` file, and a package is a directory on the file system. All `.k` files directly under the directory are included in the package, other files are ignored. If the directory has subdirectories, they become sub-packages as long as there are `.k` files underneath.
+
+### Intra-Package Name Space Sharing
+
+Inside a package, all `.k` files are considered parts of the package, instead of regular modules. Code in these files share a single name space and can access names defined in other files, without explicitly granted.
+
+### Package Initialization
+
+A package can have the initialization code. The code must exist in only one of the `.k` files under this package. The interpreter guarantees that the initialization code is executed after all definitions.
+
+## Searching
+
+The searching begins when an `import` statement is used to import a module.
+
+### Module Cache
+
+In KCL, only standard system modules are cached. When a cached module is imported, the cached version is used. In other words, KCL runtime would not create another copy of the standard system module in memory.
+
+However, other modules are uncached. Importing a module multiple time would create multiple instances of the module.
+
+### Module Names
+
+An `import` statement specifies the name of the module to import. The syntax is:
+
+```
+import <module_name> [as <alias name>]
 ```
 
-Attributes could be defined in a schema, the syntax is the following:
+The rule to search with the module name is very simple:
 
-```bnf
-schema_attribute_stmt: [decorators] identifier ["?"] ":" type [(ASSIGN | augassign) test] NEWLINE
+- **Step 1**: Searches the module name from the **standard system modules**, then **plugins modules**.
+  - See **standard system modules** and **plugins modules** for more details. If matched, the module is imported. Otherwise, continue to **Step 2**.
+- **Step 2**. Whether a module name starts with a `.` is checked. If yes, the name is a so-called relative pathname, and we go to **Step 5**. Otherwise, continue to **Step 3**.
+- **Step 3**: If the module name does not start with any `.`, then the compiler searches the nearest `root path` directory from this directory to the parent, and find the module according to the name just from the `root path`. If no `root path` is found, find the module according to the name from the folder the `.k` file including this `import` statement exists.
+  - **root path**: the directory contains a `kcl.mod` file. If matched, the module is imported. Otherwise, continue to **Step 4**.
+- **Step 4**: Then the compiler checks if the name is the name of any library module that requires explicit loading. If matched, the library module is imported. Otherwise, continue to **Step 6**.
+- **Step 5**. For relative importing, find the module according to the name from the folder the `.k` file including this `import` statement exists. Interpret leading dots using the following rule:
+- One dot: Ignore.
+- Tow or more dots: Suppose there are `n` leading dots, then the searching starts at `n - 1` levels above this folder. If matched, the module is imported. Otherwise, continue to **Step 6**.
+- **Step 6**. Module not found, report an error.
+
+Do case-sensitive search when the operating system allows. If case-sensitive search is not allowed, search directories before regular files.
+
+In KCL, the `from <> import <>` is unsupported, and relative import is performed with the `import <>` syntax.
+
+### Uniqueness of Module
+
+Each module has a unique location path in its scope, so that a module or package could be located with a unique location path, such as `a.b.c`.
+
+Searching by location path should be supported by the kcl compiler, which needs to provide corresponding searching features through the command line and api form.
+
+## Standard System Packages
+
+KCL supports a few standard system modules. [Here](docs/reference/model/overview) is the full list of these standard system modules.
+
+### The Built-in System Package
+
+KCL provides a list of built-in system modules, which are loaded automatically and can be directly used without providing any module name. For example, `print` is a widely used built-in module.
+
+The following is the full list of these built-in system modules:
+
+- print()
+  - The print function.
+- multiplyof(a, b)
+  - Check if the modular result of a and b is 0
+- isunique(inval)
+  - Check if a list has duplicated elements
+- len(inval)
+  Return the length of a value
+- abs(x)
+  Return the absolute value of the argument.
+- all(iterable)
+  Return True if bool(x) is True for all values x in the iterable. If the iterable is empty, return True.
+- any(iterable)
+  Return True if bool(x) is True for any x in the iterable. If the iterable is empty, return False.
+- bin(number)
+  Return the binary representation of an integer.
+- hex(number)
+  Return the hexadecimal representation of an integer.
+- oct(number)
+  Return the octal representation of an integer.
+- ord(c) -> int
+  Return the Unicode code point for a one-character string.
+- sorted(iterable)
+  Return a new list containing all items from the iterable in ascending order. A custom key function can be supplied to customize the sort order, and the reverse flag can be set to request the result in descending order.
+- range(start, end, step=1)
+  Return the range of a value with start, end and step parameter.
+- min(iterable)
+  With a single iterable argument, return its smallest item. The default keyword-only argument specifies an object to return if the provided iterable is empty. With two or more arguments, return the smallest argument.
+- max(iterable)
+  With a single iterable argument, return its biggest item. The default keyword-only argument specifies an object to return if the provided iterable is empty. With two or more arguments, return the largest argument.
+- sum(iterable, start)
+  Return the sum of a 'start' value (default: 0) plus an iterable of numbers. When the iterable is empty, return the start value. This function is intended specifically for use with numeric values and may reject non-numeric types.
+- pow(x, y, z)
+  Equivalent to `x**y` (with two arguments) or `x**y % z` (with three arguments). Some types, such as ints, are able to use a more efficient algorithm when invoked using the three argument form.
+- round(number, ndigits)
+  Round a number to a given precision in decimal digits. The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as the number. ndigits may be negative.
+- typeof(x: any, \*, full_name: bool = False) -> str
+  Return the type of the value 'x' at runtime. When the 'full_name' is 'True', return the full package type name such as `pkg.schema`.
+
+### Plugin Modules
+
+KCL compiler needs to provide the ability to dynamically expand and load plugin modules without modifying the compiler itself. KCL compiler needs to support flexible pluggable module extension mechanism, so that KCL users can use more abundant built-in function capabilities to simplify writing.
+
+KCL compiler needs to ensure the stability and safety of the expansion mechanism, without affecting the core of the compiler.
+
+Searching extended plugin module is performed after the standard system module. The standard system module has a higher priority in naming. If it exists a standard or built-in system module with the same name, the extended plugin module will be ignored.
+
+Importing and using the extended plugin module should be consistent with the standard or built-in system module.
+
+### Replacing Standard System Packages
+
+Replacing standard system modules is not allowed.
+
+## Examples
+
+We show more module features through an example.
+
+Suppose we have the following directories and files:
+
+```
+    .
+    ├── mod1.k
+    ├── mod2.k
+    ├── pkg1
+    │   ├── def1.k
+    │   ├── def2.k
+    │   └── def3init.k
+    └── pkg2
+        ├── file2.k
+        └── subpkg3
+            └── file3.k
 ```
 
-Index signature could be defined in a schema, the syntax is the following:
+From the structure we can see that `pkg1` and `pkg2` are two packages, `subpkg3` is a subpackage of `pkg2`, and `mod1.k` and `mod2.k` are regular modules.
 
-```bnf
-schema_index_signature: LEFT_BRACKETS [NAME COLON] [ELLIPSIS] basic_type RIGHT_BRACKETS COLON type [ASSIGN test] NEWLINE
-```
+### Importing a Standard System Package
 
-Once defined, an attribute must have a valid type:
-
-```bnf
-type: type_element ("|" type_element)*
-type_element: schema_type | basic_type | list_type | dict_type
-schema_type: operand_name
-basic_type: "str" | "int" | "float" | "bool"
-list_type: "[" (type)? "]"
-dict_type: "{" (type)? COLON (type)? "}"
-```
-
-The followings are some basic examples:
+The following statement can import the standard system module `math`
 
 ```python
-# A person has a first name, a last name and an age.
-schema person:
-    firstName: str
-    lastName: str
-    # fullName is generated by firstName and lastName
-    fullName: str = firstName + ' ' + lastName
-    # The default value of age is 0
-    age: int = 0
-
-# An employee IS a person, and has some additional information.
-schema employee(person):
-    bankCard: int
-    nationality: str
-
-# A company has a name and many employees.
-schema company:
-    name: str
-    employees: [employee]
+import math
 ```
 
-More complex schema definitions will be elaborated after other concepts are
-introduced.
-
-#### Optional Attribute
-
-Each attribute **must** be assigned with a not-None value as a schema instance unless it is modified by a question mark as an optional attribute.
-
-Examples:
-
-```bnf
-schema employee(person):
-    bankCard?: int # bankCard is an optional attribute
-    nationality?: str # # nationality is an optional attribute
-```
-
-When there is an inheritance relationship:
-
-- If the attribute is optional in the base schema, it could be optional or required in the sub-schema.
-- If the attribute is required in the base schema, it must be required in the sub-schema.
-
-### Configuration Definition
-
-A configuration is structured data stored in a dict-like structure. In KCL, we have introduced
-the configuration definition syntax as a variant of dict definition syntax.
-
-```bnf
-schema_expr: operand_name ("(" [arguments] ")")? dict_expr
-```
-
-As can be seen, apart from having an identifier as schema type, a configuration definition
-is just an ordinary dict definition, and each key in the dict matches an attribute in the schema.
-
-To simplify configuration, schema attribute key is much easier to define as:
-
-- schema attribute key can be unquoted. When the attribute key has the same name as a variable, it must be quoted as a normal dict to avoid naming conflict.
-- schema attribute key can be defined nested through `select expression`, such as `a.b.c`.
-
-The comma at the end of each line can be omitted.
-
-For example, we can define a `person` named `John Doe` using the following statement:
+This is the only way to import a standard system module. After importing a standard system module, functions, variables and schemas defined in it can be used. For example, the following statement uses the `log10` function
+defined in `math`
 
 ```python
-johnDoe = person {
-    # In the result, 'lastName' appears later than 'firstName', according the schema
-    lastName = 'Doe'
-    firstName = 'John'
-    # If we don't specify the 'age', the default value 0 is used.
-    # 'age': 20
-}
+a = math.log10(100) # a is 2 after computation.
 ```
 
-The result is a **dict**:
+### Importing a Regular Module
+
+In `mod1.k`, we can import `mod2` using one of the following syntaxes.
 
 ```python
-{
-    'firstName': 'John'
-    'lastName': 'Doe'
-    'age': 0
-}
-```
-
-Compared to the ordinary dict definition, a configuration definition has the following features:
-
-- Each attribute defined in the schema (or one of the schemas) could be configured, and config data has higher priority than the default value.
-- When an attribute defined in the schema (or one of the schemas) is not configured in the configuration definition statement, and it has a default value, the default value is used.
-- Unless the schema (or one of the schemas) is a **relaxed schema**, no more attributes can be defined.
-- The quotation marks of dict key can be omitted.
-- The comma at the end of each line can be omitted.
-- Cases of **inheritance** will be discussed separately.
-
-For attributes of list, dict and schema types, the config data is added by **union** instead of reassignment. For instance:
-
-```python
-schema Name:
-    firstName: str
-    lastName: str
-
-schema Person:
-    name: Name = {
-        firstNam = "John"
-        lastName = "default"
-    }
-
-JohnDoe = Person {
-    name.lastName = "Doe"
-}
-```
-
-The result is a **dict**:
-
-```python
-{
-    'firstName': 'John'
-    'lastName': 'Doe'
-}
-```
-
-#### Attribute Identify
-
-Each key identifier in the configuration expr identifies an element or a range of elements in a schema. The key identifier may consist of multiple attribute identifiers, and each attribute may be a basic type value, a list, a dict or schema. For example, the key identifier 'a.b.c' identifies the element 'c' in the 'A' schema:
-
-```python
-
-schema C:
-    c: int
-
-schema B:
-    b: C
-
-schema A:
-    a: B
-
-A {
-    a.b.c: 5
-}
-```
-
-To make the key identifier usage rules as clear as possible, we define the way of identifying with complex data types as follows.
-
-##### List
-
-Suppose we have a list attribute a.
-
-Identify an element in a:
-
-```python
-a[0]   # the first element
-a[3]   # the 4th element
-a[-1]  # the last element
-a[-2]  # the penultimate element
-```
-
-Identify a range of elements in the list:
-
-```python
-a[2:5]  # a slice of the third, 4th, and 5th elements
-a[:5]   # a slice of the first to 5th elements
-```
-
-#### Attribute Operator
-
-Once we identified the element(s), we can declare operation on it. It follows the pattern of `identifier op E`.
-
-#### Union
-
-Pattern: `identifier : E`
-
-The value of the expression `E` will be unioned into the element value.
-
-Examples:
-
-```python
-a = A {
-    # union {d:4} into the element b.c, suppose c is a schema with an int type attribute d.
-    b.c : {
-        d : 4
-    }
-}
-```
-
-See 'union' in `expressions` spec for more details.
-
-#### Override
-
-Pattern: `identifier = E`
-
-The value of the expression `E` will override the element value.
-
-Examples:
-
-```python
-a = A {
-    # override {c:4} to the element b, suppose b is a schema with an int type attribute c.
-    b = {
-        c: 4
-    }
-}
-```
-
-Unlike union, the override operation will reassign the element with a brand new value.
-For basic type value, `union` and `override` have equivalent effects.
-
-Note:
-
-- Especially, we can "delete" its content by overriding the element to `Undefined`, such as `{ a = Undefined }`.
-
-#### Insert
-
-Pattern: `identifier += E`
-Insert only works for list type `identifier`.
-
-List `E` will be inserted just after the specified index of the list `identifier`, and the following elements after the index will be automatically shifted.
-
-Examples:
-
-```python
-a = A {
-    # insert {c:4} to the end position(just after index=1), suppose b is a list of schema with an int type attribute c.
-    b += {
-        c: 4
-    }
-}
-```
-
-If no index is specified, the last index will be used.
-
-The type of 'E' must be compatible with the type of list. See `types` for more details.
-
-#### Index Signature
-
-Index signatures can be defined in the KCL schema, and it means that the key-value constraints of the index signature can be used to construct a dict with the schema type, or additional checks can be added to the relaxed schema attributes to enhance the KCL type and semantic checks.
-
-- Use the form `[{attr_alias}: {key_type}]: {value_type}` to define an index signature in the schema, and `{attr_alias}` can be omitted.
-
-```python
-schema Map:
-    """
-    Map is a relaxed schema with a key of str type and a value of str type
-    """
-    [str]: str  # `{attr_alias}` can be omitted.
-
-data = Map {
-    key1 = "value1"
-    key2 = "value2"
-}
-```
-
-- Mandatory all attributes of the schema key and value types
-
-```python
-schema Person:
-    name: str
-    age: int  # error, conflicts with the index signature definition `[str]: str`
-    [str]: str  # The values of all attributes of the schema can only be strings
-```
-
-- Mandatory all attribute key and value types are defined in the schema, which is equivalent to restricting all attribute types except the relaxed attributes.
-
-```python
-schema Person:
-    name: str
-    age: int
-    [...str]: str  # Except for the `name` and `age` attributes, the key type of all other attributes of the schema must be `str`, and the value type must also be `str`.
-```
-
-- Define the index signature attribute alias and use it with the check block.
-
-```python
-schema Data:
-    [dataName: str]: str
-    check:
-        dataName in ["Alice", "Bob", "John"]
-
-data = Data {
-    Alice = "10"
-    Bob = "12"
-    Jonn = "8"  # error Jonn not in ["Alice", "Bob", "John"]
-}
+import mod2
 ```
 
 ```python
-import regex
-
-schema DataMap:
-    [attr: str]: str
-    check:
-        regex.match(attr, r'^[-_a-zA-Z0-9]+$')
-
-data = DataMap {
-    key1 = "value1"
-    "foo.bar" = "value2"  # check error
-}
+import .mod2
 ```
 
-### Schema Context
+The difference is that in the first syntax, the KCL compiler will first try to check if `mod2` matches any of the standard system modules' name. Since it does not match any standard system module's name, the statement will check the directory where `mod1.k` resists in, like what the second statement does.
 
-The schema definition space can be regarded as a separate function context.
-
-Init statement could be defined inside the schema, the syntax is the following:
-
-```bnf
-statement: small_stmt NEWLINE | if_stmt
-```
-
-The following is an example:
+Suppose in `mod2.k` there is a definition of a variable::
 
 ```python
-schema Person:
-    firstName: str = "John"
-    lastName: str
-    # fullName is generated by firstName and lastName in a separate init statement
-    fullName: str = firstName + ' ' + lastName
-
-JohnDoe = Person {
-    lastName = "Doe"
-}
+a = 100
 ```
 
-The result is a **dict**:
+After importing `mod2`, we can access `a` in `mod1.k` using the following syntax
 
 ```python
-{
-    'firstName': 'John'
-    'lastName': 'Doe'
-    'fullName': 'John Doe'
-}
+b = mod2.a
 ```
 
-If statement, expr statement and assert statement are supported as a schema init
-statement. See more in statement spec.
+### Importing a Package
 
-- The attributes must be defined first, including inherited ones, and then used in the init statement.
-- Statements in the schema context will be executed sequentially.
-- The value of attributes referenced in the init statement will be evaluated at runtime.
-  See the **Configuration Definition** section for the assignment rules of non-referenced attributes. For example, `"fullName"` in Person is generated by `"firstName"` and `"lastName"` evaluated at runtime, in which firstName is 'John', and lastName is "Doe".
-
-The immutability of attributes in the schema context follows the same rules as the immutability of global variables:
+In `mod1.k`, we can import `pkg1` using one of the following syntaxes.
 
 ```python
-schema Person:
-    age: int = 1  # Immutable attribute
-    _name: str = "Alice"  # Mutable attribute
-
-    age = 10  # Error
-    _name = "Bob"  # Ok
+import pkg1
 ```
-
-#### Arguments
-
-Schema context can also have arguments. The following is an example.
 
 ```python
-schema Person[separator]:
-    firstName: str = "John"
-    lastName: str
-    fullName: str = firstName + separator + lastName
-
-JohnDoe = Person('_') {
-    lastName = "Doe"
-}
+import .pkg1
 ```
 
-The example is similar to the previous one, except that the separator character used in
-the `"fullName"` member is passed in as an argument. The way to perform a schema generation
-when the schema has an initialization function with arguments is demonstrated in the code.
+The difference is that in the first syntax, the KCL compiler will first try to check if `pkg1` matches any of the standard system modules' name. Since it does not match any standard system module's name, the statement will check the directory where `mod1.k` resists in, like what the second statement does.
 
-### Check Block
+We can use similar statements to import `pkg2`. Note that importing `pkg2` will not import `subpkg3`.
 
-Optionally, a check block can be added to a schema definition to allow
-additional checking to be performed.
+The name of the package is the name of the imported module.
 
-The syntax is the following:
-
-```bnf
-check_block: "check" ":" NEWLINE _INDENT check_expr+ _DEDENT
-check_expr: test (IF test)? [":" primary_expr] NEWLINE
-```
-
-In terms of grammatical definition, a check block consists of a list of conditional expressions. The following is an example:
+Suppose in `file2.k` that is inside `pkg2` there is a definition to variable `foo`
 
 ```python
-schema employee(person):
-    bankCard: int
-    gender: str
-
-    check:
-        len(str(bankCard)) == 16
-        gender in ['male', 'female'], "The gender {} is unsupported".format(gender)
+foo = 100
 ```
 
-The ability of KCL check expressions covers the abilities that can be defined by OpenAPI spec and is aligned with the ability of logical expressions. We consider further aligning the syntax with `CEL` spec.
-Whether to support `lambda expressions` is still under discussion.
-
-Summary:
-
-- A check block consists of one or more logical **expressions**.
-- When defining a configuration, the expressions in the check block are evaluated
-  in any order. If any of the expression is `False`, an error is reported.
-- A custom error message can be provided after an expression.
-
-### Specifying Types
-
-Optionally, the type of any member of a schema can be specified. As previous examples have shown.
-
-A member can be of a basic type, such as a string (`str`), a floating-point number (`float`), a fixed-point number (`int`) or a boolean number (`bool`).
-
-A member can also be of a dictionary generated from another schema. In such a case, the name of the other schema is used as the type name.
-
-A member can also be a list or an ordinary dict:
-
-- A list with unspecified type of elements is `[]`.
-- A list with elements of type `t` is `[t]`. Here `t` is another type.
-- A dict with keys of type `kt` and values of type `vt` is `{kt:vt}`.
-- `kt`, `vt` or both of them can be missing, like a list with unspecified type of elements.
-
-The followings are some more examples:
-
-- A list of lists of strings: `[[str]]`.
-- A dict of keys with the type string and unspecified value types: `{str:}`.
-
-A member can be a **union type** defined by `|`, such as `a | b`, which means the type of the member could be a or b.
-
-A union type can include types of `int`, `str`, `float`, `bool`, `list` and `dict` and support type nesting e.g. `{str:str|int}` and `[[int|str]|str|float]`, etc.
-
-Examples:
+This variable can be used in `mod1.k` after importing `pkg2` like the following
 
 ```python
-schema x:
-    p: int | str # p could be defined as a int or string
+bar = pkg2.foo
 ```
 
-### Immutability
+### Importing a Subpackage
 
-KCL pursues strict immutability of schema attributes. It's generally followed the rules:
-
-- For the attributes of the basic type, such as string, int and float, it's allowed to be reassigned
-  through the init statement in **schema context** or by the **configuration definition**.
-- For the attributes of list, dict and schema type, it's allowed to be reassigned only by the init statement in **schema context**. The content of it is allowed to be operated in **schema context** or by the **configuration definition**.
-- Any other attempt to reassign or modify schema attribute will report an error.
-
-#### Assign by Value
-
-When using a schema variable to assign the value to another variable, we can only get a deep copy of its value, not a pointer or reference. That is, modifying the assigned value will not change the assigned schema variable.
+To import `subpkg3` from `mod1.k`, one of the following statements can be used.
 
 ```python
-schema Person:
-    name: str
-
-person = {
-    name = "Alice"
-}
-personCopy = person  # 'personCopy' is a deep copy of 'person' and modifying 'personCopy' will not affect 'person'
+import pkg2.subpkg3
 ```
-
-### Union Operator
-
-For list, dict and schema, we can union delta to existing data. For example:
 
 ```python
-schema Name:
-    firstName: str
-    lastName: str
-
-schema Person:
-    name: Name = {
-        firstName = "John"
-    }
-
-    # union a schema and a dict
-    name: Name {
-        lastName = "Doe"
-    }
-
-person = Person {}
+import .pkg2.subpkg3
 ```
 
-The result is a **dict**:
+The behaviors of these statements are identical.
+
+The name of the subpackage is the name of the imported module.
+
+Suppose in `file3.k` that is inside `subpkg3` there is a definition to variable `foo`
 
 ```python
-{
-    'person': {
-        'name': {
-            'firstName': 'Jhon',
-            'lastName': 'Doe'
-        }
-    }
-}
+foo = 100
 ```
 
-### Other Operators
-
-Except for `assignment` and `union assignment`, it's not support other operators on schema type data.
-Report an error if trying to use other operators on schema type data.
-
-### Deprecated
-
-The schema attribute can be marked as deprecated once it's considered invalid.
+This variable can be used in `mod1.k` after importing `subpkg3` like the following
 
 ```python
-schema Person:
-    @deprecated(version="1.1.0", reason="use fullName instead", strict=True)
-    name: str
-    ... # Omitted contents
-
-person = Person {
-    # report an error on configing a deprecated attribute
-    name = "name"
-}
+bar = subpkg3.foo
 ```
 
-- Deprecated attributes cannot be configured under any circumstances. Report an error or warning once the attribute is assigned.
-- Define the expired version of the attribute through **version**, and define the reason for the attribute expired through **reason**.
-- When strict is true, the attribute assignment will cause an error, otherwise it will report a warning and ignore the attribute assignment.
+### Relative Importing
 
-### Composition
+Relative importing is useful when there is code trying to import modules that does not exist recursively inside the current directory.
 
-The composition is a common way to define complex structures. KCL provides simplified means for the configuration definition of combined structures.
-
-Assuming we have the following schemas, which is defined by a combination of multiple schemas.
+For example, the following statements, if written in `file3.k`, can be used to import `pkg2`, `pkg1` and `mod2` respectively.
 
 ```python
-schema Name:
-    firstName: str
-    lastName: str
-
-schema Person:
-    name: Name
-    age: int
-
-schema Group:
-    name: str
-    persons: [Person]
+import ...pkg2 # Go two levels up then import pkg2
+import ...pkg1 # Go two levels up then import pkg1
+import ...mod2 # Go two levels up then import mod2
 ```
 
-To config a group:
+### Importing from a Root Path
+
+Suppose we have a `kcl.mod` file in the directory to mark it as a root path, then we have the following files:
+
+```
+    .
+    |── kcl.mod
+    ├── mod1.k
+    ├── mod2.k
+    ├── pkg1
+    │   ├── def1.k
+    │   ├── def2.k
+    │   └── def3init.k
+    └── pkg2
+        ├── file2.k
+        └── subpkg3
+            └── file3.k
+```
+
+In `pkg1` `def1.k`, we can import `pkg2.subpkg3` `file3` using the following syntaxes.
 
 ```python
-group = Group {
-    name = "group"
-    persons = [{
-        name = {
-            firstName = "John"
-            lastName = "Doe"
-        }
-        age = 24
-    }]
-}
+import pkg2.subpkg3.file3
 ```
 
-- Top-level schema name is required to config a schema.
-- The schema of the attributes in the schema can be omitted.
+Importing from the root path is very convenient when the code is trying to import modules from a directory needs to look up multiple directories above this directory. At also, it is helpful to organize a large number of files in a root directory.
 
-Multi-level nested schemas will make the configuration verbose. KCL supports defining attributes in the schema through `selector expression`. The selector form is **x.y.z**, see the following example:
+### Importing a Module Inside a Package
+
+Note that `subpkg3` is only implemented with one file `file3.k`. The file can be regarded as a regular module and imported directly.
+
+In `mod1.k`, the importing statement would be::
 
 ```python
-group = Group {
-    name = "group"
-    persons = [{
-        name.firstName = "John"
-        name.lastName = "Doe"
-        age = 24
-    }]
-}
+import pkg2.subpkg3.file3
 ```
 
-- Selector can be used to represent attribute in a schema
-
-### Inheritance
-
-Inheritance is an effective means to define a hierarchical structure definition, and KCL supports limited **single inheritance** of the schema.
+Different from importing `subpkg3`, now the name of the module is `file3`. We can access the variable `foo` defined in this module with the following
+statement
 
 ```python
-schema Person:
-    firstName: str
-    lastName: str
-
-# schema Scholar inherits schema Person
-schema Scholar(Person):
-    fullName: str = firstName + '_' + lastName
-    subject: str
-
-JohnDoe = Scholar {
-    firstName = "John",
-    lastName = "Doe",
-    subject = "CS"
-}
+bar = file3.foo
 ```
 
-The result is a **dict**:
+### Precedence of Importing
+
+When an import statement specifies a package to import, the virtual machine first looks for a directory named according to the import statement in the file system.
+
+If such a directory is not found, the virtual machine looks for a single file module.
+
+For example, when the statement `import a.b.c` appears, the virtual machine first looks for the directory `a/b/c` from the directory of the current file. If `a/b/c` is not found, the virtual machine looks for a file named `a/b/c.k`. If the file is also absent, an error is reported.
+
+### Package Implemented with Multiple Files
+
+Package `pkg1` is implemented with multiple KCL files.
+
+Multiple files can be used to define variables, schemas and functions, and they can access names defined in other files of this package.
+
+For example, suppose `def1.k` defines a variable `foo`, `def2.k` defines `bar`, and `def3init.k` defines a variable `baz`, when `pkg1` is imported by `mod1.k`, all these variable can be used
 
 ```python
-{
-    'JohnDoe': {
-        'firstName': 'John'
-        'lastName': 'Doe'
-        'fullName': 'John Doe'
-        'subject': 'CS'
-    }
-}
+import pkg1
+a = pkg1.foo + pkg1.bar + pkg1.baz
 ```
 
-Each schema can be treated as a separated function context. Statements, including attribute statements and init statements, in the context of schemas will be evaluated from base schema to subschema according to the inheritance order. Each schema context is evaluated only once sequentially. The same goes for expressions in the check block. In the example, firstName and lastName are configured in the context of Person schema, and fullName is formed by splicing firstName and lastName in the context of Scholar schema.
-
-The default value can be modified in each schema. Value defined in **Configuration Definition** has a higher priority than the default value. Attributes with default values in any schema context ​​will eventually be unioned by configuration data. References to attributes in the schema context statements will use the value with unioned configuration data on evaluating at runtime. For example:
+Inside a module, names defined in a file can be accessed in another file without further importing. For example, suppose `bar` in `def2.k` would invoke `foo` defined in `def1.k`, it can directly use `foo` like the following
 
 ```python
-schema a:
-    x = 1
-    y = x * 2
-
-schema b(a):
-    x = 2
-
-v = a {
-    x = 3
-}
-
+bar = foo + 1
 ```
-
-The result is a **dict**:
-
-```python
-{
-    'v': {
-        'x': 3
-        'y': 6
-    }
-}
-```
-
-Notes:
-
-- Report an error if inheriting more than one base schema.
-- The type of the base schema attribute cannot be modified in the subschema.
-- Report an error if inheriting a **mixin**.
-- Report an error when a circular dependency occurs.
-
-Limitations:
-
-Since inheritance will derive some complex demands, we are cautious about these complex demands. There are still some restrictions on inheritance, and it's still under discussion.
-
-- KCL provides limited and deterministic polymorphism support, more complex and flexible polymorphism support, such as **self**, **super** keywords, are temporarily not included in the schema definition.
-- Currently, KCL only supports the polymorphism of the inherited attributes of the schema, and does not support the polymorphism of the expressions in the check block.
-- For the case of multiple levels of schema inheritance, the schema arguments can only be passed to the last level of sub-schema.
-
-### Mixin
-
-In addition to **composition** and **inheritance**, KCL supports declarative reuse of schema code through the **mixin** mechanism. To use a mixin, we only need to declare the **mixin** in the schema definition.
-
-The **mixin** syntax is the following:
-
-```bnf
-//////////// mixin_stmt ////////////
-mixin_stmt: "mixin" "[" [mixins | multiline_mixins] "]" "\n"
-multiline_mixins: "\n" _INDENT mixins "\n" _DEDENT
-mixins: operand_name ("," ("\n" mixins | operand_name))*
-```
-
-Here is a simple example:
-
-```python
-schema Person:
-    mixin [FullNameMixin]
-    firstName: str = "default"
-    lastName: str
-
-schema FullNameMixin:
-    fullName: str = "{} {}".format(firstName, lastName)
-
-JohnDoe = Person {
-    firstName = "John"
-    lastName = "Doe"
-}
-```
-
-The result is a **dict**:
-
-```python
-{
-    'JohnDoe': {
-        'firstName': 'John'
-        'lastName': 'Doe'
-        'fullName': 'John Doe'
-    }
-}
-```
-
-Multiple mixins can be added to a single schema, and mixins context will be evaluated after the host schema context at runtime. In the inheritance scenario, the mixin context can be regarded as a part of the host schema context, and the overall evaluation of schema context order is not affected.
-
-Notes:
-
-- The name of **mixin** schema must end with 'Mixin', otherwise an error will be reported.
-- The attributes referenced in the **mixin** must be defined in the **mixin** itself or host schema, otherwise an error will be reported.
-
-### Protocol
-
-In addition to schema, an additional type definition method `protocol` is provided in KCL, and its properties are as follows:
-
-- In a protocol, only attributes and their types can be defined, complex logic and check expressions cannot be written, and mixins cannot be used.
-- A protocol can only inherit or refer to other protocols, but cannot inherit or refer to other schemas.
-
-We can use **protocol** to add an optional host type to the dynamically inserted **mixin**.
-
-The **mixin** can define its host type through the `for` keyword, and internally it will query the type corresponding to the attribute from the host type.
-
-```python
-protocol DataProtocol:  # A mixin host type
-    data: str
-
-mixin DataMixin for DataProtocol:  # Using the `for` keyword to define a mixin host type
-    x: int = data  # The type of `data` is `str`, which is from `data` of `DataProtocol`
-```
-
-In `DataMixin`, the `data` attribute is obtained according to the `DataProtocol` host type as `str` type, and then a type error will occur when the value is assigned to `x` of type `int`:
-
-```python
-protocol DataProtocol:
-    data: str
-
-mixin DataMixin for DataProtocol:
-    x: int = data  # Error: expect int, got str
-    x: str = data  # Error: can't change schema field type of 'x' from int to str
-```
-
-Please note that the host type **protocol** can only be used for **mixin** definitions (the suffix name is `Mixin`), otherwise an error will be reported.
-
-```python
-protocol DataProtocol:
-    data: str
-
-schema Data for DataProtocol:  # Error: only schema mixin can inherit from protocol
-    x: str = data
-```
-
-### Schema Context Evaluation
-
-The schema definition is composed of attribute statements, configuration data, init statements, mixins, and checks. In a separate schema context, the evaluation top-down order is as follows:
-
-```
-|------------------------------------------|
-|            attribute defaulting          |
-|------------------------------------------|
-|             configuration union          |
-|------------------------------------------|
-|            attribute templating          |
-|------------------------------------------|
-|       statements in declaration order    |
-|------------------------------------------|
-|          mixins in declaration order     |
-|------------------------------------------|
-|        check expressions in any order    |
-|------------------------------------------|
-```
-
-In the case of schema inheritance, each schema context is evaluated from the base schema in the order of inheritance, and each context is evaluated only once.
-Suppose there are schemas a, b, and c, where c inherits b and b inherits a. Schema contexts will be evaluated in top-down order as:
-
-```
-|-----------------|
-|    schema a     |
-|-----------------|
-|    schema b     |
-|-----------------|
-|    schema c     |
-|-----------------|
-```
-
-### Members
-
-Built-in function and members of schema
-
-- instances()
-  Return the list of existing instances of a schema.
-
-### Irrelevant Order Calculation
-
-The irrelevant order calculation in the schema indicates the reference relationship between the internal attributes of the schema. For example, when we declare an expression of the form `a = b + 1`, the calculation of the value of `a` depends on the calculation of the value of `b`. When the compiler calculate the value of `a` and the value of `a` depends on the value of `b`, the compiler will choose to first calculate the value of `b`, and then calculate the value of a according to the expression `a = b + 1`, which is slightly different from the calculation method of traditional procedural language the difference.
-
-Since the calculation of values in the schema is based on dependencies, just like a directed acyclic graph traverses each node in the graph according to the order of topological sorting, the order of declaration of attributes in the schema is not so important, so the feature is called the irrelevant order calculation.
-
-Please note that there can be no circular references between different schema attribute values.
-
-We can see this feature through the following examples.
-
-```python
-schema Person:
-    name?: str
-    age: int = _age
-
-    _age = 10
-
-    if name == "Son":
-        _age = 18
-
-schema Son(Person):
-    name: str = "Son"
-
-person = Person {}
-son = Son {}
-```
-
-The output is
-
-```yaml
-person:
-  name: null
-  age: 10
-son:
-  name: Son
-  age: 18
-```
-
-Besides, we can achieve KCL polymorphism such as
-
-```python
-schema Person:
-    name?: str
-    _age: int = _age
-
-    _age = 10
-    if name == "Son":
-        _age = 18
-    elif name == "SonConf":
-        _age = 24
-
-schema Son(Person):
-    name: str = "Son"
-
-person = Person() {}
-son = Son() {
-    name = "SonConf"
-}
-```
-
-The output is
-
-```yaml
-person:
-  name: null
-  age: 10
-son:
-  name: SonConf
-  age: 24
-```
-
-More examples:
-
-```python
-schema Fib:
-    n1: int = n - 1
-    n2: int = n1 - 1
-    n: int
-    value: int = _value
-
-    if n <= 2:
-        _value = 1
-    else:
-        _value = (Fib {n = n1}).value + (Fib {n = n2}).value
-
-fib8 = (Fib {n = 8}).value
-```
-
-The output is
-
-```yaml
-fib8: 21
-```
-
-As in the above examples, we can see that in the schema, we only need to simply specify the dependency between attributes, and the compiler will automatically calculate the value based on the dependency, which can help us save a lot of boilerplate code and reduce configuration difficulty of writing.
