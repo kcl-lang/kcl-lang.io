@@ -17,7 +17,7 @@ KCL 模块按目录层次结构布置配置。它包含了确定 KCL 配置结�
 可以通过在模块根目录中运行以下命令来创建模块:
 
 ```bash
-kpm init [module name]
+kcl mod init [module name]
 ```
 
 模块名在需要在模块内导入另一个模块的包时是**必需的**。也可以通过手动设置 `kcl.mod` 文件来创建模块。
