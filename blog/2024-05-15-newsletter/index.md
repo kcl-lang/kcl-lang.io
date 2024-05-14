@@ -94,7 +94,7 @@ We'd like to thank all the community participants from the past two weeks. The f
 - Thanks to @d4v1d03 for contributions to the hover feature in KCL IDE. 🙌
 - Thanks to @ibishal for contributions to the preview feature in KCL IDE. 🙌
 - Thanks to @bradkwadsworth-mw for contributions to the access rights field in the KRM KCL specification. 🙌
-- Thanks to @jgascon-nx and @metacoma for sharing experiences and case studies on using KCL and Crossplane KCL functions. 🙌
+- Thanks to @jgascon-nx and @metacoma for sharing experiences and case studies on using KCL and Crossplane KCL functions, see [here](https://github.com/mindwm/mindwm-gitops) for more information. 🙌
 - Thanks to @mintu, @Sergei Iakovlev, @HAkash Kumar, @HStéphane Este-Gracias, @Korada Vishal, @Bishal, @metacoma, @NAVRockClimber, @nkabir, @dennybaa, @dopesickjam, @vfarcic, @sestegra, @jgascon-nx, @zargor, @markphillips100, @evensolberg, @borgius, @bradkwadsworth-mw, @reedjosh, @patrycju, @PrettySolution, @selfuryon, @steeling, @empath-nirvana, @CC007, @M Slane, @MOHAMED FAWAS, and @Even Solberg, among others, for their valuable advice and feedback during the recent use of KCL. 🙌
 
 ## Resources

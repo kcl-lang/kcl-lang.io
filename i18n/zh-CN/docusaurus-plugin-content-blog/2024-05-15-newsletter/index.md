@@ -94,7 +94,7 @@ type_type = typeof(Foo) # type
 - 感谢 @d4v1d03 对 KCL IDE 悬停功能的贡献 🙌
 - 感谢 @ibishal 对 KCL IDE Preview 功能的贡献 🙌
 - 感谢 @bradkwadsworth-mw 对 KRM KCL 规范中访问权限字段以及的贡献 🙌
-- 感谢 @jgascon-nx 和 @metacoma 对使用 KCL 和 Crossplane KCL 函数的经验和案例分享 🙌
+- 感谢 @jgascon-nx 和 @metacoma 对使用 KCL 和 Crossplane KCL 函数的经验和案例分享, 查看[代码仓库](https://github.com/mindwm/mindwm-gitops) 🙌
 - 感谢 @mintu, @Sergei Iakovlev, @HAkash Kumar, @HStéphane Este-Gracias, @Korada Vishal, @Bishal, @metacoma, @NAVRockClimber, @nkabir, @dennybaa, @dopesickjam, @vfarcic, @sestegra, @jgascon-nx, @zargor, @markphillips100, @evensolberg, @borgius, @bradkwadsworth-mw, @reedjosh, @patrycju, @PrettySolution, @selfuryon, @steeling, @empath-nirvana, @CC007, @M Slane, @MOHAMED FAWAS 和 @Even Solberg 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 其他资源
