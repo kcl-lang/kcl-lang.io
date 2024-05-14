@@ -8,7 +8,7 @@ We provide two IntelliJ KCL plugin
 
 - IntelliJ KCL: The basic version of the KCL plugin provides basic features of syntax highlighting and keywords completion, and can be used in more versions of IntelliJ IDE.
 
-- IntelliJ KCL LSP: The KCL plugin implemented based on [LSP (Language Server Protocol)](https://code.visualstudio.com/api/language-extensions/overview) provides more features, such as diagnostics, completion, hover and others. But for some [reasons](https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides), it can only be used in specific versions.
+- IntelliJ KCL LSP: The KCL plugin implemented based on [LSP (Language Server Protocol)](https://code.visualstudio.com/api/language-extensions/language-server-extension-guide) provides more features, such as diagnostics, completion, hover and others. But for some [reasons](https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides), it can only be used in specific versions.
 
 > The integration with the Language Server Protocol is created as an extension to the paid IntelliJ-based IDEs. Therefore, plugins using Language Server integration are not available in Community releases of JetBrains products and Android Studio from Google.
 > Starting with the 2023.2 release cycle, the LSP API is publicly available as part of the IntelliJ Platform in the following IDEs: IntelliJ IDEA Ultimate, WebStorm, PhpStorm, PyCharm Professional, DataSpell, RubyMine, CLion, Aqua, DataGrip, GoLand, Rider, and RustRover.

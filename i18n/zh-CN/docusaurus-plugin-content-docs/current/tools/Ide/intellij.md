@@ -8,7 +8,7 @@ sidebar_position: 3
 
 - IntelliJ KCL: 基础版本的 KCL 插件提供了语法高亮和补全的基础能力，可以在更多版本使用。
 
-- IntelliJ KCL LSP: 基于 [LSP(Language Server Protocol)](https://code.visualstudio.com/api/language-extensions/overview) 实现的 KCL 插件提供了更多功能，如错误提示，智能补全，悬停等功能。但因为某些[原因](https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides)，只能在特定版本中使用。
+- IntelliJ KCL LSP: 基于 [LSP(Language Server Protocol)](https://code.visualstudio.com/api/language-extensions/language-server-extension-guide) 实现的 KCL 插件提供了更多功能，如错误提示，智能补全，悬停等功能。但因为某些[原因](https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides)，只能在特定版本中使用。
 
 > The integration with the Language Server Protocol is created as an extension to the paid IntelliJ-based IDEs. Therefore, plugins using Language Server integration are not available in Community releases of JetBrains products and Android Studio from Google.
 Starting with the 2023.2 release cycle, the LSP API is publicly available as part of the IntelliJ Platform in the following IDEs: IntelliJ IDEA Ultimate, WebStorm, PhpStorm, PyCharm Professional, DataSpell, RubyMine, CLion, Aqua, DataGrip, GoLand, Rider, and RustRover.
