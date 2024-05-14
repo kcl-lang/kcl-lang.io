@@ -4,6 +4,9 @@ metadata:
   name: kcl-plugin-config
   namespace: argocd
 data:
+  # Sometimes, the ArgoCD runs the kcl run command twice simultaneously,
+  # leading to a race condition in the usage of files inside the
+  # KCL_CACHE_PATH and KCL_PKG_PATH directories.
   plugin.yaml: |
     apiVersion: argoproj.io/v1alpha1
     kind: ConfigManagementPlugin
