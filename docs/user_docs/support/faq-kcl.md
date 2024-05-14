@@ -2513,16 +2513,27 @@ s: Hello world
 raw_s: Hello ${worldString}
 ```
 
-## 59. How does KCL infer return types in lambdas?
+## 59. How does KCL infer types in lambdas or how to specify the type for function variables?
 
-For lambda(s),KCL automatically infers the return value type in the function body, although we can explicitly specify it. An example KCL code over here is:
+For lambda(s), KCL automatically infers the parameter types and return value type in the function body, although we can explicitly specify it. An example KCL code over here is:
 
 ```python
+schema Type1:
+    foo?: int
+
+schema Type2:
+    bar?: int
+
 f1 = lambda t: Type1 {
     Type2 {}
 } # The type of f1 is (Type1) -> Type2
-
 f2 = lambda t: Type1 -> Type2 {
+    Type2 {}
+} # The type of f2 is (Type1) -> Type2
+f3: (Type1) -> Type2 = lambda t: Type1 -> Type2 {
+    Type2 {}
+} # The type of f2 is (Type1) -> Type2
+f4: (Type1) -> Type2 = lambda t {
     Type2 {}
 } # The type of f2 is (Type1) -> Type2
 ```
