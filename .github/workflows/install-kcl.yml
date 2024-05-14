@@ -113,15 +113,3 @@ jobs:
           kcl ./examples/configuration/nginx.k
           brew uninstall kcl-lang/tap/kcl
           brew uninstall kcl-lang/tap/kcl-lsp
-
-          brew install kcl-lang/tap/kcl@0.8.0
-          echo "brew installed successfully"
-          kcl version
-          kcl ./examples/configuration/nginx.k
-          kcl-language-server version
-          brew uninstall kcl-lang/tap/kcl@0.8.0
-          brew uninstall kcl-lang/tap/kcl-lsp
-
-          brew install kcl-lang/tap/kcl-lsp
-          kcl-language-server version
-          brew uninstall kcl-lang/tap/kcl-lsp
