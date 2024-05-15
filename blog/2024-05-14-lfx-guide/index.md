@@ -18,21 +18,21 @@ For those interested in cloud-native, platform engineering,compiler, package man
 
 We have three Mentorship projects, covering package management tools, compiler, and IDEs.
 
-#### 1. KCL Package Management Dependencies Sparse Checkout
+### 1. KCL Package Management Dependencies Sparse Checkout
 
 When the scale of KCL project becomes larger and larger, and the external packages that KCL project relies on become more and more, the KCL package manager will become slow due to the need to download a large number of third-party dependencies. It needs to support `Sparse-Checkout`, which means downloading specific dependencies as needed rather than all of them, to improve the performance.
 
 - More details: https://github.com/kcl-lang/kpm/issues/304
 - Apply Link: https://mentorship.lfx.linuxfoundation.org/project/09391266-0de5-426b-9e11-ceb4c28202ef
 
-#### 2. Optimization of KCL LSP prompt information
+### 2. Optimization of KCL LSP prompt information
 
 Optimize KCL LSP(language server protocol) prompt information, including the implementation of type inlayhint and optimization of hover content rendering. Currently, KCL’s hover content is in plain text format and needs to be rendered into a more beautiful style.
 
 - More details: https://github.com/kcl-lang/kcl/issues/1244
 - Apply Link: https://mentorship.lfx.linuxfoundation.org/project/6d85e491-332b-4667-9b57-6ec052310494
 
-#### 3. Supports tree-sitter for KCL
+### 3. Supports tree-sitter for KCL
 
 Tree-sitter is a parser generator tool and an incremental parsing library. In order to support more features of the IDE, we need a more complete syntax tree, and for easy integration with the community, we intend to use tree-sitter to build a more complete parser system for KCL.
 
