@@ -1,6 +1,6 @@
 ---
 slug: 2024-05-14-lfs-guide
-title: 2024 LFX Mentorship Internship Launch:KCL Open Source Community Welcomes Your Participation!!!
+title: 2024 LFX Mentorship Internship Launch - KCL Open Source Community Welcomes Your Participation!!!
 authors:
   name: KCL Team
   title: KCL Team
@@ -20,7 +20,8 @@ We have three Mentorship projects, covering package management tools, compiler, 
 
 #### 1. KCL Package Management Dependencies Sparse Checkout
 
-`kpm` is a package management tool for KCL. When the scale of KCL project becomes larger and larger, and the external packages that KCL project relies on become more and more, `kpm` will become slow due to the need to download a large number of third-party dependencies. `kpm` needs to support `Sparse-Checkout`, which means downloading specific dependencies as needed rather than all of them, to improve the performance of the kpm.
+When the scale of KCL project becomes larger and larger, and the external packages that KCL project relies on become more and more, the KCL package manager will become slow due to the need to download a large number of third-party dependencies. It needs to support `Sparse-Checkout`, which means downloading specific dependencies as needed rather than all of them, to improve the performance.
+
 - More details: https://github.com/kcl-lang/kpm/issues/304
 - Apply Link: https://mentorship.lfx.linuxfoundation.org/project/09391266-0de5-426b-9e11-ceb4c28202ef
 
@@ -54,12 +55,12 @@ If you have any questions, please feel free to get more information directly fro
 
 ### 5. Project Timeline
 
-| activity | date |
-| --- | --- |   
-| mentee applications open | Monday May 13 - Tues May 28, 5:00 PM PDT |
-| application review/admission decisions | Wed May 29 - Tues June 11, 5:00 PM PDT |
-| selection notifications | Tues June 12, 5:00 PM PDT |
-| Mentorship program begins with the initial work assignments | Monday June 17 (Week 1) | 
-| Midterm mentee evaluations and first stipend payments | Wednesday July 24 (Week 6) |
-| Final mentee evaluations and mentee feedback/blog submission due, second and final stipend payment approvals | Wed Aug 28, 5:00 PM PST (Week 12) |
-| Last day of term | Friday Aug 30 |
+| activity                                                                                                     | date                                     |
+| ------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
+| Mentee applications open                                                                                     | Monday May 13 - Tues May 28, 5:00 PM PDT |
+| Application review/admission decisions                                                                       | Wed May 29 - Tues June 11, 5:00 PM PDT   |
+| Selection notifications                                                                                      | Tues June 12, 5:00 PM PDT                |
+| Mentorship program begins with the initial work assignments                                                  | Monday June 17 (Week 1)                  |
+| Midterm mentee evaluations and first stipend payments                                                        | Wednesday July 24 (Week 6)               |
+| Final mentee evaluations and mentee feedback/blog submission due, second and final stipend payment approvals | Wed Aug 28, 5:00 PM PST (Week 12)        |
+| Last day of term                                                                                             | Friday Aug 30                            |
