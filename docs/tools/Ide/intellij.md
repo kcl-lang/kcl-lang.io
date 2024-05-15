@@ -21,11 +21,11 @@ The basic version of the KCL plug-in can be downloaded and used directly from th
 ## IntelliJ KCL LSP
 
 > Note that the LSP version of the plugin is not necessarily available in all versions of IntelliJ IDE. 
-> https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides
+> [https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides]
 
 IntelliJ KCL LSP also can be downloaded from the plugin marketplace
-<!-- todo, wait for plugin publish -->
-![intellij](/img/docs/tools/Ide/intellij/kcl.png)
+
+![intellij](/img/docs/tools/Ide/intellij/kcl-lsp.png)
 
 Apart from that, you need to install [kcl-language-server](https://www.kcl-lang.io/docs/user_docs/getting-started/install#install-language-server) and check `kcl- The language-server` command is in your PATH:
 In MacOs and Linux：
