@@ -2646,3 +2646,12 @@ $Env:KCL_CACHE_PATH = "C:\temp"
 ```
 
 After you set the `KCL_CACHE_PATH`, when you run any KCL commands, the `.kclvm` and other KCL-related directories will be generated on the new configured path. Make sure to restart the terminal or any applications that need to use this environment variable, so that they pick up the updated configuration.
+
+## 65. How to join a list to a string in KCL?
+
+If we want to join a given list L = ['a', 'b', 'c'] into a string with some sepeartor (like a comma ","). 
+
+```bash
+S = ",".join(['a', 'b', 'c'])
+```
+
