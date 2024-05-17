@@ -2610,3 +2610,39 @@ app = MyApp {
    args += ["additional", "args"]
 }
 ```
+
+## 64. Is it possible to configure kcl to generate ".kclvm" and other kcl-related directories on a specific path?
+
+Yes, we can change the path through the variable `KCL_CACHE_PATH`.
+
+- On macOS and Linux:
+
+You can set `KCL_CACHE_PATH` by adding the export command to your `~/.bashrc`, `~/.zshrc`, or similar rc file for your shell, or you can simply run it in the terminal if you want it to be set for the current session only.
+
+```shell
+export KCL_CACHE_PATH=/tmp # or change the path you want
+```
+
+After setting, you can use this command to make it effective immediately:
+
+```shell
+source ~/.bashrc # adjust if using a different shell
+```
+
+- On windows
+
+You can set `KCL_CACHE_PATH` via Command Prompt or PowerShell as an environment variable so that it affects all the KCL sessions.
+
+For Command Prompt, use the setx command which sets the value permanently:
+
+```shell
+setx KCL_CACHE_PATH "C:\temp" /M
+```
+
+For PowerShell, use the $Env: construct, which sets an environment variable within the scope of the session:
+
+```shell
+$Env:KCL_CACHE_PATH = "C:\temp"
+```
+
+After you set the `KCL_CACHE_PATH`, when you run any KCL commands, the `.kclvm` and other KCL-related directories will be generated on the new configured path. Make sure to restart the terminal or any applications that need to use this environment variable, so that they pick up the updated configuration.
