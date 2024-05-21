@@ -28,6 +28,14 @@ Please ensure that the following dependencies are in your PATH:
 - `gcc` for Linux
 - `cl.exe` for Windows, which can be obtained by installing `MSVC` including `MSVCP140.dll` and `VCRUNTIME140.dll`.
 
+## Error: invalid character 'c' looking for beginning of value
+
+Please ensure that the following dependencies are in your PATH:
+
+- `clang` for MacOS
+- `gcc` for Linux
+- `cl.exe` for Windows, which can be obtained by installing `MSVC` including `MSVCP140.dll` and `VCRUNTIME140.dll`.
+
 ## Encountering exit status 0xc0000135 error on Windows platform
 
 Please ensure that `.NET Framework` and `MSVC` are installed on your Windows. If not installed, you can install them and try again.
