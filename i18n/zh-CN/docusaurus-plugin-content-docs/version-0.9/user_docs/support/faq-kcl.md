@@ -2556,3 +2556,72 @@ final_list:
 ## 61. KCL 代码片段 `version: "v1" = "v1"` 是什么意思？
 
 这里的第一个 `"v1"` 表示变量 `version` 的类型是字符串字面类型。第二个 `"v1"` 表示变量 `version` 的默认值是 "v1"。
+
+## 62. 如何定义一个 KCL Schema 校验给定 JSON/YAML 文件的内容？
+
+我们可以使用 kcl 的 vet 工具来校验给定 JSON 文件中的数据。例如，在下面的 data.json 文件中，我们使用以下的 KCL 文件（schema.k）来校验 age 参数。
+
+data.json
+
+```json
+[
+  {
+    "name": "Alice",
+    "age": 18
+  },
+  {
+    "name": "Bob",
+    "age": 10
+  }
+]
+```
+
+schema.k
+
+```kcl
+schema Person:
+    name: str
+    age: int
+
+    check:
+        age >= 10
+```
+
+校验 JSON 数据的命令
+
+```shell
+kcl vet data.json schema.k
+```
+
+## 63. 如何在给定 Schema 扩展数组属性的默认值？
+
+我们使用 += 运算符来扩展 Schema 数组属性的默认值。
+
+```python
+schema MyApp:
+   args: [str] = ["default", "args"]
+
+app = MyApp {
+   args += ["additional", "args"]
+}
+```
+
+## 64. 可以配置 kcl 在特定路径上生成 `.kclvm` 文件夹或者其他与 kcl 编译缓存相关的目录吗？
+
+可以通过变量 KCL_CACHE_PATH 来更改路径。
+
+在 macOS 和 Linux 上：
+
+可以通过向 ~/.bashrc、~/.zshrc 或类似的 shell rc 文件中添加 export 命令来设置 KCL_CACHE_PATH，或者如果您希望它只对当前会话生效，也可以直接在终端中运行它。
+
+```shell
+export KCL_CACHE_PATH=/tmp # 或者更改为您想要的路径
+```
+
+在 Windows 上
+
+可以通过命令提示符或 PowerShell 将 KCL_CACHE_PATH 设置为环境变量，以便影响所有 KCL 会话。 对于命令提示符，请使用 setx 命令来永久设置该值：
+
+```powershell
+setx KCL_CACHE_PATH "C:\temp" /M
+```
