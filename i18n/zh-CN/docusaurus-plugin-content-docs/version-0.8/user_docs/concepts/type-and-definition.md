@@ -9,7 +9,7 @@ KCL features a **gradual static type system**, initially designed to consider sc
 The configuration of attributes and types in KCL usually follows a simple pattern:
 
 $$
-k = (T) v
+k\ o \ (T) \ v
 $$
 
 where $k$ is the attribute name, $v$ is the attributes value, and $T$ is the type annotation. Since KCL has the ability of the type inference, $T$ is usually omitted.

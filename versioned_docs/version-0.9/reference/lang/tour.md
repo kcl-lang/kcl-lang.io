@@ -604,13 +604,22 @@ data = {
 }  # {"key1": "value1", "key2": "value2"}
 ```
 
-We can ignore the key quotation marks when we writing simple literals on the key.
+We can ignore the attribute quotation marks when we writing simple literals on the key.
 
 ```python
 data = {
     key1 = "value1"  # Ignore key quotation '"'
     key2 = "value2"
 }  # {"key1": "value1", "key2": "value2"}
+```
+
+Note that when there is `-`, `.` and other hyphens in the attribute, we must use quotation marks.
+
+```python
+data = {
+    "config.dot.attr" = "value1"  # Note we use `"config.dot.attr"` instead of `config.dot.attr` here.
+    "config-hyphen-attr" = "value2"  # Note we use `"config-hyphen-attr"` instead of `config-hyphen-attr` here.
+}
 ```
 
 In addition, the **config selector expressions** can be used to init a dict instance with nested keys.
