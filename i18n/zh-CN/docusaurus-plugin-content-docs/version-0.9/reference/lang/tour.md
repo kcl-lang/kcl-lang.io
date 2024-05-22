@@ -611,6 +611,15 @@ data = {
 }  # {"key1": "value1", "key2": "value2"}
 ```
 
+请注意，当属性中存在 `-` 和 `.` 等其他连字符时，我们必须使用引号。
+
+```python
+data = {
+    "config.dot.attr" = "value1"  # Note we use `"config.dot.attr"` instead of `config.dot.attr` here.
+    "config-hyphen-attr" = "value2"  # Note we use `"config-hyphen-attr"` instead of `config-hyphen-attr` here.
+}
+```
+
 此外，**选择表达式**可以用于定义包含嵌套键 dict 实例。
 
 ```python
