@@ -65,3 +65,9 @@ Copy a file or directory from the source path to the destination path.
 `mv(src: str, dest: str)`
 
 Move a file or directory from the source path to the destination path.
+
+## read_env
+
+`read_env(key: str) -> str`
+
+Read the environment variable `key` from the current process.
