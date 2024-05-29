@@ -16,79 +16,6 @@ image: /img/biweekly-newsletter.png
 
 **_KCL 官网：[https://kcl-lang.io](https://kcl-lang.io)_**
 
-## 内容概述
-
-感谢所有贡献者过去一段时间 (2024.05.15 - 2024.05.29) 的杰出工作，以下是重点内容概述
-
-**📦️ 三方库更新**
-
-- 新增 difflib 三方库，支持比较配置差异。
-
-**🏄 语言更新**
-
-- kcl 0.9.0-beta.1 新版本发布。
-- 强化了 schema 结构中属性非空的检查过程，优化了在空属性导致的 check 语句失效时的诊断信息。
-- 修复了 doc parse 过程，将字符串字面值解析成 doc 的问题。
-- 修复了编译过程中 resolver 节点类型丢失的问题。
-- 新增语法错误类型以支持 IDE 语法错误的快速恢复。
-- 修复了 KCL 运行时内存泄漏的问题。
-
-**💻 IDE 更新**
-
-- IDE 增加对于部分编译错误的快速恢复。
-- 新增了部分语法 IDE 悬停高亮。
-- Devcontainer 配置新增 vscode 扩展。
-- IDE 新增 config 表达式悬停提示对应 schema 字段。
-- IDE 支持通过 kcl.mod 文件识别编译单元。
-- IDE 修复了文档悬停格式错误。
-- IDE 修复了由于 LSP 的 panic 导致的编译错误。
-- 优化了 LSP 输入的日志内容。
-
-**📬️ 工具链更新**
-
-- KCL 测试工具支持 fast eval 模式。
-- kcl clean 支持清理缓存。
-- 包管理 kcl mod 支持对三方库重命名。
-- 包管理工具修复了添加本地文件目录作为依赖时，kcl.mod 文件依赖丢失的问题。
-- 包管理工具，支持通过分支名称添加 git 三方库。
-- 包管理工具，移除了在更新依赖时输出的无效日志。
-- 包管理工具新增 API 支持写入 kcl.mod 和 kcl.mod.lock 文件。
-- 包管理工具移除加载三方库是请求 metadata 过程。
-- 包管理工具在打包和上传时，针对本地依赖情况输出对应提示信息。
-- 包管理工具 LFX 1 期题目版本管理模块 mvp 版本开发完成。
-- 包管理工具，支持 kcl.mod 文件中通过 include 和 exclude 字段指定打包过程。
-- 包管理工具，移除本地计算三方库 checksum 过程。
-
-**⛵️ API 更新**
-
-- OverrideFile API 返回值中新增编译错误信息。
-- OverrideFile API 支持通过运算符 ":" 和 "+="。
-- ListVariable API 返回值支持解析 List 和 Dict 结构。
-- 修复了 OverrideFile API 在插入 import 语句时导致的配置格式错乱的问题。
-- 重构了获取 schema type 相关的 API。
-- 修复了 LSP handle_semantic_tokens_full 和 handle_document_symbol 方法导致的 panic 问题。
-
-**🔥 SDK 更新**
-
-- KCL SDK v0.9.0-beta.1 版本发布, 同步支持 API 更新。
-- KCL go SDK 调整了 yaml stream 的输出格式。
-- KCL go SDK 支持通过 proto 导入 KCL Schema。
-
-**📂 文档更新**
-
-- 修复了开发向导文档中的错误拼写与一些环境配置描述。
-- 新增关于 file.read_env 库函数的文档说明。
-- 语言文档中补充了关于schema属性名称中“-”，“.”等符号的说明。
-- 新增了一些 Q&A。
-
-**🎵 项目工程**
-
-- KCL 集成测试去掉 stderr 期望输出的生成脚本，替换为 stderr.golden 文件。
-- IDE 新增 native tool chain 层以支持 IDE 对工具链的集成。
-- KCL API 新增 call_with_plugin_agent 支持调用 KCL API。
-- KCL go SDK 中进行了一些代码的优化，去掉了一些冗余的逻辑，调整了设置配置文件的加载方式。
-- KCL Cli 新增并行测试用例，以提升在并发场景下项目的稳定性。
-
 ## 特别鸣谢
 
 感谢过去两周所有的社区参与者，以下排名不分先后
@@ -101,8 +28,139 @@ image: /img/biweekly-newsletter.png
 - 感谢 @XiaoK29 为 KCL go SDK 的代码优化作出的持续贡献 🙌
 - 感谢 @d4v1d03 为 KCL 文档作出的持续贡献 🙌
 - 感谢 @officialasishkumar 在包管理工具三方依赖重命名功能的贡献 🙌
+- 感谢 @Vishalk91-4, @Daksh-10 对 KCL tree sitter 语法和解析器生成器的贡献 🙌
+- 感谢 @SamirMarin 对 Crossplane KCL 函数的贡献 🙌
+- 感谢 @officialasishkumar, @d4v1d03, @karlhepler, @Hai Wu, @ron18219, @olinux, @Alexander Fuchs, @Emmanuel Alap, @excalq, @leon-andria, @taylormonacelli, @dennybaa, @zhuxw, @aleeriz, @steeling 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
-- 感谢 @officialasishkumar, @d4v1d03, @karlhepler, @Hai Wu, @Alexander Fuchs, @ron18219, @olinux, @Alexander Fuchs 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
+## 内容概述
+
+感谢所有贡献者过去一段时间 (2024.05.15 - 2024.05.29) 的杰出工作，以下是重点内容概述
+
+**📦️ 三方库更新**
+
+- 新增 difflib 三方库，支持比较配置差异。
+
+通过 `difflib` 三方库提供的 `diff` 方法，输出配置差异。
+
+```python
+import difflib
+import yaml
+
+data1 = {
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 30,
+    "address": {
+        "streetAddress": "1234 Main St",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": "10001"
+    },
+    "phoneNumbers": [
+        {
+            "type": "home",
+            "number": "212-555-1234"
+        },
+        {
+            "type": "work",
+            "number": "646-555-5678"
+        }
+    ]
+}
+data2 = {
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 30,
+    "address": {
+        "streetAddress": "1234 Main St",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": None
+    },
+    "phoneNumbers": [
+        {
+            "type": "work",
+            "number": "646-555-5678"
+        }
+    ]
+}
+diff = difflib.diff(yaml.encode(data1), yaml.encode(data2))
+```
+
+**🏄 语言更新**
+
+- kcl 0.9.0-beta.1 新版本发布。
+- 强化了 schema 结构中属性非空的检查过程，优化了在空属性导致的 check 语句失效时的诊断信息。
+- 修复了 doc parse 将字符串字面值解析成 doc 的问题。
+- 修复了编译过程中 resolver 节点类型丢失的问题。
+- 新增语法错误类型以支持 IDE 语法错误的快速恢复。
+- 修复了 KCL 运行时内存泄漏的问题。
+
+**💻 IDE 更新**
+
+- IDE 增加对于部分编译错误的快速恢复。
+- 新增了部分语法 IDE 悬停高亮。
+
+IDE 支持部分语法悬停高亮。
+
+![hover](/img/blog/2024-05-29-biweekly-newsletter/hover.png)
+
+对于字符串字面值，新增悬停高亮
+
+![hoverstrlit](/img/blog/2024-05-29-biweekly-newsletter/hoverstrlit.png)
+
+- Devcontainer 配置新增 vscode 扩展。
+- IDE 新增 config 表达式悬停提示对应 schema 字段。
+- IDE 支持通过 kcl.mod 文件识别编译单元。
+- IDE 修复了文档悬停格式错误。
+- IDE 修复了由于 LSP 的 panic 导致的编译错误。
+- 优化了 LSP 输入的日志内容。
+
+**📬️ 工具链更新**
+
+- KCL 测试工具支持 fast eval 模式。
+- 新增 `kcl clean` 支持清理 module 缓存。
+- KCL Import 工具修复 YAML Stream 格式导入过程非预期的错误
+
+- 包管理工具更新
+- - kcl 支持通过 mod add --rename 参数和 kcl.mod 文件中重命名依赖防止名称冲突。
+- - 修复了添加本地文件目录作为依赖时，kcl.mod 文件依赖丢失的问题。
+- - 支持通过分支名称添加 git 三方库。
+- - 移除了在更新依赖时输出的无效日志。
+- - 新增 API 支持写入 kcl.mod 和 kcl.mod.lock 文件。
+- - 移除了加载三方库过程中请求 metadata 过程。
+- - 在打包和上传 KCL 三方库时，针对 KCL 包中存在本地依赖的情况，输出诊断信息。
+- - LFX 1 期题目完成，版本管理模块 mvp 版本合并入 main 分支。
+- - 支持 kcl.mod 文件中通过 include 和 exclude 字段指定需要打包和跳过的文件。
+- - 移除本地计算三方库 checksum 过程。
+
+**⛵️ API 更新**
+
+- 新增 UpdateDependencies API 支持更新 KCL 三方库。
+- 新增 API 支持写入 kcl.mod 和 kcl.mod.lock 文件。
+- OverrideFile API 返回值中新增编译错误信息。
+- OverrideFile API 支持通过运算符 ":" 和 "+=" 插入配置。
+- ListVariable API 返回值支持解析 List 和 Dict 结构。
+- 修复了 OverrideFile API 在插入 import 语句时导致的配置格式错乱的问题。
+- 重构了获取 schema type 相关的 API。
+- 修复了 LSP handle_semantic_tokens_full 和 handle_document_symbol 方法导致的 panic 问题。
+
+**🔥 SDK 更新**
+
+- KCL SDK v0.9.0-beta.1 版本发布, 同步支持 API 更新。
+- KCL go SDK 支持通过 proto 导入 KCL Schema。
+
+**📂 文档更新**
+
+- 修复了开发向导文档中的错误拼写与一些环境配置描述。
+- 新增关于 file.read_env 库函数的文档说明。
+- 语言文档中补充了关于 schema 属性名称中“-”，“.”等符号的说明。
+- 新增了一些 Q&A。
+
+**📺 生态集成**
+
+- 修复了 crossplane kcl function 导致的 pod 内存泄漏问题。
+- KCL tree sitter 新增 schema, mixin, rule 等语法支持和对应测试。
 
 ## 其他资源
 
