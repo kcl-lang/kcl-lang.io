@@ -3182,14 +3182,13 @@ kcl main.k -O override_spec
 
 - `override_spec`: 表示需要修改的配置模型字段和值的统一表示
 
-```txt
-override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
+```bash
+override_spec: identifier (("=" | ":" | "+=") value | "-")
 ```
 
-- `pkgpath`: 表示需要修改标识符的包路径，通常为 `a.b.c` 的形式，对于 main 包，`pkgpath` 表示为 `__main__`, 可省略，省略不写时表示 main 包
-- `identifier`: 表示需要修改配置的标识符，通常为 `a.b.c` 的形式
+- `identifier`: 表示需要修改配置的标识符，通常为 `a.b.c` 或者 `a["dot.key"].c` 的形式
 - `value`: 表示需要修改配置的值，可以是任意合法的 KCL 表达式，比如数字/字符串字面值，list/dict/schema 表达式等
-- `=`: 表示修改identifier的值
+- `=`, `-` 和 `+=`: 表示用对应的属性运算符修改 identifier 的值
   - 当 identifier 存在时，修改已有 identifier的值为 value
   - 当 identifier 不存在时，添加 identifier属性，并将其值设置为 value
 - `-`: 表示删除 identifier属性

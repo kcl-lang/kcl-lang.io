@@ -2655,3 +2655,31 @@ If we want to join a given list L = ['a', 'b', 'c'] into a string with some sepe
 S = ",".join(['a', 'b', 'c'])
 ```
 
+## 66. Is it possible to support schema lambda (class methods) in KCL?
+
+KCL supports defining member functions for schemas and can omit them. An example KCL code is shown below for the same:
+
+```KCL 
+schema Person:
+    firstName: str
+    lastName: str
+    getFullName: () -> str = lambda {
+        firstName + " " + lastName
+    }
+
+p = Person{
+    firstName = "Alice"
+    lastName = "White"
+}
+fullName = p.getFullName()
+```
+
+The above KCL code gives the output:
+
+```bash
+p:
+  firstName: Alice
+  lastName: White
+fullName: Alice White
+```
+

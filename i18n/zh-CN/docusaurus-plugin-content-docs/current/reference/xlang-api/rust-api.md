@@ -28,3 +28,11 @@ fn main() -> Result<()> {
     Ok(())
 }
 ```
+
+
+更多 Rust API 可以在[这里](https://github.com/kcl-lang/kcl)找到. 如果您想使用KCL Rust API 的子 crate，可以运行以下命令 (以 kclvm-runtime 为例)。
+
+```shell
+# Take the kclvm-runtime as an example.
+cargo add --git https://github.com/kcl-lang/kcl kclvm-runtime
+```

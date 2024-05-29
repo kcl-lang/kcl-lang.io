@@ -78,14 +78,17 @@ kcl main.k -O override_spec
 - `override_spec` represents a unified representation of the configuration model fields and values that need to be modified
 
 ```bash
-override_spec: [[pkgpath] ":"] identifier ("=" value | "-")
+override_spec: identifier (("=" | ":" | "+=") value | "-")
 ```
 
-- `pkgpath`: indicates the package path where the identifier needs to be modified, usually in the form of `a.b.c`. For the main package,`pkgpath` is represented as `__ main__`. When omitted or not written, it indicates the main package
 - `identifier` indicates the identifier that needs to modify the configuration, usually in the form of `a.b.c` or `a["dot.key"].c`
 - `value` indicates the value of the configuration that needs to be modified, which can be any legal KCL expression, such as number/string literal value, list/dict/schema expression, etc.
-- `=` denotes modifying of the value of the identifier.
+- `=`, `:` and `+=` denotes modifying of the value of the identifier with the corresponding attribute operator.
+  - When the identifier exists, modify the value of the existing identifier to value.
+  - When identifier does not exist, add the identifier attribute and set its value to value.
 - `-` denotes deleting of the identifier.
+  - When the identifier exists, delete it directly.
+  - When the identifier does not exist, no modification is made to the configuration.
 
 #### Override Configuration
 

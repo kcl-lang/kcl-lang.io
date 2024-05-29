@@ -93,50 +93,49 @@ x1 = Person {
 ## Index
 
 - [Go API](#go-api)
-  - [Index](#index)
-  - [Constants](#constants)
-  - [func FormatCode](#func-formatcode)
-  - [func FormatPath](#func-formatpath)
-  - [func GetSchemaTypeMapping](#func-getschematypemapping)
-  - [func InitKclvmPath](#func-initkclvmpath)
-  - [func InitKclvmRuntime](#func-initkclvmruntime)
-  - [func LintPath](#func-lintpath)
-  - [func ListDepFiles](#func-listdepfiles)
-  - [func ListDownStreamFiles](#func-listdownstreamfiles)
-  - [func ListUpStreamFiles](#func-listupstreamfiles)
-  - [func OverrideFile](#func-overridefile)
-  - [func Validate](#func-validate)
-  - [func ValidateCode](#func-validatecode)
-  - [type KCLResult](#type-kclresult)
-  - [type KCLResultList](#type-kclresultlist)
-    - [func MustRun](#func-mustrun)
-    - [func Run](#func-run)
-    - [func RunFiles](#func-runfiles)
-  - [type KclType](#type-kcltype)
-    - [func GetSchemaType](#func-getschematype)
-  - [type ListDepFilesOption](#type-listdepfilesoption)
-  - [type ListDepsOptions](#type-listdepsoptions)
-  - [type Option](#type-option)
-    - [func WithCode](#func-withcode)
-    - [func WithDisableNone](#func-withdisablenone)
-    - [func WithExternalPkgs](#func-withexternalpkgs)
-    - [func WithFullTypePath](#func-withfulltypepath)
-    - [func WithIncludeSchemaTypePath](#func-withincludeschematypepath)
-    - [func WithKFilenames](#func-withkfilenames)
-    - [func WithLogger](#func-withlogger)
-    - [func WithOptions](#func-withoptions)
-    - [func WithOverrides](#func-withoverrides)
-    - [func WithPrintOverridesAST](#func-withprintoverridesast)
-    - [func WithSelectors](#func-withselectors)
-    - [func WithSettings](#func-withsettings)
-    - [func WithShowHidden](#func-withshowhidden)
-    - [func WithSortKeys](#func-withsortkeys)
-    - [func WithWorkDir](#func-withworkdir)
-  - [type TestCaseInfo](#type-testcaseinfo)
-  - [type TestOptions](#type-testoptions)
-  - [type TestResult](#type-testresult)
-    - [func Test](#func-test)
-  - [type ValidateOptions](#type-validateoptions)
+	- [Index](#index)
+	- [Constants](#constants)
+	- [func FormatCode](#func-formatcode)
+	- [func FormatPath](#func-formatpath)
+	- [func GetSchemaTypeMapping](#func-getschematypemapping)
+	- [func InitKclvmPath](#func-initkclvmpath)
+	- [func InitKclvmRuntime](#func-initkclvmruntime)
+	- [func LintPath](#func-lintpath)
+	- [func ListDepFiles](#func-listdepfiles)
+	- [func ListDownStreamFiles](#func-listdownstreamfiles)
+	- [func ListUpStreamFiles](#func-listupstreamfiles)
+	- [func OverrideFile](#func-overridefile)
+	- [func Validate](#func-validate)
+	- [func ValidateCode](#func-validatecode)
+	- [type KCLResult](#type-kclresult)
+	- [type KCLResultList](#type-kclresultlist)
+		- [func MustRun](#func-mustrun)
+		- [func Run](#func-run)
+		- [func RunFiles](#func-runfiles)
+	- [type KclType](#type-kcltype)
+	- [type ListDepFilesOption](#type-listdepfilesoption)
+	- [type ListDepsOptions](#type-listdepsoptions)
+	- [type Option](#type-option)
+		- [func WithCode](#func-withcode)
+		- [func WithDisableNone](#func-withdisablenone)
+		- [func WithExternalPkgs](#func-withexternalpkgs)
+		- [func WithFullTypePath](#func-withfulltypepath)
+		- [func WithIncludeSchemaTypePath](#func-withincludeschematypepath)
+		- [func WithKFilenames](#func-withkfilenames)
+		- [func WithLogger](#func-withlogger)
+		- [func WithOptions](#func-withoptions)
+		- [func WithOverrides](#func-withoverrides)
+		- [func WithPrintOverridesAST](#func-withprintoverridesast)
+		- [func WithSelectors](#func-withselectors)
+		- [func WithSettings](#func-withsettings)
+		- [func WithShowHidden](#func-withshowhidden)
+		- [func WithSortKeys](#func-withsortkeys)
+		- [func WithWorkDir](#func-withworkdir)
+	- [type TestCaseInfo](#type-testcaseinfo)
+	- [type TestOptions](#type-testoptions)
+	- [type TestResult](#type-testresult)
+		- [func Test](#func-test)
+	- [type ValidateOptions](#type-validateoptions)
 
 ## Constants
 
@@ -222,7 +221,7 @@ func main() {
 ## func [GetSchemaTypeMapping](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L237)
 
 ```go
-func GetSchemaTypeMapping(file, code, schemaName string) (map[string]*KclType, error)
+func GetSchemaTypeMapping(filename string, src any, schemaName string) (map[string]*KclType, error)
 ```
 
 GetSchemaTypeMapping returns a \<schemaName\>:\<schemaType\> mapping of schema types from a kcl file or code.
@@ -667,32 +666,6 @@ func main() {
 
 ```go
 type KclType = kcl.KclType
-```
-
-### func [GetSchemaType](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L220)
-
-```go
-func GetSchemaType(file, code, schemaName string) ([]*KclType, error)
-```
-
-GetSchemaType returns schema types from a kcl file or code.
-
-file: string
-
-```
-The kcl filename
-```
-
-code: string
-
-```
-The kcl code string
-```
-
-schema_name: string
-
-```
-The schema name got, when the schema name is empty, all schemas are returned.
 ```
 
 ## type [ListDepFilesOption](https://github.com/kcl-lang/kcl-go/blob/main/kclvm.go#L49)
