@@ -28,3 +28,10 @@ fn main() -> Result<()> {
     Ok(())
 }
 ```
+
+More Rust APIs can be found [here](https://github.com/kcl-lang/kcl). If you want to use the sub crate of KCL Rust core, you can run the following command.
+
+```shell
+# Take the kclvm-runtime as an example.
+cargo add --git https://github.com/kcl-lang/kcl kclvm-runtime
+```

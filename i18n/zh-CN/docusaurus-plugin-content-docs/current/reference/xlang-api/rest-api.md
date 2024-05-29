@@ -45,23 +45,15 @@ syntax = "proto3";
 package gpyrpc;
 
 // kcl main.k -E pkg_name=pkg_path
-message CmdExternalPkgSpec {
+message ExternalPkg {
 	string pkg_name = 1;
 	string pkg_path = 2;
 }
 
 // kcl main.k -D name=value
-message CmdArgSpec {
+message Argument {
 	string name = 1;
 	string value = 2;
-}
-
-// kcl main.k -O pkgpath:path.to.field=field_value
-message CmdOverrideSpec {
-	string pkgpath = 1;
-	string field_path = 2;
-	string field_value = 3;
-	string action = 4;
 }
 
 // ----------------------------------------------------------------------------
@@ -108,8 +100,6 @@ service KclvmService {
 	rpc LintPath(LintPath_Args) returns(LintPath_Result);
 	rpc OverrideFile(OverrideFile_Args) returns (OverrideFile_Result);
 
-	rpc GetSchemaType(GetSchemaType_Args) returns(GetSchemaType_Result);
-	rpc GetFullSchemaType(GetFullSchemaType_Args) returns(GetSchemaType_Result);
 	rpc GetSchemaTypeMapping(GetSchemaTypeMapping_Args) returns(GetSchemaTypeMapping_Result);
 	rpc ValidateCode(ValidateCode_Args) returns(ValidateCode_Result);
 
@@ -120,6 +110,8 @@ service KclvmService {
 	rpc RenameCode(RenameCode_Args) returns(RenameCode_Result);
 
 	rpc Test(Test_Args) returns (Test_Result);
+
+	rpc UpdateDependencies(UpdateDependencies_Args) returns (UpdateDependencies_Result);
 }
 
 message Ping_Args {
@@ -139,7 +131,7 @@ message ListMethod_Result {
 message ParseFile_Args {
 	string path = 1;
 	string source = 2;
-	repeated CmdExternalPkgSpec external_pkgs = 3;  // External packages path
+	repeated ExternalPkg external_pkgs = 3;  // External packages path
 }
 
 message ParseFile_Result {
@@ -151,7 +143,7 @@ message ParseFile_Result {
 message ParseProgram_Args {
 	repeated string paths = 1;
 	repeated string sources = 2;
-	repeated CmdExternalPkgSpec external_pkgs = 3;  // External packages path
+	repeated ExternalPkg external_pkgs = 3;  // External packages path
 }
 
 message ParseProgram_Result {
@@ -226,9 +218,9 @@ message ExecProgram_Args {
 
 	repeated string k_filename_list = 2;
 	repeated string k_code_list = 3;
-
-	repeated CmdArgSpec args = 4;
-	repeated CmdOverrideSpec overrides = 5;
+	
+	repeated Argument args = 4;
+	repeated string overrides = 5;
 
 	bool disable_yaml_result = 6;
 
@@ -249,7 +241,7 @@ message ExecProgram_Args {
 	bool sort_keys = 12;
 
 	// -E --external : external packages path
-	repeated CmdExternalPkgSpec external_pkgs = 13;
+	repeated ExternalPkg external_pkgs = 13;
 
 	// Whether including schema type in JSON/YAML result
 	bool include_schema_type_path = 14;
@@ -327,6 +319,7 @@ message OverrideFile_Args {
 
 message OverrideFile_Result {
 	bool result = 1;
+	repeated Error parse_errors = 2;
 }
 
 message ListVariables_Args {
@@ -336,31 +329,26 @@ message ListVariables_Args {
 
 message ListVariables_Result {
 	map<string, Variable> variables = 1;
-	repeated string unsupported_codes = 2;
+	repeated string unsupported_codes = 2; 
+	repeated Error parse_errors = 3;
 }
 
 message Variable {
 	string value = 1;
+	string type_name = 2; 
+	string op_sym = 3; 
+	repeated Variable list_items = 4; 
+	repeated MapEntry dict_entries = 5;
 }
 
-message GetFullSchemaType_Args {
-	ExecProgram_Args exec_args = 1;
-	string schema_name = 2;
-}
-
-message GetSchemaType_Args {
-	string file = 1;
-	string code = 2;
-	string schema_name = 3;
-}
-message GetSchemaType_Result {
-	repeated KclType schema_type_list = 1;
+message MapEntry {
+	string key = 1;
+	Variable value = 2;
 }
 
 message GetSchemaTypeMapping_Args {
-	string file = 1;
-	string code = 2;
-	string schema_name = 3;
+	ExecProgram_Args exec_args = 1;
+	string schema_name = 2;
 }
 message GetSchemaTypeMapping_Result {
 	map<string, KclType> schema_type_mapping = 1;
@@ -490,6 +478,20 @@ message TestCaseInfo {
 	string log_message = 4;
 }
 
+// ---------------------------------------------------------------------------------
+// UpdateDependencies API
+//    Download and update dependencies defined in the kcl.mod file
+// ---------------------------------------------------------------------------------
+
+message UpdateDependencies_Args {
+	string manifest_path = 1;
+	bool vendor = 2;
+}
+
+message UpdateDependencies_Result {
+	repeated ExternalPkg external_pkgs = 3;
+}
+
 // ----------------------------------------------------------------------------
 // KCL Type Structure
 // ----------------------------------------------------------------------------
@@ -515,6 +517,7 @@ message KclType {
 	string pkg_path = 13;                // `pkg_path` represents the path name of the package where the attribute is located.
 	string description = 14;             // `description` represents the document of the attribute.
 	map<string, Example> examples = 15;  // A map object to hold examples, the key is the example name.
+	KclType base_schema = 16;            // contains referenced by info for schema
 }
 
 message Decorator {
