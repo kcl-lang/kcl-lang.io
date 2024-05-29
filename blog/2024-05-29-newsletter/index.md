@@ -49,42 +49,12 @@ import difflib
 import yaml
 
 data1 = {
-    "firstName": "John",
-    "lastName": "Doe",
+    "Name": "John",
     "age": 30,
-    "address": {
-        "streetAddress": "1234 Main St",
-        "city": "New York",
-        "state": "NY",
-        "postalCode": "10001"
-    },
-    "phoneNumbers": [
-        {
-            "type": "home",
-            "number": "212-555-1234"
-        },
-        {
-            "type": "work",
-            "number": "646-555-5678"
-        }
-    ]
 }
 data2 = {
-    "firstName": "John",
-    "lastName": "Doe",
-    "age": 30,
-    "address": {
-        "streetAddress": "1234 Main St",
-        "city": "New York",
-        "state": "NY",
-        "postalCode": None
-    },
-    "phoneNumbers": [
-        {
-            "type": "work",
-            "number": "646-555-5678"
-        }
-    ]
+    "Name": "John",
+    "age": 20,
 }
 diff = difflib.diff(yaml.encode(data1), yaml.encode(data2))
 ```
@@ -92,16 +62,16 @@ diff = difflib.diff(yaml.encode(data1), yaml.encode(data2))
 The expected output is the diff as below:
 
 ```
-+   postalCode: null
-+ phoneNumbers:
-+ - type: work
-+   number: '646-555-5678'
--   postalCode: '10001'
-- phoneNumbers:
-- - type: home
--   number: '212-555-1234'
-- - type: work
--   number: '646-555-5678'
+data1:
+  Name: John
+  age: 30
+data2:
+  Name: John
+  age: 20
+diff: |2
+    Name: John
+  + age: 20
+  - age: 30
 ```
 
 **🏄 Language Updates**
