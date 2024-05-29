@@ -40,6 +40,8 @@ image: /img/biweekly-newsletter.png
 
 - 新增 difflib 三方库，支持比较配置差异。
 
+通过 `kcl mod add difflib` 添加 `difflib` 依赖。
+
 通过 `difflib` 三方库提供的 `diff` 方法，输出配置差异。
 
 ```python
@@ -87,6 +89,21 @@ data2 = {
 diff = difflib.diff(yaml.encode(data1), yaml.encode(data2))
 ```
 
+然后，对应配置的 diff 如下：
+
+```
++   postalCode: null
++ phoneNumbers:
++ - type: work
++   number: '646-555-5678'
+-   postalCode: '10001'
+- phoneNumbers:
+- - type: home
+-   number: '212-555-1234'
+- - type: work
+-   number: '646-555-5678'
+```
+
 **🏄 语言更新**
 
 - kcl 0.9.0-beta.1 新版本发布。
@@ -123,16 +140,16 @@ IDE 支持部分语法悬停高亮。
 - KCL Import 工具修复 YAML Stream 格式导入过程非预期的错误
 
 - 包管理工具更新
-- - kcl 支持通过 mod add --rename 参数和 kcl.mod 文件中重命名依赖防止名称冲突。
-- - 修复了添加本地文件目录作为依赖时，kcl.mod 文件依赖丢失的问题。
-- - 支持通过分支名称添加 git 三方库。
-- - 移除了在更新依赖时输出的无效日志。
-- - 新增 API 支持写入 kcl.mod 和 kcl.mod.lock 文件。
-- - 移除了加载三方库过程中请求 metadata 过程。
-- - 在打包和上传 KCL 三方库时，针对 KCL 包中存在本地依赖的情况，输出诊断信息。
-- - LFX 1 期题目完成，版本管理模块 mvp 版本合并入 main 分支。
-- - 支持 kcl.mod 文件中通过 include 和 exclude 字段指定需要打包和跳过的文件。
-- - 移除本地计算三方库 checksum 过程。
+- kcl 支持通过 mod add --rename 参数和 kcl.mod 文件中重命名依赖防止名称冲突。
+- 修复了添加本地文件目录作为依赖时，kcl.mod 文件依赖丢失的问题。
+- 支持通过分支名称添加 git 三方库。
+- 移除了在更新依赖时输出的无效日志。
+- 新增 API 支持写入 kcl.mod 和 kcl.mod.lock 文件。
+- 移除了加载三方库过程中请求 metadata 过程。
+- 在打包和上传 KCL 三方库时，针对 KCL 包中存在本地依赖的情况，输出诊断信息。
+- LFX 1 期题目完成，版本管理模块 mvp 版本合并入 main 分支。
+- 支持 kcl.mod 文件中通过 include 和 exclude 字段指定需要打包和跳过的文件。
+- 移除本地计算三方库 checksum 过程。
 
 **⛵️ API 更新**
 

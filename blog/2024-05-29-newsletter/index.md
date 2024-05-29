@@ -40,6 +40,8 @@ Thanks to all contributors for their outstanding work over the past two weeks (2
 
 - New module `difflib` added to support configuration comparison.
 
+Add `difflib` as a dependency by `kcl mod add difflib`.
+
 Through the `diff` method provided by the `difflib`, the configuration difference is output.
 
 ```python
@@ -87,6 +89,21 @@ data2 = {
 diff = difflib.diff(yaml.encode(data1), yaml.encode(data2))
 ```
 
+The expected output is the diff as below:
+
+```
++   postalCode: null
++ phoneNumbers:
++ - type: work
++   number: '646-555-5678'
+-   postalCode: '10001'
+- phoneNumbers:
+- - type: home
+-   number: '212-555-1234'
+- - type: work
+-   number: '646-555-5678'
+```
+
 **🏄 Language Updates**
 
 - KCL 0.9.0-beta.1 released.
@@ -123,16 +140,16 @@ For string literals, added hover highlights.
 - Fixed the unexpected error in the YAML Stream format import process of the KCL import tool.
 
 - Package management tool updates.
-- - Added support for renaming dependencies to prevent name conflicts through the `mod add --rename` parameter and the `kcl.mod` file.
-- - Fixed the issue of missing dependencies in the `kcl.mod` file when adding a local file directory as a dependency.
-- - Added support for adding git third-party dependencies through branch names.
-- - Removed the invalid log output when updating dependencies.
-- - Added API support for writing `kcl.mod` and `kcl.mod.lock` files.
-- - Removed the process of requesting metadata when loading third-party dependencies.
-- - When packaging and uploading KCL, diagnostic information is output for the case of local dependencies in the KCL package.
-- - LFX term 1 task completed, the version management module mvp version merged into the main branch.
-- - Supported specifying files to be packaged and skipped through the `include` and `exclude` fields in the `kcl.mod` file.
-- - Removed the calculation checksum process of dependencies.
+- Added support for renaming dependencies to prevent name conflicts through the `mod add --rename` parameter and the `kcl.mod` file.
+- Fixed the issue of missing dependencies in the `kcl.mod` file when adding a local file directory as a dependency.
+- Added support for adding git third-party dependencies through branch names.
+- Removed the invalid log output when updating dependencies.
+- Added API support for writing `kcl.mod` and `kcl.mod.lock` files.
+- Removed the process of requesting metadata when loading third-party dependencies.
+- When packaging and uploading KCL, diagnostic information is output for the case of local dependencies in the KCL package.
+- LFX term 1 task completed, the version management module mvp version merged into the main branch.
+- Supported specifying files to be packaged and skipped through the `include` and `exclude` fields in the `kcl.mod` file.
+- Removed the calculation checksum process of dependencies.
 
 **⛵️ API Updates**
 
