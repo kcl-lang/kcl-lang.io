@@ -20,7 +20,7 @@ image: /img/biweekly-newsletter.png
 
 感谢过去两周所有的社区参与者，以下排名不分先后
 
-- 恭喜 @AkashKumar7902 完成 LFX 1 期任务，kpm 版本管理模块的 mvp 版本成功合并入 main 分支  🙌 
+- 恭喜 @AkashKumar7902 完成 LFX 1 期任务，kpm 版本管理模块的 mvp 版本成功合并入 main 分支 🙌 
 - 感谢 @shashank-iitbhu 在 IDE Quick Fix 功能上做的持续贡献 🙌 
 - 感谢 @Wck-iipi 在 IDE 悬停功能上做的持续贡献 🙌 
 - 感谢 @warjiang 为 devcontainer 作出的贡献 🙌 
@@ -30,7 +30,7 @@ image: /img/biweekly-newsletter.png
 - 感谢 @officialasishkumar 在包管理工具三方依赖重命名功能的贡献 🙌
 - 感谢 @Vishalk91-4, @Daksh-10 对 KCL tree sitter 语法和解析器生成器的贡献 🙌
 - 感谢 @SamirMarin 对 Crossplane KCL 函数的贡献 🙌
-- 感谢 @officialasishkumar, @d4v1d03, @karlhepler, @Hai Wu, @ron18219, @olinux, @Alexander Fuchs, @Emmanuel Alap, @excalq, @leon-andria, @taylormonacelli, @dennybaa, @zhuxw, @aleeriz, @steeling 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
+- 感谢 @officialasishkumar, @d4v1d03, @karlhepler, @Hai Wu, @ron18219, @olinux, @Alexander Fuchs, @Emmanuel Alap, @excalq, @leon-andria, @taylormonacelli, @dennybaa, @zhuxw, @aleeriz, @steeling, @Stéphane Este-Gracias 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 内容概述
 
@@ -90,10 +90,6 @@ diff: |2
 
 IDE 支持部分语法悬停高亮。
 
-![hover](/img/blog/2024-05-29-biweekly-newsletter/hover.png)
-
-对于字符串字面值，新增悬停高亮
-
 ![hoverstrlit](/img/blog/2024-05-29-biweekly-newsletter/hoverstrlit.png)
 
 - Devcontainer 配置新增 vscode 扩展。
@@ -109,7 +105,8 @@ IDE 支持部分语法悬停高亮。
 - 新增 `kcl clean` 支持清理 module 缓存。
 - KCL Import 工具修复 YAML Stream 格式导入过程非预期的错误
 
-- 包管理工具更新
+包管理工具更新
+
 - kcl 支持通过 mod add --rename 参数和 kcl.mod 文件中重命名依赖防止名称冲突。
 - 修复了添加本地文件目录作为依赖时，kcl.mod 文件依赖丢失的问题。
 - 支持通过分支名称添加 git 三方库。
@@ -135,7 +132,7 @@ IDE 支持部分语法悬停高亮。
 **🔥 SDK 更新**
 
 - KCL SDK v0.9.0-beta.1 版本发布, 同步支持 API 更新。
-- KCL go SDK 支持通过 proto 导入 KCL Schema。
+- KCL Go SDK 支持通过 Protobuf 导入 KCL Schema。
 
 **📂 文档更新**
 
@@ -146,7 +143,7 @@ IDE 支持部分语法悬停高亮。
 
 **📺 生态集成**
 
-- 修复了 crossplane kcl function 导致的 pod 内存泄漏问题。
+- Crossplane kcl function 发布 v0.9.0 版本，修复内存泄漏，arm64 镜像错误问题，同时支持在函数层面设置外部包依赖和编译参数。
 - KCL tree sitter 新增 schema, mixin, rule 等语法支持和对应测试。
 
 ## 其他资源

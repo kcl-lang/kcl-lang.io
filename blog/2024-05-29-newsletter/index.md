@@ -30,7 +30,7 @@ Special thanks to all community contributors over the past two weeks. The follow
 - Thanks to @officialasishkumar for his contributions to the package management tool third-party dependency renaming feature 🙌
 - Thanks to @Vishalk91-4, @Daksh-10 for their contributions to the KCL tree sitter syntax and parser generator 🙌
 - Thanks to @SamirMarin for his contributions to the Crossplane KCL function 🙌
-- Thanks to @officialasishkumar, @d4v1d03, @karlhepler, @Hai Wu, @ron18219, @olinux, @Alexander Fuchs, @Emmanuel Alap, @excalq, @leon-andria, @taylormonacelli, @dennybaa, @zhuxw, @aleeriz, @steeling, and others for their valuable feedback and suggestions while using KCL recently 🙌
+- Thanks to @officialasishkumar, @d4v1d03, @karlhepler, @Hai Wu, @ron18219, @olinux, @Alexander Fuchs, @Emmanuel Alap, @excalq, @leon-andria, @taylormonacelli, @dennybaa, @zhuxw, @aleeriz, @steeling, @Stéphane Este-Gracias and others for their valuable feedback and suggestions while using KCL recently 🙌
 
 ## Overview
 
@@ -90,10 +90,6 @@ diff: |2
 
 IDE hover highlights for some syntax.
 
-![hover](/img/blog/2024-05-29-biweekly-newsletter/hover.png)
-
-For string literals, added hover highlights.
-
 ![hoverstrlit](/img/blog/2024-05-29-biweekly-newsletter/hoverstrlit.png)
 
 - Added vscode extension to the devcontainer configuration.
@@ -109,7 +105,8 @@ For string literals, added hover highlights.
 - Added `kcl clean` to support cleaning module caches.
 - Fixed the unexpected error in the YAML Stream format import process of the KCL import tool.
 
-- Package management tool updates.
+Package management tool updates.
+
 - Added support for renaming dependencies to prevent name conflicts through the `mod add --rename` parameter and the `kcl.mod` file.
 - Fixed the issue of missing dependencies in the `kcl.mod` file when adding a local file directory as a dependency.
 - Added support for adding git third-party dependencies through branch names.
@@ -135,18 +132,17 @@ For string literals, added hover highlights.
 **🔥 SDK Updates**
 
 - KCL SDK v0.9.0-beta.1 released, synchronously supporting API updates.
-- KCL go SDK supports importing KCL Schema through proto.
+- KCL Go SDK supports importing KCL Schema through the protobuf file.
 
 **📂️ Documentation Updates**
 
 - Fixed typos in the development guide documentation and some environment configuration descriptions.
 - Added documentation for the `file.read_env` function.
 - The language document has been updated to include information about the "-" and "." symbols in schema property names.
-- Added some Q&A.
 
 **📺️ Ecosystem Integration**
 
-- Fixed the memory leak issue in the crossplane kcl function.
+- Crossplane kcl function has released version 0.9.0, which fixes memory leaks and arm64 image errors. It also supports setting external package dependencies and compilation parameters at the function level.
 - Added support for the KCL tree sitter schema, mixin, rule, and other syntax support and corresponding tests.
 
 ## Resources
