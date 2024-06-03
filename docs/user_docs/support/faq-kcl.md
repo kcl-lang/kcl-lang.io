@@ -2683,7 +2683,7 @@ p:
 fullName: Alice White
 ```
 
-## 67. Does the use of mixed-in attributes outisde of mixin requires casting to `any` type  ?
+## 67. Does the use of mixed-in attributes outside of mixin requires casting to `any` type?
 
 You need to add specifically the type into the schema. An example code shown below: 
 
@@ -2711,4 +2711,3 @@ returns the output:
 ```bash
 foobar: foo.bar
 ```
-

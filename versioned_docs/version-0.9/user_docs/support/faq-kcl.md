@@ -2683,3 +2683,32 @@ p:
 fullName: Alice White
 ```
 
+## 67. Does the use of mixed-in attributes outside of mixin requires casting to `any` type?
+
+You need to add specifically the type into the schema. An example code shown below: 
+
+```KCL
+schema FooBar:
+    mixin [
+        FooBarMixin
+    ]
+    foo: str = 'foo'
+    bar: str = 'bar'
+
+protocol FooBarProtocol:
+    foo: str
+    bar: str
+
+mixin FooBarMixin for FooBarProtocol:
+    foobar: str = "${foo}.${bar}" # Attribute with the annotation can be accessed outside the schema.
+
+_c = FooBar {}
+foobar = _c.foobar
+```
+
+returns the output:
+
+```bash
+foobar: foo.bar
+```
+
