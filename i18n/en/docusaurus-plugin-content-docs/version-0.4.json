@@ -1,15 +1,7 @@
 {
   "version.label": {
-    "message": "0.4.4",
-    "description": "The label for version 0.4.4"
-  },
-  "sidebar.docs.category.Events": {
-    "message": "Events",
-    "description": "The label for category Events in sidebar docs"
-  },
-  "sidebar.docs.category.Events 2022": {
-    "message": "Events 2022",
-    "description": "The label for category Events 2022 in sidebar docs"
+    "message": "0.4",
+    "description": "The label for version 0.4"
   },
   "sidebar.docs.category.Tools": {
     "message": "Tools",
@@ -91,6 +83,10 @@
     "message": "Guides",
     "description": "The label for category Guides in sidebar docs"
   },
+  "sidebar.docs.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar docs"
+  },
   "sidebar.docs.category.Kubernetes": {
     "message": "Kubernetes",
     "description": "The label for category Kubernetes in sidebar docs"
@@ -98,6 +94,10 @@
   "sidebar.docs.category.Konfig": {
     "message": "Konfig",
     "description": "The label for category Konfig in sidebar docs"
+  },
+  "sidebar.docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar docs"
   },
   "sidebar.docs.category.FAQ": {
     "message": "FAQ",
@@ -111,6 +111,10 @@
     "message": "Guides",
     "description": "The label for category Guides in sidebar user_docs"
   },
+  "sidebar.user_docs.category.Package Management": {
+    "message": "Package Management",
+    "description": "The label for category Package Management in sidebar user_docs"
+  },
   "sidebar.user_docs.category.Kubernetes": {
     "message": "Kubernetes",
     "description": "The label for category Kubernetes in sidebar user_docs"
@@ -118,6 +122,10 @@
   "sidebar.user_docs.category.Konfig": {
     "message": "Konfig",
     "description": "The label for category Konfig in sidebar user_docs"
+  },
+  "sidebar.user_docs.category.Concepts": {
+    "message": "Concepts",
+    "description": "The label for category Concepts in sidebar user_docs"
   },
   "sidebar.user_docs.category.FAQ": {
     "message": "FAQ",
@@ -179,8 +187,12 @@
     "message": "Contribution Guide",
     "description": "The label for category Contribution Guide in sidebar community"
   },
-  "sidebar.events.category.Events 2022": {
-    "message": "Events 2022",
-    "description": "The label for category Events 2022 in sidebar events"
+  "sidebar.docs.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar docs"
+  },
+  "sidebar.user_docs.category.Package Management Tools": {
+    "message": "Package Management Tools",
+    "description": "The label for category Package Management Tools in sidebar user_docs"
   }
 }
