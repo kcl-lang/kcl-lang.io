@@ -75,13 +75,13 @@
     "message": "user_docs",
     "description": "The label for category user_docs in sidebar docs"
   },
-  "sidebar.docs.category.Get Started": {
-    "message": "Get Started",
-    "description": "The label for category Get Started in sidebar docs"
+  "sidebar.docs.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar docs"
   },
-  "sidebar.docs.category.User Guide": {
-    "message": "User Guide",
-    "description": "The label for category User Guide in sidebar docs"
+  "sidebar.docs.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category Guides in sidebar docs"
   },
   "sidebar.docs.category.Package Management": {
     "message": "Package Management",
@@ -103,13 +103,13 @@
     "message": "FAQ",
     "description": "The label for category FAQ in sidebar docs"
   },
-  "sidebar.user_docs.category.Get Started": {
-    "message": "Get Started",
-    "description": "The label for category Get Started in sidebar user_docs"
+  "sidebar.user_docs.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar user_docs"
   },
-  "sidebar.user_docs.category.User Guide": {
-    "message": "User Guide",
-    "description": "The label for category User Guide in sidebar user_docs"
+  "sidebar.user_docs.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category Guides in sidebar user_docs"
   },
   "sidebar.user_docs.category.Package Management": {
     "message": "Package Management",

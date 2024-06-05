@@ -1,11 +1,11 @@
 {
-    "sidebar.user_docs.category.Get Started": {
+    "sidebar.user_docs.category.Getting Started": {
       "message": "快速开始"
     },
     "sidebar.user_docs.category.Introduction": {
       "message": "简介"
     },
-    "sidebar.user_docs.category.User Guide": {
+    "sidebar.user_docs.category.Guides": {
         "message": "用户手册"
     },
     "sidebar.user_docs.guides.category.Automation": {

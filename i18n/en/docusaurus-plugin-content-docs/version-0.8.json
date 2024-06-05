@@ -184,7 +184,7 @@
     "description": "The label for category 架构 & 概念 in sidebar docs"
   },
   "sidebar.docs.category.用户指南": {
-    "message": "User Guide",
+    "message": "Guides",
     "description": "The label for category 用户指南 in sidebar docs"
   },
   "sidebar.docs.category.Kubernetes": {
@@ -220,7 +220,7 @@
     "description": "The label for category 架构 & 概念 in sidebar user_docs"
   },
   "sidebar.user_docs.category.用户指南": {
-    "message": "User Guide",
+    "message": "Guides",
     "description": "The label for category 用户指南 in sidebar user_docs"
   },
   "sidebar.user_docs.category.Kubernetes": {
@@ -443,6 +443,10 @@
     "message": "Errors and Warnings",
     "description": "The label for category Errors and Warnings in sidebar reference"
   },
+  "sidebar.reference.category.Types": {
+    "message": "Types",
+    "description": "The label for category Types in sidebar reference"
+  },
   "sidebar.reference.category.Multi-Language": {
     "message": "Multi-Language",
     "description": "The label for category Multi-Language in sidebar reference"
@@ -519,9 +523,9 @@
     "message": "Introduction",
     "description": "The label for category Introduction in sidebar docs"
   },
-  "sidebar.docs.category.Get Started": {
-    "message": "Get Started",
-    "description": "The label for category Get Started in sidebar docs"
+  "sidebar.docs.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar docs"
   },
   "sidebar.docs.category.Download & Install": {
     "message": "Download & Install",
@@ -531,9 +535,9 @@
     "message": "Architecture & Concepts",
     "description": "The label for category Architecture & Concepts in sidebar docs"
   },
-  "sidebar.docs.category.User Guide": {
-    "message": "User Guide",
-    "description": "The label for category User Guide in sidebar docs"
+  "sidebar.docs.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category Guides in sidebar docs"
   },
   "sidebar.docs.category.Adopting kcl-lang": {
     "message": "Adopting kcl-lang",
@@ -551,9 +555,9 @@
     "message": "Introduction",
     "description": "The label for category Introduction in sidebar user_docs"
   },
-  "sidebar.user_docs.category.Get Started": {
-    "message": "Get Started",
-    "description": "The label for category Get Started in sidebar user_docs"
+  "sidebar.user_docs.category.Getting Started": {
+    "message": "Getting Started",
+    "description": "The label for category Getting Started in sidebar user_docs"
   },
   "sidebar.user_docs.category.Download & Install": {
     "message": "Download & Install",
@@ -563,9 +567,9 @@
     "message": "Architecture & Concepts",
     "description": "The label for category Architecture & Concepts in sidebar user_docs"
   },
-  "sidebar.user_docs.category.User Guide": {
-    "message": "User Guide",
-    "description": "The label for category User Guide in sidebar user_docs"
+  "sidebar.user_docs.category.Guides": {
+    "message": "Guides",
+    "description": "The label for category Guides in sidebar user_docs"
   },
   "sidebar.user_docs.category.Adopting kcl-lang": {
     "message": "Adopting kcl-lang",
