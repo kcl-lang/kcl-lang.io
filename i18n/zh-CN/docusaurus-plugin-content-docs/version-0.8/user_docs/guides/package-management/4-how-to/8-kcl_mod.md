@@ -28,7 +28,7 @@
 
 例如: 一个包名为 my_pkg 的 kcl 程序包。
 
-```
+```toml
 [package]
 name = "my_pkg"
 ```
@@ -39,7 +39,7 @@ name = "my_pkg"
 
 例如: `my_pkg` 程序包的版本号为 `0.1.0`。
 
-```
+```toml
 [package]
 name = "my_pkg"
 version = "0.1.0"
@@ -51,7 +51,7 @@ version = "0.1.0"
 
 例如: `my_pkg` 程序包的版本号为 `0.1.0`, 并且与 0.5.1 的 KCL 编译器兼容。
 
-```
+```toml
 [package]
 name = "my_pkg"
 version = "0.1.0"
@@ -64,7 +64,7 @@ edition = "0.5.0"
 
 例如: `my_pkg` 程序包的描述为 `This is my package.`。
 
-```
+```toml
 [package]
 name = "my_pkg"
 version = "0.1.0"
@@ -101,7 +101,7 @@ k8s = "1.27"
 
 根据 git 仓库中的 tag 指定对应的依赖。
 
-```
+```toml
 [dependencies]
 <package name> = { git = "<git repo url>", tag = "<git repo tag>" }
 ```
@@ -110,12 +110,23 @@ k8s = "1.27"
 
 根据 git 仓库中的 commit id 指定对应的依赖。
 
-```
+```toml
 [dependencies]
 <package name> = { git = "<git repo url>", commit = "<git repo commit>" }
 ```
 
 这将会从 Git 存储库`<git repo url>`中拉取名称为 `<package name>` 的包，`commit id` 为 `<git repo commit>`。
+
+### 3.3 local dependency
+
+通过 path 指定本地三方库依赖。
+
+```toml
+[dependencies]
+<package name> = {path = "<package local path>"}
+```
+
+这将会从本地文件路径 `<package local path>` 中加载名称为 `<package name>` 的包。
 
 ## 4. entries
 
