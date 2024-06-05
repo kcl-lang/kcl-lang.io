@@ -4,7 +4,7 @@
     "description": "The title in the navbar"
   },
   "item.label.UserDoc": {
-    "message": "Get Started",
+    "message": "Getting Started",
     "description": "Navbar item with label UserDoc"
   },
   "item.label.Reference": {

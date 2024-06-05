@@ -35,9 +35,9 @@
     "message": "常见问答",
     "description": "The label of footer link with label=FAQ linking to https://kcl-lang.github.io/zh-CN/docs/user_docs/support"
   },
-  "link.item.label.User Guide": {
+  "link.item.label.Guides": {
     "message": "用户手册",
-    "description": "The label of footer link with label=User Guide linking to https://kcl-lang.github.io/zh-CN/docs/user_docs/support"
+    "description": "The label of footer link with label=Guides linking to https://kcl-lang.github.io/zh-CN/docs/user_docs/support"
   },
   "link.item.label.Tutorial": {
     "message": "教程",

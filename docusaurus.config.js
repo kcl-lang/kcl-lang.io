@@ -45,7 +45,7 @@ const config = {
         },
         second: {
           url: "docs/user_docs/getting-started/",
-          text: "Get Started",
+          text: "Getting Started",
         },
       },
     },
@@ -245,7 +245,7 @@ const config = {
                 to: '/docs/user_docs/getting-started/intro',
               },
               {
-                label: 'User Guide',
+                label: 'Guides',
                 to: '/docs/user_docs/guides',
               },
               {

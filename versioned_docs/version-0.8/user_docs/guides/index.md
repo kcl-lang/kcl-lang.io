@@ -1,4 +1,4 @@
-# User Guide
+# Guides
 
 import DocCardList from '@theme/DocCardList';
 
