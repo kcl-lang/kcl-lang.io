@@ -21,7 +21,7 @@ data:
             export KCL_CACHE_PATH=$(mktemp -d /tmp/kcl_cache.XXXXXXXXXX)
             export KCL_PKG_PATH=$(mktemp -d /tmp/kcl_pkg.XXXXXXXXXX)
             tempfile=$(mktemp)
-            kcl run -q -o $tempfile
+            kcl run -q -o $tempfile > /dev/null 2>&1
             error=$?
             if [ $error -eq 0 ]; then
               cat $tempfile
