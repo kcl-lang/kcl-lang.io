@@ -35,7 +35,7 @@ KCL_CLI_FILENAME=kcl-language-server
 # KCL file path
 KCL_CLI_FILE=${KCL_INSTALL_DIR}/bin/${KCL_CLI_FILENAME}
 # KCL Home dir
-KCLVM_HOME_DIR=${KCL_INSTALL_DIR}/
+KCLVM_HOME_DIR=${KCL_INSTALL_DIR}
 
 # --- helper functions for logs ---
 info() {
