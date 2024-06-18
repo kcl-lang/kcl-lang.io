@@ -2711,3 +2711,21 @@ returns the output:
 ```bash
 foobar: foo.bar
 ```
+
+## 68. How to "import another-module" in KCL ? Module with hyphens in it
+
+In KCL, only module names with `_` are supported in the import statements, while package names in `kcl.mod` support both `-` and `_`. The KCL compiler will automatically replace `-` with `_`. Therefore, in `kcl.mod`, the following dependencies are both supported:
+
+```toml
+# both supported
+another-module = "0.1.1"
+another_module = "0.1.1"
+```
+
+In KCL code, the following import statement is supported:
+
+```python
+import another_module
+```
+
+Both `another-module = "0.1.1"` and `another_module = "0.1.1"` are equivalent, and using both will result in an error.

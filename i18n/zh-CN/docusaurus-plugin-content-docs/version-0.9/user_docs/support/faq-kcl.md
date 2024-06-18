@@ -2625,3 +2625,21 @@ export KCL_CACHE_PATH=/tmp # 或者更改为您想要的路径
 ```powershell
 setx KCL_CACHE_PATH "C:\temp" /M
 ```
+
+## 65. 如何在 KCL 中使用 "import another-module" ? 包名中包含横线 "-"
+
+在 KCL 中，import 语句中使用的模块名称中只支持`_`，kcl.mod 中的包名同时支持 `-` 和 `_`，KCL 编译器会自动将包名中的 `-` 替换为 `_`。
+
+```toml
+# kcl.mod 中同时支持如下两种写法
+another-module = "0.1.1"
+another_module = "0.1.1"
+```
+
+在 KCL 代码中，只支持使用如下 import 语句
+
+```python
+import another_module
+```
+
+`another-module = "0.1.1"` 和 `another_module = "0.1.1"` 是等价的, 如果同时在 `kcl.mod` 中使用这两种写法会得到一个错误。
