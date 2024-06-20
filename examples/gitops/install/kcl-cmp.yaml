@@ -18,8 +18,8 @@ data:
         command: ["sh", "-c"]
         args:
           - |
-            export KCL_CACHE_PATH=$(mktemp -d /tmp/kcl_cache.XXXXXXXXXX)
-            export KCL_PKG_PATH=$(mktemp -d /tmp/kcl_pkg.XXXXXXXXXX)
+            export KCL_CACHE_PATH=/tmp
+            export KCL_PKG_PATH=/tmp
             tempfile=$(mktemp)
             kcl run -q -o $tempfile > /dev/null 2>&1
             error=$?
