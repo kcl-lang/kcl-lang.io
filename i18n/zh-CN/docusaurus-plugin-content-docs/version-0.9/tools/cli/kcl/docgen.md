@@ -78,6 +78,12 @@ kcl doc generate --file-path <package path>
 kcl doc generate --file-path <package path> --target <target directory>
 ```
 
+如果您遇到了 HTML 或者 Markdown 等输出格式问题，比如 `|`, `\n` 等符号显示错误，您可以添加 `--escape-html` 标志
+
+```shell
+kcl doc generate --escape-html
+```
+
 ## 文档工具附录
 
 ### 常见的 reST 概念
