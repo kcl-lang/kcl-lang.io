@@ -78,6 +78,12 @@ Generate Markdown document for specific package to a `<target directory>`
 kcl doc generate --file-path <package path> --target <target directory>
 ```
 
+If you encounter output format issues such as HTML or Markdown, such as symbol display errors such as `|`, `\n`, etc., you can add the `--escape-html` flag.
+
+```shell
+kcl doc generate --escape-html
+```
+
 ## Appendix
 
 ### Concept of reST
