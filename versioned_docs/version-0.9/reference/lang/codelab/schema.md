@@ -164,8 +164,6 @@ Suppose we have some schema logic, we can wrapper it into schema:
 ```python
 schema Deployment[priority]:
     name: str
-    cpu: int = _cpu
-    memory: int = _cpu * 2
     image: str
     service: "my-service" = "my-service"
     replica: int = 1
@@ -181,6 +179,9 @@ schema Deployment[priority]:
         _cpu = 1024
     else:
         _cpu = 2048
+
+    cpu: int = _cpu
+    memory: int = _cpu * 2
 ```
 
 Now, we can define a config by creating a schema instance and pass in priority as an argument to schema:
@@ -227,8 +228,6 @@ Now we want to define a detailed schema with service and volumes, we can do it a
 ```python
 schema Deployment[priority]:
     name: str
-    cpu: int = _cpu
-    memory: int = _cpu * 2
     volumes?: [Volume]
     image: str
     service?: Service
@@ -244,6 +243,9 @@ schema Deployment[priority]:
         _cpu = 1024
     else:
         _cpu = 2048
+
+    cpu: int = _cpu
+    memory: int = _cpu * 2
 
 schema Port:
     name: str
@@ -373,8 +375,6 @@ import regex
 
 schema Deployment[priority]:
     name: str
-    cpu: int = _cpu
-    memory: int = _cpu * 2
     volumes?: [Volume]
     image: str
     service?: Service
@@ -390,6 +390,9 @@ schema Deployment[priority]:
         _cpu = 1024
     else:
         _cpu = 2048
+
+    cpu: int = _cpu
+    memory: int = _cpu * 2
 
     check:
         multiplyof(cpu, 256), "cpu must be a multiplier of 256"
