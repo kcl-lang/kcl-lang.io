@@ -50,39 +50,43 @@ cd examples/appops/nginx-example/dev && kcl run
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sampleappprod
+  name: sampleappdev
   namespace: sampleapp
 spec:
   replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: sampleapp
-      app.kubernetes.io/env: prod
-      app.kubernetes.io/instance: sampleapp-prod
-      app.k8s.io/component: sampleappprod
+      app.kubernetes.io/env: dev
+      app.kubernetes.io/instance: sampleapp-dev
+      app.k8s.io/component: sampleappdev
   template:
     metadata:
       labels:
         app.kubernetes.io/name: sampleapp
-        app.kubernetes.io/env: prod
-        app.kubernetes.io/instance: sampleapp-prod
-        app.k8s.io/component: sampleappprod
+        app.kubernetes.io/env: dev
+        app.kubernetes.io/instance: sampleapp-dev
+        app.k8s.io/component: sampleappdev
     spec:
       containers:
-        - image: nginx:1.7.8
-          name: main
-          ports:
-            - containerPort: 80
-              protocol: TCP
-          resources:
-            limits:
-              cpu: 100m
-              memory: 100Mi
-              ephemeral-storage: 1Gi
-            requests:
-              cpu: 100m
-              memory: 100Mi
-              ephemeral-storage: 1Gi
+      - env:
+        - name: MY_ENV
+          value: MY_VALUE
+        image: nginx:1.7.8
+        name: main
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            cpu: '100m'
+            memory: '100Mi'
+            ephemeral-storage: '1Gi'
+          requests:
+            cpu: '100m'
+            memory: '100Mi'
+            ephemeral-storage: '1Gi'
+        volumeMounts: []
 ---
 apiVersion: v1
 kind: Namespace
@@ -96,9 +100,31 @@ metadata:
   namespace: sampleapp
 spec:
   ports:
-    - nodePort: 30201
-      port: 80
-      targetPort: 80
+  - nodePort: 30201
+    port: 80
+    targetPort: 80
+  selector:
+    app.kubernetes.io/name: sampleapp
+    app.kubernetes.io/env: dev
+    app.kubernetes.io/instance: sampleapp-dev
+    app.k8s.io/component: sampleappdev
+  type: NodePort
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sampleapp
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: sampleapp
+spec:
+  ports:
+  - nodePort: 30201
+    port: 80
+    targetPort: 80
   selector:
     app.kubernetes.io/name: sampleapp
     app.kubernetes.io/env: prod
@@ -109,9 +135,9 @@ spec:
 
 完成编译，可以看到 3 个资源：
 
-- 一个 name 为 nginx-exampledev 的 Deployment
-- 一个 name 为 nginx-example 的 Namespace
-- 一个 name 为 nginx-example 的 Service
+- 一个 name 为 `sampleappprod` 的 `Deployment`
+- 一个 name 为 `sampleapp` 的 `Namespace`
+- 一个 name 为 `nginx` 的 `Service`
 
 ### 2. 配置修改
 
@@ -127,68 +153,71 @@ Server 模型中的 image 属性用于声明应用的业务容器镜像，我们
 重新编译配置代码可以获得修改后的 YAML 输出：
 
 ```shell
-kpm run
+kcl run -D env=dev
 ```
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-exampledev
-  namespace: nginx-example
+  name: sampleappdev
+  namespace: sampleapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: nginx-example
+      app.kubernetes.io/name: sampleapp
       app.kubernetes.io/env: dev
-      app.kubernetes.io/instance: nginx-example-dev
-      app.kubernetes.io/component: nginx-exampledev
+      app.kubernetes.io/instance: sampleapp-dev
+      app.k8s.io/component: sampleappdev
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: nginx-example
+        app.kubernetes.io/name: sampleapp
         app.kubernetes.io/env: dev
-        app.kubernetes.io/instance: nginx-example-dev
-        app.kubernetes.io/component: nginx-exampledev
+        app.kubernetes.io/instance: sampleapp-dev
+        app.k8s.io/component: sampleappdev
     spec:
       containers:
-        - image: nginx:latest
-          name: main
-          ports:
-            - containerPort: 80
-              protocol: TCP
-          resources:
-            limits:
-              cpu: 100m
-              memory: 100Mi
-              ephemeral-storage: 1Gi
-            requests:
-              cpu: 100m
-              memory: 100Mi
-              ephemeral-storage: 1Gi
+      - env:
+        - name: MY_ENV
+          value: MY_VALUE
+        image: nginx:latest
+        name: main
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            cpu: '100m'
+            memory: '100Mi'
+            ephemeral-storage: '1Gi'
+          requests:
+            cpu: '100m'
+            memory: '100Mi'
+            ephemeral-storage: '1Gi'
+        volumeMounts: []
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: nginx-example
+  name: sampleapp
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-example
-  namespace: nginx-example
+  name: nginx
+  namespace: sampleapp
 spec:
   ports:
-    - nodePort: 30201
-      port: 80
-      targetPort: 80
+  - nodePort: 30201
+    port: 80
+    targetPort: 80
   selector:
-    app.kubernetes.io/name: nginx-example
+    app.kubernetes.io/name: sampleapp
     app.kubernetes.io/env: dev
-    app.kubernetes.io/instance: nginx-example-dev
-    app.kubernetes.io/component: nginx-exampledev
-  type: NodePort
+    app.kubernetes.io/instance: sampleapp-dev
+    app.k8s.io/component: sampleappdev
 ```
 
 ## 小结
