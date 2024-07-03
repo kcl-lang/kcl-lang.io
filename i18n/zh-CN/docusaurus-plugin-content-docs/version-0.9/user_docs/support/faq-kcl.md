@@ -517,14 +517,15 @@ data: value
 jsonData: '{"key": "value"}'
 ```
 
-注意，如果想在 `${}` 插值字符串中单独使用 `$` 字符，则需要使用 `$$` 对 `$` 进行转义
+注意，如果不想 `${...}` 表示字符串插值 ，我们可以在 `$` 之前添加`\` 字符表示直接以字符串的形式输出 `${...}`。
 
 ```python
 world = "world"
-a = "hello {}".format(world)       # "hello world"
-b = "hello ${world}"               # "hello world"
-c = "$$hello ${world}$$"           # "$hello world$"
-c2 = "$" + "hello ${world}" + "$"  # "$hello world$"
+a = "hello {}".format(world)        # "hello world"
+b = "hello ${world}"                # "hello world"
+c1 = "$hello ${world}$"             # "$hello world$"
+c2 = "$" + "hello ${world}" + "$"   # "$hello world$"
+c3 = "$" + "hello \${world}" + "$"  # "$hello ${world}$"
 ```
 
 输出 YAML 为:

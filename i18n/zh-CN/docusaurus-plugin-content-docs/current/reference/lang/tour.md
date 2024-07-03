@@ -364,14 +364,15 @@ assert x.upper() == "LENGTH"
 
 此外，要序列化的变量可以以特殊的数据格式提取，例如 YAML 或 JSON。在这种情况中，`#yaml` 或 `#json` 可以包含在花括号中。
 
-具体来说，当 `$` 符号本身需要出现在**插值字符串**中，需要使用 `$$` 转义。或者使用 `+` 符号连接 `$` 符号和插值字符串来避免转义。在以下示例中，`c` 和 `c2` 的值都是 `$hello world$`。
+注意，如果不想 `${...}` 表示字符串插值 ，我们可以在 `$` 之前添加`\` 字符表示直接以字符串的形式输出 `${...}`。
 
 ```python
 world = "world"
-a = "hello {}".format(world)       # "hello world"
-b = "hello ${world}"               # "hello world"
-c = "$$hello ${world}$$"           # "$hello world$"
-c2 = "$" + "hello ${world}" + "$"  # "$hello world$"
+a = "hello {}".format(world)        # "hello world"
+b = "hello ${world}"                # "hello world"
+c1 = "$hello ${world}$"             # "$hello world$"
+c2 = "$" + "hello ${world}" + "$"   # "$hello world$"
+c3 = "$" + "hello \${world}" + "$"  # "$hello ${world}$"
 
 myDict = {
     "key1" = "value1"

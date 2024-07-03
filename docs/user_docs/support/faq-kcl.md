@@ -515,14 +515,15 @@ data: value
 jsonData: '{"key": "value"}'
 ```
 
-Note that if we want to use the `$` character alone in the `${}` interpolated string, we need to escape the `$` with `$$`
+Note that if we don't want to interpolate variables, we can add the `\` character before `$`.
 
 ```python
 world = "world"
-a = "hello {}".format(world)       # "hello world"
-b = "hello ${world}"               # "hello world"
-c = "$$hello ${world}$$"           # "$hello world$"
-c2 = "$" + "hello ${world}" + "$"  # "$hello world$"
+a = "hello {}".format(world)        # "hello world"
+b = "hello ${world}"                # "hello world"
+c1 = "$hello ${world}$"             # "$hello world$"
+c2 = "$" + "hello ${world}" + "$"   # "$hello world$"
+c3 = "$" + "hello \${world}" + "$"  # "$hello ${world}$"
 ```
 
 The output YAML is
