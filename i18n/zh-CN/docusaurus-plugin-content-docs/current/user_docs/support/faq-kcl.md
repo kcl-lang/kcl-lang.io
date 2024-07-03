@@ -2627,7 +2627,72 @@ export KCL_CACHE_PATH=/tmp # 或者更改为您想要的路径
 setx KCL_CACHE_PATH "C:\temp" /M
 ```
 
-## 65. 如何在 KCL 中使用 "import another-module" ? 包名中包含横线 "-"
+## 65. 如何在 KCL 中将列表连接成字符串？
+
+如果我们想要将给定的列表 `L = ['a', 'b', 'c']` 用特定的分隔符（如逗号 ","）连接成一个字符串，可以使用以下 KCL 代码：
+
+```python
+S = ",".join(['a', 'b', 'c'])
+```
+
+## 66. 在 KCL 中是否支持 schema lambda（类方法）？
+
+KCL 支持为 schema 使用 lambda 定义成员函数。下面是一个相关的KCL示例代码：
+
+```python
+schema Person:
+    firstName: str
+    lastName: str
+    getFullName: () -> str = lambda {
+        firstName + " " + lastName
+    }
+
+p = Person{
+    firstName = "Alice"
+    lastName = "White"
+}
+fullName = p.getFullName()
+```
+
+上述 KCL 代码产生的输出：
+
+```yaml
+p:
+  firstName: Alice
+  lastName: White
+fullName: Alice White
+```
+
+## 67. 在 mixin 外部使用混合属性是否需要转换为 any 类型？
+
+需要将类型明确地添加到 schema 中即可使用混合属性。以下是一个示例代码：
+
+```python
+schema FooBar:
+    mixin [
+        FooBarMixin
+    ]
+    foo: str = 'foo'
+    bar: str = 'bar'
+
+protocol FooBarProtocol:
+    foo: str
+    bar: str
+
+mixin FooBarMixin for FooBarProtocol:
+    foobar: str = "${foo}.${bar}" # 带有类型注解的属性可以在模式外部访问。
+
+_c = FooBar {}
+foobar = _c.foobar
+```
+
+输出为：
+
+```yaml
+foobar: foo.bar
+```
+
+## 68. 如何在 KCL 中使用 "import another-module" ? 包名中包含横线 "-"
 
 在 KCL 中，import 语句中使用的模块名称中只支持`_`，kcl.mod 中的包名同时支持 `-` 和 `_`，KCL 编译器会自动将包名中的 `-` 替换为 `_`。
 

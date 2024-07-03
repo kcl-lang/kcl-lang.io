@@ -46,7 +46,7 @@ image: /img/biweekly-newsletter.png
 - 三方库 victoria-metrics-operator 升级到 0.45.1 版本，新增了一些检查语句的提示信息。
 - 三方库 istio 升级到 1.21.2 版本，调整了一些 check 规则，新增了文档。
 - 三方库 jsonpatch 升级到 0.0.5 版本，支持 rfc6901Decode。
- 
+
 **🏄 语言更新**
 
 - 增加了 centos7 amd64 的构建环境。

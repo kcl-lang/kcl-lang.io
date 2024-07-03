@@ -243,7 +243,7 @@ schema Deployment[priority]:
         _cpu = 1024
     else:
         _cpu = 2048
-    
+
     cpu: int = _cpu
     memory: int = _cpu * 2
 

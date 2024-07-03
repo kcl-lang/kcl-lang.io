@@ -69,24 +69,24 @@ spec:
         app.k8s.io/component: sampleappdev
     spec:
       containers:
-      - env:
-        - name: MY_ENV
-          value: MY_VALUE
-        image: nginx:1.7.8
-        name: main
-        ports:
-        - containerPort: 80
-          protocol: TCP
-        resources:
-          limits:
-            cpu: '100m'
-            memory: '100Mi'
-            ephemeral-storage: '1Gi'
-          requests:
-            cpu: '100m'
-            memory: '100Mi'
-            ephemeral-storage: '1Gi'
-        volumeMounts: []
+        - env:
+            - name: MY_ENV
+              value: MY_VALUE
+          image: nginx:1.7.8
+          name: main
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+              ephemeral-storage: "1Gi"
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+              ephemeral-storage: "1Gi"
+          volumeMounts: []
 ---
 apiVersion: v1
 kind: Namespace
@@ -100,9 +100,9 @@ metadata:
   namespace: sampleapp
 spec:
   ports:
-  - nodePort: 30201
-    port: 80
-    targetPort: 80
+    - nodePort: 30201
+      port: 80
+      targetPort: 80
   selector:
     app.kubernetes.io/name: sampleapp
     app.kubernetes.io/env: dev
@@ -122,9 +122,9 @@ metadata:
   namespace: sampleapp
 spec:
   ports:
-  - nodePort: 30201
-    port: 80
-    targetPort: 80
+    - nodePort: 30201
+      port: 80
+      targetPort: 80
   selector:
     app.kubernetes.io/name: sampleapp
     app.kubernetes.io/env: prod
@@ -179,24 +179,24 @@ spec:
         app.k8s.io/component: sampleappdev
     spec:
       containers:
-      - env:
-        - name: MY_ENV
-          value: MY_VALUE
-        image: nginx:latest
-        name: main
-        ports:
-        - containerPort: 80
-          protocol: TCP
-        resources:
-          limits:
-            cpu: '100m'
-            memory: '100Mi'
-            ephemeral-storage: '1Gi'
-          requests:
-            cpu: '100m'
-            memory: '100Mi'
-            ephemeral-storage: '1Gi'
-        volumeMounts: []
+        - env:
+            - name: MY_ENV
+              value: MY_VALUE
+          image: nginx:latest
+          name: main
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "100Mi"
+              ephemeral-storage: "1Gi"
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+              ephemeral-storage: "1Gi"
+          volumeMounts: []
 ---
 apiVersion: v1
 kind: Namespace
@@ -210,9 +210,9 @@ metadata:
   namespace: sampleapp
 spec:
   ports:
-  - nodePort: 30201
-    port: 80
-    targetPort: 80
+    - nodePort: 30201
+      port: 80
+      targetPort: 80
   selector:
     app.kubernetes.io/name: sampleapp
     app.kubernetes.io/env: dev
