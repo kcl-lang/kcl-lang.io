@@ -57,7 +57,7 @@ For the model design phase, quick generation of document strings has also been a
 
 ### KCL Package Manager Updates
 
-The package management tool has now interconnected the core workflow of KCL package creation, update, code review, and release. Based on this, over 120+ out-of-the-box KCL model packages have been added. Users can refer to the [Writing and Publishing Kubernetes KCL Code Packages guide](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/publish-modules/) to start using them immediately.
+The package management tool has now interconnected the core workflow of KCL package creation, update, code review, and release. Based on this, over 120+ out-of-the-box KCL model packages have been added.
 
 ### KCL Language Updates
 

@@ -53,7 +53,7 @@ In summary, KCL boasts the following characteristics:
 - **Scalability**: KCL's automatic merge mechanism for isolated configuration blocks promotes high scalability.
 - **Fast automation**: KCL offers a gradient automation scheme encompassing [CRUD APIs](https://kcl-lang.github.io/docs/reference/lang/tour/#kcl-cli-variable-override), [multilingual SDKs](https://kcl-lang.github.io/docs/reference/xlang-api/overview), and [language plugins](https://kcl-lang.github.io/docs/reference/plugin/overview)
 - **High performance**: Leveraging Rust, C, and LLVM, KCL achieves high compilation and runtime performance, supporting compilation to native code and WebAssembly.
-- **API affinity**: KCL natively supports API specifications like JsonSchema, [OpenAPI](https://kcl-lang.github.io/docs/tools/cli/openapi/), Kubernetes CRDs, Kubernetes YAML, Terraform provider schema and etc.
+- **API affinity**: KCL natively supports API specifications like JsonSchema, OpenAPI, Kubernetes CRDs, Kubernetes YAML, Terraform provider schema and etc.
 - **Development friendly**: KCL provides a rich suite of language tools (format, lint, test, vet, doc) and [IDE extensions](https://kcl-lang.github.io/docs/tools/Ide/) for a smooth development experience.
 - **Safety and maintainability**: KCL's domain-oriented nature avoids system-level functions, minimizing noise, security risks, and maintenance overhead.
 - **Rich multi-language SDK**: SDKs for Rust, Go, Python, Java, Node.js and REST APIs cater to diverse scenarios and application use cases.

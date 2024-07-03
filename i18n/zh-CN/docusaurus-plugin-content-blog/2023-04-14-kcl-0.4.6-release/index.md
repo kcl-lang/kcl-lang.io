@@ -235,7 +235,6 @@ spec:
             - containerPort: 80
 ```
 
-- 更多 KCL 包管理工具安装方式、详细内容及用例[详见](https://kcl-lang.io/docs/user_docs/guides/package-management/overview)
 - 更多 Konfig 模型库的内容和使用方式[详见](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview)
 
 ## 社区集成 & 扩展更新

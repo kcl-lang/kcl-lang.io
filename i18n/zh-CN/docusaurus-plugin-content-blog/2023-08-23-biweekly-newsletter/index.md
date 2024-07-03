@@ -41,8 +41,8 @@ tags: [KCL, Biweekly-Newsletter]
 - **🏄 API 更新**
   - KCL Schema 模型解析 GetSchemaType API 获取 KCL 包相关信息和 Schema 属性默认值
 - **📰 官网和用例更新**
-  - 新增通过 docker.io 发布 KCL 包用例: _[https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md](https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md)_
-  - 新增 KCL Gitlab CI 集成用例: _[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)_
+  - 新增通过 docker.io 发布 KCL 包用例
+  - 新增 KCL Gitlab CI 集成用例
   - 新增 KCL 密钥管理 Vault 和 Vals 集成用例: *[https://kcl-lang.io/docs/user_docs/guides/secret-management/vault](https://kcl-lang.io/docs/user_docs/guides/secret-management/vault)*
 
 ## 特别鸣谢

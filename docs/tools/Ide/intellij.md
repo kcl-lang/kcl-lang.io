@@ -28,14 +28,14 @@ IntelliJ KCL LSP also can be downloaded from the plugin marketplace
 
 Additionally, you need to install the [kcl-language-server](https://www.kcl-lang.io/docs/user_docs/getting-started/install#install-language-server) and verify that the `kcl-language-server` command is in your PATH. Here are the steps for different operating systems:
 
-  For macOS and Linux:
+For macOS and Linux:
 
-  ```bash
-  which kcl-language-server
-  ```
+```bash
+which kcl-language-server
+```
 
-  For Windows:
+For Windows:
 
-  ```bash
-  where kcl-language-server
-  ```
+```bash
+where kcl-language-server
+```

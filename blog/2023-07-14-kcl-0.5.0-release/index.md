@@ -303,8 +303,6 @@ The kpm tool supports pushing KCL packages through OCI Registry. The default OCI
 
 You can browse the KCL package you need here. We currently provide the KCL package for k8s, which supports all versions of k8s from 1.14 to 1.27. Welcome to open [Issues](https://github.com/kcl-lang/kpm/issues) to co build KCL models.
 
-See [here](https://kcl-lang.io/docs/user_docs/guides/package-management/overview) for more information about the **kpm** tool.
-
 ## Integrations
 
 ### CI Integrations

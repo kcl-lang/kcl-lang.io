@@ -248,7 +248,7 @@ foo: {"A"|"B": int} = {A = 1}
 
 ## 文档
 
-[KCL 网站](https://kcl-lang.github.io/) 初步建立，并完善 Kubernetes 场景[相关文档](https://kcl-lang.github.io/docs/user_docs/guides/working-with-k8s/).
+[KCL 网站](https://kcl-lang.github.io/) 初步建立，并完善 Kubernetes 场景[相关文档](https://kcl-lang.github.io/docs/user_docs/guides/working-with-k8s/overview).
 
 更多网站信息详见 [https://kcl-lang.github.io/](https://kcl-lang.github.io/)
 

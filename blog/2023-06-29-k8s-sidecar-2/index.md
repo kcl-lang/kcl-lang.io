@@ -47,7 +47,7 @@ k8core.Pod {
 }
 ```
 
-Here, the `import` statement imports the `k8s/api/core/v1` package from the k8s package, and the `Pod` structure definition corresponds to the `Pod` model. The default values for apiVersion and kind have already been included, so we only need to add the `metadata.name` and `spec.containers` properties (KCL also provides syntax sugar for some multi-level nested properties). We can use the [kpm package management tool](https://kcl-lang.io/docs/user_docs/guides/package-management/installation/) to create a KCL program to define a Pod resource and execute the program to get the corresponding YAML:
+Here, the `import` statement imports the `k8s/api/core/v1` package from the k8s package, and the `Pod` structure definition corresponds to the `Pod` model. The default values for apiVersion and kind have already been included, so we only need to add the `metadata.name` and `spec.containers` properties (KCL also provides syntax sugar for some multi-level nested properties). We can use the package management tool to create a KCL program to define a Pod resource and execute the program to get the corresponding YAML:
 
 ```shell
 # 1. Initialize a kcl program package called hello.

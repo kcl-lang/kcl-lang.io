@@ -30,7 +30,7 @@ tags: [KCL, Biweekly-Newsletter]
 **📰 官网和用例更新**
 
 - KCL 官网新增 v0.5.6 文档版本
-- 新增通过 Github Action 发布 KCL 代码包直接发布到 docker.io 和 ghcr.io 等 Registry 用例: _[https://github.com/kcl-lang/kpm/blob/main/docs/push_by_github_action.md](https://github.com/kcl-lang/kpm/blob/main/docs/push_by_github_action.md)_
+- 新增通过 Github Action 发布 KCL 代码包直接发布到 docker.io 和 ghcr.io 等 Registry 用例
 - 新增 KCL Operator 集成用例: _[https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator)_
 
 ## 特别鸣谢

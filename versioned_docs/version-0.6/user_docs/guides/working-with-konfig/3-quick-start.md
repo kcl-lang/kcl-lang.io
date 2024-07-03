@@ -24,9 +24,7 @@ This guide requires you to have a basic understanding of Kubernetes. If you are 
 
 Before we start, we need to complete the following steps:
 
-1. Install [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
-
-2. Clone the [Konfig repo](https://github.com/kcl-lang/konfig.git)
+Clone the [Konfig repo](https://github.com/kcl-lang/konfig.git)
 
 ```shell
 git clone https://github.com/kcl-lang/konfig.git && cd konfig

@@ -2649,7 +2649,7 @@ After you set the `KCL_CACHE_PATH`, when you run any KCL commands, the `.kclvm` 
 
 ## 65. How to join a list to a string in KCL?
 
-If we want to join a given list L = ['a', 'b', 'c'] into a string with some sepeartor (like a comma ","). 
+If we want to join a given list L = ['a', 'b', 'c'] into a string with some sepeartor (like a comma ",").
 
 ```bash
 S = ",".join(['a', 'b', 'c'])
@@ -2659,7 +2659,7 @@ S = ",".join(['a', 'b', 'c'])
 
 KCL supports defining member functions for schemas and can omit them. An example KCL code is shown below for the same:
 
-```KCL 
+```KCL
 schema Person:
     firstName: str
     lastName: str
@@ -2685,7 +2685,7 @@ fullName: Alice White
 
 ## 67. Does the use of mixed-in attributes outside of mixin requires casting to `any` type?
 
-You need to add specifically the type into the schema. An example code shown below: 
+You need to add specifically the type into the schema. An example code shown below:
 
 ```KCL
 schema FooBar:

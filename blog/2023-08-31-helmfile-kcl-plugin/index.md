@@ -109,8 +109,6 @@ spec:
 
 Specific example codes can be found [here](https://github.com/kcl-lang/krm-kcl/tree/main/examples)
 
-If you want to contribute more KCL code repositories, feel free to contact us and refer to the documentation for contribution: https://kcl-lang.io/zh-CN/docs/user_docs/guides/package-management/share_your_pkg/
-
 ## Conclusion
 
 This blog provided a quick getting started guide to help you master the basics of the Helmfile KCL Plugin in just 5 minutes. Now, you can start using this powerful tool to simplify and optimize your Kubernetes application deployment process!

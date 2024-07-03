@@ -51,7 +51,7 @@ KCL IDE 插件基于新增了大量补全提示，重点针对**配置定义**�
 
 ### KCL 包管理工具
 
-包管理工具现已串联起 KCL 包创建-更新-代码审查-发布的核心工作流，并基于此新增开箱即用的 KCL 模型包至 120+，用户可参照[编写并发布 Kubernetes KCL 代码包](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/publish-modules/) 即刻使用。
+包管理工具现已串联起 KCL 包创建-更新-代码审查-发布的核心工作流，并基于此新增开箱即用的 KCL 模型包至 120+。
 
 ### KCL 语言更新
 
