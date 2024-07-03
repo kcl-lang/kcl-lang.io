@@ -360,18 +360,19 @@ assert "length length".title() == "Length Length"
 assert x.upper() == "LENGTH"
 ```
 
-There are 2 different ways to format a string: to use the `"{}".format()` built-in function, or to specify the variable between the curly braces and use a `$` mark to tell KCL to extract its value. This is called **string interpolation** in KCL. In following example, both `a` and `b` will be assigned to string `"hello world"`.
+There are 2 different ways to format a string: to use the `"{}".format()` built-in function, or to specify the variable between the curly braces and use a `${}` mark to tell KCL to extract its value. This is called **string interpolation** in KCL. In following example, both `a` and `b` will be assigned to string `"hello world"`.
 
-Besides, the variable to serialized can be extracted in special data format, such as YAML or JSON. In this case, a `#yaml` or `#json` can be included within the curly braces.
+Besides, the variable to serialized can be extracted in special data format, such as YAML or JSON. In this case, a `#yaml` or `#json` can be included within the curly braces. 
 
-Specifically, when the dollar sign `$` itself is needed in a **string interpolation**, it needs to be escaped and use `$$` instead. Or in another way, `+` can be used to concat the dollar sign with the **string interpolation** to avoid that escape. In following example, both `c` and `c2` will be assigned to string `$hello world$`
+Note that if we don't want to interpolate variables, we can add the `\` character before `$`.
 
 ```python
 world = "world"
-a = "hello {}".format(world)       # "hello world"
-b = "hello ${world}"               # "hello world"
-c = "$$hello ${world}$$"           # "$hello world$"
-c2 = "$" + "hello ${world}" + "$"  # "$hello world$"
+a = "hello {}".format(world)        # "hello world"
+b = "hello ${world}"                # "hello world"
+c1 = "$hello ${world}$"             # "$hello world$"
+c2 = "$" + "hello ${world}" + "$"   # "$hello world$"
+c3 = "$" + "hello \${world}" + "$"  # "$hello ${world}$"
 
 myDict = {
     "key1" = "value1"
