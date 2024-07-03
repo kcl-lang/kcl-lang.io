@@ -157,7 +157,7 @@ public class PluginTest {
         API.registerPlugin("my_plugin", Collections.singletonMap("add", (args, kwArgs) -> {
             return (int) args[0] + (int) args[1];
         }));
-        
+
         API api = new API();
         ExecProgram_Result result = api
                 .execProgram(ExecProgram_Args.newBuilder().addKFilenameList("test.k").build());
