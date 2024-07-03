@@ -25,16 +25,16 @@ sidebar_position: 3
 ![intellij](/img/docs/tools/Ide/intellij/kcl-lsp.png)
 
 除此之外，您还需要[安装 kcl-language-server](https://www.kcl-lang.io/docs/user_docs/getting-started/install#install-language-server) 并检查 `kcl-language-server` 命令在您的 PATH 中:
-  在 MacOs 和 Linux中：
+在 MacOs 和 Linux中：
 
-  ```bash
-  which kcl-language-server
-  ```
+```bash
+which kcl-language-server
+```
 
-  在 Windows 中:
+在 Windows 中:
 
-  ```bash
-  where kcl-language-server
-  ```
+```bash
+where kcl-language-server
+```
 
 注意，LSP 版本的插件不一定在所有版本的 IntelliJ IDE 中可以使用。

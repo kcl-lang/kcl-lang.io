@@ -112,8 +112,6 @@ spec:
 
 具体的示例代码在[这里](https://github.com/kcl-lang/krm-kcl/tree/main/examples)
 
-如果您想贡献更多的 KCL 代码库，欢迎联系我们并参阅文档进行贡献 https://kcl-lang.io/zh-CN/docs/user_docs/guides/package-management/share_your_pkg/
-
 ## 小结
 
 本文提供了一个快速入门指南，帮助您在 5 分钟内掌握 Helmfile KCL 插件的基本用法。现在，您可以开始使用这个强大的工具来简化和优化您的 Kubernetes 应用部署流程了！

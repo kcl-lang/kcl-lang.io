@@ -20,10 +20,10 @@ image: /img/biweekly-newsletter.png
 
 感谢过去两周所有的社区参与者，以下排名不分先后
 
-- 恭喜 @AkashKumar7902 完成 LFX 1 期任务，kpm 版本管理模块的 mvp 版本成功合并入 main 分支 🙌 
-- 感谢 @shashank-iitbhu 在 IDE Quick Fix 功能上做的持续贡献 🙌 
-- 感谢 @Wck-iipi 在 IDE 悬停功能上做的持续贡献 🙌 
-- 感谢 @warjiang 为 devcontainer 作出的贡献 🙌 
+- 恭喜 @AkashKumar7902 完成 LFX 1 期任务，kpm 版本管理模块的 mvp 版本成功合并入 main 分支 🙌
+- 感谢 @shashank-iitbhu 在 IDE Quick Fix 功能上做的持续贡献 🙌
+- 感谢 @Wck-iipi 在 IDE 悬停功能上做的持续贡献 🙌
+- 感谢 @warjiang 为 devcontainer 作出的贡献 🙌
 - 感谢 @shruti2522 为 IDE 悬停效果的优化作出的持续贡献 🙌
 - 感谢 @XiaoK29 为 KCL go SDK 的代码优化作出的持续贡献 🙌
 - 感谢 @d4v1d03 为 KCL 文档作出的持续贡献 🙌

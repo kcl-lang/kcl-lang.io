@@ -189,5 +189,5 @@ See the [community](https://github.com/kcl-lang/community) for ways to join us. 
 - [12] KCL IDE Extension: [https://kcl-lang.io/docs/tools/Ide/](https://kcl-lang.io/docs/tools/Ide/)
 - [13] ArtifactHub KCL Integration: [https://artifacthub.io/](https://artifacthub.io/)
 - [14] KCL Operator: [https://github.com/kcl-lang/kcl-operator](https://github.com/kcl-lang/kcl-operator)
-- [15] Terraform KCL Policy: [https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation](https://kcl-lang.io/docs/user_docs/guides/[]working-with-terraform/validation)
+- [15] Terraform KCL Policy: [https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation](https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation)
 - [16] GitOps using KCL: [https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start](https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start)

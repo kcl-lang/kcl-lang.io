@@ -31,7 +31,7 @@ Thank you to all contributors for their outstanding work over the past two weeks
 **📰 Official Website and Use Case Updates**
 
 - KCL website adds v0.5.6 documentation version.
-- Publishing KCL packages to docker.io or ghcr.io registries using Github Actions Example: [https://github.com/kcl-lang/kpm/blob/main/docs/push_by_github_action.md](https://github.com/kcl-lang/kpm/blob/main/docs/push_by_github_action.md)
+- Publishing KCL packages to docker.io or ghcr.io registries using Github Actions Example.
 - KCL Operator example: [https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kcl-operator)
 
 ## Special Thanks

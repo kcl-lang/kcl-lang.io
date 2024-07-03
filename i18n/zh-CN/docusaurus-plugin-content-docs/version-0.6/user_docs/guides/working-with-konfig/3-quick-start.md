@@ -24,9 +24,7 @@ sidebar_label: 快速开始
 
 在开始之前，我们需要做以下准备工作：
 
-1. 安装 [kpm](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)
-
-2. 下载开源 Konfig 库，仓库地址: [https://github.com/kcl-lang/konfig.git](https://github.com/kcl-lang/konfig.git)
+下载开源 Konfig 库，仓库地址: [https://github.com/kcl-lang/konfig.git](https://github.com/kcl-lang/konfig.git)
 
 ```shell
 git clone https://github.com/kcl-lang/konfig.git && cd konfig

@@ -250,7 +250,6 @@ spec:
             - containerPort: 80
 ```
 
-- See [here](https://kcl-lang.io/docs/user_docs/guides/package-management/overview) for more information about the **kpm** tool.
 - See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-konfig/overview) for more information about the **konfig** model.
 
 ## Integrations
@@ -329,9 +328,9 @@ In the YAML configuration mentioned above, we only wrote one line of KCL code to
 
 In addition, we have provided commonly used container and service configuration mutation and validation KCL models for Kustomize/Helm/KPT tools and will continue to improve them.
 
-- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kustomize_kcl_plugin) for more information about the Kustomize KCL plugin.
-- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/helm_kcl_plugin) for more information about the Helm KCL Plugin.
-- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/kpt_kcl_sdk) for more information about the KPT KCL Plugin.
+- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kubectl-kcl-plugin) for more information about the Kustomize KCL plugin.
+- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/helm-kcl-plugin) for more information about the Helm KCL Plugin.
+- See [here](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/mutate-manifests/kpt-kcl-sdk) for more information about the KPT KCL Plugin.
 
 ### Multilingual SDK
 

@@ -51,7 +51,7 @@ k8core.Pod {
 
 其中 import 导入了 k8s 包中的 `k8s/api/core/v1` 包，其中的 Pod 结构定义对应 Pod 模型，其中已经包含了 apiVersion 和 kind 的默认值，因此只需要添加 `metadata.name` 和 `spec.containers` 属性（KCL 也针对一些多级嵌套的属性提供了的语法糖）。
 
-我们可以通过 [kpm 包管理工具](https://kcl-lang.io/docs/user_docs/guides/package-management/installation)，创建一个 KCL 程序来定义一个 Pod 资源。并执行这个程序来得到对应的 YAML。
+我们可以通过包管理工具创建一个 KCL 程序来定义一个 Pod 资源。并执行这个程序来得到对应的 YAML。
 
 ```shell
 # 1. 初始化一个 kcl 程序包 hello.

@@ -258,7 +258,7 @@ For more issues, see [https://github.com/kcl-lang/kcl/milestone/2?closed=1](http
 
 ## Documents
 
-[KCL website](https://kcl-lang.github.io/) preliminary establishment and improvement of Kubernetes scenarios [related documents](https://kcl-lang.github.io/docs/user_docs/guides/working-with-k8s/).
+[KCL website](https://kcl-lang.github.io/) preliminary establishment and improvement of Kubernetes scenarios [related documents](https://kcl-lang.github.io/docs/user_docs/guides/working-with-k8s/overview).
 
 For more information, see [https://kcl-lang.github.io/](https://kcl-lang.github.io/)
 

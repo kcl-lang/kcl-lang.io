@@ -36,7 +36,7 @@ Thank you to all contributors for their outstanding work over the past two weeks
 
 **📰 Official Website and Use Case Updates**
 
-- KCL package docker.io integration example: _[https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md](https://github.com/kcl-lang/kpm/blob/main/docs/publish_to_docker_reg.md)_
+- KCL package docker.io integration example.
 - KCL Gitlab CI integration example: _[https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci](https://kcl-lang.io/docs/user_docs/guides/ci-integration/gitlab-ci)_
 - KCL Vault and Vals Integration example: _[https://kcl-lang.io/docs/user_docs/guides/secret-management/vault](https://kcl-lang.io/docs/user_docs/guides/secret-management/vault)_
 

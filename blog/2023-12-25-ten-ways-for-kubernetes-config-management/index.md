@@ -221,7 +221,6 @@ Do you know of other ways? Feel free to add. ❤️
 - FluxCD: [https://fluxcd.io/](https://fluxcd.io/)
 - Helmfile: [https://helmfile.readthedocs.io/en/latest/](https://helmfile.readthedocs.io/en/latest/)
 - CDK8s: [https://cdk8s.io/](https://cdk8s.io/)
-- [Helm vs. Kustomize in Kubernetes](https://medium.com/@sushantkapare1717/helm-vs-kustomize-in-kubernetes-cc063bbb4b0e)
 - Winglang: [https://github.com/winglang/wing](https://github.com/winglang/wing)
 - Plutolang: [https://github.com/pluto-lang/pluto](https://github.com/pluto-lang/pluto)
 - [Infrastructure as Code Landscape in 2023](https://blog.terramate.io/infrastructure-as-code-landscape-in-2023-e2dad4fb87d3)

@@ -167,7 +167,7 @@ Different from other languages of the same type in the community, KCL is a stati
 
 The core features of KCL are its **modeling** and **constraint** capabilities, and the basic functions of KCL revolve around the two core features. In addition, KCL follows the user-centric configuration concept to design its basic functions, which can be understood from two aspects:
 
-- **Domain model-centric configuration view**: With the rich features of KCL language and [KCL OpenAPI](https://kcl-lang.io/docs/tools/cli/openapi/) tools, we can directly integrate a wide range of well-designed models in the community into KCL (such as the K8s resource model). We can also design and implement our own KCL models or libraries according to different scenarios, forming a complete set of domain models for other configuration end users to use.
+- **Domain model-centric configuration view**: With the rich features of KCL language and KCL OpenAPI tools, we can directly integrate a wide range of well-designed models in the community into KCL (such as the K8s resource model). We can also design and implement our own KCL models or libraries according to different scenarios, forming a complete set of domain models for other configuration end users to use.
 - **End user-centric configuration view**: With KCL's code encapsulation, abstraction and reuse capabilities, the model architecture can be further abstracted and simplified (for example, the K8s resource model is abstracted into an application-centered server model) to **minimize the end user configuration input**, simplify the user's configuration interface, and facilitate manual or automatic API modification.
 
 No matter what configuration view is centered on, for configuration code, there are requirements for configuration data constraints, such as type constraints, required/optional constraints on configuration attributes, range constraints, and immutability constraints. This is also one of the core issues KCL is committed to solving. KCL mainly contains the core features shown in Fig. 5.
@@ -214,7 +214,7 @@ Fig. 8: A K-V validation visualization product based on KCL.
 
 ### 2.2 Definition and Abstraction of Complex Configuration Model
 
-As shown in Fig 9, with the help of the [KCL OpenAPI](https://kcl-lang.io/docs/tools/cli/openapi/) tool, we can directly integrate a wide range of well-designed models.
+As shown in Fig 9, with the help of the KCL OpenAPI tool, we can directly integrate a wide range of well-designed models.
 
 ![](/img/blog/2022-09-15-declarative-config-overview/09-kcl-modeling.png)
 

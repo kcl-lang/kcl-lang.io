@@ -191,5 +191,5 @@ KCL 也可以被用于企业内部与各种 CI/CD 和应用配置交付引擎比
 - [12] KCL IDE 插件: [https://kcl-lang.io/docs/tools/Ide/](https://kcl-lang.io/docs/tools/Ide/)
 - [13] ArtifactHub KCL 集成: [https://artifacthub.io/](https://artifacthub.io/)
 - [14] KCL Operator: [https://github.com/kcl-lang/kcl-operator](https://github.com/kcl-lang/kcl-operator)
-- [15] Terraform KCL 策略代码化: [https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation](https://kcl-lang.io/docs/user_docs/guides/[]working-with-terraform/validation)
+- [15] Terraform KCL 策略代码化: [https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation](https://kcl-lang.io/docs/user_docs/guides/working-with-terraform/validation)
 - [16] 使用 KCL 进行 GitOps: [https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start](https://kcl-lang.io/docs/user_docs/guides/gitops/gitops-quick-start)
