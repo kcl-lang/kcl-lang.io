@@ -61,8 +61,7 @@ You can use `kcl registry login` in four ways.
 #### 1. Login OCI Registry with account and password
 
 ```shell
-$ kcl registry login -u <account_name> -p <password> <oci_registry>
-Login succeeded
+kcl registry login -u <account_name> -p <password> <oci_registry>
 ```
 
 For the example, the command is as follows:
@@ -74,7 +73,7 @@ kcl registry login -u test -p 1234 localhost:5001
 #### 2. Login OCI Registry with account and interactive input password
 
 ```shell
-$ kcl registry login -u <account_name> <oci_registry>
+kcl registry login -u <account_name> <oci_registry>
 Password:
 Login succeeded
 ```
@@ -82,7 +81,7 @@ Login succeeded
 For the example, the command is as follows:
 
 ```shell
-$ kcl registry login -u test localhost:5001
+kcl registry login -u test localhost:5001
 Password: 1234
 Login succeeded
 ```
@@ -90,7 +89,7 @@ Login succeeded
 #### 3. Login OCI Registry with interactive input account and password
 
 ```shell
-$ kcl registry login <oci_registry>
+kcl registry login <oci_registry>
 Username: <account_name>
 Password:
 Login succeeded
@@ -99,7 +98,7 @@ Login succeeded
 For the example, the command is as follows:
 
 ```shell
-$ kcl registry login localhost:5001
+kcl registry login localhost:5001
 Username: test
 Password: 1234
 Login succeeded
@@ -125,38 +124,38 @@ You can use `kcl mod push` to upload a KCL package to an OCI Registry.
 
 ```shell
 # Create a new kcl package.
-$ kcl mod init <package_name>
+kcl mod init <package_name>
 # Enter the root directory of the kcl package
-$ cd <package_name>
+cd <package_name>
 # Upload the kcl package to an oci registry
-$ kcl mod push
+kcl mod push
 ```
 
 For the example, the commands are as follows:
 
 ```shell
-$ kcl mod init MyPkg
-$ cd MyPkg
-$ kcl mod push
+kcl mod init MyPkg
+cd MyPkg
+kcl mod push
 ```
 
 You can also specify the url of the OCI registry in the `kcl mod push` command.
 
 ```shell
 # Create a new kcl package.
-$ kcl mod init <package_name>
+kcl mod init <package_name>
 # Enter the root directory of the kcl package
 $ cd <package_name>
 # Upload the kcl package to an oci registry
-$ kcl mod push <oci_url>
+kcl mod push <oci_url>
 ```
 
 For the example, you can push the kcl package to `localhost:5001` by the command
 
 ```shell
-$ kcl mod init MyPkg
-$ cd MyPkg
-$ kcl mod push oci://localhost:5001/test/MyPkg --tag v0.1.0
+kcl mod init MyPkg
+cd MyPkg
+kcl mod push oci://localhost:5001/test/MyPkg --tag v0.1.0
 ```
 
 ### `kcl mod pull` to download a KCL package

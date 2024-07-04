@@ -1934,7 +1934,7 @@ print("The value of a is", a)
 assert a == 1
 ```
 
-In addition, we can also use the kcl-test test tool to write KCL internal test cases
+In addition, we can also use the kcl test tool to write KCL internal test cases
 
 Assuming there is a hello.k file, the code is as follows:
 
@@ -1952,26 +1952,27 @@ hello = Person {
 Construct the hello_test.k test file with the following contents:
 
 ```python
-schema TestPerson:
+test_person = lambda {
     a = Person{}
     assert a.name == 'kcl'
+}
 
-schema TestPerson_age:
+test_person_age = lambda {
     a = Person{}
     assert a.age == 1
+}
 
-schema TestPerson_ok:
+test_person_name_and_age = lambda {
     a = Person{}
     assert a.name == "kcl"
     assert a.age == 1
+}
 ```
 
-Then execute the kcl-test command in the directory:
+Then execute the kcl test command in the directory:
 
-```
-$ kcl-test
-ok   /pkg/to/app [365.154142ms]
-$
+```shell
+kcl test
 ```
 
 ## 44. How to define and use functions in KCL?
