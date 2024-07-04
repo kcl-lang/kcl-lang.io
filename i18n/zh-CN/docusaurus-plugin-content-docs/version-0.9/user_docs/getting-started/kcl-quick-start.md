@@ -65,10 +65,13 @@ servers = [
 
 其中 `#` 开头的表示行注释。`owner` 的 value 是一个字典，字典的面值通过 `{}` 方式包含的内容，字典内部的 key-value 和 `hello = "KCL"` 例子的写法类似。`database` 则是另一个字典，其中字典属性的 value 出现了布尔 `True`、列表 `[]` 和 `{}` 字典，其中列表和字典中还出现了数值类型的 value。 最后一个 `servers` 属性则是一个列表，列表内部嵌套着字典（字典和列表以及后续将要讲到的 `schema` 都可以相互嵌套）。
 
-该配置输出的 YAML 结果如下：
+运行命令和配置输出的 YAML 结果如下：
+
+```shell
+kcl server.k
+```
 
 ```yaml
-$ kcl server.k
 title: KCL Example
 owner:
   name: The KCL Authors

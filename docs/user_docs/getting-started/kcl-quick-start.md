@@ -65,10 +65,13 @@ servers = [
 
 where `#` begins with a line comment. The value of `owner` is a dictionary. The value of the dictionary contains the content in the form of `{}`. The key-value inside the dictionary is similar to the `hello = "KCL"` example. `database` is another dictionary in which the value of the dictionary attribute appears boolean `True`, list `[]` and dictionary `{}`, in which the value of the numeric type also appears in the list and dictionary. The `servers` attribute is a list with dictionaries nested inside the list (dictionaries and lists, as well as the `schema` that will be discussed later, can be nested within each other).
 
-The YAML output of this configuration is as follows:
+The command and the YAML output of this configuration is as follows:
+
+```shell
+kcl server.k
+```
 
 ```yaml
-$ kcl server.k
 title: KCL Example
 owner:
   name: The KCL Authors

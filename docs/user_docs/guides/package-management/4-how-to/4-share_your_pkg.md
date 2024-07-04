@@ -47,11 +47,11 @@ If you already have a directory containing kcl files `exist_kcl_package`, you ca
 
 ```shell
 # In the exist_kcl_package directory
-$ pwd
+pwd
 /home/user/exist_kcl_package
 
 # Run the `kcl mod init` command to create the `kcl.mod` and `kcl.mod.lock` files
-$ kcl mod init
+kcl mod init
 ```
 
 For more information on how to use `kcl mod init`, see [kcl mod init](https://kcl-lang.io/docs/tools/cli/package-management/command-reference/init).
@@ -62,11 +62,11 @@ You can use the following command in the root directory of your `kcl` package:
 
 ```shell
 # In the root directory of the exist_kcl_package package
-$ pwd
+pwd
 /home/user/exist_kcl_package
 
 # Pushing the KCL Package to Default OCI Registry
-$ kcl mod push
+kcl mod push
 ```
 
 After completing these steps, you have successfully pushed your KCL Package to the default OCI Registry.

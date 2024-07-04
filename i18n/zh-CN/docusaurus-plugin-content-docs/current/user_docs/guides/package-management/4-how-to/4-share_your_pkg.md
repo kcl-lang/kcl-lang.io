@@ -47,11 +47,11 @@ kcl mod init my_package
 
 ```shell
 # 在 exist_kcl_package 目录下
-$ pwd
+pwd
 /home/user/exist_kcl_package
 
 # 执行 kcl 包管理init 命令来创建 kcl.mod 和 kcl.mod.lock
-$ kcl mod init
+kcl mod init
 ```
 
 关于如何使用 kcl 包管理init 的更多信息，请参阅 [kcl mod init](https://kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/init)。
@@ -62,11 +62,11 @@ $ kcl mod init
 
 ```shell
 # 在 exist_kcl_package 包的根目录下
-$ pwd
+pwd
 /home/user/exist_kcl_package
 
 # 推送 kcl 包到默认的 OCI Registry
-$ kcl mod push
+kcl mod push
 ```
 
 完成上述步骤后，您就成功地将您的 kcl 包推送到了默认的 OCI Registry 中。
