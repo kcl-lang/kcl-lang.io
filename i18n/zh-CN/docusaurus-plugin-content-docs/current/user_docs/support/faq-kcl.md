@@ -1946,7 +1946,7 @@ print("The value of a is", a)
 assert a == 1
 ```
 
-此外，还可以借助 kcl-test 测试工具编写 KCL 内部编写测试用例
+此外，还可以借助 kcl test 测试工具编写 KCL 内部编写测试用例
 
 假设有 hello.k 文件，代码如下:
 
@@ -1964,26 +1964,27 @@ hello = Person {
 构造 hello_test.k 测试文件，内容如下：
 
 ```python
-schema TestPerson:
+test_person = lambda {
     a = Person{}
     assert a.name == 'kcl'
+}
 
-schema TestPerson_age:
+test_person_age = lambda {
     a = Person{}
     assert a.age == 1
+}
 
-schema TestPerson_ok:
+test_person_name_and_age = lambda {
     a = Person{}
     assert a.name == "kcl"
     assert a.age == 1
+}
 ```
 
-然后在目录下执行 kcl-test 命令:
+然后在目录下执行 kcl test 命令:
 
 ```
-$ kcl-test
-ok   /pkg/to/app [365.154142ms]
-$
+kcl test
 ```
 
 ## 44. KCL 中如何定义函数或定义方法？
