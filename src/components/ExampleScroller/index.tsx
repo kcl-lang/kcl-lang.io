@@ -22,7 +22,7 @@ const getTopByIndex = (m: number[], index: 1 | 2 | 3 | 4): number => {
   return scale[index] ?? 0;
 };
 
-const configExample = `import base.pkg.kusion_models.kube.frontend
+const configExample = `import konfig.models.kube.frontend
 
 server: frontend.Server {
     image = "nginx"
@@ -42,7 +42,7 @@ const schemaExample = `schema Server:
     labels?: {str:str}
 `;
 
-const LambdaExample = `import base.pkg.kusion_models.kube.frontend
+const LambdaExample = `import konfig.models.kube.frontend
 
 genLocalityLabels = lambda cluster: str, app: str -> {str:str} {
     {
