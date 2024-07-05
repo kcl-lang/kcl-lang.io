@@ -57,4 +57,7 @@ For relatively complex general logic, it is provided through the system modules.
    <DocsCard header="template" href="template">
     <p>Provides template functions.</p>
   </DocsCard>
+   <DocsCard header="runtime" href="runtime">
+    <p>Provides runtime functions.</p>
+  </DocsCard>
 </DocsCards>
