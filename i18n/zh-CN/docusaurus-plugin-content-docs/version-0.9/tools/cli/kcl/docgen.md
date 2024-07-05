@@ -137,6 +137,9 @@ Examples:
   # Generate Markdown document for current package
   kcl doc generate
 
+  # Generate Markdown document for current package and escape the HTML symbols | to \|, \n to <br>, etc.
+  kcl doc generate --escape-html
+
   # Generate Html document for current package
   kcl doc generate --format html
 

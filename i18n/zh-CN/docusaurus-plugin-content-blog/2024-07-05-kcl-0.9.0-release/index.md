@@ -21,7 +21,7 @@ KCL 团队很高兴地宣布 **KCL v0.9.0 新版本现在已经可用**！本次
 
 **感谢 KCL 在 v0.8 - v0.9 版本迭代过去 120 天中所有 120 位社区参与者，以下排名不分先后**
 
-*@Shashank Mittal, @MattHodge, @officialasishkumar, @Gmin2, @Akash Kumar, @sfshumaker, @sanzoghenzo, @MOHAMED FAWAS, @bradkwadsworth-mw, @excalq, @Daksh-10, @metacoma, @Wes McNamee, @Stéphane Este-Gracias, @octonawish-akcodes, @zong-zhe, @shashank-iitbhu, @NAVRockClimber, @AkashKumar7902, @Petrosz007, @patrycju, @Korada Vishal, @selfuryon, @tvandinther, @vtomilov, @Peefy, @taylormonacelli, @Tertium, @Stefano Borrelli, @Bishal, @kukacz, @borgius, @steeling, @jheyduk, @HStéphane Este-Gracias, @userxiaosi, @folliehiyuki, @kubernegit, @nizq, @Alexander Fuchs, @ihor-hrytskiv, @Mohamed Asif, @reedjosh, @Wck-iipi, @evensolberg, @aldoborrero@ron18219, @rodrigoalvamat, @mproffitt, @karlhepler, @shruti2522, @leon-andria, @prahaladramji, @Even Solberg, @utnim2, @warjiang, @Asish Kumar, @He1pa, @Emmanuel Alap, @d4v1d03, @Yvan da Silva, @Abhishek, @DavidChevallier, @zargor, @Kim Sondrup, @SamirMarin, @Hai Wu, @MatisseB, @beholdenkey, @nestoralonso, @HAkash Kumar, @olinux, @liangyuanpeng, @ngergs, @Penguin, @ealap, @markphillips100, @Henri Williams, @eshepelyuk, @CC007, @mintu, @M Slane, @zhuxw, @atelsier, @aleeriz, @LinYunling, @YvanDaSilva, @chai2010, @Sergey Ryabin, @vfarcic, @vemoo, @riven-blade, @ibishal, @empath-nirvana, @bozaro, @jgascon-nx, @reckless-huang, @Sergei Iakovlev, @Blarc, @JeevaRamanathan, @dennybaa, @PrettySolution, @east4ming, @nkabir, @sestegra, @XiaoK29, @ricochet1k, @yjsnly, @umaher, @SjuulJanssen, @wilsonwang371, @Lukáš Kubín, @samuel-deal-tisseo, @blakebarnett, @Uladzislau Maher, @ytsarev, @Vishalk91-4, @Stephen C, @Tom van Dinther, @MrGuoRanDuo, @dopesickjam*
+_@Shashank Mittal, @MattHodge, @officialasishkumar, @Gmin2, @Akash Kumar, @sfshumaker, @sanzoghenzo, @MOHAMED FAWAS, @bradkwadsworth-mw, @excalq, @Daksh-10, @metacoma, @Wes McNamee, @Stéphane Este-Gracias, @octonawish-akcodes, @zong-zhe, @shashank-iitbhu, @NAVRockClimber, @AkashKumar7902, @Petrosz007, @patrycju, @Korada Vishal, @selfuryon, @tvandinther, @vtomilov, @Peefy, @taylormonacelli, @Tertium, @Stefano Borrelli, @Bishal, @kukacz, @borgius, @steeling, @jheyduk, @HStéphane Este-Gracias, @userxiaosi, @folliehiyuki, @kubernegit, @nizq, @Alexander Fuchs, @ihor-hrytskiv, @Mohamed Asif, @reedjosh, @Wck-iipi, @evensolberg, @aldoborrero@ron18219, @rodrigoalvamat, @mproffitt, @karlhepler, @shruti2522, @leon-andria, @prahaladramji, @Even Solberg, @utnim2, @warjiang, @Asish Kumar, @He1pa, @Emmanuel Alap, @d4v1d03, @Yvan da Silva, @Abhishek, @DavidChevallier, @zargor, @Kim Sondrup, @SamirMarin, @Hai Wu, @MatisseB, @beholdenkey, @nestoralonso, @HAkash Kumar, @olinux, @liangyuanpeng, @ngergs, @Penguin, @ealap, @markphillips100, @Henri Williams, @eshepelyuk, @CC007, @mintu, @M Slane, @zhuxw, @atelsier, @aleeriz, @LinYunling, @YvanDaSilva, @chai2010, @Sergey Ryabin, @vfarcic, @vemoo, @riven-blade, @ibishal, @empath-nirvana, @bozaro, @jgascon-nx, @reckless-huang, @Sergei Iakovlev, @Blarc, @JeevaRamanathan, @dennybaa, @PrettySolution, @east4ming, @nkabir, @sestegra, @XiaoK29, @ricochet1k, @yjsnly, @umaher, @SjuulJanssen, @wilsonwang371, @Lukáš Kubín, @samuel-deal-tisseo, @blakebarnett, @Uladzislau Maher, @ytsarev, @Vishalk91-4, @Stephen C, @Tom van Dinther, @MrGuoRanDuo, @dopesickjam_
 
 ## 📚 重点更新内容
 
@@ -41,7 +41,7 @@ KCL IDE 在大型项目上针对语义分析部分进行了进一步的增量编
 
 #### 语言
 
-+ 字符串插值支持类似 Shell 的 `\${}` 转义功能取消插值
+- 字符串插值支持类似 Shell 的 `\${}` 转义功能取消插值
 
 ```python
 world = "world"
@@ -49,7 +49,7 @@ hello_world_0 = "hello ${world}"  # hello world
 hello_world_1 = "hello \${world}" # hello ${world}
 ```
 
-+ `typeof` 函数新增 Schema 类型的支持用于区分 schema 类型和实例
+- `typeof` 函数新增 Schema 类型的支持用于区分 schema 类型和实例
 
 ```python
 schema Foo:
@@ -60,7 +60,7 @@ type_schema = typeof(foo) # schema
 type_type = typeof(Foo) # type
 ```
 
-+ Schema 的 `instances()` 方法新增关键字参数 `full_pkg` 参数用于读取所有代码中对应 Schema 的实例
+- Schema 的 `instances()` 方法新增关键字参数 `full_pkg` 参数用于读取所有代码中对应 Schema 的实例
 
 ```python
 schema Person:
@@ -70,21 +70,22 @@ alice = Person {name = "Alice"}
 all_persons = Person.instances(True)
 ```
 
-+ 去除 bool 类型和 int 类型隐式比较的功能 `0 < True`
-+ 去除 list 类型的比较功能 `[0] < [1]`
-+ `as` 关键字增加类型断言失败功能
-+ 优化 `lambda` 函数和配置代码块 `{}` 在不同作用域的闭包变量捕获逻辑，更符合直觉
+- 去除 bool 类型和 int 类型隐式比较的功能 `0 < True`
+- 去除 list 类型的比较功能 `[0] < [1]`
+- `as` 关键字增加类型断言失败功能
+- 优化 `lambda` 函数和配置代码块 `{}` 在不同作用域的闭包变量捕获逻辑，更符合直觉
 
 #### 工具链
 
-+ `kcl run` 支持使用 `--format toml` 输出 TOML 格式的配置
-+ `kcl mod add` 支持使用 `--oci` 和 `--git` 添加私有三方 OCI Registry 和 Git 仓库的依赖
-+ `kcl import` 支持从整个 Go Package 导入为 KCL Schema
-+ `kcl import` 支持导入带 YAML Stream `---` 格式的文件
-+ `kcl import` 支持从 TOML 文件导入为 KCL 配置
-+ `kcl clean` 支持清理外部依赖和编译缓存
-+ `kcl mod init` 支持 `--version` 标签设置 KCL 新建模块的版本
-- `kcl run`, `kcl mod add` 和 `kcl mod pull` 等命令支持通过本地 Git 对私有仓库进行访问
+- `kcl run` 支持使用 `--format toml` 输出 TOML 格式的配置
+- `kcl mod add` 支持使用 `--oci` 和 `--git` 添加私有三方 OCI Registry 和 Git 仓库的依赖
+- `kcl import` 支持从整个 Go Package 导入为 KCL Schema
+- `kcl import` 支持导入带 YAML Stream `---` 格式的文件
+- `kcl import` 支持从 TOML 文件导入为 KCL 配置
+- `kcl clean` 支持清理外部依赖和编译缓存
+- `kcl mod init` 支持 `--version` 标签设置 KCL 新建模块的版本
+
+* `kcl run`, `kcl mod add` 和 `kcl mod pull` 等命令支持通过本地 Git 对私有仓库进行访问
 
 #### IDE
 
@@ -106,7 +107,7 @@ all_persons = Person.instances(True)
 
 #### 标准库
 
-+ 新增标准库 `file` 用于文件 IO 操作，比如从 YAML 读取配置并进行配置合并操作
+- 新增标准库 `file` 用于文件 IO 操作，比如从 YAML 读取配置并进行配置合并操作
 
 ```python
 import file
@@ -120,14 +121,14 @@ config = p.merge(yaml.decode(file.read("deployment.yaml")), {
 
 其他更多 file 模块函数详见：https://www.kcl-lang.io/docs/reference/model/file
 
-+ 新增标准库 `template` 用于模版配置编写
+- 新增标准库 `template` 用于模版配置编写
 
 ```python
 import template
 
 _data = {
-    name = "handlebars", 
-    v = [ { a = 1 }, { a = 2 } ], 
+    name = "handlebars",
+    v = [ { a = 1 }, { a = 2 } ],
     c = { d = 5 },
     g = { b = [ { aa = { bb = 55} }, { aa = { bb = 66} } ] },
     people = [ "Yehuda Katz", "Alan Johnson", "Charles Jolley" ]
@@ -149,7 +150,7 @@ Hello world from {{name}}
 """, _data)
 ```
 
-+ 新增标准库 `runtime` 可以用于捕获运行时异常，并用于 `kcl test` 工具测试异常用例
+- 新增标准库 `runtime` 可以用于捕获运行时异常，并用于 `kcl test` 工具测试异常用例
 
 ```python
 import runtime
@@ -187,9 +188,9 @@ KCL 模型数量新增至 **313 个**, 主要包含如下更新:
 
 ### ☸️ 生态集成
 
-+ 修复 Argo KCL 插件并发 Sync 报错的问题
-+ Flux KCL Controller 发布 [https://github.com/kcl-lang/flux-kcl-controller](https://github.com/kcl-lang/flux-kcl-controller)，目前支持 OCI 和 Git 配置进行 GitOps
-+ KCL 正式登陆 Crossplane 函数市场并发布 v0.9.0 版本 [https://github.com/crossplane-contrib/function-kcl](https://github.com/crossplane-contrib/function-kcl)
+- 修复 Argo KCL 插件并发 Sync 报错的问题
+- Flux KCL Controller 发布 [https://github.com/kcl-lang/flux-kcl-controller](https://github.com/kcl-lang/flux-kcl-controller)，目前支持 OCI 和 Git 配置进行 GitOps
+- KCL 正式登陆 Crossplane 函数市场并发布 v0.9.0 版本 [https://github.com/crossplane-contrib/function-kcl](https://github.com/crossplane-contrib/function-kcl)
 
 ```yaml
 apiVersion: apiextensions.crossplane.io/v1
@@ -233,10 +234,10 @@ spec:
 
 此外，可以在这里找到更多的关于 KCL 和其他生态项目一起使用的真实用例
 
-+ [https://github.com/mindwm/mindwm-gitops](https://github.com/mindwm/mindwm-gitops)
-+ [https://github.com/vfarcic/crossplane-kubernetes](https://github.com/vfarcic/crossplane-kubernetes)
-+ [https://github.com/giantswarm/crossplane-gs-apis/blob/main/crossplane.giantswarm.io/xnetworks/package/compositions/peered-vpc-network.yaml](https://github.com/giantswarm/crossplane-gs-apis/blob/main/crossplane.giantswarm.io/xnetworks/package/compositions/peered-vpc-network.yaml)
-+ [https://github.com/upbound/configuration-aws-eks/blob/main/apis/composition-kcl.yaml](https://github.com/upbound/configuration-aws-eks/blob/main/apis/composition-kcl.yaml)
+- [https://github.com/mindwm/mindwm-gitops](https://github.com/mindwm/mindwm-gitops)
+- [https://github.com/vfarcic/crossplane-kubernetes](https://github.com/vfarcic/crossplane-kubernetes)
+- [https://github.com/giantswarm/crossplane-gs-apis/blob/main/crossplane.giantswarm.io/xnetworks/package/compositions/peered-vpc-network.yaml](https://github.com/giantswarm/crossplane-gs-apis/blob/main/crossplane.giantswarm.io/xnetworks/package/compositions/peered-vpc-network.yaml)
+- [https://github.com/upbound/configuration-aws-eks/blob/main/apis/composition-kcl.yaml](https://github.com/upbound/configuration-aws-eks/blob/main/apis/composition-kcl.yaml)
 
 ### 🧩 多语言 SDK 和插件
 
@@ -246,7 +247,7 @@ KCL 多语言 SDK 新增至 **7 个**, 目前主要支持 Rust, Go, Java, .NET, 
 
 此外，不同的 SDK 均提供了相同的 API，主要包括代码运行，代码分析，类型解析和添加外部依赖等操作，下面以 Java 和 C# SDK 为例
 
-+ Java
+- Java
 
 ```java
 import com.kcl.api.API;
@@ -263,7 +264,7 @@ public class ExecProgramTest {
 }
 ```
 
-+ C#
+- C#
 
 ```csharp
 namespace KclLib.Tests;
@@ -340,7 +341,7 @@ public class PluginTest {
 
 此外，可以在这里找到更多的关于 KCL 多语言插件使用的真实用例
 
-+ [https://github.com/cakehappens/kcfoil/blob/main/cmd/kcf/template.go](https://github.com/cakehappens/kcfoil/blob/main/cmd/kcf/template.go)
+- [https://github.com/cakehappens/kcfoil/blob/main/cmd/kcf/template.go](https://github.com/cakehappens/kcfoil/blob/main/cmd/kcf/template.go)
 
 ## 🌐 其他资源
 

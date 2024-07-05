@@ -57,4 +57,7 @@ KCL 通过内置模块、系统库模块和插件模块提供工程化的扩展�
   <DocsCard header="template" href="template">
     <p>提供了与模版相关的函数。</p>
   </DocsCard>
+  <DocsCard header="runtime" href="runtime">
+    <p>提供了与运行时相关的函数。</p>
+  </DocsCard>
 </DocsCards>

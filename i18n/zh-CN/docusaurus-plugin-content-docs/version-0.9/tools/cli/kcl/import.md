@@ -16,6 +16,7 @@ This command converts other formats to KCL file.
 Supported conversion modes:
 - json:            convert JSON data to KCL data
 - yaml:            convert YAML data to KCL data
+- toml:            convert TOML data to KCL data
 - gostruct:        convert Go struct to KCL schema
 - jsonschema:      convert JSON schema to KCL schema
 - terraformschema: convert Terraform schema to KCL schema
@@ -39,6 +40,9 @@ Examples:
   # Generate KCL models from YAML
   kcl import data.yaml
 
+  # Generate KCL models from TOML
+  kcl import data.toml
+
   # Generate KCL models from JSON Schema
   kcl import -m jsonschema schema.json
 
@@ -47,7 +51,6 @@ Examples:
 
   # Generate KCL models from Go structs
   kcl import -m gostruct schema.go
-
 
 Flags:
   -f, --force             Force overwrite output file
