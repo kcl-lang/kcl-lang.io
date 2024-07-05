@@ -26,6 +26,9 @@ Examples:
   # Run a single file and output JSON
   kcl run path/to/kcl.k --format json
 
+  # Run a single file and output TOML
+  kcl run path/to/kcl.k --format toml
+
   # Run multiple files
   kcl run path/to/kcl1.k path/to/kcl2.k
 
