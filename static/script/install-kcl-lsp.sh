@@ -208,6 +208,7 @@ installFile() {
     if [ -f "$KCL_CLI_FILE" ]; then
         updateProfile "$KCLVM_HOME_DIR" && info "Finished" "kcl-language-server installed into $KCL_INSTALL_DIR/bin successfully."
         # Check the KCL CLI version
+        chmod +x kcl-language-server
         runAsRoot kcl-language-server version
     else 
         error "Failed to install KCL language server into $KCL_CLI_FILE"
