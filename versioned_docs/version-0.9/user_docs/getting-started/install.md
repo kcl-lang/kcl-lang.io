@@ -135,8 +135,6 @@ We can execute the following command to ensure that KCL has been installed corre
 kcl --help
 ```
 
-For all the above operating systems and installation methods, if you want to use [KCL Python Plugin](/docs/reference/plugin/overview), you need to ensure that Python 3.7+ is installed and add the python3 command to your PATH environment variable.
-
 If you are unable to successfully install and run KCL, you can refer to [here](/docs/user_docs/support/faq-install)
 
 ## 2. Install KCL IDE Extension
