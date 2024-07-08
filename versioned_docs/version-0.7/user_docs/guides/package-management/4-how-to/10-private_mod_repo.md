@@ -15,7 +15,6 @@ More Details - [Download Private Repository Using Git](https://docs.github.com/e
 ## Private OCI Registry
 
 The KCL package management tool supports saving and sharing KCL packages through private OCI Registries. mainly including two parts.
-关于私有的 OCI Registry, 主要包括两个部分
 
 1. Login to the private OCI Registry using the `kcl registry login` command.
 
