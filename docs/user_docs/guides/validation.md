@@ -91,9 +91,3 @@ kcl vet data.json schema.k
 ## Summary
 
 KCL is a configuration language that supports data validation through its structure definition and user-defined constraint rules. Validation kinds supported in KCL schema include range, regex, length, enum, optional/required, and condition. To validate data, a schema is defined with validation rules written using the check keyword, and the data is validated using the validation tool or a visualization product built on top of it.
-
-## Further Information
-
-The improvement of KCL validation capabilities will gradually focus on the "static" aspect, that is, at compile time, combined with the ability of formal validation, it can directly analyze whether the data meets the constraints, whether the constraints conflict with each other, etc., and can be exposed in real-time through the IDE.
-
-We also expect that KCL models and constraints can be managed as a package (this package has only KCL files). For example, the Kubernetes models and constraints can be used out of the box. Users can generate configurations or verify existing configurations, and can simply extend the models and constraints users want through KCL inheritance.

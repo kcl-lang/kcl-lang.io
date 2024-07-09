@@ -148,4 +148,6 @@ Through the use of KCL, we are able to separate the abstraction and implementati
 
 ## Further Information
 
+Want to know how KCL achieves its abstraction ability? You can refer to the [KCL Tutorial](/docs/reference/lang/tour) to learn more about KCL language features.
+
 In addition to manually maintaining the configuration, we can also use KCL APIs to integrate **automatic configuration changes** into our applications. For specific instructions, please refer to [here](/docs/user_docs/guides/automation).
