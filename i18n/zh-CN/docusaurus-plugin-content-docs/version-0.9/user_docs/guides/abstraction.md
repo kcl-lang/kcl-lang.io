@@ -146,4 +146,6 @@ spec:
 
 ## 更多信息
 
+想了解 KCL 是如何实现抽象的能力的？可以参阅[KCL 教程](/docs/reference/lang/tour)学习更多 KCL 语言功能。
+
 除了手动维护配置外，我们还可以使用 KCL API 将**自动配置更改能力**集成到我们的应用程序中。有关 KCL 自动化能力的相关说明，请参阅[此处](/docs/user_docs/guides/automation)。

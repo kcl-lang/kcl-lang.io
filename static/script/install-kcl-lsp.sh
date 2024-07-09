@@ -208,8 +208,8 @@ installFile() {
     if [ -f "$KCL_CLI_FILE" ]; then
         updateProfile "$KCLVM_HOME_DIR" && info "Finished" "kcl-language-server installed into $KCL_INSTALL_DIR/bin successfully."
         # Check the KCL CLI version
-        chmod +x kcl-language-server
-        runAsRoot kcl-language-server version
+        chmod +x $KCL_INSTALL_DIR/bin/kcl-language-server
+        runAsRoot $KCL_INSTALL_DIR/bin/kcl-language-server version
     else 
         error "Failed to install KCL language server into $KCL_CLI_FILE"
         exit 1
@@ -334,7 +334,7 @@ cleanup() {
 installCompleted() {
     echo -e "\nPlease add ${KCL_INSTALL_DIR}/bin into your PATH"
     echo -e "Remeber run the command source ~/.bash_profile or source ~/.bashrc to ensure your PATH is effective"
-    echo -e "Reopen a terminal and execute `kcl-language-server version` to ensure successful installation"
+    echo -e "Reopen a terminal and execute 'kcl-language-server version' to ensure successful installation"
     echo -e "\nTo get started with KCL language server, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
 }
 

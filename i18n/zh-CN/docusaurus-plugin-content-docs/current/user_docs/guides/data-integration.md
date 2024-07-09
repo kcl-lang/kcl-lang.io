@@ -65,6 +65,17 @@ server_yaml: |
     - 8080
 ```
 
+此外，KCL 支持使用 `file` 模块从文件中读取数据，您可以从文件中读取 YAML 数据并进行进一步的操作与修改。
+
+```python
+import file
+import yaml
+
+deployment = yaml.decode(file.read("deployment.yaml")) | {
+    metadata.name = "override_name"
+}
+```
+
 ### 3. JSON 集成
 
 同样的，对于 JSON 数据，我们可以使用 `json.encode` 和 `json.decode` 函数以同样的方式进行数据集成。
