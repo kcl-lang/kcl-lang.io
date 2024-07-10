@@ -17,6 +17,9 @@ schema Person:
     name: str = "kcl"
     age: int = 1
 
+    check:
+        0 <= age <= 120, "age must be in [0, 120]"
+
 hello = Person {
     name = "hello kcl"
     age = 102
@@ -115,6 +118,33 @@ EvaluationError
 
 --------------------------------------------------------------------------------
 FAIL: 3/3
+```
+
+If we want to test error cases correctly and check error messages, we can use the `runtime.catch` function.
+
+```python
+import runtime
+
+test_person_age_check_error_message = lambda {
+    msg = runtime.catch(lambda {
+        a = Person {age = 123}
+    }) 
+    assert msg == "age must be in [0, 120]"
+}
+```
+
+Run the command
+
+```shell
+kcl test
+```
+
+Output:
+
+```shell
+test_person_age_check_error_message: PASS (2ms)
+--------------------------------------------------------------------------------
+PASS: 1/1
 ```
 
 ## Args
