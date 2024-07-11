@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Introduction
 
-The KCL language provides general programming language APIs.
+The KCL language provides multiple general-purpose programming language interfaces, with identical API forms and features.
 
 ## C/Rust APIs
 
