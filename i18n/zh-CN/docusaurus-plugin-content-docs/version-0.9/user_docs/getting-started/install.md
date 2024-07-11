@@ -103,7 +103,7 @@ scoop install kcl-lang/kcl
 
 ### 使用 Go 安装
 
-通过 `Go` 命令安装 (Go 要求 1.19+)
+通过 `Go` 命令安装 (Go 要求 1.22+)
 
 ```bash
 go install kcl-lang.io/cli/cmd/kcl@latest

@@ -103,7 +103,7 @@ scoop install kcl-lang/kcl
 
 ### From Go
 
-Install `kcl` through the `Go` command (`Go` requires 1.19+).
+Install `kcl` through the `Go` command (`Go` requires 1.22+).
 
 ```bash
 go install kcl-lang.io/cli/cmd/kcl@latest
