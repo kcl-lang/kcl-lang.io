@@ -4,7 +4,7 @@ sidebar_position: 10
 
 # WASM API
 
-The KCL core is written by Rust and can be compiled to the `wasm-wasi` target using toolchains such as cargo. With the help of WASM, we can also easily achieve multilingual and browser integration. Here is how we can use the KCL WASM module in node environment and rust.
+The KCL core is written by Rust and can be compiled to the `wasm-wasi` target using toolchains such as cargo. With the help of WASM, we can also easily achieve multilingual and browser integration. Here is how we can use the KCL WASM module in Node.js, Go and Rust.
 
 ## Quick Start
 
@@ -73,6 +73,43 @@ fn main() -> Result<()> {
     let result = module.run(&opts)?;
     println!("{}", result);
     Ok(())
+}
+```
+
+The output is
+
+```yaml
+a: 1
+```
+
+## Go
+
+In Go, we use `wasmtime` as an example, and of course, you can also use other runtime that supports WASI to accomplish this.
+
+Write the code, and the code of package `github.com/kcl-lang/wasm-lib/pkg/module` can be found [here](https://github.com/kcl-lang/lib/blob/main/wasm/examples/go/pkg/module/module.go) 
+
+```go
+package main
+
+import (
+	"fmt"
+
+	"github.com/kcl-lang/wasm-lib/pkg/module"
+)
+
+func main() {
+	m, err := module.New("path/to/kcl.wasm")
+	if err != nil {
+		panic(err)
+	}
+	result, err := m.Run(&module.RunOptions{
+		Filename: "test.k",
+		Source:   "a = 1",
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(result)
 }
 ```
 
