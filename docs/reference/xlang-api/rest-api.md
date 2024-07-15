@@ -844,10 +844,6 @@ service KclvmService {
 	///     "jsonrpc": "2.0",
 	///     "method": "Test",
 	///     "params": {
-	///         "exec_args": {
-	///             "work_dir": "./src/testdata/testing/module",
-	///             "k_filename_list": ["main.k"]
-	///         },
 	///         "pkg_list": ["./src/testdata/testing/module/..."]
 	///     },
 	///     "id": 1

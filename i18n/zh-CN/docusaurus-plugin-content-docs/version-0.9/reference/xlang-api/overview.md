@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # 简介
 
-KCL 语言目前提供了多个通用编程语言接口。
+KCL 语言目前提供了多个通用编程语言接口，API 的接口形式和功能完全相同。
 
 ## C/Rust 语言
 
-KCL 核心采用 Rust 语言开发，对外导出 C 语言 API 供 Go/Python/Java 等高级语言包装和集成。
+KCL 核心采用 Rust 语言开发，对外导出 C 语言 API 供 Go/Python/Java 等其他高级语言包装和集成。
 
 ## 其他语言
 
@@ -29,7 +29,12 @@ kcl server
 然后可以通过 POST 协议请求服务：
 
 ```shell
-$ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
+curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
+```
+
+输出为：
+
+```json
 {
 	"error": "",
 	"result": {}
