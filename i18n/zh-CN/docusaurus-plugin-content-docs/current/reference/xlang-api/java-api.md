@@ -206,15 +206,13 @@ app: AppConfig {
 
 Java Code
 
-```python
-import kcl_lib.api as api
+```java
+import com.kcl.api.*;
 
-args = api.LoadPackage_Args(
-    parse_args=api.ParseProgram_Args(paths=["schema.k"]), resolve_ast=True
-)
-api = api.API()
-result = api.load_package(args)
-assert list(result.symbols.values())[0].ty.schema_name == "AppConfig"
+API api = new API();
+LoadPackage_Result result = api.loadPackage(LoadPackage_Args.newBuilder().setResolveAst(true)
+    .setWithAstIndex(true)
+    .setParseArgs(ParseProgram_Args.newBuilder().addPaths("schema.k").build()).build());
 ```
 
 </p>
