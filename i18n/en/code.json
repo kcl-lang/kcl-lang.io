@@ -541,5 +541,28 @@
   },
   "Subscribe": {
     "message": "Subscribe"
+  },
+  "KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios.": {
+    "message": "KCL is an open-source constraint-based record & functional language mainly used in configuration and policy scenarios."
+  },
+  "cmfcmf/d-s-l.searchBar.placeholder": {
+    "message": "Search...",
+    "description": "Placeholder shown in the searchbar"
+  },
+  "cmfcmf/d-s-l.searchBar.clearButtonTitle": {
+    "message": "Clear",
+    "description": "Title of the button to clear the current search input"
+  },
+  "cmfcmf/d-s-l.searchBar.detachedCancelButtonText": {
+    "message": "Cancel",
+    "description": "Text of the button to close the detached search window"
+  },
+  "cmfcmf/d-s-l.searchBar.submitButtonTitle": {
+    "message": "Submit",
+    "description": "Title of the button to submit a new search"
+  },
+  "cmfcmf/d-s-l.searchBar.noResults": {
+    "message": "No results found.",
+    "description": "message shown if no results are found"
   }
 }

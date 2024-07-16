@@ -1,20 +1,6 @@
-# Copyright 2023 The KCL Authors. All rights reserved.
+# Copyright The KCL Authors. All rights reserved.
+
 VERSION := $(shell cat VERSION)
-
-PROJECT_NAME = kcl-lang
-
-PWD:=$(shell pwd)
-
-BUILD_IMAGE:=kcllang/kcl-builder
-
-# export DOCKER_DEFAULT_PLATFORM=linux/amd64
-# or
-# --platform linux/amd64
-
-RUN_IN_DOCKER:=docker run -it --rm
-RUN_IN_DOCKER+=-v ~/.ssh:/root/.ssh
-RUN_IN_DOCKER+=-v ${PWD}:/root/kcl
-RUN_IN_DOCKER+=-w /root/kcl ${BUILD_IMAGE}
 
 .PHONY: run
 run:
@@ -47,14 +33,6 @@ test:
 .PHONY: translations
 translations:
 	npm run docusaurus write-translations
-
-# ----------------
-# Docker
-# ----------------
-
-.PHONY: sh-in-docker
-sh-in-docker:
-	${RUN_IN_DOCKER} bash
 
 tag:
 	git tag v${VERSION}
