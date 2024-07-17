@@ -22,7 +22,7 @@ You can use FetchContent to add KCL C++ Lib to your project.
 FetchContent_Declare(
   kcl-lib
   GIT_REPOSITORY https://github.com/kcl-lang/lib.git
-  GIT_TAG        v0.9.1
+  GIT_TAG        v0.9.1 # You can change the GitHub branch tag.
   SOURCE_SUBDIR  cpp
 )
 FetchContent_MakeAvailable(kcl-lib)
@@ -123,7 +123,7 @@ Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/gu
 
 The content of `main.k` is
 
-```c++
+```python
 a = 1
 
 b = {
@@ -176,7 +176,7 @@ flask = { git = "https://github.com/kcl-lang/flask-demo-kcl-manifests", commit =
 
 C++ Code
 
-```c++
+```python
 #include "kcl_lib.hpp"
 #include <iostream>
 
@@ -215,7 +215,7 @@ flask = { git = "https://github.com/kcl-lang/flask-demo-kcl-manifests", commit =
 
 The content of `module/main.k` is
 
-```c++
+```python
 import helloworld
 import flask
 
@@ -224,7 +224,7 @@ a = helloworld.The_first_kcl_program
 
 C++ Code
 
-```c++
+```cpp
 #include "kcl_lib.hpp"
 #include <iostream>
 
