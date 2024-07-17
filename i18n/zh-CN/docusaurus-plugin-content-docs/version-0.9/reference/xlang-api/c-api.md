@@ -105,7 +105,7 @@ Validate code using schema and JSON/YAML data strings.
 <details><summary>Example</summary>
 <p>
 
-```rust
+```c
 #include <kcl_lib.h>
 
 int validate(const char* code_str, const char* data_str)
