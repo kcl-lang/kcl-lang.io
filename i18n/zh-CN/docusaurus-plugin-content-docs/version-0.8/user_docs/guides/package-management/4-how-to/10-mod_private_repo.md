@@ -18,47 +18,47 @@ KCL 包管理工具与本地环境中的 Git 工具公用一份登录凭证，�
 
 1. 需要先使用 `kcl registry login` 命令登录私有 Registry。
 
-    更多信息 - [kcl registry login 登录 OCI registry](https://www.kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/login)
+   更多信息 - [kcl registry login 登录 OCI registry](https://www.kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/login)
 
 2. 更换 KCL 包管理工具使用的 OCI Registry，KCL 包管理工具支持通过三种方式指定下载 KCL 包时使用的 OCI registry.
 
-    - 命令行或者 kcl.mod 中使用 OCI Url 指定使用的 OCI registry
+   - 命令行或者 kcl.mod 中使用 OCI Url 指定使用的 OCI registry
 
-      你可以通过以下命令行，指定 OCI Registry 为`ghcr.io`。
+     你可以通过以下命令行，指定 OCI Registry 为`ghcr.io`。
 
-      ```shell
-      kcl mod add oci://ghcr.io/kcl-lang/helloworld --tag 0.1.0
-      ```
+     ```shell
+     kcl mod add oci://ghcr.io/kcl-lang/helloworld --tag 0.1.0
+     ```
 
-      或者在 `kcl.mod` 文件中添加如下内容，指定 OCI Registry 为`ghcr.io`。
+     或者在 `kcl.mod` 文件中添加如下内容，指定 OCI Registry 为`ghcr.io`。
 
-      ```toml
-      helloworld = { oci = "oci://ghcr.io/kcl-lang/helloworld", tag = "0.1.0" }
-      ```
+     ```toml
+     helloworld = { oci = "oci://ghcr.io/kcl-lang/helloworld", tag = "0.1.0" }
+     ```
 
-    - 通过环境变量
+   - 通过环境变量
 
-      你可以通过设置三个环境变量 KPM_REG、KPM_REGO 和 OCI_REG_PLAIN_HTTP 来调整配置。
+     你可以通过设置三个环境变量 KPM_REG、KPM_REGO 和 OCI_REG_PLAIN_HTTP 来调整配置。
 
-      ```shell
-      # 设置默认仓库地址
-      export KPM_REG="ghcr.io"
-      # 设置默认仓库
-      export KPM_REPO="kcl-lang"
-      # 设置支持 'http'
-      export OCI_REG_PLAIN_HTTP=off
-      ```
+     ```shell
+     # 设置默认仓库地址
+     export KPM_REG="ghcr.io"
+     # 设置默认仓库
+     export KPM_REPO="kcl-lang"
+     # 设置支持 'http'
+     export OCI_REG_PLAIN_HTTP=off
+     ```
 
-    - 通过配置文件
+   - 通过配置文件
 
-      KCL 包管理工具的配置文件位于 `$KCL_PKG_PATH/.kpm/config/kpm.json`，如果环境变量 `KCL_PKG_PATH` 没有设置，它默认保存在 `$HOME/.kcl/kpm/.kpm/config/kpm.json`。
+     KCL 包管理工具的配置文件位于 `$KCL_PKG_PATH/.kpm/config/kpm.json`，如果环境变量 `KCL_PKG_PATH` 没有设置，它默认保存在 `$HOME/.kcl/kpm/.kpm/config/kpm.json`。
 
-      配置文件的默认内容如下：
+     配置文件的默认内容如下：
 
-      ```json
-      {
-        "DefaultOciRegistry": "ghcr.io",
-        "DefaultOciRepo": "kcl-lang",
-        "DefaultOciPlainHttp": true
-      }
-      ```
+     ```json
+     {
+       "DefaultOciRegistry": "ghcr.io",
+       "DefaultOciRepo": "kcl-lang",
+       "DefaultOciPlainHttp": true
+     }
+     ```

@@ -57,38 +57,6 @@ var result = new API().ExecProgram(execArgs);
 </p>
 </details>
 
-### ParseProgram
-
-Parse KCL program with entry files and return the AST JSON string.
-
-<details><summary>Example</summary>
-<p>
-
-The content of `schema.k` is
-
-```python
-schema AppConfig:
-    replicas: int
-
-app: AppConfig {
-    replicas: 2
-}
-```
-
-C# Code
-
-```csharp
-using KclLib.API;
-
-var path = "schema.k"
-var args = new ParseProgram_Args();
-args.Paths.Add(path);
-var result = new API().ParseProgram(args);
-```
-
-</p>
-</details>
-
 ### ParseFile
 
 Parse KCL single file to Module AST JSON string with import dependencies and parse errors.

@@ -72,35 +72,6 @@ try {
 </p>
 </details>
 
-### parseProgram
-
-Parse KCL program with entry files and return the AST JSON string.
-
-<details><summary>Example</summary>
-<p>
-
-The content of `schema.k` is
-
-```python
-schema AppConfig:
-    replicas: int
-
-app: AppConfig {
-    replicas: 2
-}
-```
-
-Node.js Code
-
-```ts
-import { parseProgram, ParseProgramArgs } from "kcl-lib";
-
-const result = parseProgram(new ParseProgramArgs(["schema.k"]));
-```
-
-</p>
-</details>
-
 ### parseFile
 
 Parse KCL single file to Module AST JSON string with import dependencies and parse errors.
@@ -296,7 +267,7 @@ Node.js Code
 import { overrideFile, OverrideFileArgs } from "kcl-lib";
 
 const result = overrideFile(
-  new OverrideFileArgs("main.k", ["app.replicas=4"], [])
+  new OverrideFileArgs("main.k", ["app.replicas=4"], []),
 );
 ```
 
@@ -407,7 +378,7 @@ schema Person:
 `;
 const data = '{"name": "Alice", "age": 10}';
 const result = validateCode(
-  new ValidateCodeArgs(undefined, data, undefined, code)
+  new ValidateCodeArgs(undefined, data, undefined, code),
 );
 ```
 
@@ -456,7 +427,7 @@ const args = RenameCodeArgs(
   "/mock/path",
   "a",
   { "/mock/path/main.k": "a = 1\nb = a" },
-  "a2"
+  "a2",
 );
 const result = renameCode(args);
 ```
@@ -591,8 +562,8 @@ const execResult = execProgram(
     undefined,
     undefined,
     undefined,
-    result.externalPkgs
-  )
+    result.externalPkgs,
+  ),
 );
 ```
 

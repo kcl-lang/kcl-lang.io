@@ -128,7 +128,7 @@ import runtime
 test_person_age_check_error_message = lambda {
     msg = runtime.catch(lambda {
         a = Person {age = 123}
-    }) 
+    })
     assert msg == "age must be in [0, 120]"
 }
 ```

@@ -8,9 +8,9 @@ KCL [C API](https://github.com/kcl-lang/lib/tree/main/c) 正在开发中，欢�
 
 ## 前置依赖
 
-+ Make
-+ C Compiler
-+ Cargo
+- Make
+- C Compiler
+- Cargo
 
 ## API 参考
 

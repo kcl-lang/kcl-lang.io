@@ -113,7 +113,7 @@ $ curl -X POST \
 
 Cross-language APIs defined via Protobuf([https://github.com/kcl-lang/kcl/blob/main/kclvm/spec/gpyrpc/gpyrpc.proto](https://github.com/kcl-lang/kcl/blob/main/kclvm/spec/gpyrpc/gpyrpc.proto)):
 
-```protobuf
+````protobuf
 // Copyright The KCL Authors. All rights reserved.
 //
 // This file defines the request parameters and return structure of the KCL RPC server.
@@ -734,7 +734,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -776,7 +776,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -805,7 +805,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -838,7 +838,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -867,7 +867,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -1424,7 +1424,7 @@ message KeyValuePair {
 
 // ---------------------------------------------------------------------------------
 // Rename API
-//	Find all the occurrences of the target symbol and rename them. 
+//	Find all the occurrences of the target symbol and rename them.
 //	This API will rewrite files if they contain symbols to be renamed.
 // ---------------------------------------------------------------------------------
 
@@ -1587,4 +1587,4 @@ message Example {
 // ----------------------------------------------------------------------------
 // END
 // ----------------------------------------------------------------------------
-```
+````

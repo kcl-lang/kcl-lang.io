@@ -36,8 +36,8 @@ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
 
 ```json
 {
-	"error": "",
-	"result": {}
+  "error": "",
+  "result": {}
 }
 ```
 

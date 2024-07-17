@@ -35,7 +35,7 @@ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
 
 完整的 `BuiltinService` 由 Protobuf 定义：
 
-```protobuf
+````protobuf
 // Copyright The KCL Authors. All rights reserved.
 //
 // This file defines the request parameters and return structure of the KCL RPC server.
@@ -656,7 +656,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -698,7 +698,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -727,7 +727,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -760,7 +760,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -789,7 +789,7 @@ service KclvmService {
 	///
 	/// # Examples
 	///
-	/// 
+	///
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -1346,7 +1346,7 @@ message KeyValuePair {
 
 // ---------------------------------------------------------------------------------
 // Rename API
-//	Find all the occurrences of the target symbol and rename them. 
+//	Find all the occurrences of the target symbol and rename them.
 //	This API will rewrite files if they contain symbols to be renamed.
 // ---------------------------------------------------------------------------------
 
@@ -1509,4 +1509,4 @@ message Example {
 // ----------------------------------------------------------------------------
 // END
 // ----------------------------------------------------------------------------
-```
+````

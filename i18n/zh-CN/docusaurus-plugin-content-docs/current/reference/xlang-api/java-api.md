@@ -83,42 +83,6 @@ ExecProgram_Result result = apiInstance.execProgram(args);
 </p>
 </details>
 
-### parseProgram
-
-Parse KCL program with entry files and return the AST JSON string.
-
-<details><summary>Example</summary>
-<p>
-
-The content of `schema.k` is
-
-```python
-schema AppConfig:
-    replicas: int
-
-app: AppConfig {
-    replicas: 2
-}
-```
-
-Java Code
-
-```java
-import com.kcl.api.*;
-import com.kcl.ast.*;
-import com.kcl.util.JsonUtil;
-
-API api = new API();
-ParseProgram_Result result = api.parseProgram(
-   ParseProgram_Args.newBuilder().addPaths("schema.k").build()
-);
-System.out.println(result.getAstJson());
-Program program = JsonUtil.deserializeProgram(result.getAstJson());
-```
-
-</p>
-</details>
-
 ### parseFile
 
 Parse KCL single file to Module AST JSON string with import dependencies and parse errors.

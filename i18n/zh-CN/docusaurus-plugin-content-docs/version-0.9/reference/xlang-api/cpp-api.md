@@ -8,9 +8,9 @@ KCL [C++ API](https://github.com/kcl-lang/lib/tree/main/cpp) 正在开发中，�
 
 ## 前置依赖
 
-+ CMake >= 3.10
-+ C++ Compiler with C++17 Support
-+ Cargo
+- CMake >= 3.10
+- C++ Compiler with C++17 Support
+- Cargo
 
 ## 安装
 
