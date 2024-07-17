@@ -8,9 +8,9 @@ The [C++ API](https://github.com/kcl-lang/lib/tree/main/cpp) is in the developme
 
 ## Prerequisites
 
-+ CMake >= 3.10
-+ C++ Compiler with C++17 Support
-+ Cargo
+- CMake >= 3.10
+- C++ Compiler with C++17 Support
+- Cargo
 
 ## Installation
 

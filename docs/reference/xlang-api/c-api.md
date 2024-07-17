@@ -8,9 +8,9 @@ The [C API](https://github.com/kcl-lang/lib/tree/main/c) is in the development s
 
 ## Prerequisites
 
-+ Make
-+ C Compiler
-+ Cargo
+- Make
+- C Compiler
+- Cargo
 
 ## API Reference
 

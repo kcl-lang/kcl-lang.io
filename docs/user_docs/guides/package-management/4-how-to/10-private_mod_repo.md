@@ -18,48 +18,47 @@ The KCL package management tool supports saving and sharing KCL packages through
 
 1. Login to the private OCI Registry using the `kcl registry login` command.
 
-    More Details - [kcl registry login Login OCI Registry](https://www.kcl-lang.io/docs/tools/cli/package-management/command-reference/login)
+   More Details - [kcl registry login Login OCI Registry](https://www.kcl-lang.io/docs/tools/cli/package-management/command-reference/login)
 
 2. Replace the OCI Registry used by the KCL package management tool. The KCL package management tool supports specifying the OCI registry used to download KCL packages in three ways.
 
-    - Use the OCI Url to specify the OCI registry in the command line or `kcl.mod`.
+   - Use the OCI Url to specify the OCI registry in the command line or `kcl.mod`.
 
-      You can specify the OCI Registry as `ghcr.io` by the following command.
+     You can specify the OCI Registry as `ghcr.io` by the following command.
 
-      ```shell
-      kcl mod add oci://ghcr.io/kcl-lang/helloworld --tag 0.1.0
-      ```
+     ```shell
+     kcl mod add oci://ghcr.io/kcl-lang/helloworld --tag 0.1.0
+     ```
 
-      Or add the following content to the `kcl.mod` file to specify the OCI Registry as `ghcr.io`.
+     Or add the following content to the `kcl.mod` file to specify the OCI Registry as `ghcr.io`.
 
-      ```toml
-      helloworld = { oci = "oci://ghcr.io/kcl-lang/helloworld", tag = "0.1.0" }
-      ```
+     ```toml
+     helloworld = { oci = "oci://ghcr.io/kcl-lang/helloworld", tag = "0.1.0" }
+     ```
 
-    - By environment variable
+   - By environment variable
 
-      You can adjust the configuration of the OCI Registry by setting the three environment variables `KPM_REG`, `KPM_REGO`, and `OCI_REG_PLAIN_HTTP`.
+     You can adjust the configuration of the OCI Registry by setting the three environment variables `KPM_REG`, `KPM_REGO`, and `OCI_REG_PLAIN_HTTP`.
 
-      ```shell
-      # set default registry
-      export KPM_REG="ghcr.io"
-      # set default repository
-      export KPM_REPO="kcl-lang"
-      # set support for 'http'
-      export OCI_REG_PLAIN_HTTP=off
-      ```
+     ```shell
+     # set default registry
+     export KPM_REG="ghcr.io"
+     # set default repository
+     export KPM_REPO="kcl-lang"
+     # set support for 'http'
+     export OCI_REG_PLAIN_HTTP=off
+     ```
 
-    - By configuration file
+   - By configuration file
 
-      The configuration file of the KCL package management tool is located at `$KCL_PKG_PATH/.kpm/config/kpm.json`, if the environment variable `KCL_PKG_PATH` is not set, it is saved by default in `$HOME/.kcl/kpm/.kpm/config/kpm.json`.
+     The configuration file of the KCL package management tool is located at `$KCL_PKG_PATH/.kpm/config/kpm.json`, if the environment variable `KCL_PKG_PATH` is not set, it is saved by default in `$HOME/.kcl/kpm/.kpm/config/kpm.json`.
 
-      The default content of the configuration file is as follows:
+     The default content of the configuration file is as follows:
 
-      ```json
-      {
-        "DefaultOciRegistry": "ghcr.io",
-        "DefaultOciRepo": "kcl-lang",
-        "DefaultOciPlainHttp": true
-      }
-      ```
-
+     ```json
+     {
+       "DefaultOciRegistry": "ghcr.io",
+       "DefaultOciRepo": "kcl-lang",
+       "DefaultOciPlainHttp": true
+     }
+     ```

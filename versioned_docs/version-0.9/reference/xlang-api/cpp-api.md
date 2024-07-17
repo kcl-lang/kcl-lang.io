@@ -8,9 +8,9 @@ The [C++ API](https://github.com/kcl-lang/lib/tree/main/cpp) is in the developme
 
 ## Prerequisites
 
-+ CMake >= 3.10
-+ C++ Compiler with C++17 Support
-+ Cargo
+- CMake >= 3.10
+- C++ Compiler with C++17 Support
+- Cargo
 
 ## Installation
 
@@ -22,7 +22,7 @@ You can use FetchContent to add KCL C++ Lib to your project.
 FetchContent_Declare(
   kcl-lib
   GIT_REPOSITORY https://github.com/kcl-lang/lib.git
-  GIT_TAG        v0.9.1
+  GIT_TAG        v0.9.1 # You can change the GitHub branch tag.
   SOURCE_SUBDIR  cpp
 )
 FetchContent_MakeAvailable(kcl-lib)
@@ -176,7 +176,7 @@ flask = { git = "https://github.com/kcl-lang/flask-demo-kcl-manifests", commit =
 
 C++ Code
 
-```cpp
+```python
 #include "kcl_lib.hpp"
 #include <iostream>
 

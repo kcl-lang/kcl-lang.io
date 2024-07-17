@@ -86,7 +86,7 @@ a: 1
 
 In Go, we use `wasmtime` as an example, and of course, you can also use other runtime that supports WASI to accomplish this.
 
-Write the code, and the code of package `github.com/kcl-lang/wasm-lib/pkg/module` can be found [here](https://github.com/kcl-lang/lib/blob/main/wasm/examples/go/pkg/module/module.go) 
+Write the code, and the code of package `github.com/kcl-lang/wasm-lib/pkg/module` can be found [here](https://github.com/kcl-lang/lib/blob/main/wasm/examples/go/pkg/module/module.go)
 
 ```go
 package main
