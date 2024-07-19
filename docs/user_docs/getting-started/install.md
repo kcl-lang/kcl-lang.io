@@ -210,12 +210,12 @@ The KCL Extension extension provides some coding assistance, e.g., highlight, go
 
 #### NeoVim
 
-See [here](https://github.com/kcl-lang/kcl.nvim) to config the KCL language server and enable it.
+See [here](/docs/tools/Ide/neovim) to config the KCL language server and enable it.
 
 ![kcl.nvim](/img/docs/tools/Ide/neovim/overview.png)
 
 #### IntelliJ IDEA
 
-Download the distribution from [here](https://github.com/kcl-lang/intellij-kcl/releases) and in IntelliJ IDEA, click Preference -> plugins -> install Plugin from Disk... -> select kcl-idea-plugin zip -> restart IDE. This plugin requires the IntelliJ IDEA 2020.2+
+We provide two IntelliJ KCL plugins and you can go [here](/docs/tools/Ide/intellij) for more information about the installation.
 
 ![intellij](/img/docs/tools/Ide/intellij/overview.png)
