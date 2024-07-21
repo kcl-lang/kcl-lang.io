@@ -147,18 +147,20 @@ KCL 支持从 Kubernetes OpenAPI/自定义资源定义（CRD）中提取和生�
 - 从 CRD 生成 KCL Schema
 
 ```shell
-# Add the Kubernetes dependency
-kcl mod add k8s
 # Convert the CRD YAML to KCL Schema
 kcl import -m crd -s -f crd.yaml
+# Init a new KCL project.
+rm -rf kcl.mod && kcl mod init
+# Add the crd models dependency
+kcl mod add ./models --rename crd
 ```
 
 - 使用生成的 KCL Schema 定义资源
 
 ```python
-import models
+import crd.v1
 
-models.CronTab {
+v1.CronTab {
     metadata.name = "my-new-cron-object",
     spec: {
         cronSpec = "* * * * */5",

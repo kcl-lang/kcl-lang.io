@@ -47,6 +47,8 @@ This extension provides some coding assistance, including the following features
   ![Format](/img/docs/tools/Ide/vs-code/Format.gif)
 - **Quick fix:** Quick fix some diagnostics
   ![Qucik Fix](/img/docs/tools/Ide/vs-code/QuickFix.gif)
+- **Inlay hint:** Inlay hint displays variable type and other semantic information
+  ![Inlay Hint](/img/docs/tools/Ide/vs-code/Inlayhint.png)
 
 Other useful features such as refactoring and testing are in development.
 
