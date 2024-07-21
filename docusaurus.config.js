@@ -266,10 +266,6 @@ const config = {
                 href: 'https://github.com/kcl-lang/kcl',
               },
               {
-                label: 'Gitee',
-                href: 'https://gitee.com/kusionstack/kcl',
-              },
-              {
                 label: 'Blog',
                 to: '/blog',
               },
