@@ -7,7 +7,7 @@ jobs:
   check-macos:
     strategy:
       matrix:
-        os: [macos-11, macos-12, macos-latest]
+        os: [macos-11, macos-12, macos-13, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -55,7 +55,7 @@ jobs:
   check-kcl-lsp-brew-install-macos:
       strategy:
         matrix:
-          os: [macos-11, macos-12, macos-latest]
+          os: [macos-11, macos-12, macos-13,  macos-latest]
       runs-on: ${{ matrix.os }}
       steps:
         - uses: actions/checkout@v3
