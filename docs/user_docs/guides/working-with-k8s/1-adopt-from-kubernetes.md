@@ -149,18 +149,20 @@ If you developed CRDs, you can generate the KCL version of the CRD schemas and d
 - Generate KCL Schema from CRD
 
 ```shell
-# Add the Kubernetes dependency
-kcl mod add k8s
 # Convert the CRD YAML to KCL Schema
 kcl import -m crd -s -f crd.yaml
+# Init a new KCL project.
+rm -rf kcl.mod && kcl mod init
+# Add the crd models dependency
+kcl mod add ./models --rename crd
 ```
 
 - Define CR (cr.k) based on CRDs in KCL
 
 ```python
-import models
+import crd.v1
 
-models.CronTab {
+v1.CronTab {
     metadata.name = "my-new-cron-object",
     spec: {
         cronSpec = "* * * * */5",

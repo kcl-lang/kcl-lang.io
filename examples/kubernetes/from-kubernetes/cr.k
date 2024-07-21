@@ -1,6 +1,6 @@
-import models
+import crd.v1
 
-models.CronTab {
+v1.CronTab {
     metadata.name = "my-new-cron-object",
     spec: {
         cronSpec = "* * * * */5",

@@ -47,7 +47,9 @@ sidebar_position: 1
   ![Format](/img/docs/tools/Ide/vs-code/Format.gif)
 - **快速修复:** 快速修复一些诊断信息
   ![Qucik Fix](/img/docs/tools/Ide/vs-code/QuickFix.gif)
-
+- **内联提示:** 内链提示变量类型和其他语义信息
+  ![Inlay Hint](/img/docs/tools/Ide/vs-code/Inlayhint.png)
+  
 其他一些有用的功能，如代码重构和智能感知等正在开发中。
 
 ## 最小依赖

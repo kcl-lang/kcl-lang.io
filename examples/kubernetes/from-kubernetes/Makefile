@@ -6,7 +6,10 @@ import-manifests:
 	kcl deployment.k
 
 import-crds:
-	kcl mod add k8s
+	# Convert the CRD YAML to KCL Schema
 	kcl import -m crd -s -f crd.yaml
-	cat cr.k
+	# Init a new KCL project.
+	rm -rf kcl.mod && kcl mod init
+	# Add the crd models dependency
+	kcl mod add ./models --rename crd
 	kcl cr.k
