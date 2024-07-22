@@ -107,7 +107,7 @@ Run time (considering actual resource expenditure in production environments, th
 
 | KCL v0.9.3          | Jsonnet v0.20.0 (C++ version) | Jsonnet v0.20.0 (Go version)   | Jsonnet v0.5.0-pre96 (Rust version jrsonnet) | Jsonnet v0.1.2 (Rust version rsjsonnet) |
 | ------------------- | ----------------------------- | ------------------------------ | -------------------------------------------- | --------------------------------------- |
-| 155 ms (kcl test.k) | 400 ms (jsonnet test.jsonnet) | 1460 ms (jsonnet test.jsonnet) | 153 ms (rsjsonnet test.jsonnet)              | 142 ms (jrsonnet test.jsonnet)          |
+| 155 ms (kcl test.k) | 1480 ms (jsonnet test.jsonnet) | 400 ms (jsonnet test.jsonnet) | 153 ms (rsjsonnet test.jsonnet)              | 142 ms (jrsonnet test.jsonnet)          |
 
 ## Summary
 
