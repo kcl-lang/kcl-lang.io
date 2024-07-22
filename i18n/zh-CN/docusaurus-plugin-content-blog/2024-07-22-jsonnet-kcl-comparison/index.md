@@ -113,7 +113,7 @@ local a(name) = {
 
 | KCL v0.9.3          | Jsonnet v0.20.0 (C++ 版本)    | Jsonnet v0.20.0 (Go 版本)      | Jsonnet v0.5.0-pre96 (Rust 版本 jrsonnet) | Jsonnet v0.1.2 (Rust 版本 rsjsonnet) |
 | ------------------- | ----------------------------- | ------------------------------ | ----------------------------------------- | ------------------------------------ |
-| 155 ms (kcl test.k) | 400 ms (jsonnet test.jsonnet) | 1460 ms (jsonnet test.jsonnet) | 153 ms (rsjsonnet test.jsonnet)           | 142 ms (jrsonnet test.jsonnet)       |
+| 155 ms (kcl test.k) | 1460 ms (jsonnet test.jsonnet) | 400 ms (jsonnet test.jsonnet) | 153 ms (rsjsonnet test.jsonnet)           | 142 ms (jrsonnet test.jsonnet)       |
 
 ## 小结
 
