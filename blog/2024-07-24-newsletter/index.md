@@ -72,13 +72,13 @@ Thanks to all contributors for their outstanding work over the past two weeks (2
 
 **🔥 SDK Updates**
 
-- Added KCL c/c++ language SDK.
-- Added Go, Java, Python, Rust, Dotnet, c, cpp, and other multi-language API Specs, related documents, test cases, and examples.
+- Added KCL C/C++ language SDK.
+- Added Go, Java, Python, Rust, .NET, c, cpp, and other multi-language API Specs, related documents, test cases, and examples.
 - Refactored the go code structure, moving go-related code to the go file directory.
 
 **📚️ Documentation Updates**
 
-- Added Python, Java, NodeJs, Rust, Wasm, Dotnet, C/C++ and other multi-language API documents.
+- Added Python, Java, NodeJs, Rust, Wasm, .NET, C/C++ and other multi-language API documents.
 - Updated the IDE Quick Start document.
 - Added New Blog [A Comparative Overview of Jsonnet and KCL](https://www.kcl-lang.io/blog/2024-07-22-Jsonnet-kcl-comparison).
 - Updated the crd in [Adopt From Kubernetes](https://www.kcl-lang.io/docs/user_docs/guides/working-with-k8s/adopt-from-kubernetes).
