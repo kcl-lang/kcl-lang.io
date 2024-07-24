@@ -74,7 +74,7 @@ image: /img/biweekly-newsletter.png
 **🔥 SDK 更新**
 
 - 新增 KCL C/C++ 语言 SDK。
-- 新增了 Go, Java, Python, Rust, .NET, c, cpp 等多语言 API Spec，相关文档，测试用例和使用案例。
+- 新增了 Go, Java, Python, Rust, .NET, C/C++ 等多语言 API Spec，相关文档，测试用例和使用案例。
 - 代码结构调整，go 相关代码移动的 go 文件目录中。
 
 **📚️ 文档更新**

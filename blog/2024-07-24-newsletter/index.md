@@ -73,7 +73,7 @@ Thanks to all contributors for their outstanding work over the past two weeks (2
 **🔥 SDK Updates**
 
 - Added KCL C/C++ language SDK.
-- Added Go, Java, Python, Rust, .NET, c, cpp, and other multi-language API Specs, related documents, test cases, and examples.
+- Added Go, Java, Python, Rust, .NET, C/C++, and other multi-language API Specs, related documents, test cases, and examples.
 - Refactored the go code structure, moving go-related code to the go file directory.
 
 **📚️ Documentation Updates**
