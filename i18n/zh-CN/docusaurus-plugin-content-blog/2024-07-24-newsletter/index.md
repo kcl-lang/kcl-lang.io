@@ -81,7 +81,7 @@ image: /img/biweekly-newsletter.png
 
 - 新增 Python, Java, NodeJs, Rust, Wasm, .NET, C/C++ 等多语言 API 文档。
 - 更新了 IDE Quick Start 文档。
-- 新增博客 [A Comparative Overview of Jsonnet and KCL](https://www.kcl-lang.io/blog/2024-07-22-Jsonnet-kcl-comparison)
+- 新增博客 [A Comparative Overview of Jsonnet and KCL](https://www.kcl-lang.io/blog/2024-07-22-jsonnet-kcl-comparison)
 - 更新文档[Adapt From Kubernetes](https://www.kcl-lang.io/docs/user_docs/guides/working-with-k8s/adapt-from-kubernetes)中的 crd 资源。
 
 ## 其他资源

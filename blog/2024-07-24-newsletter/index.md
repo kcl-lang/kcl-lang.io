@@ -80,7 +80,7 @@ Thanks to all contributors for their outstanding work over the past two weeks (2
 
 - Added Python, Java, NodeJs, Rust, Wasm, .NET, C/C++ and other multi-language API documents.
 - Updated the IDE Quick Start document.
-- Added New Blog [A Comparative Overview of Jsonnet and KCL](https://www.kcl-lang.io/blog/2024-07-22-Jsonnet-kcl-comparison).
+- Added New Blog [A Comparative Overview of Jsonnet and KCL](https://www.kcl-lang.io/blog/2024-07-22-jsonnet-kcl-comparison).
 - Updated the crd in [Adapt From Kubernetes](https://www.kcl-lang.io/docs/user_docs/guides/working-with-k8s/adapt-from-kubernetes).
 
 ## Resources
