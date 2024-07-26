@@ -21,7 +21,7 @@ import DocsCards from '@site/src/components/global/DocsCards';
 ## Docs
 
 <DocsCards>
-  <DocsCard header="Adopt from Kubernetes" href="adopt-from-kubernetes">
+  <DocsCard header="Adapt from Kubernetes" href="adapt-from-kubernetes">
     <p>Provides the guide to import Kubernetes manifests and CRDs to KCL.</p>
   </DocsCard>
   <DocsCard header="Generate Kubernetes" href="generate-k8s-manifests">

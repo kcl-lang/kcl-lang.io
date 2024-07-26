@@ -1,11 +1,11 @@
 ---
-title: "Adopt From Kubernetes"
+title: "Adapt From Kubernetes"
 sidebar_position: 1
 ---
 
 ## Introduction
 
-KCL provides many out of the box support for Kubernetes configuration. Through KCL tools, we can integrate Kubernetes manifests and types into KCL. This section will introduce how to adopt from Kubernetes.
+KCL provides many out of the box support for Kubernetes configuration. Through KCL tools, we can integrate Kubernetes manifests and types into KCL. This section will introduce how to adapt from Kubernetes.
 
 ## Prerequisite
 
