@@ -1,5 +1,5 @@
 ---
-slug: 2024-07-22-Jsonnet-kcl-comparison
+slug: 2024-07-22-jsonnet-kcl-comparison
 title: A Comparative Overview of Jsonnet and KCL
 authors:
   name: KCL Team
