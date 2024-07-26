@@ -22,7 +22,7 @@ You can use FetchContent to add KCL C++ Lib to your project.
 FetchContent_Declare(
   kcl-lib
   GIT_REPOSITORY https://github.com/kcl-lang/lib.git
-  GIT_TAG        v0.9.3 # You can change the GitHub branch tag.
+  GIT_TAG        v0.9.1 # You can change the GitHub branch tag.
   SOURCE_SUBDIR  cpp
 )
 FetchContent_MakeAvailable(kcl-lib)
@@ -61,12 +61,12 @@ Execute KCL file with arguments and return the JSON/YAML result.
 
 int main()
 {
-    auto args = kcl_lib::ExecProgramArgs();
-    auto files = rust::Vec<rust::String>();
-    files.push_back(rust::String("../test_data/schema.k"));
-    args.k_filename_list = files;
+    auto args = kcl_lib::ExecProgramArgs {
+        .k_filename_list = { "../test_data/schema.k" },
+    };
     auto result = kcl_lib::exec_program(args);
     std::cout << result.yaml_result.c_str() << std::endl;
+    return 0;
 }
 ```
 
@@ -87,7 +87,7 @@ Parse KCL single file to Module AST JSON string with import dependencies and par
 int main()
 {
     auto args = kcl_lib::ParseFileArgs {
-        .path = rust::String("../test_data/schema.k"),
+        .path = "../test_data/schema.k",
     };
     auto result = kcl_lib::parse_file(args);
     std::cout << result.deps.size() << std::endl;
@@ -114,7 +114,7 @@ Parse KCL program with entry files and return the AST JSON string.
 int main()
 {
     auto args = kcl_lib::ParseProgramArgs {
-        .paths = rust::Vec({ rust::String("../test_data/schema.k") }),
+        .paths = { "../test_data/schema.k" },
     };
     auto result = kcl_lib::parse_program(args);
     std::cout << result.paths[0].c_str() << std::endl;
@@ -141,7 +141,7 @@ load_package provides users with the ability to parse KCL program and semantic m
 int main()
 {
     auto parse_args = kcl_lib::ParseProgramArgs {
-        .paths = rust::Vec({ rust::String("../test_data/schema.k") }),
+        .paths = { "../test_data/schema.k" },
     };
     auto args = kcl_lib::LoadPackageArgs {
         .resolve_ast = true,
@@ -173,7 +173,7 @@ list_variables provides users with the ability to parse KCL program and get all 
 int main()
 {
     auto args = kcl_lib::ListVariablesArgs {
-        .files = rust::Vec({ rust::String("../test_data/schema.k") }),
+        .files = { "../test_data/schema.k" },
     };
     auto result = kcl_lib::list_variables(args);
     std::cout << result.variables[0].value[0].value.c_str() << std::endl;
@@ -198,7 +198,7 @@ list_options provides users with the ability to parse KCL program and get all op
 int main()
 {
     auto args = kcl_lib::ParseProgramArgs {
-        .paths = rust::Vec({ rust::String("../test_data/option/main.k") }),
+        .paths = { "../test_data/option/main.k" },
     };
     auto result = kcl_lib::list_options(args);
     std::cout << result.options[0].name.c_str() << std::endl;
@@ -225,7 +225,7 @@ Get schema type mapping defined in the program.
 int main()
 {
     auto exec_args = kcl_lib::ExecProgramArgs {
-        .k_filename_list = rust::Vec({ rust::String("../test_data/schema.k") }),
+        .k_filename_list = { "../test_data/schema.k" },
     };
     auto args = kcl_lib::GetSchemaTypeMappingArgs();
     args.exec_args = kcl_lib::OptionalExecProgramArgs {
@@ -257,8 +257,8 @@ Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/gu
 int main()
 {
     auto args = kcl_lib::OverrideFileArgs {
-        .file = rust::String("../test_data/override_file/main.k"),
-        .specs = rust::Vec({ rust::String("b.a=2") }),
+        .file = { "../test_data/override_file/main.k" },
+        .specs = { "b.a=2" },
     };
     auto result = kcl_lib::override_file(args);
     std::cout << result.result << std::endl;
@@ -338,7 +338,7 @@ Lint files and return error messages including errors and warnings.
 int main()
 {
     auto args = kcl_lib::LintPathArgs {
-        .paths = rust::Vec { rust::String("../test_data/lint_path/test-lint.k") }
+        .paths = { "../test_data/lint_path/test-lint.k" }
     };
     auto result = kcl_lib::lint_path(args);
     std::cout << result.results[0].c_str() << std::endl;
@@ -360,10 +360,12 @@ Validate code using schema and JSON/YAML data strings.
 #include "kcl_lib.hpp"
 #include <iostream>
 
-int validate(const char* code_str, const char* data_str) {
-    auto args = kcl_lib::ValidateCodeArgs();
-    args.code = rust::String(code_str);
-    args.data = rust::String(data_str);
+int validate(const char* code_str, const char* data_str)
+{
+    auto args = kcl_lib::ValidateCodeArgs {
+        .code = code_str,
+        .data = data_str,
+    };
     auto result = kcl_lib::validate_code(args);
     std::cout << result.success << std::endl;
     std::cout << result.err_message.c_str() << std::endl;
@@ -438,7 +440,7 @@ int main()
     auto args = kcl_lib::RenameCodeArgs {
         .package_root = "/mock/path",
         .symbol_path = "a",
-        .source_codes = rust::Vec { kcl_lib::HashMapStringValue {
+        .source_codes = { {
             .key = "/mock/path/main.k",
             .value = "a = 1\nb = a\nc = a",
         } },
@@ -492,8 +494,8 @@ Load the setting file config defined in `kcl.yaml`
 int main()
 {
     auto args = kcl_lib::LoadSettingsFilesArgs {
-        .work_dir = rust::String("../test_data/settings"),
-        .files = rust::Vec({ rust::String("../test_data/settings/kcl.yaml") }),
+        .work_dir = "../test_data/settings",
+        .files = { "../test_data/settings/kcl.yaml" },
     };
     auto result = kcl_lib::load_settings_files(args);
     std::cout << result.kcl_cli_configs.value.files.size() << std::endl;
@@ -536,7 +538,7 @@ C++ Code
 int main()
 {
     auto args = kcl_lib::UpdateDependenciesArgs {
-        .manifest_path = rust::String("module"),
+        .manifest_path = "../test_data/update_dependencies",
     };
     auto result = kcl_lib::update_dependencies(args);
     std::cout << result.external_pkgs[0].pkg_name.c_str() << std::endl;
@@ -584,11 +586,11 @@ C++ Code
 int main()
 {
     auto args = kcl_lib::UpdateDependenciesArgs {
-        .manifest_path = rust::String("module"),
+        .manifest_path = "../test_data/update_dependencies",
     };
     auto result = kcl_lib::update_dependencies(args);
     auto exec_args = kcl_lib::ExecProgramArgs {
-        .k_filename_list = rust::Vec({ rust::String("module/main.k") }),
+        .k_filename_list = { "../test_data/update_dependencies/main.k" },
         .external_pkgs = result.external_pkgs,
     };
     auto exec_result = kcl_lib::exec_program(exec_args);
