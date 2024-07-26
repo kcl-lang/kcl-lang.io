@@ -1,5 +1,5 @@
 ---
-title: "Adopt From Kubernetes"
+title: "Adapt From Kubernetes"
 sidebar_position: 1
 ---
 
@@ -27,7 +27,7 @@ The `kcl-openapi` tool supports extracting and generating KCL schemas from Kuber
 
 #### 3.1 Write configurations based on the Kusion_Models package
 
-We provide an out-of-the-box `konfig` package for you to quickly start. It contains a well-designed frontend model called [`Server schema`](https://github.com/kcl-lang/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k). You can declare the configurations by initializing the `Server schema`.
+``We provide an out-of-the-box `kusion_models` package for you to quickly start. It contains a well-designed frontend model called [`Server schema`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k). You can declare the configurations by initializing the `Server schema`. For the description and usage of the schema and its attributes, please refer to the [Server schema documentation](https://kusionstack.io/docs/reference/model/kusion_models/kube/frontend/doc_server).``
 
 #### 3.2 Build Your Custom Frontend Models
 
@@ -35,13 +35,13 @@ The existing KCL Models may not meet your specific business requirements, then y
 
 ##### 3.2.1 Get the k8s package
 
-The [Kubernetes KCL models](https://github.com/orgs/kcl-lang/packages/container/package/k8s) among all versions are pre-generated, you get it by executing `kpm add k8s:<version>` under your project. For detailed information about kpm usage, please refer to [kpm quick start guide](https://github.com/kcl-lang/kpm#quick-start).
+The [Kubernetes KCL models](https://github.com/orgs/KusionStack/packages/container/package/k8s) among all versions are pre-generated, you get it by executing `kpm add k8s:<version>` under your project. For detailed information about kpm usage, please refer to [kpm quick start guide](https://github.com/kcl-lang/kpm#quick-start).
 
 Alternatively, if you may want to generate them yourself, please refer to [Generate KCL Packages from Kubernetes OpenAPI Specs](https://github.com/kcl-lang/kcl-openapi/blob/main/docs/generate_from_k8s_spec.md).
 
 ##### 3.2.2 Design Custom Frontend Models
 
-Since the Kubernetes built-in models are atomistic and kind of complex to beginners, we recommend taking the native model of Kubernetes as the backend output model and designing a batch of frontend models which could become a more abstract, friendlier and simpler interface to the user. You can refer to the design pattern in the [`Server Schema in the Konfig repo`](https://github.com/kal-lang/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k).
+Since the Kubernetes built-in models are atomistic and kind of complex to beginners, we recommend taking the native model of Kubernetes as the backend output model and designing a batch of frontend models which could become a more abstract, friendlier and simpler interface to the user. You can refer to the design pattern in the [`Server Schema in the Konfig repo`](https://github.com/KusionStack/konfig/blob/main/base/pkg/kusion_models/kube/frontend/server.k).
 
 ##### 3.2.3 Migrate The Configuration Data
 

@@ -543,9 +543,9 @@
     "message": "Guides",
     "description": "The label for category Guides in sidebar docs"
   },
-  "sidebar.docs.category.Adopting kcl-lang": {
-    "message": "Adopting kcl-lang",
-    "description": "The label for category Adopting kcl-lang in sidebar docs"
+  "sidebar.docs.category.Adapting kcl-lang": {
+    "message": "Adapting kcl-lang",
+    "description": "The label for category Adapting kcl-lang in sidebar docs"
   },
   "sidebar.docs.category.Project Best Practices": {
     "message": "Project Best Practices",
@@ -575,9 +575,9 @@
     "message": "Guides",
     "description": "The label for category Guides in sidebar user_docs"
   },
-  "sidebar.user_docs.category.Adopting kcl-lang": {
-    "message": "Adopting kcl-lang",
-    "description": "The label for category Adopting kcl-lang in sidebar user_docs"
+  "sidebar.user_docs.category.Adapting kcl-lang": {
+    "message": "Adapting kcl-lang",
+    "description": "The label for category Adapting kcl-lang in sidebar user_docs"
   },
   "sidebar.user_docs.category.Project Best Practices": {
     "message": "Project Best Practices",
