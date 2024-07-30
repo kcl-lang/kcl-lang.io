@@ -8,7 +8,7 @@ spec:
           - /var/run/argocd/argocd-cmp-server
 #          - --
 #          - --loglevel=debug
-        image: kcllang/kcllang-cmp-plugin
+        image: kcllang/kcl
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
