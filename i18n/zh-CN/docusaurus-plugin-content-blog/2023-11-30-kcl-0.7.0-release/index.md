@@ -262,7 +262,7 @@ spec = {
 }
 ```
 
-更多详细内容请参考[一键从 Kubernetes 生态迁移到 KCL](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adopt-from-kubernetes)
+更多详细内容请参考[一键从 Kubernetes 生态迁移到 KCL](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adapt-from-kubernetes)
 
 ## 社区集成 & 扩展更新
 

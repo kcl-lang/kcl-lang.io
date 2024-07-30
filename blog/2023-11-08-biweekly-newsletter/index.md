@@ -73,7 +73,7 @@ Additionally, support has been added for adding type annotations in lambda expre
 
 ### KCL Import Tool
 
-Support for one-click generation of KCL configurations/models from YAML/JSON/CRD/Terraform Schema enables automated migration. Please refer to the [One-click Migration from Kubernetes Ecosystem to KCL guide](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adopt-from-kubernetes) for more information.
+Support for one-click generation of KCL configurations/models from YAML/JSON/CRD/Terraform Schema enables automated migration. Please refer to the [One-click Migration from Kubernetes Ecosystem to KCL guide](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adapt-from-kubernetes) for more information.
 
 ## Resources
 

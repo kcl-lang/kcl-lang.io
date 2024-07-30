@@ -21,7 +21,7 @@ import DocsCards from '@site/src/components/global/DocsCards';
 ## 文档
 
 <DocsCards>
-  <DocsCard header="从 Kubernetes 迁移" href="adopt-from-kubernetes">
+  <DocsCard header="从 Kubernetes 迁移" href="adapt-from-kubernetes">
     <p>将 Kubernetes 清单和 CRD 转换为 KCL 代码的指南。</p>
   </DocsCard>
   <DocsCard header="Kubernetes 配置管理" href="generate-k8s-manifests">

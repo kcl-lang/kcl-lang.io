@@ -67,7 +67,7 @@ KCL 的编译命令对错误信息的输出优化继续推进，致力于提供�
 
 ### KCL 导入工具
 
-支持从 YAML/JSON/CRD/Terraform Schema 一键生成 KCL 配置/模型，实现自动化迁移，相关指南请参照[一键从 Kubernetes 生态迁移到 KCL](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adopt-from-kubernetes)
+支持从 YAML/JSON/CRD/Terraform Schema 一键生成 KCL 配置/模型，实现自动化迁移，相关指南请参照[一键从 Kubernetes 生态迁移到 KCL](https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adapt-from-kubernetes)
 
 ## 其他资源
 

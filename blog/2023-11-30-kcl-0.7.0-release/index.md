@@ -272,7 +272,7 @@ spec = {
 }
 ```
 
-More details: https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adopt-from-kubernetes
+More details: https://kcl-lang.io/docs/user_docs/guides/working-with-k8s/adapt-from-kubernetes
 
 ## Community Integrations & Extensions Updates
 
