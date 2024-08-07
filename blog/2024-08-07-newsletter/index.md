@@ -34,7 +34,7 @@ Special thanks to all community contributors over the past two weeks. The follow
 - Thanks @Shruti78 for the contribution to the KCL documentation. 🙌
 - Thanks @jianzs for the contribution to the KCL Playground. 🙌
 - Thanks @vinayakjaas for the contribution to the error messages of KPM. 🙌
-- Thanks to @wmcnamee-coreweave, @dennybaa, @bozaro, @eshepelyuk, @liangyuanpeng, @vietanhtwdk, @hoangndst, @sschne, @patpicos, @metacoma, @YvanDaSilva, @ovk, @karlderkaefer, @kukacz, @Matthew Hodgkins, @Gao Jun, and @Zack Zhang for their valuable suggestions and feedback while using KCL in recent times. 🙌
+- Thanks to @wmcnamee-coreweave, @dennybaa, @bozaro, @eshepelyuk, @liangyuanpeng, @vietanhtwdk, @hoangndst, @sschne, @patpicos, @metacoma, @YvanDaSilva, @ovk, @karlderkaefer, @kukacz, @Matthew Hodgkins, @Christopher Haar, @Gao Jun, and @Zack Zhang for their valuable suggestions and feedback while using KCL in recent times. 🙌
 
 ## Overview
 

@@ -34,7 +34,7 @@ image: /img/biweekly-newsletter.png
 - 感谢 @Shruti78 对 KCL 文档的贡献。🙌
 - 感谢 @jianzs 对 KCL Playground 的贡献。🙌
 - 感谢 @vinayakjaas 对 KPM 错误信息的贡献。🙌
-- 感谢 @wmcnamee-coreweave, @dennybaa, @bozaro, @eshepelyuk, @liangyuanpeng, @vietanhtwdk, @hoangndst, @sschne, @patpicos, @metacoma, @YvanDaSilva, @ovk, @karlderkaefer, @kukacz, @Matthew Hodgkins, @Gao Jun 和 @Zack Zhang 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
+- 感谢 @wmcnamee-coreweave, @dennybaa, @bozaro, @eshepelyuk, @liangyuanpeng, @vietanhtwdk, @hoangndst, @sschne, @patpicos, @metacoma, @YvanDaSilva, @ovk, @karlderkaefer, @kukacz, @Matthew Hodgkins, @Christopher Haar, @Gao Jun 和 @Zack Zhang 等在近段时间使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 内容概述
 
