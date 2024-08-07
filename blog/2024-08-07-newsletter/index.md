@@ -58,11 +58,6 @@ Thanks to all contributors for their outstanding work over the past two weeks. H
 
 **🏄 Language Updates**
 
-- Assignment statements support attribute access and index access for the assigned target.
-- Fixed KCL nested multi-level config block semantic check costing too long time.
-- Removed the unwrap() in the semantic resolver to reduce panic issues.
-- Fixed the error merge of the list index field by merge operation.
-
 - Fixed type conversion error with the `as` keyword in the presence of external packages.
 - Fixed type check error from config to schema in the `lambda` function.
 - Added `file.current()` function to retrieve the full path of the currently running KCL file.
