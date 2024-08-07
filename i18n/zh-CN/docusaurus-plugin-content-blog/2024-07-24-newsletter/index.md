@@ -28,7 +28,7 @@ image: /img/biweekly-newsletter.png
 
 ## 内容概述
 
-感谢所有贡献者过去一段时间 (2024.07.10 - 2024.07.24) 的杰出工作，以下是重点内容概述
+感谢所有贡献者过去两周的杰出工作，以下是重点内容概述
 
 **📦️ 三方库更新**
 
@@ -79,7 +79,7 @@ image: /img/biweekly-newsletter.png
 
 **📚️ 文档更新**
 
-- 新增 Python, Java, NodeJs, Rust, Wasm, .NET, C/C++ 等多语言 API 文档。
+- 新增 Python, Java, Node.js, Rust, Wasm, .NET, C/C++ 等多语言 API 文档。
 - 更新了 IDE Quick Start 文档。
 - 新增博客 [A Comparative Overview of Jsonnet and KCL](https://www.kcl-lang.io/blog/2024-07-22-jsonnet-kcl-comparison)
 - 更新文档[Adapt From Kubernetes](https://www.kcl-lang.io/docs/user_docs/guides/working-with-k8s/adapt-from-kubernetes)中的 crd 资源。
