@@ -420,11 +420,18 @@ schema TFPlan:
 schema AcceptableChange:
     # Omit other attributes
     [...str]: any
+    $type: str
+    name: str
+    change: Change
     check:
         # Reject AWS autoscaling group Resource delete action
         all action in change.actions {
             action not in ["delete"]
         } if type == "aws_autoscaling_group", "Disable AWS autoscaling group resource delete action for the resource ${type} ${name}"
+
+schema Change:
+    [...str]: any
+    actions: [str]
 ```
 
 This policy file checks that no AWS Auto Scaling groups are being deleted - even if that deletion is part of a delete-and-recreate operation.
@@ -450,11 +457,18 @@ schema TFPlan:
 schema AcceptableChange:
     # Omit other attributes
     [...str]: any
+    $type: str
+    name: str
+    change: Change
     check:
         # Reject AWS autoscaling group Resource delete action
         all action in change.actions {
-            action not in ["create"]
+            action not in ["create"] # Use create to mock a check failure.
         } if type == "aws_autoscaling_group", "Disable AWS autoscaling group resource create action for the resource ${type} ${name}"
+
+schema Change:
+    [...str]: any
+    actions: [str]
 ```
 
 Run the command
