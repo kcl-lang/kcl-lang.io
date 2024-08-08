@@ -6,8 +6,15 @@ schema TFPlan:
 schema AcceptableChange:
     # Omit other attributes
     [...str]: any
+    $type: str
+    name: str
+    change: Change
     check:
         # Reject AWS autoscaling group Resource delete action
         all action in change.actions {
             action not in ["create"] # Use create to mock a check failure.
         } if type == "aws_autoscaling_group", "Disable AWS autoscaling group resource create action for the resource ${type} ${name}"
+
+schema Change:
+    [...str]: any
+    actions: [str]
