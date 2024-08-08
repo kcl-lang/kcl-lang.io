@@ -20,7 +20,7 @@ kcl registry login -u <USERNAME> -p <TOKEN> docker.io
 
 Where `<USERNAME>` is your `docker.io` username, and `<PASSWORD>` is your `docker.io` password.
 
-For more information on how to log in to ghcr.io, see [kcl registry login](https://kcl-lang.io/docs/reference/package-management/command-reference/login).
+For more information on how to log in to ghcr.io, see [kcl registry login](https://www.kcl-lang.io/docs/tools/cli/package-management/command-reference/login).
 
 ## Step 4: Push your kcl package
 
