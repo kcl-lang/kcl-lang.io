@@ -20,7 +20,7 @@ kcl registry login -u <USERNAME> -p <TOKEN> docker.io
 
 其中 `<USERNAME>` 是您的 docker.io 用户名，`<PASSWORD>` 是您 docker.io 账户的密码。
 
-关于如何使用 KCL CLI 登录 docker.io 的更多信息，请参阅 [kcl registry login](https://kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/login)。
+关于如何使用 KCL CLI 登录 docker.io 的更多信息，请参阅 [kcl registry login](https://www.kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/login)。
 
 ## 步骤 4：推送您的 kcl 包
 

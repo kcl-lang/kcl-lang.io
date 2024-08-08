@@ -24,7 +24,7 @@ kcl registry login -u <USERNAME> -p <TOKEN> ghcr.io
 
 其中 `<USERNAME>` 是您的 GitHub 用户名，`<TOKEN>` 是您在步骤 2 中创建的令牌。
 
-关于如何使用 kcl 包管理登录 ghcr.io 的更多信息，请参阅 [kcl registry login](https://kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/login)。
+关于如何使用 kcl 包管理登录 ghcr.io 的更多信息，请参阅 [kcl registry login](https://www.kcl-lang.io/zh-CN/docs/tools/cli/package-management/command-reference/login)。
 
 ## 步骤 4：推送您的 kcl 包
 

@@ -24,7 +24,7 @@ kcl registry login -u <USERNAME> -p <TOKEN> ghcr.io
 
 Where `<USERNAME>` is your GitHub username, `<TOKEN>` is the token you created in step 2
 
-For more information on how to log in to ghcr.io, see [kcl registry login](https://kcl-lang.io/docs/reference/package-management/command-reference/login).
+For more information on how to log in to ghcr.io, see [kcl registry login](https://www.kcl-lang.io/docs/tools/cli/package-management/command-reference/login).
 
 ## Step 4: Push your kcl package
 
