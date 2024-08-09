@@ -174,7 +174,7 @@ assert list(result.symbols.values())[0].ty.schema_name == "AppConfig"
 </p>
 </details>
 
-### list_variable
+### list_variables
 
 list_variables provides users with the ability to parse KCL program and get all variables by specs.
 
