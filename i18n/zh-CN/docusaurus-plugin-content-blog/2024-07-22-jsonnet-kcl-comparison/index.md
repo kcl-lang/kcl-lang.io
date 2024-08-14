@@ -111,8 +111,8 @@ local a(name) = {
 
 运行时间（考虑到生产环境的实际资源开销，本次测试以单核为准）
 
-| KCL v0.9.3          | Jsonnet v0.20.0 (C++ 版本)    | Jsonnet v0.20.0 (Go 版本)      | Jsonnet v0.5.0-pre96 (Rust 版本 jrsonnet) | Jsonnet v0.1.2 (Rust 版本 rsjsonnet) |
-| ------------------- | ----------------------------- | ------------------------------ | ----------------------------------------- | ------------------------------------ |
+| KCL v0.9.3          | Jsonnet v0.20.0 (C++ 版本)     | Jsonnet v0.20.0 (Go 版本)     | Jsonnet v0.5.0-pre96 (Rust 版本 jrsonnet) | Jsonnet v0.1.2 (Rust 版本 rsjsonnet) |
+| ------------------- | ------------------------------ | ----------------------------- | ----------------------------------------- | ------------------------------------ |
 | 155 ms (kcl test.k) | 1460 ms (jsonnet test.jsonnet) | 400 ms (jsonnet test.jsonnet) | 153 ms (rsjsonnet test.jsonnet)           | 142 ms (jrsonnet test.jsonnet)       |
 
 ## 小结

@@ -6,7 +6,7 @@ Editing this file might prove futile when you re-run the KCL auto-gen generate c
 
 
 schema OwnerReference:
-    """
+    r"""
     OwnerReference contains enough information to let you identify an owning object. An owning object must be in the same namespace as the dependent, or be cluster-scoped, so there is no namespace field.
 
     Attributes
