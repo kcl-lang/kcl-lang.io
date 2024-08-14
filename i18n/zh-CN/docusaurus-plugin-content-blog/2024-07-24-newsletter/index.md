@@ -66,7 +66,6 @@ image: /img/biweekly-newsletter.png
 - 包管理工具修复了 push https 协议 OCI registry 失败的问题。
 - KCL tree-sitter 新增 sequence operations, selector 支持。
 
-
 **⛵️ API 更新**
 
 - 重构了 override_file API 的错误信息。

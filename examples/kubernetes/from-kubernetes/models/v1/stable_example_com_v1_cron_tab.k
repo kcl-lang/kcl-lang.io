@@ -6,7 +6,7 @@ import k8s.apimachinery.pkg.apis.meta.v1
 
 
 schema CronTab:
-    """
+    r"""
     stable example com v1 cron tab
 
     Attributes
@@ -32,7 +32,7 @@ schema CronTab:
 
 
 schema StableExampleComV1CronTabSpec:
-    """
+    r"""
     stable example com v1 cron tab spec
 
     Attributes

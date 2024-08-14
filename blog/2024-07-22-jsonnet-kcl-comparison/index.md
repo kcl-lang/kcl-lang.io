@@ -105,8 +105,8 @@ local a(name) = {
 
 Run time (considering actual resource expenditure in production environments, this test is based on a single core):
 
-| KCL v0.9.3          | Jsonnet v0.20.0 (C++ version) | Jsonnet v0.20.0 (Go version)   | Jsonnet v0.5.0-pre96 (Rust version jrsonnet) | Jsonnet v0.1.2 (Rust version rsjsonnet) |
-| ------------------- | ----------------------------- | ------------------------------ | -------------------------------------------- | --------------------------------------- |
+| KCL v0.9.3          | Jsonnet v0.20.0 (C++ version)  | Jsonnet v0.20.0 (Go version)  | Jsonnet v0.5.0-pre96 (Rust version jrsonnet) | Jsonnet v0.1.2 (Rust version rsjsonnet) |
+| ------------------- | ------------------------------ | ----------------------------- | -------------------------------------------- | --------------------------------------- |
 | 155 ms (kcl test.k) | 1480 ms (jsonnet test.jsonnet) | 400 ms (jsonnet test.jsonnet) | 153 ms (rsjsonnet test.jsonnet)              | 142 ms (jrsonnet test.jsonnet)          |
 
 ## Summary

@@ -6,7 +6,7 @@ Editing this file might prove futile when you re-run the KCL auto-gen generate c
 
 
 schema ObjectMeta:
-    """
+    r"""
     ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.
 
     Attributes

@@ -6,7 +6,7 @@ Editing this file might prove futile when you re-run the KCL auto-gen generate c
 
 
 schema ManagedFieldsEntry:
-    """
+    r"""
     ManagedFieldsEntry is a workflow-id, a FieldSet and the group version of the resource that the fieldset applies to.
 
     Attributes
