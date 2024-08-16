@@ -98,7 +98,7 @@ jobs:
   check-kcl-brew-install:
     strategy:
       matrix:
-        os: [macos-12, macos-13, macos-latest, ubuntu-latest]
+        os: [macos-12, macos-13, macos-latest, ubuntu-20.04, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
