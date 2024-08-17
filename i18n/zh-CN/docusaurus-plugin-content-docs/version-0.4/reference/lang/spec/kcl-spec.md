@@ -141,7 +141,7 @@ basic_type: STRING_TYPE | INT_TYPE | FLOAT_TYPE | BOOL_TYPE | ANY_TYPE
 compound_type: list_type | dict_type
 list_type: LEFT_BRACKETS (type)? RIGHT_BRACKETS
 dict_type: LEFT_BRACE (type)? COLON (type)? RIGHT_BRACE
-literal_type: string | number | TRUE | FALSE | NONE
+literal_type: string | number | TRUE | FALSE
 
 //////////// type alias ////////////
 type_alias_stmt: TYPE NAME ASSIGN type
