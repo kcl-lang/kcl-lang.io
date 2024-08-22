@@ -2639,27 +2639,27 @@ rule2 = SomeRule {}  # Rule call
 We can use protocol to implement type checking of rule structure:
 
 ```python
-# Schema definition
-protocol Service:
+# Protocol definition
+protocol ServiceProtocol:
     clusterIp: str
     $type: str
 
-# Schema definition
-protocol Volume:
-    mountPath: [str]
+# Protocol definition
+protocol VolumeProtocol:
+    mountPath: str
 
 # Protocol
 protocol SomeProtocol:
     id: int
     env: {str: any}
-    services: [Service]
-    volumes: [Volume]
+    services: [ServiceProtocol]
+    volumes: [VolumeProtocol]
 
 rule SomeChecker for SomeProtocol:
     id > 0, "id must >0"
 
     all service in services {
-        service.clusterIP == "NONE" if service.type == "ClusterIP"
+        service.clusterIp == "NONE" if service.type == "ClusterIP"
     }
 
     any volume in volumes {
@@ -2675,7 +2675,7 @@ SomeChecker {
     services = [
         {
             type = "ClusterIP"
-            clusterIP = "NONE"
+            clusterIp = "NONE"
         }
     ]
     volumes = [
