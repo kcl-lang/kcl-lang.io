@@ -2558,27 +2558,27 @@ rule2 = SomeRule {}
 可以使用 protocol 和 for 绑定语句为 rule 增加类型约束:
 
 ```python
-# Schema definition
-protocol Service:
+# Protocol definition
+protocol ServiceProtocol:
     clusterIp: str
     $type: str
 
-# Schema definition
-protocol Volume:
-    mountPath: [str]
+# Protocol definition
+protocol VolumeProtocol:
+    mountPath: str
 
 # Protocol
 protocol SomeProtocol:
     id: int
     env: {str: any}
-    services: [Service]
-    volumes: [Volume]
+    services: [ServiceProtocol]
+    volumes: [VolumeProtocol]
 
 rule SomeChecker for SomeProtocol:
     id > 0, "id must >0"
 
     all service in services {
-        service.clusterIP == "NONE" if service.type == "ClusterIP"
+        service.clusterIp == "NONE" if service.type == "ClusterIP"
     }
 
     any volume in volumes {
@@ -2594,7 +2594,7 @@ SomeChecker {
     services = [
         {
             type = "ClusterIP"
-            clusterIP = "NONE"
+            clusterIp = "NONE"
         }
     ]
     volumes = [
