@@ -83,3 +83,9 @@ weight: 100
 `read_env(key: str) -> str`
 
 从当前进程中读取环境变量 `key` 的值。
+
+## current
+
+`current() -> str`
+
+读取正在执行的当前 KCL 代码文件或模块的路径。
