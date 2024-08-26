@@ -71,3 +71,9 @@ Move a file or directory from the source path to the destination path.
 `read_env(key: str) -> str`
 
 Read the environment variable `key` from the current process.
+
+## current
+
+`current() -> str`
+
+Read the path of the current script or module that is being executed.
