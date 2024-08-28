@@ -119,6 +119,20 @@ print(isunique(['abc', "a${'bc'}"])) # False
 
 It should be noted that integers and floating-point numbers ignore the type difference and judge whether the values are equal.
 
+## isnullish
+
+Return `True` if the input value is `None` or `Undefined`, and `False` otherwise.
+
+```python
+isnullish(None) # True
+isnullish(Undefined) # True
+isnullish(0) # False
+isnullish([]) # False
+isnullish({}) # False
+isnullish([None]) # False
+isnullish([Undefined]) # False
+```
+
 ## len
 
 `len(x: str | [any] | {:}) -> int`

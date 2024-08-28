@@ -113,6 +113,20 @@ print(isunique(['abc', "abc"]))      # False
 print(isunique(['abc', "a${'bc'}"])) # False
 ```
 
+## isnullish
+
+如果输入值是 `None` 或 `Undefined`，则返回 `True`；否则返回 `False`。
+
+```python
+isnullish(None) # True
+isnullish(Undefined) # True
+isnullish(0) # False
+isnullish([]) # False
+isnullish({}) # False
+isnullish([None]) # False
+isnullish([Undefined]) # False
+```
+
 需要注意的是整数和浮点数会忽略类型差异，根据值是否相等判断。
 
 ## len

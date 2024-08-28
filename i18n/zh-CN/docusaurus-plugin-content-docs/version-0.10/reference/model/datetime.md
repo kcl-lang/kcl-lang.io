@@ -20,12 +20,18 @@ weight: 100
 
 ## now
 
-`now() -> str`
+`now(format: str = "%a %b %d %H:%M:%S %Y") -> str`
 
-返回当地时间，例如 `'Sat Jun 06 16:26:11 1998'`。
+返回本地时间格式。例如：`Sat Jun 06 16:26:11 1998`，或者根据指定的格式字符串格式化组合的日期和时间，默认日期格式为 `%a %b %d %H:%M:%S %Y`。
 
 ## today
 
 `today() -> str`
 
 返回以 `%Y-%m-%d %H:%M:%S.%{ticks}` 格式表示的时间。
+
+## validate
+
+`validate(date: str, format: str) -> bool`
+
+验证提供的日期字符串是否与指定格式匹配。
