@@ -12,6 +12,8 @@
     - [version](#package) — 包的版本。
     - [edition](#package) — KCL 编译器版本。
     - [description](#package) — 包的描述。
+    - [include](#include) - 在打包和发布时包含的文件。
+    - [exclude](#exclude) - 在打包和发布时排除的文件。
 - 依赖表：
   - [dependencies](#dependencies) - 包库依赖项。
 - 编译器设置：
@@ -70,6 +72,36 @@ name = "my_pkg"
 version = "0.1.0"
 edition = "0.5.0"
 description = "This is my package."
+```
+
+### 2.5. include
+
+你可以使用 `include` 字段指定打包和发布时包含的文件。
+
+`include` 是 `package` 部分的字段。
+
+```toml
+[package]
+name = "hello_world"
+version = "0.1.0"
+edition = "0.5.0"
+description = "This is a hello world package."
+include = ["src/", "README.md", "LICENSE"] # 打包和发布时包含的文件
+```
+
+### 2.6. exclude
+
+你可以使用 `exclude` 字段指定打包和发布时排除的文件。
+
+`exclude` 是 `package` 部分的字段。
+
+```toml
+[package]
+name = "hello_world"
+version = "0.1.0"
+edition = "0.5.0"
+description = "This is a hello world package."
+exclude = ["target/", ".git/", "*.log"] # 打包和发布时排除的文件
 ```
 
 ## 3. dependencies
