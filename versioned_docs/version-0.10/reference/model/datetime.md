@@ -20,12 +20,18 @@ Return the `%Y-%m-%d %H:%M:%S` format date.
 
 ## now
 
-`now() -> str`
+`now(format: str = "%a %b %d %H:%M:%S %Y") -> str`
 
-Return the local time. e.g. `'Sat Jun 06 16:26:11 1998'`
+Return the local time format. e.g. 'Sat Jun 06 16:26:11 1998' or format the combined date and time per the specified format string, and the default date format is `%a %b %d %H:%M:%S %Y`.
 
 ## today
 
 `today() -> str`
 
 Return the `%Y-%m-%d %H:%M:%S.%{ticks}` format date.
+
+## validate
+
+`validate(date: str, format: str) -> bool`
+
+Validate whether the provided date string matches the specified format.
