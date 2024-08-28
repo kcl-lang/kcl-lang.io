@@ -12,22 +12,26 @@ In the MVP version, the sections we plan to support are as follows:
     - [version](#package) — The version of the package.
     - [edition](#package) — The KCL compiler edition.
     - [description](#package) — The description of the package.
+    - [include](#package) - The include file paths when packaging and publishing.
+    - [exclude](#package) - The exclude file paths when packaging and publishing.
 - Dependency tables:
   - [dependencies](#dependencies) - Package library dependencies.
 - Compiler settings:
-  - [profile] - The compiler settings.
+  - profile - The compiler settings.
     - [entries](#entries) - The entry points of the package when compiling.
 
 ## package
 
 The first section in a `kcl.mod` is [package].
 
-```
+```toml
 [package]
 name = "hello_world" # the name of the package
 version = "0.1.0"    # the current version, obeying semver
 edition = "0.5.0"    # the KCL compiler version
 description = "This is a hello world package." # the description of the package
+include = ["src/", "README.md", "LICENSE"] # the include file paths when packaging and publishing
+exclude = ["target/", ".git/", "*.log"] # the exclude file paths when packaging and publishing
 ```
 
 ## dependencies
