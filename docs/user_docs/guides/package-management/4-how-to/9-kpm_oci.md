@@ -1,4 +1,4 @@
-# Support for OCI Registries
+# Use an OCI-based registry
 
 KCL package management tool supports saving and sharing KCL packages through OCI Registries.
 
@@ -25,15 +25,13 @@ You can adjust the registry and repository name of the OCI registry by the follo
 
 ### By environment variable
 
-You can adjust the configuration of OCI Registry by setting the three environment variables `KPM_REG`, `KPM_REGO`, and `OCI_REG_PLAIN_HTTP`.
+You can adjust the configuration of OCI Registry by setting the three environment variables `KPM_REG`, `KPM_REGO`.
 
 ```shell
 # set default registry
 export KPM_REG="ghcr.io"
 # set default repository
 export KPM_REPO="kcl-lang"
-# set support for 'http'
-export OCI_REG_PLAIN_HTTP=off
 ```
 
 ### By configuration file
@@ -46,7 +44,6 @@ The default content of the configuration file is as follows:
 {
   "DefaultOciRegistry": "ghcr.io",
   "DefaultOciRepo": "kcl-lang",
-  "DefaultOciPlainHttp": true
 }
 ```
 
@@ -182,6 +179,32 @@ For the example, the command is as follows:
 
 ```shell
 kcl mod pull oci://localhost:5001/test/MyPkg --tag v0.1.0
+```
+
+### `kcl mod add` to add a KCL package from OCI registry as a dependency
+
+You can use `kcl mod add` to add a KCL package from the default OCI registry. KPM will automatically search for the kcl package from the OCI registry in `kpm.json`.
+
+```shell
+kcl mod add <package_name>:<package_version>
+```
+
+For the example, the command is as follows:
+
+```shell
+kcl mod add MyPkg:v0.1.0
+```
+
+Or, you can download a kcl package from the specified OCI registry url.
+
+```shell
+kcl mod add <oci_url>
+```
+
+For the example, the command is as follows:
+
+```shell
+kcl mod add oci://localhost:5001/test/MyPkg --tag v0.1.0
 ```
 
 ### `kcl run` to compile a KCL package
