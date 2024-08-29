@@ -14,7 +14,7 @@ image: /img/biweekly-newsletter.png
 
 ## Lighting Talk: KCL: Simplifying Kubernetes Manifests Management
 
-The Lighting Talk PPT: [Download PDF](https://kcl-lang.io/talks/kcl-kubecon2024-lighting-talk.pdf)
+Lighting Talk PPT: [下载 PDF](https://kcl-lang.io/talks/kcl-kubecon2024-lighting-talk.pdf)
 
 ![pptcover](img/blog/2024-08-29-kubecon2024/pptcover.png)
 
