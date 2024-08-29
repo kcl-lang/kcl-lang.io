@@ -14,6 +14,10 @@ At KubeCon China 2024, held from August 21st to 23rd, a 3-day event in Hong Kong
 
 ## Lighting Talk: KCL: Simplifying Kubernetes Manifests Management
 
+The Lighting Talk PPT: [Download PDF](https://kcl-lang.io/talks/kcl-kubecon2024-lighting-talk.pdf)
+
+![pptcover](img/blog/2024-08-29-kubecon2024/pptcover.png)
+
 In this event, KCL introduced its efforts in simplifying Kubernetes manifests management, improving configuration management efficiency and stability through a Lighting Talk.
 
 ![kcllightingtalk](/img/blog/2024-08-29-kubecon2024/kcllightingtalk.png)
