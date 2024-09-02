@@ -2,7 +2,7 @@
 sidebar_position: 10
 ---
 
-# Lus API
+# Lua API
 
 The official [Lua KCL package](https://github.com/kcl-lang/lib/tree/main/lua) has not been released yet. Issues and PRs are welcome!
 
