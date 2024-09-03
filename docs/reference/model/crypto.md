@@ -42,6 +42,12 @@ Encrypt the string `value` using `SHA384` and the codec registered for encoding.
 
 Encrypt the string `value` using `SHA512` and the codec registered for encoding.
 
+## blake3
+
+`blake3(value: str, encoding: str = "utf-8") -> str`
+
+Encrypt the string `value` using `BLAKE3` and the codec registered for encoding.
+
 ## uuid
 
 `uuid() -> str`
