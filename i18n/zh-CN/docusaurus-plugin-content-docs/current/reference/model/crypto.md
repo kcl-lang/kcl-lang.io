@@ -42,6 +42,12 @@ weight: 100
 
 使用注册编码器和 `SHA512` 算法对字符串 `value` 进行加密。
 
+## blake3
+
+`sha512(value: str, encoding: str = "utf-8") -> str`
+
+使用注册编码器和 `BLAKE3` 算法对字符串 `value` 进行加密。
+
 ## uuid
 
 `uuid() -> str`
