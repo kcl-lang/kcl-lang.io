@@ -16,7 +16,7 @@ image: /img/biweekly-newsletter.png
 
 Lighting Talk PPT: [下载 PDF](https://kcl-lang.io/talks/kcl-kubecon2024-lighting-talk.pdf)
 
-![pptcover](img/blog/2024-08-29-kubecon2024/pptcover.png)
+![pptcover](/img/blog/2024-08-29-kubecon2024/pptcover.png)
 
 在这次活动中，KCL 通过一场 Lighting Talk 为大家介绍了 KCL 在简化 kubernetes 项目配置管理，提升配置管理效率和稳定性方面作出的努力。
 
