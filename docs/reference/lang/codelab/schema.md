@@ -526,7 +526,7 @@ nginx = Nginx {
 ```python
 nginx = NginxProd {
     labels.run = "my-nginx"
-    labels.env = "pre-prod"
+    labels.env = "prod"
 }
 ```
 
@@ -575,10 +575,10 @@ Now, we can complete the declaration of the server configuration through the Dep
 
 However, usually, the actual situation is more complicated, and the deployment may have a variety of optional variable accessories.
 
-For example, we want to support a persistent volume claim based on an existing schema, as a reusable Kubernetes schema. In this case, we can just wrapper it with a `mixin` and a `protocol` as follows:
+For example, we want to support a persistent volume claim based on an existing schema, as a reusable Kubernetes schema. In this case, we can just wrap it with a `mixin` and a `protocol` as follows:
 
 ```python
-import k8spkg.api.core.v1
+import k8s.api.core.v1
 
 protocol PVCProtocol:
     pvc?: {str:}
@@ -603,6 +603,12 @@ mixin PersistentVolumeClaimMixin for PVCProtocol:
             }
         }
 ```
+
+> Note: for the `k8s.api.core.v1` import to work, we need to initialize a module and add the `k8s` module as a dependency:
+> ```bash
+> kcl mod init
+> kcl mod add k8s
+> ```
 
 With this PersistentVolumeClaimMixin, we define a PVC schema with a clear `user interface`, and use Kubernetes PVC as an implementation. Then, we can define a server schema with Deployment schema, and PVC mixin schema.
 

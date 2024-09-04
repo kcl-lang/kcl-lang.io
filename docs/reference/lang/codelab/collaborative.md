@@ -83,7 +83,7 @@ In order to complete the collaborative configuration development, we first need 
 │           └── main.k
 ├── kcl.mod
 └── pkg
-    └── sever.k
+    └── server.k
 ```
 
 The directory of the project mainly contains three parts:
@@ -280,7 +280,7 @@ server:
     env: dev
 ```
 
-Using the same method, we can build the production configuration, write the code in the `dev/main.k` file, and add a label to it.
+Using the same method, we can build the production configuration, write the code in the `prod/main.k` file, and add a label to it.
 
 ```python
 import pkg
