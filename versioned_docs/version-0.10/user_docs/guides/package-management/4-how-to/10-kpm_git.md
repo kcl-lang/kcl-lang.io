@@ -16,7 +16,7 @@ More Details - [Download Private Repository Using Git](https://docs.github.com/e
 
 ## Add a Git Repository as a Dependency
 
-You can use `kcl mod add` to add a Git repository as a dependency to the KCL package. 
+You can use `kcl mod add` to add a Git repository as a dependency to the KCL package.
 
 Take `https://github.com/kcl-lang/konfig` as an example. The command is as follows:
 
@@ -26,7 +26,7 @@ kcl mod add git://github.com/kcl-lang/konfig --commit 78ba6e9 # Add a Git reposi
 kcl mod add git://github.com/kcl-lang/konfig --branch main # Add a Git repository with a branch
 ```
 
-The way shown above is to add a Git repository as a dependency with Https protocol. 
+The way shown above is to add a Git repository as a dependency with Https protocol.
 You can also use the `ssh` protocol or some other protocols to add a Git repository as a dependency as follows:
 
 ```shell

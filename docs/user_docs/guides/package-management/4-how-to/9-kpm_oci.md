@@ -43,7 +43,7 @@ The default content of the configuration file is as follows:
 ```json
 {
   "DefaultOciRegistry": "ghcr.io",
-  "DefaultOciRepo": "kcl-lang",
+  "DefaultOciRepo": "kcl-lang"
 }
 ```
 

@@ -43,7 +43,7 @@ KCL 包管理工具的配置文件位于 `$KCL_PKG_PATH/.kpm/config/kpm.json`，
 ```json
 {
   "DefaultOciRegistry": "ghcr.io",
-  "DefaultOciRepo": "kcl-lang",
+  "DefaultOciRepo": "kcl-lang"
 }
 ```
 

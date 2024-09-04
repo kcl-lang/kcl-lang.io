@@ -14,6 +14,6 @@ Encode the string `value` using the codec registered for encoding.
 
 ## decode
 
-`decode(value: str, encoding: str = "utf-8") -> str`
+`decode(value: str) -> str`
 
-Decode the string `value` using the codec registered for encoding.
+Decode the string `value` using the codec registered to the utf8 string for encoding.

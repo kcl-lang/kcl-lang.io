@@ -25,7 +25,7 @@ You can adjust the registry and repository name of the OCI registry by the follo
 
 ### By environment variable
 
-You can adjust the configuration of OCI Registry by setting the three environment variables `KPM_REG`, `KPM_REGO`, and `OCI_REG_PLAIN_HTTP`.
+You can adjust the configuration of OCI Registry by setting the three environment variables `KPM_REG`, `KPM_REGO`.
 
 ```shell
 # set default registry
@@ -43,7 +43,7 @@ The default content of the configuration file is as follows:
 ```json
 {
   "DefaultOciRegistry": "ghcr.io",
-  "DefaultOciRepo": "kcl-lang",
+  "DefaultOciRepo": "kcl-lang"
 }
 ```
 

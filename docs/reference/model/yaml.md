@@ -57,6 +57,19 @@ dump_to_file(
 
 Serialize a KCL object `data` to a YAML formatted str and write it into the file `filename`.
 
+## dump_to_file
+
+```python
+dump_all_to_file(
+    data: [any],
+    filename: str,
+    ignore_private: bool = False,
+    ignore_none: bool = False
+) -> None
+```
+
+Serialize a sequence of KCL objects into a YAML stream str and write it into the file `filename`.
+
 ## validate
 
 ```python
