@@ -125,7 +125,7 @@ docker pull kcllang/kcl
 
 ### From Nix Packages
 
-See [here](https://search.nixos.org/packages?channel=unstable&show=kcl-cli&from=0&size=50&sort=relevance&type=packages&query=kcl-cli)
+See [here](https://search.nixos.org/packages?channel=unstable&show=kcl&from=0&size=50&sort=relevance&type=packages&query=kcl)
 
 ### Note
 

@@ -133,7 +133,7 @@ main();
   - 支持读写 Function Details 字段用于处理与 Secret 资源相关的敏感信息
   - 支持设置 XR 资源的 status 字段用于输出用户提示信息
   - 修复多个 XR 资源下发集群时并发请求的错误
-- KCL 发布 Nix 包，可以通过 `nix-shell` 或者 `devbox shell` 工具一键安装 KCL 命令行工具，详情查看 [https://search.nixos.org/packages?channel=unstable&show=kcl-cli&from=0&size=50&sort=relevance&type=packages&query=kcl-cli](https://search.nixos.org/packages?channel=unstable&show=kcl-cli&from=0&size=50&sort=relevance&type=packages&query=kcl-cli)
+- KCL 发布 Nix 包，可以通过 `nix-shell` 或者 `devbox shell` 工具一键安装 KCL 命令行工具，详情查看 [https://search.nixos.org/packages?channel=unstable&show=kcl&from=0&size=50&sort=relevance&type=packages&query=kcl](https://search.nixos.org/packages?channel=unstable&show=kcl&from=0&size=50&sort=relevance&type=packages&query=kcl)
 
 ## 特别鸣谢
 
