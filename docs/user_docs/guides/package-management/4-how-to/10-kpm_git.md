@@ -1,4 +1,4 @@
-# Use an Git-based repository
+# Use a Git-based repository
 
 KCL package management tool supports saving and sharing KCL modules through the OCI registry and Git repository. This section will introduce how to integrate the KCL package management tool with the Git repository.
 
