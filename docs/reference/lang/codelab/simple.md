@@ -450,7 +450,7 @@ _priorityCpuMap = {
     "3" = 1024
 }
 # Using a dict to simplify logic and the default value is 2048
-_cpu = _priorityCpuMap[_priority] or 2048
+_cpu = _priorityCpuMap[str(_priority)] or 2048
 _name = "nginx"
 # exported variables
 cpu = _cpu
