@@ -2291,8 +2291,8 @@ schema Person:
 
 内置函数和 schema 成员
 
-- instances（）
-  返回 schema 的现有实例列表。
+- instances(full_pkg: bool = False)
+  返回 schema 的现有实例列表，当 `full_pkg` 设置为 `False` 时，仅返回 main 中的 schema 实例，当 `full_pkg` 设置为 `True` 时，返回整个项目对应 schema 的所有实例。
 
 ```python
 schema Person:

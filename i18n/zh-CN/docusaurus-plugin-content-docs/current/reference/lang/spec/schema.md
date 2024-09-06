@@ -816,8 +816,8 @@ Suppose there are schemas a, b, and c, where c inherits b and b inherits a. Sche
 
 Built-in function and members of schema
 
-- instances()
-  Return the list of existing instances of a schema.
+- instances(full_pkg: bool = False)
+  Return the list of existing instances of a schema in the main package. When the `full_pkg` is set `True`, return all schema instances in the whole program.
 
 ### Irrelevant Order Calculation
 
