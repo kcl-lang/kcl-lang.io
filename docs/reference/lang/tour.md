@@ -2344,7 +2344,6 @@ Built-in functions and members of schema
 - instances(full_pkg: bool = False)
   Return the list of existing instances of a schema in the main package. When the `full_pkg` is set `True`, return all schema instances in the whole program.
 
-
 ```python
 schema Person:
     name: str

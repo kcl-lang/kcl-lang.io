@@ -98,7 +98,7 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 
 - kcl-openapi has been optimized and adjusted for code and document structure.
 - kcl-openapi has added more test cases and optimized the code structure.
-- Package management tools have fixed the bug that compiling multiple *.k files failed.
+- Package management tools have fixed the bug that compiling multiple \*.k files failed.
 - Package management tools supported adding sub-packages in Git repositories as third-party libraries.
 - Package management tools have added some test cases.
 - krm-kcl function fixed some errors in some tests and documents.
