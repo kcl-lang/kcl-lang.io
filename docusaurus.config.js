@@ -192,8 +192,8 @@ const config = {
             label: 'Modules',
           },
           {
-            // href: 'http://play.kcl-lang.io/',
-            href: "http://101.42.3.224/",
+            href: 'http://play.kcl-lang.io/',
+            // href: "http://101.42.3.224/",
             position: 'left',
             sidebarId: 'playground',
             label: 'Playground',
