@@ -220,6 +220,11 @@ spec:
     app.k8s.io/component: sampleappdev
 ```
 
+## 资源
+
+- 更多用例可以在[这里](https://github.com/kcl-lang/konfig/blob/main/examples/README.md)找到
+- 更多参考文档可以在[这里](https://github.com/kcl-lang/konfig/blob/main/docs/konfig.md)找到
+
 ## 小结
 
 本文主要介绍了如何使用 KCL 语言与其相对应的 Konfig 库，完成一个运行在 Kubernetes 中的 Long-Running 服务应用的部署。

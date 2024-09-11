@@ -198,6 +198,11 @@ spec:
     app.k8s.io/component: sampleappdev
 ```
 
+## Resources
+
+- More examples can be found [here](https://github.com/kcl-lang/konfig/blob/main/examples/README.md)
+- Konfig schema reference document can be found [here](https://github.com/kcl-lang/konfig/blob/main/docs/konfig.md)
+
 ## Summary
 
 This document mainly introduces how to use the KCL and Konfig library to deploy a Long Running application running in Kubernetes.
