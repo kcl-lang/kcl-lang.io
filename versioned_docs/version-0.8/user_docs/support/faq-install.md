@@ -40,3 +40,9 @@ The issue is due to KCL requiring write permissions for its default global confi
 ENV KCL_PKG_PATH=/tmp
 ENV KCL_CACHE_PATH=/tmp
 ```
+
+## Error on MacOS: docker-credential-desktop: executable file not found in $PATH
+
+The KCL package management tool interacts with the OCI Registry using third-party libraries provided by `Docker`, which will leave the configuration file `~/.docker/config.json`. This error typically occurs when switching from Docker Desktop to Podman without Docker installed locally. This file is used for authentication calls to BuildKit. To resolve this issue, try deleting or renaming the `~/.docker/config.json` file.
+
+For more detailed information about this error, visit: <https://docs.earthly.dev/docs/guides/podman#mac-docker-credential-desktop-executable-file-not-found-in-usdpath>
