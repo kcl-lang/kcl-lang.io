@@ -40,3 +40,9 @@ xattr -d com.apple.quarantine /path/to/kcl
 ENV KCL_PKG_PATH=/tmp
 ENV KCL_CACHE_PATH=/tmp
 ```
+
+## 在 MacOS 出现错误 docker-credential-desktop: executable file not found in $PATH
+
+KCL 的包管理工具底层借助 docker 提供的三方库完成与 OCI Registry 的交互，会产生配置文件 ~/.docker/config.json，这个错误通常发生在从 Docker Desktop 切换到 Podman，而本地没有安装 Docker 的情况下。该文件会被用于在对 BuildKit 进行身份验证的调用中读取。要解决此问题，请尝试删除或重命名 ~/.docker/config.json 文件。
+
+更多关于该错误的详细信息：<https://docs.earthly.dev/docs/guides/podman#mac-docker-credential-desktop-executable-file-not-found-in-usdpath>
