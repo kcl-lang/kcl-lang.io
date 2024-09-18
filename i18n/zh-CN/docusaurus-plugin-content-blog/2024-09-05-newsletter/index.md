@@ -74,7 +74,7 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 - 修复了第一行第一列代码高亮失效的问题。
 - 修复了 IDE 偶发死锁的问题。
 - IDE 增加了更多输出日志。
-- 优化了 scehma index signature key 的语义高亮。
+- 优化了 schema index signature key 的语义高亮。
 - IDE find ref 功能优化。
 - IDE 修复了更新 kcl.mod 失效的问题。
 - IDE 修复了 find ref 错误。
