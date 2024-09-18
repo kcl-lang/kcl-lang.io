@@ -13,7 +13,7 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 
 - _使用功能更完善和错误更少的 KCL 语言、工具链和 IDE 提升代码编写体验和效率_
 - _更加全面丰富的标准库、三方库以及社区生态集成，涵盖不同应用场景和需求_
-- _Wasm SDK 支持无缝的浏览器运行与全新的 KCL Playground_
+- _WASM SDK 支持无缝的浏览器运行与全新的 KCL Playground_
 
 [KCL](https://github.com/kcl-lang) 是一个 CNCF 基金会托管的基于约束的记录及函数语言，期望通过成熟的编程语言技术和实践来改进对大量繁杂配置比如云原生 Kubernetes 配置场景的编写，致力于构建围绕配置的更好的模块化、扩展性和稳定性，更简单的逻辑编写，以及更简单的自动化和生态工具集成。
 
@@ -203,7 +203,7 @@ kcl mod add <package_name> --git <git_url> --commit <commit_id>
 kcl mod add cc --git https://github.com/kcl-lang/flask-demo-kcl-manifests.git --commit 8308200
 ```
 
-- 基于 wasm 后端的 kcl-playground <https://play.kcl-lang.io/> 上线。
+- 基于 WASM 后端的 kcl-playground <https://play.kcl-lang.io/> 上线。
 
 [kclplayground](/img/blog/2024-09-18-kcl-0.10.0-release/kclplayground.png)
 
@@ -374,11 +374,11 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 - 新增了 Go, Java, Python, Rust, .NET, C/C++ 等多语言 API Spec，相关文档，测试用例和使用案例。
 - 代码结构调整，go 相关代码移动的 go 文件目录中。
 - 新增 KCL Kotlin 和 Swift 语言初版 SDK，尚未正式发布依赖包，欢迎参与贡献
-- 新增 KCL wasm lib 支持 node.js 和 浏览器集成。
+- 新增 KCL WASM lib 支持 node.js 和 浏览器集成。
 - 重构优化了 KCL python/Go/Java 的部分代码。
-- KCL wasm SDK 修复了 '\0' 转义符号导致的问题。
+- KCL WASM SDK 修复了 '\0' 转义符号导致的问题。
 - KCL lib 支持跨平台编译。
-- KCL wasm SDK 增加部分测试用例。
+- KCL WASM SDK 增加部分测试用例。
 
 #### 多语言插件更新
 
@@ -387,7 +387,7 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 
 ### 📖 文档更新
 
-- 新增 Python, Java, Node.js, Rust, Wasm, .NET, C/C++ 等多语言 API 文档。
+- 新增 Python, Java, Node.js, Rust, WASM, .NET, C/C++ 等多语言 API 文档。
 - 更新了 IDE Quick Start 文档。
 - 新增博客 A Comparative Overview of Jsonnet and KCL
 - 更新文档 Adapt From Kubernetes中的 crd 资源。
@@ -397,7 +397,7 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 - 新增了文档中关于 kcl.mod include 和 exclude 字段的描述。
 - 新增了关于 docker-credential-desktop not found 的解决方案。
 - 新增了 konfig 库部分资源的参考文档。
-- 新增了关于 KCL wasm 相关的 API 文档。
+- 新增了关于 KCL WASM 相关的 API 文档。
 - 新增了关于 Rust 开发 KCL 插件相关的 API。
 - 新增了关于 mixin 和 protocol 相关的 FAQ 文档。
 - 修复了部分文档错误。

@@ -11,7 +11,9 @@ tags: [Release Blog, KCL]
 
 The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This release has brought three key updates to everyone
 
-WIP
+- _Enhance the coding experience and efficiency with a more performant, feature-rich, and less error-prone KCL language, toolchain, and IDE._
+- _A more comprehensive and diverse set of standard libraries, third-party libraries, and community ecosystem integrations, covering different application scenarios and requirements._
+- The WASM SDK supports browser running and the new KCL Playground._
 
 [KCL](https://github.com/kcl-lang) is an open-source, constraint-based record and functional language hosted by Cloud Native Computing Foundation (CNCF). KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
@@ -201,7 +203,7 @@ Taking <https://github.com/kcl-lang/flask-demo-kcl-manifests.git> as an example,
 kcl mod add cc --git https://github.com/kcl-lang/flask-demo-kcl-manifests.git --commit 8308200
 ```
 
-- The kcl-playground based on the wasm backend is online.
+- The kcl-playground based on the WASM backend is online.
 
 [kclplayground](/img/blog/2024-09-18-kcl-0.10.0-release/kclplayground.png)
 
@@ -372,9 +374,9 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 - Added KCL Kotlin and Swift language SDKs, which have not yet officially released dependency packages. Contributions are welcome.
 - Added KCL WASM lib support for node.js and browser integration.
 - Refactored and optimized the KCL Python/Go/Java code.
-- KCL wasm SDK fixed the issue caused by the '\0' escape character.
+- KCL WASM SDK fixed the issue caused by the '\0' escape character.
 - KCL lib supports cross-platform compilation.
-- KCL wasm SDK adds some test cases.
+- KCL WASM SDK adds some test cases.
 
 #### Multi-Language Plugins
 
@@ -383,7 +385,7 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 
 ### 📖 Documentation Updates
 
-- Added Python, Java, Node.js, Rust, Wasm, .NET, C/C++ and other multi-language API documents.
+- Added Python, Java, Node.js, Rust, WASM, .NET, C/C++ and other multi-language API documents.
 - Updated the IDE Quick Start document.
 - New Blog "A Comparative Overview of Jsonnet and KCL".
 - Updated the crd in "Adapt From Kubernetes CRD Resources" in the documentation.
@@ -393,7 +395,7 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 - Added the document for `include` and `exclude` fields in the kcl.mod.
 - Added FAQ about the `docker-credential-desktop not found` solution.
 - Added reference documents for some resources in the konfig.
-- Add API documentation for KCL wasm.
+- Add API documentation for KCL WASM.
 - Added API documentation for KCL Rust Plugin Development.
 - Add FAQ document about the `mixin` and `protocol`.
 - Fixed some document errors.
