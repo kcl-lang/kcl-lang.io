@@ -19,7 +19,7 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 
 ## ❤️ 特别鸣谢
 
-**感谢 KCL 在 v0.9 - v0.10 版本迭代过去 120 天中所有 120 位社区参与者，以下排名不分先后**
+**感谢 KCL 在 v0.9 - v0.10 版本迭代过去 120 天中所有 80 位社区参与者，以下排名不分先后**
 
 _@eshepelyuk, @haarchri, @liangyuanpeng, @logo749, @bilalba, @borgius, @patrick-hermann-sva, @ovk, @east4ming, @wmcnamee-coreweave, @steeling, @sschne, @Jacob Colvin, @Richard Holmes, @Christopher Haar, @Yvan da Silva, @Uladzislau Maher, @Sergey Ryabin, @Lukáš Kubín, @Alexander Fuchs, @Divyansh Choukse, @Vishalk91-4, @DavidChevallier, @dennybaa, @bozaro, @vietanhtwdk, @hoangndst, @patpicos, @metacoma, @karlderkaefer, @kukacz, @Matthew Hodgkins, @Gao Jun, @Zack Zhang, @briheet, @Moulick, @stmcginnis, @Manoramsharma, @NishantBansal2003, @varshith257, @Harsh4902, @Gmin2, @shishir-11, @RehanChalana, @Shruti78, @jianzs, @vinayakjaas, @ChrisK, @Lan Liang, @Endre Karlson, @suin, @v3xro, @soubinan, @juanzolotoochin, @mnacharov, @ron1, @vfarcic, @phisco, @juanique, @zackzhangverkada, @warmuuh, @novohool, @officialasishkumar, @cx2c, @yonas, @shruti2522, @nwmcsween, @trogowski, @johnallen3d, @riven-blade, @gesmit74, @prakhar479, @Peter Boat, @Stéphane Este-Gracias, @Josh West, @Brandon Nason, @Anany, @dansrogers, @diefans, @DrummyFloyd_
 
