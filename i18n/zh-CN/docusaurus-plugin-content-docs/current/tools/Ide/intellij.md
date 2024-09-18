@@ -4,37 +4,59 @@ sidebar_position: 3
 
 # IntelliJ IDEA
 
-我们提供了两个版本的 IntelliJ KCL 插件
+## 快速开始
 
-- IntelliJ KCL: 基础版本的 KCL 插件提供了语法高亮和补全的基础能力，可以在更多版本使用。
+- **1.** [安装 KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) 并检查 `kcl` 和 `kcl-language-server` 命令在您的 PATH 中:
+  在 MacOs 和 Linux中：
 
-- IntelliJ KCL LSP: 基于 [LSP(Language Server Protocol)](https://code.visualstudio.com/api/language-extensions/language-server-extension-guide) 实现的 KCL 插件提供了更多功能，如错误提示，智能补全，悬停等功能。但因为一些[原因](https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides)，只能在特定版本中使用。
+  ```bash
+  which kcl
+  which kcl-language-server
+  ```
 
-> 与 Language Server Protocol 的集成是作为基于 IntelliJ 的付费 IDE 的扩展而创建的。 因此，使用 LSP 集成的插件在 JetBrains 产品和 Google 的 Android Studio 的社区版本中不可用。
-> 从 2023.2 发布周期开始，LSP API 作为 IntelliJ 平台的一部分在以下 IDE 中公开提供：IntelliJ IDEA Ultimate、WebStorm、PhpStorm、PyCharm Professional、DataSpell、RubyMine、CLion、Aqua、DataGrip、GoLand、Rider 和 RustRover.
+  在 Windows 中:
 
-## IntelliJ KCL
+  ```bash
+  where kcl
+  where kcl-language-server
+  ```
 
-基础版本的 KCL 插件可以直接在 IntelliJ 的插件市场下载使用。基础版本提供了语法高亮和关键字补全的能力
-![intellij](/img/docs/tools/Ide/intellij/kcl.png)
+- **2.** 安装 [IntelliJ IDEA KCL 插件](https://plugins.jetbrains.com/plugin/23378-kcl).
+- **3.** 重新打开 IntelliJ IDEA 并创建一个 KCL 文件验证 IDE 插件功能
 
-## IntelliJ KCL KCL
+## Features
 
-基于 LSP 版本的插件可以从插件市场下载
+此插件基于 LSP 提供了许多编码帮助，包括以下功能：
 
-![intellij](/img/docs/tools/Ide/intellij/kcl-lsp.png)
+- **高亮:** 语法和语义高亮
+- **补全:** 关键字，变量名，属性等补全
+- **跳转:** schema 定义，变量，schema 属性等跳转
+- **大纲:** 显示 KCL 文件中的 schema 和 变量定义
+- **悬停:** Identifier 信息 (type 和 schema 文档)
+- **诊断:** KCL 文件中的警告和错误信息
+- **快速修复:** 对一些错误进行快速修复
+- **内联提示:** 变量类型，函数和 schema 参数等提示
 
-除此之外，您还需要[安装 kcl-language-server](https://www.kcl-lang.io/docs/user_docs/getting-started/install#install-language-server) 并检查 `kcl-language-server` 命令在您的 PATH 中:
-在 MacOs 和 Linux中：
+其他一些有用的功能，如代码重构和智能感知等正在开发中。
 
-```bash
-which kcl-language-server
-```
+## 最小依赖
 
-在 Windows 中:
+我们建议您使用最新版本的 KCL，但此扩展所需的 KCL 最低版本为 v0.4.6。如果您使用的是更早期版本，则此扩展可能无法正常工作。
 
-```bash
-where kcl-language-server
-```
+IntelliJ IDEA 的最低版本为 2022.1
 
-注意，LSP 版本的插件不一定在所有版本的 IntelliJ IDE 中可以使用。
+## 已知问题
+
+[详见](https://github.com/kcl-lang/kcl/issues)
+
+## 寻求帮助
+
+如果扩展没有如您所期望的那样工作，请通过[社区](https://kcl-lang.io/docs/community/intro/support)与我们联系和寻求帮助。
+
+## 参与贡献
+
+目前我们正在积极改进 KCL IDE 插件体验，欢迎参考[贡献指南](https://kcl-lang.io/docs/community/contribute) 一起共建！
+
+## 许可
+
+Apache License 2.0
