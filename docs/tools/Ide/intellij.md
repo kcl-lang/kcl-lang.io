@@ -6,8 +6,8 @@ sidebar_position: 3
 
 ## Quick Start
 
-- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please check that `kcl` and `kcl-language-server` are installed and have been added to your PATH:
-  In MacOs and Linux:
+- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)  on your system. Please ensure that `kcl` and `kcl-language-server` are installed and added to your PATH:
+  On MacOS and Linux:
 
   ```bash
   which kcl
@@ -21,29 +21,29 @@ sidebar_position: 3
   where kcl-language-server
   ```
 
-- **Step 2.** Install the [KCL plugin](https://plugins.jetbrains.com/plugin/23378-kcl) from Jetbrains Plugins Marketplace .
-- **Step 3.** Reopen IntelliJ IDEA and create a KCL file and begin your KCL tour!
+- **Step 2.** Install the [KCL plugin](https://plugins.jetbrains.com/plugin/23378-kcl) from the Jetbrains Plugins Marketplace.
+- **Step 3.** Reopen IntelliJ IDEA, create a KCL file, and begin your KCL journey!
 
 ## Features
 
-This extension provides many coding assistance based on Language Server Protocol.
+This extension provides comprehensive coding assistance based on the Language Server Protocol.
 
-- **Highlight:** Syntax and semantic highlight
-- **Completion:** Completion for keywords, variable name, attributes and more
-- **Goto definition:** Goto definition of schema, variable, schema attribute, and import pkg
-- **Structure:** Main definition(schema def) and variables in KCL file
-- **Hover:** Identifier information (type and schema documentation)
-- **Diagnostics:** Warnings and errors in KCL file
+- **Highlighting:** Syntax and semantic highlighting
+- **Code Completion:** Completion for keywords, variable names, attributes, and more
+- **Goto definition:** Navigate to the definition of schema, variables, schema attributes, and imported packages
+- **Structure:** View the main definition (schema definition) and variables in KCL files
+- **Hover:** View identifier information (type and schema documentation)
+- **Diagnostics:** Detect warnings and errors in KCL files
 - **Code Action:** Quick fix for some errors
-- **InlayHint:** Hint for variable type, function and schema args
+- **InlayHint:** Display hints for variable type, functions, and schema arguments
 
-Other useful features such as diagnostics and testing are in developing.
+Other useful features such as diagnostics and testing are under development.
 
 ## Dependencies
 
-We recommend that you use the latest version of KCL, but the minimum required version for this extension is 0.4.6. If you are using an earlier version, the extension may not work properly.
+We recommend using the latest version of KCL, but the minimum required version for this extension is 0.4.6. If you are using an earlier version, the extension may not work properly.
 
-The minimun required version for IntelliJ IDEA is 2022.1
+The minimum required version for IntelliJ IDEA is 2022.1.
 
 ## Known Issues
 
@@ -51,11 +51,11 @@ See [here](https://github.com/kcl-lang/kcl/issues).
 
 ## Ask for help
 
-If the extension isn't working as you expect, please contact us with [community](https://kcl-lang.io/docs/community/intro/support) for help.
+If the extension does not behave as expected, please reach out to us through the [community](https://kcl-lang.io/docs/community/intro/support) for assistance.
 
 ## Contributing
 
-We are working actively on improving the KCL development on VS Code. All kinds of contributions are welcomed. You can refer to our [contribution guide](https://kcl-lang.io/docs/community/contribute). It introduces how to build and run the extension locally, and describes the process of sending a contribution.
+We are actively working to enhance KCL development on VS Code. We welcome all types of contributions. You can consult our [contribution guide](https://kcl-lang.io/docs/community/contribute), which explains how to build and run the extension locally and describes the contribution process.
 
 ## License
 
