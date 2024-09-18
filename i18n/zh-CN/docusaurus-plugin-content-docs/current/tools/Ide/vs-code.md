@@ -58,7 +58,7 @@ sidebar_position: 1
 
 ## 已知问题
 
-[详见](https://github.com/kcl-lang/kcl/issues/524)
+[详见](https://github.com/kcl-lang/kcl/issues)
 
 ## 寻求帮助
 

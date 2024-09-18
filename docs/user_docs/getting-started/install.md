@@ -216,6 +216,6 @@ See [here](/docs/tools/Ide/neovim) to config the KCL language server and enable 
 
 #### IntelliJ IDEA
 
-We provide two IntelliJ KCL plugins and you can go [here](/docs/tools/Ide/intellij) for more information about the installation.
+We provide IntelliJ KCL plugins and you can go [here](/docs/tools/Ide/intellij) for more information about the installation.
 
 ![intellij](/img/docs/tools/Ide/intellij/overview.png)
