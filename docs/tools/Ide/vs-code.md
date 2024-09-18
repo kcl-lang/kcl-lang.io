@@ -14,7 +14,7 @@ sidebar_position: 1
   which kcl-language-server
   ```
 
-  In Windows:
+  On Windows:
 
   ```bash
   where kcl

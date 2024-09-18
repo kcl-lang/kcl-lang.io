@@ -216,6 +216,6 @@ KCL 为 VS Code 本地版本提供了插件支持，并提供了高亮、自动�
 
 #### IntelliJ IDEA
 
-KCL 为 IntelliJ IDEA 提供了插件支持。您可以[点击这里](/docs/tools/Ide/vs-code)了解更多。
+KCL 为 IntelliJ IDEA 提供了插件支持。您可以[点击这里](/docs/tools/Ide/intellij)了解更多。
 
 ![intellij](/img/docs/tools/Ide/intellij/overview.png)
