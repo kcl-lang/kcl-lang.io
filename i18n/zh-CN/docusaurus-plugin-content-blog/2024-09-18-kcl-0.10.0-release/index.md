@@ -1,5 +1,5 @@
 ---
-slug: 2024-07-05-kcl-0.10.0-release
+slug: 2024-09-18-kcl-0.10.0-release
 title: KCL v0.10.0 重磅发布 - 更稳定流畅的工具链和 IDE 体验，全新的 KCL Playground !
 authors:
   name: KCL Team
@@ -91,7 +91,7 @@ schema Deployment:
 - 修复 as 关键字在外部包存在时类型转换的错误
 - 修复在 lambda 函数中 config 到 schema 的类型检查错误
 - 优化函数参数调用/返回值 Dict 转 Schema 类型推导和检查，可以省略 Schema 名称简化配置书写
-- 赋值语句支持形如 _config["key"] = "value" 或 _config.key = "value"的语法对配置进行原地修改
+- 赋值语句支持形如 \_config["key"] = "value" 或 \_config.key = "value"的语法对配置进行原地修改
 - 优化配置合并运算符的类型检查，可以在编译时发现更多类型错误
 - 修复了 built-in API datetime 中日期格式的问题。
 - 修复了 Schema 配置合并参数解析错误的问题。
@@ -156,9 +156,7 @@ PASS: 1/1
       "minimum": 0
     }
   },
-  "required": [
-    "name"
-  ]
+  "required": ["name"]
 }
 ```
 
@@ -224,7 +222,7 @@ kcl mod add cc --git https://github.com/kcl-lang/flask-demo-kcl-manifests.git --
 - 包管理工具修复了多次添加 git 子包作为依赖时导致的循环依赖问题。
 - 包管理工具修复了 metadata 中三方库依赖路径丢失的问题。
 - 包管理工具 Add, Update 命令预载了 MVS 版本管理算法，通过环境变量 SupportMVS=true 控制开启。
-- 包管理工具修复了编译多个 *.k 文件失败的 bug。
+- 包管理工具修复了编译多个 \*.k 文件失败的 bug。
 - 包管理工具新增部分测试用例。
 - KCL tree-sitter 新增 sequence operations, selector 支持。
 - KCL tree-sitter 优化了部分语法规则，添加了更多测试用例。

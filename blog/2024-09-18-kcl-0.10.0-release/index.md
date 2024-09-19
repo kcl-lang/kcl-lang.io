@@ -156,9 +156,7 @@ For JSON Schema containing AllOf validation fields:
       "minimum": 0
     }
   },
-  "required": [
-    "name"
-  ]
+  "required": ["name"]
 }
 ```
 
@@ -221,7 +219,7 @@ kcl mod add cc --git https://github.com/kcl-lang/flask-demo-kcl-manifests.git --
 - The package management tool fixes the missing default dependencies in the kcl.mod.
 - The package management tool fixes the calculation error of the vendor path, which causes the third-party library to be re-downloaded.
 - The package management tool fixes the failure to push the OCI registry with the https protocol.
-- The package management tool fixes the compilation failure when compiling multiple *.k files.
+- The package management tool fixes the compilation failure when compiling multiple \*.k files.
 - The package management added more test cases.
 - The package management tool fixed the circular dependency issue caused by adding the git subpackage multiple times as a dependency.
 - The package management tool fixed the missing dependencies path when use the `kcl mod metadata` command.
@@ -300,7 +298,7 @@ a = file.current()
 After compiling, you can get the following result:
 
 ```kcl
-a: /Users/xxx/xxx/main.k 
+a: /Users/xxx/xxx/main.k
 ```
 
 - KCL added some built-in APIs parameters to support the encoding parameter.

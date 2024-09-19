@@ -58,7 +58,7 @@ sidebar_position: 1
 
 ## 已知问题
 
-[详见](https://github.com/kcl-lang/kcl/issues/524)
+[详见](https://github.com/kcl-lang/kcl/issues)
 
 ## 寻求帮助
 
@@ -66,7 +66,7 @@ sidebar_position: 1
 
 ## 参与贡献
 
-目前 VS Code KCL 插件处于早期版本，我们正在积极改进 VS Code KCL 插件体验，欢迎参考[贡献指南](https://kcl-lang.io/docs/community/contribute) 一起共建！
+目前我们正在积极改进 KCL IDE 插件体验，欢迎参考[贡献指南](https://kcl-lang.io/docs/community/contribute) 一起共建！
 
 ## 许可
 

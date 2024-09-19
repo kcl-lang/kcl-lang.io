@@ -204,18 +204,18 @@ scoop install kcl-lang/kcl-lsp
 
 #### VS Code
 
-The KCL Extension extension provides some coding assistance, e.g., highlight, goto definition, completion, hover, outline, and diagnostics. You can go [here](/docs/tools/Ide/vs-code) for more information about the installation.
+The KCL Extension provides comprehensive coding assistance, offering features such as highlighting, go-to definition, completion, hover, outline, and diagnostics. For more information about the installation, please visit [here](/docs/tools/Ide/vs-code)
 
 ![Completion](/img/docs/tools/Ide/vs-code/Completion.gif)
 
 #### NeoVim
 
-See [here](/docs/tools/Ide/neovim) to config the KCL language server and enable it.
+To configure the KCL language server and enable it, please refer to [here](/docs/tools/Ide/neovim)
 
 ![kcl.nvim](/img/docs/tools/Ide/neovim/overview.png)
 
 #### IntelliJ IDEA
 
-We provide two IntelliJ KCL plugins and you can go [here](/docs/tools/Ide/intellij) for more information about the installation.
+We offer IntelliJ KCL plugins. For detailed information about the installation, please visit [here](/docs/tools/Ide/intellij)
 
 ![intellij](/img/docs/tools/Ide/intellij/overview.png)

@@ -4,38 +4,59 @@ sidebar_position: 3
 
 # IntelliJ IDEA
 
-We provide two IntelliJ KCL plugins:
+## Quick Start
 
-- IntelliJ KCL: The basic version of the KCL plugin provides syntax highlighting and keyword completion. It is compatible with multiple versions of IntelliJ IDE.
-- IntelliJ KCL LSP: This plugin is implemented based on the [Language Server Protocol（LSP)](https://code.visualstudio.com/api/language-extensions/language-server-extension-guide) and offers additional features such as diagnostics, completion, and hovering. However, due to certain limitations, it can only be used with specific versions.
+- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please ensure that `kcl` and `kcl-language-server` are installed and added to your PATH:
+  On MacOS and Linux:
 
-> The integration with the Language Server Protocol is created as an extension to the paid IntelliJ-based IDEs. Therefore, plugins using Language Server integration are not available in Community releases of JetBrains products and Android Studio from Google.
-> Starting with the 2023.2 release cycle, the LSP API is publicly available as part of the IntelliJ Platform in the following IDEs: IntelliJ IDEA Ultimate, WebStorm, PhpStorm, PyCharm Professional, DataSpell, RubyMine, CLion, Aqua, DataGrip, GoLand, Rider, and RustRover.
+  ```bash
+  which kcl
+  which kcl-language-server
+  ```
 
-## IntelliJ KCL
+  On Windows:
 
-The basic version of the KCL plugin can be directly downloaded and used from the IntelliJ Plugin Marketplace. It provides syntax highlighting and keyword completion.
-![intellij](/img/docs/tools/Ide/intellij/kcl.png)
+  ```bash
+  where kcl
+  where kcl-language-server
+  ```
 
-## IntelliJ KCL LSP
+- **Step 2.** Install the [KCL plugin](https://plugins.jetbrains.com/plugin/23378-kcl) from the Jetbrains Plugins Marketplace.
+- **Step 3.** Reopen IntelliJ IDEA, create a KCL file, and begin your KCL journey!
 
-> Please note that the LSP version of the plugin may not be available in all versions of IntelliJ IDE.
-> [https://plugins.jetbrains.com/docs/intellij/language-server-protocol.html#supported-ides]
+## Features
 
-IntelliJ KCL LSP also can be downloaded from the plugin marketplace
+This extension provides comprehensive coding assistance based on the Language Server Protocol.
 
-![intellij](/img/docs/tools/Ide/intellij/kcl-lsp.png)
+- **Highlighting:** Syntax and semantic highlighting
+- **Code Completion:** Completion for keywords, variable names, attributes, and more
+- **Goto definition:** Navigate to the definition of schema, variables, schema attributes, and imported packages
+- **Structure:** View the main definition (schema definition) and variables in KCL files
+- **Hover:** View identifier information (type and schema documentation)
+- **Diagnostics:** Detect warnings and errors in KCL files
+- **Code Action:** Quick fix for some errors
+- **InlayHint:** Display hints for variable type, functions, and schema arguments
 
-Additionally, you need to install the [kcl-language-server](https://www.kcl-lang.io/docs/user_docs/getting-started/install#install-language-server) and verify that the `kcl-language-server` command is in your PATH. Here are the steps for different operating systems:
+Other useful features such as diagnostics and testing are under development.
 
-For macOS and Linux:
+## Dependencies
 
-```bash
-which kcl-language-server
-```
+We recommend using the latest version of KCL, but the minimum required version for this extension is 0.4.6. If you are using an earlier version, the extension may not work properly.
 
-For Windows:
+The minimum required version for IntelliJ IDEA is 2022.1.
 
-```bash
-where kcl-language-server
-```
+## Known Issues
+
+See [here](https://github.com/kcl-lang/kcl/issues).
+
+## Ask for help
+
+If the extension does not behave as expected, please reach out to us through the [community](https://kcl-lang.io/docs/community/intro/support) for assistance.
+
+## Contributing
+
+We are actively working to enhance KCL development on VS Code. We welcome all types of contributions. You can consult our [contribution guide](https://kcl-lang.io/docs/community/contribute), which explains how to build and run the extension locally and describes the contribution process.
+
+## License
+
+Apache License 2.0

@@ -6,7 +6,7 @@ sidebar_position: 1
 
 ## Quick Start
 
-- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install)  on your system. Please ensure that `kcl` and `kcl-language-server` are installed and added to your PATH:
+- **Step 1.** [Install KCL](https://kcl-lang.io/docs/user_docs/getting-started/install) on your system. Please ensure that `kcl` and `kcl-language-server` are installed and added to your PATH:
   On MacOS and Linux:
 
   ```bash
