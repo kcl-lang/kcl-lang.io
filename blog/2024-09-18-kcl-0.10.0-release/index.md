@@ -19,7 +19,7 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 
 ## ❤️ Special Thanks
 
-**We would like to extend our heartfelt thanks to all 80 community contributors who participated in the iteration from version v0.9 to v0.10 over the past 120 days. The following list is in no particular order.**
+**We would like to extend our heartfelt thanks to all 80 community contributors who participated in the iteration from version v0.9 to v0.10. The following list is in no particular order.**
 
 _@eshepelyuk, @haarchri, @liangyuanpeng, @logo749, @bilalba, @borgius, @patrick-hermann-sva, @ovk, @east4ming, @wmcnamee-coreweave, @steeling, @sschne, @Jacob Colvin, @Richard Holmes, @Christopher Haar, @Yvan da Silva, @Uladzislau Maher, @Sergey Ryabin, @Lukáš Kubín, @Alexander Fuchs, @Divyansh Choukse, @Vishalk91-4, @DavidChevallier, @dennybaa, @bozaro, @vietanhtwdk, @hoangndst, @patpicos, @metacoma, @karlderkaefer, @kukacz, @Matthew Hodgkins, @Gao Jun, @Zack Zhang, @briheet, @Moulick, @stmcginnis, @Manoramsharma, @NishantBansal2003, @varshith257, @Harsh4902, @Gmin2, @shishir-11, @RehanChalana, @Shruti78, @jianzs, @vinayakjaas, @ChrisK, @Lan Liang, @Endre Karlson, @suin, @v3xro, @soubinan, @juanzolotoochin, @mnacharov, @ron1, @vfarcic, @phisco, @juanique, @zackzhangverkada, @warmuuh, @novohool, @officialasishkumar, @cx2c, @yonas, @shruti2522, @nwmcsween, @trogowski, @johnallen3d, @riven-blade, @gesmit74, @prakhar479, @Peter Boat, @Stéphane Este-Gracias, @Josh West, @Brandon Nason, @Anany, @dansrogers, @diefans, @DrummyFloyd_
 
@@ -343,17 +343,17 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 - cilium updated to 0.3.0
 - external-secrets updated to 0.1.2
 - The New Modles List
-- - fluxcd-kcl-controller
-- - fluxcd-kustomize-controller
-- - fluxcd-helm-controller
-- - fluxcd-source-controller
-- - fluxcd-image-reflector-controller
-- - fluxcd-image-automation-controller
-- - fluxcd-notification-controller
-- - kwok
-- - crossplane-provider-vault 1.0.0
-- - outdent 0.1.0
-- - kcl_lib 0.1.0
+- fluxcd-kcl-controller
+- fluxcd-kustomize-controller
+- fluxcd-helm-controller
+- fluxcd-source-controller
+- fluxcd-image-reflector-controller
+- fluxcd-image-automation-controller
+- fluxcd-notification-controller
+- kwok
+- crossplane-provider-vault 1.0.0
+- outdent 0.1.0
+- kcl_lib 0.1.0
 
 ### ☸️ Ecosystem Integration
 
