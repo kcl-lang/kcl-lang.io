@@ -207,7 +207,7 @@ kcl mod add cc --git https://github.com/kcl-lang/flask-demo-kcl-manifests.git --
 
 - 基于 WASM 后端的 kcl-playground <https://play.kcl-lang.io/> 上线。
 
-[kclplayground](/img/blog/2024-09-18-kcl-0.10.0-release/kclplayground.png)
+![kclplayground](/img/blog/2024-09-18-kcl-0.10.0-release/kclplayground.png)
 
 - kcl import 工具支持导入整个 Go Package 并将其中所有的 Go 结构体定义转换为 KCL Schema 定义
 - 修复 kcl import 在 Kubernetes CRD 和 OpenAPI 导入 Schema 的编译错误

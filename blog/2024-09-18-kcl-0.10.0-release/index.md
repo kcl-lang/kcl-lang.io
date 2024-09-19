@@ -207,7 +207,7 @@ kcl mod add cc --git https://github.com/kcl-lang/flask-demo-kcl-manifests.git --
 
 - The kcl-playground based on the WASM backend is online.
 
-[kclplayground](/img/blog/2024-09-18-kcl-0.10.0-release/kclplayground.png)
+![kclplayground](/img/blog/2024-09-18-kcl-0.10.0-release/kclplayground.png)
 
 - kcl import tool supports importing the entire Go Package and converting all Go struct definitions into KCL Schema definitions.
 - Fixed the compilation error of kcl import when importing Kubernetes CRD and OpenAPI Schema.
