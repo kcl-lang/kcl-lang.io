@@ -46,6 +46,8 @@ After compilation, you will get the following result
 a:
 - 2
 - 3
+- 0
+- 1
 ```
 
 Or you can change the content of the assigned object through **attribute access**.
@@ -342,18 +344,18 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 - crossplane updated to 1.16.0
 - cilium updated to 0.3.0
 - external-secrets updated to 0.1.2
-- The New Modles List
-- fluxcd-kcl-controller
-- fluxcd-kustomize-controller
-- fluxcd-helm-controller
-- fluxcd-source-controller
-- fluxcd-image-reflector-controller
-- fluxcd-image-automation-controller
-- fluxcd-notification-controller
-- kwok
-- crossplane-provider-vault 1.0.0
-- outdent 0.1.0
-- kcl_lib 0.1.0
+- The New Module List
+  - fluxcd-kcl-controller
+  - fluxcd-kustomize-controller
+  - fluxcd-helm-controller
+  - fluxcd-source-controller
+  - fluxcd-image-reflector-controller
+  - fluxcd-image-automation-controller
+  - fluxcd-notification-controller
+  - kwok
+  - crossplane-provider-vault 1.0.0
+  - outdent 0.1.0
+  - kcl_lib 0.1.0
 
 ### ☸️ Ecosystem Integration
 

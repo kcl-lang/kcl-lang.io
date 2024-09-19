@@ -46,6 +46,8 @@ a = _a
 a:
 - 2
 - 3
+- 0
+- 1
 ```
 
 你也可以通过**属性访问**的方式对被赋值对象的内容进行更改。
@@ -344,17 +346,17 @@ assert datetime.validate("2024-08-26", "%Y-%m-%d")
 - cilium 更新至 0.3.0
 - external-secrets 更新至 0.1.2
 - 新增模型列表
-- fluxcd-kcl-controller
-- fluxcd-kustomize-controller
-- fluxcd-helm-controller
-- fluxcd-source-controller
-- fluxcd-image-reflector-controller
-- fluxcd-image-automation-controller
-- fluxcd-notification-controller
-- kwok
-- crossplane-provider-vault 1.0.0
-- outdent 0.1.0
-- kcl_lib 0.1.0
+  - fluxcd-kcl-controller
+  - fluxcd-kustomize-controller
+  - fluxcd-helm-controller
+  - fluxcd-source-controller
+  - fluxcd-image-reflector-controller
+  - fluxcd-image-automation-controller
+  - fluxcd-notification-controller
+  - kwok
+  - crossplane-provider-vault 1.0.0
+  - outdent 0.1.0
+  - kcl_lib 0.1.0
 
 ### ☸️ 生态集成
 
