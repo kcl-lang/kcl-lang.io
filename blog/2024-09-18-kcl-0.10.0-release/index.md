@@ -13,7 +13,7 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 
 - _Enhance the coding experience and efficiency with a more performant, feature-rich, and less error-prone KCL language, toolchain, and IDE._
 - _A more comprehensive and diverse set of standard libraries, third-party libraries, and community ecosystem integrations, covering different application scenarios and requirements._
-- The WASM SDK supports browser running and the new KCL Playground._
+- _The WASM SDK supports browser running and the new KCL Playground._
 
 [KCL](https://github.com/kcl-lang) is an open-source, constraint-based record and functional language hosted by Cloud Native Computing Foundation (CNCF). KCL improves the writing of numerous complex configurations, such as cloud-native scenarios, through its mature programming language technology and practice. It is dedicated to building better modularity, scalability, and stability around configurations, simpler logic writing, faster automation, and great built-in or API-driven integrations.
 
