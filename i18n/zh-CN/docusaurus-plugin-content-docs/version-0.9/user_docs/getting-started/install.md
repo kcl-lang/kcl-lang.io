@@ -65,7 +65,7 @@ wget -q https://kcl-lang.io/script/uninstall-cli.sh -O - | /bin/bash
 卸载
 
 ```shell
-powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | iex"
+powershell -Command "iwr -useb https://www.kcl-lang.io/script/uninstall-cli.ps1 | iex"
 ```
 
 #### Homebrew (MacOS)
@@ -164,7 +164,7 @@ wget -q https://kcl-lang.io/script/install-kcl-lsp.sh -O - | /bin/bash
 将 KCL language server windows 最新版本安装到 $Env:SystemDrive\kclvm\bin，并将该目录添加到用户 PATH 环境变量中。
 
 ```bash
-powershell -Command "iwr -useb https://kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
+powershell -Command "iwr -useb https://www.kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
 ```
 
 ### Homebrew (MacOS)

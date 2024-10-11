@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script KCL Language Server
-        run: powershell -Command "iwr -useb https://kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
+        run: powershell -Command "iwr -useb https://www.kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
       - name: Check run
         run: C:\kclvm\bin\kcl-language-server.exe version
 
@@ -55,7 +55,7 @@ jobs:
   check-kcl-lsp-brew-install-macos:
       strategy:
         matrix:
-          os: [macos-12, macos-13,  macos-latest]
+          os: [macos-12, macos-13, macos-latest]
       runs-on: ${{ matrix.os }}
       steps:
         - uses: actions/checkout@v3
