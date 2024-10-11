@@ -10,8 +10,6 @@ sidebar_position: 2
 
 KCL 的每个版本都包含各种操作系统和体系结构。这些二进制版本可以从 [Github](https://github.com/kcl-lang/cli/releases/) 手动下载并安装，下载完成后将 `{install-location}/kclvm/bin` 添加到环境变量 PATH 中。
 
-> ⚠️ 如果您不能成功访问 Github, 也可以访问 Gitee 获得二进制进行安装
-
 #### MacOS & Linux
 
 ```bash

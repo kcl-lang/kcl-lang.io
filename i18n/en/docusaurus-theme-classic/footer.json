@@ -43,10 +43,6 @@
     "message": "Tutorial",
     "description": "The label of footer link with label=Tutorial linking to /docs/reference/lang/tour"
   },
-  "link.item.label.Gitee": {
-    "message": "Gitee",
-    "description": "The label of footer link with label=Gitee linking to https://gitee.com/kusionstack/kcl"
-  },
   "link.item.label.Community": {
     "message": "Community",
     "description": "The label of footer link with label=Community linking to /docs/community/intro"

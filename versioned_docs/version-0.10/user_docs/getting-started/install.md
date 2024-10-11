@@ -10,8 +10,6 @@ sidebar_position: 2
 
 Each release of KCL includes various OSes and architectures. These binary versions can be manually downloaded and installed from [Github](https://github.com/kcl-lang/cli/releases/) and add `{install-location}` to the environment PATH.
 
-> ⚠️ If you cannot successfully access Github, you can also access Gitee to obtain binaries for installation.
-
 #### MacOS & Linux
 
 ```bash
