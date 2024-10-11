@@ -3114,7 +3114,7 @@ _model2 = Model {
 backend.k
 
 ```python
-import yaml
+import manifests
 
 schema Backend:
     apiVersion: str = "v1"
@@ -3136,7 +3136,8 @@ _backends = [Backend {
     spec.selector.matchLabels: model.labels
     spec.replicas = model.replicas
 } for model in Model.instances()]  # Schema Model is defined in model.k
-print("---\n".join([yaml.encode(_b, ignore_private=True) for _b in _backends]))
+
+manifests.yaml_stream(_backends)
 ```
 
 The command is
