@@ -59,13 +59,13 @@ wget -q https://kcl-lang.io/script/uninstall-cli.sh -O - | /bin/bash
 Install or upgrade the latest windows KCL to $Env:SystemDrive\kclvm\bin and add this directory to User PATH environment variable.
 
 ```bash
-powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
+powershell -Command "iwr -useb https://www.kcl-lang.io/script/install-cli.ps1 | iex"
 ```
 
 Uninstall
 
 ```shell
-powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | iex"
+powershell -Command "iwr -useb https://www.kcl-lang.io/script/uninstall-cli.ps1 | iex"
 ```
 
 ### Homebrew (MacOS)
@@ -166,7 +166,7 @@ wget -q https://kcl-lang.io/script/install-kcl-lsp.sh -O - | /bin/bash
 Install or upgrade the latest windows KCL language server to $Env:SystemDrive\kclvm\bin and add this directory to User PATH environment variable.
 
 ```bash
-powershell -Command "iwr -useb https://kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
+powershell -Command "iwr -useb https://www.kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
 ```
 
 #### Homebrew (MacOS)
