@@ -56,11 +56,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Check Install Script Core
-        run: powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
 
       - name: Check Install Script CLI
-        run: powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | iex"
+        run: powershell -Command "iwr -useb https://www.kcl-lang.io/script/install-cli.ps1 | iex"
 
       - name: Check KCL run
         run: C:\kclvm\bin\kcl.exe run ./examples/configuration/nginx.k
@@ -74,7 +72,7 @@ jobs:
         run: go install kcl-lang.io/cli/cmd/kcl@main && C:\Users\runneradmin\go\bin\kcl.exe run ./examples/configuration/nginx.k
 
       - name: Check Uninstall Script CLI
-        run: powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | iex"
+        run: powershell -Command "iwr -useb https://www.kcl-lang.io/script/uninstall-cli.ps1 | iex"
 
   check-kcl-scoop-install:
     runs-on: windows-latest
