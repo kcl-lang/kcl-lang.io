@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script KCL Language Server
-        run: static/script/install-kcl-lsp.sh
+        run: curl -fsSL https://kcl-lang.io/script/install-kcl-lsp.sh | /bin/bash
       - name: Check run
         shell: bash -leo pipefail {0}
         run: sudo kcl-language-server version
@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script KCL Language Server
-        run: static/script/install-kcl-lsp.sh
+        run: wget -q https://kcl-lang.io/script/install-kcl-lsp.sh -O - | /bin/bash
       - name: Check run
         shell: bash -ieo pipefail {0}
         run: kcl-language-server version
@@ -35,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script KCL Language Server
-        run: static/script/install-kcl-lsp.ps1
+        run: powershell -Command "iwr -useb https://kcl-lang.io/script/install-kcl-lsp.ps1 | iex"
       - name: Check run
         run: C:\kclvm\bin\kcl-language-server.exe version
 

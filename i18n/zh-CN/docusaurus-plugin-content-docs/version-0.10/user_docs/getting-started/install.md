@@ -59,7 +59,7 @@ wget -q https://kcl-lang.io/script/uninstall-cli.sh -O - | /bin/bash
 将 KCL windows 最新版本安装到 $Env:SystemDrive\kclvm\bin，并将该目录添加到用户 PATH 环境变量中。
 
 ```bash
-wget -q https://kcl-lang.io/script/uninstall-cli.sh -O - | /bin/bash
+powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
 ```
 
 卸载
