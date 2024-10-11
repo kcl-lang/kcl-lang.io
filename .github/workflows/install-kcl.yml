@@ -64,10 +64,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script Core
-        run: static/script/install.ps1
+        run: powershell -Command "iwr -useb https://kcl-lang.io/script/install-cli.ps1 | iex"
 
       - name: Check Install Script CLI
-        run: static/script/install-cli.ps1
+        run: powershell -Command "iwr -useb https://kcl-lang.io/script/uninstall-cli.ps1 | iex"
+
       - name: Check KCL run
         run: C:\kclvm\bin\kcl.exe run ./examples/configuration/nginx.k
 
