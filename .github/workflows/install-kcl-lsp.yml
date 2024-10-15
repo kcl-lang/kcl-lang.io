@@ -20,7 +20,7 @@ jobs:
   check-linux:
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-latest]
+        os: [ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -55,7 +55,7 @@ jobs:
   check-kcl-lsp-brew-install-macos:
       strategy:
         matrix:
-          os: [macos-12, macos-13, macos-latest]
+          os: [macos-12, macos-13, macos-13-xlarge, macos-14, macos-latest]
       runs-on: ${{ matrix.os }}
       steps:
         - uses: actions/checkout@v3
