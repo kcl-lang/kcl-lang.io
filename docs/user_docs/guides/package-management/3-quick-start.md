@@ -39,7 +39,7 @@ You can then add a dependency to the current kcl package using the `kcl mod add`
 As shown below, taking the example of adding a package dependency named `k8s`, the version of the package is `1.28`.
 
 ```shell
-kcl mod add k8s:1.28
+kcl mod add k8s:1.28.1
 ```
 
 You can see that `kcl` adds the dependency you just added to kcl.mod.
@@ -51,7 +51,7 @@ edition = "0.0.1"
 version = "0.0.1"
 
 [dependencies]
-k8s = "1.28" # The dependency 'k8s' with version '1.28'
+k8s = "1.28.1" # The dependency 'k8s' with version '1.28.1'
 ```
 
 ### Write a kcl program that uses the content in `k8s`

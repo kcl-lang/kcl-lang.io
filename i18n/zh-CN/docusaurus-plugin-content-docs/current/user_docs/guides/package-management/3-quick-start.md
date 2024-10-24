@@ -39,7 +39,7 @@ version = "0.0.1"
 如下面的命令所示，为当前包添加一个版本号为 `1.28` 并且名为 `k8s` 的依赖包。
 
 ```shell
-kcl mod add k8s:1.28
+kcl mod add k8s:1.28.1
 ```
 
 `kcl` 会为您将依赖添加到 kcl.mod 文件中.
@@ -51,7 +51,7 @@ edition = "0.0.1"
 version = "0.0.1"
 
 [dependencies]
-k8s = "1.28" # The dependency 'k8s' with version '1.28'
+k8s = "1.28.1" # The dependency 'k8s' with version '1.28.1'
 ```
 
 ## 编写一个程序使用包 `konfig` 中的内容
