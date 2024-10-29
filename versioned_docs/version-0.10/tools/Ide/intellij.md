@@ -36,6 +36,7 @@ This extension provides comprehensive coding assistance based on the Language Se
 - **Diagnostics:** Detect warnings and errors in KCL files
 - **Code Action:** Quick fix for some errors
 - **InlayHint:** Display hints for variable type, functions, and schema arguments
+- **Format:** Format a KCL file or snippet code
 
 Other useful features such as diagnostics and testing are under development.
 
