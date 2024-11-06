@@ -1720,6 +1720,8 @@ configNew:
     key2: value2
 ```
 
+
+
 ### The solution to the conflicting values on the attribute 'attr' between {value1} and {value2} error in KCL
 
 When an error like conflicting values on the attribute 'attr' between {value1} and {value2} occurs in KCL, it is usually a problem with the use of the merge attribute operator `:`, indicating that when the `value1` and `value2` configurations are merged, the attribute A conflict error occurred at `attr`. In general, modify the attr attribute of value2 to other attribute operators, use `=` to indicate overwrite, and use `+=` to indicate addition
@@ -1735,6 +1737,19 @@ We can use the `=` attribute operator to modify it to the following form
 ```python
 data = {k: 1} | {k = 2} # Ok: the value 2 will override the value 1 through the `=` operator
 ```
+
+### Use the `json_merge_patch` module to merge configuration
+
+If we want to merge external configurations, as shown in the following code, we can use the `json_marge_patch` module, because the default attribute operator for external configurations is `: `, which may encounter merge conflict errors.
+
+```python
+_vals1 = yaml.decode(file.read("..."))
+_vals2 = option("...")
+
+_vals = _vals1 | _vals2
+```
+
+Please refer to [here](https://github.com/kcl-lang/modules/tree/main/json_merge_patch) for more information on how to use the `json_merge_patch` module.
 
 ## 38. How to traverse multiple elements at the same time in the for comprehension?
 
@@ -2442,7 +2457,7 @@ data:
 dataIsUnique: true
 ```
 
-## 55. How do i omit attributes in the output for variables with "None" value?
+## 55. How to omit attributes in the output for variables with "None" value?
 
 In KCL, there is a builtin disableNone feature `-n` that does not print variables with null value.
 

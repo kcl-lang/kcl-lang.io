@@ -1748,6 +1748,19 @@ data = {k: 1} | {k: 2}  # Error: conflicting values on the attribute 'k' between
 data = {k: 1} | {k = 2}  # Ok: the value 2 will override the value 1 through the `=` operator
 ```
 
+### 使用 `json_merge_patch` 库合并配置
+
+如果我们对外部读取的配置有合并诉求，比如下面的代码显示的那样，则可以使用 `json_merge_patch` 库来操作，因为外部配置默认的属性运算符为 `:`, 可能会遇到合并冲突错误
+
+```python
+_vals1 = yaml.decode(file.read("..."))
+_vals2 = option("...")
+
+_vals = _vals1 | _vals2
+```
+
+`json_merge_patch` 库使用的方式详见[这里](https://github.com/kcl-lang/modules/tree/main/json_merge_patch)
+
 ## 38. KCL 中如何同时遍历多个元素
 
 KCL 中可以使用 for 推导表达式遍历多个元素

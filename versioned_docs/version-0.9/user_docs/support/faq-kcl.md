@@ -2442,7 +2442,7 @@ data:
 dataIsUnique: true
 ```
 
-## 55. How do i omit attributes in the output for variables with "None" value?
+## 55. How to omit attributes in the output for variables with "None" value?
 
 In KCL, there is a builtin disableNone feature `-n` that does not print variables with null value.
 
