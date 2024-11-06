@@ -484,6 +484,16 @@ isEmptyList = bool(_emptyList)
 isEmptyDict = bool(_emptyDict)
 ```
 
+此外，如果我们想要判断一个变量仅为 `None`/`Undefined`，而不为空，则可以使用下面的表达式或者 `isnullish()` 内置函数
+
+```python
+a = None
+_emptyList = []
+isEmptyList = bool(_emptyList)
+isNullishList1 = _emptyList not in [None, Undefined]
+isNullishList2 =  isnullish(_emptyList)
+```
+
 ## 12. 字符串怎样拼接、怎样格式化字符串、怎样检查字符串前缀、后缀？怎样替换字符串内容？
 
 - KCL 中可以使用 `+` 运算符连接两个字符串

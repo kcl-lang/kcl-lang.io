@@ -482,6 +482,16 @@ isEmptyList = bool(_emptyList)
 isEmptyDict = bool(_emptyDict)
 ```
 
+In addition, if we want to determine that a variable is only `None`/`Undefined` and not empty, we can use the following expression or the built-in function `isnullish()`
+
+```python
+a = None
+_emptyList = []
+isEmptyList = bool(_emptyList)
+isNullishList1 = _emptyList not in [None, Undefined]
+isNullishList2 =  isnullish(_emptyList)
+```
+
 ## 12. How to concatenate strings, format strings, check string prefixes and suffixes and replace string content?
 
 - The `+` operator can be used to concatenate two strings in KCL
