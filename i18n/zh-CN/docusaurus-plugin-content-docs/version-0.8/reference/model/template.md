@@ -12,7 +12,7 @@ weight: 100
 
 将解析过的模板应用于指定的数据对象，并返回字符串输出。查看 https://handlebarsjs.com/ 获取更多文档和示例。
 
-```python3
+```python
 import template
 
 content = template.execute("""\
@@ -34,7 +34,7 @@ content = template.execute("""\
 
 将字符 `&"<>` 替换为等效的 html / xml实体。
 
-```python3
+```python
 
 import template
 

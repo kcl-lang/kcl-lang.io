@@ -222,7 +222,7 @@ config: Config {
 
 Before KCL v0.4.5, executing the above code (main.k) will get unexpected configuration values because the KCL compiler incorrectly optimized the following form of equivalent merge configuration blocks:
 
-```python3
+```python
 config: Config {
     resource: r
     resource: Resource {

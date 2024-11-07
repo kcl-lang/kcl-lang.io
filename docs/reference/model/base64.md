@@ -12,8 +12,20 @@ weight: 100
 
 Encode the string `value` using the codec registered for encoding.
 
+```python
+import base64
+
+abcd_base64 = base64.encode("abcd")
+```
+
 ## decode
 
 `decode(value: str) -> str`
 
 Decode the string `value` using the codec registered to the utf8 string for encoding.
+
+```python
+import base64
+
+decode = base64.decode("MC4zLjA=")
+```

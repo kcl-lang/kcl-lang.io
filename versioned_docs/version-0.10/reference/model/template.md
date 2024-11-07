@@ -12,7 +12,7 @@ weight: 100
 
 Applies a parsed template to the specified data object and returns the string output. See https://handlebarsjs.com/ for more documents and examples.
 
-```python3
+```python
 import template
 
 content = template.execute("""\
@@ -34,7 +34,7 @@ content = template.execute("""\
 
 Replaces the characters `&"<>` with the equivalent html / xml entities.
 
-```python3
+```python
 
 import template
 

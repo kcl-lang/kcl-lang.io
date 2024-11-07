@@ -12,7 +12,7 @@ weight: 100
 
 Executes the provided function and catches any potential runtime errors. Returns undefined if execution is successful, otherwise returns an error message in case of a runtime panic.
 
-```python3
+```python
 import runtime
 
 schema Person:
