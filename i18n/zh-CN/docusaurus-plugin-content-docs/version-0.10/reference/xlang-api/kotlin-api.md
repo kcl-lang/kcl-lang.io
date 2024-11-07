@@ -30,7 +30,7 @@ sidebar_position: 8
 <dependency>
     <groupId>com.kcl</groupId>
     <artifactId>kcl-lib-kotlin</artifactId>
-    <version>0.10.7-SNAPSHOT</version>
+    <version>0.10.8-SNAPSHOT</version>
 </dependency>
 ```
 

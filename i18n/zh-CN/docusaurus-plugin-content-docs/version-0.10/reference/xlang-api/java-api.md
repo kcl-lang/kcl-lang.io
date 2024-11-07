@@ -30,7 +30,7 @@ sidebar_position: 5
 <dependency>
     <groupId>com.kcl</groupId>
     <artifactId>kcl-lib</artifactId>
-    <version>0.10.7-SNAPSHOT</version>
+    <version>0.10.8-SNAPSHOT</version>
 </dependency>
 ```
 
