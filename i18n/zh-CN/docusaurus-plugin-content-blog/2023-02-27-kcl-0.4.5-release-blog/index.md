@@ -222,7 +222,7 @@ config: Config {
 
 在 KCL v0.4.5 版本之前，执行上述代码 (main.k) 会得到非预期的配置值，是因为 KCL 编译器错误地优化了如下形式等效合并配置块
 
-```python3
+```python
 config: Config {
     resource: r
     resource: Resource {

@@ -12,7 +12,7 @@ weight: 100
 
 `catch` 函数可以执行代码块并捕获任何潜在的运行时错误。如果代码块中没有发生异常，`catch` 函数返回 `Undefined`，否则返回异常信息。
 
-```python3
+```python
 import runtime
 
 schema Person:
