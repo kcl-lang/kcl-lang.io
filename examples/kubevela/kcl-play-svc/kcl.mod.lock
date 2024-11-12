@@ -3,6 +3,9 @@
     name = "k8s"
     full_name = "k8s_1.28.1"
     version = "1.28.1"
+    reg = "ghcr.io"
+    repo = "kcl-lang/k8s"
+    oci_tag = "1.28.1"
   [dependencies.oam]
     name = "oam"
     full_name = "oam_0.1.0"

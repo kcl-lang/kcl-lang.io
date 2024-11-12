@@ -13,7 +13,7 @@ schema MyApplication[template: MyTemplate](oam.Application):
             name = metadata.name
             type = "webservice"
             properties = {
-                image = "kcllang/kcl"
+                image = "kcllang/kcl:v0.9.0"
                 ports = [{port = 80, expose = True}]
                 cmd = ["kcl", "play"]
             }
@@ -22,6 +22,6 @@ schema MyApplication[template: MyTemplate](oam.Application):
 
 MyApplication({
     name = "kcl-play-svc"
-    image = "kcllang/kcl"
+    image = "kcllang/kcl:v0.9.0"
     cmd: ["kcl", "play"]
 }) {}
