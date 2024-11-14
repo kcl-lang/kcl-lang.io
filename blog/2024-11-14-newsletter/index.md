@@ -49,6 +49,9 @@ Thanks to all community participants over the past two weeks, listed in no parti
 - `kcl import` tool fixed the import of Kubernetes CRDs when properties have default values
 - `kcl run` fixed the issue where the `-o` parameter truncated file output
 - `kcl mod` fixed the issue where rename dependencies could not be found
+- `kcl mod` fixes duplicate downloads caused by missing kcl.mod files in the root directory of the third-party git repo.
+- `kcl mod` kcl.mod file supports `k8s = {version="1.27"}` dependency style.
+- `kcl mod` fixes an issue where some diagnostic information is lost.
 
 **🔥 Integration Updates**
 

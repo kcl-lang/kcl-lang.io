@@ -50,6 +50,9 @@ image: /img/biweekly-newsletter.png
 - `kcl import` 工具修复当属性存在默认值的 Kubernetes CRD 导入
 - `kcl run` 修复 `-o` 参数会截断文件输出的问题
 - `kcl mod` 修复了 rename 依赖无法找到的问题。
+- `kcl mod` 修复了三方库 git 仓库根目录下缺少 kcl.mod 文件导致的重复下载。
+- `kcl mod` kcl.mod 文件中支持 `k8s = {version="1.27"}` 依赖风格。
+- `kcl mod` 修复了部分诊断信息丢失的问题。
 
 ### 🔥 社区集成更新
 
