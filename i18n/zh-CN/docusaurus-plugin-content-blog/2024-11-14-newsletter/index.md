@@ -20,15 +20,10 @@ image: /img/biweekly-newsletter.png
 
 感谢过去两周所有的社区参与者，以下排名不分先后
 
-- 感谢 @prakhar479 对 KCL built-api 支持 blake3 的贡献 🙌
-- 感谢 @shruti2522 对 IDE hints 功能增强的贡献 🙌
-- 感谢 @liangyuanpeng 对 kcl-openapi 工具的持续贡献 🙌
-- 感谢 @trogowski 对 KCL 文档的贡献 🙌
-- 感谢 @yonas 对 KCL 文档的贡献 🙌
-- 感谢 @NishantBansal2003 对 KCL 包管理工具 sum check 功能的持续贡献 🙌
-- 感谢 @officialasishkumar 对 KCL 包管理工具下载 Git 子包功能的贡献 🙌
+- 感谢 @slusy 对 KCL playground 的贡献 🙌
+- 感谢 @NishantBansal2003 对 KCL checksum 功能增强的贡献 🙌
 
-- 感谢 @cx2c, @yonas, @NishantBansal2003, @shruti2522, @nwmcsween, @trogowski, @suin, @johnallen3d, @liangyuanpeng, @riven-blade, @officialasishkumar, @gesmit74, @prakhar479, @Lukáš Kubín, @Christopher Haar, @Alexander Fuchs, @Peter Boat, @Stéphane Este-Gracias, @Yvan da Silva, @Rehan Chalana, @Zack Zhang, @Josh West, @Brandon Nason, @suin, @Anany 等在近两周使用 KCL 过程中提供的宝贵建议与反馈 🙌
+- 感谢 @cakemanny, @hanshardmeier, @haiwu, @dennybaa, @NishantBansal2003, @Stinjul, @slusy, @Christopher Haar, @Peter Boat, @Zack Zhang, @anshuman singh, @Carl-Fredrik, @Evgeny Shepelyuk 等在近两周使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 内容概述
 
@@ -54,10 +49,7 @@ image: /img/biweekly-newsletter.png
 - `kcl import` 工具修复多行 YAML 字符串的导入
 - `kcl import` 工具修复当属性存在默认值的 Kubernetes CRD 导入
 - `kcl run` 修复 `-o` 参数会截断文件输出的问题
-
-### 🧩 SDK 更新
-
-- 
+- `kcl mod` 修复了 rename 依赖无法找到的问题。
 
 ### 🔥 社区集成更新
 
