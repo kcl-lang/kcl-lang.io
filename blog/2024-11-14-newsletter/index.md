@@ -22,7 +22,7 @@ Thanks to all community participants over the past two weeks, listed in no parti
 
 - Thanks to @slusy for contributions to the KCL playground 🙌
 - Thanks to @NishantBansal2003 for enhancing the KCL checksum feature 🙌
-- Thanks to @cakemanny, @hanshardmeier, @haiwu, @dennybaa, @NishantBansal2003, @Stinjul, @slusy, @Christopher Haar, @Peter Boat, @Zack Zhang, @anshuman singh, @Carl-Fredrik, @Evgeny Shepelyuk, and others for their valuable suggestions and feedback during the use of KCL over the past two weeks 🙌
+- Thanks to @cakemanny, @hanshardmeier, @haiwu, @dennybaa, @NishantBansal2003, @Stinjul, @slusy, @Christopher Haar, @Peter Boat, @Zack Zhang, @anshuman singh, @Carl-Fredrik, @Evgeny Shepelyuk, @kbristow and others for their valuable suggestions and feedback during the use of KCL over the past two weeks 🙌
 
 ## Overview
 

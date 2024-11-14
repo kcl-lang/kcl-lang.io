@@ -23,7 +23,7 @@ image: /img/biweekly-newsletter.png
 - 感谢 @slusy 对 KCL playground 的贡献 🙌
 - 感谢 @NishantBansal2003 对 KCL checksum 功能增强的贡献 🙌
 
-- 感谢 @cakemanny, @hanshardmeier, @haiwu, @dennybaa, @NishantBansal2003, @Stinjul, @slusy, @Christopher Haar, @Peter Boat, @Zack Zhang, @anshuman singh, @Carl-Fredrik, @Evgeny Shepelyuk 等在近两周使用 KCL 过程中提供的宝贵建议与反馈 🙌
+- 感谢 @cakemanny, @hanshardmeier, @haiwu, @dennybaa, @NishantBansal2003, @Stinjul, @slusy, @Christopher Haar, @Peter Boat, @Zack Zhang, @anshuman singh, @Carl-Fredrik, @Evgeny Shepelyuk, @kbristow 等在近两周使用 KCL 过程中提供的宝贵建议与反馈 🙌
 
 ## 内容概述
 
