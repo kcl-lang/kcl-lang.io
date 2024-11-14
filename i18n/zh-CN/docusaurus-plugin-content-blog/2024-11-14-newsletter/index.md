@@ -34,6 +34,7 @@ image: /img/biweekly-newsletter.png
 
 ### 💻 IDE 更新
 
+- 新增对配置块中 key 的类型的提示
 - 优化解包表达式 `**expr` 的静态分析，提供更丰富的诊断信息
 - 优化 schema 类型的 `{}` 代码片段补全
 - 新增对 `kcl.mod` 文件变更的监控，优化外部包补全体验

@@ -33,6 +33,7 @@ Thanks to all community participants over the past two weeks, listed in no parti
 
 **💻 IDE Updates**
 
+- Supports hint for config entry key type
 - Optimized static analysis of unpacking expressions `**expr`, providing richer diagnostic information
 - Optimized code snippet completion for schema types `{}` 
 - Added monitoring for changes in `kcl.mod` files, improving external package completion experience
