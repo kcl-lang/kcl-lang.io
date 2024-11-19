@@ -3,12 +3,8 @@ spec:
     spec:
       containers:
       - name: my-plugin
-        command: [/tini]
-        args:
-          - /var/run/argocd/argocd-cmp-server
-#          - --
-#          - --loglevel=debug
-        image: kcllang/kcl
+        command: [/var/run/argocd/argocd-cmp-server] # Entrypoint should be Argo CD lightweight CMP server i.e. argocd-cmp-server
+        image: kcllang/kcl # This can be off-the-shelf or custom-built image
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
