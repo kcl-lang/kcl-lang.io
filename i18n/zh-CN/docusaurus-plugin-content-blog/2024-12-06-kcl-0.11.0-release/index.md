@@ -41,11 +41,14 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 
 #### IDE
 
-- KCL IntelliJ 插件发布 0.4.0 版本，支持 LSP4IJ。
+- KCL IntelliJ 插件发布 0.4.0 版本，支持 LSP4IJ
 - IDE 可以补全目录中未 import 的 schema，并且自动补充包的 import 语句
-- IDE 能够监控工作目录中的配置文件变化，在 kpm 更新依赖后能自动更新 IDE 中的语义信息
+![complete](/img/blog/2024-12-06-kcl-0.11.0-release/complete.gif)
 - IDE 新增了 Config 块中 key 的类型 hint。
+![hint](/img/blog/2024-12-06-kcl-0.11.0-release/hint.png)
 - IDE schema hover 中提供了 attr 默认值信息。
+![hover](/img/blog/2024-12-06-kcl-0.11.0-release/hover.png)
+- IDE 能够监控工作目录中的配置文件变化，在 kpm 更新依赖后能自动更新 IDE 中的语义信息
 - 修复了 IDE 在 Windows 系统中的异常。
 - 修复了 IDE 在复合赋值运算语句中异常的问题。
 - 区分了 `any` 关键字和类型的高亮
@@ -85,7 +88,6 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 #### 多语言 SDK
 
 #### 多语言插件更新
-
 
 ### 📖 文档更新
 

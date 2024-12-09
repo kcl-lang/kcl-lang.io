@@ -43,13 +43,16 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 #### IDE
 
 - KCL IntelliJ plugin released 0.4.0, supporting LSP4IJ.
-- IDE can complete schemas defined in the worksace but not imported , and automatically insert the import statements of the package
-- IDE can watch changes in configuration files(kcl.mod) in the workspace, and automatically update the semantic information in the IDE after kpm updates dependencies
+- IDE can complete schemas defined in the worksace but not imported , and automatically insert the import statements of the package.
+![complete](/img/blog/2024-12-06-kcl-0.11.0-release/complete.gif)
 - IDE adds type hints for key in the Config block.
-- IDE schema hover provides attribute default value information.
+![hint](/img/blog/2024-12-06-kcl-0.11.0-release/hint.png)
+- IDE hover provides schema attribute default value information.
+![hover](/img/blog/2024-12-06-kcl-0.11.0-release/hover.png)
+- IDE can watch changes in configuration files(kcl.mod) in the workspace, and automatically update the semantic information in the IDE after kpm updates dependencies.
 - IDE fixed the failure of Windows path issues.
 - IDE fixed the failure of compound assignment operation statements.
-- IDE distinguished the highlighting of the `any` from keyword and type
+- IDE distinguished the highlighting of the `any` from keyword and type.
 - IDE fixed the failure of formatting code in the IntelliJ plugin.
 - Optimized the parser part of the IDE compilation process.
 - IDE fixed inconsistent hints for function parameters.
@@ -65,9 +68,6 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 
 #### Standard Libraries
 
-
-```
-
 #### Third-Party Libraries
 
 - k8s updated to 1.31.2
@@ -81,7 +81,6 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 - Added DeploymentStrategy model in konfig
 
 ### ☸️ Ecosystem Integration
-
 
 #### Multi-Language Plugins
 
