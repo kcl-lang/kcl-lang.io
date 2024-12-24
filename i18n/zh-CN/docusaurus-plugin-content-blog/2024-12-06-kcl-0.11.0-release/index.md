@@ -1,6 +1,6 @@
 ---
-slug: 2024-09-18-kcl-0.10.0-release
-title: KCL v0.10.0 重磅发布 - 更稳定流畅的工具链和 IDE 体验，全新的 KCL Playground !
+slug: 2024-09-24-kcl-0.11.0-release
+title: KCL v0.11.0 重磅发布 - 更稳定流畅的工具链和 IDE 体验 !
 authors:
   name: KCL Team
   title: KCL Team
@@ -9,7 +9,7 @@ tags: [Release Blog, KCL]
 
 ## 简介
 
-KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本次发布为大家带来了两方面的重点更新
+KCL 团队很高兴地宣布 **KCL v0.11.0 新版本现在已经可用**！本次发布为大家带来了两方面的重点更新
 
 - _使用功能更完善和错误更少的 KCL 语言、工具链和 IDE 提升代码编写体验和效率_
 - _更加全面丰富的标准库、三方库以及社区生态集成，涵盖不同应用场景和需求_
@@ -20,6 +20,7 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 
 **感谢 KCL 在 v0.10 - v0.11 版本迭代所有 80 位社区参与者，以下排名不分先后**
 
+_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @ diefans, @nkabir, @suin, @Chewie, @ lwz23, @ eminaktas,@ steeling, @ bozaro, @ cakemanny, @ Yufeireal, @ andrzejgorski, @ yonas, @ dansrogers, @ SkySingh04, @ jellllly420,  @ slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel_
 
 ## 📚 重点更新内容
 
@@ -27,6 +28,7 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 
 #### 语言
 
+- KCL 新增对 Alpine Linux(musl) 平台的支持。
 - KCL 重构了 Parser 部分的实现，重新组织了 import 依赖的 parse 流程。
 - KCL 优化了 schema attribute 中对 ** 表达式的类型解析。
 - KCL 修复了 lambda 表达式嵌套调用时不生效的问题。
@@ -35,6 +37,13 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 - KCL 修复了 mixin 中调用 attr 的 lambda 函数的错误
 
 #### 工具链
+
+- 包管理工具版本选择算法上线。在 v0.11.0 版本中, KCL 包管理工具支持对依赖图中出现的同一个三方库的不同版本号进行选择，KCL 包管理工具参考了 go mod 的 mvs 算法，
+为了尽可能保证兼容性，包管理工具目前倾向于选择依赖图中出现的最新的版本而不是已经 release 的最新版本。
+在 v0.11.0 版本中，版本选择默认关闭，通过设置环境变量 `export KPM_FEATURE_GATES="SupportMVS=true"` 控制是否开启版本选择。
+
+- 包管理工具新增了新的本地三方库缓存结构，在 v0.11.0 版本中，KCL 包管理工具实现了新的本地三方库缓存结构，新的存储缓存结构对下载 git 仓库性能平均提升 88%。
+在 v0.11.0 版本中，新的缓存结构默认关闭，通过设置环境变量 `export KPM_FEATURE_GATES="SupportNewStorage=true"` 控制是否启用新的本地三方库缓存。
 
 - 修复 `kcl fmt` 代码注释的格式化错误。
 - 修复 `kcl fmt` 在处理行连接符和注释组合时的错误。
@@ -67,6 +76,14 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 
 #### 标准库
 
+- KCL 新增标准库函数 `filesha512` 和 `fileblake3`。
+
+```kcl
+import crypto
+
+sha_filesha512 = crypto.filesha512("test.txt")
+sha_fileblake3 = crypto.fileblake3("test.txt")
+```
 - 修复 `manifests.yaml_stream` 中 `ignore_private=False` 参数 不生效的问题。
 
 #### 三方库
@@ -83,11 +100,7 @@ KCL 团队很高兴地宣布 **KCL v0.10.0 新版本现在已经可用**！本�
 
 ### ☸️ 生态集成
 
-### 🧩 多语言 SDK 和插件
-
-#### 多语言 SDK
-
-#### 多语言插件更新
+- crossplane function-kcl 支持通过环境变量 `FUNCTION_KCL_DEFAULT_SOURCE` 设置默认编译环境入口。
 
 ### 📖 文档更新
 
