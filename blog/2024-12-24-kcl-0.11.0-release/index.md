@@ -20,7 +20,7 @@ The KCL team is pleased to announce that **KCL v0.11.0 is now available**! This 
 
 **We would like to extend our heartfelt thanks to all 80 community contributors who participated in the iteration from version v0.10 to v0.11. The following list is in no particular order.**
 
-_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @ diefans, @nkabir, @suin, @Chewie, @ lwz23, @ eminaktas,@ steeling, @ bozaro, @ cakemanny, @ Yufeireal, @ andrzejgorski, @ yonas, @ dansrogers, @ SkySingh04, @ jellllly420,  @ slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel_
+_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @diefans, @nkabir, @suin, @Chewie, @lwz23, @eminaktas,@steeling, @bozaro, @cakemanny, @Yufeireal, @andrzejgorski, @yonas, @dansrogers, @SkySingh04, @jellllly420,  @slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel_
 
 ## 📚 Key Updates
 
