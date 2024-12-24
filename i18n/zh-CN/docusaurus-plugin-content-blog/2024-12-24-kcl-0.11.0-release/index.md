@@ -20,7 +20,7 @@ KCL 团队很高兴地宣布 **KCL v0.11.0 新版本现在已经可用**！本�
 
 **感谢 KCL 在 v0.10 - v0.11 版本迭代所有 80 位社区参与者，以下排名不分先后**
 
-_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @ diefans, @nkabir, @suin, @Chewie, @ lwz23, @ eminaktas,@ steeling, @ bozaro, @ cakemanny, @ Yufeireal, @ andrzejgorski, @ yonas, @ dansrogers, @ SkySingh04, @ jellllly420,  @ slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel_
+_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @diefans, @nkabir, @suin, @Chewie, @lwz23, @eminaktas, @steeling, @bozaro, @cakemanny, @Yufeireal, @andrzejgorski, @yonas, @dansrogers, @SkySingh04, @jellllly420,  @slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel_
 
 ## 📚 重点更新内容
 
