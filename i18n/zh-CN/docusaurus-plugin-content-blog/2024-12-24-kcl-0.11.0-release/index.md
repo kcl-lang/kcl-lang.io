@@ -57,7 +57,6 @@ _@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @emi
 ![hint](/img/blog/2024-12-06-kcl-0.11.0-release/hint.png)
 - IDE schema hover 中提供了 attr 默认值信息。
 ![hover](/img/blog/2024-12-06-kcl-0.11.0-release/hover.png)
-- IDE 能够监控工作目录中的配置文件变化，在 kpm 更新依赖后能自动更新 IDE 中的语义信息
 - 修复了 IDE 在 Windows 系统中的异常。
 - 修复了 IDE 在复合赋值运算语句中异常的问题。
 - 区分了 `any` 关键字和类型的高亮
