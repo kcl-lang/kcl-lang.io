@@ -1,5 +1,5 @@
 ---
-slug: 2024-12-06-kcl-0.11.0-release
+slug: 2024-12-24-kcl-0.11.0-release
 title: KCL v0.11.0 Release Blog
 authors:
   name: KCL Team
@@ -9,7 +9,7 @@ tags: [Release Blog, KCL]
 
 ## Introduction
 
-The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This release has brought two key updates to everyone
+The KCL team is pleased to announce that **KCL v0.11.0 is now available**! This release has brought two key updates to everyone
 
 - _Enhance the coding experience and efficiency with a more performant, feature-rich, and less error-prone KCL language, toolchain, and IDE._
 - _A more comprehensive and diverse set of standard libraries, third-party libraries, and community ecosystem integrations, covering different application scenarios and requirements._
@@ -20,6 +20,7 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 
 **We would like to extend our heartfelt thanks to all 80 community contributors who participated in the iteration from version v0.10 to v0.11. The following list is in no particular order.**
 
+_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @ diefans, @nkabir, @suin, @Chewie, @ lwz23, @ eminaktas,@ steeling, @ bozaro, @ cakemanny, @ Yufeireal, @ andrzejgorski, @ yonas, @ dansrogers, @ SkySingh04, @ jellllly420,  @ slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel_
 
 ## 📚 Key Updates
 
@@ -27,6 +28,7 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 
 #### Language
 
+- KCL supports Alpine Linux(musl) platform.
 - KCL refactored the implementation of the Parser and reorganized the parse process of import dependencies.
 - KCL optimized the type parsing of ** expressions in schema attributes.
 - KCL fixed the problem that lambda expressions do not work when nested calls.
@@ -36,6 +38,16 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 
 
 #### Toolchain
+
+- Package management tool version selection algorithm is released. In v0.11.0, the KCL package management tool supports the selection of different version numbers of the same tripartite library that appears in the dependency graph. The KCL package management tool refers to the mvs algorithm of go mod. 
+
+To ensure as much compatibility as possible, package management tools currently prefer to select the latest version that appears in the dependency diagram rather than the latest version that has already been released.
+
+In version v0.11.0, version selection is turned off by default. You can control whether version selection is turned on by setting the environment variable `export KPM_FEATURE_GATES='SupportMVS=true'`.
+
+- Package management tool added a new local tripartite library cache. In v0.11.0, KCL package management tool implemented a new local tripartite library cache, and the new storage cache structure improved the performance of downloading git repositories by 88% on average.
+
+In v0.11.0, the new cache structure is turned off by default, and the new local tripartite library cache is controlled by setting the environment variable `export KPM_FEATURE_GATES=' SupportNewStorage=true'`.
 
 - Fix `kcl fmt` formatting error for code comments.
 - Fix `kcl fmt` error in handling line continuation and comment combinations.
@@ -67,6 +79,17 @@ The KCL team is pleased to announce that **KCL v0.10.0 is now available**! This 
 ### 📦️ Standard Libraries and Third-Party Libraries
 
 #### Standard Libraries
+
+- KCL new standard libraries `filesha512` 和 `fileblake3`。
+
+```kcl
+import crypto
+
+sha_filesha512 = crypto.filesha512("test.txt")
+sha_fileblake3 = crypto.fileblake3("test.txt")
+```
+
+- Fixes an issue that `ignore_private=False` parameter does not take effect in `manifests.yaml_stream`.
 
 #### Third-Party Libraries
 
