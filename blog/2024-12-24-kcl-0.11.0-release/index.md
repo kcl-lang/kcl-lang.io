@@ -61,7 +61,6 @@ In v0.11.0, the new cache structure is turned off by default, and the new local 
 ![hint](/img/blog/2024-12-06-kcl-0.11.0-release/hint.png)
 - IDE hover provides schema attribute default value information.
 ![hover](/img/blog/2024-12-06-kcl-0.11.0-release/hover.png)
-- IDE can watch changes in configuration files(kcl.mod) in the workspace, and automatically update the semantic information in the IDE after kpm updates dependencies.
 - IDE fixed the failure of Windows path issues.
 - IDE fixed the failure of compound assignment operation statements.
 - IDE distinguished the highlighting of the `any` from keyword and type.
@@ -80,7 +79,7 @@ In v0.11.0, the new cache structure is turned off by default, and the new local 
 
 #### Standard Libraries
 
-- KCL new standard libraries `filesha512` 和 `fileblake3`。
+- KCL new standard libraries `filesha512` and `fileblake3`。
 
 ```kcl
 import crypto
