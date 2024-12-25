@@ -18,9 +18,9 @@ The KCL team is pleased to announce that **KCL v0.11.0 is now available**! This 
 
 ## ❤️ Special Thanks
 
-**We would like to extend our heartfelt thanks to all 80 community contributors who participated in the iteration from version v0.10 to v0.11. The following list is in no particular order.**
+**We would like to extend our heartfelt thanks to all community contributors who participated in the iteration from version v0.10 to v0.11. The following list is in no particular order.**
 
-_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @diefans, @nkabir, @suin, @Chewie, @lwz23, @eminaktas,@steeling, @bozaro, @cakemanny, @Yufeireal, @andrzejgorski, @yonas, @dansrogers, @SkySingh04, @jellllly420,  @slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel_
+_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @diefans, @nkabir, @suin, @Chewie, @lwz23, @eminaktas,@steeling, @bozaro, @cakemanny, @Yufeireal, @andrzejgorski, @yonas, @dansrogers, @SkySingh04, @jellllly420,  @slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel, @Clint, @Christopher Haar, @ron18219, @Zack Zhang, @Alexander Fuchs, @Smaine Kahlouch, @Yvan da Silva, @Jakob Maležič, @Ryan Rueth, @Christopher Haar, @kesser, @Justin B, @Evgeny Shepelyuk, @Smaine Kahlouch, @KennyZ, @Mark Altmann (Wompi), @Peter Boat, @Hai Wu, @Evgeny Shepelyuk, @anshuman singh, @Carl-Fredrik, @Larry Gadallah, @Kevin Sztern, @Nick Atzert, @Tobias Kässer, @Mike, @john thompson, @Sky Singh, @suin, @Tom van Dinther, @Stefano Borrelli, @Valer Orlovsky, @Jacob Colvin, @Sjuul Janssen, @Vyacheslav Terdunov, @Yury Tsarev_
 
 ## 📚 Key Updates
 
