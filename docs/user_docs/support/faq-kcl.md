@@ -178,7 +178,7 @@ _args = ["start", *_args]  # Add elements "start" to the head of the list: ["sta
 data1 = [1, 2, 3]
 data2 = None
 data3 = [*data1, *data2]  # Ok: [1, 2, 3]
-data4 = data1 + data2 or []  # OK: [1, 2, 3], We can use the `or` operator to take the default value of data2 as [], when data2 is None/Undefined, take the empty list [] for calculation.
+data4 = data1 + (data2 or [])  # OK: [1, 2, 3], We can use the `or` operator to take the default value of data2 as [], when data2 is None/Undefined, take the empty list [] for calculation.
 data5 = data1 + data2  # Error: can only concatenate list (not "NoneType") to list
 ```
 
@@ -191,7 +191,7 @@ There are two ways to modify the elements in the list:
 ```python
 _index = 1
 _args = ["a", "b", "c"]
-_args = _args[:index] + ["x"] + _args[index+1:]  # Modify the element of list index 1 to "x": ["a", "x", "c"]
+_args = _args[:_index] + ["x"] + _args[_index+1:]  # Modify the element of list index 1 to "x": ["a", "x", "c"]
 ```
 
 - Use the list comprehension to modify elements in a list
@@ -419,7 +419,7 @@ In KCL, use `and` for "logical and", use `or` for "logical or", use `not` for "n
 
 ```python
 done = True
-col == 0
+col = 0
 if done and (col == 0 or col == 3):
     ok = 1
 ```
@@ -1045,8 +1045,7 @@ import model  # Error: recursively loading
 
 ## 26. When can import be omitted?
 
-KCL files in the same folder the not in the main package can refer to each other without importing each other. For example, for the following directory structure:
-
+KCL files in the same folder, but not in the main package, can refer to each other without importing. For example, for the following directory structure:
 ```
 .
 └── root
@@ -1490,8 +1489,8 @@ dataSchema = Config {
 
 - For primitive types `int`, `float`, `bool`, `str` variables are directly compared to see if their values are equal
 - Variables of composite types `list`, `dict`, `schema` will deeply recursively compare their sub-elements for equality
-  - `list` type deep recursive recursive comparison of the value and length of each index
-  - `dict`/`schema` types deeply recursively compare the value of each attribute (regardless of the order in which the attributes appear)
+  - `list` : Perform a deep, recursive comparison of both the values and the lengths of each index.
+  - `dict`/`schema` : Perform a deep, recursive comparison of the values of each attribute, ignoring the order of attributes.
 
 ```python
 print([1, 2] == [1, 2])  # True
@@ -2133,7 +2132,7 @@ data:
 
 ## 45. Why do we get an error when a variable is assigned an enumeration type (a literal union type)?
 
-In KCL, a attribute defined as a literal union type is only allowed to receive a literal value or a variable of the same literal union type during assignment. For example, the following code is correct:
+In KCL, an attribute defined as a literal union type is only allowed to receive a literal value or a variable of the same literal union type during assignment. For example, the following code is correct:
 
 ```python
 schema Data:
@@ -2512,7 +2511,7 @@ The first `"v1"` over here denotes that the type of the variable `version` is of
 
 ## 62. How to define a schema to verify the contents of a given JSON file?
 
-We can use the kcl `vet` tool to validate the JSON data in a given JSOn file. For example, in the below data.json file we use the KCL file(schema.k) below to validate the `age` parameter.
+We can use the kcl `vet` tool to validate the JSON data in a given JSON file. For example, in the below data.json file we use the KCL file(schema.k) below to validate the `age` parameter.
 
 data.json
 
