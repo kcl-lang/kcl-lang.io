@@ -9,6 +9,27 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
+      - name: Debug getLatestRelease function
+        run: |
+          getLatestRelease() {
+              local KCLReleaseUrl="https://api.github.com/repos/${GITHUB_ORG}/${GITHUB_REPO}/releases"
+              local latest_release=""
+
+              if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
+                  response=$(curl -s $KCLReleaseUrl)
+                  echo "API Response: $response"  # 打印 API 返回的数据
+                  latest_release=$(echo "$response" | grep \"tag_name\" | grep -v rc | awk 'NR==1{print $2}' | sed -n 's/\"\(.*\)\",/\1/p')
+              else
+                  response=$(wget -q --header="Accept: application/json" -O - $KCLReleaseUrl)
+                  echo "API Response: $response"  # 打印 API 返回的数据
+                  latest_release=$(echo "$response" | grep \"tag_name\" | grep -v rc | awk 'NR==1{print $2}' | sed -n 's/\"\(.*\)\",/\1/p')
+              fi
+
+              echo "Latest Release: $latest_release"  # 打印解析后的结果
+              ret_val=$latest_release
+          }
+
+          getLatestRelease
       - name: Check Install Script KCL Language Server
         run: curl -fsSL https://kcl-lang.io/script/install-kcl-lsp.sh | /bin/bash
       - name: Check run
