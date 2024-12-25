@@ -1,5 +1,5 @@
 ---
-slug: 2024-09-24-kcl-0.11.0-release
+slug: 2024-12-24-kcl-0.11.0-release
 title: KCL v0.11.0 重磅发布 - 更稳定流畅的工具链和 IDE 体验 !
 authors:
   name: KCL Team
