@@ -18,9 +18,9 @@ KCL 团队很高兴地宣布 **KCL v0.11.0 新版本现在已经可用**！本�
 
 ## ❤️ 特别鸣谢
 
-**感谢 KCL 在 v0.10 - v0.11 版本迭代所有 80 位社区参与者，以下排名不分先后**
+**感谢 KCL 在 v0.10 - v0.11 版本迭代所有社区参与者，以下排名不分先后**
 
-_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @diefans, @nkabir, @suin, @Chewie, @lwz23, @eminaktas, @steeling, @bozaro, @cakemanny, @Yufeireal, @andrzejgorski, @yonas, @dansrogers, @SkySingh04, @jellllly420,  @slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel_
+_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @diefans, @nkabir, @suin, @Chewie, @lwz23, @eminaktas,@steeling, @bozaro, @cakemanny, @Yufeireal, @andrzejgorski, @yonas, @dansrogers, @SkySingh04, @jellllly420,  @slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel, @Clint, @Christopher Haar, @ron18219, @Zack Zhang, @Alexander Fuchs, @Smaine Kahlouch, @Yvan da Silva, @Jakob Maležič, @Ryan Rueth, @Christopher Haar, @kesser, @Justin B, @Evgeny Shepelyuk, @Smaine Kahlouch, @KennyZ, @Mark Altmann (Wompi), @Peter Boat, @Hai Wu, @Evgeny Shepelyuk, @anshuman singh, @Carl-Fredrik, @Larry Gadallah, @Kevin Sztern, @Nick Atzert, @Tobias Kässer, @Mike, @john thompson, @Sky Singh, @suin, @Tom van Dinther, @Stefano Borrelli, @Valer Orlovsky, @Jacob Colvin, @Sjuul Janssen, @Vyacheslav Terdunov, @Yury Tsarev_
 
 ## 📚 重点更新内容
 
