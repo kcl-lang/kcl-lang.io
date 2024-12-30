@@ -125,3 +125,15 @@ import crypto
 
 sha = crypto.filesha256("test.txt")
 ```
+
+## filesha512
+
+`filesha512(filepath: str) -> str`
+
+计算文件 `filepath` 的 SHA512 哈希。
+
+```python
+import crypto
+
+sha = crypto.filesha512("test.txt")
+```
