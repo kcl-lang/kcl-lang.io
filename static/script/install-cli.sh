@@ -299,14 +299,14 @@ buildPathStr() {
         # fish uses a little different syntax to modify the PATH
         cat <<END_FISH_SCRIPT
 
-string match -r "kcl" "\$PATH" > /dev/null; or set -gx PATH "\$profile_install_dir/bin" \$PATH
+string match -r "kcl" "\$PATH" > /dev/null; or set -gx PATH "$profile_install_dir" \$PATH
 
 END_FISH_SCRIPT
     else
         # bash and zsh
         cat <<END_BASH_SCRIPT
 
-export PATH="$profile_install_dir/bin:\$PATH"
+export PATH="$profile_install_dir:\$PATH"
 
 END_BASH_SCRIPT
     fi
