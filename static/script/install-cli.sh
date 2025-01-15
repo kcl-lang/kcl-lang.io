@@ -124,7 +124,7 @@ checkExistingKCL() {
     if [ -f "$KCL_CLI_FILE" ]; then
         # Check the KCL CLI version
         echo -e "\nKCL is detected:"
-        $KCL_CLI_FILE -V
+        $KCL_CLI_FILE --version
         echo -e "Reinstalling KCL into ${KCL_CLI_FILE} ...\n"
     fi
 }
@@ -206,7 +206,7 @@ installFile() {
     if [ -f "$KCL_CLI_FILE" ]; then
         updateProfile "$KCL_HOME_DIR" && info "Finished" "$KCL_CLI_FILENAME installed into $KCL_INSTALL_DIR/bin successfully."
         # Check the KCL CLI version
-        runAsRoot $KCL_CLI_FILE -V
+        runAsRoot $KCL_CLI_FILE --version
     else 
         error "Failed to install KCL into $KCL_INSTALL_DIR/bin"
         exit 1
@@ -228,8 +228,8 @@ updateProfile() {
         eprintf "$path_str"
         return 1
     else
-        if ! command grep -qc 'KCLVM_HOME' "$detected_profile"; then
-            info "The KCLVM PATH string is"
+        if ! command grep -qc 'KCL_HOME' "$detected_profile"; then
+            info "The KCL PATH string is"
             info $path_str
             command printf "$path_str" >> "$detected_profile"
         else
