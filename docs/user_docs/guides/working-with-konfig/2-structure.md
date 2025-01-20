@@ -14,24 +14,31 @@ The core model library is generally named `models`, mainly including front-end m
 ```bash
 models
 ├── commons         # Common models
-├── kube            # Cloud-native resource core models
-│   ├── backend         # Back-end models
-│   ├── frontend        # Front-end models
-│   │   ├── common          # Common front-end models
-│   │   ├── configmap       # ConfigMap
-│   │   ├── container       # Container
-│   │   ├── ingress         # Ingress
-│   │   ├── resource        # Resource
-│   │   ├── secret          # Secret
-│   │   ├── service         # Service
-│   │   ├── sidecar         # Sidecar
-│   │   ├── strategy        # strategy
-│   │   ├── volume          # Volume
-│   │   └── server.k        # The `Server` model
-│   ├── metadata        # Kubernetes metadata
-│   ├── mixins          # Mixin
-│   ├── render          # Front-to-back-end renderers.
-│   ├── templates       # Data template
-│   └── utils
-└── metadata        # Common metadata
+└── kube            # Cloud-native resource core models
+    ├── backend         # Back-end models
+    ├── frontend        # Front-end models
+    │   ├── affinity        # Affinity
+    │   ├── deployment      # Deplyment
+    │   ├── common          # Common front-end models
+    │   ├── configmap       # ConfigMap
+    │   ├── container       # Container
+    │   ├── ingress         # Ingress
+    │   ├── rbac            # Role, RoleBinding, ClusterRole, ClusterRoleBinding
+    │   ├── resource        # Resource
+    │   ├── secret          # Secret
+    │   ├── service         # Service
+    │   ├── serviceaccount  # ServiceAccount
+    │   ├── sidecar         # Sidecar
+    │   ├── storage         # DataBase, ObjectStorage
+    │   ├── strategy        # SchedulingStrategy
+    │   ├── volume          # Volume
+    │   ├── job.k           # The `Job` model
+    │   └── server.k        # The `Server` model
+    ├── metadata        # Kubernetes metadata
+    ├── mixins          # Mixin
+    ├── protocol        # ServerProtocol
+    ├── render          # Front-to-back-end renderers.
+    ├── resource        # ResourceMapping
+    ├── templates       # Data template
+    └── utils           # Helper utils
 ```
