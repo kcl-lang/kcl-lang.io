@@ -41,7 +41,7 @@ The programming language of the project is KCL, not JSON/YAML which Kubernetes r
 Enter stack dir `examples/appops/nginx-example/dev` and compile:
 
 ```bash
-cd examples/appops/nginx-example/dev && kcl run -D env=dev
+cd examples/appops/nginx-example/dev && kcl run -D appenv=dev
 ```
 
 The output YAML is:
@@ -50,8 +50,8 @@ The output YAML is:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sampleappdev
-  namespace: sampleapp
+  name: sampleapp-dev
+  namespace: sampleappns-dev
 spec:
   replicas: 1
   selector:
@@ -59,62 +59,62 @@ spec:
       app.kubernetes.io/name: sampleapp
       app.kubernetes.io/env: dev
       app.kubernetes.io/instance: sampleapp-dev
-      app.k8s.io/component: sampleappdev
+      app.k8s.io/component: sampleapp-dev
   template:
     metadata:
       labels:
         app.kubernetes.io/name: sampleapp
         app.kubernetes.io/env: dev
         app.kubernetes.io/instance: sampleapp-dev
-        app.k8s.io/component: sampleappdev
+        app.k8s.io/component: sampleapp-dev
     spec:
       containers:
-        - env:
-            - name: MY_ENV
-              value: MY_VALUE
-          image: nginx:1.7.8
-          name: main
-          ports:
-            - containerPort: 80
-              protocol: TCP
-          resources:
-            limits:
-              cpu: "100m"
-              memory: "100Mi"
-              ephemeral-storage: "1Gi"
-            requests:
-              cpu: "100m"
-              memory: "100Mi"
-              ephemeral-storage: "1Gi"
-          volumeMounts: []
+      - env:
+        - name: MY_ENV
+          value: MY_VALUE
+        image: nginx:1.7.8
+        name: main
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            cpu: '100m'
+            memory: '100Mi'
+            ephemeral-storage: '1Gi'
+          requests:
+            cpu: '100m'
+            memory: '100Mi'
+            ephemeral-storage: '1Gi'
+        volumeMounts: []
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: sampleapp
+  name: sampleappns-dev
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: sampleapp
+  namespace: sampleappns-dev
 spec:
   ports:
-    - nodePort: 30201
-      port: 80
-      targetPort: 80
+  - nodePort: 30201
+    port: 80
+    targetPort: 80
   selector:
     app.kubernetes.io/name: sampleapp
     app.kubernetes.io/env: dev
     app.kubernetes.io/instance: sampleapp-dev
-    app.k8s.io/component: sampleappdev
+    app.k8s.io/component: sampleapp-dev
   type: NodePort
 ```
 
 After compiling, we can see three resources:
 
-- A `Deployment` with the name `sampleappprod`
-- A `Namespace` with the name `sampleapp`
+- A `Deployment` with the name `sampleapp-dev`
+- A `Namespace` with the name `sampleappns-dev`
 - A `Service` with the name `nginx`
 
 ### 2. Modification
@@ -131,15 +131,15 @@ The `image` attribute in the `Server` model is used to declare the application's
 Recompile the configuration code to obtain the modified YAML output:
 
 ```shell
-kcl run
+kcl run -D appenv=dev
 ```
 
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sampleappdev
-  namespace: sampleapp
+  name: sampleapp-dev
+  namespace: sampleappns-dev
 spec:
   replicas: 1
   selector:
@@ -147,55 +147,56 @@ spec:
       app.kubernetes.io/name: sampleapp
       app.kubernetes.io/env: dev
       app.kubernetes.io/instance: sampleapp-dev
-      app.k8s.io/component: sampleappdev
+      app.k8s.io/component: sampleapp-dev
   template:
     metadata:
       labels:
         app.kubernetes.io/name: sampleapp
         app.kubernetes.io/env: dev
         app.kubernetes.io/instance: sampleapp-dev
-        app.k8s.io/component: sampleappdev
+        app.k8s.io/component: sampleapp-dev
     spec:
       containers:
-        - env:
-            - name: MY_ENV
-              value: MY_VALUE
-          image: nginx:latest
-          name: main
-          ports:
-            - containerPort: 80
-              protocol: TCP
-          resources:
-            limits:
-              cpu: "100m"
-              memory: "100Mi"
-              ephemeral-storage: "1Gi"
-            requests:
-              cpu: "100m"
-              memory: "100Mi"
-              ephemeral-storage: "1Gi"
-          volumeMounts: []
+      - env:
+        - name: MY_ENV
+          value: MY_VALUE
+        image: nginx:1.7.8
+        name: main
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        resources:
+          limits:
+            cpu: '100m'
+            memory: '100Mi'
+            ephemeral-storage: '1Gi'
+          requests:
+            cpu: '100m'
+            memory: '100Mi'
+            ephemeral-storage: '1Gi'
+        volumeMounts: []
 ---
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: sampleapp
+  name: sampleappns-dev
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: sampleapp
+  namespace: sampleappns-dev
 spec:
   ports:
-    - nodePort: 30201
-      port: 80
-      targetPort: 80
+  - nodePort: 30201
+    port: 80
+    targetPort: 80
   selector:
     app.kubernetes.io/name: sampleapp
     app.kubernetes.io/env: dev
     app.kubernetes.io/instance: sampleapp-dev
-    app.k8s.io/component: sampleappdev
+    app.k8s.io/component: sampleapp-dev
+  type: NodePort
 ```
 
 ## Resources

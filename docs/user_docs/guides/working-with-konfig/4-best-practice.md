@@ -87,7 +87,7 @@ schema SLI:
 
 The type of template is a combination of two string types, indicating that the template can only be `"success_ratio"` or `"service_cost"`. When the user fills in the values of other strings, the KCL compiler will report an error.
 
-In addition to using union types for literal types, KCL also supports union for complex types such as schema types. For the support of this backend **oneof** configuration, KCL has built-in composite structure union types for support. For example, we can define our own SLI front-end types for various scenarios: `CustomSliDataSource`, `PQLSLIDataSource`, and `StackSLIDataSource`.
+In addition to using union types for literal types, KCL also supports union for complex types such as schema types. For the support of this backend **oneof** configuration, KCL has built-in composite structure union types for support. For example, we can define our own SLI front-end types for various scenarios: `CustomSLIDataSource`, `PQLSLIDataSource`, and `StackSLIDataSource`.
 
 ```python
 schema CustomSLIDataSource:
@@ -175,7 +175,7 @@ house = House {
 }
 ```
 
-For example, in the above example, if you want to query the age of the person named `"Alice"` from the list of persons in the house, you need to loop through the list to find Alice's age. However, if you define persons as a dictionary like the following code, it not only looks more concise in code, but you can also directly retrieve Alice's age by using house.persons.Alice.age. In addition, the information of the entire configuration is complete and has no redundant information.
+For example, in the above example, if you want to query the age of the person named `"Alice"` from the list of persons in the house, you need to loop through the list to find Alice's age. However, if you define persons as a dictionary like the following code, it not only looks more concise in code, but you can also directly retrieve Alice's age by using `house.persons.Alice.age`. In addition, the information of the entire configuration is complete and has no redundant information.
 
 ```python
 schema Person:
@@ -346,11 +346,10 @@ The output is
 
 ```yaml
 cpuMap:
-  "1": 256
-  "2": 512
-  "3": 1024
-cpu256: 256
-cpu2048: 2048
+  '1': 256
+  '2': 512
+  '3': 1024
+cpu: 256
 ```
 
 ### Separate Logic and Data
