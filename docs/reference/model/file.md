@@ -147,7 +147,7 @@ Write content to a file at the specified path. If the file doesn't exist, it wil
 ```python
 import file
 
-file.size("test.txt", "content")
+file.write("test.txt", "content")
 ```
 
 ## read_env
