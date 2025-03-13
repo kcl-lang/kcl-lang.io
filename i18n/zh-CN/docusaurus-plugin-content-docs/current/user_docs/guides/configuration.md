@@ -88,7 +88,7 @@ nginx:
 此外，我们可以通过 KCL 内置函数 `option` 动态接收外部参数。例如，对于下面的 KCL 文件（db.k），我们可以使用命令行 `-D` 标志来接收外部动态参数。
 
 ```python
-env: str = option("env") or "dev"  # The attribute `env` has a default value "den"
+env: str = option("env") or "dev"  # The attribute `env` has a default value "dev"
 database: str = option("database")
 hosts = {
     dev = "postgres.dev"
