@@ -2703,3 +2703,19 @@ Key Differences:
 - Immutability: KCL emphasizes immutability, which influences how mixins and protocols are used, making them more suitable for declarative configurations.
 
 In summary, KCL's mixins and protocols combine concepts from various programming languages but are optimized for configuration management and policy definition, providing a powerful and flexible way to construct and validate complex data structures.
+
+## 70. How do we output fields with leading underscores?
+
+We can use the `--show-hidden` or `-H` flag when use the KCL CLI to run KCL files. e.g.:
+
+main.k
+```python
+a = 1
+_b = 2
+```
+
+The output maybe as follows with the command `kcl run main.k -H`
+```yaml
+a: 1
+_b: 2
+```
