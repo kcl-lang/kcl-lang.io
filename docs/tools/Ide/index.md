@@ -5,3 +5,4 @@ We have provided three simple kinds of extensions for KCL. You can get more help
 - IntelliJ Extension: https://github.com/kcl-lang/intellij-kcl
 - VSCode Extension: https://github.com/kcl-lang/vscode-kcl
 - NeoVim Extension: https://github.com/kcl-lang/kcl.nvim
+- Helix Editor: https://github.com/helix-editor/helix
