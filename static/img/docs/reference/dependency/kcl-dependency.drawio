@@ -1,0 +1,99 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.2">
+  <diagram name="Page-1" id="rAqK6_sPa1SIVAUE_0x5">
+    <mxGraphModel dx="1377" dy="990" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-1" value="" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="657" y="592" width="530" height="128" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-3" value="Core Components" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="310" y="180" width="817" height="375" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-4" value="KCLVM Compiler CLI" style="whiteSpace=wrap;strokeWidth=2;fillColor=#dae8fc;strokeColor=light-dark(#a4bddf, #5c79a3);rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="567" y="220" width="170" height="29" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-5" value="KCL CLI" style="whiteSpace=wrap;strokeWidth=2;rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="784" y="370" width="113" height="33" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-6" value="KCL Package Manager - KPM" style="whiteSpace=wrap;strokeWidth=2;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="671" y="490" width="259" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-7" value="KCL Go SDK" style="whiteSpace=wrap;strokeWidth=2;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="557" y="390" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-8" value="Package Registry" style="whiteSpace=wrap;strokeWidth=2;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="710" y="642" width="179" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-9" value="Development Tools" style="whiteSpace=wrap;strokeWidth=2;rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="953" y="642" width="195" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-10" value="Provides Compilation Backend" style="curved=1;startArrow=none;endArrow=block;exitX=0.88;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="4TVLhED08Ak_WIFAkoXa-4" target="4TVLhED08Ak_WIFAkoXa-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="841" y="294" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-11" value="Core Compilation Logic" style="curved=1;startArrow=none;endArrow=block;exitX=0.12;exitY=1;entryX=0;entryY=0.08;rounded=0;" edge="1" parent="1" source="4TVLhED08Ak_WIFAkoXa-4" target="4TVLhED08Ak_WIFAkoXa-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="294" />
+              <mxPoint x="430" y="429" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-12" value="Compiler Interface" style="curved=1;startArrow=none;endArrow=block;exitX=0.38;exitY=1;entryX=0.34;entryY=0;rounded=0;" edge="1" parent="1" source="4TVLhED08Ak_WIFAkoXa-4" target="4TVLhED08Ak_WIFAkoXa-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="571" y="294" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-13" value="Uses" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.57;entryY=-0.01;rounded=0;" edge="1" parent="1" source="4TVLhED08Ak_WIFAkoXa-5" target="4TVLhED08Ak_WIFAkoXa-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="841" y="429" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-14" value="Depends on" style="curved=1;startArrow=none;endArrow=block;exitX=0.81;exitY=-0.01;entryX=1;entryY=0.88;rounded=0;" edge="1" parent="1" source="4TVLhED08Ak_WIFAkoXa-6" target="4TVLhED08Ak_WIFAkoXa-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="990" y="429" />
+              <mxPoint x="990" y="294" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-15" value="Utilizes" style="curved=1;startArrow=none;endArrow=block;exitX=0.65;exitY=0;entryX=0.6;entryY=1;rounded=0;" edge="1" parent="1" source="4TVLhED08Ak_WIFAkoXa-7" target="4TVLhED08Ak_WIFAkoXa-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="689" y="294" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-16" value="Interacts with" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=0.99;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="4TVLhED08Ak_WIFAkoXa-6" target="4TVLhED08Ak_WIFAkoXa-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-17" value="Integrates with" style="curved=1;startArrow=none;endArrow=block;exitX=1;exitY=0.82;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="4TVLhED08Ak_WIFAkoXa-5" target="4TVLhED08Ak_WIFAkoXa-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1051" y="429" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-19" value="&lt;span style=&quot;text-wrap-mode: wrap;&quot;&gt;External Interactions&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="847" y="600" width="130" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-25" value="&lt;span style=&quot;font-family: Helvetica; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: center; text-indent: 0px; text-transform: none; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; white-space: normal; text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; float: none; display: inline !important;&quot;&gt;&lt;font style=&quot;color: rgb(0, 0, 0);&quot;&gt;Dependency Relationships&lt;/font&gt;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;spacing=4;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="587" y="130" width="323" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4TVLhED08Ak_WIFAkoXa-26" value="&lt;span&gt;Core Components&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="360" y="210" width="160" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
