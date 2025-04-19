@@ -229,3 +229,106 @@ assert net.is_unspecified_IP("::") == True
 assert net.is_unspecified_IP("2001:0db8::") == False
 assert net.is_unspecified_IP("invalid") == False
 ```
+
+## parse_CIDR
+
+`parse_CIDR(cidr: str) -> {}`
+
+Parses the CIDR block `cidr` into a dict members.
+
+If `cidr` parses, the returned dict has two members:
+`ip` has the first IP in the block and `mask` has the prefix length as an `int`.
+
+If `cidr` does not parse, returns the empty dict, `{}`.
+
+```python
+import net
+
+assert net.parse_CIDR("10.0.0.0/8") == { ip: "10.0.0.0", mask: 8 }
+assert net.parse_CIDR("2001:db8::/56") == { ip: "2001:db8::", mask: 56 }
+assert net.parse_CIDR("invalid") == {}
+```
+
+## is_IP_in_CIDR
+
+`is_IP_in_CIDR(ip: str, cidr: str) -> bool`
+
+If `ip` is contained in `cidr`, returns `True`. Otherwise, returns `False`.
+
+If `ip` is an IPv4 address and `cidr` is an IPv6 CIDR, treats `ip` as
+if it were encoded as an IPv4-mapped IPv6 address.
+
+```python
+import net
+
+assert net.is_IP_in_CIDR("10.1.2.3", "10.0.0.0/8")
+assert not net.is_IP_in_CIDR("11.1.2.3", "10.0.0.0/8")
+assert net.is_IP_in_CIDR("2001:db8::9", "2001:db8::/56")
+assert not net.is_IP_in_CIDR("2fff::9", "2001:db8::/56")
+assert net.is_IP_in_CIDR("10.1.2.3", "::/0")
+```
+
+## CIDR_subnet
+
+`CIDR_subnet(cidr: str, additional_bits: int, net_num: int) -> str`
+
+Calculates a subnet of the CIDR `cidr`.
+
+Extends the prefix of `cidr` by `additional_bits`. For example, if `cidr` is
+a `/18` and `additional_bits` is `6`, then the result will be a `/24`.
+
+`net_num` is a non-negative number used to populate the bits added to the prefix. 
+
+```python
+import net
+
+assert net.CIDR_subnet("10.0.0.0/8", 8, 11) == "10.11.0.0/16"
+assert net.CIDR_subnet("2001:db8::/56", 8, 10) == "2001:db8:0:a::/64"
+```
+
+## CIDR_subnets
+
+`CIDR_subnets(cidr: str, additional_bits: [int]) -> [str]`
+
+Allocates a sequence of subnets within `cidr`. `additional_bits` specifies,
+for each subnet to allocate, the number of bits by which to extend the prefix
+of `cidr`. Returns a list of the allocated subnet CIDRs.
+
+If later called with the same `cidr` and an `additional_bits` with only additions
+on the end, will return the same allocations for those previous `additional_bits`.
+
+```python
+import net
+
+assert net.CIDR_subnets("10.0.0.0/8", [8, 9, 8]) == ["10.0.0.0/16", "10.1.0.0/17", "10.2.0.0/16"]
+assert net.CIDR_subnets("2001:db8::/56", [8, 7]) == ["2001:db8::/64", "2001:db8:0:2::/63"]
+```
+
+## CIDR_host
+
+`CIDR_host(cidr: str, host_num: int) -> str`
+
+Calculates an IP for a host within `cidr`.
+
+`host_num` is a number used to populate the bits added to the prefix. If the number is negative,
+the count starts from the end of the range.
+
+```python
+import net
+
+assert net.CIDR_host("10.0.0.0/8", 11) == "10.0.0.11"
+assert net.CIDR_host("10.0.0.0/8", -11) == "10.255.255.245"
+assert net.CIDR_host("2001:db8::/56", 10) == "2001:db8::a"
+```
+
+## CIDR_netmask
+
+`CIDR_netmask(cidr: str) -> str`
+
+Returns the netmask for the IPv4 subnet `cidr`.
+
+```python
+import net
+
+assert net.CIDR_netmask("10.0.0.0/8") == "10.255.255.255"
+```
