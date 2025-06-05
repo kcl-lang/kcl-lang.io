@@ -527,7 +527,7 @@ The result is a **dict**:
 {
     'person': {
         'name': {
-            'firstName': 'Jhon',
+            'firstName': 'John',
             'lastName': 'Doe'
         }
     }
