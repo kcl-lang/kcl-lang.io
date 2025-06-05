@@ -108,8 +108,8 @@ image: nginx:1.14.2
 service: my-service
 ```
 
-.. note::
-KCL has rich support of operators and string member functions, please read manual and specification for more details.
+> **NOTE:**
+> KCL has rich support of operators and string member functions, please read the manual and specification for more details.
 
 ## 4. Write Collections
 

@@ -604,7 +604,8 @@ mixin PersistentVolumeClaimMixin for PVCProtocol:
         }
 ```
 
-> Note: for the `k8s.api.core.v1` import to work, we need to initialize a module and add the `k8s` module as a dependency:
+> **NOTE:**
+> For the `k8s.api.core.v1` import to work, we need to initialize a module and add the `k8s` module as a dependency:
 >
 > ```bash
 > kcl mod init

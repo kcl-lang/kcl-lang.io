@@ -73,7 +73,8 @@ bob = Person {
 }
 ```
 
-> Note: All KCL variables can be assigned the null value `None` and the undefined value `Undefined`.
+> **NOTE:**
+> All KCL variables can be assigned the null value `None` and the undefined value `Undefined`.
 
 ## 3. What do some KCL variable names prefixed with `_` underscore mean? What's the difference between without the `_` underscore prefix? In what scenarios are they suitable for use?
 
@@ -172,7 +173,8 @@ _args = [*_args, "end"]  # Add elements "end" to the end of the list: ["a", "b",
 _args = ["start", *_args]  # Add elements "start" to the head of the list: ["start", "a", "b", "x", "c", "end"]
 ```
 
-> Note: When the consecutive variables are `None/Undefined`, using `+` may cause an error, then we can use the list unpacking operator `*` or use the `or` operator to take the default value of the list to avoid null values judge.
+> **NOTE:**
+> When the consecutive variables are `None/Undefined`, using `+` may cause an error, then we can use the list unpacking operator `*` or use the `or` operator to take the default value of the list to avoid null values judge.
 
 ```python
 data1 = [1, 2, 3]
@@ -383,7 +385,8 @@ success = True
 _result = "success" if success else "failed"
 ```
 
-> Note: When writing an if-elif-else block statement, pay attention to the colon `:` after the if condition and keep the indentation consistent.
+> **NOTE:**
+> When writing an if-elif-else block statement, pay attention to the colon `:` after the if condition and keep the indentation consistent.
 
 In addition, conditional expressions can also be written directly in a list or dict (the difference is that the value to be written in the if expression written in the structure is not a statement):
 
@@ -964,7 +967,8 @@ employee:
   nationality: China
 ```
 
-> Note: KCL only allows schema single inheritance.
+> **NOTE:**
+> KCL only allows schema single inheritance.
 
 ## 24. How to reuse schema logic through composition?
 
@@ -1037,7 +1041,8 @@ import ..service  # Relative path import, parent directory
 import ...root  # Relative path import, parent directory of parent directory
 ```
 
-> Note that for KCL's entry file `main.k`, it cannot import the folder where it is located, otherwise a circular import error will occur:
+> **NOTE:**
+> For KCL's entry file `main.k`, it cannot import the folder where it is located, otherwise a circular import error will occur:
 
 ```python
 import model  # Error: recursively loading
@@ -1122,7 +1127,8 @@ The continue second line\
 """
 ```
 
-Note: Use the line continuation character `\` while maintaining indentation, as follows:
+> **NOTE:**
+> Use the line continuation character `\` while maintaining indentation, as follows:
 
 - Error use case:
 
@@ -1192,7 +1198,8 @@ theFirstItem = data[0]  # Get the element with index 0 in the list, that is, the
 theSecondItem = data[1]  # Get the element with index 1 in the list, which is the first element 2
 ```
 
-> Note: The value of the index cannot exceed the length of the list, otherwise an error will occur, we can use the `len` function to get the length of the list.
+> **NOTE:**
+> The value of the index cannot exceed the length of the list, otherwise an error will occur, we can use the `len` function to get the length of the list.
 
 ```python
 data = [1, 2, 3]
@@ -1271,7 +1278,8 @@ data2 = data["contains.dot"]  # "value3"
 # Note that this is wrong: data3 = data.contains.dot
 ```
 
-> Note: The above sub-element operators cannot operate on values of non-list/dict/schema collection types, such as integers, nulls, etc.
+> **NOTE:**
+> The above sub-element operators cannot operate on values of non-list/dict/schema collection types, such as integers, nulls, etc.
 
 ```python
 data = 1
@@ -1363,7 +1371,8 @@ if: 1
 else: s
 ```
 
-> Note: Prefixing non-keyword identifiers with `$` has the same effect as not adding.
+> **NOTE:**
+> Prefixing non-keyword identifiers with `$` has the same effect as not adding.
 
 ```python
 _a = 1
@@ -1386,7 +1395,8 @@ int: 1
 str: 2
 ```
 
-> Note: If there are no special requirements, it is not recommended that the names of variables take these built-in types, because in some languages, they exist as keywords.
+> **NOTE:**
+> If there are no special requirements, it is not recommended that the names of variables take these built-in types, because in some languages, they exist as keywords.
 
 ## 33. How to implement enumeration in KCL?
 
@@ -1564,7 +1574,8 @@ data = { # The merged writing order of the same attribute labels does not affect
 } # The final data value is {"labels": {"key1": "value1", "key2": "value2"}}
 ```
 
-Note: The merge attribute operator will check the merged values ​​for conflicts, and report an error when the configuration values ​​that need to be merged conflict.
+> **NOTE:**
+> The merge attribute operator will check the merged values for conflicts and report an error when the configuration values that need to be merged conflict.
 
 ```python
 data = {

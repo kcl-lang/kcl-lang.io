@@ -17,7 +17,8 @@ string2: 'here''s to "quotes"'
 string3: here's to "quotes"
 ```
 
-> Note: KCL's strategy for outputting YAML strings is to output unquoted strings or double-quoted strings preferentially when single quotes appear in the string content, and output single-quoted strings in other cases to avoid the burden of understanding.
+> **NOTE:**
+> KCL's strategy for outputting YAML strings is to output unquoted strings or double-quoted strings preferentially when single quotes appear in the string content, and output single-quoted strings in other cases to avoid the burden of understanding.
 
 For more details, please refer to [YAML Spec v1.2](https://yaml.org/spec/1.2.1/)
 

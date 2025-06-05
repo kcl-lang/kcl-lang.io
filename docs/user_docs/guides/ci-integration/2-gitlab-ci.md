@@ -9,7 +9,8 @@ sidebar_label: Gitlab CI
 
 In the GitOps section, we have introduced how to integrate KCL with GitOps. In this section, we will continue to provide sample solutions for KCL and CI integrations. We hope to implement the end-to-end application development process by using containers, Continuous Integration (CI) for generation, and GitOps for Continuous Deployment (CD). In this scheme, we use a **Flask application** and **Gitlab CI** as examples.
 
-> Note: You can use any containerized application and different CI systems such as **Github Actions**, **Jenkins CI**, etc. in this solution.
+> **NOTE:**
+> You can use any containerized application and different CI systems such as **Github Actions**, **Jenkins CI**, etc. in this solution.
 
 The overall workflow is as follows:
 
