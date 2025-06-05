@@ -183,7 +183,7 @@ else:
 cpu = _cpu
 memory = _cpu * 2
 _command = ["nginx"] # a list
-_command = _command + ["-f", "file"]  # Append items into command using + operator to contact two lists
+_command = _command + ["-f", "file"]  # Append items into command using + operator to concatenate two lists
 command = [c.lower() for c in _command]  # Take each element in the list to lowercase
 _labels = {
     run = "my-nginx"
