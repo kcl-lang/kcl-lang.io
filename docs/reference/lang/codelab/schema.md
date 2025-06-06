@@ -474,7 +474,7 @@ Stderr:
 Schema check is failed to check condition: regex.match(image, "^[a-zA-Z]+:\d+\.\d+\.\d+$"), "image name should be like 'nginx:1.14.2'"
 ```
 
-> The verification capability of KCL covers the verification defined by Openapi so that we can write any API verifications through KCL.
+> The verification capability of KCL covers the verification defined by OpenAPI so that we can write any API verifications through KCL.
 
 ## 9. Create New Schema via Schema Inheritance
 
