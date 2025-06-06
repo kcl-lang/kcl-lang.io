@@ -76,7 +76,7 @@ The following list of operators is ordered from **highest to lowest**:
 
 ## Grammar
 
-KCL uses Python's [LarkParser](https://lark-parser.readthedocs.io/en/latest/) tool to describe the grammar, and the specification rules are as follows:
+KCL uses the Python-based [LarkParser](https://lark-parser.readthedocs.io/en/latest/) tool to describe the grammar, and the specification rules are as follows:
 
 ```bnf
 //////////// KCL grammar ////////////
