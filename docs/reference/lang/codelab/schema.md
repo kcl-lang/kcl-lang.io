@@ -426,7 +426,7 @@ schema Volume:
     hostPath: str
 ```
 
-Since the attributes defined by the schema are **required** by default, the verification that judges that the variable cannot be None/Undefined can be omitted.
+Since the attributes defined by the schema are **required** by default, no check to ensure they are not `None`/`Undefined` is needed.
 
 ```python
 schema Volume:
