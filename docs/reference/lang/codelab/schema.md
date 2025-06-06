@@ -485,7 +485,7 @@ Usually, schema Deployment will be used in multiple scenarios. We can directly u
 For example, we can use the Deployment schema as a basis, to define the nginx's base schema, and extend the definition
 in each scenario.
 
-In this case, we define some commonly used attributes. Please note that we mark the name to be immutable with the 'final' keyword to prevent it from being overwritten.
+In this case, we define some commonly used attributes. Please note that to prevent the attribut `name` from being overwritten as immutable by assigning its final value.
 
 ```python
 schema Nginx(Deployment):
