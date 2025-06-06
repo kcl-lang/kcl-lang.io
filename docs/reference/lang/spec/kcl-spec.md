@@ -10,7 +10,7 @@ description: KCL Spec
 
 ### Keywords and reserved words
 
-The following are the keywords of the KCL:
+The following identifiers are used as reserved words, or keywords of the language, and cannot be used as ordinary identifiers. They must be spelled exactly as written here:
 
 ```
 True       False      None        Undefined   import
@@ -21,7 +21,7 @@ all        any        map         filter      lambda
 rule
 ```
 
-The following are reserved words for the KCL:
+The following tokens are not used, but they are reserved as possible future keywords:
 
 ```
 pass       return     validate   rule        flow
