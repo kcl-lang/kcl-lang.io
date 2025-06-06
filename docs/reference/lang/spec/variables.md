@@ -36,7 +36,7 @@ spam = "ham"
 spam = "eggs" # Error: The immutability rule is violated!
 ```
 
-- A variable starts with the `_` character is mutable.
+- A variable starting with the `_` character is mutable.
 
 ```python
 _spam
