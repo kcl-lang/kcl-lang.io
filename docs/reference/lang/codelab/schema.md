@@ -159,7 +159,7 @@ nginx = Deployment {
 
 ## 5. Write More Complex Logic in Schema
 
-Suppose we have some schema logic, we can wrapper it into schema:
+Suppose we have some schema logic, we can wrap it into a schema:
 
 ```python
 schema Deployment[priority]:
