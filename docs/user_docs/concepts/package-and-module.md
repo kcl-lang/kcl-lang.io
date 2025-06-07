@@ -10,7 +10,8 @@ Within a **module**, KCL organizes files grouped by **package**. A package can b
 
 A KCL module contains a configuration laid out in a directory hierarchy. It contains everything that is needed to deterministically determine the outcome of a KCL configuration. The root of this directory is marked by containing a `kcl.mod` directory. The contents of this directory are mostly managed by the kcl tool such as `kpm`, etc. In that sense, `kcl.mod` is analogous to the `.git` directory marking the root directory of a repo, but where its contents are mostly managed by the git tool. Besides, a KCL module is the largest unit of the file organization, has a fixed location of all KCL files and dependencies.
 
-> Note: The use of a KCL module e.g., `kcl.mod` is optional, but required if one wants to manage, distribute, share and reuse code with a semantic version.
+> **NOTE:**
+> The use of a KCL module e.g., `kcl.mod` is optional, but required if one wants to manage, distribute, share and reuse code with a semantic version.
 
 ### Creating a module
 
@@ -140,7 +141,8 @@ kcl_cli_configs:
 kcl -Y kcl.yaml
 ```
 
-> Note: If we do not specify any input files for KCL, KCL will find the default `kcl.yaml` from the command line execution path to read the input file. Besides, if we tell KCL both the input files and the compilation setting file, KCL will take input files entered by the user as the final value.
+> **NOTE:**
+> If we do not specify any input files for KCL, KCL will find the default `kcl.yaml` from the command line execution path to read the input file. Besides, if we tell KCL both the input files and the compilation setting file, KCL will take input files entered by the user as the final value.
 
 ```bash
 # Whether the 'files' field is configured in `kcl.yaml` or not, the final value of input files is ["file1.k", "file2.k"]

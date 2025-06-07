@@ -527,7 +527,7 @@ The result is a **dict**:
 {
     'person': {
         'name': {
-            'firstName': 'Jhon',
+            'firstName': 'John',
             'lastName': 'Doe'
         }
     }
@@ -640,7 +640,7 @@ The result is a **dict**:
     'JohnDoe': {
         'firstName': 'John'
         'lastName': 'Doe'
-        'fullName': 'John Doe'
+        'fullName': 'John_Doe'
         'subject': 'CS'
     }
 }

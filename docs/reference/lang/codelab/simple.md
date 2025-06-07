@@ -108,8 +108,8 @@ image: nginx:1.14.2
 service: my-service
 ```
 
-.. note::
-KCL has rich support of operators and string member functions, please read manual and specification for more details.
+> **NOTE:**
+> KCL has rich support of operators and string member functions, please read the manual and specification for more details.
 
 ## 4. Write Collections
 
@@ -183,8 +183,8 @@ else:
 cpu = _cpu
 memory = _cpu * 2
 _command = ["nginx"] # a list
-_command = _command + ["-f", "file"]  # Append items into command using + operator to contact two lists
-command = [c.lower() for c in _command]  # Take each element in the list to lowercase
+_command = _command + ["-f", "file"]  # Append items into command using + operator to concatenate two lists
+command = [c.lower() for c in _command]  # Convert each element in the list to lowercase
 _labels = {
     run = "my-nginx"
     if _env:

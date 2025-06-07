@@ -10,9 +10,9 @@ description: KCL Spec
 
 ### Keywords and reserved words
 
-The following are the keywords of the KCL:
+The following identifiers are used as reserved words, or keywords of the language, and cannot be used as ordinary identifiers. They must be spelled exactly as written here:
 
-```python
+```
 True       False      None        Undefined   import
 and        or         in          is          not
 as         if         else        elif        for
@@ -21,9 +21,9 @@ all        any        map         filter      lambda
 rule
 ```
 
-The following are reserved words for the KCL:
+The following tokens are not used, but they are reserved as possible future keywords:
 
-```python
+```
 pass       return     validate   rule        flow
 def        del        raise      except      try
 finally    while      from       with        yield
@@ -32,13 +32,13 @@ global     nonlocal   struct     class       final
 
 ### Line comment
 
-```python
+```
 # a comment
 ```
 
 ### Operators
 
-```python
+```
 +       -       *       **      /       //      %
 <<      >>      &       |       ^       <       >
 ~       <=      >=      ==      !=      =
@@ -48,7 +48,7 @@ global     nonlocal   struct     class       final
 
 ### Delimiters
 
-```python
+```
 (       )       [       ]       {       }
 ,       :       .       ;       @
 ```
@@ -76,7 +76,7 @@ The following list of operators is ordered from **highest to lowest**:
 
 ## Grammar
 
-KCL uses Python's [LarkParser](https://lark-parser.readthedocs.io/en/latest/) tool to describe the grammar, and the specification rules are as follows:
+KCL uses the Python-based [LarkParser](https://lark-parser.readthedocs.io/en/latest/) tool to describe the grammar, and the specification rules are as follows:
 
 ```bnf
 //////////// KCL grammar ////////////

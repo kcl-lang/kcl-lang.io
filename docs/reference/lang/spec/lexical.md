@@ -56,8 +56,7 @@ A physical line is a sequence of characters end with a line termination sequence
 
 To join multiple physical lines into one logical line, the `\` character can be used. The character should be the last none-space character in each physical line except the very last line.
 
-> **note**
->
+> **NOTE:**
 > Any character except the ASCII space, tab (`\t`) and formfeed (`\f`) is considered a none-space character.
 
 - A line ending in a backslash cannot carry a comment (, which will be introduced shortly afterwards).

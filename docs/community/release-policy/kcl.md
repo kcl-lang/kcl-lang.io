@@ -30,4 +30,5 @@ The KCL project version release strategy is as follows:
 - Testing and Feedback: Before releasing the feature, allow some peers/users to try and test these new features through written documentation rather than oral descriptions. Receive feedback and make improvements.
 - Release and Announcements: Write Release Notes, PR articles, interpret scenarios and new features, and promote through various channels.
 
-> Note: All the above information is public and should be made available for all community developers to participate, discuss, and contribute.
+> **NOTE:**
+> All the above information is public and should be made available for all community developers to participate, discuss, and contribute.

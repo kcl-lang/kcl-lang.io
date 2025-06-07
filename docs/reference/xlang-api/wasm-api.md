@@ -18,7 +18,8 @@ Install the dependency
 npm install buffer @wasmer/wasi @kcl-lang/wasm-lib
 ```
 
-> Note: buffer is required by @wasmer/wasi.
+> **NOTE:**
+> Buffer is required by @wasmer/wasi.
 
 Write the code
 
@@ -43,7 +44,8 @@ main();
 
 Here, we use `webpack` to bundle the website, the `webpack.config.js` config as follows.
 
-> Note: This configuration includes necessary settings for @wasmer/wasi and other required plugins.
+> **NOTE:**:
+> This configuration includes necessary settings for @wasmer/wasi and other required plugins.
 
 ```js
 const HtmlWebpackPlugin = require("html-webpack-plugin");

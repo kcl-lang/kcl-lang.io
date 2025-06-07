@@ -159,7 +159,7 @@ nginx = Deployment {
 
 ## 5. Write More Complex Logic in Schema
 
-Suppose we have some schema logic, we can wrapper it into schema:
+Suppose we have some schema logic, we can wrap it into a schema:
 
 ```python
 schema Deployment[priority]:
@@ -426,7 +426,7 @@ schema Volume:
     hostPath: str
 ```
 
-Since the attributes defined by the schema are **required** by default, the verification that judges that the variable cannot be None/Undefined can be omitted.
+Since the attributes defined by the schema are **required** by default, no check to ensure they are not `None`/`Undefined` is needed.
 
 ```python
 schema Volume:
@@ -474,7 +474,7 @@ Stderr:
 Schema check is failed to check condition: regex.match(image, "^[a-zA-Z]+:\d+\.\d+\.\d+$"), "image name should be like 'nginx:1.14.2'"
 ```
 
-> The verification capability of KCL covers the verification defined by Openapi so that we can write any API verifications through KCL.
+> The verification capability of KCL covers the verification defined by OpenAPI so that we can write any API verifications through KCL.
 
 ## 9. Create New Schema via Schema Inheritance
 
@@ -485,7 +485,7 @@ Usually, schema Deployment will be used in multiple scenarios. We can directly u
 For example, we can use the Deployment schema as a basis, to define the nginx's base schema, and extend the definition
 in each scenario.
 
-In this case, we define some commonly used attributes. Please note that we mark the name to be immutable with the 'final' keyword to prevent it from being overwritten.
+In this case, we define some commonly used attributes. Please note that to prevent the attribut `name` from being overwritten as immutable by assigning its final value.
 
 ```python
 schema Nginx(Deployment):
@@ -604,7 +604,8 @@ mixin PersistentVolumeClaimMixin for PVCProtocol:
         }
 ```
 
-> Note: for the `k8s.api.core.v1` import to work, we need to initialize a module and add the `k8s` module as a dependency:
+> **NOTE:**
+> For the `k8s.api.core.v1` import to work, we need to initialize a module and add the `k8s` module as a dependency:
 >
 > ```bash
 > kcl mod init
