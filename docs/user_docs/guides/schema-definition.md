@@ -64,8 +64,8 @@ The content of `app_module.k` is
 schema App:
     domainType: "Standard" | "Customized" | "Global"
     containerPort: int
+    services?: [Service]
     volumes: [Volume]
-    services: [Service]
 
     check:
         1 <= containerPort <= 65535
@@ -89,8 +89,8 @@ In the above file, we use the `schema` keyword to define three models `App`, `Se
 
 - The type of `domainType` is a string literal union type, similar to an "enumeration", which means that the value of `domainType` can only take one of `"Standard"`, `"Customized"` and `"Global"`.
 - The type of `containerPort` is an integer (`int`). In addition, we use the `check` keyword to define its value range from 1 to 65535.
-- The type of `services` is `Service` schema list type, and we use `?` to mark it as an optional attribute.
-- The type of `volumes` is a `Volume` schema list type, and we use `?` to mark it as an optional attribute.
+- The type of `services` is `Service` schema list type, and we use `?` to mark it as an optional attribute. Deleting it from `main.k` would still output a valid yaml.
+- The type of `volumes` is a `Volume` schema list type.
 
 We can get the YAML output of the `app` instance by using the following command line
 
