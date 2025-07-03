@@ -36,7 +36,8 @@ const ErrorMessage = ({
   </div>
 );
 
-const WIDTH = 180;
+const WIDTH = "50%";
+const MAX_WIDTH = 180;
 const HEIGHT = 70;
 
 function SubscribeSection() {
@@ -205,12 +206,12 @@ export const Form = ({ fireInput }: { fireInput?: () => void }) => {
         placeholder="Your email address..."
         disabled={formState === STATES.LOADING || formState === STATES.SUCCESS}
         onChange={onChange}
-        style={{ maxWidth: WIDTH, minHeight: HEIGHT }}
+        style={{ width: WIDTH, maxWidth: MAX_WIDTH, minHeight: HEIGHT, textOverflow: "ellipsis" }}
       />
       <button
         aria-label="Subscribe"
         className={clsx(
-          "trans flex-shrink-0 rounded-r-full bg-center bg-no-repeat px-11 py-6 text-16 font-bold uppercase leading-none transition-colors duration-200 xl:py-4 md:px-5 md:py-3 sm:px-5 sm:py-3",
+          "trans flex-shrink-0 rounded-r-full bg-center bg-no-repeat text-16 font-bold uppercase leading-none transition-colors duration-200",
           {
             "bg-[length:40px_40px] xl:bg-[length:28px_28px]":
               formState === STATES.LOADING,
@@ -221,7 +222,7 @@ export const Form = ({ fireInput }: { fireInput?: () => void }) => {
           },
         )}
         type="submit"
-        style={{ width: WIDTH, minHeight: HEIGHT }}
+        style={{ width: WIDTH, maxWidth: MAX_WIDTH, minHeight: HEIGHT }}
       >
         <span
           className={clsx({
