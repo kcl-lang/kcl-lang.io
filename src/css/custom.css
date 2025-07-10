@@ -94,6 +94,8 @@ html[data-theme='dark'] {
   --ifm-color-primary-light: hsl(var(--site-primary-hue-saturation-light) 54%);
   --ifm-color-primary-lighter: hsl(var(--site-primary-hue-saturation-light) 62%);
   --ifm-color-primary-lightest: hsl(var(--site-primary-hue-saturation-light) 73%);
+
+  --ifm-font-family-base: "Roboto", sans-serif;
 }
 
 .docusaurus-highlight-code-line {
