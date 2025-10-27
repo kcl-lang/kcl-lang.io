@@ -144,7 +144,7 @@ schema Name:
 
 schema Person:
     name: Name = {
-        firstNam = "John"
+        firstName = "John"
         lastName = "default"
     }
 
