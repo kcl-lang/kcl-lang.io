@@ -20,7 +20,7 @@ The KCL team is pleased to announce that **KCL v0.11.0 is now available**! This 
 
 **We would like to extend our heartfelt thanks to all community contributors who participated in the iteration from version v0.10 to v0.11. The following list is in no particular order.**
 
-_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @diefans, @nkabir, @suin, @Chewie, @lwz23, @eminaktas,@steeling, @bozaro, @cakemanny, @Yufeireal, @andrzejgorski, @yonas, @dansrogers, @SkySingh04, @jellllly420,  @slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel, @Clint, @Christopher Haar, @ron18219, @Zack Zhang, @Alexander Fuchs, @Smaine Kahlouch, @Yvan da Silva, @Jakob Maležič, @Ryan Rueth, @Christopher Haar, @kesser, @Justin B, @Evgeny Shepelyuk, @Smaine Kahlouch, @KennyZ, @Mark Altmann (Wompi), @Peter Boat, @Hai Wu, @Evgeny Shepelyuk, @anshuman singh, @Carl-Fredrik, @Larry Gadallah, @Kevin Sztern, @Nick Atzert, @Tobias Kässer, @Mike, @john thompson, @Sky Singh, @suin, @Tom van Dinther, @Stefano Borrelli, @Valer Orlovsky, @Jacob Colvin, @Sjuul Janssen, @Vyacheslav Terdunov, @Yury Tsarev_
+_@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @eminaktas, @Gmin2, @tvandinther, @diefans, @nkabir, @suin, @Chewie, @lwz23, @eminaktas,@steeling, @bozaro, @cakemanny, @Yufeireal, @andrzejgorski, @yonas, @dansrogers, @SkySingh04, @jellllly420, @slashexx, @xnull, @diefans, @zflat, @vfarcic, @spastorclovr, @patpicos, @mproffitt, @fraenkel, @irizzant, @vfarcic, @patpicos, @mproffitt, @fraenkel, @Clint, @Christopher Haar, @ron18219, @Zack Zhang, @Alexander Fuchs, @Smaine Kahlouch, @Yvan da Silva, @Jakob Maležič, @Ryan Rueth, @Christopher Haar, @kesser, @Justin B, @Evgeny Shepelyuk, @Smaine Kahlouch, @KennyZ, @Mark Altmann (Wompi), @Peter Boat, @Hai Wu, @Evgeny Shepelyuk, @anshuman singh, @Carl-Fredrik, @Larry Gadallah, @Kevin Sztern, @Nick Atzert, @Tobias Kässer, @Mike, @john thompson, @Sky Singh, @suin, @Tom van Dinther, @Stefano Borrelli, @Valer Orlovsky, @Jacob Colvin, @Sjuul Janssen, @Vyacheslav Terdunov, @Yury Tsarev_
 
 ## 📚 Key Updates
 
@@ -30,16 +30,15 @@ _@adamwg, @steeling, @dennybaa, @liangyuanpeng, @NishantBansal2003, @mayrf, @emi
 
 - KCL supports Alpine Linux(musl) platform.
 - KCL refactored the implementation of the Parser and reorganized the parse process of import dependencies.
-- KCL optimized the type parsing of ** expressions in schema attributes.
+- KCL optimized the type parsing of \*\* expressions in schema attributes.
 - KCL fixed the problem that lambda expressions do not work when nested calls.
 - KCL fixed the memory leak problem of schema mixin parse.
 - KCL fixed the type promotion in function call expressions in assignment statements with type declarations.
 - KCL fixed the error of lambda functions calling attr in mixin
 
-
 #### Toolchain
 
-- Package management tool version selection algorithm is released. In v0.11.0, the KCL package management tool supports the selection of different version numbers of the same tripartite library that appears in the dependency graph. The KCL package management tool refers to the mvs algorithm of go mod. 
+- Package management tool version selection algorithm is released. In v0.11.0, the KCL package management tool supports the selection of different version numbers of the same tripartite library that appears in the dependency graph. The KCL package management tool refers to the mvs algorithm of go mod.
 
 To ensure as much compatibility as possible, package management tools currently prefer to select the latest version that appears in the dependency diagram rather than the latest version that has already been released.
 
@@ -56,11 +55,11 @@ In v0.11.0, the new cache structure is turned off by default, and the new local 
 
 - KCL IntelliJ plugin released 0.4.0, supporting LSP4IJ.
 - IDE can complete schemas defined in the worksace but not imported , and automatically insert the import statements of the package.
-![complete](/img/blog/2024-12-06-kcl-0.11.0-release/complete.gif)
+  ![complete](/img/blog/2024-12-06-kcl-0.11.0-release/complete.gif)
 - IDE adds type hints for key in the Config block.
-![hint](/img/blog/2024-12-06-kcl-0.11.0-release/hint.png)
+  ![hint](/img/blog/2024-12-06-kcl-0.11.0-release/hint.png)
 - IDE hover provides schema attribute default value information.
-![hover](/img/blog/2024-12-06-kcl-0.11.0-release/hover.png)
+  ![hover](/img/blog/2024-12-06-kcl-0.11.0-release/hover.png)
 - IDE fixed the failure of Windows path issues.
 - IDE fixed the failure of compound assignment operation statements.
 - IDE distinguished the highlighting of the `any` from keyword and type.

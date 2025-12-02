@@ -206,7 +206,12 @@ export const Form = ({ fireInput }: { fireInput?: () => void }) => {
         placeholder="Your email address..."
         disabled={formState === STATES.LOADING || formState === STATES.SUCCESS}
         onChange={onChange}
-        style={{ width: WIDTH, maxWidth: MAX_WIDTH, minHeight: HEIGHT, textOverflow: "ellipsis" }}
+        style={{
+          width: WIDTH,
+          maxWidth: MAX_WIDTH,
+          minHeight: HEIGHT,
+          textOverflow: "ellipsis",
+        }}
       />
       <button
         aria-label="Subscribe"

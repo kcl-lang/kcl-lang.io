@@ -22,6 +22,7 @@ sidebar_position: 4
   ```
 
 - **Step 2.** Amend your Helix `languages.toml` file:
+
   ```toml
   [[language]]
   name = "kcl"
@@ -33,6 +34,7 @@ sidebar_position: 4
   [language-server.kcl-lsp]
   command = "kcl-language-server"
   ```
+
 - **Step 3.** Reopen Helix, create a KCL file, and begin your KCL journey!
 
 ## Features
@@ -40,6 +42,7 @@ sidebar_position: 4
 This extension provides comprehensive coding assistance based on the Language Server Protocol.
 
 <!-- - **Highlighting:** Syntax and semantic highlighting -->
+
 - **Code Completion:** Completion for keywords, variable names, attributes, and more
 <!-- - **Goto definition:** Navigate to the definition of schema, variables, schema attributes, and imported packages -->
 - **Structure:** View the main definition (schema definition) and variables in KCL files

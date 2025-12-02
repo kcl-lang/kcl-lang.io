@@ -23,6 +23,7 @@ regex_replace = regex.replace(regex_source, ",", "|")
 `match(string: str, pattern: str) -> bool`
 
 尝试在字符串开头应用模式 `pattern`，找到了任何匹配项则返回 `True`，返回 `False` 表示没有找到匹配项
+
 ```python
 import regex
 

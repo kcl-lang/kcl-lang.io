@@ -1730,8 +1730,6 @@ configNew:
     key2: value2
 ```
 
-
-
 ### The solution to the conflicting values on the attribute 'attr' between {value1} and {value2} error in KCL
 
 When an error like conflicting values on the attribute 'attr' between {value1} and {value2} occurs in KCL, it is usually a problem with the use of the merge attribute operator `:`, indicating that when the `value1` and `value2` configurations are merged, the attribute A conflict error occurred at `attr`. In general, modify the attr attribute of value2 to other attribute operators, use `=` to indicate overwrite, and use `+=` to indicate addition
