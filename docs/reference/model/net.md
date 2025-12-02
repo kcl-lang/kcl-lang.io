@@ -28,7 +28,7 @@ assert net.split_host_port("[::1]:80") == ["::1", "80"]
 `join_host_port(host: str, port: int | str) -> str`
 
 Combines `host` and `port` into a network address of the form `host:port`.
-If `host` contains a colon, as found in an IPv6 address literal, then returns `[host]:port`. 
+If `host` contains a colon, as found in an IPv6 address literal, then returns `[host]:port`.
 
 ```python
 import net
@@ -277,7 +277,7 @@ Calculates a subnet of the CIDR `cidr`.
 Extends the prefix of `cidr` by `additional_bits`. For example, if `cidr` is
 a `/18` and `additional_bits` is `6`, then the result will be a `/24`.
 
-`net_num` is a non-negative number used to populate the bits added to the prefix. 
+`net_num` is a non-negative number used to populate the bits added to the prefix.
 
 ```python
 import net

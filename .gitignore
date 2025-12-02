@@ -22,6 +22,7 @@ yarn-error.log*
 
 .vscode/
 .idea/
-.kclvm
+.kcl
 .terraform
 .terraform.lock.hcl
+pnpm-lock.yaml

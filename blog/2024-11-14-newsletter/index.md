@@ -35,7 +35,7 @@ Thanks to all community participants over the past two weeks, listed in no parti
 
 - Supports hint for config entry key type
 - Optimized static analysis of unpacking expressions `**expr`, providing richer diagnostic information
-- Optimized code snippet completion for schema types `{}` 
+- Optimized code snippet completion for schema types `{}`
 - Added monitoring for changes in `kcl.mod` files, improving external package completion experience
 - Differentiated highlight colors for `any` type and `any` keyword expressions
 

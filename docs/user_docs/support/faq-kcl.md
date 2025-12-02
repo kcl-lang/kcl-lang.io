@@ -1051,6 +1051,7 @@ import model  # Error: recursively loading
 ## 26. When can import be omitted?
 
 KCL files in the same folder, but not in the main package, can refer to each other without importing. For example, for the following directory structure:
+
 ```
 .
 └── root
@@ -1739,8 +1740,6 @@ configNew:
     key1: value1
     key2: value2
 ```
-
-
 
 ### The solution to the conflicting values on the attribute 'attr' between {value1} and {value2} error in KCL
 
@@ -2720,12 +2719,14 @@ In summary, KCL's mixins and protocols combine concepts from various programming
 We can use the `--show-hidden` or `-H` flag when use the KCL CLI to run KCL files. e.g.:
 
 main.k
+
 ```python
 a = 1
 _b = 2
 ```
 
 The output maybe as follows with the command `kcl run main.k -H`
+
 ```yaml
 a: 1
 _b: 2
