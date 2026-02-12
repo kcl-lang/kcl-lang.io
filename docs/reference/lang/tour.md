@@ -2844,11 +2844,18 @@ KCL config files are organized as **modules**. A single KCL file is considered a
 
 The modules in the same package are visible and cross-package references need to be visible through import.
 
+To ensure relative imports work correctly, you should initialize your project root as a module:
+
+```bash
+kcl mod init
+```
+
 Code structure:
 
 ```bash
 .
 └── root
+    ├── kcl.mod
     ├── model
     │   ├── model1.k
     |   ├── model2.k
