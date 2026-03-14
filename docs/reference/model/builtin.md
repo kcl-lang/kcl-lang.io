@@ -266,6 +266,35 @@ print(range(1,5, 2))   # [1, 3]
 print(range(5, 1, -1)) # [5, 4, 3, 2]
 ```
 
+## reduce
+
+```python
+reduce(
+    reducer: (acc: any, item: any) -> any,
+    list: [any],
+    initial: any = None
+) -> any
+```
+
+Applies a function of two arguments cumulatively to the items of a list, from left to right, to reduce the list to a single value.
+This is useful for accumulating results where each step depends on the output of the previous one.
+
+`reducer` is the function to apply. It is called with two arguments: `acc` (the accumulated value) and `item` (the current element from the list). The return type of `reducer` must be assignable to the type of `acc`.
+
+`list` is the list of items to reduce. Its members must be assignable to the type of `item`.
+
+`initial` is the starting value for the accumulator. The reduction starts with `acc = initial` and processes every element in the list. If `initial` is omitted, the first element of the list becomes the initial value for `acc`, and iteration begins from the second element.
+
+Returns the final accumulated value.
+
+```python
+# Accumulate running totals
+reduce(lambda acc: [int], item: int -> [int] { acc + [acc[-1] + item] }, [1, 2, 3], [0])  # [0, 1, 3, 6]
+
+# Product without initial
+reduce(lambda acc: int, item: int -> int { acc * item }, [2, 3, 4])  # 24
+```
+
 ## min
 
 `min(x:[number]) -> number`
