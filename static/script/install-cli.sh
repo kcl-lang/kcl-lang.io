@@ -343,24 +343,46 @@ trap "fail_trap" EXIT
 getSystemInfo
 checkHttpRequestCLI
 
-if [ -z "$1" ]; then
-    echo "Getting the latest KCL ..."
-    getLatestRelease
+# Get version from environment variable or arguments
+KCL_VERSION_TO_INSTALL=""
+if [ -n "$KCL_VERSION" ]; then
+    KCL_VERSION_TO_INSTALL=$KCL_VERSION
 else
-    ret_val=v$1
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -v|--version)
+                KCL_VERSION_TO_INSTALL="$2"
+                shift # past argument
+                shift # past value
+                ;;
+            *)
+                KCL_VERSION_TO_INSTALL="$1"
+                shift # past argument
+                ;;
+        esac
+    done
+fi
+
+if [ -n "$KCL_VERSION_TO_INSTALL" ]; then
+    if [[ ! $KCL_VERSION_TO_INSTALL == v* ]]; then
+        ret_val="v$KCL_VERSION_TO_INSTALL"
+    else
+        ret_val="$KCL_VERSION_TO_INSTALL"
+    fi
+else
+    info "Getting the latest KCL ..."
+    getLatestRelease
+fi
+
+if [ -z "$ret_val" ]; then
+    error "The KCL version is not found. You can re-execute the installation script and try again."
+    exit 1
 fi
 
 verifySupported $ret_val
 checkExistingKCL
 
-# echo "The KCL version is $ret_val"
-# 
-# if [ -z "$ret_val" ]; then
-#     echo "The latest version of KCL is not found. It may be due to network reasons. You can re-execute the installation script and try again."
-#     exit 1
-# fi
-
-info "Find the latest KCL version $ret_val"
+info "Find the KCL version $ret_val"
 
 downloadFile $ret_val
 installFile
