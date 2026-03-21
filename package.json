@@ -25,6 +25,7 @@
     "@node-rs/jieba": "^1.10.3",
     "@svgr/webpack": "^6.3.1",
     "autoprefixer": "^10.4.14",
+    "caniuse-lite": "^1.0.30001726",
     "classnames": "^2.2.6",
     "clsx": "^1.1.1",
     "file-loader": "^6.2.0",
