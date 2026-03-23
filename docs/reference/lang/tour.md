@@ -880,20 +880,38 @@ assert (value << 4) == 0x220
 assert (value >> 4) == 0x02
 ```
 
-The `|` operator likewise computes bitwise, unions basic types and unions collection and schema data, such as **list**, **dict** and **schema**.
+The `|` operator has different semantics depending on the operand types:
 
-Computing bitwise examples:
+- For integers, it computes bitwise OR:
 
 ```python
 0x12345678 | 0xFF  # 0x123456FF
 ```
 
-Unioning basic types examples:
+- For type annotations, it creates a union type:
 
 ```python
 schema x:
     a: int | str  # attribute a could be a int or string
 ```
+
+- For lists, it performs a union by index, overwriting elements in the left operand with corresponding elements from the right operand:
+
+```python
+_a = [1, 2, 3]
+_b = [4, 5]
+x = _a | _b  # [4, 5, 3]
+```
+
+- For dicts, it performs a union by key, with right operand values taking precedence for shared keys:
+
+```python
+_a = {key1 = "value1", key2 = "value2"}
+_b = {key1 = "overwrite", key3 = "value3"}
+_c = _a | _b  # {"key1": "overwrite", "key2": "value2", "key3": "value3"}
+```
+
+- For schemas, it performs a union similar to dicts.
 
 #### Assignment Operators
 
@@ -903,7 +921,7 @@ The following tokens serve as delimiters in the grammar:
     (       )       [       ]       {       }
     ,       :       .       ;       =       ->
     +=      -=      *=      /=      //=     %=
-    &=      ^=      >>=     <<=     **=
+    &=      |=      ^=      >>=     <<=     **=
 ```
 
 The following examples use assignment and argument assignment operators:

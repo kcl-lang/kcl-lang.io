@@ -52,7 +52,7 @@ To keep it simple, the compound target is not supported as **target_primary**.
 
 The right value of an assignment statement is a conditional expression, which is discussed separately.
 
-An augmented assignment, which has the form `lhs op= rhs` updates the variable `lhs` by applying a binary arithmetic operator op (one of +, -, \*, /, //, %, &, |, ^, <<, >>) to the previous value of `lhs` and the value of `rhs`.
+An augmented assignment, which has the form `lhs op= rhs` updates the variable `lhs` by applying a binary operator op (one of +, -, \*, /, //, %, &, |, ^, <<, >>) to the previous value of `lhs` and the value of `rhs`. While most of these are arithmetic operators, some have additional semantics for other types. See **expressions** spec for more details of these operators in **Arithmetic Operations**.
 
 The **target_primary** on the left-hand side is the same as assignment statement. Examples:
 
@@ -63,11 +63,14 @@ _filename += ".k"
 
 There is no concept of in-place modification in KCL. The `aug_assign` statement will modify a copy of the **target_primary** and assign the copy to **target_primary**.
 
-In particular, in KCL, the `|=` symbol represents the **union** operation, which is defined as follows:
+In particular, in KCL, the `|` operator (and thus `|=`) has different semantics depending on the operand types:
 
-- The behavior of the **union** operation needs to be consistent with the behavior of the **configuration definition**.
+- For integers, it computes bitwise OR.
+- For lists, it performs a union by index, overwriting elements in the left operand with corresponding elements from the right operand.
+- For dicts, it performs a union by key, with right operand values taking precedence for shared keys.
+- For schemas, it performs a union similar to dicts.
 
-See **expressions** spec for more details of union operator in **Arithmetic Operations**.
+The behavior of the **union** operation on collections is consistent with the behavior of **configuration definition**.
 
 #### Expression Statements
 
