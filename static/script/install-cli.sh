@@ -164,7 +164,7 @@ downloadFile() {
         error "Failed to download $DOWNLOAD_URL ..."
         exit 1
     else
-        info "Scucessful to download $DOWNLOAD_URL"
+        info "Successful to download $DOWNLOAD_URL"
     fi
 }
 
@@ -230,7 +230,7 @@ updateProfile() {
     else
         if ! command grep -qc 'KCL_HOME' "$detected_profile"; then
             info "The KCL PATH string is"
-            info $path_str
+            info "$path_str"
             command printf "$path_str" >> "$detected_profile"
         else
             warn "Your profile ($detected_profile) already mentions kcl and has not been changed."
@@ -330,8 +330,8 @@ cleanup() {
 
 installCompleted() {
     echo -e "\nPlease add ${KCL_INSTALL_DIR}/bin into your PATH"
-    echo -e "Remeber run the command source ~/.bash_profile or source ~/.bashrc to ensure your PATH is effective"
-    echo -e "Reopen a terminal and execute the kcl --help command to ensure successful installation"
+    echo -e "Remember to run the command 'source ~/.bash_profile' or 'source ~/.bashrc' to ensure your PATH is effective"
+    echo -e "Reopen a terminal and execute the 'kcl --help' command to ensure successful installation"
     echo -e "\nTo get started with KCL, please visit https://kcl-lang.io/docs/user_docs/getting-started/kcl-quick-start"
 }
 
@@ -343,32 +343,30 @@ trap "fail_trap" EXIT
 getSystemInfo
 checkHttpRequestCLI
 
-# Get version from environment variable or arguments
-KCL_VERSION_TO_INSTALL=""
-if [ -n "$KCL_VERSION" ]; then
-    KCL_VERSION_TO_INSTALL=$KCL_VERSION
-else
-    while [[ $# -gt 0 ]]; do
-        case $1 in
-            -v|--version)
-                KCL_VERSION_TO_INSTALL="$2"
-                shift # past argument
-                shift # past value
-                ;;
-            *)
-                KCL_VERSION_TO_INSTALL="$1"
-                shift # past argument
-                ;;
-        esac
-    done
-fi
+# Default to environment variable if set
+KCL_VERSION_TO_INSTALL="${KCL_VERSION:-}"
 
+# Parse command line arguments (arguments override env var)
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -v|--version)
+            KCL_VERSION_TO_INSTALL="$2"
+            shift 2 # past argument and value
+            ;;
+        *)
+            shift # ignore other arguments
+            ;;
+    esac
+done
+
+# Normalize version and fetch
 if [ -n "$KCL_VERSION_TO_INSTALL" ]; then
-    if [[ ! $KCL_VERSION_TO_INSTALL == v* ]]; then
+    if [[ $KCL_VERSION_TO_INSTALL != v* ]]; then
         ret_val="v$KCL_VERSION_TO_INSTALL"
     else
         ret_val="$KCL_VERSION_TO_INSTALL"
     fi
+    info "Using specified KCL version: $ret_val"
 else
     info "Getting the latest KCL ..."
     getLatestRelease
