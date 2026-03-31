@@ -2731,3 +2731,15 @@ The output maybe as follows with the command `kcl run main.k -H`
 a: 1
 _b: 2
 ```
+
+## 71. Any in dict, allow using any type
+
+In KCL, if you want a dictionary to accept any type of value, you should use the lowercase `any` keyword or omit the value type entirely. Do not use the capitalized `Any`. 
+
+Here is an example:
+
+```python
+config1: {str:any} = {'key1': 'value', 'key2': 1}
+
+config2: {str:} = {'key': 'value'}
+```
