@@ -154,14 +154,23 @@ downloadFile() {
     ARTIFACT_TMP_FILE="$KCL_TMP_ROOT/$KCL_CLI_ARTIFACT"
 
     info "Downloading $DOWNLOAD_URL ..."
+    local download_failed=false
+
     if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-        curl -SsL "$DOWNLOAD_URL" -o "$ARTIFACT_TMP_FILE"
+        if ! curl -f -SsL "$DOWNLOAD_URL" -o "$ARTIFACT_TMP_FILE"; then
+            download_failed=true
+        fi
     else
-        wget -q -O "$ARTIFACT_TMP_FILE" "$DOWNLOAD_URL"
+        if ! wget -q -O "$ARTIFACT_TMP_FILE" "$DOWNLOAD_URL"; then
+            download_failed=true
+        fi
     fi
 
-    if [ ! -f "$ARTIFACT_TMP_FILE" ]; then
-        error "Failed to download $DOWNLOAD_URL ..."
+    if [ "$download_failed" = true ] || [ ! -f "$ARTIFACT_TMP_FILE" ]; then
+        error "Failed to download $DOWNLOAD_URL"
+        error "The release asset might be missing for your system in version ${LATEST_RELEASE_TAG}."
+        info "You can try installing a specific stable version instead by running:"
+        info "  curl -fsSL https://kcl-lang.io/script/install-cli.sh | bash -s -- -v 0.12.3"
         exit 1
     else
         info "Successful to download $DOWNLOAD_URL"
@@ -191,7 +200,11 @@ isReleaseAvailable() {
 }
 
 installFile() {
-    tar xf $ARTIFACT_TMP_FILE -C $KCL_TMP_ROOT
+    if ! tar xf "$ARTIFACT_TMP_FILE" -C "$KCL_TMP_ROOT" 2>/dev/null; then
+        error "Failed to unpack KCL executable. The downloaded file might be corrupted or not a valid tar archive."
+        exit 1
+    fi
+    
     local tmp_kcl_folder=$KCL_TMP_ROOT
 
     if [ ! -f "$tmp_kcl_folder/kcl" ]; then
