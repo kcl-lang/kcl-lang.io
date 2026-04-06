@@ -8,19 +8,11 @@
     ],
     string: [
       {
-        pattern: /"""[\s\S]*?"""/,
+        pattern: /r?(""".*?(?<!\\)(\\\\)*?"""|'''.*?(?<!\\)(\\\\)*?''')/is,
         greedy: true,
       },
       {
-        pattern: /'''[\s\S]*?'''/,
-        greedy: true,
-      },
-      {
-        pattern: /r"(?:[^"\\]|\\.)*"|R"(?:[^"\\]|\\.)*"/,
-        greedy: true,
-      },
-      {
-        pattern: /"(?:[^"\\\r\n]|\\.|\$\{[^}]*\})*"/,
+        pattern: /r?("(?!"").*?(?<!\\)(\\\\)*?"|'(?!'').*?(?<!\\)(\\\\)*?')/i,
         greedy: true,
       },
     ],
@@ -30,12 +22,18 @@
     builtin: /\b(?:int|float|bool|str|any)\b/,
     constant: /\b(?:None|Undefined)\b/,
     number: [
-      // Hex, Octal, Binary
-      /\b0[xXoObB][0-9a-fA-F_]+/,
+      // Float
+      /(([-+]?\d+\.\d*|\.\d+)(e[-+]?\d+)?|\d+(e[-+]?\d+))/i,
+      // Hex
+      /\-?0[xX][0-9a-fA-F]+/i,
+      // Octal
+      /\-?0[oO]?[0-7]+/i,
+      // Binary
+      /\-?0[bB][0-1]+/i,
       // Integers with unit multipliers (n, u, m, k, K, M, G, T, P, Ki, Mi, Gi, Ti, Pi)
       /\b[0-9][0-9_]*(?:n|u|m|k|K|M|G|T|P|Ki|Mi|Gi|Ti|Pi)?\b/,
-      // Floats
-      /\b(?:\d+\.\d*|\.\d+)(?:[eE][+-]?\d+)?/,
+      // Decimal
+      /\-?0|\-?[1-9]\d*/i,
     ],
     decorator: {
       pattern: /@[a-zA-Z_]\w*/,
