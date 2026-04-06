@@ -45,10 +45,10 @@ Float, floating-point, approximation to real numbers, positive or negative, cont
 a = 1.10
 b = 1.0
 c = -35.59
-d = 32.3+e18
+d = 32.3e+18
 f = -90.
 g = -32.54e100
-h = 70.2-E12
+h = 70.2E-12
 i = float("112")  # float constructor
 ```
 
