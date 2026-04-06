@@ -20,7 +20,7 @@ sidebar_label: 最佳实践
 
 正如 web 应用会提供友好的用户界面，而在应用的后端对用户输入进行进一步推演得到最终落库的数据，类似地，使用 KCL 进行模型设计时同样遵循前后端分离的逻辑。此外当下游所需的数据内容发生变化时，我们仅需修改用户配置数据到后端模型的渲染/逻辑即可，从而避免了大规模修改用户配置的情况。以应用服务的 sidecar 配置为例，直接暴露给用户的只有 `user_sidecar_feature_gates`，而最终交给下游处理的数据中，则应是把 `user_sidecar_feature_gates` 作为 `sidecars` 配置的一部分包装起来的结果。比如如下代码：
 
-```python
+```kcl
 # 用户可配的：
 user_sidecar_feature_gates: str
 
@@ -43,7 +43,7 @@ sidecars = [
 
 - 前端模型属性 `overQuota`
 
-```python
+```kcl
 overQuota: bool
 ```
 
@@ -66,7 +66,7 @@ spec:
 
 此外也可以根据具体的业务场景设计不同的模版名称来填空，比如如下所示的代码设计一个属性 template 来辅助用户做模版的选择而不是直接填入模板内容。合法的 template 值可以为 "success_ratio" 或者 "service_cost", 当后端模型扩展更多的模版时，前端代码无需作出任何修改，仅需在后端模型中适配相应模板逻辑即可。
 
-```python
+```kcl
 schema SLI:
     template: str = "success_ratio"
 ```
@@ -77,7 +77,7 @@ schema SLI:
 
 在上述小节提到了可以使用一个字符串属性表示不同的模板名称，更进一步地是可以使用字面值类型表述 template 可选的内容，比如可以进行如下改进。
 
-```python
+```kcl
 schema SLI:
     template: "success_ratio" | "service_cost" = "success_ratio"
 ```
@@ -86,7 +86,7 @@ schema SLI:
 
 除了对字面值类型使用联合类型外，KCL 还支持对复杂类型如 schema 类型的联合。对于这种后端 oneof 配置的支持，KCL 内置了复合结构的联合类型进行支持。比如我们可以针对多种种场景定义自己的 SLI 前端类型：CustomSliDataSource，PQLSLIDataSource 和 StackSLIDataSource。
 
-```python
+```kcl
 schema CustomSLIDataSource:
     customPluginUrl: str
 
@@ -115,7 +115,7 @@ schema DataConfiguration:
 
 KCL 中书写工厂模式
 
-```python
+```kcl
 schema DataA:
     id?: int = 1
     value?: str = "value"
@@ -133,7 +133,7 @@ dataB = _dataFactory["DataB"]()
 
 使用联合类型替换工厂模式
 
-```python
+```kcl
 schema DataA:
     id?: int = 1
     value?: str = "value"
@@ -150,7 +150,7 @@ dataB: DataA | DataB = DataB()
 
 为了便于作配置的原地修改或者程序自动化查询修改，尽量将列表/数组属性定义为字典类型方便索引，因为在大部分配置场景对于复杂结构的列表类型，列表的索引 0, 1, 2, ..., n 不具备任何业务含义，列表中元素的顺序对该列表配置无任何影响，此时采用字典类型而不是列表类型更方便数据的查询与修改。首先以一个简单例子举例：
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -174,7 +174,7 @@ house = House {
 
 比如在上述例子中，想要查询 name 为 "Alice" 的年龄 age, 就需要在 house.persons 这个列表中作遍历才能很查询到 Alice 的 age。而将 persons 定义为如下代码所示的字典，不仅从代码上看起来更加简洁，并且可以通过 house.persons.Alice.age 直接获得 Alice 的 age，并且整个配置的信息完整且无冗余信息。
 
-```python
+```kcl
 schema Person:
     age: int
 
@@ -195,7 +195,7 @@ house = House {
 
 使用 all/any 表达式与 check 表达式进行校验
 
-```python
+```kcl
 import regex
 
 schema ConfigMap:
@@ -221,7 +221,7 @@ schema ConfigMount:
 
 KCL 中带单位的数字具有一个内置的类型 units.NumberMultiplier, 不允许进行任意四则运算。
 
-```python
+```kcl
 import units
 
 type NumberMultiplier = units.NumberMultiplier
@@ -233,14 +233,14 @@ x2 = x0 + x1  # Error: unsupported operand type(s) for +: 'number_multiplier(1M)
 
 可以使用 `int()/float()` 函数和 `str()` 函数将数字单位类型转换为整数类型或者字符串类型，产生的字符串保留原有数字单位类型的单位。
 
-```python
+```kcl
 a: int = int(1Ki)  # 1024
 b: str = str(1Mi)  # "1Mi"
 ```
 
 对于在 Konfig 中的 Kubernetes Resource 资源相关的定义均可使用数值单位类型进行书写
 
-```python
+```kcl
 import units
 
 type NumberMultiplier = units.NumberMultiplier
@@ -256,7 +256,7 @@ schema Resource:
 
 在 KCL，可以通过命令行和 API 界面实现对前端模型实例的自动化修改，比如想要修改某个应用（Konfig Stack Path: appops/nginx-example/dev）配置的镜像内容，可以直接执行如下指令修改镜像
 
-```python
+```kcl
 kcl -Y kcl.yaml ci-test/settings.yaml -o ci-test/stdout.golden.yaml -d -O :appConfiguration.image=\"test-image-v1\"
 ```
 

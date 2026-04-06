@@ -95,7 +95,7 @@ kcl mod init kcl-play-svc && cd kcl-play-svc && kcl mod add oam
 
 - 在 main.k 中编写如下代码
 
-```python
+```kcl
 import oam
 
 oam.Application {

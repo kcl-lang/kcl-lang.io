@@ -84,7 +84,7 @@ KCL Import 工具在 Protobuf, OpenAPI 模型和 Go 结构体转换为 KCL Schem
 
 经过 KCL Import 工具可以输出为如下 KCL 代码
 
-```python
+```kcl
 schema Customer:
     """
     Customer

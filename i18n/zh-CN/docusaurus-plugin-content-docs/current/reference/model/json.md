@@ -8,7 +8,7 @@ weight: 100
 
 ## encode
 
-```python
+```kcl
 encode(
     data: any,
     sort_keys: bool = False,
@@ -20,7 +20,7 @@ encode(
 
 将 KCL 对象 `data` 序列化为 JSON 格式的字符串。
 
-```python
+```kcl
 import json
 
 data = {
@@ -37,7 +37,7 @@ data_string = json.encode(data)
 
 反序列化 `value`（一个包含 JSON 格式文档的字符串实例）为一个 KCL 对象。
 
-```python
+```kcl
 import file
 import json
 
@@ -50,7 +50,7 @@ data = data_string.data
 
 ## dump_to_file
 
-```python
+```kcl
 dump_to_file(
     data: any,
     filename: str,
@@ -63,7 +63,7 @@ dump_to_file(
 
 将 KCL 对象 `data` 序列化为 JSON 格式的字符串，并将其写入文件 `filename` 中。
 
-```python
+```kcl
 import json
 
 schema Person:
@@ -82,13 +82,13 @@ json.dump_to_file(person, filename, indent=4, ignore_private=True, ignore_none=T
 
 ## validate
 
-```python
+```kcl
 validate(value: str) -> bool
 ```
 
 验证给定的字符串是否是一个合法的 JSON 字符串。
 
-```python
+```kcl
 import json
 
 # Right cases

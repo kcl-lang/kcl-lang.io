@@ -29,7 +29,7 @@ Learning this codelab only requires basic programming knowledge, and experience 
 
 Generate a simple config by creating a `my_config.k`, we can fill in the following code without strict format which describes the configuration of deploy.
 
-```python
+```kcl
 cpu = 256
 memory = 512
 image = "nginx:1.14.2"
@@ -70,11 +70,11 @@ Here is a sample to show how to adjust the resource with conditions.
 
 KCL command:
 
-```python
+```kcl
 kcl my_config.k
 ```
 
-```python
+```kcl
 _priority = 1 # a non-exported and mutable variable
 _cpu = 256 # a non-exported and mutable variable
 
@@ -95,7 +95,7 @@ service = "my-service"
 
 Run with KCL, we will see the generated data in yaml format as below:
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -118,7 +118,7 @@ We can use collections to represent complex data types. The collections which ar
 - list
 - dict
 
-```python
+```kcl
 _priority = 1  # a non-exported and mutable variable
 _cpu = 256  # a non-exported and mutable variable
 
@@ -166,7 +166,7 @@ service: my-service
 
 We can combine logical expressions, comprehensions, slices, unions and other characteristics to dynamically add elements to the collection
 
-```python
+```kcl
 _priority = 1 # a non-exported and mutable variable
 _cpu = 256 # a non-exported and mutable variable
 _env = "pre-prod"
@@ -197,7 +197,7 @@ service = "my-service"
 
 Run with kcl, we will see the generated data as yaml format as below:
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -220,7 +220,7 @@ service: my-service
 
 To make code testable and robust, we can verify config data with assertions.
 
-```python
+```kcl
 _priority = 1 # a non-exported and mutable variable
 _cpu = 256 # a non-exported and mutable variable
 
@@ -273,7 +273,7 @@ service: my-service
 
 What's more, we can use built-in functions to help we debug or simplify coding.
 
-```python
+```kcl
 _priority = 1  # a non-exported and mutable variable
 _cpu = 256  # a non-exported and mutable variable
 
@@ -341,7 +341,7 @@ To make our code well-organized, we can simply separate our code to `my_config.k
 
 Config data defined in `my_config.k`,
 
-```python
+```kcl
 _priority = 1  # a non-exported and mutable variable
 _cpu = 256  # a non-exported and mutable variable
 
@@ -369,7 +369,7 @@ service = "my-service"
 
 And test code defined in `my_config_test.k`, in which we can import `my_config.k`:
 
-```python
+```kcl
 import my_config
 
 # debugging
@@ -390,7 +390,7 @@ In this case, we can pass in `priority` and `env` on demand:
 - Pass in arguments: `-D priority=1 -D env=pre-prod`
 - Get value by `option` keyword in KCL code
 
-```python
+```kcl
 _priority = option("priority") # a non-exported and mutable variable
 _env = option("env") # a non-exported and mutable variable
 _cpu = 256 # a non-exported and mutable variable
@@ -441,7 +441,7 @@ service: my-service
 
 When we need to write complex logic, we can use dict to simplify the writing of logic.
 
-```python
+```kcl
 _priority = option("priority") # a non-exported and mutable variable
 _env = option("env") # a non-exported and mutable variable
 _priorityCpuMap = {

@@ -31,7 +31,7 @@ KCL 是一种简单易用的配置语言，用户可以简单地编写可重用�
 
 假设我们希望定义一个具有特定属性的工作负载，我们可以通过创建一个 `my_config.k` 文件来创建一个简单的配置。我们可以按以下方式填写下面的代码，定义一个可重复使用的部署配置的 schema：
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -47,7 +47,7 @@ schema Deployment:
 
 另外，每个属性都**必须**被赋予非 None 值作为 schema 实例，除非它被标记问号 **?** 而作为可选参数。
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -68,7 +68,7 @@ schema Deployment:
 
 Suppose we need to set default values to service and replica, we can make them as below:
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -82,7 +82,7 @@ schema Deployment:
 
 And then we can set the service type annotation as the string literal type to make it immutable:
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -102,7 +102,7 @@ Specially, we can define a string-interface dict as `{str:}`, and in case we wan
 
 现在我们有了一个简单的 schema 定义，我们可以用它来定义配置：
 
-```python
+```kcl
 nginx = Deployment {
     name = "my-nginx"
     cpu = 256
@@ -120,7 +120,7 @@ nginx = Deployment {
 
 KCL 命令：
 
-```python
+```kcl
     kcl my_config.k
 ```
 
@@ -145,7 +145,7 @@ nginx:
 
 此外，**配置选择器表达式**（config selector expressions）可以用于初始化 schema 实例，我们可以忽略配置表达式中行末的逗号。
 
-```python
+```kcl
 nginx = Deployment {
     name = "my-nginx"
     cpu = 256
@@ -161,7 +161,7 @@ nginx = Deployment {
 
 假设我们有一些schema逻辑，我们可以将它包装进 schema 中：
 
-```python
+```kcl
 schema Deployment[priority]:
     name: str
     cpu: int = _cpu
@@ -185,7 +185,7 @@ schema Deployment[priority]:
 
 现在，我们可以通过创建 schema 实例来定义配置，并将优先级作为参数传递给模式：
 
-```python
+```kcl
 nginx = Deployment(priority=2) {
     name = "my-nginx"
     image = "nginx:1.14.2"
@@ -199,7 +199,7 @@ nginx = Deployment(priority=2) {
 
 KCL 命令：
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -224,7 +224,7 @@ nginx:
 
 现在我们想要定义一个详细的 schema，包括服务（service）和卷（volumes），我们可以按以下方式进行操作：
 
-```python
+```kcl
 schema Deployment[priority]:
     name: str
     cpu: int = _cpu
@@ -269,7 +269,7 @@ schema Volume:
 
 使用 KCL，我们可以使用简单的字典声明创建配置，并具有完整的 schema 初始化和验证功能。例如，我们可以按照以下方式使用新的 Deployment schema简单地配置 nginx：
 
-```python
+```kcl
 nginx = Deployment(priority=2) {
     name = "my-nginx"
     image = "nginx:1.14.2"
@@ -294,7 +294,7 @@ nginx = Deployment(priority=2) {
 
 KCL 命令：
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -327,7 +327,7 @@ nginx:
 
 请注意，我们用于定义 Deployment 配置的字典必须与 schema 定义对齐，否则我们将会得到一个错误。例如，假设我们将服务端口的类型定义错误如下：
 
-```python
+```kcl
 nginx = Deployment(priority=2) {
     name = "my-nginx"
     image = "nginx:1.14.2"
@@ -352,7 +352,7 @@ nginx = Deployment(priority=2) {
 
 KCL 命令：
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -368,7 +368,7 @@ The type got is inconsistent with the type expected: expect int, got [int(80)]
 
 但是这还不够好，我们希望为我们的 schema 支持更多的增强验证，以便尽快发现 schema 和配置中的代码错误。许多验证规则，如 None 类型检查、范围检查、值检查、长度检查、正则表达式匹配、枚举检查已经被添加或陆续添加进来。以下是一段代码示例：
 
-```python
+```kcl
 import regex
 
 schema Deployment[priority]:
@@ -425,7 +425,7 @@ schema Volume:
 
 由于schema定义的属性默认是**必需的**（required），因此可以省略判断变量不能为 None/Undefined 的验证。
 
-```python
+```kcl
 schema Volume:
     name: str
     mountPath: str
@@ -434,7 +434,7 @@ schema Volume:
 
 现在我们可以基于新的 schema 编写配置，并及时暴露配置错误。例如，使用以下无效的配置：
 
-```python
+```kcl
 nginx = Deployment(priority=2) {
     name = "my-nginx"
     image = "nginx:1142"  # 镜像值不匹配正则表达式
@@ -461,7 +461,7 @@ nginx = Deployment(priority=2) {
 
 KCL 命令：
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -481,7 +481,7 @@ Schema check is failed to check condition: regex.match(image, "^[a-zA-Z]+:\d+\.\
 
 例如，我们可以使用部署 schema 作为基础，来定义 nginx 的基本 schema，并在每个场景中扩展定义。在这种情况下，我们定义了一些常用的属性。请注意，我们使用“final”关键字将名称标记为不可变，以防止被覆盖。
 
-```python
+```kcl
 schema Nginx(Deployment):
     """ A base nginx schema """
     name: "my-nginx" = "my-nginx"
@@ -510,14 +510,14 @@ schema NginxProd(Nginx):
 
 现在我们有了一些 nginx 的静态配置。建议将我们认为是静态的配置声明在那里，并将更多的动态配置放在下面：
 
-```python
+```kcl
 nginx = Nginx {
     labels.run = "my-nginx"
     labels.env = "pre-prod"
 }
 ```
 
-```python
+```kcl
 nginx = NginxProd {
     labels.run = "my-nginx"
     labels.env = "pre-prod"
@@ -532,7 +532,7 @@ nginx = NginxProd {
 
 KCL 命令：
 
-```python
+```kcl
 kcl prod_config.k
 ```
 
@@ -571,7 +571,7 @@ nginx:
 
 例如，我们想要在现有 schema 中支持声明持久卷，作为可重用的 Kubernetes schema。在这种情况下，我们可以通过以下 `mixin` 和 `protocal` 进行包装：
 
-```python
+```kcl
 import kusion_kubernetes.api.core.v1
 
 protocol PVCProtocol:
@@ -600,7 +600,7 @@ mixin PersistentVolumeClaimMixin for PVCProtocol:
 
 有了 PersistentVolumeClaimMixin，我们使用清晰的用户界面（user interface）定义了一个 PVC schema，并使用 Kubernetes PVC 作为实现。然后，我们可以使用 Deployment schema 和 PVC mixin schema 定义一个 server schema。
 
-```python
+```kcl
 schema Server(Deployment):
     mixin [PersistentVolumeClaimMixin]
     pvc?: {str:}
@@ -613,7 +613,7 @@ schema Server(Deployment):
 
 现在，如果我们想要使用 PVC 进行部署，只需声明用户界面：
 
-```python
+```kcl
 server = Server {
     name = "my-nginx"
     image = "nginx:1.14.2"
@@ -646,7 +646,7 @@ server = Server {
 
 KCL 命令：
 
-```python
+```kcl
 kcl server.k
 ```
 
@@ -703,7 +703,7 @@ spec:
 
 可以通过导入来共享 Server schema，我们只需要将代码与 KCL 一起打包即可。
 
-```python
+```kcl
 import pkg
 
 server = pkg.Server {
@@ -739,7 +739,7 @@ pkg/
 
 在 `server.k` 中，我们可以只使用 `deploy.k` 中的 Deployment schema 和 `pvc.k` 中的 pvc schema 而无需导入：
 
-```python
+```kcl
 # 无需 import
 schema Server(Deployment):
     mixin [PersistentVolumeClaimMixin]
@@ -749,7 +749,7 @@ schema Server(Deployment):
 
 然后用户必须导入 pkg 才能作为一个整体使用它：
 
-```python
+```kcl
 import pkg
 
 server = pkg.Server {
@@ -776,7 +776,7 @@ server = pkg.Server {
 
 运行 KCL 命令:
 
-```python
+```kcl
 kcl pkg_server.k
 ```
 

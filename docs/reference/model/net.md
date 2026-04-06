@@ -16,7 +16,7 @@ Returns a list containing the `host` and `port`, respectively.
 An IPv6 literal in the `ip_end_point` must be enclosed in square brackets and will be returned
 without the enclosing brackets.
 
-```python
+```kcl
 import net
 
 assert net.split_host_port("B-K0NZJGH6-0048.local:80") == ["B-K0NZJGH6-0048.local", "80"]
@@ -30,7 +30,7 @@ assert net.split_host_port("[::1]:80") == ["::1", "80"]
 Combines `host` and `port` into a network address of the form `host:port`.
 If `host` contains a colon, as found in an IPv6 address literal, then returns `[host]:port`.
 
-```python
+```kcl
 import net
 
 assert net.join_host_port("B-K0NZJGH6-0048.local", 80) == "B-K0NZJGH6-0048.local:80"
@@ -48,7 +48,7 @@ hostname for the forward DNS lookup.
 
 This function is not supported on the WASM target.
 
-```python
+```kcl
 import net
 
 fqdn = net.fqdn()
@@ -61,7 +61,7 @@ fqdn = net.fqdn()
 Parses the IP address `ip` and returns it in canonical form. If `ip` does
 not have valid syntax, returns the empty string.
 
-```python
+```kcl
 import net
 
 assert net.parse_IP("192.168.0.1") == "192.168.0.1"
@@ -75,7 +75,7 @@ assert net.parse_IP("invalid") == ""
 
 A synonym for `parse_IP()`.
 
-```python
+```kcl
 import net
 
 ip = net.to_IP4("192.168.0.1")
@@ -87,7 +87,7 @@ ip = net.to_IP4("192.168.0.1")
 
 A synonym for `parse_IP()`.
 
-```python
+```kcl
 import net
 
 ip = net.to_IP16("192.168.0.1")
@@ -99,7 +99,7 @@ ip = net.to_IP16("192.168.0.1")
 
 A synonym for `parse_IP()`.
 
-```python
+```kcl
 import net
 
 ip = net.IP_string("192.168.0.1")
@@ -111,7 +111,7 @@ ip = net.IP_string("192.168.0.1")
 
 If `ip` is a valid IPv4 address, returns `True`. Otherwise, returns `False`.
 
-```python
+```kcl
 import net
 
 assert net.is_IPv4("192.168.0.1") == True
@@ -125,7 +125,7 @@ assert net.is_IPv4("invalid") == False
 
 If `ip` is a valid IPv4 or IPv6 address, returns `True`. Otherwise, returns `False`.
 
-```python
+```kcl
 import net
 
 assert net.is_IPv4("192.168.0.1") == True
@@ -139,7 +139,7 @@ assert net.is_IPv4("invalid") == False
 
 If `ip` is an IPv4 or IPv6 loopback address, returns `True`. Otherwise, returns `False`.
 
-```python
+```kcl
 import net
 
 assert net.is_loopback_IP("127.0.0.1") == True
@@ -156,7 +156,7 @@ assert net.is_loopback_IP("invalid") == False
 
 If `ip` is an IPv4 or IPv6 multicast address, returns `True`. Otherwise, returns `False`.
 
-```python
+```kcl
 import net
 
 assert net.is_multicast_IP("239.255.255.255") == True
@@ -172,7 +172,7 @@ assert net.is_multicast_IP("invalid") == False
 
 Whether `ip` is a interface, local and multicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_interface_local_multicast_IP("239.255.255.255")
@@ -184,7 +184,7 @@ isip = net.is_interface_local_multicast_IP("239.255.255.255")
 
 Whether `ip` is a link local and multicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_link_local_multicast_IP("224.0.0.0")
@@ -196,7 +196,7 @@ isip = net.is_link_local_multicast_IP("224.0.0.0")
 
 Whether `ip` is a link local and unicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_link_local_unicast_IP("fe80::2012:1")
@@ -208,7 +208,7 @@ isip = net.is_link_local_unicast_IP("fe80::2012:1")
 
 Whether `ip` is a global and unicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_global_unicast_IP("220.181.108.89")
@@ -220,7 +220,7 @@ isip = net.is_global_unicast_IP("220.181.108.89")
 
 If `ip` is the IPv4 or IPv6 unspecified address, returns `True`. Otherwise, returns `False`.
 
-```python
+```kcl
 import net
 
 assert net.is_unspecified_IP("0.0.0.0") == True
@@ -241,7 +241,7 @@ If `cidr` parses, the returned dict has two members:
 
 If `cidr` does not parse, returns the empty dict, `{}`.
 
-```python
+```kcl
 import net
 
 assert net.parse_CIDR("10.0.0.0/8") == { ip: "10.0.0.0", mask: 8 }
@@ -258,7 +258,7 @@ If `ip` is contained in `cidr`, returns `True`. Otherwise, returns `False`.
 If `ip` is an IPv4 address and `cidr` is an IPv6 CIDR, treats `ip` as
 if it were encoded as an IPv4-mapped IPv6 address.
 
-```python
+```kcl
 import net
 
 assert net.is_IP_in_CIDR("10.1.2.3", "10.0.0.0/8")
@@ -279,7 +279,7 @@ a `/18` and `additional_bits` is `6`, then the result will be a `/24`.
 
 `net_num` is a non-negative number used to populate the bits added to the prefix.
 
-```python
+```kcl
 import net
 
 assert net.CIDR_subnet("10.0.0.0/8", 8, 11) == "10.11.0.0/16"
@@ -297,7 +297,7 @@ of `cidr`. Returns a list of the allocated subnet CIDRs.
 If later called with the same `cidr` and an `additional_bits` with only additions
 on the end, will return the same allocations for those previous `additional_bits`.
 
-```python
+```kcl
 import net
 
 assert net.CIDR_subnets("10.0.0.0/8", [8, 9, 8]) == ["10.0.0.0/16", "10.1.0.0/17", "10.2.0.0/16"]
@@ -313,7 +313,7 @@ Calculates an IP for a host within `cidr`.
 `host_num` is a number used to populate the bits added to the prefix. If the number is negative,
 the count starts from the end of the range.
 
-```python
+```kcl
 import net
 
 assert net.CIDR_host("10.0.0.0/8", 11) == "10.0.0.11"
@@ -327,7 +327,7 @@ assert net.CIDR_host("2001:db8::/56", 10) == "2001:db8::a"
 
 Returns the netmask for the IPv4 subnet `cidr`.
 
-```python
+```kcl
 import net
 
 assert net.CIDR_netmask("10.0.0.0/8") == "10.255.255.255"

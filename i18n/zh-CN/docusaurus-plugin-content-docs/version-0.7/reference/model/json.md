@@ -8,7 +8,7 @@ weight: 100
 
 ## encode
 
-```python
+```kcl
 encode(
     data: any,
     sort_keys: bool = False,
@@ -28,7 +28,7 @@ encode(
 
 ## dump_to_file
 
-```python
+```kcl
 dump_to_file(
     data: any,
     filename: str,
@@ -43,7 +43,7 @@ dump_to_file(
 
 ## validate
 
-```python
+```kcl
 validate(value: str) -> bool
 ```
 

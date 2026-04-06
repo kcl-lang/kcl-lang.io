@@ -48,7 +48,7 @@ cat config/main.k
 
 The output is
 
-```python
+```kcl
 import .app
 
 config = app.App {

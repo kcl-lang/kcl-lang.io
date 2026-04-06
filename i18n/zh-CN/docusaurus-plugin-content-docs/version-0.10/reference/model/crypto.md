@@ -12,7 +12,7 @@ weight: 100
 
 使用注册编码器和 `MD5` 算法对字符串 `value` 进行加密。
 
-```python
+```kcl
 import crypto
 
 md5 = crypto.md5("ABCDEF")
@@ -24,7 +24,7 @@ md5 = crypto.md5("ABCDEF")
 
 使用注册编码器和 `SHA1` 算法对字符串 `value` 进行加密。
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha1("ABCDEF")
@@ -36,7 +36,7 @@ sha = crypto.sha1("ABCDEF")
 
 使用注册编码器和 `SHA224` 算法对字符串 `value` 进行加密。
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha224("ABCDEF")
@@ -48,7 +48,7 @@ sha = crypto.sha224("ABCDEF")
 
 使用注册编码器和 `SHA256` 算法对字符串 `value` 进行加密。
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha256("ABCDEF")
@@ -60,7 +60,7 @@ sha = crypto.sha256("ABCDEF")
 
 使用注册编码器和 `SHA384` 算法对字符串 `value` 进行加密。
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha384("ABCDEF")
@@ -72,7 +72,7 @@ sha = crypto.sha384("ABCDEF")
 
 使用注册编码器和 `SHA512` 算法对字符串 `value` 进行加密。
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha512("ABCDEF")
@@ -84,7 +84,7 @@ sha = crypto.sha512("ABCDEF")
 
 使用注册编码器和 `BLAKE3` 算法对字符串 `value` 进行加密。
 
-```python
+```kcl
 import crypto
 
 blake3 = crypto.blake3("ABCDEF")
@@ -96,7 +96,7 @@ blake3 = crypto.blake3("ABCDEF")
 
 生成一个随机 UUID 字符串。
 
-```python
+```kcl
 import crypto
 
 a = crypto.uuid()
@@ -108,7 +108,7 @@ a = crypto.uuid()
 
 计算文件 `filepath` 的 SHA256 哈希。
 
-```python
+```kcl
 import crypto
 
 sha = crypto.filesha256("test.txt")

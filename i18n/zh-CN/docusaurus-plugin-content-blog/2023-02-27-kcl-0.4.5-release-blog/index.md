@@ -25,7 +25,7 @@ KCL 团队很高兴地宣布 KCL v0.4.5 版本现在已经可用！本次发布�
 
 在之前的 KCL 版本中，我们已经支持了 schema 属性互相引用（包含继承）以及 check 校验表达式的惰性求值与校验能力，在此次版本更新中，我们支持了更多的 schema 惰性求值能力: Schema 属性非空惰性校验。比如对于下述的 KCL 的代码：
 
-```python
+```kcl
 schema Spec:
     id: int
     value: str
@@ -58,7 +58,7 @@ config:
 
 在 v0.4.5 之前的版本中，KCL 尚未支持配置块内部的属性互相引用，导致在某些场景中会需要定义额外的配置变量或者模版来进行引用，会产生较多的配置模版和重复代码，比如对于如下所示的 KCL 代码：
 
-```python
+```kcl
 name = "app-name"
 data = {
     name = name
@@ -70,7 +70,7 @@ data = {
 
 而在 KCL 的 v0.4.5 版本更新后，我们支持了配置块属性互相引用的特性，可以用于消除更多的配置模版，比如如下所示的 KCL 代码：
 
-```python
+```kcl
 data = {
     name = "app-name"
     metadata.name = name  # 直接引用 `data` 配置的 name 属性
@@ -90,7 +90,7 @@ data:
 
 下面是一个更复杂的例子
 
-```python
+```kcl
 name = "global-name"
 metadata = {
     name = "metadata-name"
@@ -141,7 +141,7 @@ data:
 
 比如对于如下的 KCL 代码
 
-```python
+```kcl
 # 0[0] 表示取 ["Hello", "World"] 的第 0 个元素："Hello"
 # 0[1] 表示取 ["Hello", "World"] 的第 1 个元素："World"
 listIndexFormat = "{0[0]}{0[1]}".format(["Hello", "World"])
@@ -195,7 +195,7 @@ powershell -Command "iwr -useb https://kcl-lang.io/script/install.ps1 | iex"
 
 ### 当存在非配置表达式的右值时配置合并顺序错误
 
-```python
+```kcl
 schema Resource:
     cpu: int
     memory: str
@@ -222,7 +222,7 @@ config: Config {
 
 在 KCL v0.4.5 版本之前，执行上述代码 (main.k) 会得到非预期的配置值，是因为 KCL 编译器错误地优化了如下形式等效合并配置块
 
-```python
+```kcl
 config: Config {
     resource: r
     resource: Resource {
@@ -248,7 +248,7 @@ config:
 
 ### 配置 if 表达式类型不匹配错误优化
 
-```python
+```kcl
 config: {"A"|"B": int} = {
     if True:
         A = "2"
@@ -271,7 +271,7 @@ expect {str(A)|str(B):int}, got {str(A):str(2)}
 
 在之前的 KCL 版本中，在使用如下 rule 规则代码时 (main.k)，`ServiceCheckRule` 的约束代码会不生效。
 
-```python
+```kcl
 protocol KubeResourceProtocol:
     svc: Service
 
@@ -303,7 +303,7 @@ Check failed on check conditions
 
 ### 配置块属性类型推导优化
 
-```python
+```kcl
 schema Id:
     id?: int = 1
 
@@ -331,7 +331,7 @@ c:
 
 ### 赋值语句使用 schema 类型注解错误优化
 
-```python
+```kcl
 schema Foo:
     foo: int
 
@@ -347,7 +347,7 @@ foo: Foo = Bar {  # v0.4.5 版本之前，此处会得到一个运行时类型�
 
 ### KCL 模块类型使用 ?. 运算符类型错误修复
 
-```python
+```kcl
 import math
 
 data = math?.log(10)  # v0.4.5 版本之前，此处会得到一个非预期的 `math is not defined` 错误

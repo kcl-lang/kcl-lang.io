@@ -60,7 +60,7 @@ KCL 试图提供独立于运行时的可编程性，不在本地提供线程和I
 
 下面是一个用 KCL 生成 kubernetes 资源的例子
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {

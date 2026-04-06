@@ -87,7 +87,7 @@ kcl mod init && kcl mod add strategic_merge_patch
 
 Write the configuration patch code in `main.k` (using the `labels`, `replicas`, and `container` attributes of a `Deployment` template as an example):
 
-```python
+```kcl
 import strategic_merge_patch as s
 
 original = {

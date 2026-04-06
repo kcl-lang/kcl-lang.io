@@ -34,7 +34,7 @@ Execute KCL file with arguments and return the JSON/YAML result.
 
 The content of `schema.k` is
 
-```python
+```kcl
 schema AppConfig:
     replicas: int
 
@@ -66,7 +66,7 @@ Parse KCL single file to Module AST JSON string with import dependencies and par
 
 The content of `schema.k` is
 
-```python
+```kcl
 schema AppConfig:
     replicas: int
 
@@ -97,7 +97,7 @@ Parse KCL program with entry files and return the AST JSON string.
 
 The content of `schema.k` is
 
-```python
+```kcl
 schema AppConfig:
     replicas: int
 
@@ -129,7 +129,7 @@ LoadPackage provides users with the ability to parse KCL program and semantic mo
 
 The content of `schema.k` is
 
-```python
+```kcl
 schema AppConfig:
     replicas: int
 
@@ -163,7 +163,7 @@ ListVariables provides users with the ability to parse KCL program and get all v
 
 The content of `schema.k` is
 
-```python
+```kcl
 schema AppConfig:
     replicas: int
 
@@ -196,7 +196,7 @@ ListOptions provides users with the ability to parse KCL program and get all opt
 
 The content of `options.k` is
 
-```python
+```kcl
 a = option("key1")
 b = option("key2", required=True)
 c = {
@@ -227,7 +227,7 @@ Get schema type mapping defined in the program.
 
 The content of `schema.k` is
 
-```python
+```kcl
 schema AppConfig:
     replicas: int
 
@@ -261,7 +261,7 @@ Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/gu
 
 The content of `main.k` is
 
-```python
+```kcl
 a = 1
 
 b = {
@@ -320,7 +320,7 @@ Format KCL file or directory path contains KCL files and returns the changed fil
 
 The content of `format_path.k` is
 
-```python
+```kcl
 schema Person:
     name:   str
     age:    int
@@ -353,7 +353,7 @@ Lint files and return error messages including errors and warnings.
 
 The content of `lint_path.k` is
 
-```python
+```kcl
 import math
 
 a = 1
@@ -415,7 +415,7 @@ Rename all the occurrences of the target symbol in the files. This API will rewr
 
 The content of `main.k` is
 
-```python
+```kcl
 a = 1
 b = a
 ```
@@ -568,7 +568,7 @@ flask = { git = "https://github.com/kcl-lang/flask-demo-kcl-manifests", commit =
 
 The content of `module/main.k` is
 
-```python
+```kcl
 import helloworld
 import flask
 

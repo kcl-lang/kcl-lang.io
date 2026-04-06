@@ -36,7 +36,7 @@ KCL 是一门面向云原生领域配置策略语言，详细资料可参考[语
 
 基本的 KCL 配置程序仍然遵循 `K=V` 的形式， YAML 比较相似。比如，我们可以用下面的 KCL 代码来重写 Nginx 容器的配置：
 
-```python
+```kcl
 import k8s.api.core.v1 as k8core
 
 k8core.Pod {

@@ -12,7 +12,7 @@ weight: 100
 
 Encode the string `value` using the codec registered for encoding.
 
-```python
+```kcl
 import base64
 
 abcd_base64 = base64.encode("abcd")
@@ -24,7 +24,7 @@ abcd_base64 = base64.encode("abcd")
 
 Decode the string `value` using the codec registered to the utf8 string for encoding.
 
-```python
+```kcl
 import base64
 
 decode = base64.decode("MC4zLjA=")

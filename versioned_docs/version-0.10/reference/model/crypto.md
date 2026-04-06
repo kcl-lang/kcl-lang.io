@@ -12,7 +12,7 @@ weight: 100
 
 Encrypt the string `value` using `MD5` and the codec registered for encoding.
 
-```python
+```kcl
 import crypto
 
 md5 = crypto.md5("ABCDEF")
@@ -24,7 +24,7 @@ md5 = crypto.md5("ABCDEF")
 
 Encrypt the string `value` using `SHA1` and the codec registered for encoding.
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha1("ABCDEF")
@@ -36,7 +36,7 @@ sha = crypto.sha1("ABCDEF")
 
 Encrypt the string `value` using `SHA224` and the codec registered for encoding.
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha224("ABCDEF")
@@ -48,7 +48,7 @@ sha = crypto.sha224("ABCDEF")
 
 Encrypt the string `value` using `SHA256` and the codec registered for encoding.
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha256("ABCDEF")
@@ -60,7 +60,7 @@ sha = crypto.sha256("ABCDEF")
 
 Encrypt the string `value` using `SHA384` and the codec registered for encoding.
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha384("ABCDEF")
@@ -72,7 +72,7 @@ sha = crypto.sha384("ABCDEF")
 
 Encrypt the string `value` using `SHA512` and the codec registered for encoding.
 
-```python
+```kcl
 import crypto
 
 sha = crypto.sha512("ABCDEF")
@@ -84,7 +84,7 @@ sha = crypto.sha512("ABCDEF")
 
 Encrypt the string `value` using `BLAKE3` and the codec registered for encoding.
 
-```python
+```kcl
 import crypto
 
 blake3 = crypto.blake3("ABCDEF")
@@ -96,7 +96,7 @@ blake3 = crypto.blake3("ABCDEF")
 
 Generate a random UUID string.
 
-```python
+```kcl
 import crypto
 
 a = crypto.uuid()
@@ -108,7 +108,7 @@ a = crypto.uuid()
 
 Calculate the SHA256 hash of the file `filepath`.
 
-```python
+```kcl
 import crypto
 
 sha = crypto.filesha256("test.txt")

@@ -20,7 +20,7 @@ const Highlight = ({
   <div>
     <Prism
       {...defaultProps}
-      language="python"
+      language="kcl"
       code={code}
       theme={themes[theme]}
     >

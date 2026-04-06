@@ -44,7 +44,7 @@ image: /img/biweekly-newsletter.png
 
 通过 `difflib` 三方库提供的 `diff` 方法，输出配置差异。
 
-```python
+```kcl
 import difflib
 import yaml
 

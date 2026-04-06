@@ -96,7 +96,7 @@ If you are not familiar with these three contents, you can directly search in th
 
 Based on the documentation, we can write the following deployment config in the `main.k` file:
 
-```python
+```kcl
 import k8s.api.apps.v1 as d
 
 deployment = d.Deployment {
@@ -139,7 +139,7 @@ About `Ingress`, you can find related documentation.
 
 The corresponding `ingress` content is as follows:
 
-```python
+```kcl
 import k8s.api.networking.v1 as i
 
 ingress = i.Ingress {

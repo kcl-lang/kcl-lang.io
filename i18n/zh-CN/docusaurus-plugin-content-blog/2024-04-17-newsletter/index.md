@@ -24,7 +24,7 @@ image: /img/biweekly-newsletter.png
 
 - Schema 的 `instances()` 方法新增关键字参数 `full_pkg` 参数用于读取所有代码中对应 Schema 的实例
 
-```python
+```kcl
 schema Person:
     name: str
 
@@ -34,7 +34,7 @@ all_persons = Person.instances(True)
 
 - 新增 `template` 系统库用于在 KCL 中操作模版
 
-```python
+```kcl
 import template
 
 content = template.execute("""\
@@ -68,7 +68,7 @@ cargo add --git https://github.com/kcl-lang/lib
 
 * `__test__/test_data/schema.k`
 
-```python
+```kcl
 schema AppConfig:
     replicas: int
 

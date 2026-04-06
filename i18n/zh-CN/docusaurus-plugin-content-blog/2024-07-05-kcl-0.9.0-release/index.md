@@ -43,7 +43,7 @@ KCL IDE 在大型项目上针对语义分析部分进行了进一步的增量编
 
 - 字符串插值支持类似 Shell 的 `\${}` 转义功能取消插值
 
-```python
+```kcl
 world = "world"
 hello_world_0 = "hello ${world}"  # hello world
 hello_world_1 = "hello \${world}" # hello ${world}
@@ -51,7 +51,7 @@ hello_world_1 = "hello \${world}" # hello ${world}
 
 - `typeof` 函数新增 Schema 类型的支持用于区分 schema 类型和实例
 
-```python
+```kcl
 schema Foo:
     bar?: str
 
@@ -62,7 +62,7 @@ type_type = typeof(Foo) # type
 
 - Schema 的 `instances()` 方法新增关键字参数 `full_pkg` 参数用于读取所有代码中对应 Schema 的实例
 
-```python
+```kcl
 schema Person:
     name: str
 
@@ -109,7 +109,7 @@ all_persons = Person.instances(True)
 
 - 新增标准库 `file` 用于文件 IO 操作，比如从 YAML 读取配置并进行配置合并操作
 
-```python
+```kcl
 import file
 import yaml
 import json_merge_patch as p
@@ -123,7 +123,7 @@ config = p.merge(yaml.decode(file.read("deployment.yaml")), {
 
 - 新增标准库 `template` 用于模版配置编写
 
-```python
+```kcl
 import template
 
 _data = {
@@ -152,7 +152,7 @@ Hello world from {{name}}
 
 - 新增标准库 `runtime` 可以用于捕获运行时异常，并用于 `kcl test` 工具测试异常用例
 
-```python
+```kcl
 import runtime
 
 schema Person:
@@ -291,7 +291,7 @@ KCL 多语言插件新增至 **3 个**，目前主要支持 Go, Python 和 Java,
 
 编写如下 KCL 代码 (main.k)
 
-```python
+```kcl
 import kcl_plugin.my_plugin
 
 result = my_plugin.add(1, 1)
@@ -299,7 +299,7 @@ result = my_plugin.add(1, 1)
 
 使用 Python SDK 注册 Python 函数实现在 KCL 中调用
 
-```python
+```kcl
 import kcl_lib.plugin as plugin
 import kcl_lib.api as api
 

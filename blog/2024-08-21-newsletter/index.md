@@ -40,14 +40,14 @@ This section will update the KCL language community's latest news, including fea
 
 Before optimization:
 
-```python
+```kcl
 schema Deployment:
     apiVersion: "apps/v1" = "apps/v1"
 ```
 
 After optimization:
 
-```python
+```kcl
 schema Deployment:
     apiVersion: "apps/v1"  # The type value is the same as the default value, so the default value can be omitted.
 ```

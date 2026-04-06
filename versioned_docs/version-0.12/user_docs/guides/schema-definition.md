@@ -5,7 +5,7 @@ sidebar_position: 3
 
 ## Introduction
 
-The core scenario of KCL is write configurations and constraints. and a core feature of KCL is **modeling**. The keyword `schema` in KCL can be used to define structures and constraints, such as attribute types, default values, range check, and various other constraints. In addition, structures defined with KCL schema can be used in turn to verify implementation, validate input (JSON, YAML and other structured data) or generate code (multilingual structures, OpenAPI, and so on).
+The core scenario of KCL is write configurations and constraints, and a core feature of KCL is **modeling**. The keyword `schema` in KCL can be used to define structures and constraints, such as attribute types, default values, range check, and various other constraints. In addition, structures defined with KCL schema can be used in turn to verify implementation, validate input (JSON, YAML and other structured data) or generate code (multilingual structures, OpenAPI, and so on).
 
 ## Use KCL for Defining Structures and Constraints
 
@@ -30,7 +30,7 @@ cat main.k
 
 The output is
 
-```python
+```kcl
 import .app_module  # A relative path import
 
 app: app_module.App {
@@ -60,7 +60,7 @@ We put the `app` model into a separate `app_module.k`, then we can use the `impo
 
 The content of `app_module.k` is
 
-```python
+```kcl
 schema App:
     domainType: "Standard" | "Customized" | "Global"
     containerPort: int

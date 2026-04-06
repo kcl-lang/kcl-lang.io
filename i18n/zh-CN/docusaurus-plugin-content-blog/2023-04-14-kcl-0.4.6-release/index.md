@@ -29,7 +29,7 @@ KCL 团队很高兴地宣布 KCL v0.4.6 新版本现在已经可用！本次发�
 
 KCL 字符串新增 `removeprefix` 和 `removesuffix` 成员函数用于去除字符串的前缀和后缀子字符串
 
-```python
+```kcl
 data1 = "prefix-string".removeprefix("prefix-") # "string"
 data2 = "string-suffix".removesuffix("-suffix") # "string"
 ```
@@ -40,7 +40,7 @@ data2 = "string-suffix".removesuffix("-suffix") # "string"
 
 在之前的 KCL 版本中，运行一次 KCL 命令行工具只会显示一个错误信息与警告，在 KCL v0.4.6 版本中，支持了一次编译显示多个错误与警告的能力并改善了错误提示信息，用于提升 KCL 代码错误排查效率，比如对于如下 KCL 代码 (main.k)
 
-```python
+```kcl
 metadata = {
     labels = {key = "kcl
 }
@@ -71,7 +71,7 @@ error[E1001]: InvalidSyntax
 
 - 更新前
 
-```python
+```kcl
 schema Config:
     id?: int
     value?: str
@@ -86,7 +86,7 @@ config = Config {
 
 - 更新后
 
-```python
+```kcl
 schema Config:
     id?: int
     value?: str
@@ -107,7 +107,7 @@ config: Config {
 
 对于如下的 KCL 代码 (main.k):
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -132,7 +132,7 @@ age: 18
 
 在之前的 KCL 版本中，在编写如下 KCL 代码时会出现非预期的语法错误，在 KCL v0.4.6 版本中，我们修复了此类类似的问题
 
-```python
+```kcl
 env = "prod"
 config = {if env == "prod": labels = {"kubernetes.io/env" = env}}
 ```
@@ -141,7 +141,7 @@ config = {if env == "prod": labels = {"kubernetes.io/env" = env}}
 
 在之前的 KCL 版本中，在编写如下 KCL 代码时，没有按预期提示 `versions` 属性没有赋值的错误，在 KCL v0.4.6 版本中，我们修复了此类类似的问题
 
-```python
+```kcl
 schema App:
     data?: [int]
     version: Version
@@ -188,7 +188,7 @@ kpm init kubernetes_demo && kpm add -git https://github.com/awesome-kusion/konfi
 
 编写 KCL 代码 (main.k)
 
-```python
+```kcl
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
 apps.Deployment {
@@ -305,7 +305,7 @@ spec:
 
 在上述 YAML 配置中，我们仅编写了一行 KCL 代码就完成为 Deployment 资源添加一个 `managed-by=kustomize-kcl` 注解
 
-```python
+```kcl
 [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kcl"}} for resource in option("resource_list").item]
 ```
 

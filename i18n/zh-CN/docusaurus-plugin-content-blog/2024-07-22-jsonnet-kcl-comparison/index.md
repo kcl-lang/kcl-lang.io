@@ -49,7 +49,7 @@ KCL 提供了官方的 Language Server 支持，因此可以比较容易扩展�
 
 - KCL (test.k)
 
-```python
+```kcl
 a = lambda name: str {
     apiVersion = "apps/v1"
     kind = "Deployment"

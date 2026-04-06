@@ -8,7 +8,7 @@ weight: 300
 
 ## encode
 
-```python
+```kcl
 encode(
     data: any,
     sort_keys: bool = False,
@@ -19,7 +19,7 @@ encode(
 
 Serialize a KCL object `data` to a YAML formatted str.
 
-```python
+```kcl
 import yaml
 
 data = {
@@ -32,7 +32,7 @@ data_string = yaml.encode(data)
 
 ## encode_all
 
-```python
+```kcl
 encode(
     data: [any],
     sort_keys: bool = False,
@@ -43,7 +43,7 @@ encode(
 
 Serialize a sequence of KCL objects into a YAML stream str.
 
-```python
+```kcl
 import yaml
 
 yamlStr = yaml.encode_all([1, 2, 3])
@@ -55,7 +55,7 @@ yamlStr = yaml.encode_all([1, 2, 3])
 
 Deserialize `value` (a string instance containing a YAML document) to a KCL object.
 
-```python
+```kcl
 import yaml
 import file
 
@@ -72,7 +72,7 @@ data = data_string.data
 
 Parse all YAML documents in a stream and produce corresponding KCL objects.
 
-```python
+```kcl
 import yaml
 
 yamlStr = """\
@@ -84,7 +84,7 @@ dataList = yaml.decode_all(yamlStr)
 
 ## dump_to_file
 
-```python
+```kcl
 dump_to_file(
     data: any,
     filename: str,
@@ -95,7 +95,7 @@ dump_to_file(
 
 Serialize a KCL object `data` to a YAML formatted str and write it into the file `filename`.
 
-```python
+```kcl
 import yaml
 
 schema Person:
@@ -114,7 +114,7 @@ yaml.dump_to_file(person, filename, ignore_private=True, ignore_none=True)
 
 ## dump_all_to_file
 
-```python
+```kcl
 dump_all_to_file(
     data: [any],
     filename: str,
@@ -125,7 +125,7 @@ dump_all_to_file(
 
 Serialize a sequence of KCL objects into a YAML stream str and write it into the file `filename`.
 
-```python
+```kcl
 import yaml
 
 yamlStrList = [
@@ -141,13 +141,13 @@ yaml.dump_all_to_file(yamlStrList, "0.yaml")
 
 ## validate
 
-```python
+```kcl
 validate(value: str) -> bool
 ```
 
 Validate whether the given string is a valid YAML or YAML stream document.
 
-```python
+```kcl
 import yaml
 
 # Right cases

@@ -174,7 +174,7 @@ exponent      ::=  ("e" | "E") ["+" | "-"] digitpart
 
 The following tokens are operators:
 
-```python
+```kcl
 +       -       *       **      /       //      %
 <<      >>      &       |       ^       <       >
 ~       <=      >=      ==      !=      @
@@ -184,7 +184,7 @@ The following tokens are operators:
 
 The following tokens serve as delimiters in the grammar:
 
-```python
+```kcl
 (       )       [       ]       {       }
 ,       :       .       ;       =       +=
 -=      *=      **=     /=      //=     %=

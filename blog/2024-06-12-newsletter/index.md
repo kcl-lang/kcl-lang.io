@@ -38,7 +38,7 @@ Thanks to all contributors for their outstanding work over the past two weeks (2
 
 The `jsonpatch` library released version 0.0.4, fixing unexpected errors in the set_obj function. You can add the latest jsonpatch dependency using `kcl mod add jsonpatch`. Usage example:
 
-```python
+```kcl
 import jsonpatch as p
 
 test_json_patch = lambda {

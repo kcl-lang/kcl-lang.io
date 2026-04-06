@@ -119,7 +119,7 @@ python3 -m pip install kclvm --user && python3 -m kclvm --help
 
 Prepare a KCL file named `main.k`
 
-```python
+```kcl
 name = "kcl"
 age = 1
 
@@ -153,7 +153,7 @@ In addition, we can also execute KCL files through Python code.
 
 Prepare a KCL file named `main.py`
 
-```python
+```kcl
 import kclvm.program.exec as kclvm_exec
 import kclvm.vm.planner as planner
 
@@ -238,7 +238,7 @@ The `KclvmService` service is a service related to KCL functionality. The usage 
 
 For example, there is the following `Person` structure definition:
 
-```python
+```kcl
 schema Person:
     key: str
 

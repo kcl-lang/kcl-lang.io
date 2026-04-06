@@ -25,7 +25,7 @@ This blog will introduce the content of KCL v0.4.5 and recent developments in th
 
 In previous KCL versions, we have supported the lazy evaluation and validation capabilities of schema attribute cross-reference (including inheritance) and check expressions. In this version, we have supported more schema lazy evaluation capabilities such as the schema attribute non-null lazy validation. For example, for the following KCL codes:
 
-```python
+```kcl
 schema Spec:
     id: int
     value: str
@@ -58,7 +58,7 @@ config:
 
 In versions before v0.4.5, KCL has not yet supported the mutual reference of attributes within the configuration block, resulting in the need to define additional configuration variables or templates for reference in some scenarios, resulting in more configuration templates and duplicate codes, such as the KCL code shown below:
 
-```python
+```kcl
 name = "app-name"
 data = {
     name = name
@@ -70,7 +70,7 @@ The `metadata.name` attribute of the `data` configuration block cannot directly 
 
 After KCL v0.4.5, we support the feature of mutual reference of configuration block attributes, which can be used to eliminate more configuration templates, such as the KCL code shown below:
 
-```python
+```kcl
 data = {
     name = "app-name"
     metadata.name = name  # Directly reference the name attribute of the `data` configuration
@@ -90,7 +90,7 @@ data:
 
 Here is a more complex example:
 
-```python
+```kcl
 name = "global-name"
 metadata = {
     name = "metadata-name"
@@ -141,7 +141,7 @@ After KCL v0.4.5, KCL supports the use of the index tag style format `<format_el
 
 For example, for the following KCL code
 
-```python
+```kcl
 # 0[0] means taking the 0th element of ["Hello", "World"]: "Hello"
 # 0[1] means taking the 1th element of ["Hello", "World"]: ""World"
 listIndexFormat = "{0[0]}{0[1]}".format(["Hello", "World"])
@@ -195,7 +195,7 @@ In this version update, we support more KCL download methods, including scripts,
 
 ### The configuration merge order is incorrect when the right value of a non-configured expression exists
 
-```python
+```kcl
 schema Resource:
     cpu: int
     memory: str
@@ -222,7 +222,7 @@ config: Config {
 
 Before KCL v0.4.5, executing the above code (main.k) will get unexpected configuration values because the KCL compiler incorrectly optimized the following form of equivalent merge configuration blocks:
 
-```python
+```kcl
 config: Config {
     resource: r
     resource: Resource {
@@ -248,7 +248,7 @@ For more information, see [KCL Issue #422](https://github.com/kcl-lang/kcl/issue
 
 ### Configure if expression type mismatch error optimization
 
-```python
+```kcl
 config: {"A"|"B": int} = {
     if True:
         A = "2"
@@ -271,7 +271,7 @@ For more information, see [KCL Issue #389](https://github.com/kcl-lang/kcl/issue
 
 In previous KCL versions, when the following rule code is used (main.k), the constraint code of `ServiceCheckRule` will not take effect.
 
-```python
+```kcl
 protocol KubeResourceProtocol:
     svc: Service
 
@@ -303,7 +303,7 @@ Check failed on check conditions
 
 ### Configuration block attribute type inference optimization
 
-```python
+```kcl
 schema Id:
     id?: int = 1
 
@@ -331,7 +331,7 @@ c:
 
 ### Assignment statement uses schema type annotation error optimization
 
-```python
+```kcl
 schema Foo:
     foo: int
 
@@ -347,7 +347,7 @@ Before KCL v0.4.5, executing the above code will result in a runtime type mismat
 
 ### Error on KCL module type with the ?. operator
 
-```python
+```kcl
 import math
 
 data = math?.log(10)  # Before v0.4.5, we will get an unexpected 'math is not defined' error here

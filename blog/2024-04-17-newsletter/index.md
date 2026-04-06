@@ -24,7 +24,7 @@ Thanks to to all contributors for their outstanding work over the past twenty da
 
 - The `instances()` method of Schema has added a new keyword parameter `full_pkg` for reading all instances corresponding to the Schema in the code.
 
-```python
+```kcl
 schema Person:
     name: str
 
@@ -34,7 +34,7 @@ all_persons = Person.instances(True)
 
 - Added the `template` system module for manipulation of templates in KCL.
 
-```python
+```kcl
 import template
 
 content = template.execute("""\
@@ -68,7 +68,7 @@ cargo add --git https://github.com/kcl-lang/lib
 
 * `__test__/test_data/schema.k`
 
-```python
+```kcl
 schema AppConfig:
     replicas: int
 

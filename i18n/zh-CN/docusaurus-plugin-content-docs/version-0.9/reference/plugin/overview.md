@@ -111,7 +111,7 @@ python3 -m pip install kcl_lib
 
 编写以下 Python 代码并添加名为 `my_plugin` 的插件。
 
-```python
+```kcl
 import kcl_lib.plugin as plugin
 import kcl_lib.api as api
 
@@ -128,7 +128,7 @@ main()
 
 test.k 的内容为：
 
-```python
+```kcl
 import kcl_plugin.my_plugin
 
 result = my_plugin.add(1, 1)
@@ -168,7 +168,7 @@ public class PluginTest {
 
 test.k 的内容为：
 
-```python
+```kcl
 import kcl_plugin.my_plugin
 
 result = my_plugin.add(1, 1)

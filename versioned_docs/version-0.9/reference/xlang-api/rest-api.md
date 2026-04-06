@@ -59,7 +59,7 @@ The `KclvmService` service is a service related to KCL functionality. The usage 
 
 For example, there is the following `Person` structure definition:
 
-```python
+```kcl
 schema Person:
     key: str
 

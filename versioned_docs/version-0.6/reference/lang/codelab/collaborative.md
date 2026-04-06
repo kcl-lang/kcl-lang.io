@@ -25,7 +25,7 @@ In this codelab, we will learn how to write the config in a collaborative way us
 
 Suppose we want to define a server configuration with certain attributes, we can create a simple config by creating a `server.k`, we can fill in the following code as below which defines a reusable schema of the configuration of a server.
 
-```python
+```kcl
 import units
 
 type Unit = units.NumberMultiplier
@@ -105,7 +105,7 @@ After we have organized the project directory and the basic server configuration
 
 For the configuration of an application, we often divide it into a basic configuration and the differential configuration of multiple environments and merge them. Through the configuration merging feature of KCL, we can easily do this. Assuming that we have two configurations of development environment and production environment, we can create three folders: `base`, `dev` and `prod` to store baseline, development environment and production environment configurations respectively. First, we write the configuration of `base/base.k`:
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {
@@ -156,7 +156,7 @@ At this point, we have a baseline configuration.
 
 Next we configure a differentiated multi-environment configuration. First assume that we want to use a temporary image of our own `nginx:1.14.2-dev` in the development environment, and then use it to override the server configuration in the baseline, we can write the following configuration in `dev/main.k`:
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {
@@ -193,7 +193,7 @@ server:
 
 It can be seen that the `image` field of the output YAML is overwritten to `nginx:1.14.2-dev`. Suppose we also want to add a label to the `dev` environment with a key of `env` and a value of `dev`, we add the following code to `dev/main.k`:
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {
@@ -233,7 +233,7 @@ It can be seen that there are two labels in the `labels` field of the output YAM
 
 In addition, we can also use the `+=` operator to add new values to list type attributes, such as the `mainContainer.ports` configuration in the baseline environment, continue to modify the code in `dev/main.k`:
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {
@@ -282,7 +282,7 @@ server:
 
 Using the same method, we can build the production configuration, write the code in the `dev/main.k` file, and add a label to it.
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {

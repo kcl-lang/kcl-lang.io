@@ -44,7 +44,7 @@ Add `difflib` as a dependency by `kcl mod add difflib`.
 
 Through the `diff` method provided by the `difflib`, the configuration difference is output.
 
-```python
+```kcl
 import difflib
 import yaml
 

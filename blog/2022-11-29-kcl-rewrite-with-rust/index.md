@@ -55,7 +55,7 @@ First of all, the syntax and semantics of Rust well absorb and integrate the con
 
 - Python
 
-```python
+```kcl
 from dataclasses import dataclass
 
 class KCLObject:

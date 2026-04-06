@@ -30,7 +30,7 @@ cat main.k
 
 输出为
 
-```python
+```kcl
 schema App:
     """The application model."""
     name: str
@@ -110,7 +110,7 @@ app:
 kcl main.k -O app.name='new_app' -d
 ```
 
-```python
+```kcl
 schema App:
     """The application model."""
     name: str
@@ -180,7 +180,7 @@ curl -X POST http://127.0.0.1:2021/api:protorpc/KclvmService.OverrideFile -H 'co
 
 服务调用完成后，`main.k` 会被修改为如下形式:
 
-```python
+```kcl
 schema App:
     """The application model."""
     name: str

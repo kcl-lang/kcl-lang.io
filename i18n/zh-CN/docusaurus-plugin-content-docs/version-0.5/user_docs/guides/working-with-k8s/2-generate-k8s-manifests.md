@@ -63,7 +63,7 @@ spec:
 
 我们可以编写如下 KCL 代码并命名为 main.k ，KCL 受 Python 启发，基础语法十分接近 Python, 比较容易学习和上手, 配置模式写法很简单，`k [: T] = v`, 其中 `k` 表示配置的属性名称; `v` 表示配置的属性值; `: T` 表示一个可选的类型注解。
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {
@@ -149,7 +149,7 @@ nginx-deployment   3/3     3            3           15s
 
 对于 Kubernetes 资源发布时，我们常常会遇到配置参数需要动态指定的场景，比如不同的环境需要设置不同的 `image` 字段值生成不同环境的资源。对于这种场景，我们可以通过 KCL 的条件语句和 `option` 函数动态地接收外部参数。我们可以在上述例子的基础上根据不同的环境调整配置参数，比如对于如下代码，我们编写了一个条件语句并输入一个名为 `env` 的动态参数
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {

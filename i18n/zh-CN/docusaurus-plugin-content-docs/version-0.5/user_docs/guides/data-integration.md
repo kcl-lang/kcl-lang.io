@@ -28,7 +28,7 @@ cd ./kcl-lang.io/examples/data-integration
 cat yaml.k
 ```
 
-```python
+```kcl
 import yaml
 
 schema Server:
@@ -75,7 +75,7 @@ server_yaml: |
 cat json.k
 ```
 
-```python
+```kcl
 import json
 
 schema Server:

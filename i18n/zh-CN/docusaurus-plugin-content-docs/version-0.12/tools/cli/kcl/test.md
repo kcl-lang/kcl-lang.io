@@ -12,7 +12,7 @@ KCL 支持通过内置的 `kcl test` 命令行工具提供了简易的测试框�
 
 假设有 hello.k 文件，代码如下:
 
-```python
+```kcl
 schema Person:
     name: str = "kcl"
     age: int = 1
@@ -28,7 +28,7 @@ hello = Person {
 
 构造 hello_test.k 测试文件，内容如下：
 
-```python
+```kcl
 test_person = lambda {
     a = Person{}
     assert a.name == 'kcl'
@@ -64,7 +64,7 @@ PASS: 3/3
 
 将 hello_test.k 测试代码修改如下，构造失败的测试：
 
-```python
+```kcl
 test_person = lambda {
     a = Person{}
     assert a.name == 'kcl2'
@@ -122,7 +122,7 @@ FAIL: 3/3
 
 如果我们想要正确测试错误情况并检查错误消息，我们可以使用 `runtime.catch` 函数。
 
-```python
+```kcl
 import runtime
 
 test_person_age_check_error_message = lambda {

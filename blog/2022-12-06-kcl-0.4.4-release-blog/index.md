@@ -21,7 +21,7 @@ This blog will introduce the recent developments of KCL community to readers.
 
 In previous KCL versions, the style of YAML output is hard coded in the KCL compiler, and users can set the `__settings__` meta attribute with different values to determine the YAML output style, which brings high complexity. Therefore, in version 0.4.4, we provide a system module function for developers to easily customize the YAML output style. The signature of this function is as follows:
 
-```python
+```kcl
 manifests.yaml_stream(values: [any], opts: {str:} = {
     sort_keys = False
     ignore_private = True
@@ -41,7 +41,7 @@ This function is used to serialize the KCL object list into YAML output with the
 
 Here's an example:
 
-```python
+```kcl
 import manifests
 
 schema Deployment:
@@ -112,7 +112,7 @@ python3 -m pip install kclvm --user && python3 -m kclvm --help
 
 Prepare a KCL file named `main.k`
 
-```python
+```kcl
 name = "kcl"
 age = 1
 
@@ -151,7 +151,7 @@ In addition, we can also execute KCL files through Python code.
 
 Prepare a KCL file named `main.py`
 
-```python
+```kcl
 import kclvm.program.exec as kclvm_exec
 import kclvm.vm.planner as planner
 
@@ -191,7 +191,7 @@ In the new KCL version, we split the built-in Python 3 of KCL, reducing the aver
 
 In version 0.4.4, KCL optimizes the output of error messages when the number of function arguments does not match, and supports the display of function names and the number of argument mismatches
 
-```python
+```kcl
 schema Foo[x: int]:
     bar?: int = x
 
@@ -209,7 +209,7 @@ For more information, see [https://github.com/kcl-lang/kcl/issues/299](https://g
 
 In previous KCL versions, formatting the following code would incorrectly convert the three quotation marks with string interpolation into single quotation marks and cause compilation errors. In version 0.4.4, we have fixed the issue.
 
-```python
+```kcl
 # Before KCL v0.4.4, variable "bar" will be formatted as:
 #
 # foo = 1
@@ -228,7 +228,7 @@ For more information, see [https://github.com/kcl-lang/kcl/issues/294](https://g
 
 In previous KCL versions, formatting the following code would lead to incorrect indent levels. In version 0.4.4, we have fixed the issue.
 
-```python
+```kcl
 # Before KCL v0.4.4, variable "foo" will be formatted as:
 #
 # foo = [
@@ -247,7 +247,7 @@ foo = [
 
 In previous KCL versions, formatting the following code would lead to incorrect indent levels. In version 0.4.4, we have fixed the issue.
 
-```python
+```kcl
 # Before KCL v0.4.4, we will get a unexpected type mismatch error.
 foo: {"A"|"B": int} = {A = 1}
 ```

@@ -34,7 +34,7 @@ Where `hello` is an example builtin plugin (do not modify the plugin).
 
 In KCL code, the `hello` plugin can be imported via `import kcl_plugin.hello`. `main.k` code is as follows:
 
-```python
+```kcl
 import kcl_plugin.hello
 
 name = "kcl"

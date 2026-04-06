@@ -25,7 +25,7 @@ KCL 中使用 schema 结构来定义配置数据的“类型”，关于 KCL sch
 示例：
 下例在 KCL 代码中定义了 Pet、Category 两个 schema，同样地，其对应的 OpenAPI 也在 definitions 节点下包含这两个模型的描述。
 
-```python
+```kcl
 # KCL schema：
 schema Pet:
     name:      str
@@ -106,7 +106,7 @@ KCL schema 中可以定义若干属性，属性的声明一般包含如下几部
 示例：
 下例中 Pet 模型包含了 2 个属性：name（string 类型，必填属性，无注解，无默认值）、id（int64 类型，无注解，非必填，默认值为 -1）
 
-```python
+```kcl
 # KCL schema Pet，包含两个属性 name 和 id
 schema Pet:
     name: str
@@ -162,7 +162,7 @@ KCL schema 允许定义索引签名，用于定义属性名不固定的 dict，�
 
 示例：下例中的 KCL schema Pet，包含两个预定义的属性 name 和 id，除此之外，还允许使用该 schema 的配置额外地赋值其他 key 为 string 类型，value 为 bool 类型的属性：
 
-```python
+```kcl
 # KCL schema Pet，包含两个预定义的属性 name 和 id，允许额外给 key 为 string、value 为 bool 的属性赋值
 schema Pet:
     name:     str
@@ -213,7 +213,7 @@ OpenAPI 支持嵌套地定义 schema，但 KCL 目前暂不支持 schema 的内�
 注：KCL 未来也可能会支持内联 schema，届时再更新这部分转换规则
 示例 1：下例中的模型 Deployment 包含有 kind、spec 两个属性，其中 deploymentSpec 属性的 schema 通过内联的方式定义：
 
-```python
+```kcl
 # OpenAPI 文档
 {
     "definitions": {
@@ -257,7 +257,7 @@ schema DeploymentSpec:
 
 示例 2：下例中的模型 Person 中除固定属性 name 外，还允许包含额外的属性（additionalProperties），并且这部分额外属性的属性值的 schema 通过内联的方式定义：
 
-```python
+```kcl
 # OpenAPI 文档
 {
     "definitions": {
@@ -327,7 +327,7 @@ KCL 文档包含 module 文档、schema 文档两类，其中 schema 文档可�
 示例：
 下例中为 Pet 模型定义了其 schema 描述文档 "The schema Pet definition"；Pet 的两个属性 "name" 和 "id" 也分别定义了其属性文档 "The name of the pet" 及 "The id of the pet"；Pet 的附加信息为 "Find more info here. [https://petstore.swagger.io/](https://petstore.swagger.io/)"；此外，Pet 模型还提供了模型实例的示例写法。
 
-```python
+```kcl
 # KCL schema Pet，采用规范的 KCL 文档格式
 schema Pet:
     """The schema Pet definition

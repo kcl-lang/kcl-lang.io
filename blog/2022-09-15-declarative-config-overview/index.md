@@ -295,7 +295,7 @@ In KCL, the configuration merge operation can be fine-grained to each configurat
 
 - HCL
 
-```python
+```kcl
 variable "subnet_delegations" {
   type = list(object({
     name               = string
@@ -322,7 +322,7 @@ variable "subnet_delegations" {
 
 - KCL
 
-```python
+```kcl
 schema SubnetDelegation:
     name: str
     service_delegation: ServiceDelegation
@@ -340,7 +340,7 @@ subnet_delegations: [SubnetDelegation] = option("subnet_delegations")
 
 - Defining functions and calling them in KCL
 
-```python
+```kcl
 add_func = lambda x: int, y: int -> int {
     x + y
 }
@@ -351,7 +351,7 @@ two = add_func(1, 1)  # 2
 
 - HCL
 
-```python
+```kcl
 variable "conf" {
   type = object({
     description = string
@@ -417,7 +417,7 @@ locals {
 
 - KCL (using `-n` flag)
 
-```python
+```kcl
 schema Param:
     default?: str
     name: str
@@ -513,7 +513,7 @@ app: #App & {
 
 - prod.cue
 
-```python
+```kcl
 // prod.cue
 app: #App & {
     containerPort: 8080,  // error: app.containerPort: conflicting values 8080 and 80:
@@ -524,7 +524,7 @@ KCL (run `kcl base.k prod.k`)
 
 - base.k
 
-```python
+```kcl
 # base.k
 schema App:
     domainType: "Standard" | "Customized" | "Global"
@@ -569,7 +569,7 @@ app: App {
 
 - prod.k
 
-```python
+```kcl
 # prod.k
 app: App {
     # Using `=` attribute operator to modify the `containerPort` of the base `app`.
@@ -604,7 +604,7 @@ temp: {
 
 - KCL (test.k)
 
-```python
+```kcl
 a = lambda x: int, y: int -> int {
     max([x, y])
 }
@@ -622,7 +622,7 @@ local a(x, y) = std.max(x, y);
 
 - Terraform HCL (test.tf. Since the terraform `range` function only supports up to 1024 iterators, the `range(10000)` is divided into 10 sub ranges)
 
-```python
+```kcl
 output "r1" {
   value = {for s in range(0, 1000) : format("a%d", s) => max(1, 2)}
 }
@@ -688,7 +688,7 @@ deployment: {
 
 - KCL (test.k)
 
-```python
+```kcl
 import kubernetes.api.apps.v1
 
 deployment = v1.Deployment {

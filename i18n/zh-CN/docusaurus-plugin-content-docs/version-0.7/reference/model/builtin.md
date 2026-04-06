@@ -41,7 +41,7 @@ l1 = list([1, 2, 3])
 
 内置的打印函数，提供不同类型的可变参数打印，默认在结尾添加一个换行符号。以下上常见的用法：
 
-```python
+```kcl
 print("hello KCL")
 print()
 print(None, end=':')
@@ -84,7 +84,7 @@ abc 456
 
 判断整数 `a` 是否为 `b` 的整数倍，返回布尔值：
 
-```python
+```kcl
 print(multiplyof(2, 1))  # True
 print(multiplyof(1, 2))  # False
 print(multiplyof(0, 1))  # True
@@ -100,7 +100,7 @@ print(multiplyof(1, 0))  # Error
 
 判断数组中是否存在重复的元素，返回布尔值：
 
-```python
+```kcl
 print(isunique([]))     # True
 print(isunique([1]))    # True
 print(isunique([1, 2])) # True
@@ -121,7 +121,7 @@ print(isunique(['abc', "a${'bc'}"])) # False
 
 返回字符串、列表和数组的长度：
 
-```python
+```kcl
 print(len([])) # 0
 print(len({})) # 0
 
@@ -145,7 +145,7 @@ print("abc") # 3
 
 判断列表或字典类全部元素为真，用法如下：
 
-```python
+```kcl
 print(all_true([])) # True
 print(all_true({})) # True
 
@@ -171,7 +171,7 @@ print(all_true({abc: False})) # True
 
 判断可迭代对象中至少有一个元素为真，用法如下：
 
-```python
+```kcl
 print(any_true([]))  # False
 print(any_true([1])) # True
 ```
@@ -182,7 +182,7 @@ print(any_true([1])) # True
 
 返回整数的二进制表示的字符串，用法如下：
 
-```python
+```kcl
 print(bin(8)) # 0b1000
 ```
 
@@ -192,7 +192,7 @@ print(bin(8)) # 0b1000
 
 返回整数的十六进制表示的字符串，用法如下：
 
-```python
+```kcl
 print(hex(18)) # 0x12
 ```
 
@@ -202,7 +202,7 @@ print(hex(18)) # 0x12
 
 返回整数的八进制表示的字符串，用法如下：
 
-```python
+```kcl
 print(oct(10)) # 0o12
 ```
 
@@ -218,7 +218,7 @@ print(oct(10)) # 0o12
 
 获取字符的 Unicode 码点值，用法如下：
 
-```python
+```kcl
 print(ord('A')) # 65
 print(ord('B')) # 66
 print(ord('C')) # 67
@@ -230,7 +230,7 @@ print(ord('C')) # 67
 
 返回排序后的列表，用法如下：
 
-```python
+```kcl
 _a = []
 _b = [2, 1]
 
@@ -249,7 +249,7 @@ print(_d) # [1, 2]
 
 产生迭代列表，用法如下：
 
-```python
+```kcl
 print(range(1,5))      # [1, 2, 3, 4]
 print(range(1,5, 2))   # [1, 3]
 print(range(5, 1, -1)) # [5, 4, 3, 2]
@@ -261,7 +261,7 @@ print(range(5, 1, -1)) # [5, 4, 3, 2]
 
 返回列表中最小的元素，用法如下：
 
-```python
+```kcl
 print(min([1,2])) # 1
 print(min([2,1])) # 1
 ```
@@ -276,7 +276,7 @@ print(min([2,1])) # 1
 
 返回列表中最大的元素，用法如下：
 
-```python
+```kcl
 print(max([1,2])) # 2
 print(max([2,1])) # 2
 ```
@@ -300,7 +300,7 @@ print(sum([2,1], 1000)) # 1003
 
 下面的常见的用法：
 
-```python
+```kcl
 print(pow(2,3))    # 8
 print(pow(2, 3, 5)) # 8%5 == 3
 
@@ -315,7 +315,7 @@ print(pow(2, 0.5)) # 1.414
 
 下面是常用的用法：
 
-```python
+```kcl
 print(round(1))   # 1
 print(round(1.4)) # 1
 print(round(1.5)) # 2
@@ -337,7 +337,7 @@ print(round(1.5555, 0)) # 2.0
 
 下面是常见的用法：
 
-```python
+```kcl
 import sub as pkg
 
 _a = 1

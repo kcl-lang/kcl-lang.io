@@ -24,7 +24,7 @@ cat main.k
 
 输出为
 
-```python
+```kcl
 import .app_module  # A relative path import
 
 app: app_module.App {
@@ -54,7 +54,7 @@ app: app_module.App {
 
 其中 `app_module.k` 的内容为
 
-```python
+```kcl
 schema App:
     domainType: "Standard" | "Customized" | "Global"
     containerPort: int

@@ -26,7 +26,7 @@ cat main.k
 
 The output is
 
-```python
+```kcl
 import .app_module  # A relative path import
 
 app: app_module.App {
@@ -56,7 +56,7 @@ We put the `app` model into a separate `app_module.k`, then we can use the `impo
 
 The content of `app_module.k` is
 
-```python
+```kcl
 schema App:
     domainType: "Standard" | "Customized" | "Global"
     containerPort: int

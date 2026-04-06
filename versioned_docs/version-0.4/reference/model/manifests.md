@@ -8,7 +8,7 @@ weight: 100
 
 ## yaml_stream
 
-```python
+```kcl
 yaml_stream(values: [any], opts: {str:} = {
     sort_keys = False
     ignore_private = True
@@ -28,7 +28,7 @@ This function is used to serialize the KCL object list into YAML output with the
 
 Here's an example:
 
-```python
+```kcl
 # Use the `import` keyword to import the `manifests` module.
 import manifests
 

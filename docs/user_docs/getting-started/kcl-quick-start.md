@@ -12,7 +12,7 @@ The best way to learn a new language is to write a few small programs, and the s
 
 Here is a simple `hello.k`:
 
-```python
+```kcl
 hello = "KCL"
 ```
 
@@ -40,7 +40,7 @@ The output is configuration data in YAML format. Although this program is simple
 
 In addition to the common key-value pairs, common configuration data also has nested dictionary and list types, and the value basic type includes boolean and numeric types in addition to strings. Here's a slightly more complex `server.k` configuration:
 
-```python
+```kcl
 # This is a KCL document
 
 title = "KCL Example"
@@ -102,7 +102,7 @@ The KCL provides abstract support for attributes with a fixed attribute structur
 
 For example, the configuration of `database` in the above example is generally the default value. We can define a structure for the default configuration of the database:
 
-```python
+```kcl
 schema DatabaseConfig:
     enabled: bool = True
     ports: [int] = [8000, 8001, 8002]
@@ -114,7 +114,7 @@ schema DatabaseConfig:
 
 Then pass `database = DatabaseConfig {}` to generate a structure with the same attributes as the default values. We can also modify the default value:
 
-```python
+```kcl
 database = DatabaseConfig {
     ports = [2020, 2021]
 }
@@ -122,7 +122,7 @@ database = DatabaseConfig {
 
 `schema DatabaseConfig` not only provides default values for attributes, but also adds type information to attributes. Therefore, if we accidentally writes the wrong attribute value type, KCL will give a friendly error prompt, such as the following example where `ports` is wrongly written as a floating point type:
 
-```python
+```kcl
 database = DatabaseConfig {
     ports = [1.2, 1.3]
 }
@@ -153,7 +153,7 @@ error[E2G22]: TypeError
 
 Similarly we can encapsulate the attributes of the `servers` section with the following code:
 
-```python
+```kcl
 schema ServerConfig:
     ip: str
     role: "frontend" | "backend"

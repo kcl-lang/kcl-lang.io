@@ -12,7 +12,7 @@ weight: 100
 
 Read the contents of the file `filepath` and return a string instance.
 
-```python
+```kcl
 import file
 
 a = file.read("test.txt")
@@ -24,7 +24,7 @@ a = file.read("test.txt")
 
 Return a list containing all file names that match `pattern`.
 
-```python
+```kcl
 import file
 
 json_files = file.glob("./*.json")
@@ -36,7 +36,7 @@ json_files = file.glob("./*.json")
 
 Return the root path of the current KCL module (kcl.mod file path or single \*.k file path).
 
-```python
+```kcl
 import file
 
 modpath = file.modpath()
@@ -48,7 +48,7 @@ modpath = file.modpath()
 
 Return the path of the current working directory.
 
-```python
+```kcl
 import file
 
 workdir = file.workdir()
@@ -60,7 +60,7 @@ workdir = file.workdir()
 
 Whether this file path exists. Returns true if the path points at an existing entity. This function will traverse symbolic links to query information about the destination file.
 
-```python
+```kcl
 import file
 
 file_exists = file.exists("test.txt")
@@ -72,7 +72,7 @@ file_exists = file.exists("test.txt")
 
 Returns the canonical, absolute form of the path with all intermediate components normalized and symbolic links resolved.
 
-```python
+```kcl
 import file
 
 abs_file_path = file.abs("test.txt")
@@ -84,7 +84,7 @@ abs_file_path = file.abs("test.txt")
 
 Create a new directory at the specified path if it doesn't already exist.
 
-```python
+```kcl
 import file
 
 file.mkdir("path")
@@ -96,7 +96,7 @@ file.mkdir("path")
 
 Delete a file or an empty directory at the specified path.
 
-```python
+```kcl
 import file
 
 file.delete("test.txt")
@@ -108,7 +108,7 @@ file.delete("test.txt")
 
 Copy a file or directory from the source path to the destination path.
 
-```python
+```kcl
 import file
 
 file.cp("src", "dest")
@@ -120,7 +120,7 @@ file.cp("src", "dest")
 
 Move a file or directory from the source path to the destination path.
 
-```python
+```kcl
 import file
 
 file.mv("src", "dest")
@@ -132,7 +132,7 @@ file.mv("src", "dest")
 
 Get the size of a file at the specified path.
 
-```python
+```kcl
 import file
 
 size = file.size("test.txt")
@@ -144,7 +144,7 @@ size = file.size("test.txt")
 
 Write content to a file at the specified path. If the file doesn't exist, it will be created. If it does exist, its content will be replaced.
 
-```python
+```kcl
 import file
 
 file.write("test.txt", "content")
@@ -156,7 +156,7 @@ file.write("test.txt", "content")
 
 Read the environment variable `key` from the current process.
 
-```python
+```kcl
 import file
 
 value = file.read_env("ENV_VAR")
@@ -168,7 +168,7 @@ value = file.read_env("ENV_VAR")
 
 Read the path of the current script or module that is being executed.
 
-```python
+```kcl
 import file
 
 value = file.current()

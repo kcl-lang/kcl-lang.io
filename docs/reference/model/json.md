@@ -8,7 +8,7 @@ weight: 100
 
 ## encode
 
-```python
+```kcl
 encode(
     data: any,
     sort_keys: bool = False,
@@ -20,7 +20,7 @@ encode(
 
 Serialize a KCL object `data` to a JSON formatted str.
 
-```python
+```kcl
 import json
 
 data = {
@@ -37,7 +37,7 @@ data_string = json.encode(data)
 
 Deserialize `value` (a string instance containing a JSON document) to a KCL object.
 
-```python
+```kcl
 import file
 import json
 
@@ -50,7 +50,7 @@ data = data_string.data
 
 ## dump_to_file
 
-```python
+```kcl
 dump_to_file(
     data: any,
     filename: str,
@@ -63,7 +63,7 @@ dump_to_file(
 
 Serialize a KCL object `data` to a JSON formatted str and write it into the file `filename`.
 
-```python
+```kcl
 import json
 
 schema Person:
@@ -82,13 +82,13 @@ json.dump_to_file(person, filename, indent=4, ignore_private=True, ignore_none=T
 
 ## validate
 
-```python
+```kcl
 validate(value: str) -> bool
 ```
 
 Validate whether the given string is a valid JSON.
 
-```python
+```kcl
 import json
 
 # Right cases

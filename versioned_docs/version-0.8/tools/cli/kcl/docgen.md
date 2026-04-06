@@ -15,14 +15,14 @@ The documentation of the KCL file mainly contains the following two parts:
 
 1. Schema description
 
-```python
+```kcl
 """This is a brief description of the Schema
 """
 ```
 
 2. Description of each attribute of Schema: including attribute description, attribute type, default value, optional or required
 
-```python
+```kcl
 """
 Attributes
 ----------
@@ -37,7 +37,7 @@ y : type, default is b, required.
 
 3. Examples
 
-```python
+```kcl
 """
 Examples
 --------

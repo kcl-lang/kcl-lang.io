@@ -23,7 +23,7 @@ Just as web applications provide a friendly user interface, and user input is fu
 
 Taking the sidecar configuration of application services as an example:
 
-```python
+```kcl
 # Config user interface.
 user_sidecar_feature_gates: str
 
@@ -46,7 +46,7 @@ A simple best practice is to abstract such commonly used and complex templates i
 
 - The front-end attribute `overQuota`
 
-```python
+```kcl
 overQuota: bool
 ```
 
@@ -69,7 +69,7 @@ spec:
 
 In addition, different template names can be designed according to specific business scenarios to fill in the blanks, such as designing an attribute template in the code shown below to assist users in template selection instead of directly filling in the template content. The legal template value can be `"success_ratio"` or `"service_cost"`. When the backend model extends more templates, the front-end code does not need to make any modifications, only needs to adapt the corresponding template logic in the backend model.
 
-```python
+```kcl
 schema SLI:
     template: str = "success_ratio"
 ```
@@ -80,7 +80,7 @@ In addition, it is recommended to avoid using complex structures directly as fro
 
 In the above section, it was mentioned that a string attribute can be used to represent different template names, and further, a literal type can be used to express the optional content of the template. For example, the following improvements can be made.
 
-```python
+```kcl
 schema SLI:
     template: "success_ratio" | "service_cost" = "success_ratio"
 ```
@@ -89,7 +89,7 @@ The type of template is a combination of two string types, indicating that the t
 
 In addition to using union types for literal types, KCL also supports union for complex types such as schema types. For the support of this backend **oneof** configuration, KCL has built-in composite structure union types for support. For example, we can define our own SLI front-end types for various scenarios: `CustomSLIDataSource`, `PQLSLIDataSource`, and `StackSLIDataSource`.
 
-```python
+```kcl
 schema CustomSLIDataSource:
     customPluginUrl: str
 
@@ -118,7 +118,7 @@ In addition, the overall design of the front-end model should also consider hori
 
 Using the factory pattern in KCL:
 
-```python
+```kcl
 schema DataA:
     id?: int = 1
     value?: str = "value"
@@ -136,7 +136,7 @@ dataB = _dataFactory["DataB"]()
 
 Replacing the factory pattern with the KCL union type.
 
-```python
+```kcl
 schema DataA:
     id?: int = 1
     value?: str = "value"
@@ -153,7 +153,7 @@ dataB: DataA | DataB = DataB()
 
 To make it easier to modify configurations on-site or automate queries, it is advisable to define list or array attributes as dictionary types for easy indexing. In many complex configuration scenarios, the index of a list is arbitrary and the order of elements has no impact on the configuration. Using a dictionary type instead of a list type allows for more convenient data querying and modification. For example:
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -177,7 +177,7 @@ house = House {
 
 For example, in the above example, if you want to query the age of the person named `"Alice"` from the list of persons in the house, you need to loop through the list to find Alice's age. However, if you define persons as a dictionary like the following code, it not only looks more concise in code, but you can also directly retrieve Alice's age by using `house.persons.Alice.age`. In addition, the information of the entire configuration is complete and has no redundant information.
 
-```python
+```kcl
 schema Person:
     age: int
 
@@ -198,7 +198,7 @@ For frontend models, it is often necessary to validate the fields filled in by u
 
 Use all/any expressions and check expressions for validation
 
-```python
+```kcl
 import regex
 
 schema ConfigMap:
@@ -224,7 +224,7 @@ schema ConfigMount:
 
 Numbers with units in KCL have a built-in type of `units.NumberMultiplier`, and any arithmetic operations are not allowed.
 
-```python
+```kcl
 import units
 
 type NumberMultiplier = units.NumberMultiplier
@@ -236,14 +236,14 @@ x2 = x0 + x1  # Error: unsupported operand type(s) for +: 'number_multiplier(1M)
 
 We can use the `int()/float()` function and `str()` function to convert the number unit type to integer or string type, and the resulting string retains the units of the original number unit type.
 
-```python
+```kcl
 a: int = int(1Ki)  # 1024
 b: str = str(1Mi)  # "1Mi"
 ```
 
 The definitions related to Kubernetes Resource in Konfig can be written using numerical unit types
 
-```python
+```kcl
 import units
 
 type NumberMultiplier = units.NumberMultiplier
@@ -259,7 +259,7 @@ schema Resource:
 
 In KCL, automated modification of front-end model instances can be achieved through the CLI and API. For example, if we want to modify the image content of an application (Konfig Stack Path: apps/nginx example/dev) configuration, we can directly execute the following command to modify the image content.
 
-```python
+```kcl
 kcl -Y kcl.yaml ci-test/settings.yaml -o ci-test/stdout.golden.yaml -d -O :appConfiguration.image=\"test-image-v1\"
 ```
 
@@ -267,7 +267,7 @@ For more documentation related to automation, please refer to the [Automation Do
 
 ### Use Functions
 
-```python
+```kcl
 # Define a function that adds two numbers and returns the result。
 add = lambda x, y {
     x + y
@@ -292,7 +292,7 @@ Create a package called `utils.k`, define a KCL function called `add` in it, and
 
 - `utils.k`
 
-```python
+```kcl
 # utils.k
 
 # Define a function that adds two numbers and returns the result。
@@ -308,7 +308,7 @@ sub = lambda x, y {
 
 - `main.k`
 
-```python
+```kcl
 # main.k
 import .utils
 
@@ -318,7 +318,7 @@ result = utils.sub(utils.add(2, 3), 2)  # The result is 3.
 
 ### Simplify Logical Expressions Using Configuration
 
-```python
+```kcl
 # Complex Logic, `_cpu` is a non-exported and mutable attribute.
 _cpu = 256
 _priority = "1"
@@ -358,7 +358,7 @@ We can use KCL **schema**, **config**, and **lambda** to separate **data** and *
 
 For example, we can write the following code (main.k).
 
-```python
+```kcl
 schema Student:
     """Define a `Student` schema model with documents.
 

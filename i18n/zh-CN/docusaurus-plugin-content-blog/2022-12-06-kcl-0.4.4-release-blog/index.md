@@ -21,7 +21,7 @@ KCL 是一个开源的基于约束的记录及函数语言，期望通过成熟�
 
 在过去的 KCL 版本中，YAML 输出的样式是在 KCL 编译器中是硬编码的，用户可以为 schema 的 `__settings__` 元属性设置为不同的值来决定 YAML 输出样式，这带来了较高的复杂度和记忆成本，因此在 0.4.4 版本中我们提供了一个系统库函数用于开发人员更简单地自定义 YAML 输出样式，这个函数的签名如下：
 
-```python
+```kcl
 manifests.yaml_stream(values: [any], opts: {str:} = {
     sort_keys = False
     ignore_private = True
@@ -41,7 +41,7 @@ manifests.yaml_stream(values: [any], opts: {str:} = {
 
 下面我们通过一个例子来说明:
 
-```python
+```kcl
 import manifests
 
 schema Deployment:
@@ -112,7 +112,7 @@ python3 -m pip install kclvm --user && python3 -m kclvm --help
 
 编写名为 `main.k` 的 KCL 文件:
 
-```python
+```kcl
 name = "kcl"
 age = 1
 
@@ -146,7 +146,7 @@ x1:
 
 编写名为 `main.py` 的 python 文件:
 
-```python
+```kcl
 import kclvm.program.exec as kclvm_exec
 import kclvm.vm.planner as planner
 
@@ -181,7 +181,7 @@ x1:
 
 在 0.4.4 版本中，KCL 优化了当函数参数个数不匹配时的错误信息输出，支持显示函数名称以及参数不匹配个数
 
-```python
+```kcl
 schema Foo[x: int]:
     bar?: int = x
 
@@ -199,7 +199,7 @@ f(1,2)  # Error: "f" takes 1 positional argument but 2 were given
 
 在之前的 KCL 版本中，对如下代码进行格式化会错误将携带字符串插值的三引号格式化为单引号字符串并导致编译错误，在 0.4.4 版本中我们进行了修复
 
-```python
+```kcl
 # Before KCL v0.4.4, variable "bar" will be formatted as:
 #
 # foo = 1
@@ -216,7 +216,7 @@ ${foo}
 
 在之前的 KCL 版本中，对如下代码进行格式化会导致错误的缩进，在 0.4.4 版本中我们进行了修复
 
-```python
+```kcl
 # Before KCL v0.4.4, variable "foo" will be formatted as:
 #
 # foo = [
@@ -235,7 +235,7 @@ foo = [
 
 在之前的 KCL 版本中，执行如下代码会得到一个非预期的类型检查错误，在 0.4.4 版本中我们进行了修复
 
-```python
+```kcl
 # Before KCL v0.4.4, we will get a unexpected type mismatch error.
 foo: {"A"|"B": int} = {A = 1}
 ```

@@ -8,7 +8,7 @@ description: Variable
 
 In KCL, variables can be defined using assign statements. For example, the following statement defines a variable `spam` to a string `"ham"`.
 
-```python
+```kcl
 spam = "ham"
 ```
 
@@ -31,14 +31,14 @@ Global variables are immutable. In other words, once defined such a variable can
 
 The following code is illegal, and KCL will report an error during evaluation.
 
-```python
+```kcl
 spam = "ham"
 spam = "eggs" # Error: The immutability rule is violated!
 ```
 
 - A variable starting with the `_` character is mutable.
 
-```python
+```kcl
 _spam
 cond = True
 if cond:

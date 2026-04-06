@@ -111,7 +111,7 @@ python3 -m pip kcl_lib
 
 Write the following Python code and add the the plugin named `my_plugin`.
 
-```python
+```kcl
 import kcl_lib.plugin as plugin
 import kcl_lib.api as api
 
@@ -128,7 +128,7 @@ main()
 
 The content of `test.k` are:
 
-```python
+```kcl
 import kcl_plugin.my_plugin
 
 result = my_plugin.add(1, 1)
@@ -169,7 +169,7 @@ public class PluginTest {
 
 The content of `test.k` are:
 
-```python
+```kcl
 import kcl_plugin.my_plugin
 
 result = my_plugin.add(1, 1)

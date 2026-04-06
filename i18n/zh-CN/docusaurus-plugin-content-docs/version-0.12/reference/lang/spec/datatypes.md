@@ -21,7 +21,7 @@ Besides, integer literals may have an `SI` or `IEC` multiplier.
 - `SI`: General integer or fixed-point number form: `P`, `T`, `G`, `M`, `K`, `k`, `m`, `u`, `n`.
 - `IEC`: Corresponding power of 2: `Pi`, `Ti`, `Gi`, `Mi`, `Ki`.
 
-```python
+```kcl
 a = 1  # positive integer: 1
 b = -1  # negative integer: -1
 c = 0x10  # hexadecimal literal: 16
@@ -41,7 +41,7 @@ Notes:
 
 Float, floating-point, approximation to real numbers, positive or negative, containing one or more decimals, of 64 bit IEEE 754 floats. The constructor float() can be used to produce int of a specific type.
 
-```python
+```kcl
 a = 1.10
 b = 1.0
 c = -35.59
@@ -61,7 +61,7 @@ Notes:
 
 In KCL, `None` can indicate that the value of the object is empty, which is similar to `nil` in Go or `null` in Java, and corresponds to `null` in YAML and JSON.
 
-```python
+```kcl
 a = None
 b = [1, 2, None]
 c = {"key1" = "value1", "key2" = None}
@@ -69,7 +69,7 @@ c = {"key1" = "value1", "key2" = None}
 
 Please note that `None` cannot participate in the four arithmetic operations, but it can participate logical operators and comparison operators to perform calculations.
 
-```python
+```kcl
 a = 1 + None  # error
 b = int(None)  # error
 c = not None  # True
@@ -82,7 +82,7 @@ f = str(None)  # None
 
 `Undefined` is similar to None, but its semantics is that a variable is not assigned any value and will not be output to YAML or JSON.
 
-```python
+```kcl
 a = Undefined
 b = [1, 2, Undefined]
 c = {"key1" = "value1", "key2" = Undefined}
@@ -90,7 +90,7 @@ c = {"key1" = "value1", "key2" = Undefined}
 
 Please note that `Undefined` cannot participate in the four arithmetic operations, but it can participate logical operators and comparison operators to perform calculations.
 
-```python
+```kcl
 a = 1 + Undefined  # error
 b = int(Undefined)  # error
 c = not Undefined  # True
@@ -123,7 +123,7 @@ KCL supports mixed arithmetic: when a binary arithmetic operator has operands of
 
 Strings are immutable sequences of Unicode characters. String literals are written in a variety of ways:
 
-```python
+```kcl
 'allows embedded "double" quotes'  # Single quotes
 "allows embedded 'single' quotes"  # Double quotes
 '''Three single quotes''', """Three double quotes"""  # Triple quoted
@@ -133,7 +133,7 @@ Triple quoted strings may span multiple lines.
 
 Indexing a string produces strings of length 1, for a non-empty string s, `s[0] == s[0:1]`.
 
-```python
+```kcl
 a =  "Hello, World!"
 b = a[2:5]  # "llo"
 c = a[-5:-2]  # "orl"
@@ -144,7 +144,7 @@ d = a[::-1]  # "'!dlroW ,olleH'"
 
 Return a string. If _x_ is not provided, raise a runtime error.
 
-```python
+```kcl
 x = str(3.5) # "3.5"
 ```
 
@@ -183,7 +183,7 @@ Built-in function and members of a string
 - `join(iterable: list) -> str`
   Return a string which is the concatenation of the strings in iterable. A TypeError will be raised if there are any non-string values in iterable. The separator between elements is the string providing this method. Example:
 
-  ```python
+  ```kcl
   >>> "|".join(["a", "b", "c"])
   "a|b|c"
   ```
@@ -193,7 +193,7 @@ Built-in function and members of a string
 - `lstrip(chars: str) -> str`
   Return a copy of the string with leading characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a prefix; rather, all combinations of its values are stripped:
 
-  ```python
+  ```kcl
   >>> '   spacious   '.lstrip()
   'spacious   '
   >>> 'www.example.com'.lstrip('cmowz.')
@@ -211,7 +211,7 @@ Built-in function and members of a string
 - `rstrip(chars: str) -> str`
   Return a copy of the string with trailing characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a suffix; rather, all combinations of its values are stripped:
 
-  ```python
+  ```kcl
   >>> '   spacious   '.rstrip()
   '   spacious'
   >>> 'mississippi'.rstrip('ipz')
@@ -225,7 +225,7 @@ Built-in function and members of a string
 
   For example:
 
-  ```python
+  ```kcl
   >>> '1,2,3'.split(',')
   ['1', '2', '3']
   >>> '1,2,3'.split(',', maxsplit=1)
@@ -238,7 +238,7 @@ Built-in function and members of a string
 
   For example:
 
-  ```python
+  ```kcl
   >>> '1 2 3'.split()
   ['1', '2', '3']
   >>> '1 2 3'.split(maxsplit=1)
@@ -254,7 +254,7 @@ Built-in function and members of a string
 
   For example:
 
-  ```python
+  ```kcl
   >>> 'ab c\n\nde fg\rkl\r\n'.splitlines()
   ['ab c', '', 'de fg', 'kl']
   >>> 'ab c\n\nde fg\rkl\r\n'.splitlines(keepends=True)
@@ -263,7 +263,7 @@ Built-in function and members of a string
 
   Unlike `split()` when a delimiter string sep is given, this method returns an empty list for the empty string, and a terminal line break does not result in an extra line:
 
-  ```python
+  ```kcl
   >>> "".splitlines()
   []
   >>> "One line\n".splitlines()
@@ -272,7 +272,7 @@ Built-in function and members of a string
 
   For comparison, `split('\n')` gives:
 
-  ```python
+  ```kcl
   >>> ''.split('\n')
   ['']
   >>> 'Two lines\n'.split('\n')
@@ -284,7 +284,7 @@ Built-in function and members of a string
 - `strip(chars: str) -> str`
   Return a copy of the string with the leading and trailing characters removed. The chars argument is a string specifying the set of characters to be removed. If omitted or None, the chars argument defaults to removing whitespace. The chars argument is not a prefix or suffix; rather, all combinations of its values are stripped:
 
-  ```python
+  ```kcl
   >>> '   spacious   '.strip()
   'spacious'
   >>> 'www.example.com'.strip('cmowz.')
@@ -293,7 +293,7 @@ Built-in function and members of a string
 
   The outermost leading and trailing chars argument values are stripped from the string. Characters are removed from the leading end until reaching a string character that is not contained in the set of characters in chars. A similar action takes place on the trailing end. For example:
 
-  ```python
+  ```kcl
   >>> comment_string = '#....... Section 3.2.1 Issue #32 .......'
   >>> comment_string.strip('.#! ')
   'Section 3.2.1 Issue #32'
@@ -304,14 +304,14 @@ Built-in function and members of a string
 
   For example:
 
-  ```python
+  ```kcl
   >>> 'Hello world'.title()
   'Hello World'
   ```
 
   The algorithm uses a simple language-independent definition of a word as groups of consecutive letters. The definition works in many contexts but it means that apostrophes in contractions and possessives form word boundaries, which may not be the desired result:
 
-  ```python
+  ```kcl
   >>> "they're bill's friends from the UK".title()
   "They'Re Bill'S Friends From The Uk"
   ```
@@ -320,13 +320,13 @@ Built-in function and members of a string
   Return a copy of the string with all the cased characters 4 converted to uppercase. Note that `s.upper().isupper()` might be `False` if s contains uncased characters or if the Unicode category of the resulting character(s) is not “Lu” (Letter, uppercase), but e.g., “Lt” (Letter, titlecase).
 - `removeprefix(prefix: str) -> str`
   If the string starts with the prefix string, return string[len(prefix):]. Otherwise, return a copy of the original string.
-  ```python
+  ```kcl
   >>> "prefix-data".removeprefix("prefix-")
   "data"
   ```
 - `rermovesuffix(suffix: str) -> str`
   If the string ends with the suffix string and that suffix is not empty, return string[:-len(suffix)]. Otherwise, return a copy of the original string.
-  ```python
+  ```kcl
   >>> "data-suffix".removesuffix("-suffix")
   "data"
   ```
@@ -376,7 +376,7 @@ Notes:
 - 1. While the in and not in operations are used only for simple containment testing in the
      general case, some specialized sequences (str) also use them for subsequence testing:
 
-```python
+```kcl
 >>> "gg" in "eggs"
 True
 ```
@@ -403,7 +403,7 @@ Dictionaries can be created by placing a comma-separated list of keys: value pai
 
 Return a new dictionary initialized from an optional positional argument and a possibly empty set of keyword arguments.If no positional argument is given, an empty dictionary is created. If a positional argument is given and it is a mapping object, a dictionary is created with the same key-value pairs as the mapping object. Otherwise, the positional argument must be an iterable object. Each item in the iterable must itself be an iterable with exactly two objects. The first object of each item becomes a key in the new dictionary, and the second object the corresponding value. If a key occurs more than once, the last value for that key becomes the corresponding value in the new dictionary. If keyword arguments are given, the keyword arguments and their values are added to the dictionary created from the positional argument. If a key being added is already present, the value from the keyword argument replaces the value from the positional argument. To illustrate, the following examples all return a dictionary equal to `{"one": 1, "two": 2, "three": 3}`:
 
-```python
+```kcl
 >>> a = {'two': 2, 'one': 1, 'three': 3}
 >>> b = {'one': 1, 'two': 2, 'three': 3}
 >>> c = {'three': 3, 'one': 1, 'two': 2}
@@ -415,7 +415,7 @@ Providing keyword arguments as in the first example only works for keys that are
 
 In the dict comprehension, key/value pairs yielded by the generator expression is set in the dictionary in the order yielded: the first occurrence of the key determines its insertion order, and the last determines the value associated to it.
 
-```python
+```kcl
 >>> {str(i): 2 * i for i in range(3)}
 {"0": 0, "1": 2, "2": 4}
 
@@ -443,7 +443,7 @@ These are the operations that dictionaries the support.
 
 Dictionaries compare equal if and only if they have the same (key, value) pairs(keys' ordering matters). Order comparisons (‘<’, ‘<=’, ‘>=’, ‘>’) raise TypeError.
 
-```python
+```kcl
 >>> d = {"one": 1, "two": 2, "three": 3, "four": 4}
 >>> d
 {'one': 1, 'two': 2, 'three': 3, 'four': 4}

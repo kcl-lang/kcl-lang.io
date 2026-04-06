@@ -34,7 +34,7 @@ kpm init [module name]
 
 main.k:
 
-```python
+```kcl
 import .model1  # Current directory module
 import ..service  # Parent directory
 import ...root  # Parent of parent directory
@@ -72,7 +72,7 @@ KCL 语句`import a.b.c.d` 的语义是：
 
 KCL 有一系列内置包，例如 `math`，`regex` 等。要使用内置包，直接导入并使用其限定标识符调用函数。例如，
 
-```python
+```kcl
 import regex
 
 image = "nginx:1.14.2"
@@ -93,7 +93,7 @@ is_match: true
 
 KCL 还有一系列插件包，例如 `hello`，`project_context` 等。要使用插件包，需要用 `kcl_plugin.` 包路径前缀导入，并使用其限定标识符调用函数。例如，
 
-```python
+```kcl
 import kcl_plugin.hello
 
 result = hello.add(1, 1)

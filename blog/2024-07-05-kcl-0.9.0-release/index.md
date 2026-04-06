@@ -41,7 +41,7 @@ KCL IDE has further optimized incremental compilation and performance for semant
 
 - String interpolation now supports escaping with `\${}` similar to Shell to cancel interpolation.
 
-```python
+```kcl
 world = "world"
 hello_world_0 = "hello ${world}"  # hello world
 hello_world_1 = "hello \${world}" # hello ${world}
@@ -49,7 +49,7 @@ hello_world_1 = "hello \${world}" # hello ${world}
 
 - Added schema type support to the `typeof` function for distinguishing schema types from instances.
 
-```python
+```kcl
 schema Foo:
     bar?: str
 
@@ -60,7 +60,7 @@ type_type = typeof(Foo) # type
 
 - Added a `full_pkg` keyword argument to the `instances()` method of Schema to read instances of the corresponding schema from all code.
 
-```python
+```kcl
 schema Person:
     name: str
 
@@ -106,7 +106,7 @@ all_persons = Person.instances(True)
 
 - Added the `file` standard library for file IO operations, such as reading configurations from YAML and performing configuration merges.
 
-```python
+```kcl
 import file
 import yaml
 import json_merge_patch as p
@@ -120,7 +120,7 @@ For more functions in the `file` module, see: [https://www.kcl-lang.io/docs/refe
 
 - Added the `template` standard library for writing template configurations.
 
-```python
+```kcl
 import template
 
 _data = {
@@ -149,7 +149,7 @@ Hello world from {{name}}
 
 - Added the `runtime` standard library for capturing runtime exceptions, useful for `kcl test` tool to test exception cases.
 
-```python
+```kcl
 import runtime
 
 schema Person:
@@ -286,7 +286,7 @@ The number of KCL multi-language plugins has increased to **3**, currently suppo
 
 Write the following KCL code (main.k)
 
-```python
+```kcl
 import kcl_plugin.my_plugin
 
 result = my_plugin.add(1, 1)
@@ -294,7 +294,7 @@ result = my_plugin.add(1, 1)
 
 Use the Python SDK to register a Python function for calling in KCL
 
-```python
+```kcl
 import kcl_lib.plugin as plugin
 import kcl_lib.api as api
 

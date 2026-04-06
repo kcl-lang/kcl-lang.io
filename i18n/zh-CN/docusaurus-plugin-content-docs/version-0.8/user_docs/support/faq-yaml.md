@@ -25,7 +25,7 @@ string3: here's to "quotes"
 
 在使用 KCL 多行字符串(使用三引号括起来的字符串)，输出的 YAML 经常会携带一些特殊的记号，如 `|`,`-`,`+` 和 `>` 等，这些记号通常为 YAML 多行字符串的表示方法，比如对于如下 KCL 代码：
 
-```python
+```kcl
 data = """This is a KCL multi line string (the first line)
 This is a KCL multi line string (the second line)
 This is a KCL multi line string (the third line)
@@ -59,7 +59,7 @@ var: 1
 
 比如对于如下 KCL 代码:
 
-```python
+```kcl
 longStringStartWithNewline = """
 This is the second line
 This is the third line
@@ -78,7 +78,7 @@ longStringStartWithNewline: |2
 
 - 长字符串从第 1 行开始书写
 
-```python
+```kcl
 longString = """This is the second line
 This is the third line
 """
@@ -86,7 +86,7 @@ This is the third line
 
 - 使用续行符
 
-```python
+```kcl
 longString = """\
 This is the second line
 This is the third line

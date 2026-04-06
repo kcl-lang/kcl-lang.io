@@ -37,7 +37,7 @@ cat main.k
 
 The output is
 
-```python
+```kcl
 # Secret Management using Vault and Vals
 
 apiVersion = "apps/v1"

@@ -8,7 +8,7 @@ weight: 100
 
 ## yaml_stream
 
-```python
+```kcl
 yaml_stream(values: [any], opts: {str:} = {
     sort_keys = False
     ignore_private = True
@@ -28,7 +28,7 @@ yaml_stream(values: [any], opts: {str:} = {
 
 下面我们通过一个例子来说明:
 
-```python
+```kcl
 # 使用 `import` 关键词导入 `manifests` 模块
 import manifests
 
