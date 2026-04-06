@@ -69,6 +69,43 @@ echo_fexists() {
     [ -f "$1" ] && echo "$1"
 }
 
+isMuslLinux() {
+    [ "$OS" = "linux" ] || return 1
+
+    if [ -f "/etc/alpine-release" ]; then
+        return 0
+    fi
+
+    if type "ldd" > /dev/null 2>&1; then
+        local ldd_version
+        ldd_version=$(ldd --version 2>&1 || true)
+        case "$ldd_version" in
+            *musl*) return 0 ;;
+        esac
+    fi
+
+    return 1
+}
+
+ensureMuslDependencies() {
+    [ "$OS" = "linux-musl" ] || return 0
+
+    if [ -e "/lib/libgcc_s.so.1" ] || [ -e "/usr/lib/libgcc_s.so.1" ]; then
+        return 0
+    fi
+
+    if ! type "apk" > /dev/null 2>&1; then
+        warn "The musl build requires libgcc_s.so.1. Install libgcc manually if the language server fails to start."
+        return 0
+    fi
+
+    info "Installing" "libgcc runtime dependency for Alpine Linux"
+    if ! runAsRoot apk add --no-cache libgcc > /dev/null; then
+        error "Failed to install libgcc automatically. Please run 'apk add --no-cache libgcc' and retry."
+        exit 1
+    fi
+}
+
 getSystemInfo() {
     ARCH=$(uname -m)
     case $ARCH in
@@ -78,16 +115,19 @@ getSystemInfo() {
     esac
 
     OS=$(echo `uname`|tr '[:upper:]' '[:lower:]')
+    if isMuslLinux; then
+        OS="linux-musl"
+    fi
 
     # Most linux distro needs root permission to copy the file to /usr/local/
-    if [[ "$OS" == "linux" || "$OS" == "darwin" ]] && [ "$KCL_INSTALL_DIR" == "/usr/local" ]; then
+    if [[ "$OS" == linux* || "$OS" == "darwin" ]] && [ "$KCL_INSTALL_DIR" == "/usr/local" ]; then
         USE_SUDO="true"
     fi
 }
 
 verifySupported() {
     releaseTag=$1
-    local supported=(darwin-amd64 darwin-arm64 linux-amd64 linux-arm linux-arm64)
+    local supported=(darwin-amd64 darwin-arm64 linux-amd64 linux-arm linux-arm64 linux-musl-amd64)
     local current_osarch="${OS}-${ARCH}"
 
     for osarch in "${supported[@]}"; do
@@ -206,6 +246,7 @@ installFile() {
     runAsRoot cp -f $tmp_kclvm_folder/bin/kcl-language-server $KCL_INSTALL_DIR/bin
 
     if [ -f "$KCL_CLI_FILE" ]; then
+        ensureMuslDependencies
         updateProfile "$KCLVM_HOME_DIR" && info "Finished" "kcl-language-server installed into $KCL_INSTALL_DIR/bin successfully."
         # Check the KCL CLI version
         chmod +x $KCL_INSTALL_DIR/bin/kcl-language-server
