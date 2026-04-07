@@ -102,3 +102,23 @@ longString: |
 ```
 
 更多细节可参考: [YAML 规范 v1.2](https://yaml.org/spec/1.2.1/)
+
+## 4. KCL 目前是否支持在一个文件中输出多个 YAML 格式？
+
+是的。你可以使用 `manifests` 系统模块中的 `yaml_stream` 函数，将 KCL 对象列表序列化为使用 `---` 分隔的 YAML 流。
+
+**示例：**
+
+```python
+import manifests
+
+schema Deployment:
+    kind: str = "Deployment"
+
+schema Service:
+    kind: str = "Service"
+
+manifests.yaml_stream([Deployment{}, Service{}])
+```
+
+更多细节和配置选项，请参考 [manifests 模块文档](/docs/reference/model/manifests)。

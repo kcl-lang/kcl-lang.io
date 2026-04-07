@@ -101,3 +101,23 @@ longString: |
 ```
 
 For more details, please refer to [YAML Spec v1.2](https://yaml.org/spec/1.2.1/)
+
+## 4. Does KCL currently support multiple YAML formats for one file?
+
+Yes. You can serialize a list of KCL objects into a single YAML stream separated by `---` using the `yaml_stream` function from the `manifests` system module.
+
+**Example:**
+
+```python
+import manifests
+
+schema Deployment:
+    kind: str = "Deployment"
+
+schema Service:
+    kind: str = "Service"
+
+manifests.yaml_stream([Deployment{}, Service{}])
+```
+
+For more details and options, please refer to the [manifests module documentation](/docs/reference/model/manifests).
