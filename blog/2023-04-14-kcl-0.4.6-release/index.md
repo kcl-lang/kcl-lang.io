@@ -29,7 +29,7 @@ This blog will introduce the content of KCL v0.4.6 and recent developments in th
 
 Added KCL string `removeprefix` and `removesuffix` member functions to remove prefix and suffix substrings from strings
 
-```python
+```kcl
 data1 = "prefix-string".removeprefix("prefix-") # "string"
 data2 = "string-suffix".removesuffix("-suffix") # "string"
 ```
@@ -40,7 +40,7 @@ See [here](https://kcl-lang.io/docs/reference/model/builtin#string-builtin-membe
 
 In previous versions of KCL, running the KCL command-line tool once only displayed one error message and warning. In KCL v0.4.6, it supported the ability to display multiple errors and warnings in one compilation and improved error information to improve the efficiency of KCL code error troubleshooting, such as for the following KCL code (main.k).
 
-```python
+```kcl
 metadata = {
     labels = {key = "kcl
 }
@@ -76,7 +76,7 @@ In previous versions of KCL, when writing the following KCL code, the two schema
 
 - Before
 
-```python
+```kcl
 schema Config:
     id?: int
     value?: str
@@ -91,7 +91,7 @@ config = Config {
 
 - After
 
-```python
+```kcl
 schema Config:
     id?: int
     value?: str
@@ -112,7 +112,7 @@ We use the path selector CLI parameter (-S) without filling in the package path,
 
 For the KCL code (main.k):
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -142,7 +142,7 @@ age: 18
 
 Before KCL v0.4.6, an unexpected syntax error will appear when writing the following KCL code. In the new version, we fixed similar issues.
 
-```python
+```kcl
 env = "prod"
 config = {if env == "prod": labels = {"kubernetes.io/env" = env}}
 ```
@@ -151,7 +151,7 @@ config = {if env == "prod": labels = {"kubernetes.io/env" = env}}
 
 In previous versions of KCL, for the following KCL code, there was an error where the `versions` attribute was not assigned as expected. In KCL v0.4.6, we fixed similar issues.
 
-```python
+```kcl
 schema App:
     data?: [int]
     version: Version
@@ -198,7 +198,7 @@ kpm init kubernetes_demo && kpm add -git https://github.com/awesome-kusion/konfi
 
 Write a KCL code to import the Kubernetes models (main.k).
 
-```python
+```kcl
 import konfig.base.pkg.kusion_kubernetes.api.apps.v1 as apps
 
 apps.Deployment {
@@ -322,7 +322,7 @@ spec:
 
 In the YAML configuration mentioned above, we only wrote one line of KCL code to add a `managed-by=kustomize-kcl` annotation to all deployment resources.
 
-```python
+```kcl
 [resource | {if resource.kind == "Deployment": metadata.annotations: {"managed-by" = "kcl"}} for resource in option("resource_list").item]
 ```
 

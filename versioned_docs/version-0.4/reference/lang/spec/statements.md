@@ -43,7 +43,7 @@ Note: When using **target_primary** will cause collisions, use **primary_expr** 
 
 Examples:
 
-```python
+```kcl
 k = 1
 a.b = "a.b"
 ```
@@ -56,7 +56,7 @@ An augmented assignment, which has the form `lhs op= rhs` updates the variable `
 
 The **target_primary** on the left-hand side is the same as assignment statement. Examples:
 
-```python
+```kcl
 _x -= 1
 _filename += ".k"
 ```
@@ -81,7 +81,7 @@ expr_stmt: expression
 
 An expression statement supported in KCL is function invocation expression, which is discussed in **expression** spec.
 
-```python
+```kcl
 print(k) # print a variable
 ```
 
@@ -99,7 +99,7 @@ leading_dots: "."+
 
 Examples:
 
-```python
+```kcl
 import math # import a built-in module math
 import pkg # import pkg
 import pkg.foo # import pkg.foo
@@ -124,7 +124,7 @@ The conditional expression in assert will be evaluated and get a boolean. Report
 
 Examples:
 
-```python
+```kcl
 assert: x > 1 # report an error on x <= 1
 ```
 
@@ -147,7 +147,7 @@ is evaluated to `True`, a list of statements following `:` are executed.
 
 The following is an example:
 
-```python
+```kcl
 a = 10
 if a == 0:
     print("a is zero")
@@ -160,7 +160,7 @@ else:
 
 `if-elif-else` statements can be nested. For example:
 
-```python
+```kcl
 a = 10
 if a == 0:
     print("a is zero")

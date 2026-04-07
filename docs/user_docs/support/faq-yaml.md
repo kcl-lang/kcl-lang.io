@@ -26,7 +26,7 @@ For more details, please refer to [YAML Spec v1.2](https://yaml.org/spec/1.2.1/)
 
 When using KCL multi-line strings (triple quote strings), the output YAML often carries some special tokens, such as `|`, `-`, `+` and `>`, etc. These tokens usually are the representation method of YAML multi-line string, such as the following KCL code:
 
-```python
+```kcl
 data = """This is a KCL multi line string (the first line)
 This is a KCL multi line string (the second line)
 This is a KCL multi line string (the third line)
@@ -60,7 +60,7 @@ Numbers represent **explicit indentation indicators** in YAML. For long strings 
 
 For example, for the following KCL code:
 
-```python
+```kcl
 longStringStartWithNewline = """
 This is the second line
 This is the third line
@@ -77,7 +77,7 @@ longStringStartWithNewline: |2
 
 - Writing long strings from the first line.
 
-```python
+```kcl
 longString = """This is the second line
 This is the third line
 """
@@ -85,7 +85,7 @@ This is the third line
 
 - Writing long strings with line continuation characters.
 
-```python
+```kcl
 longString = """\
 This is the second line
 This is the third line

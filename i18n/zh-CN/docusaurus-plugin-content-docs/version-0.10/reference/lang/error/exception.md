@@ -46,7 +46,7 @@ KCL 会出现的语法错误信息如下表所示:
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 a, b = 1, 2 # 通过 “=” 赋值多个变量在KCL中是非法的。
 ```
 
@@ -71,7 +71,7 @@ error[E1001]: InvalidSyntax
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     name: str # 通过tab表示缩进
     age: int # 通过四个空格标识缩进,
@@ -103,7 +103,7 @@ error[E1001]: InvalidSyntax
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     name: str # 使用一个tab或者四个空格表示缩进
    age: int # KCL不支持使用三个空格表示缩进
@@ -135,7 +135,7 @@ error[E1001]: InvalidSyntax
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 # KCL中带有keyword的参数必须出现在不带有keyword参数后面
 # 带有keyword的参数: type="list", default={"key": "value"}
 # 不带有keyword的参数: "key1"
@@ -157,7 +157,7 @@ error[E1001]: InvalidSyntax
 
 - KCL 中带有 keyword 的参数必须出现在不带有 keyword 参数后面, 参数正常顺序:
 
-```python
+```kcl
 func(input_1, ..., input_n, param_with_key_1 = input_with_key_1, ..., param_with_key_n = input_with_key_n)
 ```
 
@@ -197,7 +197,7 @@ KCL 会出现的编译错误信息如下表所示:
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 import .some0.pkg1 as some00  # some0 not found in package
 
 Name1 = some00.Name  # some0.pkg1.name
@@ -230,7 +230,7 @@ error[E2F04]: CannotFindModule
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 @err_deprecated # 这是一个非法的装饰器
 schema Person:
     firstName: str = "John"
@@ -269,7 +269,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     firstName: str
     lastName: str
@@ -330,7 +330,7 @@ error[E2D34]: IllegalInheritError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Girl:
     gender: str = "female"
 
@@ -383,7 +383,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Data:
     [str]: str
     [str]: int # 在同一个schema中使用了多个索引签名
@@ -412,7 +412,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Data:
     name: str  # name
     [name: str]: str # 已有名称为name的schema属性
@@ -441,7 +441,7 @@ error[E1001]: IndexSignatureError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Data:
     [str]: int
 
@@ -469,7 +469,7 @@ error[E2G22]: TypeError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Data:
     count: int # int 和 str 冲突
     [str]: str
@@ -506,7 +506,7 @@ error[E1001]: IndexSignatureError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     firstName: str
     lastName: int
@@ -550,7 +550,7 @@ error[E2G22]: TypeError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 _data = [1, 2, 3]
 _data |= "value"
 ```
@@ -570,7 +570,7 @@ error[E2G22]: TypeError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 a = None
 b = 1 + None # KCL中不支持None和int之间进行+操作
 ```
@@ -595,7 +595,7 @@ error[E2G22]: TypeError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 a = 1
 b = "${c + 1}" # 'c' 没有定义
 ```
@@ -620,7 +620,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 # pkg.k
 a = 1
 
@@ -648,7 +648,7 @@ error[E2G22]: TypeError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 a = 1
 b = "${b = a + 1}" # Invalid string interpolation expression
 ```
@@ -672,7 +672,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 data = {"key1": "value1", "key2": "value2"}
 dataLoop = [i for i, j, k in data]  # the number of loop variables can only be 1 or 2
 ```
@@ -742,7 +742,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     name: str = "kcl"
     age: int = 1
@@ -787,7 +787,7 @@ error[E2L28]: UniqueKeyError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 # pkg
 schema A:
     field_A: str
@@ -825,7 +825,7 @@ error[E2G22]: TypeError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     firstName: str
     lastName: str
@@ -865,7 +865,7 @@ error[E1001]: InvalidSyntax
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema FullnameMixin:
     fullName = "{} {}".format(firstName, lastName)
 
@@ -896,7 +896,7 @@ Invalid value for top level arguments
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 a = option("key")
 
 # kcl main.k -D key=value=
@@ -926,7 +926,7 @@ Invalid value for top level arguments
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 a = 2147483646
 a += 1
 ```
@@ -1023,7 +1023,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 uplimit = 3.402823466e+39
 epsilon = 2.220446049250313e-16
 a = uplimit * (1 + epsilon)
@@ -1058,7 +1058,7 @@ error[E3M38]: EvaluationError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 _a = 9223372036854775807
 _a += 1
 
@@ -1092,7 +1092,7 @@ error[E3M38]: EvaluationError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     firstName: str = "John"
     lastName: str
@@ -1132,7 +1132,7 @@ error[E3M38]: EvaluationError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 import math
 
 a = math.err_func(1) # err_func is not found in math
@@ -1165,7 +1165,7 @@ error[E3M38]: EvaluationError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     name: str = "Alice"
 
@@ -1201,7 +1201,7 @@ error[E3M38]: EvaluationError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Person:
     lastName: str
     age: int
@@ -1247,7 +1247,7 @@ error[E3M38]: EvaluationError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Name:
     name: str
 
@@ -1287,7 +1287,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 _list1 = [1, 2, 3] # _list1 is a variable, and its type can only be known at runtime
 _list2 = None # _list1 is a variable, and its type can only be known at runtime
 
@@ -1321,7 +1321,7 @@ error[E3M38]: EvaluationError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 a = 1
 b = 1
 data = "${a: #js}" + " $$ " #  KCL插值字符串中，#js是非法的
@@ -1354,7 +1354,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 assert False
 ```
 
@@ -1385,7 +1385,7 @@ error[E3M38]: EvaluationError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Parent(Son):
     parent_field: str
 
@@ -1427,7 +1427,7 @@ error[E2L23]: CompileError
 
 可能出现错误的 KCL 程序片段如下:
 
-```python
+```kcl
 schema Parent(Son):
     parent_field: str
     son: Son = Son {  # Parent has attribute Son

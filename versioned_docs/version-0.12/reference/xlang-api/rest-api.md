@@ -59,7 +59,7 @@ The `KclService` service is a service related to KCL functionality. The usage is
 
 For example, there is the following `Person` structure definition:
 
-```python
+```kcl
 schema Person:
     key: str
 

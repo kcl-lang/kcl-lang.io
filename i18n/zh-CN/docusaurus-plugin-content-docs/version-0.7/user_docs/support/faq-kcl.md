@@ -8,7 +8,7 @@ sidebar_position: 2
 
 创建一个名为 `config.k` 的文件
 
-```python
+```kcl
 cpu = 256
 memory = 512
 image = "nginx:1.14.2"
@@ -58,7 +58,7 @@ KCL 目前的基本数值类型和值包含:
 - 空值类型 `None` - 用于表示一个变量的值为空，与输出 YAML 的 `null` 值对应
 - 未定义值类型 `Undefined` - 用于表示一个变量未被赋值，值为 `Undefined` 的变量不会被输出到 YAML 中
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -81,12 +81,12 @@ KCL 中带下划线前缀的变量表示一个**隐藏**的，**可变**的变�
 
 带 `_` 下划线前缀的变量与不带 `_` 下划线前缀变量的区别是: 不带 `_` 下划线前缀变量默认是导出到 YAML 当中的，并且具有强不可变性；带 `_` 下划线前缀变量是不导出的，可变的。
 
-```python
+```kcl
 name = 'Foo' # 导出变量，不可变变量
 name = 'Bar' # 错误：导出变量只能设置一次
 ```
 
-```python
+```kcl
 _name = 'Foo' # 隐藏变量，可变变量
 _name = 'Bar'
 
@@ -98,7 +98,7 @@ schema Person:
 
 可以使用 union 运算符 `|`, 或者 dict 解包运算符 `**` 来向 dict 中添加一个元素，并且可以使用 `in`,`not in` 等关键字判断 dict 变量当中是否包含某一个键值
 
-```python
+```kcl
 _left = {key: {key1 = "value1"}, intKey = 1}  # 注意使用 = 表示覆盖
 _right = {key: {key2 = "value2"}, intKey = 2}
 dataUnion = _left | _right  # {"key": {"key1": "value1", "key2": "value2"}, "intKey": 2}
@@ -122,7 +122,7 @@ dataUnpack:
 
 此外还可以使用 `字符串插值` 或者字符串 `format` 成员函数特性向 kcl dict 添加变量键值对
 
-```python
+```kcl
 dictKey1 = "key1"
 dictKey2 = "key2"
 data = {
@@ -145,7 +145,7 @@ data:
 
 我们可以使用 union 运算符 `|`, 或者解包运算符 `**` 修改 dict 当中的元素
 
-```python
+```kcl
 _data = {key = "value"}  # {"key": "value"}
 _data = _data | {key = "override_value1"}  # {"key": "override_value1"}
 _data = {**_data, **{key = "override_value2"}}  # {"key": "override_value2"}
@@ -159,7 +159,7 @@ _data = {**_data, **{key = "override_value2"}}  # {"key": "override_value2"}
 
 - 使用 `+`, `+=` 和 slice 切片连接组装 list 变量达到向 list 中添加元素的目的
 
-```python
+```kcl
 _args = ["a", "b", "c"]
 _args += ["end"]  # 在list尾部添加元素"end", ["a", "b", "c", "end"]
 _args = _args[:2] + ["x"] + _args[2:]  # 在list索引为2的地方插入元素"x", ["a", "b", "x", "c", "end"]
@@ -168,7 +168,7 @@ _args = ["start"] + _args  # 在list头部添加元素"start", ["start", "a", "b
 
 - 使用 `*` 解包运算符连接合并 list
 
-```python
+```kcl
 _args = ["a", "b", "c"]
 _args = [*_args, "end"]  # 在list尾部添加元素"end", ["a", "b", "c", "end"]
 _args = ["start", *_args]  # 在list头部添加元素"start", ["start", "a", "b", "c", "end"]
@@ -176,7 +176,7 @@ _args = ["start", *_args]  # 在list头部添加元素"start", ["start", "a", "b
 
 注意：当接连的变量为 `None/Undefined` 时，使用 `+` 可能会发生错误，这时使用 list 解包运算符 `*` 或者使用 `or` 运算符取 list 的默认值可以避免空值判断
 
-```python
+```kcl
 data1 = [1, 2, 3]
 data2 = None
 data3 = [*data1, *data2]  # Right [1, 2, 3]
@@ -190,7 +190,7 @@ data5 = data1 + data2  # Error: can only concatenate list (not "NoneType") to li
 
 - 直接修改 list 某个索引处的值，使用 slice 切片
 
-```python
+```kcl
 _index = 1
 _args = ["a", "b", "c"]
 _args = _args[:index] + ["x"] + _args[index+1:]  # 修改list索引为1的元素为"x", ["a", "x", "c"]
@@ -198,7 +198,7 @@ _args = _args[:index] + ["x"] + _args[index+1:]  # 修改list索引为1的元素
 
 - 根据某个条件修改 list 当中的元素，使用 list comprehension 列表推导式
 
-```python
+```kcl
 _args = ["a", "b", "c"]
 _args = ["x" if a == "b" else a for a in _args]  # 将list当中值为"b"的值都修改为"x", ["a", "x", "c"]
 ```
@@ -210,7 +210,7 @@ _args = ["x" if a == "b" else a for a in _args]  # 将list当中值为"b"的值�
 
 比如想要删除一个列表 `[1, 2, 3, 4, 5]` 中大于 2 的数字，则在 KCL 中可以写为:
 
-```python
+```kcl
 originList = [1, 2, 3, 4, 5]
 oneWayDeleteListItem = [item for item in originList if item <= 2]
 anotherWayDeleteListItem = filter item in originList {
@@ -269,7 +269,7 @@ dict 推导式具体形式为(其中推导式两边使用花括号 `{}`):
 
 list 推导式举例:
 
-```python
+```kcl
 _listData = [1, 2, 3, 4, 5, 6]
 _listData = [l * 2 for l in _listData]  # _listData中所有元素都乘以2，[2, 4, 6, 8, 10, 12]
 _listData = [l for l in _listData if l % 4 == 0]  # 筛选出_listData中可以被4整除的所有元素，[4, 8, 12]
@@ -283,28 +283,28 @@ _listData = [l + 100 if l % 8 == 0 else l for l in _listData]  # 遍历_listData
 
 dict 推导式举例:
 
-```python
+```kcl
 _dictData = {key1 = "value1", key2 = "value2"}
 _dictData = {k = _dictData[k] for k in _dictData if k == "key1" and _dictData[k] == "value1"}  # 将_dictData中key为"key1", value为"value1"的元素筛选出来, {"key1": "value1"}
 ```
 
 使用推导式获得 dict 所有 key:
 
-```python
+```kcl
 dictData = {key1 = "value1", key2 = "value2"}
 dictDataKeys = [k for k in _dictData]  # ["key1", "key2"]
 ```
 
 使用推导式对 dict 按照 key 的字典序升序进行排序:
 
-```python
+```kcl
 dictData = {key3 = "value3", key2 = "value2", key1 = "value1"}  # {'key3': 'value3', 'key2': 'value2', 'key1': 'value1'}
 dictSortedData = {k = dictData[k] for k in sorted(dictData)}  # {'key1': 'value1', 'key2': 'value2', 'key3': 'value3'}
 ```
 
 多级推导式举例:
 
-```python
+```kcl
 array1 = [1, 2, 3]
 array2 = [4, 5, 6]
 data = [a1 + a2 for a1 in array1 for a2 in array2]  # [5, 6, 7, 6, 7, 8, 7, 8, 9] len(data) == len(array1) * len(array2)
@@ -314,7 +314,7 @@ data = [a1 + a2 for a1 in array1 for a2 in array2]  # [5, 6, 7, 6, 7, 8, 7, 8, 9
 
 - list
 
-```python
+```kcl
 data = [1000, 2000, 3000]
 # 单变量循环
 dataLoop1 = [i * 2 for i in data]  # [2000, 4000, 6000]
@@ -331,7 +331,7 @@ dataLoop8 = [v for _, v in data if v == 2000]  # [2000]
 
 - dict
 
-```python
+```kcl
 data = {key1 = "value1", key2 = "value2"}
 # 单变量循环
 dataKeys1 = [k for k in data]  # ["key1", "key2"]
@@ -351,14 +351,14 @@ KCL 支持两种方式书写 if 条件语句:
 
 - if-elif-else 块语句，其中 elif 和 else 块均可省略，并且 elif 块可以使用多次
 
-```python
+```kcl
 success = True
 _result = "failed"
 if success:
     _result = "success"
 ```
 
-```python
+```kcl
 success = True
 if success:
     _result = "success"
@@ -366,7 +366,7 @@ else:
     _result = "failed"
 ```
 
-```python
+```kcl
 _result = 0
 if condition == "one":
     _result = 1
@@ -380,7 +380,7 @@ else:
 
 - 条件表达式 `<expr1> if <condition> else <expr2>`, 类似于 C 语言当中的 `<condition> ? <expr1> : <expr2>` 三元表达式
 
-```python
+```kcl
 success = True
 _result = "success" if success else "failed"
 ```
@@ -391,7 +391,7 @@ _result = "success" if success else "failed"
 
 - list
 
-```python
+```kcl
 env = "prod"
 data = [
     "env_value"
@@ -405,7 +405,7 @@ data = [
 
 - dict
 
-```python
+```kcl
 env = "prod"
 config = {
     if env == "prod":
@@ -419,7 +419,7 @@ config = {
 
 在 KCL 中，使用 `and` 表示"逻辑与", 使用 `or` 表示"逻辑或", 使用 `not` 表示"非", 与 C 语言当中的 `&&`, `||` 和 `~` 语义一致；
 
-```python
+```kcl
 done = True
 col == 0
 if done and (col == 0 or col == 3):
@@ -428,7 +428,7 @@ if done and (col == 0 or col == 3):
 
 对于整数的"按位与", "按位或"和"按位异或"，在 KCL 中使用 `&`, `|` 和 `^` 运算符表示, 与 C 语言当中的 `&`, `|` 和 `^` 语义一致；
 
-```python
+```kcl
 value = 0x22
 bitmask = 0x0f
 
@@ -440,7 +440,7 @@ assert (value ^ bitmask) == 0x2d
 
 "逻辑或" `or` 的妙用：当需要书写诸如 `A if A else B` 类似的模式时，可以使用 `A or B` 进行简化，比如如下代码:
 
-```python
+```kcl
 value = [0]
 default = [1]
 x0 = value if value else default
@@ -453,7 +453,7 @@ x1 = value or default  # 使用 value or default 代替 value if value else defa
 
 比如判断一个字符串变量 `strData` 既不为 `None/Undefined` 也不为空字符串时(字符串长度大于 0)，就可以简单的使用如下表达式:
 
-```python
+```kcl
 strData = "value"
 if strData:
     isEmptyStr = False
@@ -461,7 +461,7 @@ if strData:
 
 空字典和空列表判断举例:
 
-```python
+```kcl
 _emptyList = []
 _emptyDict = {}
 isEmptyList = False if _emptyList else True
@@ -477,7 +477,7 @@ isEmptyDict: true
 
 或者使用布尔函数 `bool` 进行判断
 
-```python
+```kcl
 _emptyList = []
 _emptyDict = {}
 isEmptyList = bool(_emptyList)
@@ -488,7 +488,7 @@ isEmptyDict = bool(_emptyDict)
 
 - KCL 中可以使用 `+` 运算符连接两个字符串
 
-```python
+```kcl
 data1 = "string1" + "string2"  # "string1string2"
 data2 = "string1" + " " + "string2"  # "string1 string2"
 ```
@@ -497,7 +497,7 @@ data2 = "string1" + " " + "string2"  # "string1 string2"
   - 字符串变量的 format 方法 `"{}".format()`
   - 字符串插值 `${}`
 
-```python
+```kcl
 hello = "hello"
 a = "{} world".format(hello)
 b = "${hello} world"
@@ -505,7 +505,7 @@ b = "${hello} world"
 
 注意，如果想在 `"{}".format()` 中单独使用 `{` 字符或者 `}`, 则需要使用 `{{` 和 `}}` 分别对 `{` 和 `}` 进行转义，比如转义一个 JSON 字符串如下代码：
 
-```python
+```kcl
 data = "value"
 jsonData = '{{"key": "{}"}}'.format(data)
 ```
@@ -519,7 +519,7 @@ jsonData: '{"key": "value"}'
 
 注意，如果想在 `${}` 插值字符串中单独使用 `$` 字符，则需要使用 `$$` 对 `$` 进行转义
 
-```python
+```kcl
 world = "world"
 a = "hello {}".format(world)       # "hello world"
 b = "hello ${world}"               # "hello world"
@@ -539,7 +539,7 @@ c2: $hello world$
 
 - KCL 中使用字符串的 `startswith` 和 `endswith` 方法检查字符串的前缀和后缀
 
-```python
+```kcl
 data = "length"
 isEndsWith = data.endswith("th")  # True
 isStartsWith = "length".startswith('len')  # True
@@ -547,7 +547,7 @@ isStartsWith = "length".startswith('len')  # True
 
 - KCL 中使用字符串的 replace 方法或者 regex.replace 函数替换字符串的内容
 
-```python
+```kcl
 import regex
 data1 = "length".replace("len", "xxx")  # 使用"xxx"替换"len", "xxxgth"
 data2 = regex.replace("abc123", r"\D", "0")  # 替换"abc123"中的所有非数字为"0", "000123"
@@ -559,7 +559,7 @@ data2 = regex.replace("abc123", r"\D", "0")  # 替换"abc123"中的所有非数�
 
 - 索引占位符
 
-```python
+```kcl
 x = '{2} {1} {0}'.format('directions', 'the', 'Read')
 y = '{0} {0} {0}'.format('string')
 ```
@@ -573,7 +573,7 @@ y: string string string
 
 - 关键字占位符
 
-```python
+```kcl
 x = 'a: {a}, b: {b}, c: {c}'.format(a = 1, b = 'Two', c = 12.3)
 ```
 
@@ -587,14 +587,14 @@ x: "a: 1, b: Two, c: 12.3"
 
 KCL 单引号和双引号字符串几乎没有区别。唯一的区别是，不需要在单引号字符串中使用 `\"` 转义双引号 `"`，不需要在双引号字符串中使用 `\'` 转义单引号引号 `'`。
 
-```python
+```kcl
 singleQuotedString = 'This is my book named "foo"'  # don't need to escape double quotes in single quoted strings.
 doubleQuotedString = "This is my book named 'foo'"  # don't need to escape single quotes in double quoted strings.
 ```
 
 此外在 KCL 中，使用三个单引号或者三个双引号组成的长字符串，无需在其中对单引号或者三引号进行转义 (除字符串首尾)，比如如下例子：
 
-```python
+```kcl
 longStrWithQuote0 = """Double quotes in long strings "(not at the beginning and end)"""
 longStrWithQuote1 = '''Double quotes in long strings "(not at the beginning and end)'''
 longStrWithQuote2 = """Single quotes in long strings '(not at the beginning and end)"""
@@ -614,7 +614,7 @@ longStrWithQuote3: Single quotes in long strings '(not at the beginning and end)
 
 KCL 中可以使用单引号字符串 + 换行符 `\n` 或者三引号字符串书写一个多行字符串，并且可以借助续行符 `\` 优化 KCL 字符串的形式，比如对于如下代码中的三个多行字符串变量，它们的制是相同的：
 
-```python
+```kcl
 string1 = "The first line\nThe second line\nThe third line\n"
 string2 = """The first line
 The second line
@@ -656,7 +656,7 @@ string3: |
 
 使用举例:
 
-```python
+```kcl
 import regex
 
 regex_source = "Apple,Google,Baidu,Xiaomi"
@@ -692,7 +692,7 @@ regex_result_false: false
 
 对于比较长的正则表达式，还可以使用 r-string 忽略 `\` 符号的转义简化正则表达式字符串的书写:
 
-```python
+```kcl
 import regex
 
 isIp = regex.match("192.168.0.1", r"^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)."+r"(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|\d)$")  # 判断是否是一个IP字符串
@@ -700,7 +700,7 @@ isIp = regex.match("192.168.0.1", r"^(1\d{2}|2[0-4]\d|25[0-5]|[1-9]\d|[1-9])."+r
 
 更多举例:
 
-```python
+```kcl
 import regex
 
 schema Resource:
@@ -713,7 +713,7 @@ schema Resource:
         regex.match(disk, r"^([1-9][0-9]{0,63})(E|P|T|G|M|K|Ei|Pi|Ti|Gi|Mi|Ki)$"), "disk must match specific regular expression"
 ```
 
-```python
+```kcl
 import regex
 
 schema Env:
@@ -732,7 +732,7 @@ schema 是 KCL 中一种语言元素，用于定义配置数据的类型，像 C
 
 KCL 中使用 schema 关键字可以定义一个结构，在其中可以申明 schema 的各个属性
 
-```python
+```kcl
 # 一个Person结构，其中具有属性字符串类型的firstName, 字符串类型的lastName, 整数类型的age
 schema Person:
     firstName: str
@@ -743,7 +743,7 @@ schema Person:
 
 一个复杂例子:
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -761,7 +761,7 @@ schema Deployment:
 
 KCL 中使用 `?` 运算符定义一个 schema 的"可选"约束，schema 属性默认都是"必选"的
 
-```python
+```kcl
 # 一个Person结构，其中具有属性字符串类型的firstName, 字符串类型的lastName, 整数类型的age
 schema Person:
     firstName?: str  # firstName是一个可选属性，可以赋值为None/Undefined
@@ -775,7 +775,7 @@ schema Person:
 
 在 schema 定义当中可以使用 check 关键字编写 schema 属性的校验规则, 如下所示，check 代码块中的每一行都对应一个条件表达式，当满足条件时校验成功，当不满足条件时校验失败。条件表达式后可跟 `, "check error message"` 表示当校验失败时需要显示的信息
 
-```python
+```kcl
 import regex
 
 schema Sample:
@@ -805,7 +805,7 @@ schema Sample:
 
 此外，上述 check 当中比较表达式还可以简写为:
 
-```python
+```kcl
 0 <= bar < 100
 0 < len(fooList) < 100
 ```
@@ -825,7 +825,7 @@ schema Sample:
 
 一个完整的 schema 属性注释使用三引号字符串表示，其中的结构如下所示:
 
-```python
+```kcl
 schema Person:
     """The schema person definition
 
@@ -861,7 +861,7 @@ person = Person {
 
 在 schema 实例化的过程中可以使用解包运算符 `**` 对公共的配置进行展开
 
-```python
+```kcl
 schema Boy:
     name: str
     age: int
@@ -907,7 +907,7 @@ girl:
 
 在定义 schema 后，可以使用 schema 名称实例化相应的配置，使用 `:` 运算符对 schema 默认值进行 union, 使用 `=` 对 schema 默认值进行覆盖。对于 int/float/bool/str 类型的 schema 属性，union 和覆盖的效果相同; 对于 list/dict/schema 类型的 schema 属性，union 和覆盖的效果不同;
 
-```python
+```kcl
 schema Meta:
     labels: {str:str} = {"key1" = "value1"}
     annotations: {str:str} = {"key1" = "value1"}
@@ -933,7 +933,7 @@ meta:
 
 可以在 schema 定义处声明 schema 需要继承的 schema 名称:
 
-```python
+```kcl
 # A person has a first name, a last name and an age.
 schema Person:
     firstName: str
@@ -972,7 +972,7 @@ employee:
 
 可以使用 KCL schema mixin 复用 schema 逻辑，mixin 一般被用于 schema 内部属性的分离数据，和数据映射等功能，可以使 KCL 代码更具模块化和声明性。注意不同的 mixin 之间的混入属性不建议定义依赖关系，会使得 mixin 使用方式复杂，一般一个 mixin 中作不超过三个属性混入即可。
 
-```python
+```kcl
 schema Person:
     mixin [FullNameMixin, UpperMixin]
 
@@ -1026,7 +1026,7 @@ person:
 
 对于 `main.k`, 相对路径导入和绝对路径导入分别可以表示为:
 
-```python
+```kcl
 import service  # 绝对路径导入, 根目录为kcl.mod所在的路径
 import mixin  # 绝对路径导入, 根目录为kcl.mod所在的路径
 
@@ -1037,7 +1037,7 @@ import ...root  # 相对路径导入, 父目录的父目录
 
 注意，对于 KCL 的入口文件 `main.k`, 其不能导入自身所在的文件夹，否则会发生循环导入错误:
 
-```python
+```kcl
 import model  # Error: recursively loading
 ```
 
@@ -1064,7 +1064,7 @@ import model  # Error: recursively loading
 
 service1.k
 
-```python
+```kcl
 schema BaseService:
     name: str
     namespace: str
@@ -1072,7 +1072,7 @@ schema BaseService:
 
 service2.k
 
-```python
+```kcl
 schema Service(BaseService):
     id: str
 ```
@@ -1083,7 +1083,7 @@ schema Service(BaseService):
 
 长字符串连接续行举例:
 
-```python
+```kcl
 longString = "Too long expression " + \
              "Too long expression " + \
              "Too long expression "
@@ -1091,7 +1091,7 @@ longString = "Too long expression " + \
 
 推导表达式续行举例:
 
-```python
+```kcl
 data = [1, 2, 3, 4]
 dataNew = [
     d + 2 \
@@ -1102,7 +1102,7 @@ dataNew = [
 
 if 表达式续行举例:
 
-```python
+```kcl
 condition = 1
 data1 = 1 \
     if condition \
@@ -1114,7 +1114,7 @@ else 1
 
 三引号字符串内部续行举例:
 
-```python
+```kcl
 longString = """\
 The first line\
 The continue second line\
@@ -1125,7 +1125,7 @@ The continue second line\
 
 错误用例:
 
-```python
+```kcl
 data1 = [
     1, 2,
     3, 4 \
@@ -1139,7 +1139,7 @@ data2 = [
 
 正确用例:
 
-```python
+```kcl
 data1 = [
     1, 2,
     3, 4
@@ -1160,7 +1160,7 @@ data3 = [ \
 
 - `**`, `*` 出现在 dict/list 外部时分别表示乘方运算符和乘法运算符
 
-```python
+```kcl
 data1 = 2 ** 4  # 2的4次方等于16
 data2 = 2 * 3  # 2乘以3等于6
 ```
@@ -1169,14 +1169,14 @@ data2 = 2 * 3  # 2乘以3等于6
 
 dict 的解包:
 
-```python
+```kcl
 data = {"key1" = "value1"}
 dataUnpack = {**data, "key2" = "value2"}  # 将data解包合并入dataUnpack中, {"key1": "value1", "key2": "value2"}
 ```
 
 list 的解包:
 
-```python
+```kcl
 data = [1, 2, 3]
 dataUnpack = [*data, 4, 5, 6]  # 将data解包合并入dataUnpack中, [1, 2, 3, 4, 5, 6]
 ```
@@ -1187,7 +1187,7 @@ dataUnpack = [*data, 4, 5, 6]  # 将data解包合并入dataUnpack中, [1, 2, 3, 
 
 - 对于 list 类型，可以使用 `[]` 取列表中的某一个元素或者某一些元素
 
-```python
+```kcl
 data = [1, 2, 3]  # 定义一个整数类型的数组
 theFirstItem = data[0]  # 取数组中索引为0的元素，即第一个元素 1
 theSecondItem = data[1]  # 取数组中索引为1的元素，即第一个元素 2
@@ -1195,7 +1195,7 @@ theSecondItem = data[1]  # 取数组中索引为1的元素，即第一个元素 
 
 注意：索引的取值不能超出列表的长度，否则会发生错误，可以使用 `len` 函数获得数组的长度
 
-```python
+```kcl
 data = [1, 2, 3]
 dataLength = len(data)  # 数组长度为3
 item = data[3]  # 发生数组索引越界错误
@@ -1203,7 +1203,7 @@ item = data[3]  # 发生数组索引越界错误
 
 此外，还可以使用负数索引倒序获得列表中的元素
 
-```python
+```kcl
 data = [1, 2, 3]
 item1 = data[-1]  # 取数组中索引为-1的元素，即最后一个元素 3
 item2 = data[-2]  # 取数组中索引为-2的元素，即倒数第二个元素 2
@@ -1213,7 +1213,7 @@ item2 = data[-2]  # 取数组中索引为-2的元素，即倒数第二个元素 
 
 当想要取得列表的一部分时，可以在 `[]` 中使用切片表达式，其具体语法为 `[<列表开始索引>:<列表终止索引>:<列表遍历步长>]`，注意索引开始终止的取值区间为 `左闭右开[<列表开始索引>, <列表终止索引>)`，注意三个参数均可省略不写
 
-```python
+```kcl
 data = [1, 2, 3, 4, 5]
 dataSlice0 = data[1:2]  # 取列表中索引开始为 1, 终止索引为 2 的元素集合 [2]
 dataSlice1 = data[1:3]  # 取列表中索引开始为 1, 终止索引为 3 的元素集合 [2, 3]
@@ -1227,7 +1227,7 @@ dataSlice6 = data[2:1]  # 当开始，终止，步长三个参数组合不满足
 
 - 对于 dict/schema 类型，可以使用 `[]` 和 `.` 两种方式取 dict/schema 中的子元素
 
-```python
+```kcl
 data = {key1: "value1", key2: "value2"}
 data1 = data["key1"]  # "value1"
 data2 = data.key1  # "value1"
@@ -1235,7 +1235,7 @@ data3 = data["key2"]  # "value2"
 data4 = data.key2  # "value2"
 ```
 
-```python
+```kcl
 schema Person:
     name: str = "Alice"
     age: int = 18
@@ -1249,7 +1249,7 @@ age2 = person.age  # 18
 
 当键值在 dict 中不存在时，返回未定义值 `Undefined`
 
-```python
+```kcl
 data = {key1 = "value1", key2 = "value2"}
 data1 = data["not_exist_key"]  # Undefined
 data2 = data.not_exist_key  # Undefined
@@ -1257,7 +1257,7 @@ data2 = data.not_exist_key  # Undefined
 
 可以使用 `in` 关键字判断某个键值是否在 dict/schema 中存在
 
-```python
+```kcl
 data = {key1 = "value1", key2 = "value2"}
 exist1 = "key1" in data  # True
 exist2 = "not_exist_key" in data  # False
@@ -1265,7 +1265,7 @@ exist2 = "not_exist_key" in data  # False
 
 当键值中存在 `.` 时或者需要运行时取一个键值变量对应的值时，只能使用 `[]` 方式，如无特殊情况，使用 `.` 即可:
 
-```python
+```kcl
 name = "key1"
 data = {key1 = "value1", key2 = "value2", "contains.dot" = "value3"}
 data1 = data[name]  # "value1"
@@ -1275,26 +1275,26 @@ data2 = data["contains.dot"]  # "value3"
 
 注意：上述取子元素的运算符不能对非 list/dict/schema 集合类型的值进行操作，比如整数，空值等。
 
-```python
+```kcl
 data = 1
 data1 = 1[0] # error
 ```
 
-```python
+```kcl
 data = None
 data1 = None[0] # error
 ```
 
 在取集合类型的子元素时往往要进行非空或者长度判断：
 
-```python
+```kcl
 data = []
 item = data[0] if data else None
 ```
 
 可以使用非空判断符 `?` 添加在 `[]`, `.` 的前面表示进行 if 非空判断，当不满足条件时返回 None，比如上述代码可以简化为:
 
-```python
+```kcl
 data = []
 item1 = data?[0]  # 当data为空时，返回空值 None
 item2 = data?[0] or 1  # 当data为空时，返回空值 None, 如果不想返回 None, 还可与 or 运算符连用返回其他默认值
@@ -1302,7 +1302,7 @@ item2 = data?[0] or 1  # 当data为空时，返回空值 None, 如果不想返�
 
 使用 `?` 可以进行递归调用, 避免复杂繁琐的非空判断
 
-```python
+```kcl
 data = {key1.key2.key3 = []}
 item = data?.key1?.key2?.key3?[0]
 ```
@@ -1313,7 +1313,7 @@ KCL typeof built-in 函数可以在该函数执行时立即返回一个变量的
 
 用法举例:
 
-```python
+```kcl
 import sub as pkg
 
 _a = 1
@@ -1346,7 +1346,7 @@ t6 = typeof(_x1, full_name=True)
 
 对于与关键字冲突的标识符，可以在标识符前添加 `$` 前缀用于定义一个关键字标识符，比如如下代码中使用了 `if`, `else` 等关键字作为标识符并且可以得到相应的 YAML 输出
 
-```python
+```kcl
 $if = 1
 $else = "s"
 
@@ -1367,7 +1367,7 @@ else: s
 
 注意：在非关键字标识符前添加 `$` 前缀的效果与不添加相同
 
-```python
+```kcl
 _a = 1
 $_a = 2  # 等效于 `_a = 2`
 ```
@@ -1396,7 +1396,7 @@ str: 2
 
 - (推荐)使用**字面值类型**的**联合类型**
 
-```python
+```kcl
 schema Person:
     name: str
     gender: "Male" | "Female"
@@ -1409,7 +1409,7 @@ person = Person {
 
 一个复杂例子
 
-```python
+```kcl
 schema Config:
     colors: ["Red" | "Yellow" | "Blue"]  # colors 是一个枚举数组
 
@@ -1423,7 +1423,7 @@ config = Config {
 
 - 使用 schema 的 check 表达式
 
-```python
+```kcl
 schema Person:
     name: str
     gender: "Male" | "Female"
@@ -1441,7 +1441,7 @@ person = Person {
 
 在 KCL 中可以使用 `len` 内置函数直接求 dict 的长度
 
-```python
+```kcl
 len1 = len({k1: "v1"})  # 1
 len2 = len({k1: "v1", k2: "v2"})  # 2
 varDict = {k1 = 1, k2 = 2, k3 = 3}
@@ -1450,7 +1450,7 @@ len3 = len(varDict)  # 3
 
 此外，使用 `len` 函数还可以求 `str` 和 `list` 类型长度
 
-```python
+```kcl
 len1 = len("hello")  # 5
 len2 = len([1, 2, 3])  # 3
 ```
@@ -1459,7 +1459,7 @@ len2 = len([1, 2, 3])  # 3
 
 在 KCL 中，除了支持在顶级的语句中书写 `if-elif-else` 条件表达式以外，还支持在 KCL 复杂结构（list/dict/schema）中书写条件表达式，支持带条件的配置书写。
 
-```python
+```kcl
 x = 1
 # List 结构中的 if 条件语句
 dataList = [
@@ -1494,7 +1494,7 @@ KCL 中的 `==` 运算符
   - `list` 类型深度递归递归比较每个索引的值以及长度
   - `dict`/`schema` 类型深度递归比较每个属性的值(与属性出现的顺序无关)
 
-```python
+```kcl
 print([1, 2] == [1, 2])  # True
 print([[0, 1], 1] == [[0, 1], 1])  # True
 print({k1 = 1, k2 = 2} == {k2 = 2, k1 = 1})  # True
@@ -1515,7 +1515,7 @@ print({k1 = 1, k2 = 2, k3 = 3} == {k2 = 2, k1 = 1})  # False
 
 最常使用的属性运算符是 `=`，表示一个属性的赋值，多次对同一个属性进行使用时表示覆盖，对于 `{}` 外的全局变量或者 `{}` 内的属性均表示使用值覆盖这个全局变量或者属性
 
-```python
+```kcl
 data = {  # 定义一个字典类型的变量 data
     a = 1  # 使用 = 在 data 中声明一个值为 1 的属性 a
     b = 2  # 使用 = 在 data 中声明一个值为 2 的属性 b
@@ -1524,7 +1524,7 @@ data = {  # 定义一个字典类型的变量 data
 
 在 schema 实例化处也可以使用覆盖属性运算符实现对 schema 默认值的覆盖效果，一般在创建新的 schema 实例时如无特殊的需求，一般使用 `=` 即可
 
-```python
+```kcl
 schema Person:
     name: str = "Alice"  # schema Person 的 name 属性具有默认值 "Alice"
     age: int = 18  # schema Person 的 age 属性具有默认值 18
@@ -1539,7 +1539,7 @@ bob = Person {
 
 插入属性运算符表示对一个属性的值进行原地添加，比如向一个 list 类型的属性添加新的元素
 
-```python
+```kcl
 data = {
     args = ["kcl"]  # 使用 = 在 data 中声明一个值为 ["kcl"] 的属性 args
     args += ["-Y", "settings.yaml"]  # 使用 += 运算符向属性 args 中添加两个元素"-Y", "settings.yaml"
@@ -1550,7 +1550,7 @@ data = {
 
 合并属性运算符表示对一个属性的不同配置块值进行幂等的合并，当需要合并的值发生冲突时进行报错，多用于复杂配置合并场景
 
-```python
+```kcl
 data = {
     labels: {key1: "value1"}  # 定义一个 labels, 它的类型为 dict, 值为 {"key1": "value1"}
     labels: {key2: "value2"}  # 使用 : 将 labels 不同的配置值进行合并
@@ -1559,7 +1559,7 @@ data = {
 
 合并属性运算符属于幂等运算符，需要合并的配置块的书写顺序不影响其最终结果，比如上述例子中的两个 `labels` 属性也可以调换顺序书写
 
-```python
+```kcl
 data = {  # 同一个属性 labels 的合并书写顺序不影响最终结果
     labels: {key2: "value2"}  # 定义一个 labels, 它的类型为 dict, 值为 {"key2": "value2"}
     labels: {key1: "value1"}  # 使用 : 将 labels 不同的配置值进行合并
@@ -1568,14 +1568,14 @@ data = {  # 同一个属性 labels 的合并书写顺序不影响最终结果
 
 注意：合并属性运算符会对合并的值进行冲突检查，当需要合并的配置值发生冲突时进行报错
 
-```python
+```kcl
 data = {
     a: 1  # a 的值为 1
     a: 2  # Error: a 的值 2 不能与 a 的值 1 进行合并，因为其结果存在冲突，且合并是不可交换的
 }
 ```
 
-```python
+```kcl
 data = {
     labels: {key: "value"}
     labels: {key: "override_value"}  # Error: 两个 labels 的 key 属性的值 "value" 和 "override_value" 是冲突的，不可合并
@@ -1587,7 +1587,7 @@ data = {
 - 不同类型的属性不能进行合并
 - 当属性为 int/float/str/bool 等基本类型时，运算符会判断需要合并的值是否相等，不相等时发生合并冲突错误
 
-```python
+```kcl
 data = {
     a: 1
     a: 1  # Ok
@@ -1599,7 +1599,7 @@ data = {
   - 当需要合并的两个 list 长度不相等时，发生合并冲突错误
   - 当需要合并的两个 list 长度相等时，按照索引递归地合并 list 当中的每一个元素
 
-```python
+```kcl
 data = {
     args: ["kcl"]
     args: ["-Y", "settings.yaml"]  # Error: 两个 args 属性的长度不相同，不能进行合并
@@ -1610,7 +1610,7 @@ data = {
 
 - 当属性为 dict/schema 类型时，按照 key 递归地合并 dict/schema 当中的每一个元素
 
-```python
+```kcl
 data = {
     labels: {key1: "value1"}
     labels: {key2: "value2"}
@@ -1620,7 +1620,7 @@ data = {
 
 - 任意类型的属性与 None/Undefined 合并的结果都是其自身
 
-```python
+```kcl
 data = {
     args: ["kcl"]
     args: None  # Ok
@@ -1630,7 +1630,7 @@ data = {
 
 支持顶级变量使用 `:` 属性声明与合并(仍然可使用 `config = Config {}` 的方式声明一个配置块)
 
-```python
+```kcl
 schema Config:
     id: int
     value: str
@@ -1658,7 +1658,7 @@ config: Config {
 
 此外，当已经存在一个配置时，可以使用解包运算符 `**` 获得此配置的所有字段值并对其中的字段使用不同属性运算符进行修改，并获得一个新的配置
 
-```python
+```kcl
 configBase = {
     intKey = 1  # 一个 int 类型的属性
     floatKey = 1.0  # 一个 float 类型的属性
@@ -1696,7 +1696,7 @@ configNew:
 
 或者可以使用 `|` 运算符对两个配置块合并:
 
-```python
+```kcl
 configBase = {
     intKey = 1  # 一个 int 类型的属性
     floatKey = 1.0  # 一个 float 类型的属性
@@ -1737,13 +1737,13 @@ configNew:
 
 比如对于如下代码:
 
-```python
+```kcl
 data = {k: 1} | {k: 2}  # Error: conflicting values on the attribute 'k' between {'k': 1} and {'k': 2}
 ```
 
 则可以使用 `=` 属性运算符修改为如下形式
 
-```python
+```kcl
 data = {k: 1} | {k = 2}  # Ok: the value 2 will override the value 1 through the `=` operator
 ```
 
@@ -1753,7 +1753,7 @@ KCL 中可以使用 for 推导表达式遍历多个元素
 
 - 举例 1: 使用 for 进行 2 维元素遍历
 
-```python
+```kcl
 dimension1 = [1, 2, 3]  # dimension1 列表的长度是 3
 dimension2 = [1, 2, 3]  # dimension2 列表的长度是 3
 matrix = [x + y for x in dimension1 for y in dimension2]  # matrix 列表的长度是 9 = 3 * 3
@@ -1784,7 +1784,7 @@ matrix:
 
 - 举例 2: 使用 for 循环配合 zip 内置函数按照索引一一对应对多个列表进行遍历
 
-```python
+```kcl
 dimension1 = [1, 2, 3]  # dimension1 列表的长度是 3
 dimension2 = [1, 2, 3]  # dimension2 列表的长度是 3
 dimension3 = [d[0] + d[1] for d in zip(dimension1, dimension2)]  # dimension3 列表的长度是 3
@@ -1811,13 +1811,13 @@ dimension3:
 
 在 KCL 中，当 option 属性的值为 None/Undefined 空时，可以使用逻辑或 `or` 直接指定一个默认值
 
-```python
+```kcl
 value = option("key") or "default_value"  # 当 key 的值存在时，取 option("key") 的值，否则取 "default_value"
 ```
 
 或者使用 option 函数的 default 参数
 
-```python
+```kcl
 value = option("key", default="default_value")  # 当 key 的值存在时，取 option("key") 的值，否则取 "default_value"
 ```
 
@@ -1825,7 +1825,7 @@ value = option("key", default="default_value")  # 当 key 的值存在时，取 
 
 在 KCL 中，对于 schema 的单个属性不能为空可以使用属性非空标记
 
-```python
+```kcl
 schema Person:
     name: str  # required. name 不能为空
     age: int  # required. age 不能为空
@@ -1836,7 +1836,7 @@ schema Person:
 
 - Config 的 a, b 属性不能同时为空
 
-```python
+```kcl
 schema Config:
     a?: str
     b?: str
@@ -1847,7 +1847,7 @@ schema Config:
 
 - Config 的 a, b 属性只能有一个为空或者都为空（不能同时存在或不为空）
 
-```python
+```kcl
 schema Config:
     a?: str
     b?: str
@@ -1872,13 +1872,13 @@ schema Config:
 
 在根目录下存在入口文件 main.k，可以在 main.k 中书写如下代码导入整个 pkg 文件夹，此时 pkg 文件夹下的所有 schema 定义互相可见
 
-```python
+```kcl
 import pkg
 ```
 
 还可以书写如下代码导入单个文件 pkg/pkg1.k，此时 pkg1.k 不能找到其他文件即 pkg2.k/pkg3.k 下的 schema 定义
 
-```python
+```kcl
 import pkg.pkg1
 ```
 
@@ -1888,7 +1888,7 @@ import pkg.pkg1
 
 - 冒号 `:` 后跟换行 + 缩进
 
-```python
+```kcl
 """if 语句中的缩进"""
 _a = 1
 _b = 1
@@ -1906,7 +1906,7 @@ schema Person:  # 冒号后跟换行+缩进
 
 - 中括号对 `[]` 后跟换行 + 缩进
 
-```python
+```kcl
 data = [  # 左中括号 [ 后跟换行+缩进
     1
     2
@@ -1914,7 +1914,7 @@ data = [  # 左中括号 [ 后跟换行+缩进
 ]  # 右中括号 ] 前取消缩进
 ```
 
-```python
+```kcl
 data = [  # 左中括号 [ 后跟换行+缩进
     i * 2 for i in range(5)
 ]  # 右中括号 ] 前取消缩进
@@ -1922,14 +1922,14 @@ data = [  # 左中括号 [ 后跟换行+缩进
 
 - 大括号对 `{}` 后跟换行 + 缩进
 
-```python
+```kcl
 data = {  # 左大括号 { 后跟换行+缩进
     k1 = "v1"
     k2 = "v2"
 }  # 右大括号 } 前取消缩进
 ```
 
-```python
+```kcl
 data = {  # 左大括号 { 后跟换行+缩进
     str(i): i * 2 for i in range(5)
 }  # 右大括号 } 前取消缩进
@@ -1939,7 +1939,7 @@ data = {  # 左大括号 { 后跟换行+缩进
 
 KCL 目前的版本还不支持内部程序调试，可以使用 assert 语句以及 print 函数实现数据的断言和打印查看
 
-```python
+```kcl
 a = 1
 print("The value of a is", a)
 assert a == 1
@@ -1949,7 +1949,7 @@ assert a == 1
 
 假设有 hello.k 文件，代码如下:
 
-```python
+```kcl
 schema Person:
     name: str = "kcl"
     age: int = 1
@@ -1962,7 +1962,7 @@ hello = Person {
 
 构造 hello_test.k 测试文件，内容如下：
 
-```python
+```kcl
 schema TestPerson:
     a = Person{}
     assert a.name == 'kcl'
@@ -1989,7 +1989,7 @@ $
 
 schema 结构在一定程度上充当了函数的功能，并且这个函数具有多个输入参数和多个输出参数的能力，比如如下代码可以实现一个斐波那契数列的功能:
 
-```python
+```kcl
 schema Fib:
     n: int
     value: int = 1 if n <= 2 else (Fib {n: n - 1}).value + (Fib {n: n - 2}).value
@@ -2005,7 +2005,7 @@ fib8: 21
 
 一个合并列表为字典的 schema 函数
 
-```python
+```kcl
 schema UnionAll[data, n]:
     _?: [] = data
     value?: {:} = ((UnionAll(data=data, n=n - 1) {}).value | data[n] if n > 0 else data[0]) if data else {}
@@ -2021,7 +2021,7 @@ schema MergeList[data]:
 
 此外，KCL 支持使用 `lambda` 关键字定义一个函数:
 
-```python
+```kcl
 func = lambda x: int, y: int -> int {
     x + y
 }
@@ -2034,7 +2034,7 @@ lambda 函数具有如下特性：
 - 返回值类型注解可以省略，返回值类型为最后一个表达式值的类型
 - 函数体中没有与顺序无关的特性，所有的表达式都是按顺序执行的
 
-```python
+```kcl
 _func = lambda x: int, y: int -> int {
     x + y
 }  # 使用 lambda 表达式定义一个函数
@@ -2048,14 +2048,14 @@ _func = lambda x: int, y: int -> str {
 
 lambda 函数对象不能参与任何计算，只能在赋值语句和调用语句中使用。
 
-```python
+```kcl
 func = lambda x: int, y: int -> int {
     x + y
 }
 x = func + 1  # Error: unsupported operand type(s) for +: 'function' and 'int(1)'
 ```
 
-```python
+```kcl
 a = 1
 func = lambda x: int {
     x + a
@@ -2068,14 +2068,14 @@ r = funcOther(func, 1)  # 2
 
 输出为：
 
-```python
+```kcl
 a: 1
 r: 2
 ```
 
 可以定义一个匿名函数并直接调用
 
-```python
+```kcl
 result = (lambda x, y {
     z = 2 * x
     z + y
@@ -2084,7 +2084,7 @@ result = (lambda x, y {
 
 可以在 for 循环使用使用匿名函数
 
-```python
+```kcl
 result = [(lambda x, y {
     x + y
 })(x, y) for x in [1, 2] for y in [1, 2]]  # [2, 3, 3, 4]
@@ -2092,7 +2092,7 @@ result = [(lambda x, y {
 
 可以在 KCL schema 中定义并使用函数
 
-```python
+```kcl
 _funcOutOfSchema = lambda x: int, y: int {
     x + y
 }
@@ -2120,7 +2120,7 @@ data:
 
 在 KCL 中，被定义为字面值联合类型的属性，在赋值时仅允许接收一个字面值或者同为字面值联合类型的变量，比如如下代码是正确的：
 
-```python
+```kcl
 schema Data:
     color: "Red" | "Yellow" | "Blue"
 
@@ -2131,7 +2131,7 @@ data = Data {
 
 然而以下代码是错误的：
 
-```python
+```kcl
 schema Data:
     color: "Red" | "Yellow" | "Blue"
 
@@ -2144,7 +2144,7 @@ data = Data {
 
 这是因为没有为变量 `_color` 申明一个类型，它会被 KCL 编译器推导为 `str` 字符串类型，因此当一个 “较大” 的类型 `str` 赋值为一个 “较小” 的类型时 `"Red" | "Yellow" | "Blue"` 会报错，一个解决方式是为 `_color` 变量声明一个类型，以下代码是正确的：
 
-```python
+```kcl
 schema Data:
     color: "Red" | "Yellow" | "Blue"
 
@@ -2157,7 +2157,7 @@ data = Data {
 
 进一步地，我们可以使用类型别名来简化枚举(字面值联合类型的书写)，比如如下代码：
 
-```python
+```kcl
 type Color = "Red" | "Yellow" | "Blue"  # 定义一个类型别名，可以在不同的地方重复使用，降低代码书写量
 
 schema Data:
@@ -2178,7 +2178,7 @@ KCL 提供了推导表达式以及 all/any/map/filter 表达式等用于对一�
 
 此外，KCL 中虽然没有支持过程式的 for 循环，但是可以通过 for 循环和 lambda 函数“构造”相应的过程式 for 循环
 
-```python
+```kcl
 result = [(lambda x: int, y: int -> int {
     # 在其中书写过程式的 for 循环逻辑
     z = x + y
@@ -2190,7 +2190,7 @@ result = [(lambda x: int, y: int -> int {
 
 KCL 变量不可变性是指 KCL 顶层结构中的非下划线 `_` 开头的导出变量初始化后不能被改变。
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -2208,7 +2208,7 @@ alice = Person {
 
 - schema 外的非下划线顶层变量
 
-```python
+```kcl
 a = 1  # 不可变导出变量
 _b = 2  # 可变非导出变量
 ```
@@ -2217,7 +2217,7 @@ _b = 2  # 可变非导出变量
 
 在 KCL 中，我们可以使用 `any` 类型注解来定义一个变量存储任意类型比如整数、字符串、schema 结构等数据。比如如下例子:
 
-```python
+```kcl
 schema Data:
     id: int = 1
 
@@ -2235,7 +2235,7 @@ var_list:
 
 此外，我们可以使用 `typeof` 函数来判断 KCL 变量的类型:
 
-```python
+```kcl
 schema Data1:
     id: int = 1
 
@@ -2293,7 +2293,7 @@ kcl-plugin info
 
 比如想要开发一个读文件的函数 read_file，就可以在 `$plugin_root/io` 的 `plugin.py` 中进行 python 代码编写：
 
-```python
+```kcl
 # Copyright 2020 The KCL Authors. All rights reserved.
 
 import pathlib
@@ -2314,7 +2314,7 @@ def read_file(file: str) -> str:
 
 另外可以在 `plugin_test.py` 中编写相应的测试函数，也可以直接编写如下所示 KCL 文件进行测试：
 
-```python
+```kcl
 import kcl_plugin.io
 
 text = io.read_file('test.txt')
@@ -2358,7 +2358,7 @@ t_float: float = float(t_str)  # 输出的 t_float 为一个浮点型 "t_float: 
 
 KCL 的列表提供了内置的字符串格式化方法，我们可以使用 str 函数或者 str 变量的 format 函数完成此类功能，比如下面的代码
 
-```python
+```kcl
 allowed = ["development", "staging", "production"]
 
 schema Data:
@@ -2371,7 +2371,7 @@ schema Data:
 
 KCL 内置了格式化 JSON 字符串的参数。
 
-```python
+```kcl
 import json
 config = {
     key1 = "value1"
@@ -2397,7 +2397,7 @@ configJson: |-
 
 在 KCL 中，可以使用 crypto 库计算哈希或 MD5 值
 
-```python
+```kcl
 import crypto
 
 schema Person:
@@ -2429,7 +2429,7 @@ cchash: 5c71751205373815a9f2e022dd846758
 
 我们可以定义一个 `to_set` 函数对 str 列表去重，其原理是使用 KCL dict 来去除重复的值
 
-```python
+```kcl
 to_set = lambda items: [str] {
     [item for item in {item = None for item in items}]
 }
@@ -2451,7 +2451,7 @@ dataIsUnique: true
 
 在 KCL 命令行工具中，有一个内置的 disableNone 标志 (-n)，启用它后 KCL 不会打印具有 None 值的属性。
 
-```python
+```kcl
 a = 1
 b = None
 ```

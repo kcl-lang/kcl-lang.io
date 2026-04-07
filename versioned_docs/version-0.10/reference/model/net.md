@@ -12,7 +12,7 @@ weight: 100
 
 Split the `host` and `port` from the `ip_end_point`.
 
-```python
+```kcl
 import net
 
 host_and_port = net.split_host_port("B-K0NZJGH6-0048.local:80")
@@ -25,7 +25,7 @@ host_port = net.join_host_port("B-K0NZJGH6-0048.local", 80)
 
 Merge the `host` and `port`.
 
-```python
+```kcl
 import net
 
 host_and_port = net.split_host_port("B-K0NZJGH6-0048.local:80")
@@ -38,7 +38,7 @@ host_port = net.join_host_port("B-K0NZJGH6-0048.local", 80)
 
 Return Fully Qualified Domain Name (FQDN).
 
-```python
+```kcl
 import net
 
 fqdn = net.fqdn()
@@ -50,7 +50,7 @@ fqdn = net.fqdn()
 
 Parse `ip` to a real IP address
 
-```python
+```kcl
 import net
 
 ip = net.parse_IP("192.168.0.1")
@@ -62,7 +62,7 @@ ip = net.parse_IP("192.168.0.1")
 
 Get the IP4 form of `ip`.
 
-```python
+```kcl
 import net
 
 ip = net.to_IP4("192.168.0.1")
@@ -74,7 +74,7 @@ ip = net.to_IP4("192.168.0.1")
 
 Get the IP16 form of `ip`.
 
-```python
+```kcl
 import net
 
 ip = net.to_IP16("192.168.0.1")
@@ -86,7 +86,7 @@ ip = net.to_IP16("192.168.0.1")
 
 Get the IP string.
 
-```python
+```kcl
 import net
 
 ip = net.IP_string("192.168.0.1")
@@ -98,7 +98,7 @@ ip = net.IP_string("192.168.0.1")
 
 Whether `ip` is a IPv4 one.
 
-```python
+```kcl
 import net
 
 ip = net.is_IPv4("192.168.0.1")
@@ -110,7 +110,7 @@ ip = net.is_IPv4("192.168.0.1")
 
 Whether `ip` is a valid ip address.
 
-```python
+```kcl
 import net
 
 ip = net.is_IP("192.168.0.1")
@@ -122,7 +122,7 @@ ip = net.is_IP("192.168.0.1")
 
 Whether `ip` is a loopback one.
 
-```python
+```kcl
 import net
 
 isip = net.is_loopback_IP("127.0.0.1")
@@ -134,7 +134,7 @@ isip = net.is_loopback_IP("127.0.0.1")
 
 Whether `ip` is a multicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_multicast_IP("239.255.255.255")
@@ -146,7 +146,7 @@ isip = net.is_multicast_IP("239.255.255.255")
 
 Whether `ip` is a interface, local and multicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_interface_local_multicast_IP("239.255.255.255")
@@ -158,7 +158,7 @@ isip = net.is_interface_local_multicast_IP("239.255.255.255")
 
 Whether `ip` is a link local and multicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_link_local_multicast_IP("224.0.0.0")
@@ -170,7 +170,7 @@ isip = net.is_link_local_multicast_IP("224.0.0.0")
 
 Whether `ip` is a link local and unicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_link_local_unicast_IP("fe80::2012:1")
@@ -182,7 +182,7 @@ isip = net.is_link_local_unicast_IP("fe80::2012:1")
 
 Whether `ip` is a global and unicast one.
 
-```python
+```kcl
 import net
 
 isip = net.is_global_unicast_IP("220.181.108.89")
@@ -194,7 +194,7 @@ isip = net.is_global_unicast_IP("220.181.108.89")
 
 Whether `ip` is a unspecified one.
 
-```python
+```kcl
 import net
 
 isip = net.is_unspecified_IP("0.0.0.0")

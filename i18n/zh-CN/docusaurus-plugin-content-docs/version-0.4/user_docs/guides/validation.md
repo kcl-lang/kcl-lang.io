@@ -28,7 +28,7 @@ cat schema.k
 
 输出为
 
-```python
+```kcl
 schema User:
     name: str
     age: int

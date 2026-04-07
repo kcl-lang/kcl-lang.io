@@ -32,7 +32,7 @@ We can run the following command to show the config.
 cat schema.k
 ```
 
-```python
+```kcl
 schema User:
     name: str
     age: int

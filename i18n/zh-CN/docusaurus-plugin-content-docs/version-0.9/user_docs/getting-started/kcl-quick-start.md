@@ -12,7 +12,7 @@ KCL 是一个面向云原生配置策略领域的编程语言。KCL 设计之初
 
 下面是一个简单的 `hello.k` 程序：
 
-```python
+```kcl
 hello = "KCL"
 ```
 
@@ -40,7 +40,7 @@ hello: KCL
 
 常见的配置数据除了的普通的 key-value 对，还有嵌套的字典和列表类型，同时 value 基础类型除了字符串还有布尔和数值等类型。下面是更为复杂一点的 `server.k` 配置：
 
-```python
+```kcl
 # This is a KCL document
 
 title = "KCL Example"
@@ -102,7 +102,7 @@ KCL 通过 `schema` 语法结构为有着固定属性结构和默认值行为的
 
 比如上面例子的中 `database` 的配置一般是用默认值即可。这样我们可以通过为数据库的默认配置定义一个结构：
 
-```python
+```kcl
 schema DatabaseConfig:
     enabled: bool = True
     ports: [int] = [8000, 8001, 8002]
@@ -114,7 +114,7 @@ schema DatabaseConfig:
 
 然后通过 `database = DatabaseConfig {}` 就可以产生和默认值相同属性的结构。用户也可以修改默认值：
 
-```python
+```kcl
 database = DatabaseConfig {
     ports = [2020, 2021]
 }
@@ -122,7 +122,7 @@ database = DatabaseConfig {
 
 `schema DatabaseConfig` 不仅仅为属性提供了默认值，还为属性添加了类型信息。因此，如果用户不小心写错属性值类型的话，KCL 将会给出友好的错误提示，比如下面的例子将 `ports` 错误地写成了浮点数类型：
 
-```python
+```kcl
 database = DatabaseConfig {
     ports = [1.2, 1.3]
 }
@@ -153,7 +153,7 @@ error[E2G22]: TypeError
 
 类似地我们可以用以下的代码封装 `servers` 部分的属性：
 
-```python
+```kcl
 schema ServerConfig:
     ip: str
     role: "frontend" | "backend"

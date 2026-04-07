@@ -40,7 +40,7 @@ The `ewcode` of `InvalidSyntaxError` is `E1001`.
 
 For example:
 
-```python
+```kcl
 a, b = 1, 2 # Multiple assign is illegal in KCL syntax
 ```
 
@@ -67,7 +67,7 @@ In KCL, it is forbidden to mix tabs and four spaces in one indentation block. An
 
 For example:
 
-```python
+```kcl
 schema Person:
     name: str # begin with a tab
     age: int # begin with four white spaces,
@@ -97,7 +97,7 @@ The KCL syntax includes indentation. A tab or four white spaces in KCL represent
 
 For example:
 
-```python
+```kcl
 schema Person:
     name: str # a tab or four white spaces is legal.
    age: int # three white spaces are illegal
@@ -125,7 +125,7 @@ KCL will report `IllegalArgumentSyntaxError` when KCL has an illegal argument in
 
 For example:
 
-```python
+```kcl
 # Parameters without default values
 # must be in front of parameters with default values.
 a = option(type="list", default={"key": "value"}, "key1")
@@ -144,7 +144,7 @@ error[E1001]: InvalidSyntax
 
 Possible resolution:
 
-```python
+```kcl
 func(input_1, ..., input_n, param_with_key_1 = input_with_key_1, ..., param_with_key_n = input_with_key_n)
 ```
 
@@ -182,7 +182,7 @@ The `ewcode` of `CannotFindModule` is `E2F04`.
 
 For example:
 
-```python
+```kcl
 import .some0.pkg1 as some00  # some0 not found in package
 
 Name1 = some00.Name  # some0.pkg1.name
@@ -222,7 +222,7 @@ The `ewcode` of `UnKnownDecoratorError` is `E2H13`.
 
 For example:
 
-```python
+```kcl
 @err_deprecated # It is an unknown decorator
 schema Person:
     firstName: str = "John"
@@ -267,7 +267,7 @@ The `ewcode` of `MixinNamingError` is `E2C15`.
 
 For example:
 
-```python
+```kcl
 schema Person:
     firstName: str
     lastName: str
@@ -320,7 +320,7 @@ The `ewcode` of `CannotAddMembersComplieError` is `E2B17`.
 
 For example:
 
-```python
+```kcl
 schema Girl:
     gender: str = "female"
 
@@ -371,7 +371,7 @@ KCL will report `IndexSignatureError` when:
 
 For example:
 
-```python
+```kcl
 schema Data:
     [str]: str
     [str]: int # Multiple index signatures in one schema.
@@ -400,7 +400,7 @@ Possible resolution:
 
 For example:
 
-```python
+```kcl
 schema Data:
     name: str  # name
     [name: str]: str # the same name with the above attribute
@@ -429,7 +429,7 @@ Possible resolution:
 
 For example:
 
-```python
+```kcl
 schema Data:
     [str]: int
 
@@ -457,7 +457,7 @@ Possible resolution:
 
 For example:
 
-```python
+```kcl
 schema Data:
     count: int # got int
     [str]: str # except str
@@ -490,7 +490,7 @@ The `ewcode` of `TypeComplieError` is `E2G22`.
 
 For example:
 
-```python
+```kcl
 schema Person:
     firstName: str
     lastName: int
@@ -532,7 +532,7 @@ KCL will report `CompileError` when:
 
 For example:
 
-```python
+```kcl
 _data = [1, 2, 3]
 _data |= "value"
 ```
@@ -554,7 +554,7 @@ Possible resolution:
 
 For example:
 
-```python
+```kcl
 a = None
 b = 1 + None # Unsupport operand type + for int and None
 ```
@@ -579,7 +579,7 @@ Possible resolution:
 
 For example:
 
-```python
+```kcl
 a = 1
 b = "${c + 1}" # 'c' is not defined
 ```
@@ -604,7 +604,7 @@ Possible resolution:
 
 For example:
 
-```python
+```kcl
 # pkg.k
 a = 1
 
@@ -632,7 +632,7 @@ Possible resolution:
 
 For example:
 
-```python
+```kcl
 a = 1
 b = "${b = a + 1}" # Invalid string interpolation expression
 ```
@@ -656,7 +656,7 @@ Possible resolution:
 
 For example:
 
-```python
+```kcl
 data = {"key1": "value1", "key2": "value2"}
 dataLoop = [i for i, j, k in data]  # the number of loop variables can only be 1 or 2
 ```
@@ -698,7 +698,7 @@ The `ewcode` of `UniqueKeyError` is `E2L28`.
 
 For example:
 
-```python
+```kcl
 schema Person:
     name: str = "kcl"
     age: int = 1
@@ -739,7 +739,7 @@ The `ewcode` of `KCLAttributeComplieError` is `E2A29`.
 
 For example:
 
-```python
+```kcl
 # pkg
 schema A:
     field_A: str
@@ -773,7 +773,7 @@ The `ewcode` of `MultiInheritError` is `E2D32`.
 
 For example:
 
-```python
+```kcl
 schema Person:
     firstName: str
     lastName: str
@@ -809,7 +809,7 @@ The `ewcode` of `IllegalInheritError` is `E2D34`.
 
 For example:
 
-```python
+```kcl
 schema FullnameMixin:
     fullName = "{} {}".format(firstName, lastName)
 
@@ -839,7 +839,7 @@ KCL will report `IllegalArgumentComplieError` when the argument of option in KCL
 The `ewcode` of `IllegalArgumentComplieError` is `E2I36`.
 For example:
 
-```python
+```kcl
 a = option("key")
 
 # kcl main.k -D key=value=
@@ -865,7 +865,7 @@ The `ewcode` of `ImmutableCompileError` is `E3L41`.
 
 For example:
 
-```python
+```kcl
 a = 2147483646
 a += 1
 ```
@@ -921,7 +921,7 @@ The `ewcode` of `RecursiveLoad` is `E2F06`.
 
 For example:
 
-```python
+```kcl
 # module.k
 import main # module.k imports main.k
 
@@ -956,7 +956,7 @@ The `ewcode` of `FloatOverflow` is `E3K04`.
 
 For example:
 
-```python
+```kcl
 uplimit = 3.402823466e+39
 epsilon = 2.220446049250313e-16
 a = uplimit * (1 + epsilon)
@@ -987,7 +987,7 @@ The `ewcode` of `IntOverflow` is `E3K09`.
 
 For example:
 
-```python
+```kcl
 _a = 9223372036854775807
 _a += 1
 
@@ -1017,7 +1017,7 @@ The `ewcode` of `DeprecatedError` is `E3N11`.
 
 For example:
 
-```python
+```kcl
 schema Person:
     firstName: str = "John"
     lastName: str
@@ -1054,7 +1054,7 @@ The `ewcode` of `KCLAttributeRuntimeError` is `E3A30`.
 
 For example:
 
-```python
+```kcl
 import math
 
 a = math.err_func(1) # err_func is not found in math
@@ -1083,7 +1083,7 @@ The `ewcode` of `TypeRuntimeError` is `E3G21`.
 
 For example:
 
-```python
+```kcl
 schema Person:
     name: str = "Alice"
 
@@ -1115,7 +1115,7 @@ The `ewcode` of `SchemaCheckFailure` is `E3B17`.
 
 For example:
 
-```python
+```kcl
 schema Person:
     lastName: str
     age: int
@@ -1157,7 +1157,7 @@ The `ewcode` of `CannotAddMembersRuntimeError` is `E3B19`.
 
 For example:
 
-```python
+```kcl
 schema Name:
     name: str
 
@@ -1193,7 +1193,7 @@ The `ewcode` of `EvaluationError` is `E3M38`.
 
 For example:
 
-```python
+```kcl
 _list1 = [1, 2, 3] # _list1 is a variable, and its type can only be known at runtime
 _list2 = None # _list1 is a variable, and its type can only be known at runtime
 
@@ -1223,7 +1223,7 @@ The `ewcode` of `InvalidFormatSpec` is `E3M39`.
 
 For example:
 
-```python
+```kcl
 a = 1
 b = 1
 data = "${a: #js}" + " $$ " #  #js is illegal string
@@ -1252,7 +1252,7 @@ The `ewcode` of `KCLAssertionError` is `E3M40`.
 
 For example:
 
-```python
+```kcl
 assert False
 ```
 
@@ -1279,7 +1279,7 @@ The `ewcode` of `ImmutableRuntimeError` is `E3M44`.
 
 For example:
 
-```python
+```kcl
 schema Person:
     final firstName : str
     lastName : str
@@ -1315,7 +1315,7 @@ The `ewcode` of `CycleInheritError` is `E2D33`.
 
 For example:
 
-```python
+```kcl
 schema Parent(Son):
     parent_field: str
 
@@ -1353,7 +1353,7 @@ The `ewcode` of `KCLRecursionError` is `E3M42`.
 
 For example:
 
-```python
+```kcl
 schema Parent(Son):
     parent_field: str
     son: Son = Son {  # Parent has attribute Son

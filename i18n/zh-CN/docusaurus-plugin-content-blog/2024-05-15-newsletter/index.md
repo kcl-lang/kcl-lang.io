@@ -33,7 +33,7 @@ image: /img/biweekly-newsletter.png
 - `file` 模块函数列表更新，详见[文档](https://www.kcl-lang.io/docs/reference/model/file)
 - 为 `typeof` 函数新增 Schema 类型的支持用于区分 schema 类型和实例
 
-```python
+```kcl
 schema Foo:
     bar?: str
 

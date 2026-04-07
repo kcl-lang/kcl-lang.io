@@ -33,7 +33,7 @@ Thanks to to all contributors for their outstanding work over the past twenty da
 - `file` module function list updated, seee [here](https://www.kcl-lang.io/docs/reference/model/file) for more documentation.
 - Added support for Schema types in `typeof` function to distinguish between schema types and instances.
 
-```python
+```kcl
 schema Foo:
     bar?: str
 

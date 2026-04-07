@@ -29,7 +29,7 @@ KCL 团队很高兴地宣布 KCL v0.5.0 新版本现在已经可用！本次发�
 
 在之前的 KCL 版本中，运行如下 KCL 代码不会得到 YAML 输出，在 KCL v0.5.0 版本中，我们对此进行了改进并支持了顶级变量导出为 YAML 配置，用于减少额外的 KCL 代码书写和命令行参数，比如对于如下 KCL 代码 (main.k)
 
-```python
+```kcl
 schema Nginx:
     http: Http
 
@@ -73,7 +73,7 @@ http:
 
 在之前的 KCL 版本中，尚未支持在 Schema 索引签名中直接引用，在 KCL v0.5.0 版本中，我们对此进行了改进并支持了顶级变量导出为 YAML 配置，用于减少额外的 KCL 样板配置代码书写，比如对于如下 KCL 代码 (main.k)
 
-```python
+```kcl
 schema TeamSpec:
     fullName: str
     name = id
@@ -111,7 +111,7 @@ teamMap:
 
 在新版本中，我们支持当 KCL 代码运行发生报错时输出 Backtrace 的特性，用于提升 KCL 代码错误排查效率，比如对于如下代码 (main.k)
 
-```python
+```kcl
 schema Fib:
     n1 = n - 1
     n2 = n1 - 1
@@ -158,7 +158,7 @@ note: backtrace:
 
 在之前的 KCL 版本中，filter 表达式会返回错误的类型（应该返回被迭代对象的类型，而不是返回迭代对象的类型），在 KCL v0.5.0 版本中，我们修复了此类类似的问题
 
-```python
+```kcl
 schema Student:
     name: str
     grade: int
@@ -179,7 +179,7 @@ studentsGrade70: [Student] = filter s in students {
 
 在之前的 KCL 版本中，在编写如下 KCL 代码时，会错误的捕获闭包变量的值。在 KCL v0.5.0 版本中，我们修复了此类类似的问题
 
-```python
+```kcl
 z = 1
 add = lambda x { lambda y { x + y + z} }  # x 是内层 lambda 函数的闭包变量
 res = add(1)(1)  # 3
@@ -191,7 +191,7 @@ res = add(1)(1)  # 3
 
 在之前的 KCL 版本中，在编写如下包含 UTF-8 字符的字符串联合类型 KCL 代码时，会获得一个非预期的类型错误。在 KCL v0.5.0 版本中，我们修复了此类类似的问题
 
-```python
+```kcl
 msg: "无需容灾" | "标准型" | "流水型" = "流水型"
 ```
 
@@ -267,7 +267,7 @@ kpm init kubernetes_demo && cd kubernetes_demo && kpm add k8s
 
 然后，使用 k8s 包中的内容编写您的 KCL 代码（main.k）。
 
-```python
+```kcl
 # 导入 k8s 包中的内容
 import k8s.api.apps.v1 as apps
 

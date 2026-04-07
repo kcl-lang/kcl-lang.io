@@ -12,7 +12,7 @@ description: KCL Spec
 
 The following are the keywords of the KCL:
 
-```python
+```kcl
 True       False      None        Undefined   import
 and        or         in          is          not
 as         if         else        elif        for
@@ -23,7 +23,7 @@ rule
 
 The following are reserved words for the KCL:
 
-```python
+```kcl
 pass       return     validate   rule        flow
 def        del        raise      except      try
 finally    while      from       with        yield
@@ -32,13 +32,13 @@ global     nonlocal   struct     class       final
 
 ### Line comment
 
-```python
+```kcl
 # a comment
 ```
 
 ### Operators
 
-```python
+```kcl
 +       -       *       **      /       //      %
 <<      >>      &       |       ^       <       >
 ~       <=      >=      ==      !=      =
@@ -48,7 +48,7 @@ global     nonlocal   struct     class       final
 
 ### Delimiters
 
-```python
+```kcl
 (       )       [       ]       {       }
 ,       :       .       ;       @
 ```

@@ -29,7 +29,7 @@ KCL 是一种简单易用的配置语言，用户可以简单地编写可重用�
 
 通过创建 `my_config.k` 来生成一个简单的配置，我们可以填充下面的代码，并且不需要严格的格式描述部署的配置。
 
-```python
+```kcl
 cpu = 256
 memory = 512
 image = "nginx:1.14.2"
@@ -70,11 +70,11 @@ service: my-service
 
 KCL 命令：
 
-```python
+```kcl
 kcl my_config.k
 ```
 
-```python
+```kcl
 _priority = 1 # 非导出可变变量
 _cpu = 256 # 非导出可变变量
 
@@ -95,7 +95,7 @@ service = "my-service"
 
 使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -118,7 +118,7 @@ KCL 对运算符和字符串成员函数有丰富的支持，请阅读手册和�
 - list
 - dict
 
-```python
+```kcl
 _priority = 1  # 非导出可变变量
 _cpu = 256  # 非导出可变变量
 
@@ -166,7 +166,7 @@ service: my-service
 
 我们可以将逻辑表达式、推导式、切片、联合类型等特性组合起来，动态地将元素添加到集合中。
 
-```python
+```kcl
 _priority = 1 # 非导出可变变量
 _cpu = 256 # 非导出可变变量
 _env = "pre-prod"
@@ -197,7 +197,7 @@ service = "my-service"
 
 使用 KCL 运行上述代码，将会看到以 yaml 格式生成的如下数据：
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -220,7 +220,7 @@ service: my-service
 
 为了使代码可测试且健壮，我们可以使用断言（assertions）验证配置数据。
 
-```python
+```kcl
 _priority = 1 # 非导出可变变量
 _cpu = 256 # 非导出可变变量
 
@@ -273,7 +273,7 @@ service: my-service
 
 更重要的是，我们可以使用内置函数来帮助我们调试或简化编码。
 
-```python
+```kcl
 _priority = 1  # 非导出可变变量
 _cpu = 256  # 非导出可变变量
 
@@ -341,7 +341,7 @@ env: pre-prod
 
 在 `my_config.k` 中定义配置数据：
 
-```python
+```kcl
 _priority = 1  # 非导出可变变量
 _cpu = 256  # 非导出可变变量
 
@@ -369,7 +369,7 @@ service = "my-service"
 
 而测试代码定义在 `my_config_test.k` 中，我们可以在其中导入 `my_config.k`：
 
-```python
+```kcl
 import my_config
 
 # debugging
@@ -390,7 +390,7 @@ assert my_config.cpu >= 256, "cpu cannot be less than256"
 - 通过参数传递: `-D priority=1 -D env=pre-prod`
 - 可以在 KCL 代码中使用 `option` 关键字获取这些值
 
-```python
+```kcl
 _priority = option("priority") # 非导出可变变量
 _env = option("env") # 非导出可变变量
 _cpu = 256 # 非导出可变变量
@@ -441,7 +441,7 @@ service: my-service
 
 当我们需要编写复杂的逻辑时，可以使用dict来简化逻辑的编写。
 
-```python
+```kcl
 _priority = option("priority") # 非导出可变变量
 _env = option("env") # 非导出可变变量
 _priorityCpuMap = {

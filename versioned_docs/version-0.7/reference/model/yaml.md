@@ -8,7 +8,7 @@ weight: 300
 
 ## encode
 
-```python
+```kcl
 encode(
     data: any,
     sort_keys: bool = False,
@@ -21,7 +21,7 @@ Serialize a KCL object `data` to a YAML formatted str.
 
 ## encode_all
 
-```python
+```kcl
 encode(
     data: [any],
     sort_keys: bool = False,
@@ -46,7 +46,7 @@ Parse all YAML documents in a stream and produce corresponding KCL objects.
 
 ## dump_to_file
 
-```python
+```kcl
 dump_to_file(
     data: any,
     filename: str,
@@ -59,7 +59,7 @@ Serialize a KCL object `data` to a YAML formatted str and write it into the file
 
 ## validate
 
-```python
+```kcl
 validate(value: str) -> bool
 ```
 

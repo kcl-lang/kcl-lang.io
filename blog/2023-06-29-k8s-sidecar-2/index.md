@@ -34,7 +34,7 @@ Here, the Pod data follows the definition of the io.k8s.api.core.v1.Pod model in
 
 KCL is a configuration policy language for the cloud-native domain. For more information, please refer to the [official website](https://kcl-lang.io/). Basic KCL configuration programs still follow the `K=V` format, which is similar to YAML. For example, we can rewrite the configuration of the Nginx container using the following KCL code:
 
-```python
+```kcl
 import k8s.api.core.v1 as k8core
 
 k8core.Pod {

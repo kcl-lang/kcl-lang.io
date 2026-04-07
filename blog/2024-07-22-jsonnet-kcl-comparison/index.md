@@ -43,7 +43,7 @@ For better integration of configuration language into users' applications, Jsonn
 
 - KCL (test.k)
 
-```python
+```kcl
 a = lambda name: str {
     apiVersion = "apps/v1"
     kind = "Deployment"

@@ -63,7 +63,7 @@ First, you can visit the [KCL Quick Start](/docs/user_docs/getting-started/kcl-q
 
 We can write the following KCL code and name it `main.k`. KCL is inspired by Python. Its basic syntax is very close to Python, which is easy to learn. The configuration mode is simple, `k [: T] = v`, where `k` denotes the configured attribute name, `v` denotes the configured attribute value and `: T` denotes an optional type annotation.
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {
@@ -149,7 +149,7 @@ nginx-deployment   3/3     3            3           15s
 
 When publishing Kubernetes resources, we often encounter scenarios where configuration parameters need to be dynamically specified. For example, different environments need to set different `image` field values to generate resources in different environments. For this scenario, we can dynamically receive external parameters through KCL conditional statements and `option` functions. Based on the above example, we can adjust the configuration parameters according to different environments. For example, for the following code, we wrote a conditional statement and entered a dynamic parameter named `env`.
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {
@@ -255,7 +255,7 @@ kcl mod add k8s
 
 Write the KCL code in `main.k`
 
-```python
+```kcl
 # Import and use the contents of the external dependency 'k8s'.
 import k8s.api.apps.v1 as apps
 

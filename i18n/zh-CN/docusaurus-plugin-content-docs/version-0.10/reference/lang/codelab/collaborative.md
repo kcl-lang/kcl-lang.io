@@ -25,7 +25,7 @@ KCL 是一种简单易用的配置语言，用户可以简单地编写可重复�
 
 假设我们想定义具有某些属性的服务器配置，我们可以通过创建一个 `server.k` 文件来创建一个简单的配置，我们可以填写以下代码来定义服务器配置的可重用模式：
 
-```python
+```kcl
 import units
 
 type Unit = units.NumberMultiplier
@@ -105,7 +105,7 @@ schema Port:
 
 对于应用程序的配置，我们通常将其分为基本配置和多个环境的差异化配置并进行合并。通过 KCL 的配置合并功能，我们可以轻松实现这一点。假设我们有开发环境和生产环境的两个配置，我们可以创建三个文件夹：`base`、`dev` 和 `prod` 分别存储基线、开发环境和生产环境的配置。首先，我们编写 `base/base.k` 的配置：
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {
@@ -156,7 +156,7 @@ server:
 
 接下来我们将配置一个差异化的多环境配置。首先假设我们想在开发环境中使用自己的临时镜像 `nginx:1.14.2-dev`，然后使用它来覆盖基准中的服务器配置，我们可以在 `dev/main.k` 中编写以下配置：
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {
@@ -193,7 +193,7 @@ server:
 
 可以看出输出的 YAML 文件的 `image` 字段被覆盖为 `nginx:1.14.2-dev`。假设我们还想将一个具有键为 `env`，值为 `dev` 的标签添加到 `dev` 环境中，我们将以下代码添加到 `dev/main.k` 中：
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {
@@ -233,7 +233,7 @@ server:
 
 此外，我们还可以使用 `+=` 运算符将新值添加到列表类型属性中，例如在基准环境中的 `mainContainer.ports` 配置，继续修改 `dev/main.k` 中的代码：
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {
@@ -282,7 +282,7 @@ server:
 
 使用相同的方法，我们可以构建生产配置，在 `dev/main.k` 文件中编写代码，并为其添加标签。
 
-```python
+```kcl
 import pkg
 
 server: pkg.Server {

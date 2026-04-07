@@ -8,7 +8,7 @@ weight: 300
 
 ## encode
 
-```python
+```kcl
 encode(
     data: any,
     sort_keys: bool = False,
@@ -19,7 +19,7 @@ encode(
 
 将 KCL 对象 `data` 序列化为 YAML 格式的字符串。
 
-```python
+```kcl
 import yaml
 
 data = {
@@ -32,7 +32,7 @@ data_string = yaml.encode(data)
 
 ## encode_all
 
-```python
+```kcl
 encode(
     data: [any],
     sort_keys: bool = False,
@@ -43,7 +43,7 @@ encode(
 
 将 KCL 对象列表 `data` 序列化为包含 `---` 分隔符的 YAML Stream 格式的字符串。
 
-```python
+```kcl
 import yaml
 
 yamlStr = yaml.encode_all([1, 2, 3])
@@ -55,7 +55,7 @@ yamlStr = yaml.encode_all([1, 2, 3])
 
 反序列化 `value`（一个包含 YAML 格式文档的字符串实例）为一个 KCL 对象。
 
-```python
+```kcl
 import yaml
 import file
 
@@ -72,7 +72,7 @@ data = data_string.data
 
 反序列化 `value`（一个包含 `---` 分隔符的 YAML Stream 格式文档的字符串实例）为一个 KCL 对象列表。
 
-```python
+```kcl
 import yaml
 
 yamlStr = """\
@@ -84,7 +84,7 @@ dataList = yaml.decode_all(yamlStr)
 
 ## dump_to_file
 
-```python
+```kcl
 dump_to_file(
     data: any,
     filename: str,
@@ -96,7 +96,7 @@ dump_to_file(
 
 将 KCL 对象 `data` 序列化为 YAML 格式的字符串，并将其写入文件 `filename` 中。
 
-```python
+```kcl
 import yaml
 
 schema Person:
@@ -115,7 +115,7 @@ yaml.dump_to_file(person, filename, ignore_private=True, ignore_none=True)
 
 ## dump_all_to_file
 
-```python
+```kcl
 dump_all_to_file(
     data: [any],
     filename: str,
@@ -126,7 +126,7 @@ dump_all_to_file(
 
 将 KCL 对象列表序列化为 YAML Stream 格式，并将其写入文件 `filename` 中。
 
-```python
+```kcl
 import yaml
 
 yamlStrList = [
@@ -142,13 +142,13 @@ yaml.dump_all_to_file(yamlStrList, "0.yaml")
 
 ## validate
 
-```python
+```kcl
 validate(value: str) -> bool
 ```
 
 验证给定的字符串是否是一个合法的 YAML 或者 YAML Stream 格式的字符串。
 
-```python
+```kcl
 import yaml
 
 # Right cases

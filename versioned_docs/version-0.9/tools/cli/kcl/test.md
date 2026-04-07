@@ -12,7 +12,7 @@ The KCL Test tool provides a simple testing framework to test KCL code. All KCL 
 
 There is a KCL file `hello.k`:
 
-```python
+```kcl
 schema Person:
     name: str = "kcl"
     age: int = 1
@@ -28,7 +28,7 @@ hello = Person {
 
 Build a test file `hello_test.k`:
 
-```python
+```kcl
 test_person = lambda {
     a = Person{}
     assert a.name == 'kcl'
@@ -64,7 +64,7 @@ PASS: 3/3
 
 Modify `hello_test.k` to the following code to build failed test case:
 
-```python
+```kcl
 test_person = lambda {
     a = Person{}
     assert a.name == 'kcl2'
@@ -122,7 +122,7 @@ FAIL: 3/3
 
 If we want to test error cases correctly and check error messages, we can use the `runtime.catch` function.
 
-```python
+```kcl
 import runtime
 
 test_person_age_check_error_message = lambda {

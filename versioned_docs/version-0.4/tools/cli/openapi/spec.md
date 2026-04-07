@@ -27,7 +27,7 @@ In the OpenAPI spec, a KCL schema can be defined by adding a `definition` elemen
 Example:
 The following example defines two schemas in KCL: `Pet` and `Category`, followed by the corresponding data models defined in OpenAPI:
 
-```python
+```kcl
 # KCL schema
 schema Pet:
     name:      str
@@ -107,7 +107,7 @@ Example:
 
 The following KCL code defines a Pet model which contains two attributes: name (`string` type, `required`, with no attribute annotation and no default value) and id (`int64` type, optional, with no attribute annotation, and the default value is -1).
 
-```python
+```kcl
 # the KCL schema Pet defines two attributes: name, id
 schema Pet:
     name: str
@@ -167,7 +167,7 @@ Example:
 
 The following KCL code defines a Pet model which contains two pre-declared attributes(`name` and `id`) and allows users to add attributes with `string` type keys and `bool` type values.
 
-```python
+```kcl
 # the KCL schema Pet. Besides the pre-declared attributes name and id, it allows to add attributes with key in string type and value in bool type
 schema Pet:
     name:     str
@@ -223,7 +223,7 @@ Example-1:
 
 The following KCL code defines a `Deployment` model which contains two attributes(`kind` and `spec`). And the schema of the `spec` attribute is defined inline.
 
-```python
+```kcl
 # The OpenAPI spec
 {
     "definitions": {
@@ -269,7 +269,7 @@ Example-2:
 
 The following KCL code defines a Person model which contains a pre-declared attribute(`name`) and allows some `additionalProperties` to be assigned by user. And the type of the values in the `additionalProperties` is defined inline.
 
-```python
+```kcl
 # The OpenAPI spec
 {
     "definitions": {
@@ -343,7 +343,7 @@ Example:
 
 The following KCL code defines a Pet model with a schema description `The schema Pet definition`, and two attributes `name` and `id` with their attribute doc `The name of the pet` and `The id of the pet`; The additional information about the Pet schema is [here](https://petstore.swagger.io/) and the example to use the Pet schema are provided, too.
 
-```python
+```kcl
 # The KCL schema Pet, with doc following the KCL Document Specification
 schema Pet:
     """The schema Pet definition

@@ -28,7 +28,7 @@ cd ./kcl-lang.io/examples/data-integration
 cat yaml.k
 ```
 
-```python
+```kcl
 import yaml
 
 schema Server:
@@ -67,7 +67,7 @@ server_yaml: |
 
 此外，KCL 支持使用 `file` 模块从文件中读取数据，您可以从文件中读取 YAML 数据并进行进一步的操作与修改。
 
-```python
+```kcl
 import file
 import yaml
 
@@ -86,7 +86,7 @@ deployment = yaml.decode(file.read("deployment.yaml")) | {
 cat json.k
 ```
 
-```python
+```kcl
 import json
 
 schema Server:

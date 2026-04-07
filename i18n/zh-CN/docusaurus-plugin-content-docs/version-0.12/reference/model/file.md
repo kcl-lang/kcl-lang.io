@@ -12,7 +12,7 @@ weight: 100
 
 读取文件 `filepath` 中的内容，并返回一个字符串实例。
 
-```python
+```kcl
 import file
 
 a = file.read("test.txt")
@@ -24,7 +24,7 @@ a = file.read("test.txt")
 
 返回一个包含所有匹配 `pattern` 的文件名的列表。
 
-```python
+```kcl
 import file
 
 json_files = file.glob("./*.json")
@@ -36,7 +36,7 @@ json_files = file.glob("./*.json")
 
 返回当前模块的根路径（kcl.mod 文件路径或单个 \*.k 文件路径）。
 
-```python
+```kcl
 import file
 
 modpath = file.modpath()
@@ -48,7 +48,7 @@ modpath = file.modpath()
 
 返回当前工作目录的路径。
 
-```python
+```kcl
 import file
 
 workdir = file.workdir()
@@ -60,7 +60,7 @@ workdir = file.workdir()
 
 判断文件路径是否存在。如果路径指向一个存在的实体，则返回 True。此函数会遍历符号链接以查询目标文件的信息。
 
-```python
+```kcl
 import file
 
 file_exists = file.exists("test.txt")
@@ -72,7 +72,7 @@ file_exists = file.exists("test.txt")
 
 返回路径的规范化绝对形式，其中所有中间路径均已规范化并解析为符号链接。
 
-```python
+```kcl
 import file
 
 abs_file_path = file.abs("test.txt")
@@ -84,7 +84,7 @@ abs_file_path = file.abs("test.txt")
 
 如果指定路径上不存在目录，则创建一个新目录。
 
-```python
+```kcl
 import file
 
 file.mkdir("path")
@@ -96,7 +96,7 @@ file.mkdir("path")
 
 在指定路径上删除一个文件或空目录。
 
-```python
+```kcl
 import file
 
 file.delete("test.txt")
@@ -108,7 +108,7 @@ file.delete("test.txt")
 
 将文件或目录从源路径复制到目标路径。
 
-```python
+```kcl
 import file
 
 file.cp("src", "dest")
@@ -120,7 +120,7 @@ file.cp("src", "dest")
 
 将文件或目录从源路径移动到目标路径。
 
-```python
+```kcl
 import file
 
 file.mv("src", "dest")
@@ -132,7 +132,7 @@ file.mv("src", "dest")
 
 获取指定路径上文件的大小。
 
-```python
+```kcl
 import file
 
 size = file.size("test.txt")
@@ -144,7 +144,7 @@ size = file.size("test.txt")
 
 将内容写入指定路径的文件。如果文件不存在，将会被创建。如果文件存在，其内容将被替换。
 
-```python
+```kcl
 import file
 
 file.size("test.txt", "content")
@@ -156,7 +156,7 @@ file.size("test.txt", "content")
 
 从当前进程中读取环境变量 `key` 的值。
 
-```python
+```kcl
 import file
 
 value = file.read_env("ENV_VAR")
@@ -168,7 +168,7 @@ value = file.read_env("ENV_VAR")
 
 读取正在执行的当前 KCL 代码文件或模块的路径。
 
-```python
+```kcl
 import file
 
 value = file.current()

@@ -42,7 +42,7 @@ image: /img/biweekly-newsletter.png
 
 使用方式如下
 
-```python
+```kcl
 import jsonpatch as p
 
 test_json_patch = lambda {

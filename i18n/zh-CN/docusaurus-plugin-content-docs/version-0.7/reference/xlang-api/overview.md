@@ -167,7 +167,7 @@ message ListMethod_Result {
 
 比如有以下的 `Person` 结构定义：
 
-```python
+```kcl
 schema Person:
     key: str
 
@@ -231,7 +231,7 @@ python3 -m pip install kclvm --user && python3 -m kclvm --help
 
 编写名为 `main.k` 的 KCL 文件:
 
-```python
+```kcl
 name = "kcl"
 age = 1
 
@@ -265,7 +265,7 @@ x1:
 
 编写名为 `main.py` 的 python 文件:
 
-```python
+```kcl
 import kclvm.program.exec as kclvm_exec
 import kclvm.vm.planner as planner
 

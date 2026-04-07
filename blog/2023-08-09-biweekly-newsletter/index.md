@@ -85,7 +85,7 @@ On the basis of converting Protobuf, OpenAPI models, and Go structures into KCL 
 
 After using the KCL Import tool, the output KCL code is as follows:
 
-```python
+```kcl
 schema Customer:
     """
     Customer

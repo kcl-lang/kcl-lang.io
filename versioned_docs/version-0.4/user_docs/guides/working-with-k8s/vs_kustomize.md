@@ -152,7 +152,7 @@ deployment.apps/ldap created
 
 We can write the following KCL code and name it `main.k`.
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {

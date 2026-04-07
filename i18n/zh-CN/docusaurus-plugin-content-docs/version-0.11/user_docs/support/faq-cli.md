@@ -65,7 +65,7 @@ kcl_options:
 
 在代码中使用内置的 option 函数获取即可
 
-```python
+```kcl
 env = option("env-type")
 deploy_topology = option("deploy-topology")
 ```

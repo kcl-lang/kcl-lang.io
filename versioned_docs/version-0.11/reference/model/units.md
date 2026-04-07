@@ -40,7 +40,7 @@ weight: 100
 - `to_Pi(num: int) -> str`
   Int literal to string with `Pi` suffix
 
-```python
+```kcl
 import units
 # SI
 n = units.to_n(1e-9)

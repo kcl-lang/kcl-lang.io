@@ -40,7 +40,7 @@ weight: 100
 - `to_Pi(num: int) -> str`
   将 int 转换为以 `Pi` 作为后缀的字符串
 
-```python
+```kcl
 import units
 # SI
 n = units.to_n(1e-9)

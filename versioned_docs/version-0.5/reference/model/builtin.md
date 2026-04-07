@@ -41,7 +41,7 @@ l1 = list([1, 2, 3])
 
 The built-in print function, which provides different types of variable parameter printing, adds a newline at the end by default. The following are common usages:
 
-```python
+```kcl
 print("hello KCL")
 print()
 print(None, end=':')
@@ -78,7 +78,7 @@ abc 456
 
 If you do not want the default newline, you can re-specify the ending string with the `end=''` named parameter.
 
-```python
+```kcl
 print("Hello KCL", end='')
 ```
 
@@ -88,7 +88,7 @@ print("Hello KCL", end='')
 
 Check whether the integer `a` is an integer multiple of `b`, and return a boolean value:
 
-```python
+```kcl
 print(multiplyof(2, 1))  # True
 print(multiplyof(1, 2))  # False
 print(multiplyof(0, 1))  # True
@@ -104,7 +104,7 @@ print(multiplyof(1, 0))  # Error
 
 Check if there are duplicate elements in an array, and return a boolean value:
 
-```python
+```kcl
 print(isunique([]))     # True
 print(isunique([1]))    # True
 print(isunique([1, 2])) # True
@@ -125,7 +125,7 @@ It should be noted that integers and floating-point numbers ignore the type diff
 
 Return the length of strings, lists, and arrays:
 
-```python
+```kcl
 print(len([])) # 0
 print(len({})) # 0
 
@@ -149,7 +149,7 @@ Calculate the absolute value of `x`.
 
 Judging that all elements of a list or dictionary class are true, the usage is as follows:
 
-```python
+```kcl
 print(all_true([])) # True
 print(all_true({})) # True
 
@@ -168,7 +168,7 @@ Returns true when the list is empty.
 
 Judging that at least one element in the iterable object is true, the usage is as follows:
 
-```python
+```kcl
 print(any_true([]))  # False
 print(any_true([1])) # True
 ```
@@ -179,7 +179,7 @@ print(any_true([1])) # True
 
 A string that returns the binary representation of an integer, used as follows:
 
-```python
+```kcl
 print(bin(8)) # 0b1000
 ```
 
@@ -189,7 +189,7 @@ print(bin(8)) # 0b1000
 
 A string that returns the hexadecimal representation of an integer, used as follows:
 
-```python
+```kcl
 print(hex(18)) # 0x12
 ```
 
@@ -199,7 +199,7 @@ print(hex(18)) # 0x12
 
 A string that returns the octal representation of an integer, used as follows:
 
-```python
+```kcl
 print(oct(10)) # 0o12
 ```
 
@@ -215,7 +215,7 @@ Gets the value of the command line top level argument input.
 
 Get the Unicode code point value of the character, the usage is as follows:
 
-```python
+```kcl
 print(ord('A')) # 65
 print(ord('B')) # 66
 print(ord('C')) # 67
@@ -227,7 +227,7 @@ print(ord('C')) # 67
 
 Returns the sorted list, used as follows:
 
-```python
+```kcl
 _a = []
 _b = [2, 1]
 
@@ -246,7 +246,7 @@ print(_d) # [1, 2]
 
 Generates an iterable list, used as follows:
 
-```python
+```kcl
 print(range(1,5))      # [1, 2, 3, 4]
 print(range(1,5, 2))   # [1, 3]
 print(range(5, 1, -1)) # [5, 4, 3, 2]
@@ -258,7 +258,7 @@ print(range(5, 1, -1)) # [5, 4, 3, 2]
 
 Returns the smallest element in the list, used as follows:
 
-```python
+```kcl
 print(min([1,2])) # 1
 print(min([2,1])) # 1
 ```
@@ -269,7 +269,7 @@ print(min([2,1])) # 1
 
 Returns the largest element in the list, used as follows:
 
-```python
+```kcl
 print(max([1,2])) # 2
 print(max([2,1])) # 2
 ```
@@ -291,7 +291,7 @@ print(sum([2,1], 1000)) # 1003
 
 Computes `x**y`, or `(x**y)%z` if `z` is not empty, supports integer and floating point numbers, used as follows:
 
-```python
+```kcl
 print(pow(2,3))    # 8
 print(pow(2, 3, 5)) # 8%5 == 3
 
@@ -304,7 +304,7 @@ print(pow(2, 0.5)) # 1.414
 
 Returns the rounded approximation of `number`. If `ndigits` is not `None` returns a float with the specified number of decimal places (cannot be negative), otherwise returns an integer structure, used as follows:
 
-```python
+```kcl
 print(round(1))   # 1
 print(round(1.4)) # 1
 print(round(1.5)) # 2
@@ -324,7 +324,7 @@ It should be noted that the difference between `ndigits` being `None` and `0` is
 
 Output the type of `x` at runtime. When the `full_name` parameter is set to `True`, the package prefix of the form `pkg.schema` will be returned, used as follows:
 
-```python
+```kcl
 import sub as pkg
 
 _a = 1

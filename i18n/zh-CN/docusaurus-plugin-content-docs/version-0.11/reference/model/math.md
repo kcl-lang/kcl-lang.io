@@ -12,7 +12,7 @@ weight: 100
 
 返回 `x` 向上取整得到的整数，这是大于等于 `x` 的最小整数。
 
-```python
+```kcl
 import math
 
 a = math.ceil(-45.17)
@@ -25,7 +25,7 @@ b = math.ceil(100.12)
 
 返回 `x` 的阶乘（即 `x!`），如果 `x` 是负数或者不是整数，则会引发一个错误。
 
-```python
+```kcl
 import math
 
 a = math.factorial(5)
@@ -37,7 +37,7 @@ a = math.factorial(5)
 
 返回 `x` 向下取整得到的整数，这是小于等于 `x` 的最大整数。
 
-```python
+```kcl
 import math
 
 a = math.floor(-45.17)
@@ -50,7 +50,7 @@ b = math.floor(100.12)
 
 返回 `x` 和 `y` 的最大公约数。
 
-```python
+```kcl
 import math
 
 a = math.gcd(60, 48)
@@ -62,7 +62,7 @@ a = math.gcd(60, 48)
 
 如果 `x` 既不是无穷大也不是 `NaN` 返回 `True`，否则返回 `False`。
 
-```python
+```kcl
 import math
 
 a = math.isfinite(1)
@@ -76,7 +76,7 @@ c = math.isfinite(float("nan"))
 
 如果 `x` 是正无穷或负无穷返回 `True`，否则返回 `False`。
 
-```python
+```kcl
 import math
 
 a = math.isinf(1)
@@ -90,7 +90,7 @@ c = math.isinf(float("nan"))
 
 如果 `x` 是 `NaN` 返回 `True`，否则返回 `False`。
 
-```python
+```kcl
 import math
 
 a = math.isnan(1)
@@ -104,7 +104,7 @@ c = math.isnan(float("nan"))
 
 返回 `x` 的整数和小数部分，两个结果均与 `x` 的正负号相同，并且均为浮点数。
 
-```python
+```kcl
 import math
 
 a = math.modf(100.12)
@@ -117,7 +117,7 @@ b = math.modf(100.72)
 
 返回以 `e` 为底数， `x` 的幂。
 
-```python
+```kcl
 import math
 
 a = math.exp(2)
@@ -130,7 +130,7 @@ b = math.exp(-6.89)
 
 返回 `e` 的 `x` 次方减去 1，该函数能够避免由于直接计算 `exp(x) - 1` 而引起的精度损失。
 
-```python
+```kcl
 import math
 
 a = math.expm1(32)
@@ -143,7 +143,7 @@ b = math.expm1(-10.89)
 
 返回以 `e` 为底数，`x` 的对数。
 
-```python
+```kcl
 import math
 
 a = math.log10(100) # 2
@@ -155,7 +155,7 @@ a = math.log10(100) # 2
 
 返回以 `e` 为底数，`1 + x` 的自然对数，该函数能够在 `x` 靠近 0 时精确计算结果。
 
-```python
+```kcl
 import math
 
 a = math.log1p(2.7183)
@@ -169,7 +169,7 @@ c = math.log1p(1)
 
 返回 `x` 的以 2 为底的对数。
 
-```python
+```kcl
 import math
 
 a = math.log2(2.7183)
@@ -183,7 +183,7 @@ c = math.log2(1)
 
 返回 `x` 的以 10 为底的对数。
 
-```python
+```kcl
 import math
 
 a = math.log10(2.7183)
@@ -197,7 +197,7 @@ c = math.log10(1)
 
 返回 `x` 的 `y` 次幂（即 `x` 的 `y` 次方）。
 
-```python
+```kcl
 import math
 
 a = math.pow(1, 1)
@@ -209,7 +209,7 @@ a = math.pow(1, 1)
 
 返回 `x` 的平方根。
 
-```python
+```kcl
 import math
 
 a = math.sqrt(9)

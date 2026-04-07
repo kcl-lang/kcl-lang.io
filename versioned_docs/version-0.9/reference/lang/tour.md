@@ -46,7 +46,7 @@ In KCL, an identifier is a name, may with selectors, that identifies a value.
 
 Examples:
 
-```python
+```kcl
 x
 a
 b1
@@ -59,7 +59,7 @@ To simplify the definition of the qualified identifier, such as `pkg.type`, we a
 
 Examples:
 
-```python
+```kcl
 pkg.a
 ```
 
@@ -69,14 +69,14 @@ The package name in `qualified identifier` must be imported.
 
 Use the `$` character prefix to define keyword identifiers.
 
-```python
+```kcl
 $if = 1
 $else = "s"
 ```
 
 Please note: whether the non-keyword identifier is prefixed with `$` has the same effect.
 
-```python
+```kcl
 _a = 1
 $_a = 2  # equal to `_a = 2`
 ```
@@ -85,7 +85,7 @@ $_a = 2  # equal to `_a = 2`
 
 Here’s an example of how to create a variable and initialize it:
 
-```python
+```kcl
 name = "Foo"  # Declare a variable named `name` and its value is a string literal "Foo"
 ```
 
@@ -97,7 +97,7 @@ name: Foo
 
 In KCL, we can export variables as config data by defining package-level variables. To make it direct, clear, and maintainable. Exported variables are immutable so that once we declare it, we can't modify it. For example, assume we have a config file named `example.k`, the variable `name` can't be modified after the declaration, just like the standard imperative language.
 
-```python
+```kcl
 name = "Foo"  # exported
 
 ...
@@ -107,14 +107,14 @@ name = "Bar"  # error: a exported declaration variable can only be set once.
 
 As a complement, we can define a non-exported variable in module level which is mutable, which won't show up in YAML output:
 
-```python
+```kcl
 _name = "Foo"  # _ variables are not output to YAML and are mutable
 _name = "Bar"
 ```
 
 Please note that the variable name cannot be one of `True`, `False`, `None`, `Undefined` because of ambiguity.
 
-```python
+```kcl
 False = 1  # Error
 True = False  # Error
 None = Undefined  # Error
@@ -142,7 +142,7 @@ Both int and float support basic operators such as `+`, `-`, `/`, and `*`, while
 
 Integers are numbers without a decimal point. Here are some examples of defining integer literals:
 
-```python
+```kcl
 a = 1
 b = -1
 c = 0x10 # hexadecimal literal
@@ -154,7 +154,7 @@ g = int("10") # int constructor
 
 If a number includes a decimal point, it is a float number. Here are some examples of defining float literals:
 
-```python
+```kcl
 a = 1.10
 b = 1.0
 c = -35.59
@@ -166,7 +166,7 @@ i = float("112") # float constructor
 
 Built-in math libraries can be used with numbers:
 
-```python
+```kcl
 import math
 
 assert abs(-40) == 40
@@ -194,7 +194,7 @@ In KCL, we can add a unit suffix to an integer denomination to indicate that it 
 - General integer or fixed-point number form: `P`, `T`, `G`, `M`, `K`, `k`, `m`, `u`, `n`
 - Corresponding power of 2: `Pi`, `Ti`, `Gi`, `Mi`, `Ki`
 
-```python
+```kcl
 # SI
 n = 1n  # 1e-09
 u = 1u  # 1e-06
@@ -215,7 +215,7 @@ Pi = 1Pi  # 1024 ** 5
 
 Besides, And we can also use the unit constants defined in the `units` module as follows:
 
-```python
+```kcl
 import units
 
 n = 1 * units.n  # 1e-09
@@ -237,7 +237,7 @@ Pi = 1 * units.Pi  # 1024 ** 5
 
 We can also use the methods in the `units` module to convert between integers and unit strings.
 
-```python
+```kcl
 import units
 # SI
 K = units.to_K(1000)   # "1K"
@@ -253,7 +253,7 @@ Ti = units.to_Ti(1024 ** 4)  # "1Ti"
 Pi = units.to_Pi(1024 ** 5)  # "1Pi"
 ```
 
-```python
+```kcl
 import units
 # SI
 K = units.to_K(int("1M"))   # "1000K"
@@ -271,7 +271,7 @@ Pi = units.to_Pi(int("10Pi"))  # "10Pi"
 
 The unit value type is defined in the units module, and the unit value type does not allow any four calculations.
 
-```python
+```kcl
 import units
 
 type NumberMultiplier = units.NumberMultiplier
@@ -283,7 +283,7 @@ x2 = x0 + x1  # Error: unsupported operand type(s) for +: 'number_multiplier(1M)
 
 We can use the `int()`, `float()` function and `str()` function to convert the numeric unit type to the normal integer type and string type.
 
-```python
+```kcl
 a: int = int(1Ki)  # 1024
 b: float = float(1Ki)  # 1024.0
 c: str = str(1Mi)  # "1Mi"
@@ -293,7 +293,7 @@ c: str = str(1Mi)  # "1Mi"
 
 The string is an immutable sequence of Unicode characters. We can use either single or double quotes to create a string:
 
-```python
+```kcl
 'allows embedded "double" quotes'  # Single quotes
 "allows embedded 'single' quotes"  # Double quotes
 '''Three single quotes''', """Three double quotes"""  # Triple quoted
@@ -301,7 +301,7 @@ The string is an immutable sequence of Unicode characters. We can use either sin
 
 Triple quoted strings may span multiple lines.
 
-```python
+```kcl
 """This is a long triple quoted string
 may span multiple lines.
 """
@@ -309,26 +309,26 @@ may span multiple lines.
 
 Please note that there is almost no difference in the use of KCL single-quoted and double-quoted strings. The only thing that can be simplified is that we don't need to escape double quotes in single quoted strings, and we don't need to escape single quotes in double quoted strings.
 
-```python
+```kcl
 'This is my book named "foo"'  # don't need to escape double quotes in single quoted strings.
 "This is my book named 'foo'"  # don't need to escape single quotes in double quoted strings.
 ```
 
 We can concatenate strings using the `+` operator:
 
-```python
+```kcl
 x = 'The + operator ' + 'works, as well.'
 ```
 
 We can cast an int or float to a string using the built-in function `str`:
 
-```python
+```kcl
 x = str(3.5) # "3.5"
 ```
 
 A lot of handy built-in functions and members of a string could be used:
 
-```python
+```kcl
 x = "length"
 assert len(x) == 6 # True
 assert x.capitalize() == "Length"
@@ -366,7 +366,7 @@ Besides, the variable to serialized can be extracted in special data format, suc
 
 Note that if we don't want to interpolate variables, we can add the `\` character before `$`.
 
-```python
+```kcl
 world = "world"
 a = "hello {}".format(world)        # "hello world"
 b = "hello ${world}"                # "hello world"
@@ -433,7 +433,7 @@ KCL raw string is created by prefixing a string literal with `'r'` or `'R'`. KCL
 
 - For backslash (`\`), the KCL code and output YAML are as follows:
 
-```python
+```kcl
 s = "Hi\nHello"
 raw_s = r"Hi\nHello"  # This is a KCL raw string with the `r` prefix.
 ```
@@ -447,7 +447,7 @@ raw_s: Hi\nHello
 
 - For string interpolation (`${}`), the KCL code and output YAML are as follows:
 
-```python
+```kcl
 worldString = "world"
 s = "Hello ${worldString}"
 raw_s = r"Hello ${worldString}"  # This is a KCL raw string with the `r` prefix.
@@ -461,7 +461,7 @@ raw_s: Hello ${worldString}
 
 In addition, the most common scenario for raw strings is to be used with regular expressions:
 
-```python
+```kcl
 import regex
 
 key = "key"
@@ -472,7 +472,7 @@ result = regex.match(key, r"[A-Za-z0-9_.-]*")  # True
 
 Boolean values are the two constant objects `False` and `True`.
 
-```python
+```kcl
 a = True
 b = False
 ```
@@ -481,7 +481,7 @@ b = False
 
 The list is a sequence, typically used to store collections of homogeneous items. Here’s a simple KCL list:
 
-```python
+```kcl
 list = [1, 2, 3]
 assert len(list) == 3  # True
 assert list[0] == 1  # True
@@ -489,14 +489,14 @@ assert list[0] == 1  # True
 
 We can declare a list with list comprehension:
 
-```python
+```kcl
 list = [ _x for _x in range(20) if _x % 2 == 0]
 assert list == [0, 2, 4, 6, 8, 10, 12, 14, 16, 18] # True
 ```
 
 We can perform nested list comprehension:
 
-```python
+```kcl
 matrix = [[1, 2], [3,4], [5,6], [7,8]]
 transpose = [[row[_i] for row in matrix] for _i in range(2)]
 assert transpose == [[1, 3, 5, 7], [2, 4, 6, 8]] # True
@@ -504,7 +504,7 @@ assert transpose == [[1, 3, 5, 7], [2, 4, 6, 8]] # True
 
 Besides, we can use two variables in the list comprehension, the first variable denotes the list index and the second variable denotes the list item.
 
-```python
+```kcl
 data = [1000, 2000, 3000]
 # Single variable loop
 dataLoop1 = [i * 2 for i in data]  # [2000, 4000, 6000]
@@ -521,7 +521,7 @@ dataLoop8 = [v for _, v in data if v == 2000]  # [2000]
 
 We can merge list like this:
 
-```python
+```kcl
 _list0 = [1, 2, 3]
 _list1 = [4, 5, 6]
 joined_list = _list0 + _list1  # [1, 2, 3, 4, 5, 6]
@@ -529,7 +529,7 @@ joined_list = _list0 + _list1  # [1, 2, 3, 4, 5, 6]
 
 We can also use the list unpacking operator `*` to merge multiple lists:
 
-```python
+```kcl
 _list0 = [1, 2, 3]
 _list1 = [4, 5, 6]
 union_list = [*_list0, *_list1]  # [1, 2, 3, 4, 5, 6]
@@ -537,7 +537,7 @@ union_list = [*_list0, *_list1]  # [1, 2, 3, 4, 5, 6]
 
 We can use `if expressions` to dynamically add elements to the list element, elements that meet the conditions are added to the list, and elements that do not meet the conditions are ignored.
 
-```python
+```kcl
 a = 1  # 1
 data = [
     1
@@ -547,7 +547,7 @@ data = [
 ]  # [1, 2, 3]
 ```
 
-```python
+```kcl
 a = 1  # 1
 data1 = [
     1
@@ -570,7 +570,7 @@ Please note that in the above `if expressions`, nested use is not supported.
 
 We can union two lists like this:
 
-```python
+```kcl
 _list0 = [1, 2, 3]
 _list1 = [4, 5, 6]
 union_list = _list0 | _list1  # [4, 5, 6]
@@ -578,7 +578,7 @@ union_list = _list0 | _list1  # [4, 5, 6]
 
 We can use the expression `for k in list_var` to traverse a list.
 
-```python
+```kcl
 data = [1, 2, 3]
 dataAnother = [val * 2 for val in data]  # [2, 4, 6]
 ```
@@ -589,7 +589,7 @@ Dict is a mapping object that maps hashable values to arbitrary objects. Dict is
 
 Here are a couple of simple KCL dict, created using dict literals:
 
-```python
+```kcl
 a = {"one" = 1, "two" = 2, "three" = 3}
 b = {'one' = 1, 'two' = 2, 'three' = 3}
 assert a == b # True
@@ -598,7 +598,7 @@ assert len(a) == 3 # True
 
 We can ignore the comma `,` at the end of the line for writing dict key-value pairs in multiple lines:
 
-```python
+```kcl
 data = {
     "key1" = "value1"  # Ignore the comma ',' at the end of line
     "key2" = "value2"
@@ -607,7 +607,7 @@ data = {
 
 We can ignore the attribute quotation marks when we writing simple literals on the key.
 
-```python
+```kcl
 data = {
     key1 = "value1"  # Ignore key quotation '"'
     key2 = "value2"
@@ -616,7 +616,7 @@ data = {
 
 Note that when there is `-`, `.` and other hyphens in the attribute, we must use quotation marks.
 
-```python
+```kcl
 data = {
     "config.dot.attr" = "value1"  # Note we use `"config.dot.attr"` instead of `config.dot.attr` here.
     "config-hyphen-attr" = "value2"  # Note we use `"config-hyphen-attr"` instead of `config-hyphen-attr` here.
@@ -625,7 +625,7 @@ data = {
 
 In addition, the **config selector expressions** can be used to init a dict instance with nested keys.
 
-```python
+```kcl
 person = {
     base.count = 2
     base.value = "value"
@@ -646,7 +646,7 @@ person:
 
 In KCL, different fields in dict can be referenced, such as the following example.
 
-```python
+```kcl
 config = {
     name = "me"
     metadata.name = name  # Reference `name` with the value `"me"` in `config` directly.
@@ -664,14 +664,14 @@ config:
 
 We can declare a dict with dict comprehension:
 
-```python
+```kcl
 x = {str(i): 2 * i for i in range(3)}
 assert x == {"0" = 0, "1" = 2, "2" = 4}
 ```
 
 Besides, we can use two variables in the dict comprehension, the first variable denotes the dict key and the second variable denotes the dict value of the key.
 
-```python
+```kcl
 data = {key1 = "value1", key2 = "value2"}
 # Single variable loop
 dataKeys1 = {k: k for k in data}  # {"key1": "key1", "key2": "key2"}
@@ -687,7 +687,7 @@ dataValues3 = {v: v for _, v in data}  # {"value1": "value1", "value2": "value2"
 
 We can **merge** dict using the dict unpacking operator `**` like this:
 
-```python
+```kcl
 _part1 = {
     a = "b"
 }
@@ -701,7 +701,7 @@ a_dict = {**_part1, **_part2}  # {"a: "b", "c": "d"}
 
 In addition, the same effect can be achieved by using the union operator `|`:
 
-```python
+```kcl
 _part1 = {
     a = "b"
 }
@@ -715,7 +715,7 @@ a_dict = _part1 | _part2  # {"a: "b", "c": "d"}
 
 We can use `if expressions` to dynamically add elements to the dict element, elements that meet the conditions are added to the dict, and elements that do not meet the conditions are ignored.
 
-```python
+```kcl
 a = 1  # 1
 data = {
     key1 = "value1"
@@ -725,7 +725,7 @@ data = {
 }  # {"key1": "value1", "key2": "value2", "key3": "value3"}
 ```
 
-```python
+```kcl
 a = 1  # 1
 data1 = {
     key1 = "value1"
@@ -746,7 +746,7 @@ data2 = {
 
 We can use the expression `for k in dict_var` to traverse a dict, and we can use the `in` operator to determine whether a dict contains a certain key
 
-```python
+```kcl
 data = {key1 = "value1", key2 = "value2"}
 dataAnother = {k: data[k] + "suffix" for k in data}  # {"key1": "value1suffix", "key2": "value2suffix"}
 containsKey1 = "key1" in data  # True
@@ -757,7 +757,7 @@ containsKey2 = "key" in data  # False
 
 In KCL, `None` can indicate that the value of the object is empty, which is similar to `nil` in Go or `null` in Java, and corresponds to `null` in YAML.
 
-```python
+```kcl
 a = None
 b = [1, 2, None]
 c = {key1 = value1, key2 = None}
@@ -778,7 +778,7 @@ c:
 
 Please note that `None` cannot participate in the four arithmetic operations, but it can participate logical operators and comparison operators to perform calculations.
 
-```python
+```kcl
 a = 1 + None  # error
 b = int(None)  # error
 c = not None  # True
@@ -791,7 +791,7 @@ f = str(None)  # None
 
 `Undefined` is similar to `None`, but its semantics is that a variable is not assigned any value and will not be output to YAML
 
-```python
+```kcl
 a = Undefined
 b = [1, 2, Undefined]
 c = {key1 = "value1", key2 = Undefined}
@@ -809,7 +809,7 @@ c:
 
 Please note that `Undefined` cannot participate in the four arithmetic operations, but it can participate logical operators and comparison operators to perform calculations.
 
-```python
+```kcl
 a = 1 + Undefined  # error
 b = int(Undefined)  # error
 c = not Undefined  # True
@@ -832,7 +832,7 @@ The following character sequences represent operators:
 
 KCL supports the common arithmetic operators:
 
-```python
+```kcl
 assert 2 + 3 == 5
 assert 2 - 3 == -1
 assert 2 * 3 == 6
@@ -845,7 +845,7 @@ assert 5 % 2 == 1
 
 KCL supports the meanings of equality and relational operators:
 
-```python
+```kcl
 assert 2 == 2
 assert 2 != 3
 assert 3 > 2
@@ -858,7 +858,7 @@ assert 2 <= 3
 
 We can invert or combine boolean expressions using the logical operators e.g., `and` and `or`:
 
-```python
+```kcl
 if not done and (col == 0 or col == 3):
   # ...Do something...
 
@@ -868,7 +868,7 @@ if not done and (col == 0 or col == 3):
 
 Here are examples of using bitwise and shift operators:
 
-```python
+```kcl
 value = 0x22
 bitmask = 0x0f
 
@@ -884,13 +884,13 @@ The `|` operator likewise computes bitwise, unions basic types and unions collec
 
 Computing bitwise examples:
 
-```python
+```kcl
 0x12345678 | 0xFF  # 0x123456FF
 ```
 
 Unioning basic types examples:
 
-```python
+```kcl
 schema x:
     a: int | str  # attribute a could be a int or string
 ```
@@ -908,7 +908,7 @@ The following tokens serve as delimiters in the grammar:
 
 The following examples use assignment and argument assignment operators:
 
-```python
+```kcl
 _a = 2
 _a *= 3
 _a += 1
@@ -919,13 +919,13 @@ assert _a == 7
 
 The following keywords serve as identity operators in the grammar:
 
-```python
+```kcl
 is, is not
 ```
 
 The identity operators check whether the right hand side and the left hand side are the very same object. They are usually used to check if some variable is `None/Undefined/True/False`. Here are some examples:
 
-```python
+```kcl
 empty_String = ""
 empty_String is not None # True
 ```
@@ -934,7 +934,7 @@ empty_String is not None # True
 
 The following keywords serve as membership operators in the grammar:
 
-```python
+```kcl
 in, not in
 ```
 
@@ -943,7 +943,7 @@ in, not in
 
 The meaning of membership varies by the type of the second operand: the members of a list are its elements; the members of a dict are its keys; the members of a string are all its substrings.
 
-```python
+```kcl
 1 in [1, 2, 3]                  # True
 
 d = {one = 1, two = 2}
@@ -967,7 +967,7 @@ A comprehension constructs a new list or dictionary value by looping over one or
 
 We can declare list and dict by comprehension as:
 
-```python
+```kcl
 listVar = [_x for _x in range(20) if _x % 2 == 0] # list comprehension
 dictVar = {str(_i): 2 * _i for _i in range(3)} # dict comprehension
 ```
@@ -982,7 +982,7 @@ We can:
 - Refers to a member field with **.**
 - Use the line continuation symbol `\` to write long expressions
 
-```python
+```kcl
 longString = "Too long expression " + \
              "Too long expression " + \
              "Too long expression "
@@ -996,7 +996,7 @@ A conditional expression has the form `a if cond else b`. It first evaluates the
 
 Examples:
 
-```python
+```kcl
 x = True if enabled else False  # If enabled is True, x is True, otherwise x is False
 ```
 
@@ -1006,7 +1006,7 @@ An index expression `a[i]` yields the `i` th element of an indexable type such a
 
 A valid negative index `i` behaves like the non-negative index `n+i`, allowing for convenient indexing relative to the end of the sequence.
 
-```python
+```kcl
 val = "abc"
 list = ["zero", "one", "two"]
 str_0 = val[0]         # "a"
@@ -1022,7 +1022,7 @@ An index expression `d[key]` may also be applied to a dictionary `d`, to obtain 
 
 An index expression appearing on the left side of an assignment causes the specified list or dictionary element to be updated:
 
-```python
+```kcl
 d = {key1 = "value1", key2 = "value2"}
 key1value = d["key1"]  # value1
 key2value = d["key2"]  # value2
@@ -1040,7 +1040,7 @@ Conceptually, these operands specify a sequence of values `i` starting at start 
 
 The effective start and stop indices are computed from the three operands as follows. Let `n` be the length of the sequence.
 
-```python
+```kcl
 val = "abc"
 len = len(val)
 a = val[1:len]         # "bc"  (remove first element)
@@ -1048,7 +1048,7 @@ b = val[0:-1]          # "ab"  (remove last element)
 c = val[1:-1]          # "b"   (remove first and last element)
 ```
 
-```python
+```kcl
 "abc"[1:]               # "bc"  (remove first element)
 "abc"[:-1]              # "ab"  (remove last element)
 "abc"[1:-1]             # "b"   (remove first and last element)
@@ -1064,7 +1064,7 @@ KCL allows calling built-in functions and functions from built-in and system mod
 
 To call a function, the basic way is shown as the following code excerpt:
 
-```python
+```kcl
 import math
 
 a = math.pow(2, 3)  # 2 powers 3 is 8.
@@ -1073,7 +1073,7 @@ b = len([1, 2, 3])  # the length of [1, 2, 3] is 3
 
 As you can see, arguments are separated with `,`, and KCL also supports positional arguments and key-value arguments.
 
-```python
+```kcl
 print("hello world", end="")
 ```
 
@@ -1096,7 +1096,7 @@ A selector expression selects the attribute or method of the value. KCL provides
 
 Examples:
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -1118,7 +1118,7 @@ result = myDict.key # "value"
 
 `x` can be a schema instance or a dict. This is extremely helpful when the value of `x` might be `None` or when the key `y` might not exist in `x`.
 
-```python
+```kcl
 # Example of dict:
 data = {key = "value"}
 a = data?.key     # "value"
@@ -1165,7 +1165,7 @@ Quantifier expressions act on collection: list or dict, generally used to obtain
 
 **all** and **any** expression sample codes:
 
-```python
+```kcl
 schema Config:
     volumes: [{str:}]
     services: [{str:}]
@@ -1182,7 +1182,7 @@ schema Config:
 
 **map** and **filter** expression sample codes:
 
-```python
+```kcl
 a = map e in [{name = "1", value = 1}, {name = "2", value = 2}] {
     {name = e.name, value = int(e.value) ** 2}
 }  # [{"name": "1", value: 1}, {"name": "2", "value": 4}]
@@ -1206,7 +1206,7 @@ Please pay attention to distinguish the difference between any expression and an
 
 KCL supports `if` statements with optional `elif` and `else` statements, as the next sample shows.
 
-```python
+```kcl
 a = 10
 if a == 0:
     print("a is zero")
@@ -1219,7 +1219,7 @@ else:
 
 The `elif` example:
 
-```python
+```kcl
 _result = 0
 if condition == "one":
     _result = 1
@@ -1233,7 +1233,7 @@ else:
 
 `if-elif-else` statements can be nested. For example:
 
-```python
+```kcl
 a = 10
 if a == 0:
     print("a is zero")
@@ -1248,7 +1248,7 @@ else:
 
 In addition, for simple `if` statements as follows:
 
-```python
+```kcl
 if success:
     _result = "success"
 else:
@@ -1257,7 +1257,7 @@ else:
 
 We can have it in one line using the `<expr> if <condition> else <expr>` pattern:
 
-```python
+```kcl
 _result = "success" if success else "failed"
 ```
 
@@ -1265,7 +1265,7 @@ An `if` or `elif` statement evaluates a given expression. When the expression is
 
 Please note that the false name constant `False`, `None`, the zero number `0`, the empty list `[]`, the empty dict `{}` and the empty string `""` are all seen as `False` expressions.
 
-```python
+```kcl
 _emptyStr = ""
 _emptyList = []
 _emptyDict = {}
@@ -1286,7 +1286,7 @@ isEmptyDict: true
 
 When errors happen, developers should be able to detect the error and abort execution. Thus, KCL introduce the `assert` syntax. The following is an example:
 
-```python
+```kcl
 a = 1
 b = 3
 # a != b evaluates to True, therefore no error should happen.
@@ -1297,7 +1297,7 @@ assert a == b, "SOS"
 
 In addition, we can declare a condition for the assert statement and make an assertion when the condition is met. The usual way of writing is
 
-```python
+```kcl
 a = None
 if a:
     assert a > 2:
@@ -1305,7 +1305,7 @@ if a:
 
 In KCL, it can also be simplified to the following form using the **if** expression to compose more complex conditional assert logic:
 
-```python
+```kcl
 a = None
 assert a > 2 if a
 ```
@@ -1314,7 +1314,7 @@ assert a > 2 if a
 
 KCL supports using the lambda keyword to define a function.
 
-```python
+```kcl
 func = lambda x: int, y: int -> int {
     x + y
 }
@@ -1325,7 +1325,7 @@ a = func(1, 1)  # 2
 - The return value type annotation can be omitted, and the return value type is the type of the last expression value.
 - There is no order-independent feature in the function body, all expressions are executed in order.
 
-```python
+```kcl
 _func = lambda x: int, y: int -> int {
     x + y
 }  # Define a function using the lambda expression
@@ -1339,7 +1339,7 @@ _func = lambda x: int, y: int -> str {
 
 The function type variables cannot participate in any calculations and can only be used in assignment statements and call statements.
 
-```python
+```kcl
 func = lambda x: int, y: int -> int {
     x + y
 }
@@ -1348,7 +1348,7 @@ x = func + 1  # Error: unsupported operand type(s) for +: 'function' and 'int(1)
 
 The lambda function supports the capture of external variables, which can be passed as parameters of other functions.
 
-```python
+```kcl
 a = 1
 func = lambda x: int {
     x + a
@@ -1371,7 +1371,7 @@ r: 2
 
 Further, we can define an anonymous function through lambda expression and call it.
 
-```python
+```kcl
 result = (lambda x, y {
     z = 2 * x
     z + y
@@ -1380,7 +1380,7 @@ result = (lambda x, y {
 
 We can also use anonymous functions in the for loop.
 
-```python
+```kcl
 result = [(lambda x, y {
     x + y
 })(x, y) for x in [1, 2] for y in [1, 2]]  # [2, 3, 3, 4]
@@ -1393,7 +1393,7 @@ Note that the functions defined in the KCL are pure functions:
 
 Therefore, KCL functions cannot modify external variables, but can only reference external variables. For example, the following code will cause an error:
 
-```python
+```kcl
 globalVar = 1
 func = lambda {
     x = globalVar  # Ok
@@ -1423,7 +1423,7 @@ Examples:
 
 - Basic type
 
-```python
+```kcl
 """Top level variable type annotation"""
 a: int = 1  # Declare a variable `a` that has the type `int` and the value `1`
 b: str = "s"  # Declare a variable `b` that has the type `str` and the value `"s"`
@@ -1433,7 +1433,7 @@ d: bool = True  # Declare a variable `d` that has the type `bool` and the value 
 
 - List/Dict/Schema Type
 
-```python
+```kcl
 schema Person:
     name: str = "Alice"
     age: int = 10
@@ -1445,13 +1445,13 @@ c: Person = Person {}  # Declare a variable `c` that has the schema type `Person
 
 - Union Type
 
-```python
+```kcl
 # Basic union types
 schema x[argc: int]:  # Schema argument type annotation
     p: int | str  # Schema attribute type annotation
 ```
 
-```python
+```kcl
 # Literal union types
 schema LiteralType:
     # String literal union types, x_01 can be one of "TCP" and "UDP"
@@ -1470,7 +1470,7 @@ x = LiteralType {
 
 The compiler throws an error when the value of a property does not conform to the union type definition:
 
-```python
+```kcl
 # Literal union types
 schema LiteralType:
     # String literal union types, x_01 can be one of "TCP" and "UDP"
@@ -1483,7 +1483,7 @@ x = LiteralType {
 
 - Any Type
 
-```python
+```kcl
 # Any type
 schema Config:
     literalConf: any = 1
@@ -1495,7 +1495,7 @@ config = Config {}
 
 In KCL, changing the type of a variable is not allowed. If the type is not satisfied when reassigning the value, the type error will be raised.
 
-```python
+```kcl
 _a = 1  # The type of `_a` is `int`
 _a = "s"  # Error: expect int, got str(s)
 ```
@@ -1506,7 +1506,7 @@ The type of a variable can be assigned to its upper bound type, but cannot be as
 
 - All types can be assigned to `any` type, `None` and `Undefined` can be assigned to `any` type.
 
-```python
+```kcl
 a: int = None
 b: str = Undefined
 c: any = 1
@@ -1516,14 +1516,14 @@ e: any = None
 
 - The `int` type can be assigned to the `float` type, and the `float` type cannot be assigned to the `int` type.
 
-```python
+```kcl
 a: float = 1
 b: int = 1.0  # Error: expect int, got float(1.0)
 ```
 
 - The `int` type can be assigned to the `int|str` type, and the `int|str` type cannot be assigned to the `int` type.
 
-```python
+```kcl
 a: int | str = 1
 b: int = 1 if a else "s"  # Error: expect int, got int(1)|str(s)
 ```
@@ -1536,39 +1536,39 @@ If a variable or constant declaration in the top level or in the schema is not a
 
 - Integer literals are inferred to type `int`.
 
-```python
+```kcl
 a = 1  # The variable `a` has the type `int`
 ```
 
 - Float literals are inferred to type `float`.
 
-```python
+```kcl
 a = 1.0  # The variable `a` has the type `float`
 ```
 
 - String literals are inferred to type `str`.
 
-```python
+```kcl
 a = "s"  # The variable `a` has the type `str`
 ```
 
 - Boolean literals are inferred to type `bool`
 
-```python
+```kcl
 a = True  # The variable `a` has the type `bool`
 b = False  # The variable `b` has the type `bool`
 ```
 
 - `None` and `Undefined` are inferred to type `any`
 
-```python
+```kcl
 a = None  # The variable `a` has the type `any`
 b = Undefined  # The variable `b` has the type `any`
 ```
 
 - List literals are inferred based on the elements of the literal, and to be variable-size.
 
-```python
+```kcl
 a = [1, 2, 3]  # The variable `a` has the type `[int]`
 b = [1, 2, True]  # The variable `b` has the list union type `[int|bool]`
 c = ["s", 1]  # The variable `c` has the list union type `[int|str]`
@@ -1576,13 +1576,13 @@ c = ["s", 1]  # The variable `c` has the list union type `[int|str]`
 
 Please note that a empty list will be inferred to `[any]`
 
-```python
+```kcl
 a = []  # The variable `a` has the type `[any]`
 ```
 
 - Dict literals are inferred based on the keys and values of the literal, and to be variable-size.
 
-```python
+```kcl
 a = {key = "value"}  # The variable `a` has the type `{str:str}`
 b = {key = 1}  # The variable `b` has the type `{str:int}`
 c = {key1 = 1, key2 = "s"}  # The variable `c` has the type `{str:int|str}`
@@ -1590,20 +1590,20 @@ c = {key1 = 1, key2 = "s"}  # The variable `c` has the type `{str:int|str}`
 
 Please note that a empty dict will be inferred to `{any:any}`
 
-```python
+```kcl
 a = {}  # The variable `a` has the type `{any:any}`
 ```
 
 - The type of the if conditional expression carrying the runtime value will be statically inferred as a union type of all possible results.
 
-```python
+```kcl
 a: bool = True  # The variable `a` has the type `bool`
 b = 1 if a else "s"  # The variable `b` has the type `int|str`
 ```
 
 When a variable is deduced to a certain type, its type cannot be changed
 
-```python
+```kcl
 _a = 1
 _a = "s"  # Error: expect int, got str(1)
 ```
@@ -1612,7 +1612,7 @@ _a = "s"  # Error: expect int, got str(1)
 
 We can use the `type` keyword to declare a type alias for all types in KCL to simplify the writing and use of complex types.
 
-```python
+```kcl
 type Int = int
 type String = str
 type StringOrInt = String | Int
@@ -1630,7 +1630,7 @@ type Data = pkg.Data
 
 In addition, we can use type aliases and union types to achieve similar enumeration functions.
 
-```python
+```kcl
 # A type alias of string literal union types
 type Color = "Red" | "Yellow" | "Blue"
 
@@ -1651,7 +1651,7 @@ config:
 
 Please note that the type alias name cannot be one of `any`, `int`, `float`, `bool` and `str` because of ambiguity.
 
-```python
+```kcl
 type any = int | str  # Error
 type int = str  # Error
 type float = int  # Error
@@ -1665,7 +1665,7 @@ KCL supports the `typeof` function which can give very basic information about t
 
 Example:
 
-```python
+```kcl
 import sub as pkg
 
 _a = 1
@@ -1703,7 +1703,7 @@ Only types with partial order can be downcast converted, the use of the as keywo
 - Contains the partial order relation of the upper bound of the type, e.g., `any -> int`
 - Partial order relationship of structure type, e.g., `base-schema -> sub-schema`
 
-```python
+```kcl
 schema Data1:
     id?: int
 
@@ -1720,14 +1720,14 @@ elif typeof(data) == "Data2":
 
 When a runtime error occurs in the `as` type conversion, a runtime error is thrown.
 
-```python
+```kcl
 a: any = "s"
 b: int = a as int  # Error: The `str` type cannot be converted to the `int` type
 ```
 
 If we don't want to throw a runtime error, we can use the type guard for defensive coding with `if` expressions.
 
-```python
+```kcl
 a: any = "s"
 b = a as int if typeof(a) == "int" else None  # The type of b is `int`
 ```
@@ -1747,7 +1747,7 @@ We can define typed attributes, initialization assignment, and verification rule
 
 The followings are some basic examples:
 
-```python
+```kcl
 # A person has a first name, a last name and an age.
 schema Person:
     firstName: str
@@ -1760,7 +1760,7 @@ In KCL, we can use type annotations to define some attributes in the schema, eac
 
 Note, the immutability of attributes in the schema follows the same rules as the immutability of global variables, only mutable attributes in the schema can be modified in the schema.
 
-```python
+```kcl
 schema Person:
     age: int = 1  # Immutable attribute
     _name: str = "Alice"  # Mutable attribute
@@ -1775,7 +1775,7 @@ Each attribute **must** be assigned with a not `None`/`Undefined` value as a sch
 
 Examples:
 
-```python
+```kcl
 schema Employee:
     bankCard: int  # bankCard is a required attribute, and it can NOT be None or Undefined
     nationality?: str  # nationality is an optional attribute, and it can be None or Undefined
@@ -1796,7 +1796,7 @@ Please note that there can be no circular references between different schema at
 
 We can see this feature through the following examples.
 
-```python
+```kcl
 schema Fib:
     n1: int = n - 1  # Refers to the attribute `n` declared after `n1`
     n2: int = n1 - 1
@@ -1818,7 +1818,7 @@ We can see that in the schema, we only need to simply specify the dependency bet
 
 We can define the context of the schema to manage the attributes of the schema, and we can write schema parameters, temporary variables and expressions directly in the schema:
 
-```python
+```kcl
 schema Person[_name: str]:  # define a schema argument
     name: str = _name     # define a schema attribute
     age: int = 10         # define a schema attribute with default value
@@ -1829,7 +1829,7 @@ schema Person[_name: str]:  # define a schema argument
 
 In addition to using **static typing** (the type annotation) and **immutability** in KCL schema mentioned earlier to ensure code stability, a bunch of validation rules are supported in a simple **check** block (KCL supports almost all authentication capabilities of [OpenAPI](https://www.openapis.org/)):
 
-```python
+```kcl
 import regex
 
 schema Sample:
@@ -1851,7 +1851,7 @@ schema Sample:
 
 With the schema, all instances will be validated at compile time
 
-```python
+```kcl
 # Ok
 goodSample = Sample {
     foo = "The Foo"
@@ -1869,7 +1869,7 @@ badSample = Sample {
 
 In addition, we can use **and**, **or**, **if** to compose more complex conditional check logic:
 
-```python
+```kcl
 schema Sample:
     bar: int
     foo: str
@@ -1885,7 +1885,7 @@ In order to ensure that all check rules can play their corresponding roles well,
 
 Usually after we write the schema model, we will write documentation comments for the schema, which can be completed by using a three-quoted string as follows:
 
-```python
+```kcl
 schema Server:
     """Server is the common user interface for long-running
     services adopting the best practice of Kubernetes.
@@ -1920,7 +1920,7 @@ schema Server:
 
 Suppose we have the following schema definition:
 
-```python
+```kcl
 schema Person:
     firstName: str
     lastName: str
@@ -1928,7 +1928,7 @@ schema Person:
 
 A config could be defined with a JSON-like expression:
 
-```python
+```kcl
 person = Person {
     firstName = "firstName"
     lastName = "lastName"
@@ -1938,7 +1938,7 @@ person = Person {
 At the same time, the schema adheres to strict attribute definitions,
 and configuring undefined attributes will trigger a compilation error.
 
-```python
+```kcl
 person = Person {
     firstName = "firstName"
     lastName = "lastName"
@@ -1948,7 +1948,7 @@ person = Person {
 
 We can use `if expressions` to dynamically add elements to the schema config, elements that meet the conditions are added to the schema config, and elements that do not meet the conditions are ignored. Besides, the **config selector expressions** can be used to init a schema instance.
 
-```python
+```kcl
 schema Base:
     count: int
     value: str
@@ -1999,7 +1999,7 @@ person2:
 
 When we instantiate a schema without config parameters, we can generate schema instances in the following three forms:
 
-```python
+```kcl
 schema Data:
     id: int = 1
 
@@ -2010,7 +2010,7 @@ data3 = Data()
 
 In addition to using a schema type to instantiate a schema, we can also use a schema instance to get a new instance using the config expression.
 
-```python
+```kcl
 schema Config:
     id: int
     values: [int]
@@ -2044,7 +2044,7 @@ configNew:
 
 In addition, schema attribute default values can be modified by schema config.
 
-```python
+```kcl
 schema Person:
     age: int = 1
     name: str = "Alice"
@@ -2068,7 +2068,7 @@ In addition to schema, an additional type definition method `protocol` is provid
 
 Besides, we can declare a complex assembly schema with optional **mixin** support and use **protocol** to add an optional host type to the dynamically inserted **mixin**.:
 
-```python
+```kcl
 schema Person:
     mixin [FullNameMixin]
 
@@ -2079,7 +2079,7 @@ schema Person:
 
 A fullName mixin which generates a fullName as a simple sample:
 
-```python
+```kcl
 protocol PersonProtocol:
     firstName: str
     lastName: str
@@ -2091,7 +2091,7 @@ mixin FullNameMixin for PersonProtocol:
 
 Then we can get the schema instance by:
 
-```python
+```kcl
 person = Person {
     firstName = "John"
     lastName = "Doe"
@@ -2109,7 +2109,7 @@ person:
 
 Please note that the host type **protocol** can only be used for **mixin** definitions (the suffix name is `Mixin`), otherwise an error will be reported.
 
-```python
+```kcl
 protocol DataProtocol:
     data: str
 
@@ -2123,7 +2123,7 @@ Index signatures can be defined in the KCL schema, and it means that the key-val
 
 - Use the form `[{attr_alias}: {key_type}]: {value_type}` to define an index signature in the schema, and `{attr_alias}` can be omitted.
 
-```python
+```kcl
 schema Map:
     """
     Map is a schema with a key of str type and a value of str type
@@ -2138,7 +2138,7 @@ data = Map {
 
 - Mandatory all attributes of the schema key and value types
 
-```python
+```kcl
 schema Person:
     name: str
     age: int  # error, conflicts with the index signature definition `[str]: str`
@@ -2147,7 +2147,7 @@ schema Person:
 
 - Mandatory all attribute key and value types are defined in the schema, which is equivalent to restricting all attribute types except the additional attributes.
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -2156,7 +2156,7 @@ schema Person:
 
 - Define the index signature attribute alias and use it in its default value.
 
-```python
+```kcl
 schema Environment:
     [id: str]: EnvironmentSpec = {
         fullName = id
@@ -2195,7 +2195,7 @@ environment:
 
 - Define the index signature attribute alias and use it with the check block.
 
-```python
+```kcl
 schema Data:
     [dataName: str]: str
     check:
@@ -2208,7 +2208,7 @@ data = Data {
 }
 ```
 
-```python
+```kcl
 import regex
 
 schema DataMap:
@@ -2228,7 +2228,7 @@ Like some other object-oriented languages, KCL provides fundamental but limited 
 
 The following is an example of schema inheritance:
 
-```python
+```kcl
 # A person has a first name, a last name and an age.
 schema Person:
     firstName: str
@@ -2267,7 +2267,7 @@ In addition, when the schema has an inheritance relationship, the properties of 
 - If the attribute is optional in the base schema, it could be optional or required in the sub-schema.
 - If the attribute is required in the base schema, it must be required in the sub-schema.
 
-```python
+```kcl
 schema Person:
     bankCard?: int
     nationality: str
@@ -2281,7 +2281,7 @@ schema Employee(Person):
 
 Schema map very nicely onto functions; it can have any number of input and output parameters. For example, the Fibonacci function can be written as follows using the recursive schema config:
 
-```python
+```kcl
 schema Fib[n: int]:
     n1 = n - 1
     n2 = n - 2
@@ -2309,7 +2309,7 @@ Built-in decorators of schema
 
 Examples:
 
-```python
+```kcl
 @deprecated
 schema ObsoleteSchema:
     attr: str
@@ -2323,7 +2323,7 @@ schema Person:
 person = Person {}  # Error: ObsoleteSchema was deprecated
 ```
 
-```python
+```kcl
 schema Person:
     firstName: str = "John"
     lastName: str
@@ -2344,7 +2344,7 @@ Built-in functions and members of schema
 - instances()
   Return the list of existing instances of a schema.
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -2397,7 +2397,7 @@ Unioning collection and schema data:
 
 - Unioning List. Overwrite the list expression on the right side of the operator `|` to the list variable on the left side of the operator one by one according to the **index**.
 
-```python
+```kcl
 _a = [1, 2, 3]
 _b = [4, 5, 6, 7]
 x = _a | _b  # [4, 5, 6, 7]  1 -> 4; 2 -> 5; 3 -> 6; Undefined -> 7
@@ -2407,7 +2407,7 @@ Unioning to the specific index or all elements is still under discussion.
 
 - Unioning Dict. Union the dict expression on the right side of the operator `|` one by one to the dict variable on the left side of the operator according to the **key**
 
-```python
+```kcl
 _a = {key1 = "value1"}
 _b = {key1 = "overwrite", key2 = "value2"}
 x = _a | _b  # {"key1": "overwrite", "key2": "value2"}
@@ -2419,7 +2419,7 @@ The union of collection and schema is a new one whose attributes are unioning b 
 
 Schema union could be done as:
 
-```python
+```kcl
 schema Person:
     firstName?: str
     lastName?: str
@@ -2437,7 +2437,7 @@ _g = Undefined | _a  #  {"firstName": "John"}
 
 Please note that when one of the left and right operands of the union operator is None, the other operand is returned immediately.
 
-```python
+```kcl
 data1 = {key = "value"} | None  # {"key": "value"}
 data2 = None | [1, 2, 3]  # [1, 2, 3]
 data3 = None | None  # None
@@ -2463,7 +2463,7 @@ The value of the expression `E` with optional type annotation `T` will be unione
 
 Examples:
 
-```python
+```kcl
 data = {
     labels: {key1: "value1"}
     # union {key2: "value2"} into the attribute labels.
@@ -2484,7 +2484,7 @@ In addition to using attribute operators on the schema config attributes, variab
 
 - Using `:` outside the schema
 
-```python
+```kcl
 schema Data:
     d1?: int
     d2?: int
@@ -2504,7 +2504,7 @@ config: Config {
 
 Its equivalent configuration code can be expressed as
 
-```python
+```kcl
 schema Data:
     d1?: int
     d2?: int
@@ -2529,7 +2529,7 @@ config:
 
 - Using `:` inside the schema
 
-```python
+```kcl
 schema Data:
     d1?: int
     d2?: int
@@ -2557,7 +2557,7 @@ The value of the expression `E` with optional type annotation `T` will override 
 
 Examples:
 
-```python
+```kcl
 schema Data:
     labels: {str:} = {key1 = "value1"}
 
@@ -2591,7 +2591,7 @@ Insert only works for list type `identifier`.
 
 Examples:
 
-```python
+```kcl
 schema Data:
     labels: {str:} = {key1 = [0, 1, 3]}
 
@@ -2619,7 +2619,7 @@ If no index is specified, the last index will be used.
 
 Please note that the calculations of the `=` and `+=` attribute operators of the same attribute are sequential, and the latter ones have a higher priority.
 
-```python
+```kcl
 x = {
     a = 1  # 1
 } | {
@@ -2633,7 +2633,7 @@ Please note that the `:` attribute operator represents an idempotent merge opera
 
 Therefore, when we need a configuration to override or add and delete operations, it is best to use the `=` and `+=` operators
 
-```python
+```kcl
 data0 = {id: 1} | {id: 2}  # Error：conflicting values between {'id': 2} and {'id': 1}
 data1 = {id: 1} | {id = 2}  # Ok, the value of `data` is {"id": 2}
 ```
@@ -2642,13 +2642,13 @@ The check rules for `:` operator for KCL value conflicts are as follows:
 
 - For `None` and `Undefined` variables, they do not conflict with any value.
 
-```python
+```kcl
 data0 = None | {id: 1}  # Ok
 ```
 
 - For `int`, `float`, `str` and `bool` types, when their values are different, they are considered as conflicts.
 
-```python
+```kcl
 data0 = 1 | 1  # Ok
 data1 = 1 | "s"  # Error
 ```
@@ -2657,7 +2657,7 @@ data1 = 1 | "s"  # Error
   - When their lengths are not equal, they are regarded as conflicts.
   - When their lengths are equal, as long as there is a conflict in the value of a child element, it is regarded as a conflict.
 
-```python
+```kcl
 data0 = [1] | [1]  # Ok
 data1 = [1, 2] | [1]  # Error
 ```
@@ -2665,7 +2665,7 @@ data1 = [1, 2] | [1]  # Error
 - For dict/schema type
   - When the values of the same key conflict, they are regarded as conflicts
 
-```python
+```kcl
 data0 = {id: 1} | {id: 1}  # Ok
 data1 = {id: 1} | {id: 2}  # Error
 data1 = {id: 1} | {idAnother: 1}  # Ok
@@ -2677,14 +2677,14 @@ In addition to using the check keyword for verification and writing in the schem
 
 The KCL rule is the same as the schema/mixin/protocol and it is defined by indentation. We need write a rule per line and we can write if filter conditions and verification failure information for each rule. Different conditions are connected with logic `and` (similar to the way of writing in check block).
 
-```python
+```kcl
 rule SomeRule:
     age > 0, "rule check failure message"
 ```
 
 We can call a KCL rule like instantiating a schema:
 
-```python
+```kcl
 age = 1
 name = "Alice"
 
@@ -2698,7 +2698,7 @@ rule2 = SomeRule {}  # Rule call
 
 We can use protocol to implement type checking of rule structure:
 
-```python
+```kcl
 # Protocol definition
 protocol ServiceProtocol:
     clusterIp: str
@@ -2755,7 +2755,7 @@ Besides, the following two ways can be used to achieve the multiplexing of diffe
 
 - Inline Call
 
-```python
+```kcl
 weather = "sunny"
 day = "wednesday"
 
@@ -2774,7 +2774,7 @@ Main()  # Rule call
 
 - Inherit
 
-```python
+```kcl
 weather = "sunny"
 day = "wednesday"
 
@@ -2794,7 +2794,7 @@ We can obtain external data or input from the `option` function and the CLI para
 
 - A simple example
 
-```python
+```kcl
 schema Day:
     day: str
     homework: str
@@ -2811,7 +2811,7 @@ Main()
 
 - A complex example
 
-```python
+```kcl
 data = option("data")
 input = option("input")
 
@@ -2861,7 +2861,7 @@ Code structure:
 
 model1.k:
 
-```python
+```kcl
 # schema CatalogItem in model1.k
 
 schema CatalogItem:
@@ -2872,7 +2872,7 @@ schema CatalogItem:
 
 service1.k:
 
-```python
+```kcl
 import ..model as model  # cross-package references
 
 schema ImageService:
@@ -2886,7 +2886,7 @@ We can use the operator `.` to realize the relative path import of KCL entry fil
 
 main.k:
 
-```python
+```kcl
 import .model1  # Current directory module
 import ..service  # Parent directory
 import ...root  # Parent of parent directory
@@ -2922,7 +2922,7 @@ Code structure:
 
 main.k:
 
-```python
+```kcl
 import service  # `root package` and `kcl.mod` are in the same directory
 import mixin  # `root package` and `kcl.mod` are in the same directory
 
@@ -2931,7 +2931,7 @@ myModel = model.CatalogItem {}
 
 Note that for the KCL entry file `main.k`, it cannot be imported into the folder where it is located, otherwise a recursive import error will occur:
 
-```python
+```kcl
 import model  # Error: recursively loading
 ```
 
@@ -2939,7 +2939,7 @@ import model  # Error: recursively loading
 
 Assume some field need to be passed in dynamically like user input, we can define a top-level argument in a module:
 
-```python
+```kcl
 bankCard = option("bankCard")  # Get bankCard through the option function.
 ```
 
@@ -3043,7 +3043,7 @@ kcl --help
 
 We can use the `option` function in the KCL code to get the top-level arguments.
 
-```python
+```kcl
 value = option(key="key", type='str', default="default_value", required=True, help="Set key value")
 ```
 
@@ -3065,14 +3065,14 @@ kcl main_1.k main_2.k ... main_n.k
 
 main_1.k
 
-```python
+```kcl
 a = 1
 b = 2
 ```
 
 main_2.k
 
-```python
+```kcl
 c = 3
 d = 4
 ```
@@ -3090,7 +3090,7 @@ Taking advantage of the **multi-file combination**, we can assemble multiple KCL
 
 model.k
 
-```python
+```kcl
 schema Model:
     name: str
     labels?: {str:}
@@ -3113,7 +3113,7 @@ _model2 = Model {
 
 backend.k
 
-```python
+```kcl
 import yaml
 
 schema Backend:
@@ -3203,7 +3203,7 @@ Code structure:
 
 pkg/model.k:
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -3216,7 +3216,7 @@ var = Person {
 
 main.k
 
-```python
+```kcl
 import pkg
 
 var = pkg.Person {
@@ -3271,7 +3271,7 @@ Note: When `identifier` appears multiple times, modify/delete all `identifier` v
 
 KCL code:
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -3302,7 +3302,7 @@ Besides, when we use KCL CLI `-d` argument, the KCL file will be modified to the
 kcl main.k -O :person.name=\"Bob\" -O :person.age=10 -d
 ```
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -3315,7 +3315,7 @@ person = Person {
 
 Another more complicated example:
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -3348,7 +3348,7 @@ person:
 
 KCL code:
 
-```python
+```kcl
 schema Config:
     x?: int = 1
     y?: str = "s"

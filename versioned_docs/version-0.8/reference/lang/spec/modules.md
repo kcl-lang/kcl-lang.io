@@ -450,14 +450,14 @@ From the structure we can see that `pkg1` and `pkg2` are two packages, `subpkg3`
 
 The following statement can import the standard system module `math`
 
-```python
+```kcl
 import math
 ```
 
 This is the only way to import a standard system module. After importing a standard system module, functions, variables and schemas defined in it can be used. For example, the following statement uses the `log10` function
 defined in `math`
 
-```python
+```kcl
 a = math.log10(100) # a is 2 after computation.
 ```
 
@@ -465,11 +465,11 @@ a = math.log10(100) # a is 2 after computation.
 
 In `mod1.k`, we can import `mod2` using one of the following syntaxes.
 
-```python
+```kcl
 import mod2
 ```
 
-```python
+```kcl
 import .mod2
 ```
 
@@ -477,13 +477,13 @@ The difference is that in the first syntax, the KCL compiler will first try to c
 
 Suppose in `mod2.k` there is a definition of a variable::
 
-```python
+```kcl
 a = 100
 ```
 
 After importing `mod2`, we can access `a` in `mod1.k` using the following syntax
 
-```python
+```kcl
 b = mod2.a
 ```
 
@@ -491,11 +491,11 @@ b = mod2.a
 
 In `mod1.k`, we can import `pkg1` using one of the following syntaxes.
 
-```python
+```kcl
 import pkg1
 ```
 
-```python
+```kcl
 import .pkg1
 ```
 
@@ -507,13 +507,13 @@ The name of the package is the name of the imported module.
 
 Suppose in `file2.k` that is inside `pkg2` there is a definition to variable `foo`
 
-```python
+```kcl
 foo = 100
 ```
 
 This variable can be used in `mod1.k` after importing `pkg2` like the following
 
-```python
+```kcl
 bar = pkg2.foo
 ```
 
@@ -521,11 +521,11 @@ bar = pkg2.foo
 
 To import `subpkg3` from `mod1.k`, one of the following statements can be used.
 
-```python
+```kcl
 import pkg2.subpkg3
 ```
 
-```python
+```kcl
 import .pkg2.subpkg3
 ```
 
@@ -535,13 +535,13 @@ The name of the subpackage is the name of the imported module.
 
 Suppose in `file3.k` that is inside `subpkg3` there is a definition to variable `foo`
 
-```python
+```kcl
 foo = 100
 ```
 
 This variable can be used in `mod1.k` after importing `subpkg3` like the following
 
-```python
+```kcl
 bar = subpkg3.foo
 ```
 
@@ -551,7 +551,7 @@ Relative importing is useful when there is code trying to import modules that do
 
 For example, the following statements, if written in `file3.k`, can be used to import `pkg2`, `pkg1` and `mod2` respectively.
 
-```python
+```kcl
 import ...pkg2 # Go two levels up then import pkg2
 import ...pkg1 # Go two levels up then import pkg1
 import ...mod2 # Go two levels up then import mod2
@@ -578,7 +578,7 @@ Suppose we have a `kcl.mod` file in the directory to mark it as a root path, the
 
 In `pkg1` `def1.k`, we can import `pkg2.subpkg3` `file3` using the following syntaxes.
 
-```python
+```kcl
 import pkg2.subpkg3.file3
 ```
 
@@ -590,14 +590,14 @@ Note that `subpkg3` is only implemented with one file `file3.k`. The file can be
 
 In `mod1.k`, the importing statement would be::
 
-```python
+```kcl
 import pkg2.subpkg3.file3
 ```
 
 Different from importing `subpkg3`, now the name of the module is `file3`. We can access the variable `foo` defined in this module with the following
 statement
 
-```python
+```kcl
 bar = file3.foo
 ```
 
@@ -617,13 +617,13 @@ Multiple files can be used to define variables, schemas and functions, and they 
 
 For example, suppose `def1.k` defines a variable `foo`, `def2.k` defines `bar`, and `def3init.k` defines a variable `baz`, when `pkg1` is imported by `mod1.k`, all these variable can be used
 
-```python
+```kcl
 import pkg1
 a = pkg1.foo + pkg1.bar + pkg1.baz
 ```
 
 Inside a module, names defined in a file can be accessed in another file without further importing. For example, suppose `bar` in `def2.k` would invoke `foo` defined in `def1.k`, it can directly use `foo` like the following
 
-```python
+```kcl
 bar = foo + 1
 ```

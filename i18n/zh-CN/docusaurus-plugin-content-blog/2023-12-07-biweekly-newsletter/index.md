@@ -85,7 +85,7 @@ kcl mod init && kcl mod add strategic_merge_patch
 
 - 在 `main.k` 中编写配置 Patch 代码 (以 `Deployment` 模版的 `labels`, `replicas` 和 `container` 字段为例)
 
-```python
+```kcl
 import strategic_merge_patch as s
 
 original = {

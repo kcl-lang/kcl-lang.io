@@ -72,7 +72,7 @@ message ListMethod_Result {
 
 比如有以下的 `Person` 结构定义：
 
-```python
+```kcl
 schema Person:
     key: str
 

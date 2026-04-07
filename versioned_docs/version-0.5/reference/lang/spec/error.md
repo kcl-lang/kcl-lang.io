@@ -31,7 +31,7 @@ when reporting the error.
 
 The following is an example:
 
-```python
+```kcl
 a = 1
 b = 3
 condition = False

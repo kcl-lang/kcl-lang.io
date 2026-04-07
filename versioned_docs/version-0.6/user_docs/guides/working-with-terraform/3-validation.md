@@ -411,7 +411,7 @@ The output json is
 
 main.k
 
-```python
+```kcl
 schema TFPlan:
     # Omit other attributes
     [...str]: any
@@ -441,7 +441,7 @@ Because the plan was acceptable to the 1 policies contained in the policy file, 
 
 Create a KCL file named `main.policy.failure.k`
 
-```python
+```kcl
 schema TFPlan:
     # Omit other attributes
     [...str]: any

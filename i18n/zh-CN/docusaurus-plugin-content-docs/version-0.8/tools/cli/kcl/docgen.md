@@ -15,14 +15,14 @@ KCL文件的文档主要包含如下两个部分：
 
 1. Schema 描述
 
-```python
+```kcl
 """这是Schema一个简短的描述信息
 """
 ```
 
 2. Schema 各属性的描述：包含属性描述、属性类型、默认值、是否可选
 
-```python
+```kcl
 """
 Attributes
 ----------
@@ -37,7 +37,7 @@ y : type, default is b, required.
 
 3. Examples
 
-```python
+```kcl
 """
 Examples
 --------

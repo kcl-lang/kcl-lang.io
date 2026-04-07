@@ -36,7 +36,7 @@ cat main.k
 
 The output is
 
-```python
+```kcl
 schema App:
     """The application model."""
     name: str
@@ -114,7 +114,7 @@ Besides, when we use KCL CLI `-d` argument, the KCL file will be modified to the
 kcl main.k -O app.name='new_app' -d
 ```
 
-```python
+```kcl
 schema App:
     """The application model."""
     name: str
@@ -168,7 +168,7 @@ curl -X POST http://127.0.0.1:2021/api:protorpc/KclvmService.OverrideFile -H 'co
 
 After the service call is completed, main.k will be modified as follows:
 
-```python
+```kcl
 schema App:
     """The application model."""
     name: str

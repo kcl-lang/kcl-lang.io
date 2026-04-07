@@ -16,14 +16,14 @@ where $k$ is the attribute name, $v$ is the attributes value, and $T$ is the typ
 
 By default, KCL does not require type annotations and performs type checks at runtime.
 
-```python
+```kcl
 name = "nginx"  # The type of `name` is `str`
 port = 80  # The type of `port` is `int`
 ```
 
 As long as we operate on basic types such as integers and strings, it is generally sufficient to annotate the default type and directly write the configuration. KCL can infer the type of basic data. We recommend writing types for complex structures and function definitions, which will clearly provide a good input prompt for other users who use structures and functions.
 
-```python
+```kcl
 # Types for schema
 schema App:
     name: str
@@ -77,7 +77,7 @@ where $T_1$ and $T_2$ are both schema types. When the above equation is not sati
 
 A typical schema with constraints is defined as follows:
 
-```python
+```kcl
 import regex
 
 schema Secret:

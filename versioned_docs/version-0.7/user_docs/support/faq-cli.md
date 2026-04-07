@@ -65,7 +65,7 @@ kcl_options:
 
 Use the built-in function `option()` to get it:
 
-```python
+```kcl
 env = option("env-type")
 deploy_topology = option("deploy-topology")
 ```

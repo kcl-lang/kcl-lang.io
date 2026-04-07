@@ -44,7 +44,7 @@ dict_type: "{" (type)? COLON (type)? "}"
 
 The followings are some basic examples:
 
-```python
+```kcl
 # A person has a first name, a last name and an age.
 schema person:
     firstName: str
@@ -74,7 +74,7 @@ Each attribute **must** be assigned with a not-None value as a schema instance u
 
 Examples:
 
-```bnf
+```kcl
 schema employee(person):
     bankCard?: int # bankCard is an optional attribute
     nationality?: str # # nationality is an optional attribute
@@ -106,7 +106,7 @@ The comma at the end of each line can be omitted.
 
 For example, we can define a `person` named `John Doe` using the following statement:
 
-```python
+```kcl
 johnDoe = person {
     # In the result, 'lastName' appears later than 'firstName', according the schema
     lastName = 'Doe'
@@ -118,7 +118,7 @@ johnDoe = person {
 
 The result is a **dict**:
 
-```python
+```kcl
 {
     'firstName': 'John'
     'lastName': 'Doe'
@@ -137,7 +137,7 @@ Compared to the ordinary dict definition, a configuration definition has the fol
 
 For attributes of list, dict and schema types, the config data is added by **union** instead of reassignment. For instance:
 
-```python
+```kcl
 schema Name:
     firstName: str
     lastName: str
@@ -155,7 +155,7 @@ JohnDoe = Person {
 
 The result is a **dict**:
 
-```python
+```kcl
 {
     'firstName': 'John'
     'lastName': 'Doe'
@@ -166,7 +166,7 @@ The result is a **dict**:
 
 Each key identifier in the configuration expr identifies an element or a range of elements in a schema. The key identifier may consist of multiple attribute identifiers, and each attribute may be a basic type value, a list, a dict or schema. For example, the key identifier 'a.b.c' identifies the element 'c' in the 'A' schema:
 
-```python
+```kcl
 
 schema C:
     c: int
@@ -190,7 +190,7 @@ Suppose we have a list attribute a.
 
 Identify an element in a:
 
-```python
+```kcl
 a[0]   # the first element
 a[3]   # the 4th element
 a[-1]  # the last element
@@ -199,7 +199,7 @@ a[-2]  # the penultimate element
 
 Identify a range of elements in the list:
 
-```python
+```kcl
 a[2:5]  # a slice of the third, 4th, and 5th elements
 a[:5]   # a slice of the first to 5th elements
 ```
@@ -216,7 +216,7 @@ The value of the expression `E` will be unioned into the element value.
 
 Examples:
 
-```python
+```kcl
 a = A {
     # union {d:4} into the element b.c, suppose c is a schema with an int type attribute d.
     b.c : {
@@ -235,7 +235,7 @@ The value of the expression `E` will override the element value.
 
 Examples:
 
-```python
+```kcl
 a = A {
     # override {c:4} to the element b, suppose b is a schema with an int type attribute c.
     b = {
@@ -260,7 +260,7 @@ List `E` will be inserted just after the specified index of the list `identifier
 
 Examples:
 
-```python
+```kcl
 a = A {
     # insert {c:4} to the end position(just after index=1), suppose b is a list of schema with an int type attribute c.
     b += {
@@ -279,7 +279,7 @@ Index signatures can be defined in the KCL schema, and it means that the key-val
 
 - Use the form `[{attr_alias}: {key_type}]: {value_type}` to define an index signature in the schema, and `{attr_alias}` can be omitted.
 
-```python
+```kcl
 schema Map:
     """
     Map is a relaxed schema with a key of str type and a value of str type
@@ -294,7 +294,7 @@ data = Map {
 
 - Mandatory all attributes of the schema key and value types
 
-```python
+```kcl
 schema Person:
     name: str
     age: int  # error, conflicts with the index signature definition `[str]: str`
@@ -303,7 +303,7 @@ schema Person:
 
 - Mandatory all attribute key and value types are defined in the schema, which is equivalent to restricting all attribute types except the relaxed attributes.
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -312,7 +312,7 @@ schema Person:
 
 - Define the index signature attribute alias and use it with the check block.
 
-```python
+```kcl
 schema Data:
     [dataName: str]: str
     check:
@@ -325,7 +325,7 @@ data = Data {
 }
 ```
 
-```python
+```kcl
 import regex
 
 schema DataMap:
@@ -351,7 +351,7 @@ statement: small_stmt NEWLINE | if_stmt
 
 The following is an example:
 
-```python
+```kcl
 schema Person:
     firstName: str = "John"
     lastName: str
@@ -365,7 +365,7 @@ JohnDoe = Person {
 
 The result is a **dict**:
 
-```python
+```kcl
 {
     'firstName': 'John'
     'lastName': 'Doe'
@@ -383,7 +383,7 @@ statement. See more in statement spec.
 
 The immutability of attributes in the schema context follows the same rules as the immutability of global variables:
 
-```python
+```kcl
 schema Person:
     age: int = 1  # Immutable attribute
     _name: str = "Alice"  # Mutable attribute
@@ -396,7 +396,7 @@ schema Person:
 
 Schema context can also have arguments. The following is an example.
 
-```python
+```kcl
 schema Person[separator]:
     firstName: str = "John"
     lastName: str
@@ -425,7 +425,7 @@ check_expr: test (IF test)? [":" primary_expr] NEWLINE
 
 In terms of grammatical definition, a check block consists of a list of conditional expressions. The following is an example:
 
-```python
+```kcl
 schema employee(person):
     bankCard: int
     gender: str
@@ -471,7 +471,7 @@ A union type can include types of `int`, `str`, `float`, `bool`, `list` and `dic
 
 Examples:
 
-```python
+```kcl
 schema x:
     p: int | str # p could be defined as a int or string
 ```
@@ -489,7 +489,7 @@ KCL pursues strict immutability of schema attributes. It's generally followed th
 
 When using a schema variable to assign the value to another variable, we can only get a deep copy of its value, not a pointer or reference. That is, modifying the assigned value will not change the assigned schema variable.
 
-```python
+```kcl
 schema Person:
     name: str
 
@@ -503,7 +503,7 @@ personCopy = person  # 'personCopy' is a deep copy of 'person' and modifying 'pe
 
 For list, dict and schema, we can union delta to existing data. For example:
 
-```python
+```kcl
 schema Name:
     firstName: str
     lastName: str
@@ -523,7 +523,7 @@ person = Person {}
 
 The result is a **dict**:
 
-```python
+```kcl
 {
     'person': {
         'name': {
@@ -543,7 +543,7 @@ Report an error if trying to use other operators on schema type data.
 
 The schema attribute can be marked as deprecated once it's considered invalid.
 
-```python
+```kcl
 schema Person:
     @deprecated(version="1.1.0", reason="use fullName instead", strict=True)
     name: str
@@ -565,7 +565,7 @@ The composition is a common way to define complex structures. KCL provides simpl
 
 Assuming we have the following schemas, which is defined by a combination of multiple schemas.
 
-```python
+```kcl
 schema Name:
     firstName: str
     lastName: str
@@ -581,7 +581,7 @@ schema Group:
 
 To config a group:
 
-```python
+```kcl
 group = Group {
     name = "group"
     persons = [{
@@ -599,7 +599,7 @@ group = Group {
 
 Multi-level nested schemas will make the configuration verbose. KCL supports defining attributes in the schema through `selector expression`. The selector form is **x.y.z**, see the following example:
 
-```python
+```kcl
 group = Group {
     name = "group"
     persons = [{
@@ -616,7 +616,7 @@ group = Group {
 
 Inheritance is an effective means to define a hierarchical structure definition, and KCL supports limited **single inheritance** of the schema.
 
-```python
+```kcl
 schema Person:
     firstName: str
     lastName: str
@@ -635,7 +635,7 @@ JohnDoe = Scholar {
 
 The result is a **dict**:
 
-```python
+```kcl
 {
     'JohnDoe': {
         'firstName': 'John'
@@ -650,7 +650,7 @@ Each schema can be treated as a separated function context. Statements, includin
 
 The default value can be modified in each schema. Value defined in **Configuration Definition** has a higher priority than the default value. Attributes with default values in any schema context ​​will eventually be unioned by configuration data. References to attributes in the schema context statements will use the value with unioned configuration data on evaluating at runtime. For example:
 
-```python
+```kcl
 schema a:
     x = 1
     y = x * 2
@@ -666,7 +666,7 @@ v = a {
 
 The result is a **dict**:
 
-```python
+```kcl
 {
     'v': {
         'x': 3
@@ -705,7 +705,7 @@ mixins: operand_name ("," ("\n" mixins | operand_name))*
 
 Here is a simple example:
 
-```python
+```kcl
 schema Person:
     mixin [FullNameMixin]
     firstName: str = "default"
@@ -722,7 +722,7 @@ JohnDoe = Person {
 
 The result is a **dict**:
 
-```python
+```kcl
 {
     'JohnDoe': {
         'firstName': 'John'
@@ -750,7 +750,7 @@ We can use **protocol** to add an optional host type to the dynamically inserted
 
 The **mixin** can define its host type through the `for` keyword, and internally it will query the type corresponding to the attribute from the host type.
 
-```python
+```kcl
 protocol DataProtocol:  # A mixin host type
     data: str
 
@@ -760,7 +760,7 @@ mixin DataMixin for DataProtocol:  # Using the `for` keyword to define a mixin h
 
 In `DataMixin`, the `data` attribute is obtained according to the `DataProtocol` host type as `str` type, and then a type error will occur when the value is assigned to `x` of type `int`:
 
-```python
+```kcl
 protocol DataProtocol:
     data: str
 
@@ -771,7 +771,7 @@ mixin DataMixin for DataProtocol:
 
 Please note that the host type **protocol** can only be used for **mixin** definitions (the suffix name is `Mixin`), otherwise an error will be reported.
 
-```python
+```kcl
 protocol DataProtocol:
     data: str
 
@@ -829,7 +829,7 @@ Please note that there can be no circular references between different schema at
 
 We can see this feature through the following examples.
 
-```python
+```kcl
 schema Person:
     name?: str
     age: int = _age
@@ -859,7 +859,7 @@ son:
 
 Besides, we can achieve KCL polymorphism such as
 
-```python
+```kcl
 schema Person:
     name?: str
     _age: int = _age
@@ -892,7 +892,7 @@ son:
 
 More examples:
 
-```python
+```kcl
 schema Fib:
     n1: int = n - 1
     n2: int = n1 - 1

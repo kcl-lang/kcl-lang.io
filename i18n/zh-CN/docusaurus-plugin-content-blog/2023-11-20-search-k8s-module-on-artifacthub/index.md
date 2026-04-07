@@ -98,7 +98,7 @@ kcl mod init my-kubernetes-config && cd my-kubernetes-config && kcl mod add k8s:
 
 根据文档的内容，我们可以在 `main.k` 文件中编写如下 `deployment`
 
-```python
+```kcl
 import k8s.api.apps.v1 as d
 
 deployment = d.Deployment {
@@ -141,7 +141,7 @@ service = s.Service {
 
 对应的 `ingress`内容如下：
 
-```python
+```kcl
 import k8s.api.networking.v1 as i
 
 ingress = i.Ingress {

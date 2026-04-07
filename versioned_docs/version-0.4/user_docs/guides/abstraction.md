@@ -51,7 +51,7 @@ cat main.k
 
 The output is
 
-```python
+```kcl
 import .app
 
 app.App {

@@ -29,7 +29,7 @@ This blog will introduce the content of KCL v0.5.0 and recent developments in th
 
 In previous versions of KCL, running the following KCL code will not output YAML. In KCL v0.5.0, we improved this and supported exporting top-level variables to YAML configuration to reduce additional KCL code and command-line parameters, such as for the following KCL code (main.k)
 
-```python
+```kcl
 schema Nginx:
     http: Http
 
@@ -73,7 +73,7 @@ See [here](https://github.com/kcl-lang/kcl/pull/556) for more.
 
 In previous versions of KCL, running the KCL command-line tool once only displayed one error message and warning. In KCL v0.5.0, it supported the ability to display multiple errors and warnings in one compilation and improved error information to improve the efficiency of KCL code error troubleshooting, such as for the following KCL code (main.k).
 
-```python
+```kcl
 schema TeamSpec:
     fullName: str
     name = id
@@ -111,7 +111,7 @@ See [here](https://github.com/kcl-lang/kcl/pull/582) for more.
 
 In previous versions of KCL, when writing the following KCL code, the two schema configurations with the same name were merged and output. In KCL v0.5.0, it was required to explicitly use the attribute merge operator instead of the attribute overlay operator.
 
-```python
+```kcl
 schema Fib:
     n1 = n - 1
     n2 = n1 - 1
@@ -158,7 +158,7 @@ See [here](https://github.com/kcl-lang/kcl/pull/528) for more.
 
 Before KCL v0.5.0, filter expressions returned incorrect types (should return the type of the iterator instead of the type of the iterated object). In KCL v0.5.0, we fixed similar issues.
 
-```python
+```kcl
 schema Student:
     name: str
     grade: int
@@ -179,7 +179,7 @@ See [here](https://github.com/kcl-lang/kcl/pull/546) for more.
 
 In previous versions of KCL, for the following KCL code, there was an error where the `versions` attribute was not assigned as expected. In KCL v0.5.0, we fixed similar issues.
 
-```python
+```kcl
 z = 1
 add = lambda x { lambda y { x + y + z} }  # `x` is the closure of the inner lambda.
 res = add(1)(1)  # 3
@@ -191,7 +191,7 @@ See [here](https://github.com/kcl-lang/kcl/pull/548) for more.
 
 In previous versions of KCL, using string literal union type that contains UTF-8 characters resulted in an unexpected type error. In KCL v0.5.0 version, we fixed similar issues like this.
 
-```python
+```kcl
 msg: "无需容灾" | "标准型" | "流水型" = "流水型"
 ```
 
@@ -267,7 +267,7 @@ kpm init kubernetes_demo && cd kubernetes_demo && kpm add k8s
 
 Write a KCL code to import the Kubernetes models (main.k).
 
-```python
+```kcl
 import k8s.api.apps.v1 as apps
 
 apps.Deployment {

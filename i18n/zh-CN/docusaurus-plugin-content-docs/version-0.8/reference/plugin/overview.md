@@ -131,7 +131,7 @@ hello: hello doc - 0.0.1
 
 在 KCL 代码中，可以通过 `kcl_plugin.hello` 导入 `hello` 插件。`main.k` 代码如下：
 
-```python
+```kcl
 import kcl_plugin.hello
 
 name = "kcl"

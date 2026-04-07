@@ -72,7 +72,7 @@ where $k$ is the attribute name, $v$ is the attributes value, $o$ is the attribu
 
 This is an example of generating Kubernetes manifests.
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {

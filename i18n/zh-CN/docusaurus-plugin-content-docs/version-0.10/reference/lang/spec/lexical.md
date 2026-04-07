@@ -99,7 +99,7 @@ Identifiers are unlimited in length. The case is significant.
 
 The following identifiers are used as reserved words, or keywords of the language, and cannot be used as ordinary identifiers. They must be spelled exactly as written here:
 
-```python
+```kcl
 True       False      None        Undefined   import
 and        or         in          is          not
 as         if         else        elif        for
@@ -110,7 +110,7 @@ rule
 
 The following tokens are not used, but they are reserved as possible future keywords:
 
-```python
+```kcl
 pass       return     validate   rule        flow
 def        del        raise      except      try
 finally    while      from       with        yield
@@ -175,7 +175,7 @@ exponent      ::=  ("e" | "E") ["+" | "-"] digitpart
 
 The following tokens are operators:
 
-```python
+```kcl
 +       -       *       **      /       //      %
 <<      >>      &       |       ^       <       >
 ~       <=      >=      ==      !=      @
@@ -185,7 +185,7 @@ The following tokens are operators:
 
 The following tokens serve as delimiters in the grammar:
 
-```python
+```kcl
 (       )       [       ]       {       }
 ,       :       .       ;       =       +=
 -=      *=      **=     /=      //=     %=

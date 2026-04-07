@@ -71,7 +71,7 @@ where $k$ is the attribute name, $v$ is the attributes value, and $T$ is the typ
 
 This is an example of generating kubernetes manifests.
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {

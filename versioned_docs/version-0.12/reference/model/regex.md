@@ -12,7 +12,7 @@ weight: 100
 
 Return the string obtained by replacing the leftmost non-overlapping occurrences of the pattern in string by the replacement.
 
-```python
+```kcl
 import regex
 
 regex_replace = regex.replace(regex_source, ",", "|")
@@ -24,7 +24,7 @@ regex_replace = regex.replace(regex_source, ",", "|")
 
 Try to apply the pattern at the start of the string, returning a bool value `True` if any match was found, or `False` if no match was found.
 
-```python
+```kcl
 import regex
 
 regex_result = regex.match("192.168.0.1", "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|[1-9])\\."+"(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."+"(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."+"(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)$")
@@ -36,7 +36,7 @@ regex_result = regex.match("192.168.0.1", "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|
 
 Compile a regular expression pattern, returning a bool value denoting whether the pattern is valid.
 
-```python
+```kcl
 import regex
 
 regex_compile = regex.compile("$^")
@@ -48,7 +48,7 @@ regex_compile = regex.compile("$^")
 
 Return a list of all non-overlapping matches in the string.
 
-```python
+```kcl
 import regex
 
 regex_find_all = regex.findall("aaaa", "a")
@@ -60,7 +60,7 @@ regex_find_all = regex.findall("aaaa", "a")
 
 Scan through string looking for a match to the pattern, returning a bool value `True` if any match was found, or `False` if no match was found.
 
-```python
+```kcl
 import regex
 
 regex_search = regex.search("aaaa", "a")
@@ -72,7 +72,7 @@ regex_search = regex.search("aaaa", "a")
 
 Return a list composed of words from the string, splitting up to a maximum of `maxsplit` times using `pattern` as the separator.
 
-```python
+```kcl
 import regex
 
 regex_split = regex.split(regex_source, ",")

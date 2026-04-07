@@ -36,7 +36,7 @@ cat nginx.k
 
 The output is
 
-```python
+```kcl
 schema Nginx:
     """Schema for Nginx configuration files"""
     http: Http
@@ -87,7 +87,7 @@ nginx:
 
 Besides, we can dynamically receive external parameters through the KCL builtin function `option`. For example, for the following KCL file (db.k), we can use the KCL command line `-D` flag to receive an external dynamic parameter.
 
-```python
+```kcl
 env: str = option("env") or "dev"  # The attribute `env` has a default value "den"
 database: str = option("database")
 hosts = {

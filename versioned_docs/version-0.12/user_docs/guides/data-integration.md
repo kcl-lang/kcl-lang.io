@@ -30,7 +30,7 @@ We can run the following command to show the YAML integration config.
 cat yaml.k
 ```
 
-```python
+```kcl
 import yaml
 
 schema Server:
@@ -67,7 +67,7 @@ server_yaml: |
 
 In addition, KCL supports using the `file` module to read data from files, allowing you to read YAML data from files and make further operations and modifications.
 
-```python
+```kcl
 import file
 import yaml
 
@@ -86,7 +86,7 @@ We can run the following command to show the JSON integration config.
 cat json.k
 ```
 
-```python
+```kcl
 import json
 
 schema Server:

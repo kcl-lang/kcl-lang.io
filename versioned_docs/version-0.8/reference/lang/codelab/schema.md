@@ -31,7 +31,7 @@ In this codelab, we will learn how to write customized config using KCL, such th
 
 Suppose we want to define a workload with certain attributes, we can create a simple config by creating a `my_config.k`, we can fill in the following code as below which defines a reusable schema of the configuration of deploy.
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -47,7 +47,7 @@ In the code above, `cpu` and `memory` are defined as int value; `name`, `image` 
 
 Besides, each attribute **must** be assigned with a not-None value as a schema instance unless it is modified by a question mark **?** as an optional attribute.
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -68,7 +68,7 @@ When there is an inheritance relationship:
 
 Suppose we need to set default values to service and replica, we can make them as below:
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -82,7 +82,7 @@ schema Deployment:
 
 And then we can set the service type annotation as the string literal type to make it immutable:
 
-```python
+```kcl
 schema Deployment:
     name: str
     cpu: int
@@ -102,7 +102,7 @@ Specially, we can define a string-interface dict as `{str:}`, and in case we wan
 
 Now we have a simple schema definition, we can use it to define config as:
 
-```python
+```kcl
 nginx = Deployment {
     name = "my-nginx"
     cpu = 256
@@ -145,7 +145,7 @@ nginx:
 
 In addition, the **config selector expressions** can be used to init a schema instance, and we can ignore the comma at the end of the line in the config expression.
 
-```python
+```kcl
 nginx = Deployment {
     name = "my-nginx"
     cpu = 256
@@ -161,7 +161,7 @@ nginx = Deployment {
 
 Suppose we have some schema logic, we can wrapper it into schema:
 
-```python
+```kcl
 schema Deployment[priority]:
     name: str
     cpu: int = _cpu
@@ -185,7 +185,7 @@ schema Deployment[priority]:
 
 Now, we can define a config by creating a schema instance and pass in priority as an argument to schema:
 
-```python
+```kcl
 nginx = Deployment(priority=2) {
     name = "my-nginx"
     image = "nginx:1.14.2"
@@ -224,7 +224,7 @@ nginx:
 
 Now we want to define a detailed schema with service and volumes, we can do it as follows:
 
-```python
+```kcl
 schema Deployment[priority]:
     name: str
     cpu: int = _cpu
@@ -269,7 +269,7 @@ Now we have a new Deployment schema, however, we may notice that it contains mul
 
 With KCL, we can create the config with simple dict declaration, with the capability of full schema initialization and validation. For example, we can simply config nginx by the new Deployment schema as follows:
 
-```python
+```kcl
 nginx = Deployment(priority=2) {
     name = "my-nginx"
     image = "nginx:1.14.2"
@@ -327,7 +327,7 @@ nginx:
 
 Note that, the dict that we use to define Deployment config must be aligned with the schema definition, otherwise we will get an error. For example, suppose we define a wrong type of service port as below:
 
-```python
+```kcl
 nginx = Deployment(priority=2) {
     name = "my-nginx"
     image = "nginx:1.14.2"
@@ -352,7 +352,7 @@ Run with KCL, we will see the error message as output as below:
 
 KCL command:
 
-```python
+```kcl
 kcl my_config.k
 ```
 
@@ -368,7 +368,7 @@ Now we have seen a complex schema, in which every field has a type hint to make 
 
 Lots of validation rules, like None type check, range check, value check, length check, regular expression matching, enum check have already been added or in progress. Here is a code sample:
 
-```python
+```kcl
 import regex
 
 schema Deployment[priority]:
@@ -425,7 +425,7 @@ schema Volume:
 
 Since the attributes defined by the schema are **required** by default, the verification that judges that the variable cannot be None/Undefined can be omitted.
 
-```python
+```kcl
 schema Volume:
     name: str
     mountPath: str
@@ -434,7 +434,7 @@ schema Volume:
 
 Now we can write the config based on the new schema and expose config errors in time. For example, with the invalid config as below:
 
-```python
+```kcl
 nginx = Deployment(priority=2) {
     name = "my-nginx"
     image = "nginx:1142"  # image value is not matching the regex
@@ -484,7 +484,7 @@ in each scenario.
 
 In this case, we define some commonly used attributes. Please note that we mark the name to be immutable with the 'final' keyword to prevent it from being overwritten.
 
-```python
+```kcl
 schema Nginx(Deployment):
     """ A base nginx schema """
     name: "my-nginx" = "my-nginx"
@@ -513,14 +513,14 @@ schema NginxProd(Nginx):
 
 Now we have some static configurations for nginx. It is recommended to declare configurations that we think are static there, and put more dynamic configurations as below:
 
-```python
+```kcl
 nginx = Nginx {
     labels.run = "my-nginx"
     labels.env = "pre-prod"
 }
 ```
 
-```python
+```kcl
 nginx = NginxProd {
     labels.run = "my-nginx"
     labels.env = "pre-prod"
@@ -574,7 +574,7 @@ However, usually, the actual situation is more complicated, and the deployment m
 
 For example, we want to support a persistent volume claim based on an existing schema, as a reusable Kubernetes schema. In this case, we can just wrapper it with a `mixin` and a `protocol` as follows:
 
-```python
+```kcl
 import k8spkg.api.core.v1
 
 protocol PVCProtocol:
@@ -616,7 +616,7 @@ Note, the `mixin` is often used to add new attributes to the host schema, or to 
 
 Now, if we want a deploy with a PVC, just declare as user interface:
 
-```python
+```kcl
 server = Server {
     name = "my-nginx"
     image = "nginx:1.14.2"
@@ -706,7 +706,7 @@ If we don't want a persistent volume, just remove the pvc config block.
 
 The Server schema could be shared via `import`, we can simply package our code with KCL.
 
-```python
+```kcl
 import pkg
 
 server = pkg.Server {
@@ -742,7 +742,7 @@ pkg/
 
 And in `server.k`, we can just use Deployment schema in `deploy.k` and pvc schema in `pvc.k` without import:
 
-```python
+```kcl
 # no import needed
 schema Server(Deployment):
     mixin [PersistentVolumeClaimMixin]
@@ -752,7 +752,7 @@ schema Server(Deployment):
 
 And then users must import the pkg to use it as a whole:
 
-```python
+```kcl
 import pkg
 
 server = pkg.Server {

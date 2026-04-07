@@ -53,7 +53,7 @@ cat main.k
 
 输出为
 
-```python
+```kcl
 import .app
 
 app.App {

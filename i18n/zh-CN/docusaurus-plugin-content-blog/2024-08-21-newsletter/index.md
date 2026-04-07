@@ -42,14 +42,14 @@ image: /img/biweekly-newsletter.png
 
 优化前
 
-```python
+```kcl
 schema Deployment:
     apiVersion: "apps/v1" = "apps/v1"
 ```
 
 优化后
 
-```python
+```kcl
 schema Deployment:
     apiVersion: "apps/v1"  # 类型值与默认值相同，可以省略默认值
 ```

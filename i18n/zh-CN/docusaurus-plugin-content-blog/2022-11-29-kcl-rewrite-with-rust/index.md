@@ -53,7 +53,7 @@ KCL 之前是使用 Python 编写的，出于用户使用体验、性能和稳�
 
 - Python
 
-```python
+```kcl
 from dataclasses import dataclass
 
 class KCLObject:

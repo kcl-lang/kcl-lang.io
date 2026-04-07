@@ -294,7 +294,7 @@ Kustomize 的核心能力是其 Overlay 能力，并 Kustomize 支持文件级�
 
 - HCL
 
-```python
+```kcl
 variable "subnet_delegations" {
   type = list(object({
     name               = string
@@ -321,7 +321,7 @@ variable "subnet_delegations" {
 
 - KCL
 
-```python
+```kcl
 schema SubnetDelegation:
     name: str
     service_delegation: ServiceDelegation
@@ -341,7 +341,7 @@ subnet_delegations: [SubnetDelegation] = option("subnet_delegations")
 
 - KCL 自定义定义函数并调用
 
-```python
+```kcl
 add_func = lambda x: int, y: int -> int {
     x + y
 }
@@ -352,7 +352,7 @@ two = add_func(1, 1)  # 2
 
 - HCL
 
-```python
+```kcl
 variable "conf" {
   type = object({
     description = string
@@ -418,7 +418,7 @@ locals {
 
 - KCL (编译参数添加 -n 忽略 null 值)
 
-```python
+```kcl
 schema Param:
     default?: str
     name: str
@@ -514,7 +514,7 @@ app: #App & {
 
 - prod.cue
 
-```python
+```kcl
 // prod.cue
 app: #App & {
     containerPort: 8080,  // error: app.containerPort: conflicting values 8080 and 80:
@@ -525,7 +525,7 @@ KCL (执行命令 `kcl base.k prod.k`)
 
 - base.k
 
-```python
+```kcl
 # base.k
 schema App:
     domainType: "Standard" | "Customized" | "Global"
@@ -570,7 +570,7 @@ app: App {
 
 - prod.k
 
-```python
+```kcl
 # prod.k
 app: App {
     # 可以使用 = 属性运算符对 base app 的 containerPort 进行修改
@@ -605,7 +605,7 @@ temp: {
 
 - KCL (test.k)
 
-```python
+```kcl
 a = lambda x: int, y: int -> int {
     max([x, y])
 }
@@ -623,7 +623,7 @@ local a(x, y) = std.max(x, y);
 
 - Terraform HCL (test.tf, 由于 terraform range 函数只支持最多 1024 个迭代器，将 range(10000) 拆分为 10 个子 range)
 
-```python
+```kcl
 output "r1" {
   value = {for s in range(0, 1000) : format("a%d", s) => max(1, 2)}
 }
@@ -691,7 +691,7 @@ deployment: {
 
 - KCL (test.k)
 
-```python
+```kcl
 import kubernetes.api.apps.v1
 
 deployment = v1.Deployment {

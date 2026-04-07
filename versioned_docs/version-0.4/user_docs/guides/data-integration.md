@@ -26,7 +26,7 @@ We can run the following command to show the YAML integration config.
 cat yaml.k
 ```
 
-```python
+```kcl
 import yaml
 
 schema Server:
@@ -66,7 +66,7 @@ We can run the following command to show the JSON integration config.
 cat json.k
 ```
 
-```python
+```kcl
 import json
 
 schema Server:

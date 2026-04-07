@@ -20,7 +20,7 @@ KCL file encoding should always use **UTF-8**.
 
 Use **4 spaces** per indentation level such as in the schema statement and if statement.
 
-```python
+```kcl
 schema PersonA:
   name: str  # non-recommended
   age: int
@@ -39,7 +39,7 @@ else:
 
 The closing brace/bracket/parenthesis on multiline constructs should line up under **first character** of the line that starts the multiline construct, as in:
 
-```python
+```kcl
 # valid and recommended
 my_list = [
     1, 2, 3,
@@ -47,7 +47,7 @@ my_list = [
 ]
 ```
 
-```python
+```kcl
 # invalid
 my_list = [
     1, 2, 3,
@@ -71,7 +71,7 @@ KCL disallows mixing the use of tabs and spaces for indentation and an error wil
 - There is no blank line in the header of the file, start writing from the first line.
 - Only one blank line will be left at the end of the KCL file.
 
-```python
+```kcl
 # Remove blank lines in the file header
 a = 1  # Remove white space at the end of the line
 # Keep at most one blank line between two statements
@@ -85,7 +85,7 @@ b = 2
 
 Write indentation of KCL `if`, `elif`, `else` and other conditions on different lines.
 
-```python
+```kcl
 if True: print("")  # non-recommended
 
 if True:  # recommended
@@ -97,7 +97,7 @@ if True:  # recommended
 - For long expressions, use the line continuation symbol `\` and keep the left end of multiple expressions aligned.
 - The 4-space rule is optional for continuation lines.
 
-```python
+```kcl
 anotherString = "Too long expression " + \
             "Too long expression "  # non-recommended
 
@@ -118,7 +118,7 @@ longString = "Too long expression " + \
 
 Try to keep the spaces between different symbols, but not too many, usually one is good.
 
-```python
+```kcl
 a = 1  # recommended
 b    =    1    +   2  # non-recommended
 ```
@@ -129,7 +129,7 @@ Avoid extraneous whitespace in the following situations:
 
 - The parentheses `()`, brackets `[]` and braces `{}` in the expression have no spaces inside.
 
-```python
+```kcl
 a = (1 + 2)  # recommended
 b = ( 1 + 2 )  # non-recommended
 
@@ -140,28 +140,28 @@ e = {key = "value"}  # recommended
 f = { key = "value" }  # non-recommended
 ```
 
-```python
+```kcl
 spam(ham[1], {eggs = 2})  # recommended
 spam( ham[ 1 ], { eggs = 2 } )  # non-recommended
 ```
 
 - Between a trailing comma and a following close parenthesis.
 
-```python
+```kcl
 foo = [0,]  # recommended
 bar = [0, ]  # non-recommended
 ```
 
 - Immediately before the open parenthesis that starts the argument list of a function call.
 
-```python
+```kcl
 print(1)  # recommended
 print (1)  # non-recommended
 ```
 
 - Immediately before the open parenthesis that starts indexing or slicing.
 
-```python
+```kcl
 dct = {key = "value"}
 lst = [1, 2, 3]
 
@@ -174,14 +174,14 @@ d = lst [1]  # non-recommended
 
 - More than one space around an assignment `=` (or other) operator to align it with another.
 
-```python
+```kcl
 # recommended:
 x = 1
 y = 2
 long_variable = 3
 ```
 
-```python
+```kcl
 # non-recommended:
 x             = 1
 y             = 2
@@ -190,7 +190,7 @@ long_variable = 3
 
 - Always surround these binary operators with a single space on either side: assignment (`=`), augmented assignment (`+=`, `-=`, etc.), comparisons (`==`, `<`, `>`, `!=`, `<=`, `>=`, `in`, `not in`, `is`, `is not`), booleans (`and`, `or`, `not`).
 
-```python
+```kcl
 # recommended:
 i = i + 1
 submitted += 1
@@ -199,7 +199,7 @@ hypot2 = x * x + y * y
 c = (a + b) * (a - b)
 ```
 
-```python
+```kcl
 # non-recommended:
 i = i+1
 submitted+=1
@@ -210,7 +210,7 @@ c = (a+b) * (a-b)
 
 - Break one blank line between different statements e.g., import, schema and expression statements.
 
-```python
+```kcl
 import math
 import net
 
@@ -224,7 +224,7 @@ person = Person {
 
 - Compound statements (multiple statements on the same line) are generally discouraged
 
-```python
+```kcl
 # recommended:
 if foo == 'blah':
     do_blah_thing()
@@ -233,7 +233,7 @@ do_two()
 do_three()
 ```
 
-```python
+```kcl
 # non-recommended:
 if foo == 'blah': do_blah_thing()
 do_one(); do_two(); do_three()
@@ -282,7 +282,7 @@ Constants are usually defined on a module level and written in all capital lette
 - Use an alias when we import a package name with a relatively long path.
 - Leave only one space between the Import keyword and the package name.
 
-```python
+```kcl
 import net  # recommended
 import    math  # non-recommended
 
@@ -301,7 +301,7 @@ Block comments generally apply to some (or all) code that follows them, and are 
 
 Paragraphs inside a block comment are separated by a line containing a single `#`.
 
-```python
+```kcl
 # This is a block comment
 a = 1
 ```
@@ -312,7 +312,7 @@ Use inline comments sparingly.
 
 An inline comment is a comment on the same line as a statement. Inline comments should be separated by **at least two spaces** from the statement. They should start with a `#` and **a single space**.
 
-```python
+```kcl
 a = 1  # This is an inline comment
 ```
 
@@ -320,7 +320,7 @@ a = 1  # This is an inline comment
 
 Write doc strings for all public schema and schema attributes.
 
-```python
+```kcl
 schema Person:
     """
     Person schema doc string
@@ -336,7 +336,7 @@ schema Person:
 - For triple-quoted strings, always use double quote characters to be consistent with the docstring convention.
 - When a string contains single or double quote characters, use the other one to avoid backslashes in the string.
 
-```python
+```kcl
 strC = "'123'"  # recommended
 strD = "\"123\""  # non-recommended
 ```
@@ -345,7 +345,7 @@ strD = "\"123\""  # non-recommended
 
 - Use lowercase for the prefix of non-decimal numbers, and use uppercase for the number itself.
 
-```python
+```kcl
 foo = 0xAB  # recommended
 bar = 0Xab  # non-recommended
 ```
@@ -357,7 +357,7 @@ bar = 0Xab  # non-recommended
 - Leave only one space before and after the assignment `=`.
 - Leave only one space before and after the binary operator in the expression.
 
-```python
+```kcl
 a = 1  # recommended
 b=2  # non-recommended
 c= 3  # non-recommended
@@ -371,14 +371,14 @@ _value = (1+2*3)  # non-recommended
 
 - There is only no space after unary operators e.g., `~`, `+` and `-`.
 
-```python
+```kcl
 _value = 1 + -2 * ~3  # recommended
 _value = 1+ - 2 * ~ 3  # non-recommended
 ```
 
 - There is no space after `**` and `*` in the dict/list deduction expressions and argument expressions.
 
-```python
+```kcl
 _list = [1, 2, 3]
 _list = [*_list, [4, 5 ,6]]  # recommended
 _list = [* _list, [4, 5 ,6]]  # non-recommended
@@ -389,13 +389,13 @@ _dict = {** {k = "v"}, ** {k = "v"}}  # non-recommended
 
 - Use `is not` operator rather than `not ... is`.
 
-```python
+```kcl
 # recommended:
 if foo is not None:
     a = 1
 ```
 
-```python
+```kcl
 # non-recommended:
 if not foo is None:
     a = 1
@@ -405,7 +405,7 @@ if not foo is None:
 
 - There is no space before the colon `:` at the instantiation of KCL dict and schema config, and a space after the colon `:`.
 
-```python
+```kcl
 d1 = {labels: {k1 = "v1"}}  # recommended
 d2 = {labels : {k1 = "v1"}}  # non-recommended
 d3 = {labels :{k1 = "v1"}}  # non-recommended
@@ -413,13 +413,13 @@ d3 = {labels :{k1 = "v1"}}  # non-recommended
 
 - Always surround the override attribute operator `=` and the insert attribute operator `+=` with a single space on either sid.
 
-```python
+```kcl
 d1 = {key = "value"}  # recommended
 d2 = {key= "value"}  # non-recommended
 d3 = {key ="value"}  # non-recommended
 ```
 
-```python
+```kcl
 d1 = {key += [0, 1, 2]}  # recommended
 d2 = {key+= [0, 1, 2]}  # non-recommended
 d3 = {key +=[0, 1, 2]}  # non-recommended
@@ -427,7 +427,7 @@ d3 = {key +=[0, 1, 2]}  # non-recommended
 
 - Remove all commas at the end of the line in the KCL multiline dict because the end commas of each line are optional.
 
-```python
+```kcl
 d = {
     key1 = "value1"
     key2 = "value2"
@@ -440,14 +440,14 @@ d = {
 
 - Keep only **one space** after the comma `,` separating elements in the list
 
-```python
+```kcl
 a = [1, 2, 3]  # recommended
 b = [1,2,3]  # non-recommended
 ```
 
 - Keep only **one space** before and after the comprehension expression token `for` and `in` in the dict and list.
 
-```python
+```kcl
 a = [i for i in range(10)]  # recommended
 b = [i  for  i  in  range(10)]   # non-recommended
 ```
@@ -456,7 +456,7 @@ b = [i  for  i  in  range(10)]   # non-recommended
 
 - Keep the same number of spaces before and after the colon `:` of the list slice.
 
-```python
+```kcl
 l = [1, 2, 3]
 a = l[0:2]  # recommended
 b = l[0 : 2]  # non-recommended
@@ -471,7 +471,7 @@ e = l[0 + 0:1 + 1]  # non-recommended
 - Leave only one space before and after the schema attribute assignment `=`.
 - Always add a doc string to a schema, which is a good programming habit.
 
-```python
+```kcl
 schema Person:
     """
     Schema doc string
@@ -484,7 +484,7 @@ person = Person {}
 
 - Keep **no spaces** around the schema inheritance operator `()`
 
-```python
+```kcl
 schema Base:
     name: str
 
@@ -497,7 +497,7 @@ schema Schema ( Base ):  # non-recommended
 
 - Keep **only one space** between the brackets and the schema name of the config at schema instantiation.
 
-```python
+```kcl
 schema Base:
     name: str
 
@@ -510,7 +510,7 @@ personB = Person {}  # recommended
 
 - Keep **only one space** between the **mixin** keyword and the following `[]` operator
 
-```python
+```kcl
 schema NameMixin:
     name: str = "name"
 
@@ -527,14 +527,14 @@ schema Parent:
 
 - Annotations for schema attributes should have a single space after the colon `:` and no space before the colon `:`.
 
-```python
+```kcl
 # recommended:
 schema Person:
     name: str  # No space before the colon `:`
     age: int = 18  # Spaces around assignment`=`
 ```
 
-```python
+```kcl
 # non-recommended:
 schema Person:
     codeA:int  # No space after the colon `:`
@@ -544,7 +544,7 @@ schema Person:
 
 - There are no spaces around the colon `:` in the dict type annotation.
 
-```python
+```kcl
 schema Person:
     labels: {str:str}  # recommended
     keyValues: {str : str}  # non-recommended
@@ -554,7 +554,7 @@ schema Person:
 
 - There are no spaces around the assignment `=` in the function/schema/decorator keyword arguments (kwargs).
 
-```python
+```kcl
 schema Person[nameVar]:
     # Decorator kwargs
     @deprecated(strict=False)  # recommended
@@ -576,7 +576,7 @@ print("", end = '')  # non-recommended
 
 - It is recommended to place the schema index signature before the schema attribute instead of mixed placement.
 
-```python
+```kcl
 schema ConfigReCommended:
     [...str]: str # recommended
     name: str
@@ -592,7 +592,7 @@ schema ConfigNonReCommended:
 
 - Only one space is usually reserved around the keyword, such as `schema`, `mixin`, `is` and `not`, etc.
 
-```python
+```kcl
 schema NameMixin:
     check:
         name not None
@@ -616,7 +616,7 @@ person = Person {
 - There are no spaces around the function/package select operator `.`
 - There are no spaces between the function name and the parentheses `()`.
 
-```python
+```kcl
 import math
 
 print(math.log(10))   # recommended

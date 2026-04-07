@@ -93,7 +93,7 @@ kcl mod init kcl-play-svc && cd kcl-play-svc && kcl mod add oam
 
 - Write the following code in main.k.
 
-```python
+```kcl
 import oam
 
 oam.Application {

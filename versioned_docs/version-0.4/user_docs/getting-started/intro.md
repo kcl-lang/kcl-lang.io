@@ -58,7 +58,7 @@ Although KCL is not a general language, it has corresponding application scenari
 
 This is an example of generating kubernetes manifests.
 
-```python
+```kcl
 apiVersion = "apps/v1"
 kind = "Deployment"
 metadata = {

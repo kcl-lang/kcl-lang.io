@@ -54,7 +54,7 @@ identifier: NAME
 
 Examples:
 
-```python
+```kcl
 x
 a
 _b
@@ -62,14 +62,14 @@ _b
 
 Use the `$` character prefix to define keyword identifiers.
 
-```python
+```kcl
 $if = 1
 $else = "s"
 ```
 
 Please note: whether the non-keyword identifier is prefixed with `$` has the same effect.
 
-```python
+```kcl
 _a = 1
 $_a = 2  # equal to `_a = 2`
 ```
@@ -84,7 +84,7 @@ qualified_identifier: identifier "." identifier
 
 Examples:
 
-```python
+```kcl
 pkg.a
 ```
 
@@ -102,7 +102,7 @@ operand: number | string | "True" | "False" | "None" | "Undefined"
 
 Examples:
 
-```python
+```kcl
 1
 2.3
 "abc"
@@ -126,7 +126,7 @@ operand: '(' expression ')'
 
 Examples:
 
-```python
+```kcl
 x = (1 + 2) * (3 + 4)  # 21
 ```
 
@@ -149,7 +149,7 @@ NEWLINE: '/r?/n'
 
 Examples:
 
-```python
+```kcl
 {}
 {"one": 1}
 {"one": 1, "two": 2}
@@ -161,7 +161,7 @@ Only hashable values may be used as the keys of a dictionary. This includes all 
 
 We can ignore the comma `,` at the end of the line for writing dict key-value pairs in multiple lines:
 
-```python
+```kcl
 data = {
     "key1" = "value1"  # Ignore the comma ',' at the end of line
     "key2" = "value2"
@@ -170,7 +170,7 @@ data = {
 
 We can ignore the key quotation marks when we writing simple literals on the key.
 
-```python
+```kcl
 data = {
     key1 = "value1"  # Ignore the comma ',' at the end of line
     key2 = "value2"
@@ -179,7 +179,7 @@ data = {
 
 In addition, the **config selector expressions** can be used to init a schema instance.
 
-```python
+```kcl
 person = {
     base.count = 2
     base.value = "value"
@@ -189,7 +189,7 @@ person = {
 
 We can **merge** dict using the dict unpacking operator `**` like this:
 
-```python
+```kcl
 _part1 = {
     a = "b"
 }
@@ -203,7 +203,7 @@ a_dict = {**_part1, **_part2}  # {"a: "b", "c": "d"}
 
 We can use `if expressions` to dynamically add elements to the dict element, elements that meet the conditions are added to the dict, and elements that do not meet the conditions are ignored.
 
-```python
+```kcl
 a = 1  # 1
 data = {
     key1 = "value1"
@@ -213,7 +213,7 @@ data = {
 }  # {"key1": "value1", "key2": "value2", "key3": "value3"}
 ```
 
-```python
+```kcl
 a = 1  # 1
 data1 = {
     key1 = "value1"
@@ -245,7 +245,7 @@ Element expressions are evaluated in left-to-right order.
 
 Examples:
 
-```python
+```kcl
 []                      # [], empty list
 [1]                     # [1], a 1-element list
 [1, 2, 3]               # [1, 2, 3], a 3-element list
@@ -253,7 +253,7 @@ Examples:
 
 We can use `if expressions` to dynamically add elements to the list element, elements that meet the conditions are added to the list, and elements that do not meet the conditions are ignored.
 
-```python
+```kcl
 a = 1  # 1
 data = [
     1
@@ -263,7 +263,7 @@ data = [
 ]  # [1, 2, 3]
 ```
 
-```python
+```kcl
 a = 1  # 1
 data1 = [
     1
@@ -300,7 +300,7 @@ A list comprehension consists of a single expression followed by one or more cla
 
 Examples:
 
-```python
+```kcl
 [x * x for x in range(5)]                 # [0, 1, 4, 9, 16]
 [x * x for x in range(5) if x % 2 == 0]   # [0, 4, 16]
 [[x, y] for x in range(5) \
@@ -311,7 +311,7 @@ Examples:
 
 Besides, we can use two variables in the list comprehension, the first variable denotes the list index and the second variable denotes the list item.
 
-```python
+```kcl
 data = [1000, 2000, 3000]
 # Single variable loop
 dataLoop1 = [i * 2 for i in data]  # [2000, 4000, 6000]
@@ -330,7 +330,7 @@ A dict comprehension resembles a list comprehension, but its body is a pair of e
 
 Besides, we can use two variables in the dict comprehension, the first variable denotes the dict key and the second variable denotes the dict value of the key.
 
-```python
+```kcl
 data = {"key1" = "value1", "key2" = "value2"}
 # Single variable loop
 dataKeys1 = {k: k for k in data}  # {"key1": "key1", "key2": "key2"}
@@ -346,19 +346,19 @@ dataValues3 = {v: v for _, v in data}  # {"value1": "value1", "value2": "value2"
 
 As with a `for` loop, the loop variables may exploit compound assignment:
 
-```python
+```kcl
 [x * y + z for [x, y], z in [[[2, 3], 5], [["o", 2], "!"]]]      # [11, 'oo!']
 ```
 
 KCL does not accept an un-parenthesized list as the operand of a for clause:
 
-```python
+```kcl
 [x * x for x in 1, 2, 3]  # parse error: unexpected comma
 ```
 
 Comprehensions defines a new lexical block, so assignments to loop variables have no effect on variables of the same name in an enclosing block:
 
-```python
+```kcl
 x = 1
 _ = [x for x in [2]]            # new variable x is local to the comprehension
 print(x)                        # 1
@@ -366,7 +366,7 @@ print(x)                        # 1
 
 The operand of a comprehension's first clause (always a for) is resolved in the lexical block enclosing the comprehension. In the examples below, identifiers referring to the outer variable named x have been distinguished by subscript.
 
-```python
+```kcl
 x0 = [1, 2, 3]
 [x * x for x in x0]                 # [1, 4, 9]
 [x * x for x in x0 if x % 2 == 0]   # [4]
@@ -374,14 +374,14 @@ x0 = [1, 2, 3]
 
 All subsequent for and if expressions are resolved within the comprehension's lexical block, as in this rather obscure example:
 
-```python
+```kcl
 x0 = [[1, 2], [3, 4], [5, 6]]
 [x * x for x in x0 for x in x if x % 2 == 0]     # [4, 16, 36]
 ```
 
 which would be more clearly rewritten as:
 
-```python
+```kcl
 x = [[1, 2], [3, 4], [5, 6]]
 [z * z for y in x for z in y if z % 2 == 0]     # [4, 16, 36]
 ```
@@ -398,7 +398,7 @@ if_expr: test "if" test "else" test
 
 Examples:
 
-```python
+```kcl
 x = True if enabled else False  # if enabled is
 ```
 
@@ -427,7 +427,7 @@ The `not` operator returns the negation of the truth value of its operand.
 
 Examples:
 
-```python
+```kcl
 ~1   # -2
 ~-1  # 0
 ~0   # -1
@@ -461,7 +461,7 @@ The `or` and `and` operators yield the logical disjunction and conjunction of th
 
 The expression `x or y` yields the value of `x` if its truth value is `True`, or the value of `y` otherwise.
 
-```python
+```kcl
 False or False   # False
 False or True    # True
 True  or True    # True
@@ -470,7 +470,7 @@ True  or True    # True
 
 Similarly, `x` and `y` yields the value of `x` if its truth value is `False`, or the value of `y` otherwise.
 
-```python
+```kcl
 False and False   # False
 False and True    # False
 True  and True    # True
@@ -479,7 +479,7 @@ True  and True    # True
 
 These operators use "short circuit" evaluation, so the second expression is not evaluated if the value of the first expression has already determined the result, allowing constructions like these:
 
-```python
+```kcl
 x and x[0] == 1   # x[0] is not evaluated if x is empty
 len(x) == 0 or x[0] == ""
 not x or not x[0]
@@ -548,14 +548,14 @@ The operands of the arithmetic operators `+`, `-`, `*`, `//`, and `%` must both 
 
 The `+` operator may be applied to non-numeric operands of the same type, such as two lists, or two strings, in which case it computes the concatenation of the two operands and yields a new value of the same type.
 
-```python
+```kcl
 "Hello, " + "world"           # "Hello, world"
 [1, 2] + [3, 4]               # [1, 2, 3, 4]
 ```
 
 The `*` operator may be applied to an integer n and a value of type `string`, `list`, in which case it yields a new value of the same sequence type consisting of n repetitions of the original sequence. The order of the operands is immaterial. Negative values of n behave like zero.
 
-```python
+```kcl
 'mur' * 2               # 'murmur'
 3 * range(3)            # [0, 1, 2, 0, 1, 2, 0, 1, 2]
 ```
@@ -566,13 +566,13 @@ The `|` operator likewise computes bitwise, unions basic types and unions collec
 
 Computing bitwise examples:
 
-```python
+```kcl
 0x12345678 | 0xFF  # 0x123456FF
 ```
 
 Unioning basic types examples:
 
-```python
+```kcl
 schema x:
     a: int | str  # attribute a could be a int or string
 ```
@@ -584,7 +584,7 @@ Unioning collection and schema data:
 
 - Unioning List. Overwrite the list expression on the right side of the operator `|` to the list variable on the left side of the operator one by one according to the **index**.
 
-```python
+```kcl
 _a = [1, 2, 3]
 _b = [4, 5, 6, 7]
 x = _a | _b  # [4, 5, 6, 7]  4 -> 1; 5 -> 2; 6 -> 3; 7 -> None
@@ -594,7 +594,7 @@ Unioning to the specific index or all elements is still under discussion.
 
 - Unioning Dict. Union the dict expression on the right side of the operator `|` one by one to the dict variable on the left side of the operator according to the **key**
 
-```python
+```kcl
 _a = {key1 = "value1"}
 _b = {key1 = "overwrite", key2 = "value2"}
 _c = _a | _b  # {"key1": "overwrite", "key2": "value2"}
@@ -630,7 +630,7 @@ The `^` operator accepts operands of `int`. For integers, it yields the bitwise 
 
 The `<<` and `>>` operators require operands of `int` type both. They shift the first operand to the left or right by the number of bits given by the second operand. It is a dynamic error if the second operand is negative. Implementations may impose a limit on the second operand of a left shift.
 
-```python
+```kcl
 0x12345678 & 0xFF               # 0x00000078
 0b01011101 ^ 0b110101101        # 0b111110000
 0b01011101 >> 2                 # 0b010111
@@ -650,7 +650,7 @@ The `in` operator reports whether its first operand is a member of its second op
 
 The meaning of membership varies by the type of the second operand: the members of a list are its elements; the members of a dict are its keys; the members of a string are all its substrings.
 
-```python
+```kcl
 1 in [1, 2, 3]                  # True
 
 d = {"one" = 1, "two" = 2}
@@ -682,7 +682,7 @@ argument: test | identifier "=" test | "*" test | "**" test
 
 To call a function, the basic way is shown as the following code excerpt:
 
-```python
+```kcl
 print("An argument")
 
 import math
@@ -721,7 +721,7 @@ x.y
 
 Examples:
 
-```python
+```kcl
 schema Person:
     name: str
     age: int
@@ -740,7 +740,7 @@ If the x if None/Undefined or empty(empty list or dict), just return None, other
 
 Examples
 
-```python
+```kcl
 noneData = None
 data?.name # None
 
@@ -768,7 +768,7 @@ A `identifier` identifies method belongs to the built-in types `string`, `list`,
 
 Examples:
 
-```python
+```kcl
 ["able", "baker", "charlie"].index("baker")     # 1
 "banana".count("a")                             # 3
 "banana".reverse()                              # error: string has no .reverse field or method
@@ -796,7 +796,7 @@ subscript_suffix: "[" [test] "]"
 
 A valid negative index `i` behaves like the non-negative index `n+i`, allowing for convenient indexing relative to the end of the sequence.
 
-```python
+```kcl
 "abc"[0]                        # "a"
 "abc"[1]                        # "b"
 "abc"[-1]                       # "c"
@@ -810,7 +810,7 @@ An index expression `d[key]` may also be applied to a dictionary `d`, to obtain 
 
 An index expression appearing on the left side of an assignment causes the specified list or dictionary element to be updated:
 
-```python
+```kcl
 a = range(3)            # a == [0, 1, 2]
 b = a[2]  # 2
 ```
@@ -836,7 +836,7 @@ The effective start and stop indices are computed from the three operands as fol
 
 **If the stride is negative**: If the `start` operand was omitted, it defaults to +infinity. If the `end` operand was omitted, it defaults to -infinity. For either operand, if a negative value was supplied, `n` is added to it. The `start` and `end` values are then "clamped" to the nearest value in the range -1 to `n`-1, inclusive.
 
-```python
+```kcl
 "abc"[1:]               # "bc"  (remove first element)
 "abc"[:-1]              # "ab"  (remove last element)
 "abc"[1:-1]             # "b"   (remove first and last element)
@@ -877,7 +877,7 @@ quant_op: 'all' | 'any' | 'filter' | 'map'
 
 **all** and **any** expression sample codes:
 
-```python
+```kcl
 schema Config:
     volumes: [{str:}]
     services: [{str:}]
@@ -894,7 +894,7 @@ schema Config:
 
 **map** and **filter** expression sample codes:
 
-```python
+```kcl
 a = map e in [{name = "1", value = 1}, {name = "2", value = 2}] {
     {name = e.name, value = int(e.value) ** 2}
 }  # [{"name": "1", value: 1}, {"name": "2", "value": 4}]

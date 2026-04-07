@@ -35,7 +35,7 @@ We can use the operator `.` to realize the relative path import of KCL entry fil
 
 main.k:
 
-```python
+```kcl
 import .model1  # Current directory module
 import ..service  # Parent directory
 import ...root  # Parent of parent directory
@@ -73,7 +73,7 @@ Code structure:
 
 KCL has a collection of builtin packages such as `math`, `regex`, etc. To use a builtin package, import it directly and invoke the functions using its qualified identifier. For instance,
 
-```python
+```kcl
 import regex
 
 image = "nginx:1.14.2"
@@ -94,7 +94,7 @@ is_match: true
 
 KCL also has a collection of plugin packages such as `hello`, `project_context`, etc. To use a plugin package, import it with a `kcl_plugin.` package path prefix and invoke the functions using its qualified identifier. For instance,
 
-```python
+```kcl
 import kcl_plugin.hello
 
 result = hello.add(1, 1)
