@@ -208,7 +208,9 @@ config_entries: config_entry ((COMMA [NEWLINE] | [NEWLINE]) config_entry)* [COMM
 config_entry: test (COLON | ASSIGN | COMP_PLUS) test | double_star_expr | if_entry
 
 //////////// lambda_expr ////////////
-lambda_expr: LAMBDA [schema_arguments] [RIGHT_ARROW type] LEFT_BRACE [expr_stmt | NEWLINE _INDENT schema_init_stmt+ _DEDENT] RIGHT_BRACE
+lambda_expr: LAMBDA [lambda_signature] LEFT_BRACE [expr_stmt | NEWLINE _INDENT schema_init_stmt+ _DEDENT] RIGHT_BRACE
+lambda_signature: (schema_arguments [RIGHT_ARROW type] | multiline_lambda_signature)
+multiline_lambda_signature: LEFT_BRACE NEWLINE* schema_argument (COMMA NEWLINE* schema_argument)* NEWLINE* RIGHT_BRACE RIGHT_ARROW type
 
 //////////// misc ////////////
 number: DEC_NUMBER [multiplier] | HEX_NUMBER | BIN_NUMBER | OCT_NUMBER | FLOAT_NUMBER
