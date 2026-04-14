@@ -1341,6 +1341,7 @@ a = func(1, 1)  # 2
 
 - The value of the last expression is used as the return value of the function, and the empty function body returns `None`.
 - The return value type annotation can be omitted, and the return value type is the type of the last expression value.
+- Arguments can be passed on multiple lines if put in between braces, in such a case the return type is required.
 - There is no order-independent feature in the function body, all expressions are executed in order.
 
 ```kcl
@@ -1353,6 +1354,18 @@ _func = lambda x: int, y: int -> int {
 _func = lambda x: int, y: int -> str {
     str(x + y)
 }  # Error (int, int) -> str can't be assigned to (int, int) -> int
+_func = lambda {
+    x: int,
+    y: int
+} -> int {
+    x - y
+}  # Ok
+_func = lambda {
+    x: int,
+    y: int
+} {  # The following block will not be interpreted as part of the lambda
+    x - y
+}  # Error expected one of ["="] got ,
 ```
 
 The function type variables cannot participate in any calculations and can only be used in assignment statements and call statements.
