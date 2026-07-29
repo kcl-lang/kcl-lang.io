@@ -19,7 +19,7 @@ jobs:
 
       - uses: actions/setup-go@v7
         with:
-          go-version: "1.22"
+          go-version: "1.26"
 
       - name: Check Go Installation
         run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./examples/configuration/nginx.k
@@ -44,7 +44,7 @@ jobs:
 
       - uses: actions/setup-go@v7
         with:
-          go-version: "1.22"
+          go-version: "1.26"
 
       - name: Check Go Installation
         run: go install kcl-lang.io/cli/cmd/kcl@main && sudo $HOME/go/bin/kcl version && sudo $HOME/go/bin/kcl run ./examples/configuration/nginx.k
@@ -66,7 +66,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v7
         with:
-          go-version: "1.22"
+          go-version: "1.26"
 
       - name: Check Go Installation
         run: go install kcl-lang.io/cli/cmd/kcl@main && C:\Users\runneradmin\go\bin\kcl.exe run ./examples/configuration/nginx.k
