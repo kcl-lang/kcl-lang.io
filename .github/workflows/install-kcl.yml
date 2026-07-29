@@ -17,7 +17,7 @@ jobs:
         shell: bash -leo pipefail {0}
         run: sudo kcl version && sudo kcl run ./examples/configuration/nginx.k
 
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v7
         with:
           go-version: "1.22"
 
@@ -42,7 +42,7 @@ jobs:
           kcl version
           kcl run ./examples/configuration/nginx.k
 
-      - uses: actions/setup-go@v1
+      - uses: actions/setup-go@v7
         with:
           go-version: "1.22"
 
@@ -64,7 +64,7 @@ jobs:
         run: C:\kclvm\bin\kcl.exe run ./examples/configuration/nginx.k
 
       - name: Set up Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v7
         with:
           go-version: "1.22"
 
