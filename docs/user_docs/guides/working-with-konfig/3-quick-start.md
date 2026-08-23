@@ -38,10 +38,12 @@ git clone https://github.com/kcl-lang/konfig.git && cd konfig
 
 The programming language of the project is KCL, not JSON/YAML which Kubernetes recognizes, so it needs to be compiled to get the final output.
 
-Enter stack dir `examples/appops/nginx-example/dev` and compile:
+Enter stack dir `examples/appops/nginx-example/dev`, resolve the dependencies first (the example uses a relative `path` dependency in `kcl.mod` that may not resolve on every checkout — running `kcl mod update` will refresh `kcl.mod.lock` against the published OCI artifact), and compile:
 
 ```bash
-cd examples/appops/nginx-example/dev && kcl run -D appenv=dev
+cd examples/appops/nginx-example/dev
+kcl mod update
+kcl run -D appenv=dev
 ```
 
 The output YAML is:
