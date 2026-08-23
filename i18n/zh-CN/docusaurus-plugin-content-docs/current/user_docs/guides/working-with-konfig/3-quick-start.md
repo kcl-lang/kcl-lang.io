@@ -38,10 +38,12 @@ git clone https://github.com/kcl-lang/konfig.git && cd konfig
 
 Konfig 的编程语言是 KCL，不是 Kubernetes 认识的 JSON/YAML，因此还需要编译得到最终输出。
 
-进入到项目的 Stack 目录（`examples/appops/nginx-example/dev`）并执行编译：
+进入到项目的 Stack 目录（`examples/appops/nginx-example/dev`），先刷新依赖（示例中 `kcl.mod` 使用了相对 `path` 依赖，部分环境下可能无法正确解析；运行 `kcl mod update` 会基于发布的 OCI 制品刷新 `kcl.mod.lock`），然后执行编译：
 
 ```bash
-cd examples/appops/nginx-example/dev && kcl run
+cd examples/appops/nginx-example/dev
+kcl mod update
+kcl run -D appenv=dev
 ```
 
 可以获得如下 YAML 输出:
