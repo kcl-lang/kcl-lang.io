@@ -145,6 +145,20 @@ getLatestRelease() {
 downloadFile() {
     LATEST_RELEASE_TAG=$1
 
+    # Defense-in-depth: the upstream caller (main) already guards against an
+    # empty tag, but if the brittle JSON parser in `getLatestRelease` ever
+    # silently fails AND the upstream guard is bypassed, we'd build a
+    # malformed URL like `…/releases/download//kcl--<os>-<arch>.tar.gz` and
+    # wget/curl would happily save GitHub's 404 HTML page to disk, producing
+    # the confusing "not in gzip format" tar error reported in #550.
+    if [ -z "$LATEST_RELEASE_TAG" ]; then
+        error "Empty release tag passed to downloadFile."
+        info "This usually means the GitHub release JSON could not be parsed."
+        info "Try a specific stable version, e.g.:"
+        info "  curl -fsSL https://kcl-lang.io/script/install-cli.sh | bash -s -- -v 0.12.3"
+        exit 1
+    fi
+
     KCL_CLI_ARTIFACT="kcl-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
     DOWNLOAD_BASE="https://github.com/${GITHUB_ORG}/${GITHUB_REPO}/releases/download"
     DOWNLOAD_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/${KCL_CLI_ARTIFACT}"
@@ -200,7 +214,23 @@ isReleaseAvailable() {
 }
 
 installFile() {
-    if ! tar xf "$ARTIFACT_TMP_FILE" -C "$KCL_TMP_ROOT" 2>/dev/null; then
+    # Validate that the artifact is actually a gzipped tar before unpacking.
+    # GitHub returns 404/5xx pages on missing assets, and wget happily writes
+    # them to disk — so a non-404-detecting HTTP client yields a file that
+    # isn't gzip at all (issue #550). `tar -tzf` is the most portable
+    # sniff: it parses both the gzip wrapper and the tar header, and exits
+    # non-zero on either failure. We intentionally do NOT silence errors
+    # here so the diagnostic reaches the user.
+    if ! tar -tzf "$ARTIFACT_TMP_FILE" >/dev/null 2>&1; then
+        rm -f "$ARTIFACT_TMP_FILE"
+        error "Downloaded artifact is not a valid gzipped tar archive."
+        error "The release asset for ${OS}/${ARCH} in version ${LATEST_RELEASE_TAG:-<unknown>} may be missing."
+        info "Try a specific stable version, e.g.:"
+        info "  curl -fsSL https://kcl-lang.io/script/install-cli.sh | bash -s -- -v 0.12.3"
+        exit 1
+    fi
+
+    if ! tar xf "$ARTIFACT_TMP_FILE" -C "$KCL_TMP_ROOT"; then
         error "Failed to unpack KCL executable. The downloaded file might be corrupted or not a valid tar archive."
         exit 1
     fi
