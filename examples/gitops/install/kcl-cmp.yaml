@@ -11,7 +11,7 @@ data:
     apiVersion: argoproj.io/v1alpha1
     kind: ConfigManagementPlugin
     metadata:
-      name: kcl
+      name: kcl-v1.0
     spec:
       version: v1.0
       generate:
