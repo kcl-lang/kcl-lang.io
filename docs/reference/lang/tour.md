@@ -1789,15 +1789,15 @@ schema Person:
 
 In KCL, we can use type annotations to define some attributes in the schema, each attribute can be set with an optional default value (such as the `age` attribute in the above code, its default value is `0`), attributes that are not set default values have an initial value of `Undefined`, which are not output in YAML.
 
-Note, the immutability of attributes in the schema follows the same rules as the immutability of global variables, only mutable attributes in the schema can be modified in the schema.
+Attribute names that begin with an underscore (`_`) are **hidden** in the rendered YAML/JSON output (unless `--show-hidden` is passed). The leading underscore is purely an output-visibility convention — it does **not** affect whether the attribute can be reassigned inside the schema body. Both regular and hidden attributes may be reassigned later in the schema body:
 
 ```kcl
 schema Person:
-    age: int = 1  # Immutable attribute
-    _name: str = "Alice"  # Mutable attribute
+    age: int = 1  # Visible by default in the rendered YAML output.
+    _name: str = "Alice"  # Hidden — `_`-prefixed names are omitted from output.
 
-    age = 10  # Error
-    _name = "Bob"  # Ok
+    age = 10      # Ok — schema attributes may be reassigned in the schema body.
+    _name = "Bob" # Ok — hidden attributes may be reassigned as well.
 ```
 
 ###### Optional Attribute
