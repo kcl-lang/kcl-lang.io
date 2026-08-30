@@ -1755,17 +1755,17 @@ schema Person:
 
 在 KCL 中, 我们可以使用类型注解在 schema 中定义一些属性，每个属性都可以设置一个可选的默认值（比如上述代码中的 `age` 属性，它的默认值是 `0`），没有设置默认值的属性的初始值为 `Undefined`, 它们不会在 YAML 当中进行输出。
 
-###### 不可变性
+###### 属性命名约定：`_` 前缀表示输出时隐藏
 
-schema 中属性的不可变性遵循和全局变量不可变性一样的规则，只有 schema 中的可变属性可以在 schema 中修改。此外，schema 的属性默认值可被 schema 配置值修改：
+schema 中以 `_` 开头的属性名仅用于控制**输出可见性**：这类属性默认不会出现在渲染出的 YAML/JSON 中，除非显式启用 `--show-hidden`。下划线前缀并不表示属性不可变，schema 中的普通属性和带 `_` 前缀的属性都允许在 schema 体里被重新赋值：
 
 ```kcl
 schema Person:
-    age: int = 1  # Immutable attribute
-    _name: str = "Alice"  # Mutable attribute
+    age: int = 1  # 默认会出现在 YAML 输出中
+    _name: str = "Alice"  # 隐藏属性 —— `_` 前缀的字段在输出时被省略
 
-    age = 10  # Error, can't change the default value of the attribute `age` in the schema context.
-    _name = "Bob"  # Ok
+    age = 10      # Ok —— schema 体允许重新赋值任意属性
+    _name = "Bob" # Ok —— 隐藏属性同样可以在 schema 体中重新赋值
 
 person = Person {
     age = 3  # Ok, can change the default value of the attribute `age` in the schema config.
