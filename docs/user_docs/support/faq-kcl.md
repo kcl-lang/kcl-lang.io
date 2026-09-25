@@ -2746,17 +2746,22 @@ config2: {str:} = {'key': 'value'}
 
 ## 72. How to use keys with hyphens (like `api-Version`) in a schema?
 
-KCL currently rejects dashes inside identifiers, so a bare `api-Version: str` is a parse error. The workaround is to write the attribute as a bracketed literal key:
+KCL currently rejects dashes inside identifiers, so a bare `api-Version: str` is a parse error. The workaround is to write the attribute as a quoted string key:
 
 ```kcl
 schema Config:
-    ["api-Version"]: str
-    ["x-ratelimit"]: int
+    "api-Version": str
+    "x-ratelimit": int
+
+c = Config {
+    "api-Version" = "v1"
+    "x-ratelimit" = 100
+}
 ```
 
-The bracketed form accepts any valid dict key (`str` literal, including hyphens, dots, and `/`), so it works for the Kustomize / Kubernetes-typical cases (`apiVersion`, `app.kubernetes.io/name`, etc.) without any compiler changes.
+The quoted form accepts any string literal as the key — hyphens, dots, slashes, spaces, even punctuation — so it works for the Kustomize / Kubernetes-typical cases (`api-Version`, `app.kubernetes.io/name`, etc.) without any compiler changes. The parser accepts it because `crates/parser/src/parser/stmt.rs:1022` looks for `string_lit COLON type_annotation` when scanning schema attributes.
 
-A native `api-Version: str` form is being tracked by [kcl-lang/kcl#1867](https://github.com/kcl-lang/kcl/issues/1867) — the design KEP at `kcl/docs/design/kep-1867-dash-identifiers.md` splits the work into three phases (top-level config keys → schema attributes → module paths). Phase 1 is the safest place to start because it keeps the lexer change isolated from expression context (`a - b` would otherwise look like a single name).
+A native `api-Version: str` form is being tracked by [kcl-lang/kcl#1867](https://github.com/kcl-lang/kcl/issues/1867) — the design KEP introduced by [kcl-lang/kcl#2194](https://github.com/kcl-lang/kcl/pull/2194) (`docs/design/kep-1867-dash-identifiers.md`) splits the work into three phases (top-level config keys → schema attributes → module paths). Phase 1 is the safest place to start because it keeps the lexer change isolated from expression context (`a - b` would otherwise look like a single name).
 
 ## 73. How to check if an object is an instance of a schema (or its children)?
 
@@ -2891,25 +2896,25 @@ The pattern translates to dicts and strings the same way — `[x for k, x in d i
 
 ## 77. Where do the CGo dependencies of the KCL Go SDK live?
 
-The Go SDK ([`kcl-lang/kcl-go`](https://github.com/kcl-lang/kcl-go)) depends on [`kcl-lang/lib`](https://github.com/kcl-lang/lib), which **vendors the native `libkclvm_cli_cdylib` shared library per platform** under `lib/go/lib/<os>-<arch>/`:
+The Go SDK ([`kcl-lang/kcl-go`](https://github.com/kcl-lang/kcl-go)) depends on [`kcl-lang/lib`](https://github.com/kcl-lang/lib), which **vendors the native `kcl-lib` cdylib per platform** under `go/lib/<os>-<arch>/`. The cdylib crate is [`crates/lib` in `kcl-lang/kcl`](https://github.com/kcl-lang/kcl/tree/main/crates/lib) (Cargo.toml `[lib].name = "kcl"`, `crate-type = ["cdylib", "staticlib"]`), so the produced artifacts are named after `kcl`:
 
-| Platform directory | Shared library |
+| Platform directory | Artifact |
 |---|---|
-| `lib/go/lib/darwin-amd64/` | `libkclvm_cli_cdylib.dylib` |
-| `lib/go/lib/darwin-arm64/` | `libkclvm_cli_cdylib.dylib` |
-| `lib/go/lib/linux-amd64/` | `libkclvm_cli_cdylib.so` |
-| `lib/go/lib/linux-arm64/` | `libkclvm_cli_cdylib.so` |
-| `lib/go/lib/linux-musl-amd64/` | `libkclvm_cli_cdylib.so` |
-| `lib/go/lib/linux-musl-arm64/` | `libkclvm_cli_cdylib.so` |
-| `lib/go/lib/windows-amd64/` | `kclvm_cli_cdylib.dll` |
-| `lib/go/lib/windows-arm64/` | `kclvm_cli_cdylib.dll` |
+| `go/lib/darwin-amd64/` | `libkcl.dylib` (+ `dummy.go`) |
+| `go/lib/darwin-arm64/` | `libkcl.dylib` (+ `dummy.go`) |
+| `go/lib/linux-amd64/` | `libkcl.so` (+ `dummy.go`) |
+| `go/lib/linux-arm64/` | `libkcl.so` (+ `dummy.go`) |
+| `go/lib/linux-musl-amd64/` | `libkcl.a` (static — no `dummy.go`) |
+| `go/lib/linux-musl-arm64/` | `libkcl.a` (static — no `dummy.go`) |
+| `go/lib/windows-amd64/` | `kcl.dll` (+ `dummy.go`) |
+| `go/lib/windows-arm64/` | `kcl.dll` (+ `dummy.go`) |
 
-Build-tag-selected Go files (`kcl_lib_<os>_<arch>.go`) pick the correct file per `GOOS`/`GOARCH` automatically — no manual `CGO_LDFLAGS` is needed for the supported targets.
+Build-tag-selected Go files (`kcl_lib_darwin_amd64.go`, `kcl_lib_darwin_arm64.go`, `kcl_lib_linux_amd64.go`, `kcl_lib_linux_arm64.go`, `kcl_lib_windows_amd64.go`, `kcl_lib_windows_arm64.go` — six files, no musl-specific files because the musl targets link statically into the Go binary) pick the correct file per `GOOS`/`GOARCH` automatically — no manual `CGO_LDFLAGS` is needed for the supported targets.
 
-**When you still need a manual override** (e.g. Bazel strips `//external/` paths and reports `could not embed lib/linux-amd64/libkclvm_cli_cdylib.so: no matching files found`, as in the original report at [kcl-lang/kcl-lang.io#446](https://github.com/kcl-lang/kcl-lang.io/issues/446)):
+**When you still need a manual override** (e.g. Bazel strips `//external/` paths and reports `could not embed go/lib/linux-amd64/libkcl.so: no matching files found`, as in the original report at [kcl-lang/kcl-lang.io#446](https://github.com/kcl-lang/kcl-lang.io/issues/446)):
 
-1. Confirm the platform directory above exists for your target. If it doesn't (FreeBSD, an Alpine variant, a custom musl triple, …), you'll need to build the shared library yourself from [`kcl-lang/kcl`](https://github.com/kcl-lang/kcl) (`cargo build --release -p kclvm-cli-cdylib`) and drop the output into a new `lib/go/lib/<os>-<arch>/` folder plus a matching `kcl_lib_<os>_<arch>.go`.
-2. For Bazel specifically, use `go_repository` with the `replace` directive pinned to the `kcl-lang/lib` commit you built against, and add a `cgo` `srcs` glob that points at the correct `lib/go/lib/<os>-<arch>/*.{so,dylib,dll}` path. Avoid `//external/...` references — Bazel sandboxes them away.
+1. Confirm the platform directory above exists for your target. If it doesn't (FreeBSD, an Alpine variant, a custom musl triple, …), you'll need to build the artifact yourself from [`kcl-lang/kcl`](https://github.com/kcl-lang/kcl) (`cargo build --release -p kcl-lib --target <rust-target>`) and drop the output into a new `go/lib/<os>-<arch>/` folder plus a matching `kcl_lib_<os>_<arch>.go`.
+2. For Bazel specifically, use `go_repository` with the `replace` directive pinned to the `kcl-lang/lib` commit you built against, and add a `cgo` `srcs` glob that points at the correct `go/lib/<os>-<arch>/*.{so,dylib,dll}` path. Avoid `//external/...` references — Bazel sandboxes them away.
 
 The reference runtime is also mirrored under each language subdirectory (`cpp/`, `java/`, `python/`, `nodejs/`, `dotnet/`, `wasm/`, `swift/`, …) if you're wiring the same library into a different binding.
 
