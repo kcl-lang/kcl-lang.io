@@ -137,13 +137,19 @@ getLatestRelease() {
     #      non-prerelease release — so no client-side filtering needed.
     #   2. Hit the REST /releases/latest endpoint. Subject to the 60-req/hr
     #      unauthenticated rate limit, and returns 404 if every release is
-    #      a prerelease (kcl-lang/cli is fine, but be defensive).
-    #   3. Scan the /releases list. Same rate-limit caveat; the awk/sed
-    #      pipeline is brittle so this is a last resort.
+    #      a prerelease (kcl-lang/cli is fine, but be defensive). Setting
+    #      GITHUB_TOKEN raises the quota to 5000 req/hr — the CI workflows
+    #      pass it automatically.
+    #   3. Scan the /releases list. Same rate-limit caveat as (2); the
+    #      awk/sed pipeline is brittle so this is a last resort.
     #
     # Each layer only runs if the previous one yielded an empty result.
     local org="$GITHUB_ORG" repo="$GITHUB_REPO"
     local latest_release=""
+    local -a auth_header=()
+    if [ -n "${GITHUB_TOKEN:-}" ]; then
+        auth_header=(-H "Authorization: Bearer ${GITHUB_TOKEN}")
+    fi
 
     # --- (1) HTML redirect ----------------------------------------------------
     if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
@@ -169,9 +175,9 @@ getLatestRelease() {
     if [ -z "$latest_release" ]; then
         local api_response
         if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-            api_response=$(curl -sS "https://api.github.com/repos/${org}/${repo}/releases/latest" 2>/dev/null)
+            api_response=$(curl -sS "${auth_header[@]}" "https://api.github.com/repos/${org}/${repo}/releases/latest" 2>/dev/null)
         else
-            api_response=$(wget -q --header="Accept: application/json" \
+            api_response=$(wget -q "${auth_header[@]}" --header="Accept: application/json" \
                 -O - "https://api.github.com/repos/${org}/${repo}/releases/latest" 2>/dev/null)
         fi
 
@@ -190,12 +196,12 @@ getLatestRelease() {
     # --- (3) Legacy list-based fallback ----------------------------------------
     if [ -z "$latest_release" ]; then
         if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-            latest_release=$(curl -s "https://api.github.com/repos/${org}/${repo}/releases" \
+            latest_release=$(curl -s "${auth_header[@]}" "https://api.github.com/repos/${org}/${repo}/releases" \
                 | grep '\"tag_name\"' | grep -v 'rc' \
                 | head -n1 \
                 | sed -n 's/.*\"tag_name\"[[:space:]]*:[[:space:]]*\"\(v\?[^\"]*\)\".*/\1/p')
         else
-            latest_release=$(wget -q --header="Accept: application/json" -O - \
+            latest_release=$(wget -q "${auth_header[@]}" --header="Accept: application/json" -O - \
                 "https://api.github.com/repos/${org}/${repo}/releases" \
                 | grep '\"tag_name\"' | grep -v 'rc' \
                 | head -n1 \

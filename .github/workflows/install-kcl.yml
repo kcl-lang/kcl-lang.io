@@ -9,6 +9,8 @@ jobs:
       matrix:
         os: [macos-latest]
     runs-on: ${{ matrix.os }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script CLI
@@ -30,8 +32,10 @@ jobs:
   check-linux:
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
+        os: [ubuntu-22.04, ubuntu-latest]
     runs-on: ${{ matrix.os }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Check Install Script CLI
@@ -90,7 +94,7 @@ jobs:
   check-kcl-brew-install:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-20.04, ubuntu-latest]
+        os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -104,4 +108,3 @@ jobs:
           kcl version
           kcl ./examples/configuration/nginx.k
           brew uninstall kcl-lang/tap/kcl
-          brew uninstall kcl-lang/tap/kcl-lsp
