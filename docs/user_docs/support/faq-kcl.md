@@ -2950,3 +2950,38 @@ configYaml:
 If you want the YAML keys to land at the **top level of the output** (so the YAML is treated as the root document rather than a sub-value), use `kcl -d data.yaml main.k` to feed the YAML in as CLI option overrides — KCL merges the keys into the program's top-level schema attributes.
 
 If you specifically need CUE-style "embed this YAML file at build time", use `file.read` with a path relative to the module root, or pin the path with the git ref syntax introduced by [kcl-lang/kcl#2107](https://github.com/kcl-lang/kcl/issues/2107) (`file.read("path/to/data.yaml:main")`) so the import survives across checkouts.
+
+## 79. What's the priority between `-D key=value` and a key set in `kcl.yaml`?
+
+CLI wins. The full resolution order, from highest to lowest precedence, is:
+
+1. `-D key=value` / `--argument key=value` (and `-O path=value` for nested overrides)
+2. `kcl.yaml` → `kcl_options[].{key,value}` (and `overrides[].{path,value}`)
+3. `option()` defaults declared in the KCL source
+
+`kcl.yaml` is auto-loaded when it lives in the working directory, and you can also point at one explicitly with `-Y kcl.yaml`. Set `-Y /dev/null` to skip the auto-load.
+
+Demonstration (motivating issue [kcl-lang/kcl-lang.io#125](https://github.com/kcl-lang/kcl-lang.io/issues/125)):
+
+```kcl
+# main.k
+import regex
+
+name = option("name", type="str", default="default-name")
+```
+
+```yaml
+# kcl.yaml
+kcl_options:
+  - key: name
+    value: yaml-name
+```
+
+| Command | Resolved `name` |
+|---|---|
+| `kcl run main.k` (auto-loads `kcl.yaml`) | `yaml-name` |
+| `kcl run main.k -Y /dev/null` (no YAML) | `default-name` |
+| `kcl run main.k -Y kcl.yaml -D name=cli-name` | `cli-name` |
+| `kcl run main.k -D name=cli-name` | `cli-name` |
+
+So: the YAML file is the default per project / environment, and the CLI flag is the override per invocation. If you need to merge several YAML files in a specific order, pass them as repeated `-Y a.yaml -Y b.yaml` flags — later files win.
