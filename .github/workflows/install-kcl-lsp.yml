@@ -7,7 +7,7 @@ jobs:
   check-macos:
     strategy:
       matrix:
-        os: [macos-13, macos-13-xlarge, macos-14, macos-latest]
+        os: [macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
@@ -55,7 +55,7 @@ jobs:
   check-kcl-lsp-brew-install-macos:
       strategy:
         matrix:
-          os: [macos-13, macos-13-xlarge, macos-14, macos-latest]
+          os: [macos-latest]
       runs-on: ${{ matrix.os }}
       steps:
         - uses: actions/checkout@v3
@@ -70,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: Homebrew/actions/setup-homebrew@master
+      - uses: Homebrew/actions/setup-homebrew@848c272c7bfe984a197bd4d16383f4c106ec61e6 # 2026.09.21.1
 
       - name: Check Brew Installation
         working-directory: .

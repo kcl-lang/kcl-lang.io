@@ -130,13 +130,77 @@ checkExistingKCL() {
 }
 
 getLatestRelease() {
-    local KCLReleaseUrl="https://api.github.com/repos/${GITHUB_ORG}/${GITHUB_REPO}/releases"
+    # We try three strategies, in order of robustness:
+    #
+    #   1. Follow the HTML redirect of /releases/latest. No API rate limit,
+    #      and GitHub's redirect target is already the latest non-draft /
+    #      non-prerelease release — so no client-side filtering needed.
+    #   2. Hit the REST /releases/latest endpoint. Subject to the 60-req/hr
+    #      unauthenticated rate limit, and returns 404 if every release is
+    #      a prerelease (kcl-lang/cli is fine, but be defensive).
+    #   3. Scan the /releases list. Same rate-limit caveat; the awk/sed
+    #      pipeline is brittle so this is a last resort.
+    #
+    # Each layer only runs if the previous one yielded an empty result.
+    local org="$GITHUB_ORG" repo="$GITHUB_REPO"
     local latest_release=""
 
+    # --- (1) HTML redirect ----------------------------------------------------
     if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-        latest_release=$(curl -s $KCLReleaseUrl | grep \"tag_name\" | grep -v rc | awk 'NR==1{print $2}' |  sed -n 's/\"\(.*\)\",/\1/p')
+        # -s silent, -S still show errors, -L follow redirects,
+        # -o /dev/null discard body, -w print the final URL after redirects.
+        latest_release=$(curl -sSL -o /dev/null -w '%{url_effective}' \
+            "https://github.com/${org}/${repo}/releases/latest" 2>/dev/null \
+            | sed -n 's:.*/tag/\(v\?[0-9][A-Za-z0-9._-]*\).*:\1:p' \
+            | head -n1)
     else
-        latest_release=$(wget -q --header="Accept: application/json" -O - $KCLReleaseUrl | grep \"tag_name\" | grep -v rc | awk 'NR==1{print $2}' |  sed -n 's/\"\(.*\)\",/\1/p')
+        # wget: -S print response headers, --max-redirect=0 do not follow
+        # redirects, -O /dev/null discard body. The 30x Location header on
+        # stderr carries the final tag URL.
+        latest_release=$(wget -S --max-redirect=0 -q \
+            "https://github.com/${org}/${repo}/releases/latest" \
+            -O /dev/null 2>&1 \
+            | grep -i '^  Location:' \
+            | tail -n1 \
+            | sed -n 's:.*/tag/\(v\?[0-9][A-Za-z0-9._-]*\).*:\1:p')
+    fi
+
+    # --- (2) REST /releases/latest -------------------------------------------
+    if [ -z "$latest_release" ]; then
+        local api_response
+        if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
+            api_response=$(curl -sS "https://api.github.com/repos/${org}/${repo}/releases/latest" 2>/dev/null)
+        else
+            api_response=$(wget -q --header="Accept: application/json" \
+                -O - "https://api.github.com/repos/${org}/${repo}/releases/latest" 2>/dev/null)
+        fi
+
+        # GitHub errors come back as JSON like {"message":"..."} with no
+        # tag_name field. Detect those before parsing so we don't silently
+        # pick up an empty string.
+        if [ -n "$api_response" ] \
+           && ! echo "$api_response" | grep -q '"message"' \
+           && ! echo "$api_response" | grep -qi 'rate limit'; then
+            latest_release=$(echo "$api_response" \
+                | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
+                | head -n1)
+        fi
+    fi
+
+    # --- (3) Legacy list-based fallback ----------------------------------------
+    if [ -z "$latest_release" ]; then
+        if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
+            latest_release=$(curl -s "https://api.github.com/repos/${org}/${repo}/releases" \
+                | grep '\"tag_name\"' | grep -v 'rc' \
+                | head -n1 \
+                | sed -n 's/.*\"tag_name\"[[:space:]]*:[[:space:]]*\"\(v\?[^\"]*\)\".*/\1/p')
+        else
+            latest_release=$(wget -q --header="Accept: application/json" -O - \
+                "https://api.github.com/repos/${org}/${repo}/releases" \
+                | grep '\"tag_name\"' | grep -v 'rc' \
+                | head -n1 \
+                | sed -n 's/.*\"tag_name\"[[:space:]]*:[[:space:]]*\"\(v\?[^\"]*\)\".*/\1/p')
+        fi
     fi
 
     ret_val=$latest_release
@@ -416,7 +480,14 @@ else
 fi
 
 if [ -z "$ret_val" ]; then
-    error "The KCL version is not found. You can re-execute the installation script and try again."
+    error "The KCL version is not found."
+    error "Possible causes:"
+    error "  - GitHub API rate limit hit (60 req/hr for unauthenticated requests)"
+    error "  - Network or DNS issue reaching github.com / api.github.com"
+    error "  - No stable release has been published in ${GITHUB_ORG}/${GITHUB_REPO} yet"
+    info "Workaround: install a specific stable version, e.g.:"
+    info "  curl -fsSL https://kcl-lang.io/script/install-cli.sh | bash -s -- -v 0.12.10"
+    info "Or set the KCL_VERSION environment variable before invoking the script."
     exit 1
 fi
 
