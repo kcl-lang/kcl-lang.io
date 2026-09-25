@@ -181,10 +181,10 @@ Using the KCL Rust plugin requires the presence of `Rust 1.79+` in your `PATH` a
 
 ```shell
 cargo add anyhow
-cargo add kclvm-parser --git https://github.com/kcl-lang/kcl
-cargo add kclvm-loader --git https://github.com/kcl-lang/kcl
-cargo add kclvm-evaluator --git https://github.com/kcl-lang/kcl
-cargo add kclvm-runtime --git https://github.com/kcl-lang/kcl
+cargo add kcl-parser --git https://github.com/kcl-lang/kcl
+cargo add kcl-loader --git https://github.com/kcl-lang/kcl
+cargo add kcl-evaluator --git https://github.com/kcl-lang/kcl
+cargo add kcl-runtime --git https://github.com/kcl-lang/kcl
 ```
 
 ### 1. Hello Plugin
@@ -193,10 +193,10 @@ Write the following Rust code and add the the plugin named `my_plugin`.
 
 ```rust
 use anyhow::{anyhow, Result};
-use kclvm_evaluator::Evaluator;
-use kclvm_loader::{load_packages, LoadPackageOptions};
-use kclvm_parser::LoadProgramOptions;
-use kclvm_runtime::{Context, IndexMap, PluginFunction, ValueRef};
+use kcl_evaluator::Evaluator;
+use kcl_loader::{load_packages, LoadPackageOptions};
+use kcl_parser::LoadProgramOptions;
+use kcl_runtime::{Context, IndexMap, PluginFunction, ValueRef};
 use std::{cell::RefCell, rc::Rc, sync::Arc};
 
 fn my_plugin_sum(_: &Context, args: &ValueRef, _: &ValueRef) -> Result<ValueRef> {

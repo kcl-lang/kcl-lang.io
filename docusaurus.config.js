@@ -119,17 +119,10 @@ const config = {
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        docs: {
-          // default version: Next
-          // lastVersion: 'current',
-
-          sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/kcl-lang/kcl-lang.io/tree/main',
-          showLastUpdateAuthor: true,
-          showLastUpdateTime: true,
-          remarkPlugins: [math],
-          rehypePlugins: [katex],
-        },
+        // The docs plugin is registered below through
+        // src/plugins/docGitCommit.js, which wraps it to attach git commit
+        // links to every doc (see GitHub issue #93).
+        docs: false,
         blog: {
           blogSidebarCount: "ALL",
           postsPerPage: 2,
@@ -306,6 +299,20 @@ const config = {
       }
     }),
   plugins: [
+    [
+      require.resolve('./src/plugins/docGitCommit'),
+      {
+        // default version: Next
+        // lastVersion: 'current',
+
+        sidebarPath: require.resolve('./sidebars.js'),
+        editUrl: 'https://github.com/kcl-lang/kcl-lang.io/tree/main',
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        remarkPlugins: [math],
+        rehypePlugins: [katex],
+      },
+    ],
     [
       '@docusaurus/plugin-google-gtag',
       {
