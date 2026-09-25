@@ -2693,3 +2693,283 @@ config1: {str:any} = {'key1': 'value', 'key2': 1}
 # 省略值类型（等效于 'any'）
 config2: {str:} = {'key': 'value'}
 ```
+## 71. 在 schema 中如何使用带连字符（如 `api-Version`）的键名？
+
+KCL 当前不允许标识符内部出现连字符，因此直接写 `api-Version: str` 会报解析错误。变通办法是使用**带引号的字符串键**：
+
+```kcl
+schema Config:
+    "api-Version": str
+    "x-ratelimit": int
+
+c = Config {
+    "api-Version" = "v1"
+    "x-ratelimit" = 100
+}
+```
+
+带引号的形式接受任意字符串字面量作为键名 —— 连字符、点号、斜杠、空格甚至标点符号都可以 —— 因此它可以直接覆盖 Kustomize / Kubernetes 中常见的命名（如 `api-Version`、`app.kubernetes.io/name` 等），无需任何编译器改动。解析器接受它是因为 `crates/parser/src/parser/stmt.rs:1022` 在扫描 schema 属性时寻找的就是 `string_lit COLON type_annotation` 这种形式。
+
+原生 `api-Version: str` 形式的实现正在 [kcl-lang/kcl#1867](https://github.com/kcl-lang/kcl/issues/1867) 跟踪 —— 由 [kcl-lang/kcl#2194](https://github.com/kcl-lang/kcl/pull/2194) 引入的设计 KEP（`docs/design/kep-1867-dash-identifiers.md`）将工作分为三个阶段（顶层配置键 → schema 属性 → 模块路径）。从阶段 1 开始最安全，因为它能让词法分析器的改动与表达式上下文隔离（否则 `a - b` 会被识别成单个名字）。
+
+## 72. 如何判断一个对象是否是某个 schema（或其子类型）的实例？
+
+KCL 没有内建的 `isinstance` / `is` 操作符 —— `is` 关键字只用于值相等比较，不是类型测试。要判断一个值是否是某个 schema（或其任意子 schema）的实例，可以把它的 `typeof` 与 schema 名称列表进行比较：
+
+```kcl
+schema A:
+    name: str
+
+schema B(A):
+    foo: str
+
+schema B1(B):
+    foo = "1"
+
+schema B2(B):
+    foo = "2"
+
+is_B = lambda o: A {
+    typeof(o) in ["B", "B1", "B2"]
+}
+
+a  = A  {name = "a"}
+b  = B  {name = "b", foo = "3"}
+b1 = B1 {name = "b1"}
+b2 = B2 {name = "b2"}
+
+check_a  = is_B(a)   # false
+check_b  = is_B(b)   # true
+check_b1 = is_B(b1)  # true
+check_b2 = is_B(b2)  # true
+```
+
+当不同包中存在同名 schema 时（例如 `pkg.B` 与 `__main__.B`），可以使用 `typeof(o, full_name=True)` 来拿到完全限定名。
+
+如果你发现自己反复枚举子类型，可以把谓词包成一个 `lambda`（如上所示），或者从 `mixin` 生成 schema 名称列表，这样新增子类型时检查会自动保持同步。
+
+## 73. 如何判断一个可选属性已设置且非空？
+
+可选的 schema 属性可能是 `Undefined`（未设置）、`None`（显式赋空值），或者是其声明类型的任意 falsy 值（如 `""`、`0`、`[]`）。条件表达式会把以上所有情况都视为 false：
+
+```kcl
+schema Person:
+    name?: str
+    tags?: [str]
+
+p1 = Person {name = "Alice", tags = ["admin"]}
+p2 = Person {}                              # 两个字段都是 Undefined
+p3 = Person {name = "", tags = []}          # 两个字段都是空值
+
+# `if attr:` 是"已设置且非空"的标准检查方式。
+has_name1 = True if p1.name else False      # True
+has_name2 = True if p2.name else False      # False
+has_tags1 = True if p1.tags else False      # True
+has_tags3 = True if p3.tags else False      # False（空列表）
+```
+
+如果想区分"显式赋 null"和"压根没赋值"，可以使用 `isnullish(...)`：
+
+```kcl
+is_unset = isnullish(p2.name)                          # True  —— 从未赋值
+is_null  = isnullish(Person{name = None}.name)         # True  —— 显式赋了 None
+```
+
+如果需要更复杂的判断（例如"trim 后非空"），可以配合 `regex.match` 或值自身的方法。
+
+## 74. `None` 和 `Undefined` 有什么区别？
+
+两者都表示"缺失"，但在输出中的行为不同：
+
+| | `None` | `Undefined` |
+|---|---|---|
+| YAML/JSON 输出 | `null`（除非设置了 `-n` 标志） | 字段始终被省略 |
+| 真值判断 | false | false |
+| `isnullish(x)` | true | true |
+| 读取未设置的可选属性 | 返回 `Undefined` | 返回 `Undefined` |
+
+**使用 `Undefined`**（即根本不赋值）表示你希望该字段不出现在渲染结果中 —— 这是"可选字段：用户没设置就不输出"的常见情况。
+
+**使用 `None`** 表示你希望该字段在输出中以显式的 `null` 出现，例如下游消费者（Kubernetes API、JSON Schema 校验器）需要该 key 存在但值为 null。`kcl -n`（即 `--disable-none`）会同时丢弃 `Undefined` 和显式 `None` 字段，所以 `None` 只在你确实希望渲染出 `null` 时才有意义。
+
+```kcl
+# 顶层变量：区别体现在输出上。
+a = 1
+b = None        # -> b: null  （在 `kcl -n` 下被省略）
+c = Undefined   # -> 输出中永远不会出现
+
+# 可选 schema 属性的约定相同：不赋值（Undefined），
+# 渲染时该字段就会消失。
+schema Deployment:
+    command?: [str]    # 未设置则省略
+```
+
+经验法则：新的可选字段优先使用 `Undefined`（不赋值），只有在渲染结果必须包含显式 `null` 时才使用 `None`。
+
+## 75. 如何对列表执行 `all(x > 0)` / `any(x < 0)` / `filter(...)` / `map(...)`？
+
+KCL 的量词体系是**真值判断用内建函数、谓词用列表推导** —— **没有** `all(list, lambda)` / `filter(lambda, list)` / `map(lambda, list)` 这类函数（LLM 生成的答案有时会给出，但请勿轻信；最初提出这个问题的报告见 [kcl-lang/kcl-lang.io#60](https://github.com/kcl-lang/kcl-lang.io/issues/60)）。
+
+两个内建函数（[文档](https://www.kcl-lang.io/docs/reference/model/builtin#all_true)）接受 list/dict 并返回 `bool`：
+
+```kcl
+all_true([])                         # True  —— 空集合按真值论成立
+all_true([True, True])               # True
+all_true([True, False])              # False
+any_true([])                         # False —— 空集合按假值论成立
+any_true([False, True])              # True
+```
+
+需要"所有元素满足某谓词"或"存在元素满足某谓词"时，配合列表推导即可：
+
+```kcl
+nums = [1, 2, 3, 4, 5]
+
+all_pos     = all_true([x > 0 for x in nums])      # True
+any_zero    = all_true([x == 0 for x in nums])     # False
+all_below50 = all_true([x < 50 for x in nums])      # True
+
+# "filter"：产出通过谓词的子列表
+positives = [x for x in nums if x > 2]              # [3, 4, 5]
+
+# "map"：对每个元素做转换
+squared   = [x * x for x in nums]                  # [1, 4, 9, 16, 25]
+
+# Reduce / fold 是 `reduce(reducer, list, initial)`：
+product   = reduce(lambda acc: int, item: int -> int { acc * item }, nums, 1)  # 120
+```
+
+同样的写法也适用于 dict 和 string —— `[x for k, x in d if ...]` 遍历条目，`for ch in s` 遍历字符串的字符。
+
+## 76. KCL Go SDK 的 CGo 依赖在哪里？
+
+Go SDK（[`kcl-lang/kcl-go`](https://github.com/kcl-lang/kcl-go)）依赖 [`kcl-lang/lib`](https://github.com/kcl-lang/lib)，后者按平台 vendored 了原生 `kcl-lib` cdylib，路径在 `go/lib/<os>-<arch>/` 下。cdylib crate 来自 [`kcl-lang/kcl` 仓库的 `crates/lib`](https://github.com/kcl-lang/kcl/tree/main/crates/lib)（Cargo.toml 中 `[lib].name = "kcl"`，`crate-type = ["cdylib", "staticlib"]`），所以产物都以 `kcl` 命名：
+
+| 平台目录 | 产物 |
+|---|---|
+| `go/lib/darwin-amd64/` | `libkcl.dylib`（+ `dummy.go`） |
+| `go/lib/darwin-arm64/` | `libkcl.dylib`（+ `dummy.go`） |
+| `go/lib/linux-amd64/` | `libkcl.so`（+ `dummy.go`） |
+| `go/lib/linux-arm64/` | `libkcl.so`（+ `dummy.go`） |
+| `go/lib/linux-musl-amd64/` | `libkcl.a`（静态库 —— 没有 `dummy.go`） |
+| `go/lib/linux-musl-arm64/` | `libkcl.a`（静态库 —— 没有 `dummy.go`） |
+| `go/lib/windows-amd64/` | `kcl.dll`（+ `dummy.go`） |
+| `go/lib/windows-arm64/` | `kcl.dll`（+ `dummy.go`） |
+
+按 build tag 选择的 Go 文件（`kcl_lib_darwin_amd64.go`、`kcl_lib_darwin_arm64.go`、`kcl_lib_linux_amd64.go`、`kcl_lib_linux_arm64.go`、`kcl_lib_windows_amd64.go`、`kcl_lib_windows_arm64.go` —— 共 6 个文件，没有 musl 专用文件，因为 musl 目标会静态链接到 Go 二进制里）会根据 `GOOS`/`GOARCH` 自动挑选正确的文件 —— 支持的目标不需要手动设置 `CGO_LDFLAGS`。
+
+**需要手动覆盖的情况**（例如 Bazel 把 `//external/` 路径剔除，报 `could not embed go/lib/linux-amd64/libkcl.so: no matching files found`，原报告见 [kcl-lang/kcl-lang.io#446](https://github.com/kcl-lang/kcl-lang.io/issues/446)）：
+
+1. 确认上面的平台目录对你的目标存在。如果不存在（FreeBSD、Alpine 变种、自定义 musl triple 等），需要从 [`kcl-lang/kcl`](https://github.com/kcl-lang/kcl) 自己构建产物（`cargo build --release -p kcl-lib --target <rust-target>`），把输出放到新的 `go/lib/<os>-<arch>/` 目录中，并补一个对应的 `kcl_lib_<os>_<arch>.go`。
+2. 对于 Bazel，使用 `go_repository` 并把 `replace` 指令固定到你构建时基于的 `kcl-lang/lib` commit，再加一个 `cgo` `srcs` glob 指向正确的 `go/lib/<os>-<arch>/*.{so,dylib,dll}` 路径。避免 `//external/...` 引用 —— Bazel 会把它沙盒化掉。
+
+参考运行时在每个语言子目录下也有镜像（`cpp/`、`java/`、`python/`、`nodejs/`、`dotnet/`、`wasm/`、`swift/` 等），如果你要把同一个库接入不同的 binding，可以参考。
+
+## 77. KCL 中与 `cue export` 等价的写法（把 YAML/JSON 文件作为输入加载）？
+
+`cue export data.yaml` 把 YAML 文件当作 schema 求值的**值**。KCL 在 CLI 层面**不直接支持**这种用法 —— `kcl run -Y data.yaml main.k` 只是**校验** YAML 是否符合 `main.k` 中声明的 schema，并不会让 YAML 驱动输出结果（这个问题最初出现在 [kcl-lang/kcl-lang.io#482](https://github.com/kcl-lang/kcl-lang.io/issues/482)）。
+
+KCL 的惯用写法是在程序内部用 `file.read` + `yaml.decode` 读文件，再把合并后的值重新编码：
+
+```kcl
+import file
+import yaml
+
+configYaml = yaml.decode(file.read("data.yaml"))
+yaml.encode(configYaml)
+```
+
+配合同目录的 `data.yaml`：
+
+```yaml
+# data.yaml
+name: alice
+tags:
+  - admin
+  - ops
+```
+
+输出：
+
+```yaml
+configYaml:
+  name: alice
+  tags:
+    - admin
+    - ops
+```
+
+如果你希望 YAML 的键出现在输出的**顶层**（让 YAML 作为根文档而不是子值），使用 `kcl -d data.yaml main.k` 把 YAML 作为 CLI 选项覆盖传入 —— KCL 会把键合并进程序的顶层 schema 属性。
+
+如果确实需要 CUE 风格的"构建期嵌入 YAML 文件"，可以使用 `file.read` 配合相对于模块根的路径，或者使用 [kcl-lang/kcl#2107](https://github.com/kcl-lang/kcl/issues/2107) 引入的 git ref 语法（`file.read("path/to/data.yaml:main")`）固定路径，这样跨 checkout 也能稳定导入。
+
+## 78. `-D key=value` 与 `kcl.yaml` 中设置的 key 的优先级？
+
+CLI 优先。从高到低的完整优先级顺序：
+
+1. `-D key=value` / `--argument key=value`（嵌套覆盖还可以用 `-O path=value`）
+2. `kcl.yaml` → `kcl_options[].{key,value}`（以及 `overrides[].{path,value}`）
+3. KCL 源码中 `option()` 声明的默认值
+
+`kcl.yaml` 在工作目录下会被自动加载，也可以用 `-Y kcl.yaml` 显式指定。设置 `-Y /dev/null` 可以跳过自动加载。
+
+演示（原始问题见 [kcl-lang/kcl-lang.io#125](https://github.com/kcl-lang/kcl-lang.io/issues/125)）：
+
+```kcl
+# main.k
+name = option("name", type="str", default="default-name")
+```
+
+```yaml
+# kcl.yaml
+kcl_options:
+  - key: name
+    value: yaml-name
+```
+
+| 命令 | 解析出的 `name` |
+|---|---|
+| `kcl run main.k`（自动加载 `kcl.yaml`） | `yaml-name` |
+| `kcl run main.k -Y /dev/null`（不加载 YAML） | `default-name` |
+| `kcl run main.k -Y kcl.yaml -D name=cli-name` | `cli-name` |
+| `kcl run main.k -D name=cli-name` | `cli-name` |
+
+总结：YAML 文件是项目 / 环境的默认配置，CLI 标志是单次调用的覆盖。如果需要按特定顺序合并多个 YAML 文件，可以重复传 `-Y a.yaml -Y b.yaml` —— 后面的覆盖前面的。
+
+## 79. KCL 是否允许在配置行末尾使用尾随逗号？
+
+允许 —— KCL 在所有使用逗号分隔列表的位置都接受尾随逗号。这一点在 [kcl-lang/kcl-lang.io#2](https://github.com/kcl-lang/kcl-lang.io/issues/2) 中被明确指出是缺失功能，现在已在所有相关位置支持：
+
+```kcl
+schema Person:
+    name: str
+    age: int
+
+# schema 属性值中的尾随逗号：
+p1 = Person {
+    name = "Alice",
+    age = 30,
+}
+
+# 列表字面量中的尾随逗号：
+nums = [
+    1,
+    2,
+    3,
+]
+
+# 字典字面量中的尾随逗号：
+config = {
+    "key1" = "value1",
+    "key2" = "value2",
+}
+
+# 函数调用参数中的尾随逗号：
+result = "{a}-{b}-{c}".format(
+    a = "1",
+    b = "2",
+    c = "3",
+)
+```
+
+尾随逗号纯粹是格式上的便利 —— 它**不会**引入额外的空元素（所以 `[1, 2,]` 就是 `[1, 2]`，而不是 `[1, 2, Undefined]`）。它也不会改变任何解析语义；多行表达式的闭合 token（`]`、`}`、`)`）仍然必须独占一行或与最后一个元素同行。

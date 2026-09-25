@@ -2734,7 +2734,7 @@ _b: 2
 
 ## 71. Any in dict, allow using any type
 
-In KCL, if you want a dictionary to accept any type of value, you should use the lowercase `any` keyword or omit the value type entirely. Do not use the capitalized `Any`. 
+In KCL, if you want a dictionary to accept any type of value, you should use the lowercase `any` keyword or omit the value type entirely. Do not use the capitalized `Any`.
 
 Here is an example:
 
@@ -2743,3 +2743,288 @@ config1: {str:any} = {'key1': 'value', 'key2': 1}
 
 config2: {str:} = {'key': 'value'}
 ```
+
+## 72. How to use keys with hyphens (like `api-Version`) in a schema?
+
+KCL currently rejects dashes inside identifiers, so a bare `api-Version: str` is a parse error. The workaround is to write the attribute as a quoted string key:
+
+```kcl
+schema Config:
+    "api-Version": str
+    "x-ratelimit": int
+
+c = Config {
+    "api-Version" = "v1"
+    "x-ratelimit" = 100
+}
+```
+
+The quoted form accepts any string literal as the key — hyphens, dots, slashes, spaces, even punctuation — so it works for the Kustomize / Kubernetes-typical cases (`api-Version`, `app.kubernetes.io/name`, etc.) without any compiler changes. The parser accepts it because `crates/parser/src/parser/stmt.rs:1022` looks for `string_lit COLON type_annotation` when scanning schema attributes.
+
+A native `api-Version: str` form is being tracked by [kcl-lang/kcl#1867](https://github.com/kcl-lang/kcl/issues/1867) — the design KEP introduced by [kcl-lang/kcl#2194](https://github.com/kcl-lang/kcl/pull/2194) (`docs/design/kep-1867-dash-identifiers.md`) splits the work into three phases (top-level config keys → schema attributes → module paths). Phase 1 is the safest place to start because it keeps the lexer change isolated from expression context (`a - b` would otherwise look like a single name).
+
+## 73. How to check if an object is an instance of a schema (or its children)?
+
+KCL does not have a built-in `isinstance` / `is` operator for schemas — the `is` keyword is only value equality, not a type test. To check whether a value is an instance of a schema (or any of its sub-schemas), compare its `typeof` to the schema name(s):
+
+```kcl
+schema A:
+    name: str
+
+schema B(A):
+    foo: str
+
+schema B1(B):
+    foo = "1"
+
+schema B2(B):
+    foo = "2"
+
+is_B = lambda o: A {
+    typeof(o) in ["B", "B1", "B2"]
+}
+
+a  = A  {name = "a"}
+b  = B  {name = "b", foo = "3"}
+b1 = B1 {name = "b1"}
+b2 = B2 {name = "b2"}
+
+check_a  = is_B(a)   # false
+check_b  = is_B(b)   # true
+check_b1 = is_B(b1)  # true
+check_b2 = is_B(b2)  # true
+```
+
+Use `typeof(o, full_name=True)` when schemas share a short name across packages (e.g. `pkg.B` vs. `__main__.B`).
+
+If you find yourself enumerating subtypes repeatedly, wrap the predicate in a `lambda` (as above) or generate the schema-name list from a `mixin` so the check stays in sync when new children are added.
+
+## 74. How to test whether an optional attribute is set and non-empty?
+
+Optional schema attributes can be `Undefined` (not set), `None` (explicitly null), or any falsy value of their declared type (e.g. `""`, `0`, `[]`). The conditional expression treats all of those as false:
+
+```kcl
+schema Person:
+    name?: str
+    tags?: [str]
+
+p1 = Person {name = "Alice", tags = ["admin"]}
+p2 = Person {}                              # both fields Undefined
+p3 = Person {name = "", tags = []}          # both fields empty
+
+# `if attr:` is the canonical "set AND non-empty" check.
+has_name1 = True if p1.name else False      # True
+has_name2 = True if p2.name else False      # False
+has_tags1 = True if p1.tags else False      # True
+has_tags3 = True if p3.tags else False      # False (empty list)
+```
+
+To distinguish "explicitly null" from "not set at all", use `isnullish(...)`:
+
+```kcl
+import regex
+
+is_unset = isnullish(p2.name)        # True  — was never assigned
+is_null  = isnullish(Person{name = None}.name)  # True  — assigned None
+```
+
+Use `regex.match` or the value's own methods if you need a deeper check (e.g. "the string is non-empty after trimming whitespace").
+
+## 75. What's the difference between `None` and `Undefined`?
+
+Both denote absence, but they behave differently in the output:
+
+| | `None` | `Undefined` |
+|---|---|---|
+| YAML/JSON output | `null` (unless `-n` flag is set) | field is always omitted |
+| Truthy check | false | false |
+| `isnullish(x)` | true | true |
+| Reading an unset optional attribute | returns `Undefined` | returns `Undefined` |
+
+**Use `Undefined`** (i.e. just don't assign the variable / attribute) when you want the field to be absent from the rendered output — this is the common case for "optional fields that don't appear unless the user sets them".
+
+**Use `None`** when you want the field to appear in the output as an explicit `null`, e.g. when the downstream consumer (Kubernetes API, a JSON schema validator) needs the key to be present with a null value. The `kcl -n` (a.k.a. `--disable-none`) flag drops *both* `Undefined` and explicit-`None` fields from the output, so `None` is only meaningful when you want the `null` to actually render.
+
+```kcl
+# Top-level variables: the difference is visible in the output.
+a = 1
+b = None        # -> b: null  (omitted under `kcl -n`)
+c = Undefined   # -> never appears in the output
+
+# Optional schema attributes use the same convention: leave unset
+# (Undefined) and the field disappears from the rendered schema.
+schema Deployment:
+    command?: [str]    # omitted unless set
+```
+
+A practical rule: prefer `Undefined` (no assignment) for new optional fields, and reserve `None` for the rare cases where the rendered output must contain an explicit `null`.
+
+## 76. How do I write `all(x > 0)` / `any(x < 0)` / `filter(...)` / `map(...)` for a list?
+
+KCL's quantifier story is **built-ins for truthiness plus comprehensions for predicates** — there is **no** `all(list, lambda)` / `filter(lambda, list)` / `map(lambda, list)` function in the language, despite what LLM-generated answers sometimes suggest (the original report that motivated this entry is [kcl-lang/kcl-lang.io#60](https://github.com/kcl-lang/kcl-lang.io/issues/60)).
+
+The two built-ins ([docs](https://www.kcl-lang.io/docs/reference/model/builtin#all_true)) take a list/dict and return a `bool`:
+
+```kcl
+all_true([])                         # True  — empty input is vacuously true
+all_true([True, True])               # True
+all_true([True, False])              # False
+any_true([])                         # False — empty input is vacuously false
+any_true([False, True])              # True
+```
+
+For "all elements satisfy a predicate" or "any element satisfies a predicate", pair them with a list comprehension:
+
+```kcl
+nums = [1, 2, 3, 4, 5]
+
+all_pos     = all_true([x > 0 for x in nums])      # True
+any_zero    = all_true([x == 0 for x in nums])     # False
+all_below50 = all_true([x < 50 for x in nums])      # True
+
+# "filter": produce the sublist that passes the predicate
+positives = [x for x in nums if x > 2]              # [3, 4, 5]
+
+# "map": transform each element
+squared   = [x * x for x in nums]                  # [1, 4, 9, 16, 25]
+
+# Reduce / fold is `reduce(reducer, list, initial)`:
+product   = reduce(lambda acc: int, item: int -> int { acc * item }, nums, 1)  # 120
+```
+
+The pattern translates to dicts and strings the same way — `[x for k, x in d if ...]` walks the entries, and `for ch in s` walks the characters of a string.
+
+## 77. Where do the CGo dependencies of the KCL Go SDK live?
+
+The Go SDK ([`kcl-lang/kcl-go`](https://github.com/kcl-lang/kcl-go)) depends on [`kcl-lang/lib`](https://github.com/kcl-lang/lib), which **vendors the native `kcl-lib` cdylib per platform** under `go/lib/<os>-<arch>/`. The cdylib crate is [`crates/lib` in `kcl-lang/kcl`](https://github.com/kcl-lang/kcl/tree/main/crates/lib) (Cargo.toml `[lib].name = "kcl"`, `crate-type = ["cdylib", "staticlib"]`), so the produced artifacts are named after `kcl`:
+
+| Platform directory | Artifact |
+|---|---|
+| `go/lib/darwin-amd64/` | `libkcl.dylib` (+ `dummy.go`) |
+| `go/lib/darwin-arm64/` | `libkcl.dylib` (+ `dummy.go`) |
+| `go/lib/linux-amd64/` | `libkcl.so` (+ `dummy.go`) |
+| `go/lib/linux-arm64/` | `libkcl.so` (+ `dummy.go`) |
+| `go/lib/linux-musl-amd64/` | `libkcl.a` (static — no `dummy.go`) |
+| `go/lib/linux-musl-arm64/` | `libkcl.a` (static — no `dummy.go`) |
+| `go/lib/windows-amd64/` | `kcl.dll` (+ `dummy.go`) |
+| `go/lib/windows-arm64/` | `kcl.dll` (+ `dummy.go`) |
+
+Build-tag-selected Go files (`kcl_lib_darwin_amd64.go`, `kcl_lib_darwin_arm64.go`, `kcl_lib_linux_amd64.go`, `kcl_lib_linux_arm64.go`, `kcl_lib_windows_amd64.go`, `kcl_lib_windows_arm64.go` — six files, no musl-specific files because the musl targets link statically into the Go binary) pick the correct file per `GOOS`/`GOARCH` automatically — no manual `CGO_LDFLAGS` is needed for the supported targets.
+
+**When you still need a manual override** (e.g. Bazel strips `//external/` paths and reports `could not embed go/lib/linux-amd64/libkcl.so: no matching files found`, as in the original report at [kcl-lang/kcl-lang.io#446](https://github.com/kcl-lang/kcl-lang.io/issues/446)):
+
+1. Confirm the platform directory above exists for your target. If it doesn't (FreeBSD, an Alpine variant, a custom musl triple, …), you'll need to build the artifact yourself from [`kcl-lang/kcl`](https://github.com/kcl-lang/kcl) (`cargo build --release -p kcl-lib --target <rust-target>`) and drop the output into a new `go/lib/<os>-<arch>/` folder plus a matching `kcl_lib_<os>_<arch>.go`.
+2. For Bazel specifically, use `go_repository` with the `replace` directive pinned to the `kcl-lang/lib` commit you built against, and add a `cgo` `srcs` glob that points at the correct `go/lib/<os>-<arch>/*.{so,dylib,dll}` path. Avoid `//external/...` references — Bazel sandboxes them away.
+
+The reference runtime is also mirrored under each language subdirectory (`cpp/`, `java/`, `python/`, `nodejs/`, `dotnet/`, `wasm/`, `swift/`, …) if you're wiring the same library into a different binding.
+
+## 78. What's the KCL equivalent of `cue export` (load a YAML/JSON file as input)?
+
+`cue export data.yaml` treats a YAML file as a *value* the schema is evaluated against. KCL does **not** do this directly at the CLI — `kcl run -Y data.yaml main.k` only **validates** the YAML against the schemas declared in `main.k`, it doesn't let the YAML drive the output (this came up in [kcl-lang/kcl-lang.io#482](https://github.com/kcl-lang/kcl-lang.io/issues/482)).
+
+The KCL idiom is to **read the file inside the program** with `file.read` + `yaml.decode` and then re-encode the merged value:
+
+```kcl
+import file
+import yaml
+
+configYaml = yaml.decode(file.read("data.yaml"))
+yaml.encode(configYaml)
+```
+
+Running against a sibling `data.yaml`:
+
+```yaml
+# data.yaml
+name: alice
+tags:
+  - admin
+  - ops
+```
+
+emits:
+
+```yaml
+configYaml:
+  name: alice
+  tags:
+    - admin
+    - ops
+```
+
+If you want the YAML keys to land at the **top level of the output** (so the YAML is treated as the root document rather than a sub-value), use `kcl -d data.yaml main.k` to feed the YAML in as CLI option overrides — KCL merges the keys into the program's top-level schema attributes.
+
+If you specifically need CUE-style "embed this YAML file at build time", use `file.read` with a path relative to the module root, or pin the path with the git ref syntax introduced by [kcl-lang/kcl#2107](https://github.com/kcl-lang/kcl/issues/2107) (`file.read("path/to/data.yaml:main")`) so the import survives across checkouts.
+
+## 79. What's the priority between `-D key=value` and a key set in `kcl.yaml`?
+
+CLI wins. The full resolution order, from highest to lowest precedence, is:
+
+1. `-D key=value` / `--argument key=value` (and `-O path=value` for nested overrides)
+2. `kcl.yaml` → `kcl_options[].{key,value}` (and `overrides[].{path,value}`)
+3. `option()` defaults declared in the KCL source
+
+`kcl.yaml` is auto-loaded when it lives in the working directory, and you can also point at one explicitly with `-Y kcl.yaml`. Set `-Y /dev/null` to skip the auto-load.
+
+Demonstration (motivating issue [kcl-lang/kcl-lang.io#125](https://github.com/kcl-lang/kcl-lang.io/issues/125)):
+
+```kcl
+# main.k
+import regex
+
+name = option("name", type="str", default="default-name")
+```
+
+```yaml
+# kcl.yaml
+kcl_options:
+  - key: name
+    value: yaml-name
+```
+
+| Command | Resolved `name` |
+|---|---|
+| `kcl run main.k` (auto-loads `kcl.yaml`) | `yaml-name` |
+| `kcl run main.k -Y /dev/null` (no YAML) | `default-name` |
+| `kcl run main.k -Y kcl.yaml -D name=cli-name` | `cli-name` |
+| `kcl run main.k -D name=cli-name` | `cli-name` |
+
+So: the YAML file is the default per project / environment, and the CLI flag is the override per invocation. If you need to merge several YAML files in a specific order, pass them as repeated `-Y a.yaml -Y b.yaml` flags — later files win.
+
+## 80. Does KCL allow a trailing comma at the end of a configuration line?
+
+Yes — KCL accepts trailing commas in every place a comma-separated list appears. This was specifically called out as missing in [kcl-lang/kcl-lang.io#2](https://github.com/kcl-lang/kcl-lang.io/issues/2) and is now supported across all the relevant sites:
+
+```kcl
+schema Person:
+    name: str
+    age: int
+
+# Trailing comma in schema attribute values:
+p1 = Person {
+    name = "Alice",
+    age = 30,
+}
+
+# Trailing comma in list literals:
+nums = [
+    1,
+    2,
+    3,
+]
+
+# Trailing comma in dict literals:
+config = {
+    "key1" = "value1",
+    "key2" = "value2",
+}
+
+# Trailing comma in function-call arguments:
+result = "{a}-{b}-{c}".format(
+    a = "1",
+    b = "2",
+    c = "3",
+)
+```
+
+A trailing comma is purely a formatting convenience — it does **not** introduce an extra empty element (so `[1, 2,]` is `[1, 2]`, not `[1, 2, Undefined]`). It also does not change parsing semantics anywhere; multi-line expressions still require their closing token (`]`, `}`, `)`) to be on a line of its own or on the same line as the last element.
