@@ -172,13 +172,77 @@ checkExistingKCL() {
 }
 
 getLatestRelease() {
-    local KCLReleaseUrl="https://api.github.com/repos/${GITHUB_ORG}/${GITHUB_REPO}/releases"
+    # We try three strategies, in order of robustness:
+    #
+    #   1. Follow the HTML redirect of /releases/latest. No API rate limit,
+    #      and GitHub's redirect target is already the latest non-draft /
+    #      non-prerelease release — so no client-side filtering needed.
+    #   2. Hit the REST /releases/latest endpoint. Subject to the 60-req/hr
+    #      unauthenticated rate limit, and returns 404 if every release is
+    #      a prerelease (kcl-lang/kcl is fine, but be defensive).
+    #   3. Scan the /releases list. Same rate-limit caveat; the awk/sed
+    #      pipeline is brittle so this is a last resort.
+    #
+    # Each layer only runs if the previous one yielded an empty result.
+    local org="$GITHUB_ORG" repo="$GITHUB_REPO"
     local latest_release=""
 
+    # --- (1) HTML redirect ----------------------------------------------------
     if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-        latest_release=$(curl -s $KCLReleaseUrl | grep \"tag_name\" | grep -v rc | awk 'NR==1{print $2}' |  sed -n 's/\"\(.*\)\",/\1/p')
+        # -s silent, -S still show errors, -L follow redirects,
+        # -o /dev/null discard body, -w print the final URL after redirects.
+        latest_release=$(curl -sSL -o /dev/null -w '%{url_effective}' \
+            "https://github.com/${org}/${repo}/releases/latest" 2>/dev/null \
+            | sed -n 's:.*/tag/\(v\?[0-9][A-Za-z0-9._-]*\).*:\1:p' \
+            | head -n1)
     else
-        latest_release=$(wget -q --header="Accept: application/json" -O - $KCLReleaseUrl | grep \"tag_name\" | grep -v rc | awk 'NR==1{print $2}' |  sed -n 's/\"\(.*\)\",/\1/p')
+        # wget: -S print response headers, --max-redirect=0 do not follow
+        # redirects, -O /dev/null discard body. The 30x Location header on
+        # stderr carries the final tag URL.
+        latest_release=$(wget -S --max-redirect=0 -q \
+            "https://github.com/${org}/${repo}/releases/latest" \
+            -O /dev/null 2>&1 \
+            | grep -i '^  Location:' \
+            | tail -n1 \
+            | sed -n 's:.*/tag/\(v\?[0-9][A-Za-z0-9._-]*\).*:\1:p')
+    fi
+
+    # --- (2) REST /releases/latest -------------------------------------------
+    if [ -z "$latest_release" ]; then
+        local api_response
+        if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
+            api_response=$(curl -sS "https://api.github.com/repos/${org}/${repo}/releases/latest" 2>/dev/null)
+        else
+            api_response=$(wget -q --header="Accept: application/json" \
+                -O - "https://api.github.com/repos/${org}/${repo}/releases/latest" 2>/dev/null)
+        fi
+
+        # GitHub errors come back as JSON like {"message":"..."} with no
+        # tag_name field. Detect those before parsing so we don't silently
+        # pick up an empty string.
+        if [ -n "$api_response" ] \
+           && ! echo "$api_response" | grep -q '"message"' \
+           && ! echo "$api_response" | grep -qi 'rate limit'; then
+            latest_release=$(echo "$api_response" \
+                | sed -n 's/.*"tag_name"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' \
+                | head -n1)
+        fi
+    fi
+
+    # --- (3) Legacy list-based fallback ----------------------------------------
+    if [ -z "$latest_release" ]; then
+        if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
+            latest_release=$(curl -s "https://api.github.com/repos/${org}/${repo}/releases" \
+                | grep '\"tag_name\"' | grep -v 'rc' \
+                | head -n1 \
+                | sed -n 's/.*\"tag_name\"[[:space:]]*:[[:space:]]*\"\(v\?[^\"]*\)\".*/\1/p')
+        else
+            latest_release=$(wget -q --header="Accept: application/json" -O - \
+                "https://api.github.com/repos/${org}/${repo}/releases" \
+                | grep '\"tag_name\"' | grep -v 'rc' \
+                | head -n1 \
+                | sed -n 's/.*\"tag_name\"[[:space:]]*:[[:space:]]*\"\(v\?[^\"]*\)\".*/\1/p')
+        fi
     fi
 
     ret_val=$latest_release
@@ -186,6 +250,20 @@ getLatestRelease() {
 
 downloadFile() {
     LATEST_RELEASE_TAG=$1
+
+    # Defense-in-depth: the upstream caller (main) already guards against an
+    # empty tag, but if the brittle JSON parser in `getLatestRelease` ever
+    # silently fails AND the upstream guard is bypassed, we'd build a
+    # malformed URL like `…/releases/download//kcl-language-server--<os>-<arch>.tar.gz`
+    # and wget/curl would happily save GitHub's 404 HTML page to disk, producing
+    # the confusing "Unrecognized archive format" tar error.
+    if [ -z "$LATEST_RELEASE_TAG" ]; then
+        error "Empty release tag passed to downloadFile."
+        info "This usually means the GitHub release JSON could not be parsed."
+        info "Try a specific stable version, e.g.:"
+        info "  curl -fsSL https://kcl-lang.io/script/install-kcl-lsp.sh | bash -s -- 0.11.2"
+        exit 1
+    fi
 
     NEW_ARTIFACT="kcl-language-server-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
     OLD_ARTIFACT="kclvm-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
@@ -205,7 +283,8 @@ downloadFile() {
         KCL_TARBALL_LAYOUT="new"
         ARTIFACT_TMP_FILE="$KCL_TMP_ROOT/$KCL_CLI_ARTIFACT"
         if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-            curl -SsL "$NEW_URL" -o "$ARTIFACT_TMP_FILE"
+            # -f makes curl fail on HTTP errors instead of saving the error page.
+            curl -f -SsL "$NEW_URL" -o "$ARTIFACT_TMP_FILE"
         else
             wget -q -O "$ARTIFACT_TMP_FILE" "$NEW_URL"
         fi
@@ -216,14 +295,16 @@ downloadFile() {
         KCL_TARBALL_LAYOUT="legacy"
         ARTIFACT_TMP_FILE="$KCL_TMP_ROOT/$KCL_CLI_ARTIFACT"
         if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-            curl -SsL "$DOWNLOAD_URL" -o "$ARTIFACT_TMP_FILE"
+            curl -f -SsL "$DOWNLOAD_URL" -o "$ARTIFACT_TMP_FILE"
         else
             wget -q -O "$ARTIFACT_TMP_FILE" "$DOWNLOAD_URL"
         fi
     fi
 
-    if [ ! -f "$ARTIFACT_TMP_FILE" ]; then
+    if [ ! -s "$ARTIFACT_TMP_FILE" ]; then
         error "Failed to download ${NEW_URL} or ${DOWNLOAD_URL:-$NEW_URL} ..."
+        info "Try a specific stable version, e.g.:"
+        info "  curl -fsSL https://kcl-lang.io/script/install-kcl-lsp.sh | bash -s -- 0.11.2"
         exit 1
     else
         info "Successful to download $ARTIFACT_TMP_FILE"
@@ -252,6 +333,22 @@ isReleaseAvailable() {
 }
 
 installFile() {
+    # Validate that the artifact is actually a gzipped tar before unpacking.
+    # GitHub returns 404/5xx pages on missing assets, and wget happily writes
+    # them to disk — so a non-404-detecting HTTP client yields a file that
+    # isn't gzip at all. `tar -tzf` is the most portable sniff: it parses
+    # both the gzip wrapper and the tar header, and exits non-zero on either
+    # failure. We intentionally do NOT silence errors here so the diagnostic
+    # reaches the user.
+    if ! tar -tzf "$ARTIFACT_TMP_FILE" >/dev/null 2>&1; then
+        rm -f "$ARTIFACT_TMP_FILE"
+        error "Downloaded artifact is not a valid gzipped tar archive."
+        error "The release asset for ${OS}/${ARCH} in version ${LATEST_RELEASE_TAG:-<unknown>} may be missing."
+        info "Try a specific stable version, e.g.:"
+        info "  curl -fsSL https://kcl-lang.io/script/install-kcl-lsp.sh | bash -s -- 0.11.2"
+        exit 1
+    fi
+
     tar xf $ARTIFACT_TMP_FILE -C $KCL_TMP_ROOT
 
     # The per-binary release (v0.13.0+) ships the executable at the tarball
@@ -419,6 +516,17 @@ if [ -z "$1" ]; then
     getLatestRelease
 else
     ret_val=v$1
+fi
+
+if [ -z "$ret_val" ]; then
+    error "The KCL language server version is not found."
+    error "Possible causes:"
+    error "  - GitHub API rate limit hit (60 req/hr for unauthenticated requests)"
+    error "  - Network or DNS issue reaching github.com / api.github.com"
+    error "  - No stable release has been published in ${GITHUB_ORG}/${GITHUB_REPO} yet"
+    info "Workaround: install a specific stable version, e.g.:"
+    info "  curl -fsSL https://kcl-lang.io/script/install-kcl-lsp.sh | bash -s -- 0.11.2"
+    exit 1
 fi
 
 verifySupported $ret_val
