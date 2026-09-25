@@ -33,7 +33,7 @@ curl -X POST http://127.0.0.1:2021/api:protorpc/BuiltinService.Ping --data '{}'
 
 其中 `/api:protorpc/BuiltinService.Ping` 路径表示 `BuiltinService` 服务的 `Ping` 方法。
 
-完整的 `BuiltinService` 由 Protobuf 定义：
+完整的 Protobuf 服务定义（`crates/api/spec.proto`）：
 
 ````protobuf
 // Copyright The KCL Authors. All rights reserved.
@@ -91,14 +91,14 @@ message Message {
 // Service for built-in functionality.
 service BuiltinService {
 	// Sends a ping request.
-	rpc Ping(Ping_Args) returns (Ping_Result);
+	rpc Ping(PingArgs) returns (PingResult);
 	// Lists available methods.
-	rpc ListMethod(ListMethod_Args) returns (ListMethod_Result);
+	rpc ListMethod(ListMethodArgs) returns (ListMethodResult);
 }
 
 // Service for KCL VM interactions.
-service KclvmService {
-	/// Ping KclvmService, return the same value as the parameter
+service KclService {
+	/// Ping KclService, return the same value as the parameter
 	///
 	/// # Examples
 	///
@@ -122,9 +122,9 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc Ping(Ping_Args) returns (Ping_Result);
+	rpc Ping(PingArgs) returns (PingResult);
 
-	/// GetVersion KclvmService, return the kclvm service version information
+	/// GetVersion KclService, return the kcl service version information
 	///
 	/// # Examples
 	///
@@ -144,12 +144,14 @@ service KclvmService {
 	///         "version": "0.9.1",
 	///         "checksum": "c020ab3eb4b9179219d6837a57f5d323",
 	///         "git_sha": "1a9a72942fffc9f62cb8f1ae4e1d5ca32aa1f399",
-	///         "version_info": "Version: 0.9.1-c020ab3eb4b9179219d6837a57f5d323\nPlatform: aarch64-apple-darwin\nGitCommit: 1a9a72942fffc9f62cb8f1ae4e1d5ca32aa1f399"
+	///         "version_info": "Version: 0.9.1-c020ab3eb4b9179219d6837a57f5d323
+Platform: aarch64-apple-darwin
+GitCommit: 1a9a72942fffc9f62cb8f1ae4e1d5ca32aa1f399"
 	///     },
 	///     "id": 1
 	/// }
 	/// ```
-	rpc GetVersion(GetVersion_Args) returns (GetVersion_Result);
+	rpc GetVersion(GetVersionArgs) returns (GetVersionResult);
 
 	/// Parse KCL program with entry files.
 	///
@@ -177,7 +179,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc ParseProgram(ParseProgram_Args) returns (ParseProgram_Result);
+	rpc ParseProgram(ParseProgramArgs) returns (ParseProgramResult);
 
 	/// Parse KCL single file to Module AST JSON string with import dependencies
 	/// and parse errors.
@@ -206,7 +208,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc ParseFile(ParseFile_Args) returns (ParseFile_Result);
+	rpc ParseFile(ParseFileArgs) returns (ParseFileResult);
 
 	/// load_package provides users with the ability to parse kcl program and semantic model
 	/// information including symbols, types, definitions, etc.
@@ -245,7 +247,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc LoadPackage(LoadPackage_Args) returns (LoadPackage_Result);
+	rpc LoadPackage(LoadPackageArgs) returns (LoadPackageResult);
 
 	/// list_options provides users with the ability to parse kcl program and get all option information.
 	///
@@ -275,7 +277,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc ListOptions(ParseProgram_Args) returns (ListOptions_Result);
+	rpc ListOptions(ParseProgramArgs) returns (ListOptionsResult);
 
 	/// list_variables provides users with the ability to parse kcl program and get all variables by specs.
 	///
@@ -310,7 +312,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc ListVariables(ListVariables_Args) returns (ListVariables_Result);
+	rpc ListVariables(ListVariablesArgs) returns (ListVariablesResult);
 
 	/// Execute KCL file with args. **Note that it is not thread safe.**
 	///
@@ -333,7 +335,8 @@ service KclvmService {
 	///     "jsonrpc": "2.0",
 	///     "result": {
 	///         "json_result": "{\"alice\": {\"age\": 18}}",
-	///         "yaml_result": "alice:\n  age: 18",
+	///         "yaml_result": "alice:
+  age: 18",
 	///         "log_message": "",
 	///         "err_message": ""
 	///     },
@@ -356,7 +359,8 @@ service KclvmService {
 	///     "jsonrpc": "2.0",
 	///     "result": {
 	///         "json_result": "{\"alice\": {\"age\": 18}}",
-	///         "yaml_result": "alice:\n  age: 18",
+	///         "yaml_result": "alice:
+  age: 18",
 	///         "log_message": "",
 	///         "err_message": ""
 	///     },
@@ -403,7 +407,7 @@ service KclvmService {
 	///     "id": 4
 	/// }
 	/// ```
-	rpc ExecProgram(ExecProgram_Args) returns (ExecProgram_Result);
+	rpc ExecProgram(ExecProgramArgs) returns (ExecProgramResult);
 
 	/// Build the KCL program to an artifact.
 	///
@@ -433,7 +437,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc BuildProgram(BuildProgram_Args) returns (BuildProgram_Result);
+	rpc BuildProgram(BuildProgramArgs) returns (BuildProgramResult);
 
 	/// Execute the KCL artifact with args. **Note that it is not thread safe.**
 	///
@@ -459,14 +463,15 @@ service KclvmService {
 	///     "jsonrpc": "2.0",
 	///     "result": {
 	///         "json_result": "{\"alice\": {\"age\": 18}}",
-	///         "yaml_result": "alice:\n  age: 18",
+	///         "yaml_result": "alice:
+  age: 18",
 	///         "log_message": "",
 	///         "err_message": ""
 	///     },
 	///     "id": 1
 	/// }
 	/// ```
-	rpc ExecArtifact(ExecArtifact_Args) returns (ExecProgram_Result);
+	rpc ExecArtifact(ExecArtifactArgs) returns (ExecProgramResult);
 
 	/// Override KCL file with args.
 	///
@@ -494,7 +499,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc OverrideFile(OverrideFile_Args) returns (OverrideFile_Result);
+	rpc OverrideFile(OverrideFileArgs) returns (OverrideFileResult);
 
 	/// Get schema type mapping.
 	///
@@ -541,7 +546,55 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc GetSchemaTypeMapping(GetSchemaTypeMapping_Args) returns (GetSchemaTypeMapping_Result);
+	rpc GetSchemaTypeMapping(GetSchemaTypeMappingArgs) returns (GetSchemaTypeMappingResult);
+
+	/// Get schema type mapping under the input paths, including all of their
+	/// external dependency packages. Different from `GetSchemaTypeMapping`,
+	/// the result is keyed by package name (e.g. "__main__", "pkg") and each
+	/// value holds the schema list of that package, so schemas defined in
+	/// kcl.mod `[dependencies]` keep their own pkgpath and base schema.
+	/// See https://github.com/kcl-lang/kcl/issues/1546.
+	///
+	/// # Examples
+	///
+	/// ```jsonrpc
+	/// // Request
+	/// {
+	///     "jsonrpc": "2.0",
+	///     "method": "GetSchemaTypeMappingUnderPath",
+	///     "params": {
+	///         "exec_args": {
+	///             "work_dir": "./src/testdata",
+	///             "k_filename_list": ["main.k"]
+	///         },
+	///         "schema_name": ""
+	///     },
+	///     "id": 1
+	/// }
+	///
+	/// // Response
+	/// {
+	///     "jsonrpc": "2.0",
+	///     "result": {
+	///         "schema_type_mapping": {
+	///             "__main__": {
+	///                 "schema_type": [
+	///                     {
+	///                         "type": "schema",
+	///                         "schema_name": "Person",
+	///                         "properties": {
+	///                             "name": { "type": "str" }
+	///                         },
+	///                         "required": ["name"]
+	///                     }
+	///                 ]
+	///             }
+	///         }
+	///     },
+	///     "id": 1
+	/// }
+	/// ```
+	rpc GetSchemaTypeMappingUnderPath(GetSchemaTypeMappingArgs) returns (GetSchemaTypeMappingUnderPathResult);
 
 	/// Format code source.
 	///
@@ -553,7 +606,15 @@ service KclvmService {
 	///     "jsonrpc": "2.0",
 	///     "method": "FormatCode",
 	///     "params": {
-	///         "source": "schema Person {\n    name: str\n    age: int\n}\nperson = Person {\n    name = \"Alice\"\n    age = 18\n}\n"
+	///         "source": "schema Person {
+    name: str
+    age: int
+}
+person = Person {
+    name = \"Alice\"
+    age = 18
+}
+"
 	///     },
 	///     "id": 1
 	/// }
@@ -562,12 +623,20 @@ service KclvmService {
 	/// {
 	///     "jsonrpc": "2.0",
 	///     "result": {
-	///         "formatted": "schema Person {\n    name: str\n    age: int\n}\nperson = Person {\n    name = \"Alice\"\n    age = 18\n}\n"
+	///         "formatted": "schema Person {
+    name: str
+    age: int
+}
+person = Person {
+    name = \"Alice\"
+    age = 18
+}
+"
 	///     },
 	///     "id": 1
 	/// }
 	/// ```
-	rpc FormatCode(FormatCode_Args) returns (FormatCode_Result);
+	rpc FormatCode(FormatCodeArgs) returns (FormatCodeResult);
 
 	/// Format KCL file or directory path contains KCL files and returns the changed file paths.
 	///
@@ -593,7 +662,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc FormatPath(FormatPath_Args) returns (FormatPath_Result);
+	rpc FormatPath(FormatPathArgs) returns (FormatPathResult);
 
 	/// Lint files and return error messages including errors and warnings.
 	///
@@ -619,7 +688,7 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc LintPath(LintPath_Args) returns (LintPath_Result);
+	rpc LintPath(LintPathArgs) returns (LintPathResult);
 
 	/// Validate code using schema and data strings.
 	///
@@ -633,7 +702,11 @@ service KclvmService {
 	///     "jsonrpc": "2.0",
 	///     "method": "ValidateCode",
 	///     "params": {
-	///         "code": "schema Person {\n    name: str\n    age: int\n    check: 0 < age < 120\n}",
+	///         "code": "schema Person {
+    name: str
+    age: int
+    check: 0 < age < 120
+}",
 	///         "data": "{\"name\": \"Alice\", \"age\": 10}"
 	///     },
 	///     "id": 1
@@ -649,14 +722,13 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc ValidateCode(ValidateCode_Args) returns (ValidateCode_Result);
+	rpc ValidateCode(ValidateCodeArgs) returns (ValidateCodeResult);
 
-	rpc ListDepFiles(ListDepFiles_Args) returns (ListDepFiles_Result);
 	/// Build setting file config from args.
 	///
 	/// # Examples
 	///
-	///
+	/// 
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -691,14 +763,14 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc LoadSettingsFiles(LoadSettingsFiles_Args) returns (LoadSettingsFiles_Result);
+	rpc LoadSettingsFiles(LoadSettingsFilesArgs) returns (LoadSettingsFilesResult);
 
 	/// Rename all the occurrences of the target symbol in the files. This API will rewrite files if they contain symbols to be renamed.
 	/// Return the file paths that got changed.
 	///
 	/// # Examples
 	///
-	///
+	/// 
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -721,13 +793,13 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc Rename(Rename_Args) returns (Rename_Result);
+	rpc Rename(RenameArgs) returns (RenameResult);
 
 	/// Rename all the occurrences of the target symbol and return the modified code if any code has been changed. This API won't rewrite files but return the changed code.
 	///
 	/// # Examples
 	///
-	///
+	/// 
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -736,7 +808,8 @@ service KclvmService {
 	///         "package_root": "/mock/path",
 	///         "symbol_path": "a",
 	///         "source_codes": {
-	///             "/mock/path/main.k": "a = 1\nb = a"
+	///             "/mock/path/main.k": "a = 1
+b = a"
 	///         },
 	///         "new_name": "a2"
 	///     },
@@ -748,24 +821,29 @@ service KclvmService {
 	///     "jsonrpc": "2.0",
 	///     "result": {
 	///         "changed_codes": {
-	///             "/mock/path/main.k": "a2 = 1\nb = a2"
+	///             "/mock/path/main.k": "a2 = 1
+b = a2"
 	///         }
 	///     },
 	///     "id": 1
 	/// }
 	/// ```
-	rpc RenameCode(RenameCode_Args) returns (RenameCode_Result);
+	rpc RenameCode(RenameCodeArgs) returns (RenameCodeResult);
 
 	/// Test KCL packages with test arguments.
 	///
 	/// # Examples
 	///
-	///
+	/// 
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
 	///     "method": "Test",
 	///     "params": {
+	///         "exec_args": {
+	///             "work_dir": "./src/testdata/testing/module",
+	///             "k_filename_list": ["main.k"]
+	///         },
 	///         "pkg_list": ["./src/testdata/testing/module/..."]
 	///     },
 	///     "id": 1
@@ -783,13 +861,13 @@ service KclvmService {
 	///     "id": 1
 	/// }
 	/// ```
-	rpc Test(Test_Args) returns (Test_Result);
+	rpc Test(TestArgs) returns (TestResult);
 
 	/// Download and update dependencies defined in the kcl.mod file.
 	///
 	/// # Examples
 	///
-	///
+	/// 
 	/// // Request
 	/// {
 	///     "jsonrpc": "2.0",
@@ -833,28 +911,28 @@ service KclvmService {
 	///     "id": 2
 	/// }
 	/// ```
-	rpc UpdateDependencies(UpdateDependencies_Args) returns (UpdateDependencies_Result);
+	rpc UpdateDependencies(UpdateDependenciesArgs) returns (UpdateDependenciesResult);
 }
 
 // Message for ping request arguments.
-message Ping_Args {
+message PingArgs {
 	// Value to be sent in the ping request.
 	string value = 1;
 }
 
 // Message for ping response.
-message Ping_Result {
+message PingResult {
 	// Value received in the ping response.
 	string value = 1;
 }
 
 // Message for version request arguments. Empty message.
-message GetVersion_Args {
+message GetVersionArgs {
 	// empty
 }
 
 // Message for version response.
-message GetVersion_Result {
+message GetVersionResult {
 	// KCL version.
 	string version = 1;
 	// Checksum of the KCL version.
@@ -866,18 +944,18 @@ message GetVersion_Result {
 }
 
 // Message for list method request arguments. Empty message.
-message ListMethod_Args {
+message ListMethodArgs {
 	// empty
 }
 
 // Message for list method response.
-message ListMethod_Result {
+message ListMethodResult {
 	// List of available method names.
 	repeated string method_name_list = 1;
 }
 
 // Message for parse file request arguments.
-message ParseFile_Args {
+message ParseFileArgs {
 	// Path of the file to be parsed.
 	string path = 1;
 	// Source code to be parsed.
@@ -887,7 +965,7 @@ message ParseFile_Args {
 }
 
 // Message for parse file response.
-message ParseFile_Result {
+message ParseFileResult {
 	// Abstract Syntax Tree (AST) in JSON format.
 	string ast_json = 1;
 	// File dependency paths.
@@ -897,7 +975,7 @@ message ParseFile_Result {
 }
 
 // Message for parse program request arguments.
-message ParseProgram_Args {
+message ParseProgramArgs {
 	// Paths of the program files to be parsed.
 	repeated string paths = 1;
 	// Source codes to be parsed.
@@ -907,7 +985,7 @@ message ParseProgram_Args {
 }
 
 // Message for parse program response.
-message ParseProgram_Result {
+message ParseProgramResult {
 	// Abstract Syntax Tree (AST) in JSON format.
 	string ast_json = 1;
 	// Returns the files in the order they should be compiled.
@@ -917,9 +995,9 @@ message ParseProgram_Result {
 }
 
 // Message for load package request arguments.
-message LoadPackage_Args {
+message LoadPackageArgs {
 	// Arguments for parsing the program.
-	ParseProgram_Args parse_args = 1;
+	ParseProgramArgs parse_args = 1;
 	// Flag indicating whether to resolve AST.
 	bool resolve_ast = 2;
 	// Flag indicating whether to load built-in modules.
@@ -929,7 +1007,7 @@ message LoadPackage_Args {
 }
 
 // Message for load package response.
-message LoadPackage_Result {
+message LoadPackageResult {
 	// Program Abstract Syntax Tree (AST) in JSON format.
 	string program = 1;
 	// Returns the files in the order they should be compiled.
@@ -953,7 +1031,7 @@ message LoadPackage_Result {
 }
 
 // Message for list options response.
-message ListOptions_Result {
+message ListOptionsResult {
 	// List of available options.
 	repeated OptionHelp options = 2;
 }
@@ -1023,7 +1101,7 @@ message ScopeIndex {
 }
 
 // Message for execute program request arguments.
-message ExecProgram_Args {
+message ExecProgramArgs {
 	// Working directory.
 	string work_dir = 1;
 	// List of KCL filenames.
@@ -1060,10 +1138,26 @@ message ExecProgram_Args {
 	repeated string path_selector = 17;
 	// Flag for fast evaluation.
 	bool fast_eval = 18;
+	// Diagnostic output format. One of: pretty, short, arcanist, sarif.
+	// When set to anything other than "pretty", compile/eval errors are
+	// emitted to stderr in the chosen machine-readable format. Falls back
+	// to the `KCL_ERROR_FORMAT` environment variable when empty.
+	string error_format = 19;
+	// Output format selector. One of: yaml, json.
+	// When empty the runtime generates both formats (legacy behaviour).
+	string format = 20;
+	// Emit a side-channel marker in the planned YAML/JSON that names
+	// schema attributes to be carried over to downstream emitters. The
+	// marker is the sibling key `__kcl_info_meta__` whose value is a
+	// list of attribute names (e.g. those decorated with
+	// `@info(type="attr")`). Consumers (CLI/kcl-go) interpret it when
+	// emitting XML. Defaults to false to keep `-o json` / `-o yaml`
+	// output byte-identical to pre-change.
+	bool emit_attribute_metadata = 21;
 }
 
 // Message for execute program response.
-message ExecProgram_Result {
+message ExecProgramResult {
 	// Result in JSON format.
 	string json_result = 1;
 	// Result in YAML format.
@@ -1072,79 +1166,74 @@ message ExecProgram_Result {
 	string log_message = 3;
 	// Error message from execution.
 	string err_message = 4;
+	// Source Map v3 (tc39.es/source-map) JSON mapping the generated YAML
+	// back to the originating KCL source. Populated only when the caller
+	// requests a source map; empty otherwise.
+	optional string sourcemap = 5;
 }
 
 // Message for build program request arguments.
-message BuildProgram_Args {
+message BuildProgramArgs {
 	// Arguments for executing the program.
-	ExecProgram_Args exec_args = 1;
+	ExecProgramArgs exec_args = 1;
 	// Output path.
 	string output = 2;
 }
 
 // Message for build program response.
-message BuildProgram_Result {
+message BuildProgramResult {
 	// Path of the built program.
 	string path = 1;
 }
 
 // Message for execute artifact request arguments.
-message ExecArtifact_Args {
+message ExecArtifactArgs {
 	// Path of the artifact.
 	string path = 1;
 	// Arguments for executing the program.
-	ExecProgram_Args exec_args = 2;
-}
-
-// Message for reset plugin request arguments.
-message ResetPlugin_Args {
-	// Root path for the plugin.
-	string plugin_root = 1;
-}
-
-// Message for reset plugin response. Empty message.
-message ResetPlugin_Result {
-	// empty
+	ExecProgramArgs exec_args = 2;
 }
 
 // Message for format code request arguments.
-message FormatCode_Args {
+message FormatCodeArgs {
 	// Source code to be formatted.
 	string source = 1;
 }
 
 // Message for format code response.
-message FormatCode_Result {
+message FormatCodeResult {
 	// Formatted code as bytes.
 	bytes formatted = 1;
 }
 
 // Message for format file path request arguments.
-message FormatPath_Args {
+message FormatPathArgs {
 	// Path of the file to format.
 	string path = 1;
+	// Whether to dry run the formatting.
+	bool dry_run = 2;
 }
 
 // Message for format file path response.
-message FormatPath_Result {
+message FormatPathResult {
 	// List of changed file paths.
 	repeated string changed_paths = 1;
 }
 
 // Message for lint file path request arguments.
-message LintPath_Args {
+message LintPathArgs {
 	// Paths of the files to lint.
 	repeated string paths = 1;
 }
 
 // Message for lint file path response.
-message LintPath_Result {
+message LintPathResult {
 	// List of lint results.
 	repeated string results = 1;
 }
 
 // Message for override file request arguments.
-message OverrideFile_Args {
+message OverrideFileArgs {
 	// Path of the file to override.
 	string file = 1;
 	// List of override specifications.
@@ -1154,7 +1243,7 @@ message OverrideFile_Args {
 }
 
 // Message for override file response.
-message OverrideFile_Result {
+message OverrideFileResult {
 	// Result of the override operation.
 	bool result = 1;
 	// List of parse errors encountered.
@@ -1162,7 +1251,7 @@ message OverrideFile_Result {
 }
 
 // Message for list variables options.
-message ListVariables_Options {
+message ListVariablesOptions {
 	// Flag to merge program configuration.
 	bool merge_program = 1;
 }
@@ -1174,17 +1263,17 @@ message VariableList {
 }
 
 // Message for list variables request arguments.
-message ListVariables_Args {
+message ListVariablesArgs {
 	// Files to be processed.
 	repeated string files = 1;
 	// Specifications for variables.
 	repeated string specs = 2;
 	// Options for listing variables.
-	ListVariables_Options options = 3;
+	ListVariablesOptions options = 3;
 }
 
 // Message for list variables response.
-message ListVariables_Result {
+message ListVariablesResult {
 	// Map of variable lists by file.
 	map<string, VariableList> variables = 1;
 	// List of unsupported codes.
@@ -1216,21 +1305,32 @@ message MapEntry {
 }
 
 // Message for get schema type mapping request arguments.
-message GetSchemaTypeMapping_Args {
+message GetSchemaTypeMappingArgs {
 	// Arguments for executing the program.
-	ExecProgram_Args exec_args = 1;
+	ExecProgramArgs exec_args = 1;
 	// Name of the schema.
 	string schema_name = 2;
 }
 
 // Message for get schema type mapping response.
-message GetSchemaTypeMapping_Result {
+message GetSchemaTypeMappingResult {
 	// Map of schema type mappings.
 	map<string, KclType> schema_type_mapping = 1;
 }
 
+// Message for get schema type mapping response.
+message GetSchemaTypeMappingUnderPathResult {
+	// Map of pkg and schema types mappings.
+	map<string, SchemaTypes> schema_type_mapping = 1;
+}
+
+message SchemaTypes {
+	// List of schema type mappings.
+	repeated KclType schema_type = 1;
+}
+
 // Message for validate code request arguments.
-message ValidateCode_Args {
+message ValidateCodeArgs {
 	// Path to the data file.
 	string datafile = 1;
 	// Data content.
@@ -1245,10 +1345,12 @@ message ValidateCode_Args {
 	string attribute_name = 6;
 	// Format of the validation (e.g., "json", "yaml").
 	string format = 7;
+	// List of external packages updated.
+	repeated ExternalPkg external_pkgs = 8;
 }
 
 // Message for validate code response.
-message ValidateCode_Result {
+message ValidateCodeResult {
 	// Flag indicating if validation was successful.
 	bool success = 1;
 	// Error message from validation.
@@ -1265,35 +1367,13 @@ message Position {
 	string filename = 3;
 }
 
-// Message for list dependency files request arguments.
-message ListDepFiles_Args {
-	// Working directory.
-	string work_dir = 1;
-	// Flag to use absolute paths.
-	bool use_abs_path = 2;
-	// Flag to include all files.
-	bool include_all = 3;
-	// Flag to use fast parser.
-	bool use_fast_parser = 4;
-}
-
-// Message for list dependency files response.
-message ListDepFiles_Result {
-	// Root package path.
-	string pkgroot = 1;
-	// Package path.
-	string pkgpath = 2;
-	// List of file paths in the package.
-	repeated string files = 3;
-}
-
 // ---------------------------------------------------------------------------------
 // LoadSettingsFiles API
 //	Input work dir and setting files and return the merged kcl singleton config.
 // ---------------------------------------------------------------------------------
 
 // Message for load settings files request arguments.
-message LoadSettingsFiles_Args {
+message LoadSettingsFilesArgs {
 	// Working directory.
 	string work_dir = 1;
 	// Setting files to load.
@@ -1301,7 +1381,7 @@ message LoadSettingsFiles_Args {
 }
 
 // Message for load settings files response.
-message LoadSettingsFiles_Result {
+message LoadSettingsFilesResult {
 	// KCL CLI configuration.
 	CliConfig kcl_cli_configs = 1;
 	// List of KCL options as key-value pairs.
@@ -1346,12 +1426,12 @@ message KeyValuePair {
 
 // ---------------------------------------------------------------------------------
 // Rename API
-//	Find all the occurrences of the target symbol and rename them.
+//	Find all the occurrences of the target symbol and rename them. 
 //	This API will rewrite files if they contain symbols to be renamed.
 // ---------------------------------------------------------------------------------
 
 // Message for rename request arguments.
-message Rename_Args {
+message RenameArgs {
 	// File path to the package root.
 	string package_root = 1;
 	// Path to the target symbol to be renamed.
@@ -1363,7 +1443,7 @@ message Rename_Args {
 }
 
 // Message for rename response.
-message Rename_Result {
+message RenameResult {
 	// List of file paths that got changed.
 	repeated string changed_files = 1;
 }
@@ -1375,7 +1455,7 @@ message Rename_Result {
 // ---------------------------------------------------------------------------------
 
 // Message for rename code request arguments.
-message RenameCode_Args {
+message RenameCodeArgs {
 	// File path to the package root.
 	string package_root = 1;
 	// Path to the target symbol to be renamed.
@@ -1387,7 +1467,7 @@ message RenameCode_Args {
 }
 
 // Message for rename code response.
-message RenameCode_Result {
+message RenameCodeResult {
 	// Map of changed code with filename as key and modified code as value.
 	map<string, string> changed_codes = 1;
 }
@@ -1398,21 +1478,29 @@ message RenameCode_Result {
 // ---------------------------------------------------------------------------------
 
 // Message for test request arguments.
-message Test_Args {
+message TestArgs {
 	// Execution program arguments.
-	ExecProgram_Args exec_args = 1;
+	ExecProgramArgs exec_args = 1;
 	// List of KCL package paths to be tested.
 	repeated string pkg_list = 2;
 	// Regular expression for filtering tests to run.
 	string run_regexp = 3;
 	// Flag to stop the test run on the first failure.
 	bool fail_fast = 4;
+	// Flag to collect line-level coverage data while running tests. When true,
+	// the test tool records, for every top-level KCL statement that executes,
+	// the source file path and line number. The aggregated result is returned
+	// in [TestResult.coverage]. Defaults to false.
+	bool coverage = 5;
 }
 
 // Message for test response.
-message Test_Result {
+message TestResult {
 	// List of test case information.
 	repeated TestCaseInfo info = 2;
+	// Aggregated coverage report. Populated only when
+	// [TestArgs.coverage] is true; empty otherwise.
+	TestCoverageReport coverage = 3;
 }
 
 // Message representing information about a single test case.
@@ -1425,6 +1513,44 @@ message TestCaseInfo {
 	uint64 duration = 3;
 	// Log message from the test case.
 	string log_message = 4;
+	// Per-case line coverage. Populated only when [TestArgs.coverage]
+	// is true; empty otherwise. Each entry maps "filename:line" to the
+	// number of times that line was entered while running this case.
+	map<string, uint64> line_hits = 5;
+}
+
+// Message describing aggregated coverage data for a single source file.
+message FileCoverage {
+	// Source file path, relative to the package root when possible.
+	string filename = 1;
+	// Sorted list of lines that executed at least once across all tests
+	// that covered this file.
+	repeated uint64 covered_lines = 2;
+	// Sorted list of lines in this file that contain an executable
+	// statement (i.e. lines that *could* be covered). Lines that contain
+	// only blank lines, comments or non-executable tokens are excluded.
+	repeated uint64 executable_lines = 3;
+	// Per-line execution count across all tests that covered this file.
+	// Keys are line numbers (1-based); values are hit counts.
+	map<uint64, uint64> line_hits = 4;
+}
+
+// Message describing aggregated coverage across the entire test run.
+message TestCoverageReport {
+	// Per-file coverage keyed by source file path.
+	map<string, FileCoverage> files = 1;
+	// Roll-up of all files in [TestCoverageReport.files].
+	CoverageSummary summary = 2;
+}
+
+// Roll-up coverage metrics.
+message CoverageSummary {
+	// Number of executable lines that were hit by at least one test.
+	uint64 covered = 1;
+	// Total number of executable lines discovered.
+	uint64 executable = 2;
+	// Coverage percentage in the inclusive range [0.0, 100.0].
+	double percent = 3;
 }
 
 // ---------------------------------------------------------------------------------
@@ -1433,7 +1559,7 @@ message TestCaseInfo {
 // ---------------------------------------------------------------------------------
 
 // Message for update dependencies request arguments.
-message UpdateDependencies_Args {
+message UpdateDependenciesArgs {
 	// Path to the manifest file.
 	string manifest_path = 1;
 	// Flag to vendor dependencies locally.
@@ -1441,7 +1567,7 @@ message UpdateDependencies_Args {
 }
 
 // Message for update dependencies response.
-message UpdateDependencies_Result {
+message UpdateDependenciesResult {
 	// List of external packages updated.
 	repeated ExternalPkg external_pkgs = 3;
 }
@@ -1452,7 +1578,7 @@ message UpdateDependencies_Result {
 
 // Message representing a KCL type.
 message KclType {
-	// Type name (e.g., schema, dict, list, str, int, float, bool, any, union, number_multiplier).
+	// Type name (e.g., schema, dict, list, str, int, float, bool, any, union, function, number_multiplier).
 	string type = 1;
 	// Union types if applicable.
 	repeated KclType union_types = 2;
@@ -1484,6 +1610,31 @@ message KclType {
 	map<string, Example> examples = 15;
 	// Base schema if applicable.
 	KclType base_schema = 16;
+	// Function type if the KclType is a function.
+	optional FunctionType function = 17;
+	// Optional schema index signature
+	optional IndexSignature index_signature = 18;
+}
+
+message FunctionType {
+	repeated Parameter params = 1;
+	KclType return_ty = 2;
+}
+
+message Parameter {
+	string name = 1;
+	KclType ty = 2;
+}
+
+// Message representing an index signature in KCL.
+message IndexSignature {
+	// The optional index signature key name
+	optional string key_name = 1;
+	// Key type of the index signature.
+	KclType key = 2;
+	// Value type of the index signature.
+	KclType val = 3;
+	bool any_other = 4;
 }
 
 // Message representing a decorator in KCL.
