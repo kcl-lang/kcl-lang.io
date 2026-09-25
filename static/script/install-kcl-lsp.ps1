@@ -114,7 +114,16 @@ function GetWindowsAsset {
         return $CustomAssetFactory.Invoke($Release)
     }
     else {
-        $windowsAsset = $Release | Select-Object -ExpandProperty assets | Where-Object { $_.name -Like "*windows.zip" }
+        # Prefer the per-binary release published since v0.13.0; fall back to
+        # the legacy *windows.zip that bundles the whole kclvm tree.
+        $windowsAsset = $Release | Select-Object -ExpandProperty assets |
+            Where-Object { $_.name -Like "kcl-language-server-*windows.zip" } |
+            Select-Object -First 1
+        if (!$windowsAsset) {
+            $windowsAsset = $Release | Select-Object -ExpandProperty assets |
+                Where-Object { $_.name -Like "*windows.zip" } |
+                Select-Object -First 1
+        }
         if (!$windowsAsset) {
             throw "Cannot find the windows KCL language-server binary"
         }
@@ -150,7 +159,17 @@ if (!(Test-Path $zipFilePath -PathType Leaf)) {
 Write-Output "Extracting $zipFilePath..."
 $tempFolder = New-Item -ItemType Directory -Path "$env:TEMP\tempfolder" -Force
 Expand-Archive -Force -Path $zipFilePath -DestinationPath $tempFolder.FullName
-Copy-Item -Path "$tempFolder\bin\$KCLCliFileName" -Destination "$KCLRoot\bin"
+
+# The per-binary release (v0.13.0+) puts kcl-language-server.exe at the zip
+# root; older releases wrap it inside a bin/ folder.
+$sourceExe = Join-Path $tempFolder.FullName $KCLCliFileName
+if (-not (Test-Path $sourceExe -PathType Leaf)) {
+    $sourceExe = Join-Path $tempFolder.FullName "bin\$KCLCliFileName"
+}
+if (-not (Test-Path $sourceExe -PathType Leaf)) {
+    throw "Failed to find KCL language server binary in $zipFilePath"
+}
+Copy-Item -Path $sourceExe -Destination "$KCLRoot\bin"
 
 Microsoft.Powershell.Archive\Expand-Archive -Force -Path $zipFilePath -DestinationPath $KCLRoot
 # C:\kclvm\bin\kcl-language-server
