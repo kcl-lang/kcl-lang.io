@@ -2853,3 +2853,100 @@ schema Deployment:
 ```
 
 A practical rule: prefer `Undefined` (no assignment) for new optional fields, and reserve `None` for the rare cases where the rendered output must contain an explicit `null`.
+
+## 76. How do I write `all(x > 0)` / `any(x < 0)` / `filter(...)` / `map(...)` for a list?
+
+KCL's quantifier story is **built-ins for truthiness plus comprehensions for predicates** — there is **no** `all(list, lambda)` / `filter(lambda, list)` / `map(lambda, list)` function in the language, despite what LLM-generated answers sometimes suggest (the original report that motivated this entry is [kcl-lang/kcl-lang.io#60](https://github.com/kcl-lang/kcl-lang.io/issues/60)).
+
+The two built-ins ([docs](https://www.kcl-lang.io/docs/reference/model/builtin#all_true)) take a list/dict and return a `bool`:
+
+```kcl
+all_true([])                         # True  — empty input is vacuously true
+all_true([True, True])               # True
+all_true([True, False])              # False
+any_true([])                         # False — empty input is vacuously false
+any_true([False, True])              # True
+```
+
+For "all elements satisfy a predicate" or "any element satisfies a predicate", pair them with a list comprehension:
+
+```kcl
+nums = [1, 2, 3, 4, 5]
+
+all_pos     = all_true([x > 0 for x in nums])      # True
+any_zero    = all_true([x == 0 for x in nums])     # False
+all_below50 = all_true([x < 50 for x in nums])      # True
+
+# "filter": produce the sublist that passes the predicate
+positives = [x for x in nums if x > 2]              # [3, 4, 5]
+
+# "map": transform each element
+squared   = [x * x for x in nums]                  # [1, 4, 9, 16, 25]
+
+# Reduce / fold is `reduce(reducer, list, initial)`:
+product   = reduce(lambda acc: int, item: int -> int { acc * item }, nums, 1)  # 120
+```
+
+The pattern translates to dicts and strings the same way — `[x for k, x in d if ...]` walks the entries, and `for ch in s` walks the characters of a string.
+
+## 77. Where do the CGo dependencies of the KCL Go SDK live?
+
+The Go SDK ([`kcl-lang/kcl-go`](https://github.com/kcl-lang/kcl-go)) depends on [`kcl-lang/lib`](https://github.com/kcl-lang/lib), which **vendors the native `libkclvm_cli_cdylib` shared library per platform** under `lib/go/lib/<os>-<arch>/`:
+
+| Platform directory | Shared library |
+|---|---|
+| `lib/go/lib/darwin-amd64/` | `libkclvm_cli_cdylib.dylib` |
+| `lib/go/lib/darwin-arm64/` | `libkclvm_cli_cdylib.dylib` |
+| `lib/go/lib/linux-amd64/` | `libkclvm_cli_cdylib.so` |
+| `lib/go/lib/linux-arm64/` | `libkclvm_cli_cdylib.so` |
+| `lib/go/lib/linux-musl-amd64/` | `libkclvm_cli_cdylib.so` |
+| `lib/go/lib/linux-musl-arm64/` | `libkclvm_cli_cdylib.so` |
+| `lib/go/lib/windows-amd64/` | `kclvm_cli_cdylib.dll` |
+| `lib/go/lib/windows-arm64/` | `kclvm_cli_cdylib.dll` |
+
+Build-tag-selected Go files (`kcl_lib_<os>_<arch>.go`) pick the correct file per `GOOS`/`GOARCH` automatically — no manual `CGO_LDFLAGS` is needed for the supported targets.
+
+**When you still need a manual override** (e.g. Bazel strips `//external/` paths and reports `could not embed lib/linux-amd64/libkclvm_cli_cdylib.so: no matching files found`, as in the original report at [kcl-lang/kcl-lang.io#446](https://github.com/kcl-lang/kcl-lang.io/issues/446)):
+
+1. Confirm the platform directory above exists for your target. If it doesn't (FreeBSD, an Alpine variant, a custom musl triple, …), you'll need to build the shared library yourself from [`kcl-lang/kcl`](https://github.com/kcl-lang/kcl) (`cargo build --release -p kclvm-cli-cdylib`) and drop the output into a new `lib/go/lib/<os>-<arch>/` folder plus a matching `kcl_lib_<os>_<arch>.go`.
+2. For Bazel specifically, use `go_repository` with the `replace` directive pinned to the `kcl-lang/lib` commit you built against, and add a `cgo` `srcs` glob that points at the correct `lib/go/lib/<os>-<arch>/*.{so,dylib,dll}` path. Avoid `//external/...` references — Bazel sandboxes them away.
+
+The reference runtime is also mirrored under each language subdirectory (`cpp/`, `java/`, `python/`, `nodejs/`, `dotnet/`, `wasm/`, `swift/`, …) if you're wiring the same library into a different binding.
+
+## 78. What's the KCL equivalent of `cue export` (load a YAML/JSON file as input)?
+
+`cue export data.yaml` treats a YAML file as a *value* the schema is evaluated against. KCL does **not** do this directly at the CLI — `kcl run -Y data.yaml main.k` only **validates** the YAML against the schemas declared in `main.k`, it doesn't let the YAML drive the output (this came up in [kcl-lang/kcl-lang.io#482](https://github.com/kcl-lang/kcl-lang.io/issues/482)).
+
+The KCL idiom is to **read the file inside the program** with `file.read` + `yaml.decode` and then re-encode the merged value:
+
+```kcl
+import file
+import yaml
+
+configYaml = yaml.decode(file.read("data.yaml"))
+yaml.encode(configYaml)
+```
+
+Running against a sibling `data.yaml`:
+
+```yaml
+# data.yaml
+name: alice
+tags:
+  - admin
+  - ops
+```
+
+emits:
+
+```yaml
+configYaml:
+  name: alice
+  tags:
+    - admin
+    - ops
+```
+
+If you want the YAML keys to land at the **top level of the output** (so the YAML is treated as the root document rather than a sub-value), use `kcl -d data.yaml main.k` to feed the YAML in as CLI option overrides — KCL merges the keys into the program's top-level schema attributes.
+
+If you specifically need CUE-style "embed this YAML file at build time", use `file.read` with a path relative to the module root, or pin the path with the git ref syntax introduced by [kcl-lang/kcl#2107](https://github.com/kcl-lang/kcl/issues/2107) (`file.read("path/to/data.yaml:main")`) so the import survives across checkouts.
