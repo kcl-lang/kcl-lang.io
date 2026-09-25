@@ -2734,7 +2734,7 @@ _b: 2
 
 ## 71. Any in dict, allow using any type
 
-In KCL, if you want a dictionary to accept any type of value, you should use the lowercase `any` keyword or omit the value type entirely. Do not use the capitalized `Any`. 
+In KCL, if you want a dictionary to accept any type of value, you should use the lowercase `any` keyword or omit the value type entirely. Do not use the capitalized `Any`.
 
 Here is an example:
 
@@ -2743,3 +2743,113 @@ config1: {str:any} = {'key1': 'value', 'key2': 1}
 
 config2: {str:} = {'key': 'value'}
 ```
+
+## 72. How to use keys with hyphens (like `api-Version`) in a schema?
+
+KCL currently rejects dashes inside identifiers, so a bare `api-Version: str` is a parse error. The workaround is to write the attribute as a bracketed literal key:
+
+```kcl
+schema Config:
+    ["api-Version"]: str
+    ["x-ratelimit"]: int
+```
+
+The bracketed form accepts any valid dict key (`str` literal, including hyphens, dots, and `/`), so it works for the Kustomize / Kubernetes-typical cases (`apiVersion`, `app.kubernetes.io/name`, etc.) without any compiler changes.
+
+A native `api-Version: str` form is being tracked by [kcl-lang/kcl#1867](https://github.com/kcl-lang/kcl/issues/1867) — the design KEP at `kcl/docs/design/kep-1867-dash-identifiers.md` splits the work into three phases (top-level config keys → schema attributes → module paths). Phase 1 is the safest place to start because it keeps the lexer change isolated from expression context (`a - b` would otherwise look like a single name).
+
+## 73. How to check if an object is an instance of a schema (or its children)?
+
+KCL does not have a built-in `isinstance` / `is` operator for schemas — the `is` keyword is only value equality, not a type test. To check whether a value is an instance of a schema (or any of its sub-schemas), compare its `typeof` to the schema name(s):
+
+```kcl
+schema A:
+    name: str
+
+schema B(A):
+    foo: str
+
+schema B1(B):
+    foo = "1"
+
+schema B2(B):
+    foo = "2"
+
+is_B = lambda o: A {
+    typeof(o) in ["B", "B1", "B2"]
+}
+
+a  = A  {name = "a"}
+b  = B  {name = "b", foo = "3"}
+b1 = B1 {name = "b1"}
+b2 = B2 {name = "b2"}
+
+check_a  = is_B(a)   # false
+check_b  = is_B(b)   # true
+check_b1 = is_B(b1)  # true
+check_b2 = is_B(b2)  # true
+```
+
+Use `typeof(o, full_name=True)` when schemas share a short name across packages (e.g. `pkg.B` vs. `__main__.B`).
+
+If you find yourself enumerating subtypes repeatedly, wrap the predicate in a `lambda` (as above) or generate the schema-name list from a `mixin` so the check stays in sync when new children are added.
+
+## 74. How to test whether an optional attribute is set and non-empty?
+
+Optional schema attributes can be `Undefined` (not set), `None` (explicitly null), or any falsy value of their declared type (e.g. `""`, `0`, `[]`). The conditional expression treats all of those as false:
+
+```kcl
+schema Person:
+    name?: str
+    tags?: [str]
+
+p1 = Person {name = "Alice", tags = ["admin"]}
+p2 = Person {}                              # both fields Undefined
+p3 = Person {name = "", tags = []}          # both fields empty
+
+# `if attr:` is the canonical "set AND non-empty" check.
+has_name1 = True if p1.name else False      # True
+has_name2 = True if p2.name else False      # False
+has_tags1 = True if p1.tags else False      # True
+has_tags3 = True if p3.tags else False      # False (empty list)
+```
+
+To distinguish "explicitly null" from "not set at all", use `isnullish(...)`:
+
+```kcl
+import regex
+
+is_unset = isnullish(p2.name)        # True  — was never assigned
+is_null  = isnullish(Person{name = None}.name)  # True  — assigned None
+```
+
+Use `regex.match` or the value's own methods if you need a deeper check (e.g. "the string is non-empty after trimming whitespace").
+
+## 75. What's the difference between `None` and `Undefined`?
+
+Both denote absence, but they behave differently in the output:
+
+| | `None` | `Undefined` |
+|---|---|---|
+| YAML/JSON output | `null` (unless `-n` flag is set) | field is always omitted |
+| Truthy check | false | false |
+| `isnullish(x)` | true | true |
+| Reading an unset optional attribute | returns `Undefined` | returns `Undefined` |
+
+**Use `Undefined`** (i.e. just don't assign the variable / attribute) when you want the field to be absent from the rendered output — this is the common case for "optional fields that don't appear unless the user sets them".
+
+**Use `None`** when you want the field to appear in the output as an explicit `null`, e.g. when the downstream consumer (Kubernetes API, a JSON schema validator) needs the key to be present with a null value. The `kcl -n` (a.k.a. `--disable-none`) flag drops *both* `Undefined` and explicit-`None` fields from the output, so `None` is only meaningful when you want the `null` to actually render.
+
+```kcl
+# Top-level variables: the difference is visible in the output.
+a = 1
+b = None        # -> b: null  (omitted under `kcl -n`)
+c = Undefined   # -> never appears in the output
+
+# Optional schema attributes use the same convention: leave unset
+# (Undefined) and the field disappears from the rendered schema.
+schema Deployment:
+    command?: [str]    # omitted unless set
+```
+
+A practical rule: prefer `Undefined` (no assignment) for new optional fields, and reserve `None` for the rare cases where the rendered output must contain an explicit `null`.
