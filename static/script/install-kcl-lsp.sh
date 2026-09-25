@@ -127,7 +127,7 @@ getSystemInfo() {
 
 verifySupported() {
     releaseTag=$1
-    local supported=(darwin-amd64 darwin-arm64 linux-amd64 linux-arm linux-arm64 linux-musl-amd64)
+    local supported=(darwin-amd64 darwin-arm64 linux-amd64 linux-arm64 linux-musl-amd64 linux-musl-arm64)
     local current_osarch="${OS}-${ARCH}"
 
     for osarch in "${supported[@]}"; do
@@ -187,63 +187,90 @@ getLatestRelease() {
 downloadFile() {
     LATEST_RELEASE_TAG=$1
 
-    KCL_CLI_ARTIFACT="kclvm-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
+    NEW_ARTIFACT="kcl-language-server-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
+    OLD_ARTIFACT="kclvm-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
     DOWNLOAD_BASE="https://github.com/${GITHUB_ORG}/${GITHUB_REPO}/releases/download"
-    DOWNLOAD_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/${KCL_CLI_ARTIFACT}"
 
     # Create the temp directory
     KCL_TMP_ROOT=$(mktemp -dt kcl-install-XXXXXX)
-    ARTIFACT_TMP_FILE="$KCL_TMP_ROOT/$KCL_CLI_ARTIFACT"
 
-    info "Downloading $DOWNLOAD_URL ..."
-    if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-        curl -SsL "$DOWNLOAD_URL" -o "$ARTIFACT_TMP_FILE"
+    # Prefer the per-binary release published since v0.13.0. Fall back to the
+    # legacy combined kclvm tarball for older releases that don't ship the
+    # per-binary asset yet.
+    NEW_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/${NEW_ARTIFACT}"
+    info "Probing $NEW_URL ..."
+    if probeUrl "$NEW_URL"; then
+        info "Downloading $NEW_URL ..."
+        KCL_CLI_ARTIFACT="$NEW_ARTIFACT"
+        KCL_TARBALL_LAYOUT="new"
+        ARTIFACT_TMP_FILE="$KCL_TMP_ROOT/$KCL_CLI_ARTIFACT"
+        if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
+            curl -SsL "$NEW_URL" -o "$ARTIFACT_TMP_FILE"
+        else
+            wget -q -O "$ARTIFACT_TMP_FILE" "$NEW_URL"
+        fi
     else
-        wget -q -O "$ARTIFACT_TMP_FILE" "$DOWNLOAD_URL"
+        DOWNLOAD_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/${OLD_ARTIFACT}"
+        info "New asset not available, falling back to $DOWNLOAD_URL ..."
+        KCL_CLI_ARTIFACT="$OLD_ARTIFACT"
+        KCL_TARBALL_LAYOUT="legacy"
+        ARTIFACT_TMP_FILE="$KCL_TMP_ROOT/$KCL_CLI_ARTIFACT"
+        if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
+            curl -SsL "$DOWNLOAD_URL" -o "$ARTIFACT_TMP_FILE"
+        else
+            wget -q -O "$ARTIFACT_TMP_FILE" "$DOWNLOAD_URL"
+        fi
     fi
 
     if [ ! -f "$ARTIFACT_TMP_FILE" ]; then
-        error "Failed to download $DOWNLOAD_URL ..."
+        error "Failed to download ${NEW_URL} or ${DOWNLOAD_URL:-$NEW_URL} ..."
         exit 1
     else
-        info "Scucessful to download $DOWNLOAD_URL"
+        info "Successful to download $ARTIFACT_TMP_FILE"
+    fi
+}
+
+probeUrl() {
+    local url="$1"
+    if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
+        local httpstatus
+        httpstatus=$(curl -sSLI -o /dev/null -w "%{http_code}" "$url" || echo "000")
+        [ "$httpstatus" = "200" ]
+    else
+        wget -q --spider "$url"
     fi
 }
 
 isReleaseAvailable() {
     LATEST_RELEASE_TAG=$1
 
-    KCL_CLI_ARTIFACT="kclvm-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
     DOWNLOAD_BASE="https://github.com/${GITHUB_ORG}/${GITHUB_REPO}/releases/download"
-    DOWNLOAD_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/${KCL_CLI_ARTIFACT}"
+    NEW_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/kcl-language-server-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
+    OLD_URL="${DOWNLOAD_BASE}/${LATEST_RELEASE_TAG}/kclvm-${LATEST_RELEASE_TAG}-${OS}-${ARCH}.tar.gz"
 
-    if [ "$KCL_HTTP_REQUEST_CLI" == "curl" ]; then
-        httpstatus=$(curl -sSLI -o /dev/null -w "%{http_code}" "$DOWNLOAD_URL")
-        if [ "$httpstatus" == "200" ]; then
-            return 0
-        fi
-    else
-        wget -q --spider "$DOWNLOAD_URL"
-        exitstatus=$?
-        if [ $exitstatus -eq 0 ]; then
-            return 0
-        fi
-    fi
-    return 1
+    probeUrl "$NEW_URL" || probeUrl "$OLD_URL"
 }
 
 installFile() {
     tar xf $ARTIFACT_TMP_FILE -C $KCL_TMP_ROOT
-    local tmp_kclvm_folder=$KCL_TMP_ROOT/kclvm
 
-    if [ ! -f "$tmp_kclvm_folder/bin/kcl-language-server" ]; then
+    # The per-binary release (v0.13.0+) ships the executable at the tarball
+    # root; older releases wrap it inside a kclvm/ directory.
+    local bin_path
+    if [ "${KCL_TARBALL_LAYOUT:-legacy}" = "new" ]; then
+        bin_path="$KCL_TMP_ROOT/$KCL_CLI_FILENAME"
+    else
+        bin_path="$KCL_TMP_ROOT/kclvm/bin/$KCL_CLI_FILENAME"
+    fi
+
+    if [ ! -f "$bin_path" ]; then
         error "Failed to unpack KCL language server executable."
         exit 1
     fi
 
-    # Copy temp kclvm folder into the target installation directory.
-    info "Copy the kcl language server binary $tmp_kclvm_folder/bin/kcl-language-server into the target installation directory $KCL_INSTALL_DIR"
-    runAsRoot cp -f $tmp_kclvm_folder/bin/kcl-language-server $KCL_INSTALL_DIR/bin
+    # Copy the binary into the target installation directory.
+    info "Copy the kcl language server binary $bin_path into the target installation directory $KCL_INSTALL_DIR"
+    runAsRoot cp -f "$bin_path" $KCL_INSTALL_DIR/bin
 
     if [ -f "$KCL_CLI_FILE" ]; then
         ensureMuslDependencies
