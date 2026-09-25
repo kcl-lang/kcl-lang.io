@@ -1,3 +1,0 @@
-# Git Repository
-
-Coming Soon

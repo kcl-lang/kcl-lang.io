@@ -26,3 +26,6 @@ yarn-error.log*
 .terraform
 .terraform.lock.hcl
 pnpm-lock.yaml
+
+# Local backup tarballs (git history is the source of truth)
+archive/
