@@ -116,12 +116,16 @@ function GetWindowsAsset {
     else {
         # Prefer the per-binary release published since v0.13.0; fall back to
         # the legacy *windows.zip that bundles the whole kclvm tree.
+        # Note: the per-binary asset is named
+        #   kcl-language-server-v0.13.0-windows-amd64.zip
+        # so the glob must allow an arch suffix between "windows" and ".zip",
+        # not just `*windows.zip`.
         $windowsAsset = $Release | Select-Object -ExpandProperty assets |
-            Where-Object { $_.name -Like "kcl-language-server-*windows.zip" } |
+            Where-Object { $_.name -Like "kcl-language-server-*windows*.zip" } |
             Select-Object -First 1
         if (!$windowsAsset) {
             $windowsAsset = $Release | Select-Object -ExpandProperty assets |
-                Where-Object { $_.name -Like "*windows.zip" } |
+                Where-Object { $_.name -Like "*windows*.zip" } |
                 Select-Object -First 1
         }
         if (!$windowsAsset) {
