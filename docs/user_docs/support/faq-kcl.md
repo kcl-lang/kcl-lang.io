@@ -3028,3 +3028,68 @@ result = "{a}-{b}-{c}".format(
 ```
 
 A trailing comma is purely a formatting convenience — it does **not** introduce an extra empty element (so `[1, 2,]` is `[1, 2]`, not `[1, 2, Undefined]`). It also does not change parsing semantics anywhere; multi-line expressions still require their closing token (`]`, `}`, `)`) to be on a line of its own or on the same line as the last element.
+## 81. How to use the string `format` member function (like Python's `str.format`)?
+
+KCL strings have a `format` member function whose placeholder syntax follows Python's `str.format`: positional `{}` / indexed `{0}`, keyword `{name}`, and `{{` / `}}` for literal braces. The format spec after `:` supports a useful subset of Python's format-spec mini-language (all examples verified with kcl 0.12.10):
+
+```kcl
+"{} comes before {}".format("a", "b")          # a comes before b
+"{0} and {1} and {0}".format("x", "y")         # x and y and x
+"{name} is {age}".format(name = "kcl", age = 3) # kcl is 3
+"{{literal}} {}".format("v")                   # {literal} v
+
+"{:.2f}".format(3.14159)     # 3.14           — float precision
+"{:10.3f}|".format(3.14159)  #      3.142|    — width + precision (numbers only)
+"{:+d}".format(42)           # +42            — explicit sign
+"{:05d}".format(42)          # 00042          — zero padding
+"{:x}".format(255)           # ff             — hex (also {:b}, {:o})
+"{:,}".format(1234567)       # 1,234,567      — thousands separator
+"{:e}".format(12345.678)     # 1.234568e+04   — scientific notation
+"{:%}".format(0.25)          # 25.000000%     — percent
+```
+
+Notable gaps compared with Python — some specs are silently ignored, and nested fields are an error:
+
+- Alignment/fill is **not** applied to strings: `"{:>10}".format("hi")` returns `"hi"`, not `"        hi"`.
+- String precision is **not** applied: `"{:.3s}".format("hello")` returns `"hello"`, not `"hel"`.
+- Nested replacement fields are unsupported: `"{:{}}".format(5, "d")` raises `Invalid format specifier`.
+
+For string concatenation, `startswith`/`endswith`, `replace`, and other string operations, see [FAQ #12](#12-how-to-concatenate-strings-format-strings-check-string-prefixes-and-suffixes-and-replace-string-content). This entry was added following [kcl-lang/kcl-lang.io#24](https://github.com/kcl-lang/kcl-lang.io/issues/24).
+
+## 82. What is the relationship between the `file` list in `kcl.yaml` and the `.k` files in a compiled directory? Are they combined?
+
+No — they are **not** combined. When `kcl.yaml` declares `kcl_cli_configs.file`, that list **replaces** the file/directory arguments given on the command line instead of merging with them (verified with kcl 0.12.10):
+
+```
+kcl1/
+├── kcl.yaml    # kcl_cli_configs: {file: [../kcl2/main.k]}
+└── main.k      # a = "from-kcl1"
+kcl2/
+└── main.k      # b = "from-kcl2"
+```
+
+```bash
+$ kcl kcl1 -Y kcl1/kcl.yaml
+b: from-kcl2          # ONLY the files listed in kcl.yaml are compiled
+$ kcl kcl1            # the kcl.yaml inside the compiled directory is auto-loaded
+b: from-kcl2
+$ kcl kcl1 -Y /dev/null   # skip the auto-loaded kcl.yaml
+a: from-kcl1          # CLI arguments are used as-is
+```
+
+Key points:
+
+- With `file:` present, the positional `.k` / directory arguments are ignored — the YAML list is the complete input set.
+- Relative paths inside `file:` are resolved **relative to the directory containing `kcl.yaml`**, not the current working directory.
+- If `kcl.yaml` has no `file:` key (only other settings such as `debug` or `kcl_options`), the CLI file arguments are used unchanged.
+- To compile files from multiple directories, list **all** of them in `file:` — e.g. `file: [main.k, ../kcl2/main.k]` — they compile as one program and their outputs merge:
+
+```bash
+$ kcl kcl1 -Y kcl1/kcl_multi.yaml     # file: [main.k, ../kcl2/main.k]
+a: from-kcl1
+b: from-kcl2
+```
+
+- Since the listed files form a single program, two files defining the same immutable top-level variable raise `error[E1001]: ImmutableError` — rename one to `_a` if the collision is intended to be shadowed.
+
+This entry was added following [kcl-lang/kcl-lang.io#90](https://github.com/kcl-lang/kcl-lang.io/issues/90).

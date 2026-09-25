@@ -2973,3 +2973,69 @@ result = "{a}-{b}-{c}".format(
 ```
 
 尾随逗号纯粹是格式上的便利 —— 它**不会**引入额外的空元素（所以 `[1, 2,]` 就是 `[1, 2]`，而不是 `[1, 2, Undefined]`）。它也不会改变任何解析语义；多行表达式的闭合 token（`]`、`}`、`)`）仍然必须独占一行或与最后一个元素同行。
+
+## 81. 如何使用字符串 `format` 成员函数（类似 Python 的 `str.format`）？
+
+KCL 字符串的 `format` 成员函数在占位符语法上与 Python 的 `str.format` 一致：位置占位 `{}` / 索引占位 `{0}`、关键字占位 `{name}`，以及字面量大括号 `{{` / `}}`。冒号后的格式说明符（format spec）支持 Python 格式规范迷你语言的一个常用子集（以下示例均已使用 kcl 0.12.10 验证）：
+
+```kcl
+"{} comes before {}".format("a", "b")          # a comes before b
+"{0} and {1} and {0}".format("x", "y")         # x and y and x
+"{name} is {age}".format(name = "kcl", age = 3) # kcl is 3
+"{{literal}} {}".format("v")                   # {literal} v
+
+"{:.2f}".format(3.14159)     # 3.14           —— 浮点精度
+"{:10.3f}|".format(3.14159)  #      3.142|    —— 宽度 + 精度（仅数字）
+"{:+d}".format(42)           # +42            —— 显式符号
+"{:05d}".format(42)          # 00042          —— 零填充
+"{:x}".format(255)           # ff             —— 十六进制（也支持 {:b}、{:o}）
+"{:,}".format(1234567)       # 1,234,567      —— 千分位分隔符
+"{:e}".format(12345.678)     # 1.234568e+04   —— 科学计数法
+"{:%}".format(0.25)          # 25.000000%     —— 百分比
+```
+
+与 Python 相比需要注意的差异 —— 部分说明符会被静默忽略，而嵌套字段会直接报错：
+
+- 字符串不应用对齐/填充：`"{:>10}".format("hi")` 返回 `"hi"`，而不是 `"        hi"`。
+- 字符串不应用精度：`"{:.3s}".format("hello")` 返回 `"hello"`，而不是 `"hel"`。
+- 不支持嵌套替换字段：`"{:{}}".format(5, "d")` 会抛出 `Invalid format specifier`。
+
+字符串拼接、`startswith`/`endswith`、`replace` 等其他字符串操作请参见 [FAQ #12](#12-字符串怎样拼接怎样格式化字符串怎样检查字符串前缀后缀怎样替换字符串内容)。本条目基于 [kcl-lang/kcl-lang.io#24](https://github.com/kcl-lang/kcl-lang.io/issues/24) 补充。
+
+## 82. `kcl.yaml` 中的 `file` 列表与被编译目录里的 `.k` 文件是什么关系？会合并编译吗？
+
+不会合并。当 `kcl.yaml` 声明了 `kcl_cli_configs.file` 时，该列表会**替换**命令行上传入的文件/目录参数，而不是与它们合并（已使用 kcl 0.12.10 验证）：
+
+```
+kcl1/
+├── kcl.yaml    # kcl_cli_configs: {file: [../kcl2/main.k]}
+└── main.k      # a = "from-kcl1"
+kcl2/
+└── main.k      # b = "from-kcl2"
+```
+
+```bash
+$ kcl kcl1 -Y kcl1/kcl.yaml
+b: from-kcl2          # 只编译 kcl.yaml 中列出的文件
+$ kcl kcl1            # 自动加载被编译目录（kcl1）下的 kcl.yaml
+b: from-kcl2
+$ kcl kcl1 -Y /dev/null   # 跳过自动加载的 kcl.yaml
+a: from-kcl1          # 按命令行参数原样编译
+```
+
+要点：
+
+- 一旦存在 `file:`，命令行上的位置参数 `.k` / 目录会被忽略 —— YAML 列表就是完整的输入文件集合。
+- `file:` 中的相对路径**相对于 kcl.yaml 所在目录**解析，而不是相对于当前工作目录。
+- 如果 `kcl.yaml` 没有 `file:` 键（只有 `debug`、`kcl_options` 等其他设置），则命令行文件参数原样生效。
+- 要编译多个目录下的文件，请在 `file:` 中**全部列出** —— 例如 `file: [main.k, ../kcl2/main.k]` —— 它们会作为一个程序编译，输出合并：
+
+```bash
+$ kcl kcl1 -Y kcl1/kcl_multi.yaml     # file: [main.k, ../kcl2/main.k]
+a: from-kcl1
+b: from-kcl2
+```
+
+- 由于列出的文件构成同一个程序，若两个文件定义了同名的不可变顶层变量，会报 `error[E1001]: ImmutableError` —— 如果确实需要覆盖，请将其中一个重命名为 `_a`。
+
+本条目基于 [kcl-lang/kcl-lang.io#90](https://github.com/kcl-lang/kcl-lang.io/issues/90) 补充。
