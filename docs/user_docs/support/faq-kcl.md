@@ -2985,3 +2985,41 @@ kcl_options:
 | `kcl run main.k -D name=cli-name` | `cli-name` |
 
 So: the YAML file is the default per project / environment, and the CLI flag is the override per invocation. If you need to merge several YAML files in a specific order, pass them as repeated `-Y a.yaml -Y b.yaml` flags — later files win.
+
+## 80. Does KCL allow a trailing comma at the end of a configuration line?
+
+Yes — KCL accepts trailing commas in every place a comma-separated list appears. This was specifically called out as missing in [kcl-lang/kcl-lang.io#2](https://github.com/kcl-lang/kcl-lang.io/issues/2) and is now supported across all the relevant sites:
+
+```kcl
+schema Person:
+    name: str
+    age: int
+
+# Trailing comma in schema attribute values:
+p1 = Person {
+    name = "Alice",
+    age = 30,
+}
+
+# Trailing comma in list literals:
+nums = [
+    1,
+    2,
+    3,
+]
+
+# Trailing comma in dict literals:
+config = {
+    "key1" = "value1",
+    "key2" = "value2",
+}
+
+# Trailing comma in function-call arguments:
+result = "{a}-{b}-{c}".format(
+    a = "1",
+    b = "2",
+    c = "3",
+)
+```
+
+A trailing comma is purely a formatting convenience — it does **not** introduce an extra empty element (so `[1, 2,]` is `[1, 2]`, not `[1, 2, Undefined]`). It also does not change parsing semantics anywhere; multi-line expressions still require their closing token (`]`, `}`, `)`) to be on a line of its own or on the same line as the last element.
