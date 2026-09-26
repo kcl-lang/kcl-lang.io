@@ -4,10 +4,23 @@ sidebar_position: 12
 
 # Lua API
 
-## Installation
+> **Looking for the cross-language FFI contract?**
+> See [`./ffi-abi.md`](./ffi-abi.md) for `call`, the Rust dispatcher,
+> and how `client:call(name, args)` in this binding routes into
+> `kcl_api::call`. The `kcl_lib.raw_api` methods below are thin Lua
+> wrappers over that single C ABI.
 
-The official [Lua KCL package](https://github.com/kcl-lang/lib/tree/main/lua) has not been released
-yet. You can install it locally directly from GitHub.
+The official [Lua KCL package](https://github.com/kcl-lang/lib/tree/main/lua) is built on
+[`mlua`](https://github.com/kcl-lang/mlua) and exposes the entire
+`KclService` + `BuiltinService` surface as a single Lua module.
+Two layers are shipped:
+
+- `kcl_lib.api` — high-level facade. Wraps `raw_api:exec_program` and
+  exposes `RunResponse` with `:object()`, `:yaml()`, `:json()` accessors.
+- `kcl_lib.raw_api` — 22 typed methods matching `spec/spec.proto`, each
+  taking a Lua table whose fields map to protobuf message fields.
+
+## Installation
 
 The following Lua versions are supported:
 
@@ -227,9 +240,12 @@ Get the version of the KCL backing service.
 local api = require("kcl_lib.raw_api")
 
 local result = api:get_version({})
-assert(result.version == "0.12.4")
-assert(result.checksum == "c020ab3eb4b9179219d6837a57f5d323")
+assert(result.version ~= "")
+assert(result.git_sha ~= "")
+assert(result.checksum ~= "")
 ```
+
+(The exact `version`/`checksum`/`git_sha` values vary per release; assert only on non-empty.)
 
 </p>
 </details>
@@ -733,3 +749,114 @@ print(result.external_pkgs[1].pkg_name == "helloworld")
 
 </p>
 </details>
+
+### list_method
+
+List the KCL service method names supported by the underlying runtime.
+
+<details><summary>Example</summary>
+<p>
+
+```lua
+local api = require("kcl_lib.raw_api")
+
+local result = api:list_method({})
+for _, name in ipairs(result.method_name_list) do
+    print(name)
+end
+```
+
+</p>
+</details>
+
+### get_schema_type_mapping_under_path
+
+Like `get_schema_type_mapping`, but returns schema type mappings keyed
+by package name so that schemas imported from external dependency
+packages keep their own pkgpath and base schema. See
+[kcl-lang/kcl#1546](https://github.com/kcl-lang/kcl/issues/1546).
+
+<details><summary>Example</summary>
+<p>
+
+```lua
+local api = require("kcl_lib.raw_api")
+
+local result = api:get_schema_type_mapping_under_path({
+    exec_args = { k_filename_list = { "." } },
+})
+for pkg, schemas in pairs(result.schema_type_mapping) do
+    for _, s in ipairs(schemas.schema_type) do
+        print(pkg, s.schema_name)
+    end
+end
+```
+
+</p>
+</details>
+
+### load_settings_files
+
+Load the configuration from `kcl.yaml` (or its aliases).
+
+<details><summary>Example</summary>
+<p>
+
+The content of `kcl.yaml` is
+
+```yaml
+kcl_cli_configs:
+  strict_range_check: true
+kcl_options:
+  - key: key
+    value: value
+```
+
+Lua code
+
+```lua
+local api = require("kcl_lib.raw_api")
+
+local result = api:load_settings_files({
+    work_dir = ".",
+    files = { "kcl.yaml" },
+})
+assert(result.kcl_cli_configs.strict_range_check == true)
+```
+
+</p>
+</details>
+
+### rename_code
+
+Rename all occurrences of the target symbol and return the modified
+code without touching the filesystem. Unlike `rename`, no files are
+rewritten.
+
+<details><summary>Example</summary>
+<p>
+
+```lua
+local api = require("kcl_lib.raw_api")
+
+local result = api:rename_code({
+    package_root = "/mock/path",
+    symbol_path = "a",
+    source_codes = { ["/mock/path/main.k"] = "a = 1" },
+    new_name = "a2",
+})
+assert(result.changed_codes["/mock/path/main.k"] == "a2 = 1")
+```
+
+</p>
+</details>
+
+## Notes
+
+The legacy `BuildProgram` and `ExecArtifact` RPCs were removed from
+`spec/spec.proto` in v0.13.0 (see
+[lib commit `815acac`](https://github.com/kcl-lang/lib/commit/815acac));
+they are not exposed by `kcl_lib.raw_api`. If you previously called
+`api:build_program(...)` or `api:exec_artifact(...)`, switch to
+`api:exec_program(...)` plus a host-side file write — the dispatcher
+no longer recognises the old RPC names.

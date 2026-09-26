@@ -4,6 +4,23 @@ sidebar_position: 5
 
 # Java API
 
+> **Looking for the cross-language FFI contract?**
+> See [`./ffi-abi.md`](./ffi-abi.md) for `call`, `call_with_plugin_agent`,
+> the `"ERROR:"` prefix, the **4 MiB** `BUFFER_SIZE`, and the
+> `kcl_lib_jni` shared library. The `com.kcl.api.API` class below is a
+> thin JNI wrapper over that single dispatcher; every typed method
+> funnels through `call(args)`.
+
+The [Java binding](https://github.com/kcl-lang/lib/tree/main/java) ships
+as a Maven artifact published via GitHub Packages. Two layers:
+
+- **`com.kcl.api.API`** — Java class implementing the typed RPC surface.
+  Every method serialises its `Spec.*Args` proto, calls the native
+  `call(args)` via JNI, parses the result proto, and surfaces the
+  dispatcher `"ERROR:..."` reply as a thrown `Exception`.
+- **`com.kcl.api.Spec`** — auto-generated protobuf classes from
+  `spec/spec.proto`.
+
 ## Installation
 
 Refer to [this](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages) to configure your Maven; set up your GitHub account and Token in the `settings.xml`.
@@ -30,7 +47,7 @@ This way you'll be able to import the above dependency to use the SDK.
 <dependency>
     <groupId>com.kcl</groupId>
     <artifactId>kcl-lib</artifactId>
-    <version>0.12.1</version>
+    <version>0.13.0</version>
 </dependency>
 ```
 
@@ -649,5 +666,54 @@ GetVersionArgs version_args = GetVersionArgs.newBuilder().build();
 GetVersionResult result = api.getVersion(version_args);
 ```
 
+(The exact `version` / `checksum` / `git_sha` values vary per release;
+assert only on non-empty.)
+
 </p>
 </details>
+
+### ping
+
+Round-trip a value through the dispatcher.
+
+<details><summary>Example</summary>
+<p>
+
+```java
+import com.kcl.api.*;
+
+API api = new API();
+PingResult result = api.ping(PingArgs.newBuilder().setValue("hello").build());
+assert result.getValue().equals("hello");
+```
+
+</p>
+</details>
+
+### listMethod
+
+List the KCL service method names supported by the underlying runtime.
+
+<details><summary>Example</summary>
+<p>
+
+```java
+import com.kcl.api.*;
+
+API api = new API();
+for (String name : api.listMethod().getMethodNameList()) {
+    System.out.println(name);
+}
+```
+
+</p>
+</details>
+
+## Notes
+
+The legacy `BuildProgram` and `ExecArtifact` RPCs were removed from
+`spec/spec.proto` in v0.13.0 (see
+[lib commit `815acac`](https://github.com/kcl-lang/lib/commit/815acac));
+they are no longer recognised by the `com.kcl.api.API` dispatcher. If
+you previously called `api.buildProgram(...)` or `api.execArtifact(...)`,
+switch to `api.execProgram(...)`.

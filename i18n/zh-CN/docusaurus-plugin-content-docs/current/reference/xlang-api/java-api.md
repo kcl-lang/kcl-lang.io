@@ -4,13 +4,27 @@ sidebar_position: 5
 
 # Java API
 
-## 添加依赖
+> **正在查找跨语言 FFI 契约？**
+> 请参阅 [`./ffi-abi.md`](./ffi-abi.md)，了解 `call`、`call_with_plugin_agent`、
+> `"ERROR:"` 前缀、**4 MiB** 的 `BUFFER_SIZE` 以及 `kcl_lib_jni` 共享库。
+> 下面的 `com.kcl.api.API` 类是上述单一调度器的轻量 JNI 包装器；
+> 每个类型化方法都通过 `call(args)` 进行分发。
 
-参考[此处](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages)来配置您的 Maven；在 settings.xml 中设置您的 GitHub 账户和 Token。
+[Java 绑定](https://github.com/kcl-lang/lib/tree/main/java) 通过 GitHub Packages
+发布为 Maven 工件，分为两层：
+
+- **`com.kcl.api.API`** — 实现类型化 RPC 表面的 Java 类。每个方法都会
+  序列化其 `Spec.*Args` proto，通过 JNI 调用原生 `call(args)`，解析结果 proto，
+  并将调度器的 `"ERROR:..."` 应答作为抛出的 `Exception` 暴露给调用方。
+- **`com.kcl.api.Spec`** — 由 `spec/spec.proto` 自动生成的 protobuf 类。
+
+## 安装
+
+请参考[这里](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages)配置 Maven；在 `settings.xml` 中设置您的 GitHub 账号和 Token。
 
 ### Maven
 
-在您项目的 pom.xml 中，按如下配置 Maven 仓库：
+在您项目的 `pom.xml` 中，按如下方式配置我们的仓库：
 
 ```xml
 <repositories>
@@ -24,13 +38,13 @@ sidebar_position: 5
 </repositories>
 ```
 
-通过这种方式，您将能够导入上述依赖以使用 Java SDK。
+通过这种方式，您即可引入上述依赖以使用 SDK。
 
 ```xml
 <dependency>
     <groupId>com.kcl</groupId>
     <artifactId>kcl-lib</artifactId>
-    <version>0.10.8-SNAPSHOT</version>
+    <version>0.13.0</version>
 </dependency>
 ```
 
@@ -38,13 +52,14 @@ sidebar_position: 5
 
 ```java
 import com.kcl.api.API;
-import com.kcl.api.Spec.ExecProgram_Args;
-import com.kcl.api.Spec.ExecProgram_Result;
+import com.kcl.api.Spec.ExecProgramArgs;
+import com.kcl.api.Spec.ExecProgramResult;
+
 public class ExecProgramTest {
     public static void main(String[] args) throws Exception {
         API api = new API();
-        ExecProgram_Result result = api
-                .execProgram(ExecProgram_Args.newBuilder().addKFilenameList("path/to/kcl.k").build());
+        ExecProgramResult result = api
+                .execProgram(ExecProgramArgs.newBuilder().addKFilenameList("path/to/kcl.k").build());
         System.out.println(result.getYamlResult());
     }
 }
@@ -54,12 +69,12 @@ public class ExecProgramTest {
 
 ### execProgram
 
-Execute KCL file with arguments and return the JSON/YAML result.
+使用参数执行 KCL 文件，并返回 JSON/YAML 结果。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `schema.k` is
+`schema.k` 的内容为
 
 ```kcl
 schema AppConfig:
@@ -70,14 +85,14 @@ app: AppConfig {
 }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
-ExecProgram_Args args = ExecProgram_Args.newBuilder().addKFilenameList("schema.k").build();
+ExecProgramArgs args = ExecProgramArgs.newBuilder().addKFilenameList("schema.k").build();
 API apiInstance = new API();
-ExecProgram_Result result = apiInstance.execProgram(args);
+ExecProgramResult result = apiInstance.execProgram(args);
 ```
 
 </p>
@@ -85,12 +100,12 @@ ExecProgram_Result result = apiInstance.execProgram(args);
 
 ### parseFile
 
-Parse KCL single file to Module AST JSON string with import dependencies and parse errors.
+将 KCL 单个文件解析为 Module AST JSON 字符串，包含导入依赖与解析错误。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `schema.k` is
+`schema.k` 的内容为
 
 ```kcl
 schema AppConfig:
@@ -101,14 +116,14 @@ app: AppConfig {
 }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
-ParseFile_Args args = ParseFile_Args.newBuilder().setPath("schema.k").build();
+ParseFileArgs args = ParseFileArgs.newBuilder().setPath("schema.k").build();
 API apiInstance = new API();
-ParseFile_Result result = apiInstance.parseFile(args);
+ParseFileResult result = apiInstance.parseFile(args);
 ```
 
 </p>
@@ -116,12 +131,12 @@ ParseFile_Result result = apiInstance.parseFile(args);
 
 ### parseProgram
 
-Parse KCL program with entry files and return the AST JSON string.
+使用入口文件解析 KCL 程序，并返回 AST JSON 字符串。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `schema.k` is
+`schema.k` 的内容为
 
 ```kcl
 schema AppConfig:
@@ -132,7 +147,7 @@ app: AppConfig {
 }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
@@ -140,8 +155,8 @@ import com.kcl.ast.*;
 import com.kcl.util.JsonUtil;
 
 API api = new API();
-ParseProgram_Result result = api.parseProgram(
-   ParseProgram_Args.newBuilder().addPaths("path/to/kcl.k").build()
+ParseProgramResult result = api.parseProgram(
+   ParseProgramArgs.newBuilder().addPaths("path/to/kcl.k").build()
 );
 System.out.println(result.getAstJson());
 Program program = JsonUtil.deserializeProgram(result.getAstJson());
@@ -152,12 +167,12 @@ Program program = JsonUtil.deserializeProgram(result.getAstJson());
 
 ### loadPackage
 
-loadPackage provides users with the ability to parse KCL program and semantic model information including symbols, types, definitions, etc.
+`loadPackage` 为用户提供了解析 KCL 程序以及语义模型信息（包括符号、类型、定义等）的能力。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `schema.k` is
+`schema.k` 的内容为
 
 ```kcl
 schema AppConfig:
@@ -168,15 +183,15 @@ app: AppConfig {
 }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API api = new API();
-LoadPackage_Result result = api.loadPackage(LoadPackage_Args.newBuilder().setResolveAst(true)
+LoadPackageResult result = api.loadPackage(LoadPackageArgs.newBuilder().setResolveAst(true)
     .setWithAstIndex(true)
-    .setParseArgs(ParseProgram_Args.newBuilder().addPaths("schema.k").build()).build());
+    .setParseArgs(ParseProgramArgs.newBuilder().addPaths("schema.k").build()).build());
 ```
 
 </p>
@@ -184,12 +199,12 @@ LoadPackage_Result result = api.loadPackage(LoadPackage_Args.newBuilder().setRes
 
 ### listVariables
 
-listVariables provides users with the ability to parse KCL program and get all variables by specs.
+`listVariables` 为用户提供了解析 KCL 程序并按 specs 获取所有变量的能力。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `schema.k` is
+`schema.k` 的内容为
 
 ```kcl
 schema AppConfig:
@@ -200,15 +215,15 @@ app: AppConfig {
 }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API api = new API();
-ListVariables_Result result = api.listVariables(
-    ListVariables_Args.newBuilder().setResolveAst(true).setParseArgs(
-    ParseProgram_Args.newBuilder().addPaths("/path/to/kcl.k").build())
+ListVariablesResult result = api.listVariables(
+    ListVariablesArgs.newBuilder().setResolveAst(true).setParseArgs(
+    ParseProgramArgs.newBuilder().addPaths("/path/to/kcl.k").build())
     .build());
 result.getSymbolsMap().values().forEach(s -> System.out.println(s));
 ```
@@ -218,12 +233,12 @@ result.getSymbolsMap().values().forEach(s -> System.out.println(s));
 
 ### listOptions
 
-listOptions provides users with the ability to parse KCL program and get all option information.
+`listOptions` 为用户提供了解析 KCL 程序并获取所有 option 信息的能力。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `options.k` is
+`options.k` 的内容为
 
 ```kcl
 a = option("key1")
@@ -233,14 +248,14 @@ c = {
 }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
-ParseProgram_Args args = ParseProgram_Args.newBuilder().addPaths("./src/test_data/option/main.k").build();
+ParseProgramArgs args = ParseProgramArgs.newBuilder().addPaths("./src/test_data/option/main.k").build();
 API apiInstance = new API();
-ListOptions_Result result = apiInstance.listOptions(args);
+ListOptionsResult result = apiInstance.listOptions(args);
 ```
 
 </p>
@@ -248,12 +263,12 @@ ListOptions_Result result = apiInstance.listOptions(args);
 
 ### getSchemaTypeMapping
 
-Get schema type mapping defined in the program.
+获取程序中定义的 schema 类型映射。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `schema.k` is
+`schema.k` 的内容为
 
 ```kcl
 schema AppConfig:
@@ -264,15 +279,15 @@ app: AppConfig {
 }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
-ExecProgram_Args execArgs = ExecProgram_Args.newBuilder().addKFilenameList("schema.k").build();
-GetSchemaTypeMapping_Args args = GetSchemaTypeMapping_Args.newBuilder().setExecArgs(execArgs).build();
+ExecProgramArgs execArgs = ExecProgramArgs.newBuilder().addKFilenameList("schema.k").build();
+GetSchemaTypeMappingArgs args = GetSchemaTypeMappingArgs.newBuilder().setExecArgs(execArgs).build();
 API apiInstance = new API();
-GetSchemaTypeMapping_Result result = apiInstance.getSchemaTypeMapping(args);
+GetSchemaTypeMappingResult result = apiInstance.getSchemaTypeMapping(args);
 KclType appSchemaType = result.getSchemaTypeMappingMap().get("app");
 String replicasType = appSchemaType.getPropertiesOrThrow("replicas").getType();
 ```
@@ -282,9 +297,11 @@ String replicasType = appSchemaType.getPropertiesOrThrow("replicas").getType();
 
 ### getSchemaTypeMappingUnderPath
 
-获取程序及其依赖包中定义的 schema 类型映射，按包名分组。与 `getSchemaTypeMapping` 不同，从外部依赖包导入的 schema 会以自己的包名作为键，而不是被扁平化到 `__main__` 中。
+获取程序及其依赖包中定义的 schema 类型映射，以包名作为键。
+与 `getSchemaTypeMapping` 不同，从外部依赖包导入的 schema 会以其自身的包名作为键，
+而不是被扁平化到 `__main__` 下。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 Java 代码
@@ -303,6 +320,8 @@ ExecProgramArgs execArgs = ExecProgramArgs.newBuilder()
 GetSchemaTypeMappingArgs args = GetSchemaTypeMappingArgs.newBuilder().setExecArgs(execArgs).build();
 API apiInstance = new API();
 GetSchemaTypeMappingUnderPathResult result = apiInstance.getSchemaTypeMappingUnderPath(args);
+KclType base = result.getSchemaTypeMappingOrThrow("bbb").getSchemaTypeList().stream()
+        .filter(s -> s.getSchemaName().equals("Base")).findFirst().orElseThrow();
 ```
 
 </p>
@@ -310,12 +329,13 @@ GetSchemaTypeMappingUnderPathResult result = apiInstance.getSchemaTypeMappingUnd
 
 ### overrideFile
 
-Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation) for more override spec guide.
+使用参数覆盖 KCL 文件。有关更多覆盖 spec 指南，请参阅
+[https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation)。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `main.k` is
+`main.k` 的内容为
 
 ```kcl
 a = 1
@@ -326,14 +346,14 @@ b = {
 }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API api = new API();
 String spec = "a=2";
-OverrideFile_Result result = api.overrideFile(OverrideFile_Args.newBuilder()
+OverrideFileResult result = api.overrideFile(OverrideFileArgs.newBuilder()
     .setFile("./src/test_data/override_file/main.k").addSpecs(spec).build());
 ```
 
@@ -342,21 +362,21 @@ OverrideFile_Result result = api.overrideFile(OverrideFile_Args.newBuilder()
 
 ### formatCode
 
-Format the code source.
+格式化代码源码。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 String sourceCode = "schema Person:\n" + "    name:   str\n" + "    age:    int\n" + "    check:\n"
         + "        0 <   age <   120\n";
-FormatCode_Args args = FormatCode_Args.newBuilder().setSource(sourceCode).build();
+FormatCodeArgs args = FormatCodeArgs.newBuilder().setSource(sourceCode).build();
 API apiInstance = new API();
-FormatCode_Result result = apiInstance.formatCode(args);
+FormatCodeResult result = apiInstance.formatCode(args);
 String expectedFormattedCode = "schema Person:\n" + "    name: str\n" + "    age: int\n\n" + "    check:\n"
         + "        0 < age < 120\n\n";
 ```
@@ -366,12 +386,12 @@ String expectedFormattedCode = "schema Person:\n" + "    name: str\n" + "    age
 
 ### formatPath
 
-Format KCL file or directory path contains KCL files and returns the changed file paths.
+格式化 KCL 文件或包含 KCL 文件的目录路径，并返回发生变更的文件路径。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `format_path.k` is
+`format_path.k` 的内容为
 
 ```kcl
 schema Person:
@@ -382,14 +402,14 @@ schema Person:
         0 <   age <   120
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
-FormatPath_Args args = FormatPath_Args.newBuilder().setPath("format_path.k").build();
+FormatPathArgs args = FormatPathArgs.newBuilder().setPath("format_path.k").build();
 API apiInstance = new API();
-FormatPath_Result result = apiInstance.formatPath(args);
+FormatPathResult result = apiInstance.formatPath(args);
 Assert.assertTrue(result.getChangedPathsList().isEmpty());
 ```
 
@@ -398,12 +418,12 @@ Assert.assertTrue(result.getChangedPathsList().isEmpty());
 
 ### lintPath
 
-Lint files and return error messages including errors and warnings.
+对文件执行 lint，并返回包含错误与警告在内的错误信息。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `lint_path.k` is
+`lint_path.k` 的内容为
 
 ```kcl
 import math
@@ -411,14 +431,14 @@ import math
 a = 1
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
-LintPath_Args args = LintPath_Args.newBuilder().addPaths("lint_path.k").build();
+LintPathArgs args = LintPathArgs.newBuilder().addPaths("lint_path.k").build();
 API apiInstance = new API();
-LintPath_Result result = apiInstance.lintPath(args);
+LintPathResult result = apiInstance.lintPath(args);
 boolean foundWarning = result.getResultsList().stream()
         .anyMatch(warning -> warning.contains("Module 'math' imported but unused"));
 ```
@@ -428,12 +448,12 @@ boolean foundWarning = result.getResultsList().stream()
 
 ### validateCode
 
-Validate code using schema and JSON/YAML data strings.
+使用 schema 以及 JSON/YAML 数据字符串对代码进行校验。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
@@ -441,9 +461,9 @@ import com.kcl.api.*;
 String code = "schema Person:\n" + "    name: str\n" + "    age: int\n" + "    check:\n"
         + "        0 < age < 120\n";
 String data = "{\"name\": \"Alice\", \"age\": 10}";
-ValidateCode_Args args = ValidateCode_Args.newBuilder().setCode(code).setData(data).setFormat("json").build();
+ValidateCodeArgs args = ValidateCodeArgs.newBuilder().setCode(code).setData(data).setFormat("json").build();
 API apiInstance = new API();
-ValidateCode_Result result = apiInstance.validateCode(args);
+ValidateCodeResult result = apiInstance.validateCode(args);
 ```
 
 </p>
@@ -451,27 +471,28 @@ ValidateCode_Result result = apiInstance.validateCode(args);
 
 ### rename
 
-Rename all the occurrences of the target symbol in the files. This API will rewrite files if they contain symbols to be renamed. Return the file paths that got changed.
+重命名文件中目标符号的所有出现位置。如果文件中包含待重命名的符号，
+该 API 会重写文件，并返回发生变更的文件路径。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `main.k` is
+`main.k` 的内容为
 
 ```kcl
 a = 1
 b = a
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
-Rename_Args args = Rename_Args.newBuilder().setPackageRoot(".").setSymbolPath("a")
+RenameArgs args = RenameArgs.newBuilder().setPackageRoot(".").setSymbolPath("a")
         .addFilePaths("main.k").setNewName("a2").build();
 API apiInstance = new API();
-Rename_Result result = apiInstance.rename(args);
+RenameResult result = apiInstance.rename(args);
 ```
 
 </p>
@@ -479,20 +500,21 @@ Rename_Result result = apiInstance.rename(args);
 
 ### renameCode
 
-Rename all the occurrences of the target symbol and return the modified code if any code has been changed. This API won't rewrite files but return the changed code.
+重命名目标符号的所有出现位置，并在代码发生变更时返回修改后的代码。
+该 API 不会重写文件，而是返回修改后的代码。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API api = new API();
-RenameCode_Args args = RenameCode_Args.newBuilder().setPackageRoot("/mock/path").setSymbolPath("a")
+RenameCodeArgs args = RenameCodeArgs.newBuilder().setPackageRoot("/mock/path").setSymbolPath("a")
         .putSourceCodes("/mock/path/main.k", "a = 1\nb = a").setNewName("a2").build();
-RenameCode_Result result = api.renameCode(args);
+RenameCodeResult result = api.renameCode(args);
 ```
 
 </p>
@@ -500,19 +522,19 @@ RenameCode_Result result = api.renameCode(args);
 
 ### test
 
-Test KCL packages with test arguments.
+使用测试参数对 KCL 包执行测试。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API apiInstance = new API();
-Test_Args args = Test_Args.newBuilder().addPkgList("/path/to/test/package").build();
-Test_Result result = apiInstance.test(args);
+TestArgs args = TestArgs.newBuilder().addPkgList("/path/to/test/package").build();
+TestResult result = apiInstance.test(args);
 ```
 
 </p>
@@ -520,12 +542,12 @@ Test_Result result = apiInstance.test(args);
 
 ### loadSettingsFiles
 
-Load the setting file config defined in `kcl.yaml`
+加载 `kcl.yaml` 中定义的配置文件设置。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `kcl.yaml` is
+`kcl.yaml` 的内容为
 
 ```yaml
 kcl_cli_configs:
@@ -535,15 +557,15 @@ kcl_options:
     value: value
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API api = new API();
-LoadSettingsFiles_Args args = LoadSettingsFiles_Args.newBuilder().addFiles("kcl.yaml")
+LoadSettingsFilesArgs args = LoadSettingsFilesArgs.newBuilder().addFiles("kcl.yaml")
         .build();
-LoadSettingsFiles_Result result = api.loadSettingsFiles(args);
+LoadSettingsFilesResult result = api.loadSettingsFiles(args);
 ```
 
 </p>
@@ -551,12 +573,12 @@ LoadSettingsFiles_Result result = api.loadSettingsFiles(args);
 
 ### updateDependencies
 
-Download and update dependencies defined in the `kcl.mod` file and return the external package name and location list.
+下载并更新 `kcl.mod` 文件中定义的依赖项，并返回外部包的名称与位置列表。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `module/kcl.mod` is
+`module/kcl.mod` 的内容为
 
 ```yaml
 [package]
@@ -569,26 +591,26 @@ helloworld = { oci = "oci://ghcr.io/kcl-lang/helloworld", tag = "0.1.0" }
 flask = { git = "https://github.com/kcl-lang/flask-demo-kcl-manifests", commit = "ade147b" }
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API api = new API();
 
-UpdateDependencies_Result result = api.updateDependencies(
-    UpdateDependencies_Args.newBuilder().setManifestPath("module").build());
+UpdateDependenciesResult result = api.updateDependencies(
+    UpdateDependenciesArgs.newBuilder().setManifestPath("module").build());
 ```
 
 </p>
 </details>
 
-Call `execProgram` with external dependencies
+使用外部依赖调用 `execProgram`
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `module/kcl.mod` is
+`module/kcl.mod` 的内容为
 
 ```yaml
 [package]
@@ -601,7 +623,7 @@ helloworld = { oci = "oci://ghcr.io/kcl-lang/helloworld", tag = "0.1.0" }
 flask = { git = "https://github.com/kcl-lang/flask-demo-kcl-manifests", commit = "ade147b" }
 ```
 
-The content of `module/main.k` is
+`module/main.k` 的内容为
 
 ```kcl
 import helloworld
@@ -610,20 +632,20 @@ import flask
 a = helloworld.The_first_kcl_program
 ```
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API api = new API();
 
-UpdateDependencies_Result result = api.updateDependencies(
-        UpdateDependencies_Args.newBuilder().setManifestPath("./src/test_data/update_dependencies").build());
+UpdateDependenciesResult result = api.updateDependencies(
+        UpdateDependenciesArgs.newBuilder().setManifestPath("./src/test_data/update_dependencies").build());
 
-ExecProgram_Args execArgs = ExecProgram_Args.newBuilder().  addAllExternalPkgs(result.getExternalPkgsList())
+ExecProgramArgs execArgs = ExecProgramArgs.newBuilder().  addAllExternalPkgs(result.getExternalPkgsList())
     .addKFilenameList("./src/test_data/update_dependencies/main.k").build();
 
-ExecProgram_Result execResult = api.execProgram(execArgs);
+ExecProgramResult execResult = api.execProgram(execArgs);
 ```
 
 </p>
@@ -631,20 +653,67 @@ ExecProgram_Result execResult = api.execProgram(execArgs);
 
 ### getVersion
 
-Return the KCL service version information.
+返回 KCL 服务的版本信息。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-Java Code
+Java 代码
 
 ```java
 import com.kcl.api.*;
 
 API api = new API();
-GetVersion_Args version_args = GetVersion_Args.newBuilder().build();
-GetVersion_Result result = api.getVersion(version_args);
+GetVersionArgs version_args = GetVersionArgs.newBuilder().build();
+GetVersionResult result = api.getVersion(version_args);
+```
+
+（具体的 `version` / `checksum` / `git_sha` 值因发布版本而异；
+仅需断言其非空即可。）
+
+</p>
+</details>
+
+### ping
+
+通过调度器对一个值进行往返传输（round-trip）。
+
+<details><summary>示例</summary>
+<p>
+
+```java
+import com.kcl.api.*;
+
+API api = new API();
+PingResult result = api.ping(PingArgs.newBuilder().setValue("hello").build());
+assert result.getValue().equals("hello");
 ```
 
 </p>
 </details>
+
+### listMethod
+
+列出底层运行时所支持的 KCL 服务方法名。
+
+<details><summary>示例</summary>
+<p>
+
+```java
+import com.kcl.api.*;
+
+API api = new API();
+for (String name : api.listMethod().getMethodNameList()) {
+    System.out.println(name);
+}
+```
+
+</p>
+</details>
+
+## 注意事项
+
+旧的 `BuildProgram` 和 `ExecArtifact` RPC 已于 v0.13.0 中从 `spec/spec.proto` 中移除
+（参见 [lib commit `815acac`](https://github.com/kcl-lang/lib/commit/815acac)）；
+它们不再被 `com.kcl.api.API` 调度器识别。如果您之前调用的是
+`api.buildProgram(...)` 或 `api.execArtifact(...)`，请改用 `api.execProgram(...)`。

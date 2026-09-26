@@ -4,6 +4,11 @@ sidebar_position: 2
 
 # Rest API
 
+> **Looking for the cross-language FFI contract?**
+> See [`./ffi-abi.md`](./ffi-abi.md) for `call_native`, plugin-agent, the
+> `"ERROR:"` prefix, buffer sizes, `KCL_LIB_HOME`, and the exported Rust
+> symbols. The REST surface below is one consumer of that contract.
+
 ## 1. Start REST Service
 
 The RestAPI service can be started in the following way:
@@ -2029,14 +2034,12 @@ message ExecProgramArgs {
 	// Output format selector. One of: yaml, json.
 	// When empty the runtime generates both formats (legacy behaviour).
 	string format = 20;
-	// Emit a side-channel marker in the planned YAML/JSON that names
-	// schema attributes to be carried over to downstream emitters. The
-	// marker is the sibling key `__kcl_info_meta__` whose value is a
-	// list of attribute names (e.g. those decorated with
-	// `@info(type="attr")`). Consumers (CLI/kcl-go) interpret it when
-	// emitting XML. Defaults to false to keep `-o json` / `-o yaml`
-	// output byte-identical to pre-change.
-	bool emit_attribute_metadata = 21;
+	// Optional path of the Source Map v3 (tc39.es/source-map) document to
+	// emit for the generated YAML. When non-empty, the runtime records the
+	// mapping between generated YAML lines and the originating KCL source
+	// locations, returns it in `ExecProgramResult.sourcemap` and writes it
+	// to the given path. Empty disables source map generation.
+	optional string sourcemap_output = 22;
 }
 
 // Message for execute program response.

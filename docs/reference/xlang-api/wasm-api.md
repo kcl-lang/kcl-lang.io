@@ -4,245 +4,248 @@ sidebar_position: 13
 
 # WASM API
 
-The KCL core is written by Rust and can be compiled to the `wasm-wasi` target using toolchains such as cargo. With the help of WASM, we can also easily achieve multilingual and browser integration. Here is how we can use the KCL WASM module in Browser, Node.js, Go and Rust.
+> **Looking for the cross-language FFI contract?**
+> See [`./ffi-abi.md`](./ffi-abi.md) for `call_native`, the `"ERROR:"`
+> prefix, the **16 MiB** `DEFAULT_CALL_NATIVE_RESULT_BUFFER_SIZE`, and
+> the 4 KiB `RUNTIME_ERR_BUFFER_SIZE`. The `@kcl-lib/wasm` package is a
+> TypeScript wrapper around that wasm guest.
 
-## Quick Start
+The official WASM module ships as the npm package
+[`@kcl-lib/wasm`](https://www.npmjs.com/package/@kcl-lib/wasm)
+(`@kcl-lang/wasm-lib` was the v0.12.x name; the v0.13.0 package is
+`@kcl-lib/wasm`). It bundles the prebuilt `kcl.wasm` artifact plus a
+TypeScript loader and the full typed RPC surface generated from
+`spec/spec.proto`.
 
-We can find and download KCL WASM module from [here](https://github.com/kcl-lang/lib/tree/main/wasm)
-
-## Browser
-
-Install the dependency
+## Installation
 
 ```shell
-npm install buffer @wasmer/wasi @kcl-lang/wasm-lib
+npm install @kcl-lib/wasm
 ```
 
-> **NOTE:**
-> Buffer is required by @wasmer/wasi.
+That's the only runtime dependency. The package bundles both the
+`kcl.wasm` artifact (`files: ["kcl.wasm", "dist/"]`) and the compiled
+`dist/index.js` / `dist/index.d.ts` — no `protoc`, no Rust toolchain
+required.
 
-Write the code
+## Quick Start (Node.js)
 
 ```typescript
-import { load, invokeKCLRun } from "@kcl-lang/wasm-lib";
+import { load, execProgram } from "@kcl-lib/wasm";
 
 async function main() {
   const inst = await load();
-  const result = invokeKCLRun(inst, {
-    filename: "test.k",
-    source: `
-schema Person:
-  name: str
-
-p = Person {name = "Alice"}`,
+  const result = execProgram(inst, {
+    kFilenameList: ["schema.k"],
   });
-  console.log(result);
+  console.log(result.yamlResult);
 }
 
 main();
 ```
 
-Here, we use `webpack` to bundle the website, the `webpack.config.js` config as follows.
+## Loading
 
-> **NOTE:**:
-> This configuration includes necessary settings for @wasmer/wasi and other required plugins.
+```typescript
+export async function load(opts?: KCLWasmLoadOptions): Promise<WebAssembly.Instance>
+```
 
-```js
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const path = require("path");
-const webpack = require("webpack");
+`KCLWasmLoadOptions`:
 
-const dist = path.resolve("./dist");
-const isProduction = process.argv.some((x) => x === "--mode=production");
-const hash = isProduction ? ".[contenthash]" : "";
+| Field      | Type                          | Default                          | Purpose                                                                  |
+| ---------- | ----------------------------- | -------------------------------- | ----------------------------------------------------------------------- |
+| `imports`  | `Record<string, any>`         | `{ wasi_snapshot_preview1: … }`  | Extra host imports passed to the WASI instance.                         |
+| `preopens` | `Record<string, string>`      | `{ ".": "/" }`                   | Maps guest paths to host filesystem paths (only relevant with `fs`).   |
+| `env`      | `Record<string, string>`       | `{}`                             | Extra env vars for the WASI instance.                                    |
+| `fs`       | `MemFS` (wasmer/wasi)         | `node:fs`-backed `MemFS`         | Filesystem backing the WASI sandbox.                                     |
+| `data`     | `BufferSource`                | read `kcl.wasm` from disk        | Pre-loaded wasm bytes (skips the disk read).                            |
+| `log`      | `(...args) => void`           | noop                             | Logger used for diagnostic messages.                                     |
 
-module.exports = {
-  mode: "development",
-  entry: {
-    main: "./src/main.ts",
-  },
-  target: "web",
-  output: {
-    path: dist,
-    filename: `[name]${hash}.js`,
-    clean: true,
-  },
-  devServer: {
-    hot: true,
-    port: 9000,
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
-      },
-      {
-        test: /\.m?js$/,
-        resourceQuery: { not: [/(raw|wasm)/] },
-      },
-      {
-        resourceQuery: /raw/,
-        type: "asset/source",
-      },
-      {
-        resourceQuery: /wasm/,
-        type: "asset/resource",
-        generator: {
-          filename: "wasm/[name][ext]",
-        },
-      },
-    ],
-  },
-  plugins: [
-    new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "./src/index.html"),
-    }),
-    new webpack.IgnorePlugin({
-      resourceRegExp: /^(path|ws|crypto|fs|os|util|node-fetch)$/,
-    }),
-    // needed by @wasmer/wasi
-    new webpack.ProvidePlugin({
-      Buffer: ["buffer", "Buffer"],
-    }),
-  ],
-  externals: {
-    // needed by @wasmer/wasi
-    "wasmer_wasi_js_bg.wasm": true,
-  },
-  resolve: {
-    fallback: {
-      // needed by @wasmer/wasi
-      buffer: require.resolve("buffer/"),
+```typescript
+const inst = await load({
+  preopens: { "/sandbox": process.cwd() },
+  env: { KCL_FOO: "bar" },
+});
+```
+
+## High-level helpers (for one-shot `kcl run`-style invocations)
+
+These wrappers build an in-memory source file and call
+`execProgram`/`formatCode`/etc. internally. Useful when you just want
+to evaluate a snippet.
+
+```typescript
+export function invokeKCLRun(inst, opts: RunOptions): ExecProgramResult
+export function invokeKCLRunWithLogMessage(inst, opts: RunWithLogMessageOptions): …
+export function invokeKCLFmt(inst, opts: FmtOptions): FormatCodeResult
+export function invokeKCLVersion(inst): string
+export function invokeKCLCall(inst, opts: CallOptions): string
+export function invokeKCLCallNative(inst, opts: CallNativeOptions): Uint8Array
+```
+
+The simplest end-to-end call:
+
+```typescript
+import { load, invokeKCLRun } from "@kcl-lib/wasm";
+
+const inst = await load();
+const out = invokeKCLRun(inst, {
+  filename: "test.k",
+  source: `
+schema Person:
+  name: str
+
+p = Person {name = "Alice"}
+  `,
+});
+console.log(out.yamlResult);
+// p:
+//   name: Alice
+```
+
+## Typed RPC surface (`api.ts`)
+
+Every service method from `spec/spec.proto` has a typed wrapper in
+`api.ts`. All wrappers take a `WebAssembly.Instance` returned from
+`load()` plus a typed args object, and return a typed result.
+
+### `ping(inst, args?)`
+
+```typescript
+const r = ping(inst, { value: "hello" });
+assert(r.value === "hello");
+```
+
+### `getVersion(inst)`
+
+```typescript
+const v = getVersion(inst);
+console.log(v.version, v.gitSha, v.checksum);
+```
+
+### `parseProgram(inst, args)` / `parseFile(inst, args)`
+
+Parse KCL source and return the AST as a JSON string.
+
+```typescript
+const parsed = parseFile(inst, { path: "schema.k" });
+console.log(parsed.astJson, parsed.errors);
+```
+
+### `loadPackage(inst, args)`
+
+Parse + resolve + return AST + symbol + scope + type tables. Heavy
+method; pass `resolveAst: false` if you only want symbols.
+
+### `execProgram(inst, args)`
+
+```typescript
+const result = execProgram(inst, {
+  kFilenameList: ["schema.k"],
+  format: "yaml",              // skip the JSON encoder
+  errorFormat: "sarif",        // machine-readable diagnostics
+  sourcemapOutput: "./out.json",  // v0.13.0 Source Map v3 emit
+});
+console.log(result.yamlResult);
+console.log(result.sourcemap);   // v0.13.0
+```
+
+### `overrideFile(inst, args)`
+
+Apply `*-override` specifications; mutates the file on disk.
+
+### `listVariables(inst, args)` / `listOptions(inst, args)`
+
+Introspection helpers. `listOptions` accepts `ParseProgramArgs`
+because the spec reuses `ParseProgram` for this RPC.
+
+### `getSchemaTypeMapping(inst, args)`
+
+Flattens all schemas under `__main__`.
+
+### `getSchemaTypeMappingUnderPath(inst, args)`
+
+Added in v0.13.0 (fixes
+[kcl-lang/kcl#1546](https://github.com/kcl-lang/kcl/issues/1546));
+keeps each `kcl.mod` dependency under its own package name.
+
+### `formatPath(inst, args)` / `lintPath(inst, args)` / `validateCode(inst, args)` / `loadSettingsFiles(inst, args)`
+
+Standard `KclService` methods. `formatPath` and `lintPath` take paths
+on the WASI filesystem (see `preopens`); `validateCode` validates a
+YAML/JSON data string against a schema declared in KCL source.
+
+### `rename(inst, args)` / `renameCode(inst, args)`
+
+`rename` rewrites files on disk; `renameCode` returns the modified
+sources as a map without touching the filesystem.
+
+### `test(inst, args)`
+
+Runs `_test.*` functions across the listed packages. v0.13.0 adds
+per-case line coverage info to `TestCaseInfo`.
+
+### `updateDependencies(inst, args)`
+
+Downloads the `kcl.mod` dependency graph and returns the resolved
+external packages. Feed `external_pkgs` straight into a follow-up
+`execProgram` call.
+
+## Buffer sizes
+
+```typescript
+const DEFAULT_CALL_NATIVE_RESULT_BUFFER_SIZE = 16 * 1024 * 1024;   // 16 MiB
+const RUNTIME_ERR_BUFFER_SIZE                = 4  * 1024;          // 4 KiB
+```
+
+`invokeKCLCallNative` allocates `DEFAULT_CALL_NATIVE_RESULT_BUFFER_SIZE`
+bytes for the response. The dispatcher returns its length; `invokeKcl`
+returns a right-sized `Uint8Array` view. If your payload exceeds 16 MiB,
+use `CallNativeOptions.resultBuffer` to supply a larger buffer:
+
+```typescript
+const out = invokeKCLCallNative(inst, {
+  name: "KclService.ExecProgram",
+  args: encode(args),
+  resultBuffer: new Uint8Array(64 * 1024 * 1024),   // 64 MiB
+});
+```
+
+`RUNTIME_ERR_BUFFER_SIZE` is the buffer the JS wrapper allocates when
+the WASM module traps (panic=abort), so it can ask the wasm guest to
+write the panic message into it via the `kcl_runtime_err` export. The
+old value of 1024 silently truncated any error longer than 1 KiB; the
+v0.13.0 binding uses 4096 to match every other binding — see
+[`abi.md`](https://github.com/kcl-lang/lib/blob/main/docs/abi.md).
+
+## Plugin-agent callback
+
+If your KCL program imports `kcl_plugin.*`, pass an `imports` callback
+to `load()`:
+
+```typescript
+const inst = await load({
+  imports: {
+    kcl_plugin_invoke_json_wasm: (methodPtr, argsPtr, kwargsPtr) => {
+      const method = readString(methodPtr);
+      const args = JSON.parse(readString(argsPtr));
+      const kwargs = JSON.parse(readString(kwargsPtr));
+      const result = myPlugin[method](args, kwargs);
+      return writeString(JSON.stringify(result));
     },
   },
-};
+});
 ```
 
-For a complete working example, refer to [here](https://github.com/kcl-lang/lib/tree/main/wasm/examples/browser).
+See [`abi.md` §2](https://github.com/kcl-lang/lib/blob/main/docs/abi.md#2-plugin-agent-variant)
+for the wire format.
 
-### Troubleshooting
+## Browser bundlers
 
-If you encounter any issues, make sure:
-
-- All dependencies are correctly installed.
-- Your `webpack.config.js` is properly set up.
-- You're using a modern browser that supports WebAssembly.
-- The KCL WASM module is correctly loaded and accessible.
-
-## Node.js
-
-Install the dependency
-
-```shell
-npm install @kcl-lang/wasm-lib
-```
-
-Write the code
-
-```typescript
-import { load, invokeKCLRun } from "@kcl-lang/wasm-lib";
-
-async function main() {
-  const inst = await load();
-  const result = invokeKCLRun(inst, {
-    filename: "test.k",
-    source: `
-schema Person:
-  name: str
-
-p = Person {name = "Alice"}`,
-  });
-  console.log(result);
-}
-
-main();
-```
-
-The output is
-
-```yaml
-p:
-  name: Alice
-```
-
-The code example can be found [here](https://github.com/kcl-lang/lib/tree/main/wasm/examples/node).
-
-## Rust
-
-In Rust, we use `wasmtime` as an example, and of course, you can also use other runtime that supports WASI to accomplish this.
-
-Install the dependency
-
-```shell
-cargo add kcl-wasm-lib --git https://github.com/kcl-lang/lib
-cargo add anyhow
-```
-
-Write the code
-
-```rust
-use anyhow::Result;
-use kcl_wasm_lib::{KCLModule, RunOptions};
-
-fn main() -> Result<()> {
-    let opts = RunOptions {
-        filename: "test.k".to_string(),
-        source: "a = 1".to_string(),
-    };
-    // Note replace your KCL wasm module path.
-    let mut module = KCLModule::from_path("path/to/kcl.wasm")?;
-    let result = module.run(&opts)?;
-    println!("{}", result);
-    Ok(())
-}
-```
-
-The output is
-
-```yaml
-a: 1
-```
-
-The code example can be found [here](https://github.com/kcl-lang/lib/tree/main/wasm/examples/rust).
-
-## Go
-
-In Go, we use `wasmtime` as an example, and of course, you can also use other runtime that supports WASI to accomplish this.
-
-Write the code, and the code of package `github.com/kcl-lang/wasm-lib/pkg/module` can be found [here](https://github.com/kcl-lang/lib/blob/main/wasm/examples/go/pkg/module/module.go)
-
-```go
-package main
-
-import (
-	"fmt"
-
-	"github.com/kcl-lang/wasm-lib/pkg/module"
-)
-
-func main() {
-	m, err := module.New("path/to/kcl.wasm")
-	if err != nil {
-		panic(err)
-	}
-	result, err := m.Run(&module.RunOptions{
-		Filename: "test.k",
-		Source:   "a = 1",
-	})
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(result)
-}
-```
-
-The output is
-
-```yaml
-a: 1
-```
-
-The code example can be found [here](https://github.com/kcl-lang/lib/tree/main/wasm/examples/go).
+The package targets `@wasmer/wasi` for the WASI polyfill. For
+Webpack/Vite, configure your bundler to ship `Buffer` (Webpack's
+`ProvidePlugin`) and add the `@wasmer/wasi` externals. A complete
+working example lives at
+[`wasm/examples/browser`](https://github.com/kcl-lang/lib/tree/main/wasm/examples/browser).
+The legacy `@kcl-lang/wasm-lib` npm name (now `@kcl-lib/wasm`) used the
+same approach; the migration is package-name only.

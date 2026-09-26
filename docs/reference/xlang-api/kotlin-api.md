@@ -4,6 +4,20 @@ sidebar_position: 8
 
 # Kotlin API
 
+> **Looking for the cross-language FFI contract?**
+> See [`./ffi-abi.md`](./ffi-abi.md) for `call`, `call_with_plugin_agent`,
+> the `"ERROR:"` prefix, the **4 MiB** `BUFFER_SIZE`, and the
+> `kcl_lib_jni` shared library. The `com.kcl.api.API` class below is the
+> same Java binding as the [Java API](./java-api.md); Kotlin adds a DSL
+> builder per `*Args` type (e.g. `execProgramArgs { … }`) generated from
+> `spec/spec.proto`.
+
+The [Kotlin binding](https://github.com/kcl-lang/lib/tree/main/kotlin)
+is published as the Maven artifact `kcl-lib-kotlin` and shares the
+underlying Java implementation (`com.kcl.api.API`). It adds idiomatic
+Kotlin DSL builders (e.g. `execProgramArgs { kFilenameList += "x.k" }`)
+generated from the protobuf `Spec` package.
+
 ## Installation
 
 Refer to [this](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#authenticating-to-github-packages) to configure your Maven; set up your GitHub account and Token in the `settings.xml`.
@@ -30,7 +44,7 @@ This way you'll be able to import the above dependency to use the SDK.
 <dependency>
     <groupId>com.kcl</groupId>
     <artifactId>kcl-lib-kotlin</artifactId>
-    <version>0.12.1</version>
+    <version>0.13.0</version>
 </dependency>
 ```
 
@@ -106,6 +120,29 @@ import com.kcl.api.parseFileArgs
 val args = parseFileArgs { path = "schema.k" }
 val api = API()
 val result = api.parseFile(args)
+```
+
+</p>
+</details>
+
+### parseProgram
+
+Parse KCL program with entry files and return the AST JSON string.
+
+<details><summary>Example</summary>
+<p>
+
+Kotlin Code
+
+```kotlin
+import com.kcl.api.API
+import com.kcl.api.parseProgramArgs
+
+val args = parseProgramArgs { paths += "schema.k" }
+val api = API()
+val result = api.parseProgram(args)
+assert(result.paths.size == 1)
+assert(result.errors.isEmpty())
 ```
 
 </p>
@@ -237,6 +274,38 @@ val api = API()
 val result = api.getSchemaTypeMapping(args)
 val appSchemaType = result.schemaTypeMappingMap["app"] ?: throw AssertionError("App schema type not found")
 val replicasAttr = appSchemaType.properties["replicas"] ?: throw AssertionError("App schema type of `replicas` not found")
+```
+
+</p>
+</details>
+
+### getSchemaTypeMappingUnderPath
+
+Get schema type mapping defined in the program and its dependency packages, keyed by package name. Different from `getSchemaTypeMapping`, schemas imported from external dependency packages are keyed under their own package name instead of being flattened into `__main__`.
+
+<details><summary>Example</summary>
+<p>
+
+Kotlin Code
+
+```kotlin
+import com.kcl.api.API
+import com.kcl.api.execProgramArgs
+import com.kcl.api.externalPkg
+import com.kcl.api.getSchemaTypeMappingArgs
+
+val root = "test_data/get_schema_ty_under_path"
+val execArgs = execProgramArgs {
+    kFilenameList += "$root/aaa"
+    externalPkgs += externalPkg { pkgName = "bbb"; pkgPath = "$root/bbb" }
+}
+val args = getSchemaTypeMappingArgs { this.execArgs = execArgs }
+val api = API()
+val result = api.getSchemaTypeMappingUnderPath(args)
+val bbbSchemas = result.schemaTypeMappingMap["bbb"]?.schemaTypeList
+    ?.associateBy { it.schemaName }
+    ?: emptyMap()
+check(bbbSchemas["B"]?.baseSchema?.schemaName == "Base")
 ```
 
 </p>
@@ -601,5 +670,56 @@ val args = getVersionArgs {}
 val result = api.getVersion(args)
 ```
 
+(The exact `version` / `checksum` / `gitSha` values vary per release;
+assert only on non-empty.)
+
 </p>
 </details>
+
+### ping
+
+Round-trip a value through the dispatcher.
+
+<details><summary>Example</summary>
+<p>
+
+```kotlin
+import com.kcl.api.API
+import com.kcl.api.pingArgs
+
+val api = API()
+val args = pingArgs { value = "hello" }
+val result = api.ping(args)
+check(result.value == "hello")
+```
+
+</p>
+</details>
+
+### listMethod
+
+List the KCL service method names supported by the underlying runtime.
+
+<details><summary>Example</summary>
+<p>
+
+```kotlin
+import com.kcl.api.API
+
+val api = API()
+for (name in api.listMethod().methodNameList) {
+    println(name)
+}
+```
+
+</p>
+</details>
+
+## Notes
+
+The legacy `BuildProgram` and `ExecArtifact` RPCs were removed from
+`spec/spec.proto` in v0.13.0 (see
+[lib commit `815acac`](https://github.com/kcl-lang/lib/commit/815acac));
+they are no longer recognised by the `com.kcl.api.API` dispatcher. If
+you previously called `api.buildProgram(...)` or `api.execArtifact(...)`,
+switch to `api.execProgram(...)`.

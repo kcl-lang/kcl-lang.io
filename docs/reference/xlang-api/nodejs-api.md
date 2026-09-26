@@ -4,6 +4,22 @@ sidebar_position: 6
 
 # Node.js API
 
+> **Looking for the cross-language FFI contract?**
+> See [`./ffi-abi.md`](./ffi-abi.md) for `call`, the `"ERROR:"` prefix,
+> the **4 MiB** `BUFFER_SIZE`, and the `kcl_lib_napi` napi-rs addon.
+> The `kcl-lib` package is a thin TypeScript wrapper over that single
+> dispatcher; every typed function funnels through
+> `napi_call(name, nameLength, args, argsLength, resultPtr)`.
+
+The [Node.js binding](https://github.com/kcl-lang/lib/tree/main/nodejs)
+is published as the npm package
+[`kcl-lib`](https://www.npmjs.com/package/kcl-lib). It is built with
+[napi-rs](https://napi.rs/) and exposes the full `KclService` +
+`BuiltinService` surface plus auto-generated TypeScript types from
+`spec/spec.proto`. One native addon per platform (`linux-x64-gnu`,
+`darwin-arm64`, `win32-x64-msvc`, …) is selected at install time via
+`optionalDependencies`.
+
 ## Installation
 
 ```shell
@@ -610,5 +626,67 @@ const result = getVersion();
 console.log(result.versionInfo);
 ```
 
+(The exact `version` / `checksum` / `gitSha` values vary per release;
+assert only on non-empty.)
+
 </p>
 </details>
+
+### ping
+
+Round-trip a value through the dispatcher.
+
+<details><summary>Example</summary>
+<p>
+
+```ts
+import { ping, PingArgs } from "kcl-lib";
+
+const result = ping(new PingArgs("hello"));
+console.log(result.value);   // -> "hello"
+```
+
+</p>
+</details>
+
+### listMethod
+
+List the KCL service method names supported by the underlying runtime.
+
+<details><summary>Example</summary>
+<p>
+
+```ts
+import { listMethod } from "kcl-lib";
+
+for (const name of listMethod().methodNameList) {
+  console.log(name);
+}
+```
+
+</p>
+</details>
+
+## Plugin support
+
+If your KCL program imports `kcl_plugin.*`, register the plugin before
+calling any RPC:
+
+```ts
+import { registerPlugin, execProgram, ExecProgramArgs } from "kcl-lib";
+
+registerPlugin("my_plugin", {
+  echo(args, kwargs) { return { ...args, ...kwargs }; },
+});
+
+const result = execProgram(new ExecProgramArgs(["schema.k"]));
+```
+
+## Notes
+
+The legacy `BuildProgram` and `ExecArtifact` RPCs were removed from
+`spec/spec.proto` in v0.13.0 (see
+[lib commit `815acac`](https://github.com/kcl-lang/lib/commit/815acac));
+they are no longer recognised by the dispatcher. If you previously
+imported a `buildProgram` or `execArtifact` symbol, switch to
+`execProgram`.

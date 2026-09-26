@@ -4,10 +4,44 @@ sidebar_position: 7
 
 # Rust API
 
+> **Looking for the cross-language FFI contract?**
+> See [`./ffi-abi.md`](./ffi-abi.md) for `call`, the `"ERROR:"` prefix,
+> the **4 MiB** `BUFFER_SIZE`, and the `kcl_api` crate. The Rust binding
+> lives in the main `kcl-lang/kcl` repo (not in the `kcl-lang/lib`
+> monorepo), and is the only binding that runs **in-process** — there is
+> no cdylib hop.
+
+The [Rust binding](https://github.com/kcl-lang/kcl/tree/main/kclvm/compiler/sema/service)
+ships as the `kcl-api` crate (re-exported through `kcl-lang`) from the
+main [`kcl-lang/kcl`](https://github.com/kcl-lang/kcl) repository,
+**not** from the [`kcl-lang/lib`](https://github.com/kcl-lang/lib)
+monorepo. The latter only holds the out-of-process cdylib bindings. As
+a result, this page is **informational** — see the kcl-lang/kcl docs
+for canonical Rust API references.
+
+Two layers are exposed:
+
+- **`kclvm_parser`** / **`kclvm_runner`** — sub-crates around the parser
+  and evaluator. Use these if you want lower-level control.
+- **`kcl_lang::*`** — high-level façade mirroring the Python
+  `kcl_lib.kcl` SDK. Provides `API::default()` plus typed `*Args` /
+  `*Result` structs generated from `spec/spec.proto`.
+
 ## Installation
 
 ```shell
-cargo add --git https://github.com/kcl-lang/lib
+cargo add kcl-lang --git https://github.com/kcl-lang/kcl
+```
+
+(Don't `cargo add` from `kcl-lang/lib` — the Rust binding lives in
+`kcl-lang/kcl`. The `lib` monorepo only ships cdylib bindings for
+other languages.)
+
+To use a sub-crate of the KCL Rust core:
+
+```shell
+# Take the kcl-runtime crate as an example.
+cargo add --git https://github.com/kcl-lang/kcl kcl-runtime
 ```
 
 ## Quick Start
@@ -27,13 +61,6 @@ fn main() -> Result<()> {
     println!("{}", exec_result.yaml_result);
     Ok(())
 }
-```
-
-More Rust APIs can be found [here](https://github.com/kcl-lang/kcl). If you want to use the sub crate of KCL Rust core, you can run the following command.
-
-```shell
-# Take the kcl-runtime crate as an example.
-cargo add --git https://github.com/kcl-lang/kcl kcl-runtime
 ```
 
 ## API Reference
@@ -318,3 +345,57 @@ remove_dir_all(vendor_path);
 
 </p>
 </details>
+
+### get_version
+
+Return the KCL service version information.
+
+```rust
+use kcl_lang::*;
+
+let serv = API::default();
+let result = serv.get_version().unwrap();
+assert!(!result.version.is_empty());
+assert!(!result.git_sha.is_empty());
+assert!(!result.checksum.is_empty());
+```
+
+### ping
+
+Round-trip a value through the dispatcher.
+
+```rust
+use kcl_lang::*;
+
+let serv = API::default();
+let result = serv.ping(&PingArgs { value: "hello".into() }).unwrap();
+assert_eq!(result.value, "hello");
+```
+
+### list_method
+
+List the KCL service method names supported by the underlying runtime.
+
+```rust
+use kcl_lang::*;
+
+let serv = API::default();
+for name in serv.list_method().unwrap().method_name_list {
+    println!("{}", name);
+}
+```
+
+## Notes
+
+The legacy `BuildProgram` and `ExecArtifact` RPCs were removed from
+`spec/spec.proto` in v0.13.0 (see
+[lib commit `815acac`](https://github.com/kcl-lang/lib/commit/815acac));
+they are no longer recognised by the dispatcher. If you previously
+called `serv.build_program(...)` or `serv.exec_artifact(...)`, switch to
+`serv.exec_program(...)`.
+
+The remaining `*_program`, `parse_*`, `list_*`, `get_schema_type_*`,
+`format_*`, `lint_path`, `validate_code`, `load_settings_files`,
+`rename*`, `test`, `override_file` methods are documented above or in
+the linked kcl-lang/kcl examples — see the per-method sections in this
+file for usage patterns.
