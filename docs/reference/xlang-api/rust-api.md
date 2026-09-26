@@ -399,4 +399,3 @@ The remaining `*_program`, `parse_*`, `list_*`, `get_schema_type_*`,
 `rename*`, `test`, `override_file` methods are documented above or in
 the linked kcl-lang/kcl examples — see the per-method sections in this
 file for usage patterns.
-</details>

@@ -397,5 +397,3 @@ for name in serv.list_method().unwrap().method_name_list {
 `format_*`、`lint_path`、`validate_code`、`load_settings_files`、
 `rename*`、`test`、`override_file` 方法的文档见上文或
 kcl-lang/kcl 中的相关示例——请参阅本文件中每个方法对应章节了解使用方式。
-
-</details>
