@@ -129,7 +129,14 @@ Strings are immutable sequences of Unicode characters. String literals are writt
 '''Three single quotes''', """Three double quotes"""  # Triple quoted
 ```
 
-Triple quoted strings may span multiple lines.
+Triple quoted strings may span multiple lines. For a multi-line string, the common leading whitespace (spaces and tabs) shared by all non-empty lines is stripped, so the string can be indented naturally with the surrounding code.
+
+```kcl
+s = """
+  foo
+  bar
+"""  # "foo\nbar\n"
+```
 
 Indexing a string produces strings of length 1, for a non-empty string s, `s[0] == s[0:1]`.
 
@@ -164,6 +171,7 @@ Built-in function and members of a string
   Returns the lowest index where substring sub is found, or -1 if no such index exists, optionally restricting to `[start:end]`, start being inclusive and end being exclusive.
 - `format(*args, **kwargs) -> str`
   Perform string interpolation. Format strings contain replacement fields surrounded by curly braces {}. Anything that is not contained in braces is considered literal text, which is copied unchanged to the output. If you need to include a bracket character in the literal text, it can be escaped by doubling: A replacement field can be either a name, a number or empty. Values are converted to strings using the str function.
+  A replacement field can also carry a format specification after a colon, supporting a fill character, an alignment (`<` left, `>` right, `^` center) and a minimum width for string values, e.g. `"{:>10}".format("hi")` yields `"        hi"`, and `"{:*^10}".format("hi")` yields `"****hi****"`.
 - `index(sub: str, start: int = 0, end: int = -1) -> int`
   Returns the first index where sub is found, or raises an error if no such index exists, optionally restricting to `[start:end]` start being inclusive and end being exclusive.
 - `isalnum() -> bool`
