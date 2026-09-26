@@ -48,6 +48,48 @@ key2 = data_string.key2
 data = data_string.data
 ```
 
+## merge
+
+`merge(src: any, patch: any) -> any`
+
+Merges the KCL object `patch` into the KCL object `src` according to [RFC 7396 JSON Merge Patch](https://datatracker.ietf.org/doc/html/rfc7396) and returns the merged object.
+
+- If `patch` is not a dict/config, it replaces `src` entirely.
+- If a key of `patch` holds `None`/`Undefined`, that key is removed from the result.
+- If a key of `patch` holds a dict/config, it is merged recursively with the corresponding key of `src`.
+- Otherwise the value from `patch` replaces the value from `src`.
+
+Neither `src` nor `patch` is modified; a new merged object is returned.
+
+```kcl
+import json
+
+src = {
+    "name": "Alice"
+    "age": 18
+    "profile": {
+        "city": "New York"
+        "zip": "10001"
+    }
+}
+patch = {
+    "age": None  # remove the key "age"
+    "profile": {
+        "city": "Boston"
+    }
+    "tags": ["a", "b"]  # add a new key
+}
+result = json.merge(src, patch)
+# {
+#     "name": "Alice"
+#     "profile": {
+#         "city": "Boston"
+#         "zip": "10001"
+#     }
+#     "tags": ["a", "b"]
+# }
+```
+
 ## dump_to_file
 
 ```kcl

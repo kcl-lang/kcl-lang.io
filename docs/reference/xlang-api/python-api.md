@@ -273,6 +273,34 @@ assert result.schema_type_mapping["app"].properties["replicas"].type == "int"
 </p>
 </details>
 
+### get_schema_type_mapping_under_path
+
+Get schema type mapping defined in the program and its dependency packages, keyed by package name. Different from `get_schema_type_mapping`, schemas imported from external dependency packages are keyed under their own package name instead of being flattened into `__main__`.
+
+<details><summary>Example</summary>
+<p>
+
+Python Code
+
+```python
+import kcl_lib.api as api
+
+exec_args = api.ExecProgramArgs(
+    k_filename_list=["test_data/get_schema_ty_under_path/aaa"],
+    external_pkgs=[api.ExternalPkg(pkg_name="bbb", pkg_path="test_data/get_schema_ty_under_path/bbb")],
+)
+args = api.GetSchemaTypeMappingArgs(exec_args=exec_args)
+api = api.API()
+result = api.get_schema_type_mapping_under_path(args)
+
+assert "bbb" in result.schema_type_mapping
+bbb_schemas = {s.schema_name: s for s in result.schema_type_mapping["bbb"].schema_type}
+assert bbb_schemas["B"].base_schema.schema_name == "Base"
+```
+
+</p>
+</details>
+
 ### override_file
 
 Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation) for more override spec guide.

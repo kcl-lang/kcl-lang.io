@@ -243,6 +243,47 @@ int main()
 </p>
 </details>
 
+### get_schema_type_mapping_under_path
+
+Get schema type mapping defined in the program and its dependency packages, keyed by package name. Different from `get_schema_type_mapping`, schemas imported from external dependency packages are keyed under their own package name instead of being flattened into `__main__`.
+
+<details><summary>Example</summary>
+<p>
+
+```cpp
+#include "kcl_lib.hpp"
+#include <filesystem>
+#include <iostream>
+
+int main()
+{
+    auto root = std::filesystem::canonical(std::filesystem::current_path() / "test_data" / "get_schema_ty_under_path");
+    auto exec_args = kcl_lib::ExecProgramArgs{
+        .k_filename_list = {(root / "aaa").string()},
+        .external_pkgs = {kcl_lib::ExternalPkg{
+            .pkg_name = "bbb",
+            .pkg_path = (root / "bbb").string(),
+        }},
+    };
+    auto args = kcl_lib::GetSchemaTypeMappingArgs{
+        .exec_args = kcl_lib::OptionalExecProgramArgs{
+            .has_value = true,
+            .value = exec_args,
+        },
+        .schema_name = "",
+    };
+    auto result = kcl_lib::get_schema_type_mapping_under_path(args);
+    for (auto &entry : result.schema_type_mapping)
+    {
+        std::cout << "package: " << entry.key.c_str() << std::endl;
+    }
+    return 0;
+}
+```
+
+</p>
+</details>
+
 ### override_file
 
 Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation) for more override spec guide.

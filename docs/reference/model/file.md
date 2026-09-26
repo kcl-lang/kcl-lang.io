@@ -18,6 +18,18 @@ import file
 a = file.read("test.txt")
 ```
 
+## readbase64
+
+`readbase64(filepath: str) -> str`
+
+Read the file `filepath` as raw bytes and return its contents encoded as a base64 string (RFC 4648 standard alphabet). Unlike `read()`, which requires the file content to be valid UTF-8 text, `readbase64()` accepts any byte sequence such as images or binaries, and the content round-trips losslessly.
+
+```kcl
+import file
+
+data = file.readbase64("logo.png")
+```
+
 ## glob
 
 `glob(pattern: str) -> str`

@@ -73,10 +73,23 @@ Examples:
   # Validate the JSON data using the kcl code
   kcl vet data.json code.k
 
+  # Validate the YAML data using the kcl code
+  kcl vet data.yaml code.k --format yaml
+
+  # Validate the JSON data using the kcl code with the schema name
+  kcl vet data.json code.k -s Schema
+
+  # Validate and output results as JSON for CI/CD integration
+  kcl vet data.json code.k --output json
+
+  # Validate against a schema that imports an external KCL package
+  kcl vet data.yaml schema.k -E my_pkg=./vendor/my_pkg
 
 Flags:
   -a, --attribute_name string   Specify the validate config attribute name.
+  -E, --external stringArray    Specify the mapping of package name and path where the package is located, e.g. my_pkg=./vendor/my_pkg
       --format string           Specify the validate data format. e.g., yaml, json. Default is json
   -h, --help                    help for vet
+      --output string           Specify the output format. e.g., text, json. Default is text (default "text")
   -s, --schema string           Specify the validate schema.
 ```

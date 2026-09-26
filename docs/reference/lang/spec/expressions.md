@@ -177,6 +177,26 @@ data = {
 }  # {"key1": "value1", "key2": "value2"}
 ```
 
+For the config entries of the dict and schema instances, KCL supports the ES6-style shorthand: a bare identifier is equivalent to a `key = key` entry, and it can be mixed with ordinary entries.
+
+```kcl
+name = "Alice"
+age = 18
+person = {
+    name  # Equivalent to `name = name`
+    age = 99
+}  # {"name": "Alice", "age": 99}
+
+schema Person:
+    name: str
+    age: int
+
+p = Person {
+    name  # Equivalent to `name = name`
+    age = 18
+}  # {"name": "Alice", "age": 18}
+```
+
 In addition, the **config selector expressions** can be used to init a schema instance.
 
 ```kcl
@@ -487,7 +507,7 @@ not x or not x[0]
 
 #### Comparisons
 
-The `==` operator reports whether its operands are equal; the `!=` operator is its negation.
+The `==` operator reports whether its operands are equal; the `!=` operator is its negation. `==` and `!=` can be applied to values of type `list`, `dict` and `schema` in addition to the primitive types.
 
 The operators `<`, `>`, `<=`, and `>=` perform an ordered comparison of their operands. It is an error to apply these operators to operands of unequal type, unless one of the operands is an `int` and the other is a `float`. Of the built-in types, only the following support ordered comparison, using the ordering relation shown:
 
@@ -502,9 +522,10 @@ list            # lexicographical
 
 Comparison of floating-point values follows the IEEE 754 standard, which breaks several mathematical identities. For example, if `x` is a `NaN` value, the comparisons `x < y`, `x == y`, and `x > y` all yield false for all values of `y`.
 
-The remaining built-in types support only equality comparisons. Values of type `dict` and `schema` compare equal if their elements compare equal, and values of type function or `builtin_function_or_method` are equal only to themselves.
+The remaining built-in types support only equality comparisons. Values of type `list`, `dict` and `schema` compare equal if their elements compare equal, and values of type function or `builtin_function_or_method` are equal only to themselves.
 
 ```bnf
+list                            # equal contents
 dict                            # equal contents
 schema                          # equal exported-attributes
 function                        # identity
@@ -853,9 +874,11 @@ Quantifier expressions act on collection: list or dict, generally used to obtain
 
 ```bnf
 quant_expr: quant_op [ identifier ',' ] identifier 'in' quant_target '{' expr ['if' expr] '}'
-quant_target: string | identifier | list_expr |list_comp | dict_expr | dict_comp
+quant_target: string | identifier | selector_expr | list_expr | list_comp | dict_expr | dict_comp
 quant_op: 'all' | 'any' | 'filter' | 'map'
 ```
+
+The quant target can be a selector expression, so collections nested in a dict or a schema can be iterated directly.
 
 - **all**
   - Used to detect that all elements in the collection satisfy the given logical expression, and return a boolean value as the result.

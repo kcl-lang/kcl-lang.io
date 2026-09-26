@@ -81,16 +81,30 @@ import net
 ip = net.to_IP4("192.168.0.1")
 ```
 
-## to_IP16
+## to_IP6
 
-`to_IP16(ip) -> int`
+`to_IP6(ip: str) -> str`
 
-A synonym for `parse_IP()`.
+Converts the IP address `ip` to its IPv6 form. An IPv4 address is converted to an IPv4-mapped IPv6 address. If `ip` does not have valid syntax, returns an error message string.
 
 ```kcl
 import net
 
-ip = net.to_IP16("192.168.0.1")
+ip = net.to_IP6("192.168.0.1")  # "::ffff:192.168.0.1"
+```
+
+## is_IPv6
+
+`is_IPv6(ip: str) -> bool`
+
+If `ip` is a valid IPv6 address, returns `True`. Otherwise, returns `False`.
+
+```kcl
+import net
+
+assert net.is_IPv6("::1") == True
+assert net.is_IPv6("192.168.0.1") == False
+assert net.is_IPv6("invalid") == False
 ```
 
 ## IP_string
@@ -128,9 +142,9 @@ If `ip` is a valid IPv4 or IPv6 address, returns `True`. Otherwise, returns `Fal
 ```kcl
 import net
 
-assert net.is_IPv4("192.168.0.1") == True
-assert net.is_IPv4("::1") == True
-assert net.is_IPv4("invalid") == False
+assert net.is_IP("192.168.0.1") == True
+assert net.is_IP("::1") == True
+assert net.is_IP("invalid") == False
 ```
 
 ## is_loopback_IP

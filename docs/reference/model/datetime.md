@@ -32,14 +32,17 @@ date = datetime.date()
 
 ## now
 
-`now(format: str = "%a %b %d %H:%M:%S %Y") -> str`
+`now(format: str = "%a %b %d %H:%M:%S %Y", ticks: float = None) -> str`
 
 Return the local time format. e.g. 'Sat Jun 06 16:26:11 1998' or format the combined date and time per the specified format string, and the default date format is `%a %b %d %H:%M:%S %Y`.
+
+When the optional `ticks` argument (seconds since the Unix epoch, as returned by `ticks()`) is provided, that instant is formatted instead of the current time. This allows rendering arbitrary past or future dates in the local time zone.
 
 ```kcl
 import datetime
 
 date = datetime.now()
+date2 = datetime.now("%Y-%m-%d %H:%M:%S", ticks=0)  # "1970-01-01 00:00:00" (in the local time zone)
 ```
 
 ## today

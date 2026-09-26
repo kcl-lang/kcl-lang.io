@@ -245,6 +245,30 @@ const result = getSchemaTypeMapping(new GetSchemaTypeMappingArgs(["schema.k"]));
 </p>
 </details>
 
+### getSchemaTypeMappingUnderPath
+
+Get schema type mapping defined in the program and its dependency packages, keyed by package name. Different from `getSchemaTypeMapping`, schemas imported from external dependency packages are keyed under their own package name instead of being flattened into `__main__`.
+
+<details><summary>Example</summary>
+<p>
+
+Node.js Code
+
+```ts
+import path from 'node:path'
+import { getSchemaTypeMappingUnderPath, GetSchemaTypeMappingArgs } from "kcl-lib";
+
+const result = getSchemaTypeMappingUnderPath(
+    new GetSchemaTypeMappingArgs([path.join("test_data", "get_schema_ty_under_path", "aaa")], null, null, [
+        { pkgName: "bbb", pkgPath: path.join("test_data", "get_schema_ty_under_path", "bbb") },
+    ]),
+);
+console.log(result.schemaTypeMapping["bbb"]);  // ["B", "Base"]
+```
+
+</p>
+</details>
+
 ### overrideFile
 
 Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation) for more override spec guide.

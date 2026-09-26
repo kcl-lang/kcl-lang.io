@@ -10,6 +10,8 @@ The KCL Format tool supports reformatting KCL files to the standard code style. 
 
 The KCL Format tool modifies the files according to the KCL code style: [Style Guide for KCL Code](/docs/reference/lang/spec/codestyle)
 
+The formatter honors the `.editorconfig` file for indentation settings such as `indent_style` and `indent_size` when one is present.
+
 ## How to use
 
 - Formatting Single File
@@ -22,6 +24,12 @@ kcl fmt your_config.k
 
 ```shell
 kcl fmt your_config_path
+```
+
+- Only report the files that require formatting without modifying them
+
+```shell
+kcl fmt --dry-run .
 ```
 
 ## Display of formatting files
@@ -81,5 +89,6 @@ Examples:
   kcl fmt ./...
 
 Flags:
-  -h, --help   help for fmt
+      --dry-run   Report files requiring formatting without modifying them.
+  -h, --help      help for fmt
 ```

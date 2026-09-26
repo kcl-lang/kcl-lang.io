@@ -281,6 +281,36 @@ String replicasType = appSchemaType.getPropertiesOrThrow("replicas").getType();
 </p>
 </details>
 
+### getSchemaTypeMappingUnderPath
+
+Get schema type mapping defined in the program and its dependency packages, keyed by package name. Different from `getSchemaTypeMapping`, schemas imported from external dependency packages are keyed under their own package name instead of being flattened into `__main__`.
+
+<details><summary>Example</summary>
+<p>
+
+Java Code
+
+```java
+import com.kcl.api.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+Path root = Paths.get("test_data/get_schema_ty_under_path").toAbsolutePath();
+ExecProgramArgs execArgs = ExecProgramArgs.newBuilder()
+        .addKFilenameList(root.resolve("aaa").toString())
+        .addExternalPkgs(ExternalPkg.newBuilder().setPkgName("bbb")
+                .setPkgPath(root.resolve("bbb").toString()).build())
+        .build();
+GetSchemaTypeMappingArgs args = GetSchemaTypeMappingArgs.newBuilder().setExecArgs(execArgs).build();
+API apiInstance = new API();
+GetSchemaTypeMappingUnderPathResult result = apiInstance.getSchemaTypeMappingUnderPath(args);
+KclType base = result.getSchemaTypeMappingOrThrow("bbb").getSchemaTypeList().stream()
+        .filter(s -> s.getSchemaName().equals("Base")).findFirst().orElseThrow();
+```
+
+</p>
+</details>
+
 ### overrideFile
 
 Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation) for more override spec guide.

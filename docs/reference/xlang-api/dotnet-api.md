@@ -252,6 +252,31 @@ var result = new API().GetSchemaTypeMapping(args);
 </p>
 </details>
 
+### GetSchemaTypeMappingUnderPath
+
+Get schema type mapping defined in the program and its dependency packages, keyed by package name. Different from `GetSchemaTypeMapping`, schemas imported from external dependency packages are keyed under their own package name instead of being flattened into `__main__`.
+
+<details><summary>Example</summary>
+<p>
+
+C# Code
+
+```csharp
+using KclLib.API;
+
+var root = Path.GetFullPath("test_data/get_schema_ty_under_path");
+var execArgs = new ExecProgramArgs();
+execArgs.KFilenameList.Add(Path.Combine(root, "aaa"));
+execArgs.ExternalPkgs.Add(new ExternalPkg { PkgName = "bbb", PkgPath = Path.Combine(root, "bbb") });
+var args = new GetSchemaTypeMappingArgs();
+args.ExecArgs = execArgs;
+var result = new API().GetSchemaTypeMappingUnderPath(args);
+var bbbSchemas = result.SchemaTypeMapping["bbb"].SchemaType.ToDictionary(s => s.SchemaName);
+```
+
+</p>
+</details>
+
 ### OverrideFile
 
 Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation) for more override spec guide.
