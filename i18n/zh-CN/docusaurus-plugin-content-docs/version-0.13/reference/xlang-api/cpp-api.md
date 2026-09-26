@@ -4,31 +4,42 @@ sidebar_position: 11
 
 # C++ API
 
-KCL [C++ API](https://github.com/kcl-lang/lib/tree/main/cpp) 正在开发中，欢迎贡献。
+> **正在寻找跨语言 FFI 契约？**
+> 请参阅 [`./ffi-abi.md`](./ffi-abi.md)，其中包含 `call`、`"ERROR:"` 前缀、
+> **4 MiB** 结果缓冲区，以及 `cxx::bridge` 命名空间 `kcl_lib`。
+> `kcl_lib.hpp` 中的每个类型化辅助函数都是由 [`cxx`](https://cxx.rs/)
+> 基于该单一调度器（dispatcher）生成的轻量 C++ 包装。
 
-## 前置依赖
+[C++ API](https://github.com/kcl-lang/lib/tree/main/cpp) 通过
+[`cxx`](https://cxx.rs/) bridge 构建于 `kcl_api::call` 之上，并在
+`kcl_lib::` 命名空间中暴露完整的 `KclService` + `BuiltinService` 接口。
+所有 `*Args` / `*Result` 类型均由 `spec/spec.proto` 生成，每个类型化包装
+函数都会返回 `Result<T>`，并将调度器返回的 `"ERROR:..."` 回复映射为
+`kcl_lib::KclError`。
+
+## 环境要求
 
 - CMake >= 3.10
-- C++ Compiler with C++17 Support
+- 支持 C++17 的 C++ 编译器
 - Cargo
 
 ## 安装
 
 ### CMake
 
-You can use FetchContent to add KCL C++ Lib to your project.
+你可以使用 FetchContent 将 KCL C++ Lib 添加到你的项目中。
 
 ```shell
 FetchContent_Declare(
   kcl-lib
   GIT_REPOSITORY https://github.com/kcl-lang/lib.git
-  GIT_TAG        v0.10.8
+  GIT_TAG        v0.13.0 # You can change the GitHub branch tag.
   SOURCE_SUBDIR  cpp
 )
 FetchContent_MakeAvailable(kcl-lib)
 ```
 
-Or you can download the source code and add it to your project.
+或者你可以下载源码并将其添加到你的项目中。
 
 ```shell
 mkdir third_party
@@ -36,7 +47,7 @@ cd third_party
 git clone https://github.com/kcl-lang/lib.git
 ```
 
-Update your CMake files.
+更新你的 CMake 文件。
 
 ```shell
 add_subdirectory(third_party/lib/cpp)
@@ -50,9 +61,9 @@ target_link_libraries(your_target kcl-lib-cpp)
 
 ### exec_program
 
-Execute KCL file with arguments and return the JSON/YAML result.
+执行 KCL 文件并传入参数，返回 JSON/YAML 结果。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -75,9 +86,9 @@ int main()
 
 ### parse_file
 
-Parse KCL single file to Module AST JSON string with import dependencies and parse errors.
+将单个 KCL 文件解析为 Module AST JSON 字符串，并返回导入依赖与解析错误信息。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -102,9 +113,9 @@ int main()
 
 ### parse_program
 
-Parse KCL program with entry files and return the AST JSON string.
+通过入口文件解析 KCL 程序，并返回 AST JSON 字符串。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -129,9 +140,9 @@ int main()
 
 ### load_package
 
-load_package provides users with the ability to parse KCL program and semantic model information including symbols, types, definitions, etc.
+`load_package` 为用户提供解析 KCL 程序以及符号、类型、定义等语义模型信息的能力。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -161,9 +172,9 @@ int main()
 
 ### list_variables
 
-list_variables provides users with the ability to parse KCL program and get all variables by specs.
+`list_variables` 为用户提供解析 KCL 程序并按规格获取所有变量的能力。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -186,9 +197,9 @@ int main()
 
 ### list_options
 
-list_options provides users with the ability to parse KCL program and get all option information.
+`list_options` 为用户提供解析 KCL 程序并获取所有 option 信息的能力。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -213,9 +224,9 @@ int main()
 
 ### get_schema_type_mapping
 
-Get schema type mapping defined in the program.
+获取程序中定义的 schema 类型映射。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -245,9 +256,11 @@ int main()
 
 ### get_schema_type_mapping_under_path
 
-获取程序及其依赖包中定义的 schema 类型映射，按包名分组。与 `get_schema_type_mapping` 不同，从外部依赖包导入的 schema 会以自己的包名作为键，而不是被扁平化到 `__main__` 中。
+获取程序及其依赖包中定义的 schema 类型映射，并以包名作为键。
+与 `get_schema_type_mapping` 不同，从外部依赖包导入的 schema 会以其所属包名
+作为键，而不是被合并到 `__main__` 下。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -286,9 +299,10 @@ int main()
 
 ### override_file
 
-Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation) for more override spec guide.
+使用参数覆盖 KCL 文件。更多覆盖规范说明，请参阅
+[https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation)。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -313,9 +327,9 @@ int main()
 
 ### format_code
 
-Format the code source.
+格式化代码源文件。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -342,9 +356,9 @@ int main()
 
 ### format_path
 
-Format KCL file or directory path contains KCL files and returns the changed file paths.
+格式化 KCL 文件或包含 KCL 文件的目录路径，并返回发生变更的文件路径。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -367,9 +381,9 @@ int main()
 
 ### lint_path
 
-Lint files and return error messages including errors and warnings.
+对文件执行 lint 检查，并返回包含错误和警告在内的错误信息。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -392,9 +406,9 @@ int main()
 
 ### validate_code
 
-Validate code using schema and JSON/YAML data strings.
+使用 schema 以及 JSON/YAML 数据字符串对代码进行校验。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -428,7 +442,7 @@ int main()
 }
 ```
 
-Run the ValidateAPI example.
+运行 ValidateAPI 示例。
 
 ```shell
 ./validate_api
@@ -439,9 +453,10 @@ Run the ValidateAPI example.
 
 ### rename
 
-Rename all the occurrences of the target symbol in the files. This API will rewrite files if they contain symbols to be renamed. Return the file paths that got changed.
+重命名文件中目标符号的所有出现位置。如果文件中包含需要重命名的符号，
+该 API 将重写这些文件，并返回发生变化的文件路径。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -467,9 +482,10 @@ int main()
 
 ### rename_code
 
-Rename all the occurrences of the target symbol and return the modified code if any code has been changed. This API won't rewrite files but return the changed code.
+重命名目标符号的所有出现位置，并在代码发生变化时返回修改后的代码。
+该 API 不会重写文件，而是返回修改后的代码。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -498,9 +514,9 @@ int main()
 
 ### test
 
-Test KCL packages with test arguments.
+使用测试参数对 KCL 包运行测试。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -523,9 +539,9 @@ int main()
 
 ### load_settings_files
 
-Load the setting file config defined in `kcl.yaml`
+加载 `kcl.yaml` 中定义的配置文件配置。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -552,12 +568,12 @@ int main()
 
 ### update_dependencies
 
-Download and update dependencies defined in the `kcl.mod` file and return the external package name and location list.
+下载并更新 `kcl.mod` 文件中定义的依赖，并返回外部包名及其位置列表。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `module/kcl.mod` is
+`module/kcl.mod` 文件内容如下：
 
 ```yaml
 [package]
@@ -570,7 +586,7 @@ helloworld = { oci = "oci://ghcr.io/kcl-lang/helloworld", tag = "0.1.0" }
 flask = { git = "https://github.com/kcl-lang/flask-demo-kcl-manifests", commit = "ade147b" }
 ```
 
-C++ Code
+C++ 代码：
 
 ```cpp
 #include "kcl_lib.hpp"
@@ -591,12 +607,12 @@ int main()
 </p>
 </details>
 
-Call `exec_program` with external dependencies
+使用外部依赖调用 `exec_program`
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
-The content of `module/kcl.mod` is
+`module/kcl.mod` 文件内容如下：
 
 ```yaml
 [package]
@@ -609,7 +625,7 @@ helloworld = { oci = "oci://ghcr.io/kcl-lang/helloworld", tag = "0.1.0" }
 flask = { git = "https://github.com/kcl-lang/flask-demo-kcl-manifests", commit = "ade147b" }
 ```
 
-The content of `module/main.k` is
+`module/main.k` 文件内容如下：
 
 ```cpp
 import helloworld
@@ -618,7 +634,7 @@ import flask
 a = helloworld.The_first_kcl_program
 ```
 
-C++ Code
+C++ 代码：
 
 ```cpp
 #include "kcl_lib.hpp"
@@ -645,9 +661,9 @@ int main()
 
 ### get_version
 
-Return the KCL service version information.
+返回 KCL 服务的版本信息。
 
-<details><summary>Example</summary>
+<details><summary>示例</summary>
 <p>
 
 ```cpp
@@ -665,5 +681,64 @@ int main()
 }
 ```
 
+（具体的 `version` / `checksum` / `git_sha` 值随发布版本而变化；
+请仅断言其非空。）
+
 </p>
 </details>
+
+### ping
+
+通过调度器往返回送一个值。
+
+<details><summary>示例</summary>
+<p>
+
+```cpp
+#include "kcl_lib.hpp"
+#include <iostream>
+
+int main()
+{
+    auto args = kcl_lib::PingArgs { .value = "hello" };
+    auto result = kcl_lib::ping(args);
+    std::cout << result.value.c_str() << std::endl;  // -> "hello"
+    return 0;
+}
+```
+
+</p>
+</details>
+
+### list_method
+
+列出底层运行时所支持的 KCL 服务方法名称。
+
+<details><summary>示例</summary>
+<p>
+
+```cpp
+#include "kcl_lib.hpp"
+#include <iostream>
+
+int main()
+{
+    auto result = kcl_lib::list_method();
+    for (const auto& name : result.method_name_list) {
+        std::cout << name.c_str() << std::endl;
+    }
+    return 0;
+}
+```
+
+</p>
+</details>
+
+## 注意事项
+
+旧的 `BuildProgram` 与 `ExecArtifact` RPC 已在 v0.13.0 中从
+`spec/spec.proto` 中移除（请参阅
+[lib commit `815acac`](https://github.com/kcl-lang/lib/commit/815acac)）；
+`kcl_lib::` 调度器不再识别它们。如果你之前调用过
+`kcl_lib::build_program(...)` 或 `kcl_lib::exec_artifact(...)`，
+请切换至 `kcl_lib::exec_program(...)`。
