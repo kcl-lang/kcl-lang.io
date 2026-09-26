@@ -32,14 +32,17 @@ date = datetime.date()
 
 ## now
 
-`now(format: str = "%a %b %d %H:%M:%S %Y") -> str`
+`now(format: str = "%a %b %d %H:%M:%S %Y", ticks: float = None) -> str`
 
 返回本地时间格式。例如：`Sat Jun 06 16:26:11 1998`，或者根据指定的格式字符串格式化组合的日期和时间，默认日期格式为 `%a %b %d %H:%M:%S %Y`。
+
+当传入可选参数 `ticks`（自 Unix 纪元以来的秒数，即 `ticks()` 的返回值）时，格式化该指定时刻而不是当前时间，可以在本地时区渲染任意过去或未来的日期。
 
 ```kcl
 import datetime
 
 date = datetime.now()
+date2 = datetime.now("%Y-%m-%d %H:%M:%S", ticks=0)  # "1970-01-01 00:00:00"（本地时区）
 ```
 
 ## today

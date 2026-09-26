@@ -48,6 +48,48 @@ key2 = data_string.key2
 data = data_string.data
 ```
 
+## merge
+
+`merge(src: any, patch: any) -> any`
+
+按照 [RFC 7396 JSON Merge Patch](https://datatracker.ietf.org/doc/html/rfc7396) 将 KCL 对象 `patch` 合并到 KCL 对象 `src` 中，并返回合并后的对象。
+
+- 如果 `patch` 不是 dict/config，则直接替换 `src`。
+- 如果 `patch` 中某个键的值为 `None`/`Undefined`，则该键会从结果中删除。
+- 如果 `patch` 中某个键的值为 dict/config，则与 `src` 中对应的键递归合并。
+- 其他情况使用 `patch` 中的值替换 `src` 中的值。
+
+`src` 和 `patch` 都不会被修改，返回的是一个新对象。
+
+```kcl
+import json
+
+src = {
+    "name": "Alice"
+    "age": 18
+    "profile": {
+        "city": "New York"
+        "zip": "10001"
+    }
+}
+patch = {
+    "age": None  # 删除 "age" 键
+    "profile": {
+        "city": "Boston"
+    }
+    "tags": ["a", "b"]  # 新增键
+}
+result = json.merge(src, patch)
+# {
+#     "name": "Alice"
+#     "profile": {
+#         "city": "Boston"
+#         "zip": "10001"
+#     }
+#     "tags": ["a", "b"]
+# }
+```
+
 ## dump_to_file
 
 ```kcl

@@ -18,6 +18,18 @@ import file
 a = file.read("test.txt")
 ```
 
+## readbase64
+
+`readbase64(filepath: str) -> str`
+
+将文件 `filepath` 作为原始字节读取，并返回以 base64 字符串（RFC 4648 标准字符集）编码的内容。与 `read()` 不同，`read()` 要求文件内容是合法的 UTF-8 文本，而 `readbase64()` 可以读取任意字节序列（如图片、二进制文件），且内容可以无损往返。
+
+```kcl
+import file
+
+data = file.readbase64("logo.png")
+```
+
 ## glob
 
 `glob(pattern: str) -> str`

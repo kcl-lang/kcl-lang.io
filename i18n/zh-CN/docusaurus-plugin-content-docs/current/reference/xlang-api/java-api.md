@@ -280,6 +280,34 @@ String replicasType = appSchemaType.getPropertiesOrThrow("replicas").getType();
 </p>
 </details>
 
+### getSchemaTypeMappingUnderPath
+
+获取程序及其依赖包中定义的 schema 类型映射，按包名分组。与 `getSchemaTypeMapping` 不同，从外部依赖包导入的 schema 会以自己的包名作为键，而不是被扁平化到 `__main__` 中。
+
+<details><summary>Example</summary>
+<p>
+
+Java 代码
+
+```java
+import com.kcl.api.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+Path root = Paths.get("test_data/get_schema_ty_under_path").toAbsolutePath();
+ExecProgramArgs execArgs = ExecProgramArgs.newBuilder()
+        .addKFilenameList(root.resolve("aaa").toString())
+        .addExternalPkgs(ExternalPkg.newBuilder().setPkgName("bbb")
+                .setPkgPath(root.resolve("bbb").toString()).build())
+        .build();
+GetSchemaTypeMappingArgs args = GetSchemaTypeMappingArgs.newBuilder().setExecArgs(execArgs).build();
+API apiInstance = new API();
+GetSchemaTypeMappingUnderPathResult result = apiInstance.getSchemaTypeMappingUnderPath(args);
+```
+
+</p>
+</details>
+
 ### overrideFile
 
 Override KCL file with arguments. See [https://www.kcl-lang.io/docs/user_docs/guides/automation](https://www.kcl-lang.io/docs/user_docs/guides/automation) for more override spec guide.

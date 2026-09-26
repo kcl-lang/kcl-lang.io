@@ -35,12 +35,21 @@ kcl lint your_config.k
 kcl lint your_config_path
 ```
 
+或递归检查当前目录下的所有 KCL 包（每个目录一个包，类似 `go build ./...`）：
+
+```shell
+kcl lint ./...
+```
+
 ## 参数说明
 
 ```shell
 This command lints the kcl code. 'kcl lint' takes multiple input for arguments.
 
 For example, 'kcl lint path/to/kcl.k' will lint the file named path/to/kcl.k
+
+'kcl lint ./...' lints all the kcl packages under the current directory, one
+package per directory, like 'go build ./...'
 
 Usage:
   kcl lint [flags]
@@ -51,6 +60,12 @@ Examples:
 
   # Lint multiple files
   kcl lint path/to/kcl1.k path/to/kcl2.k
+
+  # Lint all the packages under the current directory
+  kcl lint ./...
+
+  # Lint all the packages under a specific directory
+  kcl lint path/to/pkg/...
 
   # Lint OCI packages
   kcl lint oci://ghcr.io/kcl-lang/helloworld

@@ -68,16 +68,28 @@ import net
 ip = net.to_IP4("192.168.0.1")
 ```
 
-## to_IP16
+## to_IP6
 
-`to_IP16(ip) -> int`
+`to_IP6(ip: str) -> str`
 
-获取 `ip` 的 IPv6 表示形式。
+将 IP 地址 `ip` 转换为 IPv6 形式，IPv4 地址会被转换为 IPv4 映射的 IPv6 地址。如果 `ip` 不是合法的 IP 地址，则返回错误信息字符串。
 
 ```kcl
 import net
 
-ip = net.to_IP16("192.168.0.1")
+ip = net.to_IP6("192.168.0.1")  # "::ffff:192.168.0.1"
+```
+
+## is_IPv6
+
+`is_IPv6(ip: str) -> bool`
+
+判断 `ip` 是否为有效的 IPv6 地址。
+
+```kcl
+import net
+
+ip = net.is_IPv6("::1")
 ```
 
 ## IP_string
